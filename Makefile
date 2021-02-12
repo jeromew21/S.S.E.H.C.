@@ -6,7 +6,7 @@ APP_DIR  := $(BUILD)/apps
 TARGET   := ssehc
 INCLUDE  := -Iinclude/
 SRC      :=                      \
-   $(wildcard src/game/*.cpp) \
+   $(wildcard src/**/*.cpp) \
    $(wildcard src/*.cpp)         \
 
 OBJECTS  := $(SRC:%.cpp=$(OBJ_DIR)/%.o)

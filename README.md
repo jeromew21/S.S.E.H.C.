@@ -24,8 +24,10 @@ Portability
 # Contributing
 Please feel free to make a branch and pull request
 
-## Overall project notes
+#### Overall project notes
 Be extremely pedantic with variable naming and logical seperation of code.
 
-## Code Style
+#### Code Style
 Try to follow this as a rough guideline: https://google.github.io/styleguide/cppguide.html
+
+#### Repository Layout

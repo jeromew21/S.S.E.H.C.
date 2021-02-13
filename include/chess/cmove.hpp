@@ -6,7 +6,8 @@
 #include "chess/pieces.hpp"
 #include "misc/bits.hpp"
 
-namespace MoveType {
+// not an enum because casting is annoying, this serves the same purpose.
+namespace move_type {
 const int Null = 0;
 const int Default = 1;
 const int KPromotion = 2;
@@ -24,9 +25,9 @@ struct CMove {
 
   static CMove NullMove() { return CMove(); }
 
-  inline bool isNull() { return getTypeCode() == MoveType::Null; }
+  inline bool isNull() { return getTypeCode() == move_type::Null; }
 
-  inline bool notNull() { return getTypeCode() != MoveType::Null; }
+  inline bool notNull() { return getTypeCode() != move_type::Null; }
 
   inline int getTypeCode() { return data & 15; }
 
@@ -38,12 +39,12 @@ struct CMove {
 
   inline bool isPromotion() {
     int tc = getTypeCode();
-    return tc >= MoveType::KPromotion && tc <= MoveType::QPromotion;
+    return tc >= move_type::KPromotion && tc <= move_type::QPromotion;
   }
 
   inline bool isCastle() {
     int tc = getTypeCode();
-    return tc == MoveType::CastleLong || tc == MoveType::CastleShort;
+    return tc == move_type::CastleLong || tc == move_type::CastleShort;
   }
 
   inline Square getSrcSquare() { return data >> 10; }

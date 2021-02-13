@@ -22,12 +22,54 @@ Portability
 `make`
 
 # Contributing
-Please feel free to make a branch and pull request
+Please feel free to make a branch and pull request.
 
 #### Overall project notes
 Be extremely pedantic with variable naming and logical seperation of code.
+
+Explicit is better than implicit.
+
+Faster is gooder.
+
+Plan for the worst case scenario.
+
+#### C++ specific
+
+Try to not type cast if possible.
 
 #### Code Style
 Try to follow this as a rough guideline: https://google.github.io/styleguide/cppguide.html
 
 #### Repository Layout
+.
+├── build
+│   ├── apps
+│   │   └── ssehc
+│   └── objects
+│       └── src
+│           ├── chess
+│           │   └── pieces.o
+│           └── main.o
+├── include
+│   ├── ai
+│   │   └── ai.hpp
+│   ├── chess
+│   │   ├── board.hpp
+│   │   ├── cmove.hpp
+│   │   └── pieces.hpp
+│   ├── definitions.hpp
+│   ├── misc
+│   │   ├── bits.hpp
+│   │   ├── debug.hpp
+│   │   ├── fen.hpp
+│   │   └── strings.hpp
+│   └── uci
+│       └── utils.hpp
+├── Makefile
+├── README.md
+├── scripts
+├── src
+│   ├── chess
+│   │   └── pieces.cpp
+│   └── main.cpp
+└── tests

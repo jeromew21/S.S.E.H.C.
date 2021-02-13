@@ -1,5 +1,5 @@
 CXX      := -clang++
-CXXFLAGS := -std=c++11 -pedantic-errors -Wno-strict-overflow -Wextra -pthread -ffast-math
+CXXFLAGS := -std=c++11 -pedantic-errors -Wno-strict-overflow -Wextra -pthread
 BUILD    := ./build
 OBJ_DIR  := $(BUILD)/objects
 APP_DIR  := $(BUILD)/apps
@@ -30,7 +30,7 @@ build:
 debug: CXXFLAGS += -DDEBUG -g
 debug: all
 
-release: CXXFLAGS += -O3
+release: CXXFLAGS += -ffast-math -O3
 release: all
 
 clean:

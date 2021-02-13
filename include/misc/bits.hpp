@@ -4,12 +4,12 @@
 #include <array>
 #include "definitions.hpp"
 
-void seedRand(int seed); //seed
-float randReal(); //between 0 and 1
+void seedRand(int seed); // seed
+float randReal();        // between 0 and 1
 
-int hadd(u64 x); //count number of bits, also a hotspot IIRC
+int hadd(u64 x); // count number of bits, also a hotspot IIRC
 
-void bitscanAll(u64 x, std::array<u64, 64> &outarr, int &outsize); //breaks into one-hots, hotspot, vectorize?
+void bitscanAll(u64 x, std::array<u64, 64> &outarr, int &outsize); // breaks into one-hots, hotspot, vectorize?
 
 // LSB (rightmost, uppermost)
 inline int bitscanForward(u64 x) { return __builtin_ffsll(x) - 1; }
@@ -17,8 +17,8 @@ inline int bitscanForward(u64 x) { return __builtin_ffsll(x) - 1; }
 // MSB (leftmost, uppermost)
 inline int bitscanReverse(u64 x) { return 63 - __builtin_clzll(x); }
 
-//One-hot <=> int 
-inline u64 u64FromSquare(Square s) { return (1UL) << s; }
+// One-hot <=> int
+inline u64 u64FromSquare(Square s) { return 1 << s; }
 inline Square u64ToSquare(u64 x) { return bitscanForward(x); }
 
 inline Row u64ToRow(u64 x) { return bitscanForward(x) / 8; }

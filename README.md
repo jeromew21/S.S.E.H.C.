@@ -17,3 +17,11 @@ Support for variants
 Full UCI support
 
 Portability
+
+# Compiling 
+
+`make`
+
+# Contributing
+
+Please feel free to make a branch and pull request

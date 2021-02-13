@@ -1,4 +1,6 @@
 # ssehc
+## Semi-supervised Scalable Evaluated Heuristic Chess 
+
 Chess backwards because I couldn't think of a better name
 
 # Goals

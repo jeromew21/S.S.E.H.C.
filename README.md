@@ -1,4 +1,4 @@
-# SSEHC
+# S.S.E.H.C.
 ## Semi-supervised Scalable Evaluation-perfect Heuristic Chess 
 Chess backwards because I couldn't think of a better name
 

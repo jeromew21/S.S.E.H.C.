@@ -1,12 +1,9 @@
 # ssehc
 ## Semi-supervised Scalable Evaluation-perfect Heuristic Chess 
-
 Chess backwards because I couldn't think of a better name
 
 # Goals
-No a priori game knowledge
-
-Reinforcement learning + Neural networks
+Reinforcement learning evaluation tuning
 
 Parallelization + Scalable and high level of optimization
 

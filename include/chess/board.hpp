@@ -3,7 +3,6 @@
 
 #include "definitions.hpp"
 #include "misc/bits.hpp"
-#include "misc/fen.hpp"
 #include "chess/cmove.hpp"
 
 // initialize zobrist hashing scheme
@@ -50,28 +49,31 @@ public:
   u64 bitboard[12];
 
   // MoveVector<256> legalMoves(); // calls generate
-  Color turn();
-  u64 zobrist();
-  bool isCheck();
-  CMove lastMove();
-
-  void reset();
-  void makeMove(CMove mv);
-  void unmakeMove();
-  bool canUnmake();
-
-  void loadPosition(PieceType *piecelist, Color turn, int epIndex, int wlong,
-                    int wshort, int blong, int bshort, int halfmove0, int fullmove0);
-  void loadPosition(std::string fen);
-
-  // generate move from src->dest pair
-  CMove moveFromSrcDest(int src, int dest);
-
-  // does a move produce check?
-  bool isCheckingMove(CMove mv);
-
   // shortcut move generator if board is check
   // MoveVector<256> produceUncheckMoves();
+
+  Color turn();
+  u64 zobrist();
+  bool is_check();
+  CMove last_move();
+  bool can_unmake();
+
+  void Reset();
+  void MakeMove(CMove mv);
+  void UnmakeMove();
+
+  // loading from complete specification of arguments
+  void LoadPosition(PieceType *piecelist, Color turn, int epIndex, int wlong,
+                    int wshort, int blong, int bshort, int halfmove0, int fullmove0);
+
+  // loading from a FEN string
+  void LoadPosition(std::string fen);
+
+  // generate move from src->dest pair
+  CMove move_from_src_dest(int src, int dest);
+
+  // does a move produce check?
+  bool is_checking_move(CMove mv);
 
   // mask of piece locations
   u64 occupancy();

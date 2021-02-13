@@ -4,7 +4,6 @@
 //"CMove" because of potential naming conflict w/ move op
 
 #include <assert.h>
-#include "chess/pieces.hpp"
 #include "misc/bits.hpp"
 
 // not an enum because casting is annoying, this serves the same purpose.

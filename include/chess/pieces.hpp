@@ -3,7 +3,7 @@
 
 #include "definitions.hpp"
 
-const PieceType Empty = -1;
+const PieceType EmptyPiece = -1;
 
 const PieceType W_Pawn = (0 << 1); //0
 const PieceType W_Knight = (1 << 1); //2

@@ -28,8 +28,8 @@ struct BoardState
   //psuedoLegal?????
 };
 
-// not sure we actually need this
-// enum GameStatus 
+// not sure we actually need this lol
+// enum GameStatus
 // {
 //   WhiteWin,
 //   BlackWin,
@@ -55,8 +55,8 @@ public:
   Color turn();
   u64 zobrist();
   bool is_check();
-  CMove last_move();
   bool can_unmake();
+  CMove last_move();
 
   void Reset();
   void MakeMove(CMove mv);
@@ -70,7 +70,7 @@ public:
   void LoadPosition(std::string fen);
 
   // generate move from src->dest pair
-  CMove move_from_src_dest(int src, int dest);
+  CMove move_from_src_dest(Square src, Square dest);
 
   // does a move produce check?
   bool is_checking_move(CMove mv);
@@ -79,7 +79,7 @@ public:
   u64 occupancy();
   u64 occupancy(Color color);
 
-  //output the FEN as a string
+  // output the FEN as a string
   std::string fen();
 
   // default constructor

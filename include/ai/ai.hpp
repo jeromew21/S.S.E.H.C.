@@ -1,7 +1,9 @@
 #ifndef AI_HPP
 #define AI_HPP
 
-#include <misc/definitions.hpp>
+#include <limits>
+
+#include "definitions.hpp"
 
 const NodeType PV = 0;
 const NodeType Cut = 1;

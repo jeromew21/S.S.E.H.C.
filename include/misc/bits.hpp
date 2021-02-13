@@ -4,6 +4,9 @@
 #include <array>
 #include "definitions.hpp"
 
+void seedRand(int seed); //seed
+float randReal(); //between 0 and 1
+
 int hadd(u64 x);
 
 void bitscanAll(u64 x, std::array<u64, 64> &outarr, int &outsize); //breaks into one-hots, hotspot, vectorize?

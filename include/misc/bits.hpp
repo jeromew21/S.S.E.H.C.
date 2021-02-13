@@ -17,6 +17,7 @@ inline int bitscanForward(u64 x) { return __builtin_ffsll(x) - 1; }
 // MSB (leftmost, uppermost)
 inline int bitscanReverse(u64 x) { return 63 - __builtin_clzll(x); }
 
+//One-hot <=> int 
 inline u64 u64FromSquare(Square s) { return (1UL) << s; }
 inline Square u64ToSquare(u64 x) { return bitscanForward(x); }
 

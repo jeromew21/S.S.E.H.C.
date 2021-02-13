@@ -9,6 +9,10 @@
 
 std::string moveToUCIAlgebraic(CMove &mv);
 
+std::string squareName(u64 square);
+std::string squareName(Square square);
+Square indexFromSquareName(std::string alg);
+
 std::string pieceToString(PieceType piece);
 std::string pieceToStringAlph(PieceType piece);
 std::string pieceToStringAlphLower(PieceType piece);

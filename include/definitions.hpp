@@ -5,21 +5,24 @@
 #include <string>
 
 #define PieceType int //white king, white queen, etc
-#define Color int //either white or black
+#define Color int     //either white or black
 #define Score int
 #define NodeType int8_t
-#define Square int //0-63 that indexes a board location
+#define Square int   //0-63 that indexes a board location
 #define u64 uint64_t //64 bit bitboard
 #define Row int
 #define Col int
 
-const Color White = 0; //last bit of the piece type
+const Color White = 0; //last bit of piece type
 const Color Black = 1; //last bit of piece type
 
 const std::string RANK_NAMES[] = {"1", "2", "3", "4", "5", "6", "7", "8"};
 const std::string FILE_NAMES[] = {"a", "b", "c", "d", "e", "f", "g", "h"};
 
-inline int max(int i1, int i2) { return i1 > i2 ? i2 : i1; }
-inline int min(int i1, int i2) { return i1 < i2 ? i1 : i2; }
+inline int max(int a, int b) { return a > b ? a : b; }
+inline int min(int a, int b) { return a < b ? a : b; }
+
+//checking row and column in bounds
+inline bool inBounds(Row r, Col c) { return (r >= 0 && r < 8) && (c >= 0 && c < 8); }
 
 #endif

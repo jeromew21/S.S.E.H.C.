@@ -9,9 +9,6 @@
 // Ne5, e8Q, etc
 std::string moveToUCIAlgebraic(CMove &mv);
 
-// To 1-0, 0-1, etc
-std::string statusToString(GameResult bs);
-
 // location <=> e4, f6, etc
 std::string squareName(u64 square);
 std::string squareName(Square square);

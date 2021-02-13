@@ -33,6 +33,8 @@ Faster is gooder.
 
 Plan for the worst case scenario.
 
+Modularity and seperation of concerns is key.
+
 ### C++ specific
 
 Try to not type cast if possible.

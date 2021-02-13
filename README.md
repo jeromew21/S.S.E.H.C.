@@ -20,7 +20,18 @@ Portability
 
 # Compiling 
 `make clean`
+
 `make`
+
+### Debug build
+`make clean`
+
+`make debug`
+
+### Release build
+`make clean`
+
+`make release`
 
 # Contributing
 Please feel free to make a branch and pull request.

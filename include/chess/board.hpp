@@ -6,6 +6,7 @@
 u64 u64FromPair(Row r, Col c);
 Square squareFromPair(Row r, Col c);
 int distToClosestCorner(Row r, Col c); // manhatten distance
+inline bool inBounds(int y, int x) { return (y >= 0 && y < 8) && (x >= 0 && x < 8); }
 
 std::string squareName(u64 square);
 std::string squareName(Square square);

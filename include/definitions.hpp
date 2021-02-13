@@ -19,4 +19,7 @@ const Color Black = 1; //last bit of piece type
 const std::string RANK_NAMES[] = {"1", "2", "3", "4", "5", "6", "7", "8"};
 const std::string FILE_NAMES[] = {"a", "b", "c", "d", "e", "f", "g", "h"};
 
+inline int max(int i1, int i2) { return i1 > i2 ? i2 : i1; }
+inline int min(int i1, int i2) { return i1 < i2 ? i1 : i2; }
+
 #endif

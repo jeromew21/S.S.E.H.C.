@@ -3,7 +3,7 @@
 #include "chess/board.hpp"
 
 int main() {
-  std::cout << "fuck you cunt" << std::endl;
+  std::cout << "foo" << std::endl;
 
   return 0;
 }

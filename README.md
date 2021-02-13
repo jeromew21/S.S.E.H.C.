@@ -19,9 +19,13 @@ Full UCI support
 Portability
 
 # Compiling 
-
 `make`
 
 # Contributing
-
 Please feel free to make a branch and pull request
+
+## Overall project notes
+Be extremely pedantic with variable naming and logical seperation of code.
+
+## Code Style
+Try to follow this as a rough guideline: https://google.github.io/styleguide/cppguide.html

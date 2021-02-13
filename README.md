@@ -16,12 +16,14 @@ Support for variants
 
 Full UCI support
 
-Portability
+Portability (have it work on a raspberry pi)
 
 # Compiling 
 `make clean`
 
 `make`
+
+The executable will be stored in ./build/apps
 
 ### Debug build
 `make clean`

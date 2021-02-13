@@ -6,7 +6,8 @@
 #include <assert.h>
 #include "misc/bits.hpp"
 
-// not an enum because casting is annoying, this serves the same purpose.
+// not an enum because type casting is scary
+// this serves the same purpose as one
 namespace move_type
 {
   const int Null = 0;

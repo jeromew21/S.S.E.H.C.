@@ -1,5 +1,5 @@
-#ifndef PIECES_HPP
-#define PIECES_HPP
+#ifndef CHESSPIECES_HPP
+#define CHESSPIECES_HPP
 
 #include "definitions.hpp"
 

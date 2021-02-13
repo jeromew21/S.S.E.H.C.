@@ -1,9 +1,10 @@
-#ifndef BOARD_HPP
-#define BOARD_HPP
+#ifndef CHESSBOARD_HPP
+#define CHESSBOARD_HPP
 
 #include "definitions.hpp"
 #include "misc/bits.hpp"
 #include "chess/cmove.hpp"
+#include "datastructures/board.hpp"
 
 // initialize zobrist hashing scheme
 void initializeZobrist();
@@ -12,21 +13,6 @@ void initializeZobrist();
 void populateMoveCache();
 
 int distToClosestCorner(Row r, Col c); // manhattan distance
-
-struct BoardState
-{
-  int move_number;    // full move
-  int ply;            // half move
-  int en_passant_col; // if double push, then 0-7, else -1
-  int w_long;         // would castling be legal
-  int w_short;
-  int b_long;
-  int b_short;
-  PieceType last_moved;    // I think this is the piece type that last moved
-  PieceType last_captured; // might be a piece type
-  int has_repeated;        // three-fold repetition
-  //psuedoLegal?????
-};
 
 // not sure we actually need this lol
 // enum GameStatus
@@ -48,9 +34,10 @@ public:
   // a location mask for each piece type
   u64 bitboard[12];
 
-  // MoveVector<256> legalMoves(); // calls generate
+  MoveVector<256> legalMoves();
+
   // shortcut move generator if board is check
-  // MoveVector<256> produceUncheckMoves();
+  MoveVector<256> produceUncheckMoves();
 
   Color turn();
   u64 zobrist();

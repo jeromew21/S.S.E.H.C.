@@ -19,6 +19,7 @@ Full UCI support
 Portability
 
 # Compiling 
+`make clean`
 `make`
 
 # Contributing
@@ -38,6 +39,8 @@ Modularity and seperation of concerns is key.
 ### C++ specific
 
 Try to not type cast if possible.
+
+Use assertions instead of throwing errors.
 
 ### Code Style
 Try to follow this as a rough guideline: https://google.github.io/styleguide/cppguide.html

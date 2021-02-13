@@ -1,5 +1,5 @@
-#ifndef STRINGS_HPP
-#define STRINGS_HPP
+#ifndef UCISTRINGS_HPP
+#define UCISTRINGS_HPP
 
 #include <string>
 #include "definitions.hpp"

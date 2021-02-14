@@ -3,9 +3,10 @@
 
 #include "misc/definitions.hpp"
 #include "misc/bits.hpp"
-#include "chess/cmove.hpp"
-#include "chess/pieces.hpp"
+#include "game/cmove.hpp"
+#include "game/pieces.hpp"
 #include "datastructures/board.hpp"
+#include "uci/utils.hpp"
 
 // initialize zobrist hashing scheme
 void initializeZobrist();
@@ -54,8 +55,9 @@ public:
   void MakeMove(CMove mv);
   void UnmakeMove();
 
-  // loading from a FEN string
-  void LoadPosition(std::string fen);
+  void LoadPosition(PieceType *piecelist, Color turn, int ep_col,
+                    int w_long, int w_short, int b_long, int b_short, int fullmove, int halfmove);
+  void LoadPosition(std::string fen); // loading from a FEN string
 
   // default constructor
   Board();

@@ -1,12 +1,12 @@
-#ifndef BOARDdata_STRUCTURES_HPP
-#define BOARDdata_STRUCTURES_HPP
+#ifndef BOARDDATA_STRUCTURES_HPP
+#define BOARDDATA_STRUCTURES_HPP
 
 // This file contains data structures pertaining to the Board class
 // ie, legal move generation and move history
 
 #include <array>
 #include <vector>
-#include "chess/cmove.hpp"
+#include "game/cmove.hpp"
 
 enum GameStatus
 {

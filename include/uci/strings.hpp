@@ -3,7 +3,7 @@
 
 #include <string>
 #include "misc/definitions.hpp"
-#include "chess/cmove.hpp"
+#include "game/cmove.hpp"
 
 const std::string RANK_NAMES[] = {"1", "2", "3", "4", "5", "6", "7", "8"};
 const std::string FILE_NAMES[] = {"a", "b", "c", "d", "e", "f", "g", "h"};

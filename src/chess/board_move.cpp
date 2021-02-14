@@ -1,4 +1,4 @@
-#include "chess/chessboard.hpp"
+#include "game/chess.hpp"
 
 MoveVector<256> Board::legal_moves() {
     MoveVector<256> mv;

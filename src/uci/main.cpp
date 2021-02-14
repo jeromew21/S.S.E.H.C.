@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "chess/chessboard.hpp"
+#include "game/chess.hpp"
 
 // test move generator
 void testPerft() {

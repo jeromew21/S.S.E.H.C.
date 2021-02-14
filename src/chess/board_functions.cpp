@@ -1,9 +1,4 @@
-#include "chess/chessboard.hpp"
-
-void Board::Board()
-{
-    LoadPosition()
-}
+#include "game/chess.hpp"
 
 void Board::MakeMove(CMove mv)
 {
@@ -21,12 +16,12 @@ GameStatus Board::status()
     return GameStatus::NotCalculated;
 }
 
-u64 Board::occupancy()
+u64 Board::occupancy() const
 {
     return occupancy(White) | occupancy(Black);
 }
 
-u64 Board::occupancy(Color color)
+u64 Board::occupancy(Color color) const
 {
     if (color == White)
     {

@@ -1,12 +1,15 @@
+#!/usr/bin/python
 import os
 import datetime
+
+# requires python, valgrind, graphviz, gprof2dot
 
 # need to install gprof2dot? `pip install gprof2dot` should work
 
 fname = str(datetime.datetime.now().strftime("%I-%M-%S-%d-%m-%Y"))
 
 logname = fname + ".txt"
-valgrind = "valgrind --tool=callgrind --callgrind-out-file={} ./build/apps/chess20".format(logname)
+valgrind = "valgrind --tool=callgrind --callgrind-out-file={} ./../build/apps/ssehc".format(logname)
 
 os.system(valgrind)
 

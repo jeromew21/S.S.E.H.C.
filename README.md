@@ -61,6 +61,13 @@ Try to follow this as a rough guideline: https://google.github.io/styleguide/cpp
 ### Repository Layout
 
 #### ./include
+Header files
+
 #### ./src
+Source files
+
 #### ./scripts
+Useful scripts
+
 #### ./tests
+Test and benchmark suite

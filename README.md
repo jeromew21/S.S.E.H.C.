@@ -58,11 +58,13 @@ Use assertions instead of throwing errors.
 ### Code Style
 Try to follow this as a rough guideline: https://google.github.io/styleguide/cppguide.html
 
+The fewer indentation levels, the better.
+
 `camelCase` for functions
 
 `snake_case` for variables, parameters
 
-`PascalCase` for types and void class methods
+`PascalCase` for types, void class methods
 
 `snake_case` for class getter/setters
 

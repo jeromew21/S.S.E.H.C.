@@ -2,7 +2,7 @@
 #define UCISTRINGS_HPP
 
 #include <string>
-#include "definitions.hpp"
+#include "misc/definitions.hpp"
 #include "chess/cmove.hpp"
 
 const std::string RANK_NAMES[] = {"1", "2", "3", "4", "5", "6", "7", "8"};

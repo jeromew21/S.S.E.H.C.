@@ -27,6 +27,7 @@ struct PerftCounter
     }
 };
 
+//fills counter struct with values after perft test.
 void perft(Board &board, int depth, PerftCounter &counter);
 
 #endif

@@ -1,7 +1,7 @@
 #ifndef CHESSPIECES_HPP
 #define CHESSPIECES_HPP
 
-#include "definitions.hpp"
+#include "misc/definitions.hpp"
 
 const PieceType EmptyPiece = -1;
 

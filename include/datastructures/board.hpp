@@ -24,20 +24,19 @@ enum GameStatus
 // has that player not castled or not moved the king and not moved the respective rook
 struct BoardState
 {
-    int move_number;    // full move
+    int move_number;    // full move, 50 move rule
     int ply;            // half move
     int en_passant_col; // if double push, then 0-7, else -1
     int w_long;         // would castling be legal
     int w_short;
     int b_long;
     int b_short;
+    int is_check;            // is the position a check
+    int has_repeated;        // three-fold repetition
     PieceType last_moved;    // I think this is the piece type that last moved
     PieceType last_captured; // might be a piece type
-    int has_repeated;        // three-fold repetition
-
-    CMove mv; // the last move
-    u64 hash; // the zobrist hash,
-    // since hash is inc updated on unmake, not sure it has to be here...
+    CMove mv;                // the last move
+    u64 hash;                // the zobrist hash, saved for threefold testing
 
     //psuedoLegal?????
 };

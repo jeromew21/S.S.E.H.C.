@@ -2,7 +2,7 @@
 #define BITS_HPP
 
 #include <array>
-#include "definitions.hpp"
+#include "misc/definitions.hpp"
 
 void seedRand(int seed); // seed
 float randReal();        // between 0 and 1

@@ -3,7 +3,7 @@
 
 #include <limits>
 
-#include "definitions.hpp"
+#include "misc/definitions.hpp"
 
 const NodeType PV = 0;
 const NodeType Cut = 1;

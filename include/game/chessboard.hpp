@@ -3,9 +3,9 @@
 
 #include "misc/definitions.hpp"
 #include "misc/bits.hpp"
-#include "game/cmove.hpp"
-#include "game/pieces.hpp"
+
 #include "datastructures/board.hpp"
+#include "game/pieces.hpp"
 #include "uci/utils.hpp"
 
 // initialize zobrist hashing scheme
@@ -14,18 +14,21 @@ void initializeZobrist();
 // populate legal move caches
 void populateMoveCache();
 
-int distToClosestCorner(Row r, Col c); // manhattan distance
-
 class Board
 {
 private:
   u64 bitboard_[12];
+  BoardState state_;
   u64 hash_;
   GameStatus status_;
   BoardStateStack state_stack_;
 
   // shortcut move generator if board is check
   MoveVector<256> produce_uncheck_moves_();
+
+  //change hash accordingly
+  void SetEpSquare_(Square ep_square);
+  void SetCastlingRights_(Color color, int direction, int value);
 
 public:
   // non-const getters
@@ -55,9 +58,12 @@ public:
   void MakeMove(CMove mv);
   void UnmakeMove();
 
-  void LoadPosition(PieceType *piecelist, Color turn, int ep_col,
-                    int w_long, int w_short, int b_long, int b_short, int fullmove, int halfmove);
+  void LoadPosition(PieceType piece_list[64], Color turn, int ep_square,
+                    castle::Rights castling_rights, int fullmove, int halfmove);
   void LoadPosition(std::string fen); // loading from a FEN string
+
+  //debug
+  void Dump();
 
   // default constructor
   Board();

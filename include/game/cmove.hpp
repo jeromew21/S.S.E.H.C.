@@ -42,9 +42,9 @@ public:
   }
 
   // don't remember why we need this exactly
-  inline PieceType promoting_piece(Color c)
+  inline PieceType promoting_piece(Color color)
   {
-    return promoting_piece() + c;
+    return promoting_piece() + color;
   }
 
   inline bool is_promotion()

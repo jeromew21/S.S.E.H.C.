@@ -13,7 +13,7 @@
 #define Score int
 #define NodeType int8_t // smaller theoretically saves space for the hash table...
 
-const Color White = 0; //l ast bit of piece type
+const Color White = 0; // last bit of piece type
 const Color Black = 1; // last bit of piece type
 
 

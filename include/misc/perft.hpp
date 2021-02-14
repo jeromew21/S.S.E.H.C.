@@ -2,7 +2,7 @@
 #ifndef PERFT_HPP
 #define PERFT_HPP
 
-#include "game/chess.hpp"
+#include "game/chessboard.hpp"
 
 // Perft is a test to ensure that the move generator is correct
 

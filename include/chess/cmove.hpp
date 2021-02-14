@@ -22,13 +22,15 @@ namespace move_type
   const int CastleLong = 9;
 } // namespace move_type
 
-struct CMove
+class CMove
 {
-  uint16_t data;
+private:
+  uint16_t data_;
 
+public:
   static CMove NullMove() { return CMove(); }
 
-  inline int type_code() { return data & 15; }
+  inline int type_code() { return data_ & 15; }
 
   inline bool is_null() { return type_code() == move_type::Null; }
   inline bool not_null() { return type_code() != move_type::Null; }
@@ -57,21 +59,21 @@ struct CMove
     return tc == move_type::CastleLong || tc == move_type::CastleShort;
   }
 
-  inline Square src_square() { return data >> 10; }
-  inline Square dest_square() { return (data >> 4) & 63; }
+  inline Square src_square() { return data_ >> 10; }
+  inline Square dest_square() { return (data_ >> 4) & 63; }
 
-  inline u64 src() { return u64FromSquare(data >> 10); }
-  inline u64 dest() { return u64FromSquare((data >> 4) & 63); }
+  inline u64 src() { return u64FromSquare(data_ >> 10); }
+  inline u64 dest() { return u64FromSquare((data_ >> 4) & 63); }
 
   CMove(Square src0, Square dest0, int typeCode)
   {
-    data = (src0 << 10) | (dest0 << 4) | (typeCode & 15);
+    data_ = (src0 << 10) | (dest0 << 4) | (typeCode & 15);
   }
 
-  CMove() : data(0) {} //null move
+  CMove() : data_(0) {} //null move
 
-  bool operator==(const CMove &other) const { return data == other.data; }
-  bool operator!=(const CMove &other) const { return data != other.data; }
+  bool operator==(const CMove &other) const { return data_ == other.data_; }
+  bool operator!=(const CMove &other) const { return data_ != other.data_; }
 };
 
 #endif

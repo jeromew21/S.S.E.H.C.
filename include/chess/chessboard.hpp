@@ -14,44 +14,33 @@ void populateMoveCache();
 
 int distToClosestCorner(Row r, Col c); // manhattan distance
 
-// not sure we actually need this lol
-// enum GameStatus
-// {
-//   WhiteWin,
-//   BlackWin,
-//   Draw,
-//   Playing,
-//   Stalemate,
-//   NotCalculated
-// };
-
 class Board
 {
 private:
-  u64 _zobristHash;
-
-public:
-  // a location mask for each piece type
-  u64 bitboard[12];
-
-  MoveVector<256> legalMoves();
+  u64 bitboard_[12];
+  u64 hash_;
 
   // shortcut move generator if board is check
-  MoveVector<256> produceUncheckMoves();
+  MoveVector<256> produce_uncheck_moves_();
+
+public:
+  MoveVector<256> legal_moves();
 
   Color turn();
   u64 zobrist();
   bool is_check();
   bool can_unmake();
   CMove last_move();
+  GameStatus status();
+
 
   void Reset();
   void MakeMove(CMove mv);
   void UnmakeMove();
 
   // loading from complete specification of arguments
-  void LoadPosition(PieceType *piecelist, Color turn, int epIndex, int wlong,
-                    int wshort, int blong, int bshort, int halfmove0, int fullmove0);
+  void LoadPosition(PieceType *piece_list, Color turn, int ep_index, int w_long,
+                    int w_short, int b_long, int b_short,  int fullmove, int halfmove);
 
   // loading from a FEN string
   void LoadPosition(std::string fen);

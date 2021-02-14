@@ -5,6 +5,6 @@
 #include <vector>
 
 void sendToUciClient(const std::string &cmd);            // prints to stdout
-std::vector<std::string> tokenize(std::string instring); // sentence -> list of words
+std::vector<std::string> tokenize(std::string in_string); // sentence -> list of words
 
 #endif

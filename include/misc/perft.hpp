@@ -2,7 +2,7 @@
 #ifndef PERFT_HPP
 #define PERFT_HPP
 
-#include "chess/board.hpp"
+#include "chess/chessboard.hpp"
 
 // Perft is a test to ensure that the move generator is correct
 
@@ -27,6 +27,6 @@ struct PerftCounter
     }
 };
 
-void perft(Board &board, int depth, PerftCounter &pcounter);
+void perft(Board &board, int depth, PerftCounter &counter);
 
 #endif

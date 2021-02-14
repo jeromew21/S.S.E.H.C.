@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "chess/chess.hpp"
+#include "chess/chessboard.hpp"
 
 int main() {
   std::cout << "foo" << std::endl;

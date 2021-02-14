@@ -58,6 +58,17 @@ Use assertions instead of throwing errors.
 ### Code Style
 Try to follow this as a rough guideline: https://google.github.io/styleguide/cppguide.html
 
+`camelCase` for functions
+
+`snake_case` for variables, parameters
+
+`PascalCase` for types and void class methods
+
+`snake_case` for class getter/setters
+
+`leading_underscore_` for private variables
+
+
 ### Repository Layout
 
 #### ./include

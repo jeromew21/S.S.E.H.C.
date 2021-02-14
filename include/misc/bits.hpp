@@ -9,7 +9,7 @@ float randReal();        // between 0 and 1
 
 int hadd(u64 x); // count number of bits, also a hotspot IIRC
 
-void bitscanAll(u64 x, std::array<u64, 64> &outarr, int &outsize); // breaks into one-hots, hotspot, vectorize?
+void bitscanAll(u64 x, std::array<u64, 64> &out_arr, int &out_size); // breaks into one-hots, hotspot, vectorize?
 
 // LSB (rightmost, uppermost)
 inline int bitscanForward(u64 x) { return __builtin_ffsll(x) - 1; }

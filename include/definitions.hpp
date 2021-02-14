@@ -16,8 +16,6 @@
 const Color White = 0; //l ast bit of piece type
 const Color Black = 1; // last bit of piece type
 
-const std::string RANK_NAMES[] = {"1", "2", "3", "4", "5", "6", "7", "8"};
-const std::string FILE_NAMES[] = {"a", "b", "c", "d", "e", "f", "g", "h"};
 
 inline int max(int a, int b) { return a > b ? a : b; }
 inline int min(int a, int b) { return a < b ? a : b; }

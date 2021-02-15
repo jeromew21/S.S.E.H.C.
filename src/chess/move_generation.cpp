@@ -19,8 +19,8 @@ void Board::GeneratePseudoLegal_() {
   {
     u64 pos = arr[i]; // position of piece
     Square sq = u64ToSquare(sq);
-    // u64 attacks = PAWN_CAPTURE_CACHE[sq][White];
-    // attackMap[sq] |= attacks;
+    u64 attacks = move_maps::pawnCaptures(sq, White, occ);
+    attack_map_[sq] |= attacks;
   }
   // bitscanAll(arr, bitboard[B_Pawn], count);
   // for (int i = 0; i < count; i++)
@@ -87,6 +87,8 @@ void Board::GeneratePseudoLegal_() {
   //     defendMap[defenderIndex] |= attackerSq;
   //   }
   // }
+
+  _maps_generated = true;
 }
 
 MoveList<256> Board::legal_moves()

@@ -15,7 +15,6 @@ const uint64_t h01 = 0x0101010101010101; //the sum of 256 to the power of 0,1,2,
 
 u64 bitscan_cache[256][8][8];
 
-// The engine initialization methods go here.
 void init_bits()
 {
   verbose_print("initializing bitscan cache");

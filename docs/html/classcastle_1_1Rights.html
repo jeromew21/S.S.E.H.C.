@@ -91,7 +91,7 @@ $(document).ready(function(){initNavTree('classcastle_1_1Rights.html',''); initR
 </div><!--header-->
 <div class="contents">
 
-<p><code>#include &lt;<a class="el" href="board_8hpp_source.html">board.hpp</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="board__state_8hpp_source.html">board_state.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -104,7 +104,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a877d46acaeffe6281d126a73cd202c2a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcastle_1_1Rights.html#a877d46acaeffe6281d126a73cd202c2a">Set</a> (<a class="el" href="definitions_8hpp.html#a2f17017b1ef643696b678a0703f0f166">Color</a> color, int direction, int value)</td></tr>
 <tr class="separator:a877d46acaeffe6281d126a73cd202c2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>We encapsulate the castling values of the board in one class.</p>
+<p>The value is true if the king hasn't moved, and for that direction, the rook hasn't moved, and the player has not castled.</p>
+<p>In other words, the value is set to true if castling is allowed in a given direction. However the move generator may flag castling as illegal if there is a piece in the way, or it's check, etc. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a8e46810dbffa7b210a62e87be453454d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8e46810dbffa7b210a62e87be453454d">&#9670;&nbsp;</a></span>Rights() <span class="overload">[1/2]</span></h2>
 
@@ -226,7 +230,7 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>include/datastructures/<a class="el" href="board_8hpp_source.html">board.hpp</a></li>
+<li>include/datastructures/<a class="el" href="board__state_8hpp_source.html">board_state.hpp</a></li>
 <li>src/datastructures/<a class="el" href="castle_8cpp.html">castle.cpp</a></li>
 </ul>
 </div><!-- contents -->

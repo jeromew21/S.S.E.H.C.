@@ -18,11 +18,25 @@ enum GameStatus
 
 namespace castle
 {
+  /**
+   * constant representing castling long (queenside)
+   */
   const int long_ = 0;
+
+  /**
+   * constant representing castling short (kingside)
+   */
   const int short_ = 2;
 
-  // This class abstracts all 4 pieces of info
-  // pertaining to castling
+  /**
+   * We encapsulate the castling values of the board in one class.
+   * 
+   * The value is true if the king hasn't moved, and for that direction, the rook hasn't moved,
+   * and the player has not castled.
+   * 
+   * In other words, the value is set to true if castling is allowed in a given direction.
+   * However the move generator may flag castling as illegal if there is a piece in the way, or it's check, etc.
+   */
   class Rights
   {
   private:
@@ -36,10 +50,11 @@ namespace castle
   };
 } // namespace castle
 
-// Cached state elements of a board
-// This is the stuff that isn't incrementally updated on unmake
-// Castling is, for a particular direction (short or long),
-// has that player not castled or not moved the king and not moved the respective rook
+/**
+ * Cached state elements of a board
+ * 
+ * This is the stuff that isn't incrementally updated on unmake.
+ */
 struct BoardState
 {
   int move_count;

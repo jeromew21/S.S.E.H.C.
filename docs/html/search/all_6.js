@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['gamestatus_72',['GameStatus',['../board_8hpp.html#a881b49e3802366255ad852f1c8624fd1',1,'board.hpp']]],
+  ['gamestatus_72',['GameStatus',['../board__state_8hpp.html#a881b49e3802366255ad852f1c8624fd1',1,'board_state.hpp']]],
   ['generatemovesordered_73',['generateMovesOrdered',['../namespaceAI.html#a5401c602c7949d89eaf2cc93d9aa6cb4',1,'AI']]],
   ['get_74',['get',['../classcastle_1_1Rights.html#aedf8f013dc3d28fa4979908cea9e38ac',1,'castle::Rights']]],
   ['get_5fhash_75',['get_hash',['../classBoard.html#a91431c17106d6e4282c1aeb79a915627',1,'Board']]],

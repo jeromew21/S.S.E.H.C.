@@ -2,16 +2,16 @@
 
 void Board::GeneratePseudoLegal_() {
   // generate attack-defend sets
-  // for (int i = 0; i < 64; i++)
-  // {
-  //   attack_map_[i] = 0;
-  //   defend_map_[i] = 0;
-  // }
-  // u64 occ = occupancy();
+  for (int i = 0; i < 64; i++)
+  {
+    attack_map_[i] = 0;
+    defend_map_[i] = 0;
+  }
+  u64 occ = occupancy();
 
-  // // for each piece: drop in to squares attacked
-  // std::array<u64, 64> arr;
-  // int count;
+  // for each piece: drop in to squares attacked
+  std::array<u64, 64> arr;
+  int count;
 
   // bitscanAll(arr, bitboard[W_Pawn], count);
   // for (int i = 0; i < count; i++)

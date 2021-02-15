@@ -61,6 +61,7 @@ public:
   // non-const getters
 
   MoveVector<256> legal_moves();
+  MoveVector<256> capture_moves();
   GameStatus status();
 
   // getters that might be const depending on implementation

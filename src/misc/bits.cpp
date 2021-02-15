@@ -21,20 +21,6 @@ float randReal()
   return unif(rng);
 }
 
-// TODO: throw SIMD at this
-int hadd(u64 x)
-{
-  int count = 0;
-  while (x)
-  {
-    int k = bitscanForward(x);
-    u64 bs = (u64)1 << k;
-    x &= ~bs;
-    count++;
-  }
-  return count;
-}
-
 int hadd(u64 x)
 {
   int count = 0;

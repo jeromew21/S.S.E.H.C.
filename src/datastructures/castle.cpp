@@ -1,4 +1,4 @@
-#include "datastructures/board.hpp"
+#include "datastructures/board_state.hpp"
 
 castle::Rights::Rights()
 {

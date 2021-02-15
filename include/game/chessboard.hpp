@@ -3,7 +3,7 @@
 
 #include "misc/definitions.hpp"
 #include "misc/bits.hpp"
-#include "datastructures/board.hpp"
+#include "datastructures/board_state.hpp"
 #include "game/pieces.hpp"
 #include "uci/utils.hpp"
 

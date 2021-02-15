@@ -4,7 +4,8 @@
 #include <array>
 #include "misc/definitions.hpp"
 
-void seedRand(int seed); // seed
+void seedRand(int seed); // seed rng
+void timeSeedRand();     //seed w/ time
 float randReal();        // between 0 and 1
 
 int hadd(u64 x); // count number of bits, also a hotspot IIRC
@@ -18,7 +19,9 @@ inline int bitscanForward(u64 x) { return __builtin_ffsll(x) - 1; }
 inline int bitscanReverse(u64 x) { return 63 - __builtin_clzll(x); }
 
 // One-hot <=> int
-inline u64 u64FromSquare(Square s) { return 1 << s; }
+// Needs to be converted to 64 bit if shifting
+// 32 is too small and overflows.
+inline u64 u64FromSquare(Square s) { return (u64)1 << s; }
 inline Square u64ToSquare(u64 x) { return bitscanForward(x); }
 
 inline Row u64ToRow(u64 x) { return bitscanForward(x) / 8; }

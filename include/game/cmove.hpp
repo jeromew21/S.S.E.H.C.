@@ -3,7 +3,6 @@
 
 //"CMove" because of potential naming conflict w/ move op
 
-#include <assert.h>
 #include "misc/bits.hpp"
 
 // not an enum because type casting is scary
@@ -42,9 +41,9 @@ public:
   }
 
   // don't remember why we need this exactly
-  inline PieceType promoting_piece(Color c)
+  inline PieceType promoting_piece(Color color)
   {
-    return promoting_piece() + c;
+    return promoting_piece() + color;
   }
 
   inline bool is_promotion() //does this work? Shouldn't we check for evenness?

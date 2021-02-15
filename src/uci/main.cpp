@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "game/chess.hpp"
+#include "game/chessboard.hpp"
 
 // test move generator
 void testPerft() {
@@ -8,7 +8,8 @@ void testPerft() {
 }
 
 int main() {
-  std::cout << "foo" << std::endl;
-
+  Board board;
+  board.Dump();
+  
   return 0;
 }

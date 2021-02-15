@@ -1,4 +1,4 @@
-#include "game/chess.hpp"
+#include "game/chessboard.hpp"
 
 void Board::MakeMove(CMove mv)
 {
@@ -8,29 +8,50 @@ void Board::UnmakeMove()
 {
 }
 
+void Board::AddPiece_(PieceType piece, u64 location)
+{
+  // Square sq = u64ToSquare(location);
+  // u64 p_hash = ZOBRIST_HASHES[64 * piece + sq];
+  // _zobristHash ^= p_hash;
+  bitboard_[piece] |= location;
+}
+
+void Board::RemovePiece_(PieceType piece, u64 location)
+{
+  // Square sq = u64ToSquare(location);
+  // u64 p_hash = ZOBRIST_HASHES[64 * piece + sq];
+  // _zobristHash ^= p_hash;
+
+  bitboard_[piece] &= ~location;
+}
+
+void Board::SetEpSquare_(Square ep_square)
+{
+}
+
+void Board::SetCastlingRights_(Color color, int direction, int value)
+{
+}
+
+void Board::SetTurn_(Color turn)
+{
+}
+
+bool Board::is_check()
+{
+  return false;
+}
+
 GameStatus Board::status()
 {
-    //Retrieve cached value
-    if (status_ != GameStatus::NotCalculated) //why not just return status_?
-        return status_;
-    return GameStatus::NotCalculated;
+  // Retrieve cached value
+  if (status_ != GameStatus::NotCalculated)
+    return status_;
+  // Calculate and store value
+  return GameStatus::NotCalculated;
 }
 
-u64 Board::occupancy() const //maybe we can define bitboard = u64?
+Board::Board()
 {
-    return occupancy(White) | occupancy(Black);
-}
-
-u64 Board::occupancy(Color color) const
-{
-    if (color == White)
-    {
-        return bitboard_[W_King] | bitboard_[W_Queen] | bitboard_[W_Knight] |
-               bitboard_[W_Bishop] | bitboard_[W_Rook] | bitboard_[W_Pawn];
-    }
-    else
-    {
-        return bitboard_[B_King] | bitboard_[B_Queen] | bitboard_[B_Knight] |
-               bitboard_[B_Bishop] | bitboard_[B_Rook] | bitboard_[B_Pawn];
-    }
+  Reset();
 }

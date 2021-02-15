@@ -1,0 +1,1 @@
+make -j 6 && ./build/apps/ssehc

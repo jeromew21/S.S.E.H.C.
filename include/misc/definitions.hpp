@@ -20,7 +20,5 @@ const Color Black = 1; // last bit of piece type
 inline int max(int a, int b) { return a > b ? a : b; }
 inline int min(int a, int b) { return a < b ? a : b; }
 
-//checking row and column in bounds
-inline bool inBounds(Row r, Col c) { return (r >= 0 && r < 8) && (c >= 0 && c < 8); }
 
 #endif

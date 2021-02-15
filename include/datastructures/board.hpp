@@ -24,18 +24,8 @@ namespace castle
   extern int long_;
   extern int short_;
 
-  namespace white
-  {
-    extern int long_;
-    extern int short_;
-  } // namespace white
-
-  namespace black
-  {
-    extern int long_;
-    extern int short_;
-  } // namespace black
-
+  // This class abstracts all 4 pieces of info
+  // pertaining to castling
   class Rights
   {
   private:
@@ -43,18 +33,10 @@ namespace castle
 
   public:
     Rights();
-
     Rights(int w_long, int w_short, int b_long, int b_short);
-
     int get(Color color, int direction) const;
-    int get(int r_id) const;
-
-    void SetTrue(Color color, int direction);
-    void SetFalse(Color color, int direction);
-    void SetTrue(int r_id);
-    void SetFalse(int r_id);
+    void Set(Color color, int direction, int value);
   };
-
 } // namespace castle
 
 // Cached state elements of a board
@@ -119,9 +101,8 @@ public:
     return data_[i];
   }
 
-  bool can_pop() { return index > 0; }
-
-  int getindex() { return index; };
+  bool can_pop() const { return index > 0; }
+  int getindex() const { return index; };
 
   void Pop()
   {
@@ -193,11 +174,11 @@ struct MoveVector
     return mv;
   }
 
-  int size() { return size_; }
-  int begin() { return 0; };
-  bool is_empty() { return size_ == 0; }
+  int size() const { return size_; }
+  int begin() const { return 0; };
+  bool is_empty() const { return size_ == 0; }
 
-  CMove operator[](int index) { return data_[index]; }
+  CMove operator[](int index) const { return data_[index]; }
 };
 
 #endif

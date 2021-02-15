@@ -8,38 +8,50 @@
 #include "game/pieces.hpp"
 #include "uci/utils.hpp"
 
-// initialize zobrist hashing scheme
-void initializeZobrist();
+namespace zobrist
+{
+  // populate initial zobrist hashes
+  void init();
+} // namespace zobrist
 
-// populate legal move caches
-void populateMoveCache();
+namespace move_cache
+{
+  // populate legal move caches
+  void init();
+} // namespace move_cache
 
 class Board
 {
 private:
+  // Internal fields
   u64 bitboard_[12];
-  BoardState state_;
   u64 hash_;
-  GameStatus status_;
+  BoardState state_;
   BoardStateStack state_stack_;
+  GameStatus status_;
 
   // shortcut move generator if board is check
   MoveVector<256> produce_uncheck_moves_();
 
-  //change hash accordingly
+  // private methods that change hash accordingly
+  void AddPiece_(PieceType piece, u64 location);
+  void RemovePiece_(PieceType piece, u64 location);
   void SetEpSquare_(Square ep_square);
   void SetCastlingRights_(Color color, int direction, int value);
+  void SetCastlingRights_(castle::Rights rights);
+  void SwitchTurn();
 
 public:
   // non-const getters
   MoveVector<256> legal_moves();
   GameStatus status();
 
-  // might be const depending on implementation
+  // these getters might be const depending on implementation
   bool is_check();
+  bool is_checking_move(CMove mv);
+  CMove move_from_src_dest(Square src, Square dest);
 
   // const getters
-
   Color turn() const;
   u64 zobrist() const;
   bool can_unmake() const;
@@ -48,16 +60,10 @@ public:
   u64 occupancy(Color color) const;
   std::string fen() const; // output the FEN as a string
 
-  // does a move produce check?
-  bool is_checking_move(CMove mv);
-
-  // generate move from src->dest pair
-  CMove move_from_src_dest(Square src, Square dest);
-
+  // Public state-changing methods
   void Reset();
   void MakeMove(CMove mv);
   void UnmakeMove();
-
   void LoadPosition(PieceType piece_list[64], Color turn, int ep_square,
                     castle::Rights castling_rights, int fullmove, int halfmove);
   void LoadPosition(std::string fen); // loading from a FEN string

@@ -4,7 +4,8 @@
 #include <array>
 #include "misc/definitions.hpp"
 
-void seedRand(int seed); // seed
+void seedRand(int seed); // seed rng
+void timeSeedRand(); //seed w/ time
 float randReal();        // between 0 and 1
 
 int hadd(u64 x); // count number of bits, also a hotspot IIRC

@@ -2,6 +2,12 @@
 #include "uci/strings.hpp"
 #include "uci/fen.hpp"
 
+//checking row and column in bounds
+bool inBounds(Row r, Col c)
+{
+  return (r >= 0 && r < 8) && (c >= 0 && c < 8);
+}
+
 Board::Board()
 {
   LoadPosition("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
@@ -46,25 +52,26 @@ void Board::LoadPosition(std::string fen)
 
   Color turn_to_move = elems[1] == "w" ? White : Black;
 
-  castle::Rights castling_rights;
+  // Set rights to false by default
+  castle::Rights castling_rights(0, 0, 0, 0);
   for (int k = 0; k < elems[2].size(); k++)
   {
     char ch = elems[2][k];
     if (ch == 'K')
     {
-      castling_rights.SetTrue(castle::white::short_);
+      castling_rights.Set(White, castle::short_, 1);
     }
     else if (ch == 'Q')
     {
-      castling_rights.SetTrue(castle::white::long_);
+      castling_rights.Set(White, castle::long_, 1);
     }
     else if (ch == 'k')
     {
-      castling_rights.SetTrue(castle::black::short_);
+      castling_rights.Set(Black, castle::short_, 1);
     }
     else if (ch == 'q')
     {
-      castling_rights.SetTrue(castle::black::long_);
+      castling_rights.Set(Black, castle::long_, 1);
     }
   }
 
@@ -79,29 +86,31 @@ void Board::LoadPosition(std::string fen)
 void Board::LoadPosition(PieceType piece_list[64], Color turn_to_move, int ep_square,
                          castle::Rights castling_rights, int fullmove, int halfmove)
 {
+  // Clearing state
   state_stack_.Clear();
   status_ = GameStatus::NotCalculated;
+  SetEpSquare_(-1);
+  SetCastlingRights_(castle::Rights());
 
   for (PieceType i = 0; i < 12; i++)
   {
     bitboard_[i] = 0;
   }
 
-  
+  // Make sure the hash is properly initialized
+  // Otherwise there could be bugs
+  hash_ = 0; // start at zero?
 
-  hash_ = 0; // start at zero
-
-  for (int i = 0; i < 64; i++)
+  for (Square i = 0; i < 64; i++)
   {
     PieceType piece = piece_list[i];
 
     if (piece != piece::EmptyPiece)
     {
-      // _addPiece(piece, u64FromIndex(i));
+      AddPiece_(piece, u64FromSquare(i));
     }
   }
 
   SetEpSquare_(ep_square);
-  //SetCastlingRights_(castling_rights)
-
+  // SetCastlingRights_(castling_rights)
 }

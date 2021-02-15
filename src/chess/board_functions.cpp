@@ -8,8 +8,30 @@ void Board::UnmakeMove()
 {
 }
 
+void Board::AddPiece_(PieceType piece, u64 location) {
+  Square ind = u64ToSquare(location);
+  // u64 hash = ZOBRIST_HASHES[64 * p + ind];
+  // _zobristHash ^= hash;
+  bitboard_[piece] |= location;
+}
+
+void Board::RemovePiece_(PieceType piece, u64 location) {
+  
+}
+
 void Board::SetEpSquare_(Square ep_square) {
 
+}
+
+void Board::SetCastlingRights_(Color color, int direction, int value) {
+
+}
+
+void Board::SetCastlingRights_(castle::Rights rights) {
+  SetCastlingRights_(White, castle::long_, rights.get(White, castle::long_));
+  SetCastlingRights_(White, castle::short_, rights.get(White, castle::short_));
+  SetCastlingRights_(Black, castle::long_, rights.get(Black, castle::long_));
+  SetCastlingRights_(Black, castle::short_, rights.get(Black, castle::short_));
 }
 
 bool Board::is_check() {
@@ -18,9 +40,10 @@ bool Board::is_check() {
 
 GameStatus Board::status()
 {
-  //Retrieve cached value
+  // Retrieve cached value
   if (status_ != GameStatus::NotCalculated)
     return status_;
+  // Calculate and store value
   return GameStatus::NotCalculated;
 }
 

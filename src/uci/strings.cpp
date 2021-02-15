@@ -56,7 +56,9 @@ u64 u64FromName(std::string alg)
 
 Square squareFromName(std::string alg)
 {
-  int col(0), row(0);
+  Col col(0);
+  Row row(0);
+
   if (alg[0] == 'a')
     col = 0;
   else if (alg[0] == 'b')
@@ -91,5 +93,5 @@ Square squareFromName(std::string alg)
   else
     row = 7;
 
-  return row * 8 + col;
+  return squareFromPair(row, col);
 }

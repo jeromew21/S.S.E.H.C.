@@ -9,6 +9,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -47,6 +51,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('chessboard_8hpp_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -61,11 +82,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_f307a46daed1218fee22380d1eacedba.html">game</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">chessboard.hpp</div>  </div>
@@ -230,10 +246,10 @@ $(function() {
 <div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="abits_8hpp_html"><div class="ttname"><a href="bits_8hpp.html">bits.hpp</a></div></div>
 <div class="ttc" id="aboard_8hpp_html"><div class="ttname"><a href="board_8hpp.html">board.hpp</a></div></div>
-<div class="ttc" id="aboard_8hpp_html_a881b49e3802366255ad852f1c8624fd1"><div class="ttname"><a href="board_8hpp.html#a881b49e3802366255ad852f1c8624fd1">GameStatus</a></div><div class="ttdeci">GameStatus</div><div class="ttdef"><b>Definition:</b> board.hpp:15</div></div>
-<div class="ttc" id="aclassBoardStateStack_html"><div class="ttname"><a href="classBoardStateStack.html">BoardStateStack</a></div><div class="ttdef"><b>Definition:</b> board.hpp:86</div></div>
+<div class="ttc" id="aboard_8hpp_html_a881b49e3802366255ad852f1c8624fd1"><div class="ttname"><a href="board_8hpp.html#a881b49e3802366255ad852f1c8624fd1">GameStatus</a></div><div class="ttdeci">GameStatus</div><div class="ttdef"><b>Definition:</b> board.hpp:10</div></div>
+<div class="ttc" id="aclassBoardStateStack_html"><div class="ttname"><a href="classBoardStateStack.html">BoardStateStack</a></div><div class="ttdef"><b>Definition:</b> board.hpp:81</div></div>
 <div class="ttc" id="aclassBoard_html"><div class="ttname"><a href="classBoard.html">Board</a></div><div class="ttdef"><b>Definition:</b> chessboard.hpp:150</div></div>
-<div class="ttc" id="aclassBoard_html_a0246e50fbf0abc3dcc19aa4fd8100e4a"><div class="ttname"><a href="classBoard.html#a0246e50fbf0abc3dcc19aa4fd8100e4a">Board::fen</a></div><div class="ttdeci">std::string fen() const</div><div class="ttdef"><b>Definition:</b> fen_parsing.cpp:77</div></div>
+<div class="ttc" id="aclassBoard_html_a0246e50fbf0abc3dcc19aa4fd8100e4a"><div class="ttname"><a href="classBoard.html#a0246e50fbf0abc3dcc19aa4fd8100e4a">Board::fen</a></div><div class="ttdeci">std::string fen() const</div><div class="ttdef"><b>Definition:</b> fen_parsing.cpp:74</div></div>
 <div class="ttc" id="aclassBoard_html_a081cf3448daf94d7282bc06cb84bae36"><div class="ttname"><a href="classBoard.html#a081cf3448daf94d7282bc06cb84bae36">Board::last_move</a></div><div class="ttdeci">CMove last_move() const</div><div class="ttdef"><b>Definition:</b> board_getters.cpp:20</div></div>
 <div class="ttc" id="aclassBoard_html_a0adcfda1ecd4437251980e73c86972c6"><div class="ttname"><a href="classBoard.html#a0adcfda1ecd4437251980e73c86972c6">Board::status</a></div><div class="ttdeci">GameStatus status()</div><div class="ttdef"><b>Definition:</b> board_getters.cpp:3</div></div>
 <div class="ttc" id="aclassBoard_html_a125a007d6079cd3bc6e7b221cb90d15c"><div class="ttname"><a href="classBoard.html#a125a007d6079cd3bc6e7b221cb90d15c">Board::UnmakeMove</a></div><div class="ttdeci">void UnmakeMove()</div><div class="ttdef"><b>Definition:</b> board_functions.cpp:7</div></div>
@@ -251,9 +267,9 @@ $(function() {
 <div class="ttc" id="aclassBoard_html_abf49d6bfa97aa4595d7cd3f9be13b978"><div class="ttname"><a href="classBoard.html#abf49d6bfa97aa4595d7cd3f9be13b978">Board::legal_moves</a></div><div class="ttdeci">MoveList&lt; 256 &gt; legal_moves()</div><div class="ttdef"><b>Definition:</b> move_generation.cpp:92</div></div>
 <div class="ttc" id="aclassBoard_html_ae271e730f0fe79cafd85871f171b6fe2"><div class="ttname"><a href="classBoard.html#ae271e730f0fe79cafd85871f171b6fe2">Board::Reset</a></div><div class="ttdeci">void Reset()</div><div class="ttdef"><b>Definition:</b> board_functions.cpp:82</div></div>
 <div class="ttc" id="aclassBoard_html_af38d727e983b2d5d9d9da5fd5b3d89a7"><div class="ttname"><a href="classBoard.html#af38d727e983b2d5d9d9da5fd5b3d89a7">Board::is_checking_move</a></div><div class="ttdeci">bool is_checking_move(CMove mv)</div><div class="ttdef"><b>Definition:</b> move_generation.cpp:98</div></div>
-<div class="ttc" id="aclassCMove_html"><div class="ttname"><a href="classCMove.html">CMove</a></div><div class="ttdef"><b>Definition:</b> cmove.hpp:25</div></div>
-<div class="ttc" id="aclassMoveList_html"><div class="ttname"><a href="classMoveList.html">MoveList</a></div><div class="ttdef"><b>Definition:</b> board.hpp:152</div></div>
-<div class="ttc" id="aclasscastle_1_1Rights_html"><div class="ttname"><a href="classcastle_1_1Rights.html">castle::Rights</a></div><div class="ttdef"><b>Definition:</b> board.hpp:32</div></div>
+<div class="ttc" id="aclassCMove_html"><div class="ttname"><a href="classCMove.html">CMove</a></div><div class="ttdef"><b>Definition:</b> cmove.hpp:26</div></div>
+<div class="ttc" id="aclassMoveList_html"><div class="ttname"><a href="classMoveList.html">MoveList</a></div><div class="ttdef"><b>Definition:</b> board.hpp:147</div></div>
+<div class="ttc" id="aclasscastle_1_1Rights_html"><div class="ttname"><a href="classcastle_1_1Rights.html">castle::Rights</a></div><div class="ttdef"><b>Definition:</b> board.hpp:27</div></div>
 <div class="ttc" id="adebug_8hpp_html"><div class="ttname"><a href="debug_8hpp.html">debug.hpp</a></div></div>
 <div class="ttc" id="adefinitions_8hpp_html"><div class="ttname"><a href="definitions_8hpp.html">definitions.hpp</a></div></div>
 <div class="ttc" id="adefinitions_8hpp_html_a2f17017b1ef643696b678a0703f0f166"><div class="ttname"><a href="definitions_8hpp.html#a2f17017b1ef643696b678a0703f0f166">Color</a></div><div class="ttdeci">#define Color</div><div class="ttdef"><b>Definition:</b> definitions.hpp:8</div></div>
@@ -270,14 +286,14 @@ $(function() {
 <div class="ttc" id="anamespacedirection_1_1rook_html_acf36683beac9dd07326b9d629d592259"><div class="ttname"><a href="namespacedirection_1_1rook.html#acf36683beac9dd07326b9d629d592259">direction::rook::e</a></div><div class="ttdeci">const int e</div><div class="ttdef"><b>Definition:</b> chessboard.hpp:38</div></div>
 <div class="ttc" id="anamespacedirection_html"><div class="ttname"><a href="namespacedirection.html">direction</a></div><div class="ttdef"><b>Definition:</b> chessboard.hpp:34</div></div>
 <div class="ttc" id="anamespacemove__maps_html"><div class="ttname"><a href="namespacemove__maps.html">move_maps</a></div><div class="ttdef"><b>Definition:</b> chessboard.hpp:58</div></div>
-<div class="ttc" id="anamespacemove__maps_html_a147bab79ed448f22cfa59ea31bb4e0db"><div class="ttname"><a href="namespacemove__maps.html#a147bab79ed448f22cfa59ea31bb4e0db">move_maps::pawnMoves</a></div><div class="ttdeci">u64 pawnMoves(u64 piece_location, Color color, u64 occupants)</div><div class="ttdef"><b>Definition:</b> bitboard_move_cache.cpp:113</div></div>
-<div class="ttc" id="anamespacemove__maps_html_a3640858ef4c43b928a6b756a5fc5fd1b"><div class="ttname"><a href="namespacemove__maps.html#a3640858ef4c43b928a6b756a5fc5fd1b">move_maps::pawnDoubleMoves</a></div><div class="ttdeci">u64 pawnDoubleMoves(u64 piece_location, Color color, u64 occupants)</div><div class="ttdef"><b>Definition:</b> bitboard_move_cache.cpp:103</div></div>
-<div class="ttc" id="anamespacemove__maps_html_a39217d235738a1859cce65e79086fc84"><div class="ttname"><a href="namespacemove__maps.html#a39217d235738a1859cce65e79086fc84">move_maps::kingMoves</a></div><div class="ttdeci">u64 kingMoves(u64 piece_location, u64 occupants)</div><div class="ttdef"><b>Definition:</b> bitboard_move_cache.cpp:133</div></div>
-<div class="ttc" id="anamespacemove__maps_html_a748e7925249648127acd6e9e907bea85"><div class="ttname"><a href="namespacemove__maps.html#a748e7925249648127acd6e9e907bea85">move_maps::rookMoves</a></div><div class="ttdeci">u64 rookMoves(u64 piece_location, u64 occupants)</div><div class="ttdef"><b>Definition:</b> bitboard_move_cache.cpp:148</div></div>
-<div class="ttc" id="anamespacemove__maps_html_aa0f090e0693145551a43f8aef11b44c0"><div class="ttname"><a href="namespacemove__maps.html#aa0f090e0693145551a43f8aef11b44c0">move_maps::bishopMoves</a></div><div class="ttdeci">u64 bishopMoves(u64 piece_location, u64 occupants)</div><div class="ttdef"><b>Definition:</b> bitboard_move_cache.cpp:138</div></div>
-<div class="ttc" id="anamespacemove__maps_html_ac0dc68279809aa34ce8164e37479eb68"><div class="ttname"><a href="namespacemove__maps.html#ac0dc68279809aa34ce8164e37479eb68">move_maps::init</a></div><div class="ttdeci">void init()</div><div class="ttdef"><b>Definition:</b> bitboard_move_cache.cpp:82</div></div>
-<div class="ttc" id="anamespacemove__maps_html_ae85ae60a4fbe5cfa25c4b838cb127791"><div class="ttname"><a href="namespacemove__maps.html#ae85ae60a4fbe5cfa25c4b838cb127791">move_maps::pawnCaptures</a></div><div class="ttdeci">u64 pawnCaptures(u64 piece_location, Color color, u64 occupants)</div><div class="ttdef"><b>Definition:</b> bitboard_move_cache.cpp:93</div></div>
-<div class="ttc" id="anamespacemove__maps_html_ae9b395859878d63f0c5b65f1fb527206"><div class="ttname"><a href="namespacemove__maps.html#ae9b395859878d63f0c5b65f1fb527206">move_maps::knightMoves</a></div><div class="ttdeci">u64 knightMoves(u64 piece_location, u64 occupants)</div><div class="ttdef"><b>Definition:</b> bitboard_move_cache.cpp:123</div></div>
+<div class="ttc" id="anamespacemove__maps_html_a147bab79ed448f22cfa59ea31bb4e0db"><div class="ttname"><a href="namespacemove__maps.html#a147bab79ed448f22cfa59ea31bb4e0db">move_maps::pawnMoves</a></div><div class="ttdeci">u64 pawnMoves(u64 piece_location, Color color, u64 occupants)</div><div class="ttdef"><b>Definition:</b> bitboard_move_cache.cpp:198</div></div>
+<div class="ttc" id="anamespacemove__maps_html_a3640858ef4c43b928a6b756a5fc5fd1b"><div class="ttname"><a href="namespacemove__maps.html#a3640858ef4c43b928a6b756a5fc5fd1b">move_maps::pawnDoubleMoves</a></div><div class="ttdeci">u64 pawnDoubleMoves(u64 piece_location, Color color, u64 occupants)</div><div class="ttdef"><b>Definition:</b> bitboard_move_cache.cpp:188</div></div>
+<div class="ttc" id="anamespacemove__maps_html_a39217d235738a1859cce65e79086fc84"><div class="ttname"><a href="namespacemove__maps.html#a39217d235738a1859cce65e79086fc84">move_maps::kingMoves</a></div><div class="ttdeci">u64 kingMoves(u64 piece_location, u64 occupants)</div><div class="ttdef"><b>Definition:</b> bitboard_move_cache.cpp:218</div></div>
+<div class="ttc" id="anamespacemove__maps_html_a748e7925249648127acd6e9e907bea85"><div class="ttname"><a href="namespacemove__maps.html#a748e7925249648127acd6e9e907bea85">move_maps::rookMoves</a></div><div class="ttdeci">u64 rookMoves(u64 piece_location, u64 occupants)</div><div class="ttdef"><b>Definition:</b> bitboard_move_cache.cpp:233</div></div>
+<div class="ttc" id="anamespacemove__maps_html_aa0f090e0693145551a43f8aef11b44c0"><div class="ttname"><a href="namespacemove__maps.html#aa0f090e0693145551a43f8aef11b44c0">move_maps::bishopMoves</a></div><div class="ttdeci">u64 bishopMoves(u64 piece_location, u64 occupants)</div><div class="ttdef"><b>Definition:</b> bitboard_move_cache.cpp:223</div></div>
+<div class="ttc" id="anamespacemove__maps_html_ac0dc68279809aa34ce8164e37479eb68"><div class="ttname"><a href="namespacemove__maps.html#ac0dc68279809aa34ce8164e37479eb68">move_maps::init</a></div><div class="ttdeci">void init()</div><div class="ttdef"><b>Definition:</b> bitboard_move_cache.cpp:167</div></div>
+<div class="ttc" id="anamespacemove__maps_html_ae85ae60a4fbe5cfa25c4b838cb127791"><div class="ttname"><a href="namespacemove__maps.html#ae85ae60a4fbe5cfa25c4b838cb127791">move_maps::pawnCaptures</a></div><div class="ttdeci">u64 pawnCaptures(u64 piece_location, Color color, u64 occupants)</div><div class="ttdef"><b>Definition:</b> bitboard_move_cache.cpp:178</div></div>
+<div class="ttc" id="anamespacemove__maps_html_ae9b395859878d63f0c5b65f1fb527206"><div class="ttname"><a href="namespacemove__maps.html#ae9b395859878d63f0c5b65f1fb527206">move_maps::knightMoves</a></div><div class="ttdeci">u64 knightMoves(u64 piece_location, u64 occupants)</div><div class="ttdef"><b>Definition:</b> bitboard_move_cache.cpp:208</div></div>
 <div class="ttc" id="anamespacepiece_1_1white_html_a9b8715170fa5483cff3e6e2b26fdb376"><div class="ttname"><a href="namespacepiece_1_1white.html#a9b8715170fa5483cff3e6e2b26fdb376">piece::white::rook</a></div><div class="ttdeci">const PieceType rook</div><div class="ttdef"><b>Definition:</b> pieces.hpp:13</div></div>
 <div class="ttc" id="anamespacepiece_1_1white_html_ab2c4266e1df92bc5bd283a5810ad685e"><div class="ttname"><a href="namespacepiece_1_1white.html#ab2c4266e1df92bc5bd283a5810ad685e">piece::white::bishop</a></div><div class="ttdeci">const PieceType bishop</div><div class="ttdef"><b>Definition:</b> pieces.hpp:12</div></div>
 <div class="ttc" id="anamespacepiece_html"><div class="ttname"><a href="namespacepiece.html">piece</a></div><div class="ttdef"><b>Definition:</b> pieces.hpp:7</div></div>
@@ -285,12 +301,16 @@ $(function() {
 <div class="ttc" id="anamespacezobrist_html_a036846ac7ca1851590e357e334d16f65"><div class="ttname"><a href="namespacezobrist.html#a036846ac7ca1851590e357e334d16f65">zobrist::getHashFromId</a></div><div class="ttdeci">u64 getHashFromId(int feature_id)</div></div>
 <div class="ttc" id="anamespacezobrist_html_a3758b41a1876be8cdb13517666d8edab"><div class="ttname"><a href="namespacezobrist.html#a3758b41a1876be8cdb13517666d8edab">zobrist::init</a></div><div class="ttdeci">void init()</div></div>
 <div class="ttc" id="apieces_8hpp_html"><div class="ttname"><a href="pieces_8hpp.html">pieces.hpp</a></div></div>
-<div class="ttc" id="astructBoardState_html"><div class="ttname"><a href="structBoardState.html">BoardState</a></div><div class="ttdef"><b>Definition:</b> board.hpp:49</div></div>
+<div class="ttc" id="astructBoardState_html"><div class="ttname"><a href="structBoardState.html">BoardState</a></div><div class="ttdef"><b>Definition:</b> board.hpp:44</div></div>
 <div class="ttc" id="autils_8hpp_html"><div class="ttname"><a href="utils_8hpp.html">utils.hpp</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_f307a46daed1218fee22380d1eacedba.html">game</a></li><li class="navelem"><a class="el" href="chessboard_8hpp.html">chessboard.hpp</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
 </body>
 </html>

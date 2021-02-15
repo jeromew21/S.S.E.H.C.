@@ -1,8 +1,6 @@
 #ifndef CMOVE_HPP
 #define CMOVE_HPP
 
-//"CMove" because of potential naming conflict w/ move op
-
 #include "misc/bits.hpp"
 
 // not an enum because type casting is scary
@@ -21,6 +19,9 @@ namespace move_type
   const int CastleLong = 9;
 } // namespace move_type
 
+/**
+ * "CMove" because of potential naming conflict w/ move op
+ */
 class CMove
 {
 private:

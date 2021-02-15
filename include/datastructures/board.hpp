@@ -1,11 +1,6 @@
 #ifndef BOARDDATA_STRUCTURES_HPP
 #define BOARDDATA_STRUCTURES_HPP
 
-/**
- * This file contains data structures pertaining to the Board class
- * ie, board state history and move history
- */
-
 #include <array>
 #include <vector>
 #include "game/cmove.hpp"

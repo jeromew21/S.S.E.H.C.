@@ -1,9 +1,6 @@
 #include "game/chessboard.hpp"
 #include "uci/strings.hpp"
 
-// This file implements methods in Board
-// that deal with FEN.
-
 void Board::LoadPosition(std::string fen)
 {
   // TODO: regex validation

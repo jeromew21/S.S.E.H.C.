@@ -39,7 +39,7 @@ private:
   std::array<u64, 64> attack_map_;
 
   // for each square index, a bitboard list of attacker squares
-  std::array<u64, 64> defend_map;
+  std::array<u64, 64> defend_map_;
 
   // shortcut move generator if board is check
   MoveVector<256> produce_uncheck_moves_();

@@ -1,5 +1,14 @@
 #include "game/chessboard.hpp"
 
+GameStatus Board::status()
+{
+  // Retrieve cached value
+  if (status_ != GameStatus::NotCalculated)
+    return status_;
+  // Calculate and store value
+  return GameStatus::NotCalculated;
+}
+
 Color Board::get_turn() const {
   return state_.turn;
 }

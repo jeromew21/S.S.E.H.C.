@@ -85,6 +85,7 @@ void Board::LoadPosition(PieceType piece_list[64], Color turn_to_move, int ep_sq
 {
   // Clearing and resetting state
   // Need to hard reset completely.
+  _maps_generated = false;
   state_stack_.Clear();
   status_ = GameStatus::NotCalculated;
   state_ = BoardState();

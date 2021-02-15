@@ -139,8 +139,7 @@ struct MoveVector
 
   void PushBack(CMove mv)
   {
-    data_[size_] = mv;
-    size_++;
+    data_[size_++] = mv;
   }
 
   void Erase(int index)

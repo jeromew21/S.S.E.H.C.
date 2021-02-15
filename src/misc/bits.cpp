@@ -1,5 +1,6 @@
 #include <chrono>
 #include "misc/bits.hpp"
+#include "misc/debug.hpp"
 
 std::uniform_real_distribution<double> unif(0, 1);
 std::mt19937_64 rng;
@@ -12,7 +13,31 @@ const uint64_t m16 = 0x0000ffff0000ffff; //binary: 16 zeros, 16 ones ...
 const uint64_t m32 = 0x00000000ffffffff; //binary: 32 zeros, 32 ones
 const uint64_t h01 = 0x0101010101010101; //the sum of 256 to the power of 0,1,2,3...
 
-u64 bitscan_cache[255][8][8];
+u64 bitscan_cache[256][8][8];
+
+// The engine initialization methods go here.
+void init_bits()
+{
+  for (int i = 0; i < 256; i++)
+  {
+    int bits = i & 255; //11000110
+    for (int offset = 0; offset < 8; offset++)
+    {
+      for (int k = 0; k < 8; k++)
+      {
+        bitscan_cache[bits][offset][k] = 0;
+      }
+      int index = 0;
+      for (int k = 0; k < 8; k++)
+      {
+        if ((bits >> k) & 1)
+        {
+          bitscan_cache[bits][offset][index++] = ((u64) 1) << (offset*8 + k);
+        }
+      }
+    }
+  }
+}
 
 void seedRand(int seed)
 {
@@ -53,42 +78,20 @@ int hadd(u64 x)
   return (x * h01) >> 56;         //returns left 8 bits of x + (x<<8) + (x<<16) + (x<<24) + ...
 }
 
-void bitscanAll_old(u64 x, std::array<u64, 64> &out_arr, int &out_size)
-{
-  out_size = 0;
-  while (x)
-  {
-    int k = bitscanForward(x);
-    u64 bs = (u64)1 << k;
-    out_arr[out_size++] = bs;
-    x &= ~bs;
-  }
-}
+// previous implementation, for reference
+// void bitscanAll(u64 x, std::array<u64, 64> &out_arr, int &out_size)
+// {
+//   out_size = 0;
+//   while (x)
+//   {
+//     int k = bitscanForward(x);
+//     u64 bs = (u64)1 << k;
+//     out_arr[out_size++] = bs;
+//     x &= ~bs;
+//   }
+// }
 
-void init_bits()
-{
-  for (int i = 0; i < 256; i++)
-  {
-    int bits = i & 255; //11000110
-    for (int offset = 0; offset < 8; offset++)
-    {
-      // for (int k = 0; k < 8; k++)
-      // {
-      //   bitscan_cache[bits][offset][k] = 0;
-      // }
-      int index = 0;
-      for (int k = 0; k < 8; k++)
-      {
-        if ((bits >> k) & 1)
-        {
-          bitscan_cache[bits][offset][index++] = (u64) 1 << (offset*8 + k);
-        }
-      }
-    }
-  }
-}
-
-void bitscanAll(u64 x, std::array<u64, 64> &out_arr, int &out_size)
+void bitscanAll(u64 x, u64Stack<64> &out_arr)
 {
   for (int offset = 0; offset < 64; offset += 8)
   {
@@ -96,12 +99,10 @@ void bitscanAll(u64 x, std::array<u64, 64> &out_arr, int &out_size)
     if (chunk == 0)
       continue;
 
-    u64* cached = bitscan_cache[chunk][offset / 8]; //array of u64 s
-    for (int i = 0; i < 8; i++)
+    u64 *cached = bitscan_cache[chunk][offset / 8]; //array of u64s
+    for (int i = 0; i < 8 && cached[i] != 0; i++)
     {
-      if (cached[i] == 0)
-        break;
-      out_arr[out_size++] = cached[i];
+      out_arr.Append(cached[i]);
     }
   }
 }

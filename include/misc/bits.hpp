@@ -14,8 +14,44 @@ void init_bits();
 
 int hadd(u64 x); // count number of bits, also a hotspot IIRC
 
-void bitscanAll(u64 x, std::array<u64, 64> &out_arr, int &out_size); // breaks into one-hots, hotspot, vectorize?
-void bitscanAll_old(u64 x, std::array<u64, 64> &out_arr, int &out_size);
+// A stack of u64 values, with a length limited to N
+template <int N>
+struct u64Stack
+{
+  u64 data_[N];
+  int length_;
+
+  u64Stack()
+  {
+    length_ = 0;
+    for (int i = 0; i < N; i++)
+    {
+      data_[i] = 0;
+    }
+  }
+
+  void Append(u64 value)
+  {
+    data_[length_++] = value;
+  }
+
+  void Clear()
+  {
+    length_ = 0;
+  }
+
+  int len() const
+  {
+    return length_;
+  }
+
+  u64 operator[](int index) const
+  {
+    return data_[index];
+  }
+};
+
+void bitscanAll(u64 x, u64Stack<64> &out_arr); // breaks into one-hots, hotspot, vectorize?
 
 // LSB (rightmost, uppermost)
 inline int bitscanForward(u64 x) { return __builtin_ffsll(x) - 1; }

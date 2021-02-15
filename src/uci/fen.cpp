@@ -1,9 +1,11 @@
-#include <assert.h>
 #include "uci/fen.hpp"
 #include "game/pieces.hpp"
 
 std::string pieceToStringFen(PieceType piece)
 {
+  if (piece == piece::EmptyPiece) {
+    return "-";
+  }
   assert (piece >= 0 && piece < 12);
   switch (piece)
   {

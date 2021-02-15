@@ -3,10 +3,12 @@
 
 #include "misc/definitions.hpp"
 #include "misc/bits.hpp"
-
 #include "datastructures/board.hpp"
 #include "game/pieces.hpp"
 #include "uci/utils.hpp"
+
+#include "misc/debug.hpp"
+
 
 namespace zobrist
 {
@@ -38,7 +40,6 @@ private:
   void RemovePiece_(PieceType piece, u64 location);
   void SetEpSquare_(Square ep_square);
   void SetCastlingRights_(Color color, int direction, int value);
-  void SetCastlingRights_(castle::Rights rights);
   void SwitchTurn();
 
 public:

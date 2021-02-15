@@ -2,7 +2,7 @@
 #define DEFINITIONS_HPP
 
 #include <random>
-#include <string>
+#include <assert.h>
 
 #define PieceType int // white king, white queen, etc
 #define Color int     // either white or black
@@ -16,9 +16,7 @@
 const Color White = 0; // last bit of piece type
 const Color Black = 1; // last bit of piece type
 
-
 inline int max(int a, int b) { return a > b ? a : b; }
 inline int min(int a, int b) { return a < b ? a : b; }
-
 
 #endif

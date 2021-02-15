@@ -8,7 +8,8 @@ void testPerft() {
 }
 
 int main() {
-  std::cout << "foo" << std::endl;
+  Board board;
+  board.Dump();
 
   return 0;
 }

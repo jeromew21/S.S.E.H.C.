@@ -46,17 +46,20 @@ namespace castle
 struct BoardState
 {
   int move_count;
+
+  // ply and turn might not be needed
+  Color turn;
   int ply;
+
   int halfmove_counter;  // plies since last capture or pawn move
   int en_passant_square; // square behind the pawn, or -1
   int is_check;          // is the position a check
   int has_repeated;      // three-fold repetition
-  Color turn;
-  PieceType last_moved;    // I think this is the piece type that last moved
-  PieceType last_captured; // might be a piece type
+  PieceType last_moved_piece;    // the piece type that last moved
+  PieceType last_captured_piece; // the piece type that was captured
   u64 hash;                // the zobrist hash, saved for threefold testing
-  CMove mv;                // the last move
-  castle::Rights castling_rights;
+  CMove last_move;                // the last move
+  castle::Rights castling_rights; // rights to castle for both sides
 
   // default constructor
   BoardState()
@@ -68,9 +71,9 @@ struct BoardState
     this->is_check = 0;
     this->has_repeated = 0;
     this->turn = White;
-    this->last_moved = piece::EmptyPiece;
-    this->last_captured = piece::EmptyPiece;
-    this->mv = CMove::NullMove();
+    this->last_moved_piece = piece::EmptyPiece;
+    this->last_captured_piece = piece::EmptyPiece;
+    this->last_move = CMove::NullMove();
     this->hash = 0;
   }
 

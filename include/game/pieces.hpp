@@ -14,7 +14,6 @@ namespace piece
     const PieceType queen = (4 << 1);  //8
     const PieceType king = (5 << 1);   //10
   }                                    // namespace white
-                                       // namespace white
   namespace black
   {
     const PieceType pawn = (0 << 1) + 1;   //1
@@ -24,7 +23,6 @@ namespace piece
     const PieceType queen = (4 << 1) + 1;  //9
     const PieceType king = (5 << 1) + 1;   //11
   }                                        // namespace black
-                                           // namespace black
   const PieceType EmptyPiece = -1;
 } // namespace piece
 

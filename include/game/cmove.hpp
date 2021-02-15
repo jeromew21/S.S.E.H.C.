@@ -3,7 +3,6 @@
 
 //"CMove" because of potential naming conflict w/ move op
 
-#include <assert.h>
 #include "misc/bits.hpp"
 
 // not an enum because type casting is scary

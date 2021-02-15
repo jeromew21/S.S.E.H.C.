@@ -107,8 +107,6 @@ void Board::LoadPosition(PieceType piece_list[64], Color turn_to_move, int ep_sq
   {
     PieceType piece = piece_list[i];
 
-    print_(pieceToStringFen(piece));
-
     if (piece != piece::EmptyPiece)
     {
       AddPiece_(piece, u64FromSquare(i));

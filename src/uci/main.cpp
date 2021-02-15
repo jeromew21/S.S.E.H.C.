@@ -10,6 +10,6 @@ void testPerft() {
 int main() {
   Board board;
   board.Dump();
-
+  
   return 0;
 }

@@ -28,7 +28,7 @@ int hadd(u64 x)
   while (x)
   {
     int k = bitscanForward(x);
-    u64 bs = 1 << k;
+    u64 bs = (u64)1 << k;
     x &= ~bs;
     count++;
   }
@@ -42,7 +42,7 @@ void bitscanAll(u64 x, std::array<u64, 64> &out_arr, int &out_size)
   while (x)
   {
     int k = bitscanForward(x);
-    u64 bs = 1 << k;
+    u64 bs = (u64)1 << k;
     out_arr[out_size] = bs;
     x &= ~bs;
     out_size++;

@@ -1,1 +1,1 @@
-make && ./build/apps/ssehc
+make -j 6 && ./build/apps/ssehc

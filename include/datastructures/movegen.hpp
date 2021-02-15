@@ -1,4 +1,0 @@
-#ifndef MOVEGENSTRUCTURES_HPP
-#define MOVEGENSTRUCTURES_HPP
-
-#endif

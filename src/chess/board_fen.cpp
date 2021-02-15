@@ -84,8 +84,10 @@ void Board::LoadPosition(PieceType piece_list[64], Color turn_to_move, int ep_sq
                          castle::Rights castling_rights, int fullmove, int halfmove)
 {
   // Clearing and resetting state
+  // Need to hard reset completely.
   state_stack_.Clear();
   status_ = GameStatus::NotCalculated;
+  state_ = BoardState();
   SetEpSquare_(-1);
   SetCastlingRights_(White, castle::long_, 1);
   SetCastlingRights_(White, castle::short_, 1);

@@ -46,11 +46,7 @@ namespace castle
 struct BoardState
 {
   int move_count;
-
-  // ply and turn might not be needed
   Color turn;
-  int ply;
-
   int halfmove_counter;  // plies since last capture or pawn move
   int en_passant_square; // square behind the pawn, or -1
   int is_check;          // is the position a check
@@ -65,7 +61,6 @@ struct BoardState
   BoardState()
   {
     this->move_count = 0;
-    this->ply = 0;
     this->halfmove_counter = 0;
     this->en_passant_square = -1;
     this->is_check = 0;

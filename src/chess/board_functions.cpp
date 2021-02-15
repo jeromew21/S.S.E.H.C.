@@ -33,6 +33,10 @@ void Board::SetCastlingRights_(Color color, int direction, int value)
 {
 }
 
+void Board::SetTurn_(Color turn)
+{
+}
+
 bool Board::is_check()
 {
   return false;
@@ -47,22 +51,7 @@ GameStatus Board::status()
   return GameStatus::NotCalculated;
 }
 
-u64 Board::occupancy() const
-{
-  return occupancy(White) | occupancy(Black);
-}
 
-u64 Board::occupancy(Color color) const
-{
-  assert(color == White || color == Black);
-  if (color == White)
-  {
-    return bitboard_[piece::white::king] | bitboard_[piece::white::queen] | bitboard_[piece::white::bishop] |
-           bitboard_[piece::white::pawn] | bitboard_[piece::white::rook] | bitboard_[piece::white::knight];
-  }
-  return bitboard_[piece::black::king] | bitboard_[piece::black::queen] | bitboard_[piece::black::bishop] |
-         bitboard_[piece::black::pawn] | bitboard_[piece::black::rook] | bitboard_[piece::black::knight];
-}
 
 Board::Board()
 {

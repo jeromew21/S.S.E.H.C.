@@ -9,7 +9,6 @@
 
 #include "misc/debug.hpp"
 
-
 namespace zobrist
 {
   // populate initial zobrist hashes
@@ -40,7 +39,7 @@ private:
   void RemovePiece_(PieceType piece, u64 location);
   void SetEpSquare_(Square ep_square);
   void SetCastlingRights_(Color color, int direction, int value);
-  void SwitchTurn();
+  void SetTurn_(Color turn);
 
 public:
   // non-const getters
@@ -53,10 +52,10 @@ public:
   CMove move_from_src_dest(Square src, Square dest);
 
   // const getters
-  Color turn() const;
-  u64 zobrist() const;
-  bool can_unmake() const;
+  Color get_turn() const;
+  u64 get_hash() const;
   CMove last_move() const;
+  bool can_unmake() const;
   u64 occupancy() const; // mask of piece locations
   u64 occupancy(Color color) const;
   std::string fen() const; // output the FEN as a string

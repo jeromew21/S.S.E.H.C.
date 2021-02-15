@@ -8,9 +8,14 @@ void seedRand(int seed); // seed rng
 void timeSeedRand();     //seed w/ time
 float randReal();        // between 0 and 1
 
+u64 randomBits();
+
+void init_bits();
+
 int hadd(u64 x); // count number of bits, also a hotspot IIRC
 
 void bitscanAll(u64 x, std::array<u64, 64> &out_arr, int &out_size); // breaks into one-hots, hotspot, vectorize?
+void bitscanAll_old(u64 x, std::array<u64, 64> &out_arr, int &out_size);
 
 // LSB (rightmost, uppermost)
 inline int bitscanForward(u64 x) { return __builtin_ffsll(x) - 1; }

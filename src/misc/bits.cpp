@@ -4,6 +4,16 @@
 std::uniform_real_distribution<double> unif(0, 1);
 std::mt19937_64 rng;
 
+const uint64_t m1 = 0x5555555555555555;  //binary: 0101...
+const uint64_t m2 = 0x3333333333333333;  //binary: 00110011..
+const uint64_t m4 = 0x0f0f0f0f0f0f0f0f;  //binary:  4 zeros,  4 ones ...
+const uint64_t m8 = 0x00ff00ff00ff00ff;  //binary:  8 zeros,  8 ones ...
+const uint64_t m16 = 0x0000ffff0000ffff; //binary: 16 zeros, 16 ones ...
+const uint64_t m32 = 0x00000000ffffffff; //binary: 32 zeros, 32 ones
+const uint64_t h01 = 0x0101010101010101; //the sum of 256 to the power of 0,1,2,3...
+
+u64 bitscan_cache[255][8][8];
+
 void seedRand(int seed)
 {
   rng.seed(seed);
@@ -21,24 +31,77 @@ float randReal()
   return unif(rng);
 }
 
-int hadd(u64 x)
+u64 randomBits()
 {
-  int count = 0;
-  while (x)
-    count += (x &= 1);
-  return count;
+  u64 val = 0;
+  u64 b = 1;
+  for (int k = 0; k < 64; k++)
+  {
+    if (randReal() > 0.5)
+      val |= b;
+    b <<= 1;
+  }
+  return val;
 }
 
-// TODO: throw SIMD at this
-void bitscanAll(u64 x, std::array<u64, 64> &out_arr, int &out_size)
+//https://en.wikipedia.org/wiki/Hamming_weight
+int hadd(u64 x)
+{
+  x -= (x >> 1) & m1;             //put count of each 2 bits into those 2 bits
+  x = (x & m2) + ((x >> 2) & m2); //put count of each 4 bits into those 4 bits
+  x = (x + (x >> 4)) & m4;        //put count of each 8 bits into those 8 bits
+  return (x * h01) >> 56;         //returns left 8 bits of x + (x<<8) + (x<<16) + (x<<24) + ...
+}
+
+void bitscanAll_old(u64 x, std::array<u64, 64> &out_arr, int &out_size)
 {
   out_size = 0;
   while (x)
   {
     int k = bitscanForward(x);
     u64 bs = (u64)1 << k;
-    out_arr[out_size] = bs;
+    out_arr[out_size++] = bs;
     x &= ~bs;
-    out_size++;
+  }
+}
+
+void init_bits()
+{
+  for (int i = 0; i < 256; i++)
+  {
+    int bits = i & 255; //11000110
+    for (int offset = 0; offset < 8; offset++)
+    {
+      // for (int k = 0; k < 8; k++)
+      // {
+      //   bitscan_cache[bits][offset][k] = 0;
+      // }
+      int index = 0;
+      for (int k = 0; k < 8; k++)
+      {
+        if ((bits >> k) & 1)
+        {
+          bitscan_cache[bits][offset][index++] = (u64) 1 << (offset*8 + k);
+        }
+      }
+    }
+  }
+}
+
+void bitscanAll(u64 x, std::array<u64, 64> &out_arr, int &out_size)
+{
+  for (int offset = 0; offset < 64; offset += 8)
+  {
+    int chunk = (x >> offset) & 255;
+    if (chunk == 0)
+      continue;
+
+    u64* cached = bitscan_cache[chunk][offset / 8]; //array of u64 s
+    for (int i = 0; i < 8; i++)
+    {
+      if (cached[i] == 0)
+        break;
+      out_arr[out_size++] = cached[i];
+    }
   }
 }

@@ -1,0 +1,97 @@
+.TH "move_maps" 3 "Mon Feb 15 2021" "S.S.E.H.C" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+move_maps
+.SH SYNOPSIS
+.br
+.PP
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBinit\fP ()"
+.br
+.ti -1c
+.RI "\fBu64\fP \fBpawnCaptures\fP (\fBu64\fP piece_location, \fBColor\fP color, \fBu64\fP occupants)"
+.br
+.ti -1c
+.RI "\fBu64\fP \fBpawnCaptures\fP (\fBSquare\fP piece_location, \fBColor\fP color, \fBu64\fP occupants)"
+.br
+.ti -1c
+.RI "\fBu64\fP \fBpawnMoves\fP (\fBu64\fP piece_location, \fBColor\fP color, \fBu64\fP occupants)"
+.br
+.ti -1c
+.RI "\fBu64\fP \fBpawnMoves\fP (\fBSquare\fP piece_location, \fBColor\fP color, \fBu64\fP occupants)"
+.br
+.ti -1c
+.RI "\fBu64\fP \fBpawnDoubleMoves\fP (\fBu64\fP piece_location, \fBColor\fP color, \fBu64\fP occupants)"
+.br
+.ti -1c
+.RI "\fBu64\fP \fBpawnDoubleMoves\fP (\fBSquare\fP piece_location, \fBColor\fP color, \fBu64\fP occupants)"
+.br
+.ti -1c
+.RI "\fBu64\fP \fBknightMoves\fP (\fBu64\fP piece_location, \fBu64\fP occupants)"
+.br
+.ti -1c
+.RI "\fBu64\fP \fBknightMoves\fP (\fBSquare\fP piece_location, \fBu64\fP occupants)"
+.br
+.ti -1c
+.RI "\fBu64\fP \fBkingMoves\fP (\fBu64\fP piece_location, \fBu64\fP occupants)"
+.br
+.ti -1c
+.RI "\fBu64\fP \fBkingMoves\fP (\fBSquare\fP piece_location, \fBu64\fP occupants)"
+.br
+.ti -1c
+.RI "\fBu64\fP \fBbishopMoves\fP (\fBu64\fP piece_location, \fBu64\fP occupants)"
+.br
+.ti -1c
+.RI "\fBu64\fP \fBbishopMoves\fP (\fBSquare\fP piece_location, \fBu64\fP occupants)"
+.br
+.ti -1c
+.RI "\fBu64\fP \fBrookMoves\fP (\fBu64\fP piece_location, \fBu64\fP occupants)"
+.br
+.ti -1c
+.RI "\fBu64\fP \fBrookMoves\fP (\fBSquare\fP piece_location, \fBu64\fP occupants)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+In order to genereate pseudo-legal (moves that are legal irregardless of check) we need to first determine the rules of movement for a given piece\&.
+.PP
+This namespace provides functions that do just that\&. 
+.SH "Function Documentation"
+.PP 
+.SS "\fBu64\fP move_maps::bishopMoves (\fBSquare\fP piece_location, \fBu64\fP occupants)"
+Returns a bitboard of bishop moves at given location and occupancy map\&. 
+.SS "\fBu64\fP move_maps::bishopMoves (\fBu64\fP piece_location, \fBu64\fP occupants)"
+Returns a bitboard of bishop moves at given location and occupancy map\&. 
+.SS "void move_maps::init ()"
+may be unecessary 
+.SS "\fBu64\fP move_maps::kingMoves (\fBSquare\fP piece_location, \fBu64\fP occupants)"
+Returns a bitboard of king moves at given location and occupancy map\&. 
+.SS "\fBu64\fP move_maps::kingMoves (\fBu64\fP piece_location, \fBu64\fP occupants)"
+Returns a bitboard of king moves at given location and occupancy map\&. 
+.SS "\fBu64\fP move_maps::knightMoves (\fBSquare\fP piece_location, \fBu64\fP occupants)"
+Returns a bitboard of knight moves at given location and occupancy map\&. 
+.SS "\fBu64\fP move_maps::knightMoves (\fBu64\fP piece_location, \fBu64\fP occupants)"
+Returns a bitboard of knight moves at given location and occupancy map\&. 
+.SS "\fBu64\fP move_maps::pawnCaptures (\fBSquare\fP piece_location, \fBColor\fP color, \fBu64\fP occupants)"
+Returns a bitboard of pawn captures at given location and occupancy map\&. 
+.SS "\fBu64\fP move_maps::pawnCaptures (\fBu64\fP piece_location, \fBColor\fP color, \fBu64\fP occupants)"
+Returns a bitboard of pawn captures at given location and occupancy map\&. 
+.SS "\fBu64\fP move_maps::pawnDoubleMoves (\fBSquare\fP piece_location, \fBColor\fP color, \fBu64\fP occupants)"
+Returns a bitboard of pawn double moves at given location and occupancy map\&. 
+.SS "\fBu64\fP move_maps::pawnDoubleMoves (\fBu64\fP piece_location, \fBColor\fP color, \fBu64\fP occupants)"
+Returns a bitboard of pawn double moves at given location and occupancy map\&. 
+.SS "\fBu64\fP move_maps::pawnMoves (\fBSquare\fP piece_location, \fBColor\fP color, \fBu64\fP occupants)"
+Returns a bitboard of pawn forward moves at given location and occupancy map\&. 
+.SS "\fBu64\fP move_maps::pawnMoves (\fBu64\fP piece_location, \fBColor\fP color, \fBu64\fP occupants)"
+Returns a bitboard of pawn forward moves at given location and occupancy map\&. 
+.SS "\fBu64\fP move_maps::rookMoves (\fBSquare\fP piece_location, \fBu64\fP occupants)"
+Returns a bitboard of rook moves at given location and occupancy map\&. 
+.SS "\fBu64\fP move_maps::rookMoves (\fBu64\fP piece_location, \fBu64\fP occupants)"
+Returns a bitboard of rook moves at given location and occupancy map\&. 
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for S\&.S\&.E\&.H\&.C from the source code\&.

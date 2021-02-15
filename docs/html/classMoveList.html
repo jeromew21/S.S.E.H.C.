@@ -102,8 +102,8 @@ Public Member Functions</h2></td></tr>
 <div class="textblock"><h3>template&lt;int N&gt;<br />
 class MoveList&lt; N &gt;</h3>
 
-<p>List of stored on stack with limited size.</p>
-<p>N=256 is probably fine for 100% of use cases.</p>
+<p>List of moves, stored on stack with limited size.</p>
+<p>N=256 is probably fine for 100% of use cases and definitely overkill.</p>
 <p>Returned by board methods <a class="el" href="classBoard.html#abf49d6bfa97aa4595d7cd3f9be13b978">Board::legal_moves()</a> and others. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a6fe5c4ac837652f7d84d91d9715f9e91"></a>
@@ -159,6 +159,7 @@ template&lt;int N&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Return the last item in the list. </p>
 
 </div>
 </div>
@@ -364,6 +365,7 @@ template&lt;int N&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Delete and return last item in the list. </p>
 
 </div>
 </div>

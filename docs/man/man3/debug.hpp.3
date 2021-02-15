@@ -18,13 +18,20 @@ include/misc/debug.hpp
 .ti -1c
 .RI "void \fBdump64\fP (\fBu64\fP x)"
 .br
+.ti -1c
+.RI "void \fBverbose_print\fP (const std::string &text)"
+.br
 .in -1c
 .SH "Function Documentation"
 .PP 
 .SS "void dump64 (\fBu64\fP x)"
-
+Prints a 64 bit bitboard to stdout, in chessboard order\&. 
 .SS "void print_ (const std::string & text)"
-
+A pure print statement, meant for only debugging\&.
+.PP
+Should not be found in final version of source code\&. 
+.SS "void verbose_print (const std::string & text)"
+Prints only if the command line verbose flag is set\&. 
 .SH "Author"
 .PP 
 Generated automatically by Doxygen for S\&.S\&.E\&.H\&.C from the source code\&.

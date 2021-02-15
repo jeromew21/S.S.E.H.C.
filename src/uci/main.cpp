@@ -2,31 +2,40 @@
 #include <chrono>
 
 #include "game/chessboard.hpp"
-#include "misc/bits.hpp"
 #include "uci/strings.hpp"
+
+bool verbose = true;
 
 // test move generator
 void testPerft()
 {
 }
 
-void init() {
+void verbose_print(const std::string &text)
+{
+  if (verbose)
+    std::cout << "info string " << text << std::endl;
+}
+
+void init()
+{
   seedRand(6969);
   init_bits();
-  move_cache::init();
+  move_maps::init();
 }
 
 int main()
 {
+  verbose_print("initializing engine");
   init();
 
   Board board;
-  
+
   u64Stack<64> out_arr;
 
   bitscanAll(board.occupancy(), out_arr);
 
-  // dump64(move_cache::knightMoves(squareFromName("e4")));
+  dump64(0x810204080);
 
   return 0;
 }

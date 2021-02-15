@@ -13,16 +13,16 @@ src/chess/bitboard_move_cache.cpp
 
 .in +1c
 .ti -1c
-.RI "const \fBu64\fP \fBKNIGHT_MOVE_CACHE\fP [64]"
+.RI "const \fBu64\fP \fBKNIGHT_move_maps\fP [64]"
 .br
 .ti -1c
-.RI "const \fBu64\fP \fBKING_MOVE_CACHE\fP [64]"
+.RI "const \fBu64\fP \fBKING_move_maps\fP [64]"
 .br
 .ti -1c
 .RI "const \fBu64\fP \fBPAWN_CAPTURE_CACHE\fP [2][64]"
 .br
 .ti -1c
-.RI "const \fBu64\fP \fBPAWN_MOVE_CACHE\fP [2][64]"
+.RI "const \fBu64\fP \fBPAWN_move_maps\fP [2][64]"
 .br
 .ti -1c
 .RI "const \fBu64\fP \fBPAWN_DOUBLE_CACHE\fP [2][64]"
@@ -30,7 +30,7 @@ src/chess/bitboard_move_cache.cpp
 .in -1c
 .SH "Variable Documentation"
 .PP 
-.SS "const \fBu64\fP KING_MOVE_CACHE[64]"
+.SS "const \fBu64\fP KING_move_maps[64]"
 \fBInitial value:\fP
 .PP
 .nf
@@ -47,7 +47,7 @@ src/chess/bitboard_move_cache.cpp
                                  0xa0e000000000000, 0x141c000000000000, 0x2838000000000000, 0x5070000000000000,
                                  0xa0e0000000000000, 0x40c0000000000000}
 .fi
-.SS "const \fBu64\fP KNIGHT_MOVE_CACHE[64]"
+.SS "const \fBu64\fP KNIGHT_move_maps[64]"
 \fBInitial value:\fP
 .PP
 .nf
@@ -105,7 +105,7 @@ src/chess/bitboard_move_cache.cpp
                                        0x200000000, 0x400000000, 0x800000000, 0x1000000000, 0x2000000000,
                                        0x4000000000, 0x8000000000, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}}
 .fi
-.SS "const \fBu64\fP PAWN_MOVE_CACHE[2][64]"
+.SS "const \fBu64\fP PAWN_move_maps[2][64]"
 \fBInitial value:\fP
 .PP
 .nf

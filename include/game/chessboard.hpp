@@ -9,14 +9,27 @@
 
 #include "misc/debug.hpp"
 
+/**
+ * We need to initialize and retrieve random hashes for each board feature.
+ */
 namespace zobrist
 {
-  // populate initial zobrist hashes
+  /**
+   * Populates the random hashes.
+   */
   void init();
-  u64 getHashFromId();
+
+  /**
+   * Gets a specific hash given a feature id.
+   */
+  u64 getHashFromId(int feature_id);
 
 } // namespace zobrist
 
+/**
+ * Sometimes we care about the specific direction a ray goes 
+ * for pin checking, or other things.
+ */
 namespace direction
 {
   namespace rook
@@ -35,7 +48,13 @@ namespace direction
   } // namespace bishop
 } // namespace direction
 
-namespace move_cache
+/**
+ * In order to genereate pseudo-legal (moves that are legal irregardless of check)
+ * we need to first determine the rules of movement for a given piece.
+ * 
+ * This namespace provides functions that do just that.
+ */
+namespace move_maps
 {
   /**
    * may be unecessary
@@ -44,21 +63,56 @@ namespace move_cache
 
   // pawns
 
+  /**
+   * Returns a bitboard of pawn captures at given location and occupancy map.
+   */
   u64 pawnCaptures(u64 piece_location, Color color, u64 occupants);
+
+  /**
+   * Returns a bitboard of pawn captures at given location and occupancy map.
+   */
   u64 pawnCaptures(Square piece_location, Color color, u64 occupants);
 
+  /**
+   * Returns a bitboard of pawn forward moves at given location and occupancy map.
+   */
   u64 pawnMoves(u64 piece_location, Color color, u64 occupants);
+
+  /**
+   * Returns a bitboard of pawn forward moves at given location and occupancy map.
+   */
   u64 pawnMoves(Square piece_location, Color color, u64 occupants);
 
+  /**
+   * Returns a bitboard of pawn double moves at given location and occupancy map.
+   */
   u64 pawnDoubleMoves(u64 piece_location, Color color, u64 occupants);
+
+  /**
+   * Returns a bitboard of pawn double moves at given location and occupancy map.
+   */
   u64 pawnDoubleMoves(Square piece_location, Color color, u64 occupants);
 
   // jumping pieces
 
+  /**
+   * Returns a bitboard of knight moves at given location and occupancy map.
+   */
   u64 knightMoves(u64 piece_location, u64 occupants);
+
+  /**
+   * Returns a bitboard of knight moves at given location and occupancy map.
+   */
   u64 knightMoves(Square piece_location, u64 occupants);
 
+  /**
+   * Returns a bitboard of king moves at given location and occupancy map.
+   */
   u64 kingMoves(u64 piece_location, u64 occupants);
+
+  /**
+   * Returns a bitboard of king moves at given location and occupancy map.
+   */
   u64 kingMoves(Square piece_location, u64 occupants);
 
   // sliding pieces
@@ -70,13 +124,27 @@ namespace move_cache
   // u64 rookRay(u64 piece_location, int direction, u64 occupants);
   // u64 rookRay(Square piece_location, int direction, u64 occupants);
 
+  /**
+   * Returns a bitboard of bishop moves at given location and occupancy map.
+   */
   u64 bishopMoves(u64 piece_location, u64 occupants);
+
+  /**
+   * Returns a bitboard of bishop moves at given location and occupancy map.
+   */
   u64 bishopMoves(Square piece_location, u64 occupants);
 
+  /**
+   * Returns a bitboard of rook moves at given location and occupancy map.
+   */
   u64 rookMoves(u64 piece_location, u64 occupants);
+
+  /**
+   * Returns a bitboard of rook moves at given location and occupancy map.
+   */
   u64 rookMoves(Square piece_location, u64 occupants);
 
-} // namespace move_cache
+} // namespace move_maps
 
 class Board //put board in board.hpp?
 {
@@ -91,14 +159,24 @@ private:
 
   // Attack and Defend maps
 
+  /**
+   * Have the attack and defend maps been generated yet?
+   */
   bool _maps_generated;
-  // for each square index, a bitboard list of attacked squares
+
+  /**
+   * for each square index, a bitboard list of attacked squares
+   */
   std::array<u64, 64> attack_map_;
 
-  // for each square index, a bitboard list of attacker squares
+  /**
+   * for each square index, a bitboard list of attacker squares
+   */
   std::array<u64, 64> defend_map_;
 
-  // shortcut move generator if board is check
+  /** 
+   * shortcut move generator if board is check
+   */
   MoveList<256> produce_uncheck_moves_();
 
   // private methods that change hash accordingly
@@ -111,13 +189,20 @@ private:
 
   // move generation specific
 
-  // fill attack/defend maps
+  /** 
+   * Update the attack and defend maps.
+   */
   void GeneratePseudoLegal_();
 
 public:
-  // non-const getters
-
+  /** 
+   * List of all true legal moves in a position.
+   */
   MoveList<256> legal_moves();
+
+  /** 
+   * capture moves only, generated for q-search.
+   */
   MoveList<256> capture_moves();
   GameStatus status();
 
@@ -139,14 +224,21 @@ public:
 
   // Public state-changing methods
 
+  /**
+   * Sets the board to the classical starting position.
+   */
   void Reset();
+
   void MakeMove(CMove mv);
   void UnmakeMove();
+
   void LoadPosition(PieceType piece_list[64], Color turn, int ep_square,
                     castle::Rights castling_rights, int fullmove, int halfmove);
   void LoadPosition(std::string fen); // loading from a FEN string
 
-  //debug
+  /**
+   * Prints information to the console.
+   */
   void Dump();
 
   // default constructor

@@ -77,58 +77,73 @@ struct BoardState
   //psuedoLegal?????
 };
 
-// stack implemented with a std::vector
+/**
+ * A stack implemented with std::vector
+ * 
+ * Used to store past states of a chess board that are too heavy to be incrementally updated.
+ */
 class BoardStateStack
 {
 private:
-  int index; // length of stack
+  int head_; // length of stack
   std::vector<BoardState> data_;
 
 public:
-  BoardStateStack() { index = 0; }
+  BoardStateStack() { head_ = 0; }
 
-  // peek at back
+  /**
+   * Return a reference to the top of the stack.
+   * 
+   * It's the position immediatly preceding the current one.
+   */
   BoardState &peek()
   {
-    assert(index > 0);
+    assert(head_ > 0);
     return data_.back();
   }
 
-  // peek at index
+  /**
+   * Return a reference to a particular index.
+   */
   BoardState &peek_at(int i)
   {
-    assert(i > 0 && i < index);
+    assert(i > 0 && i < head_);
     return data_[i];
   }
 
-  bool can_pop() const { return index > 0; }
-  int getindex() const { return index; };
+  bool can_pop() const { return head_ > 0; }
+  int size() const { return head_; };
 
   void Pop()
   {
-    assert(index > 0);
+    assert(head_ > 0);
     data_.pop_back();
-    index--;
+    head_--;
   }
 
+  /**
+   * Clears the stack.
+   */
   void Clear()
   {
-    index = 0;
+    head_ = 0;
     data_.clear();
   }
 
-  // Should deference and push copy to stack
+  /**
+   * Should deference and push copy to stack
+   */
   void Push(BoardState &state)
   {
     data_.push_back(state);
-    index++;
+    head_++;
   };
 };
 
 /**
- * List of stored on stack with limited size.
+ * List of moves, stored on stack with limited size.
  * 
- * N=256 is probably fine for 100% of use cases.
+ * N=256 is probably fine for 100% of use cases and definitely overkill.
  * 
  * Returned by board methods Board::legal_moves() and others.
  */
@@ -179,12 +194,18 @@ public:
     head_++;
   }
 
+  /**
+   * Return the last item in the list.
+   */
   CMove back()
   {
     assert(head_ > 0);
     return data_[head_ - 1];
   }
 
+  /**
+   * Delete and return last item in the list.
+   */
   CMove pop_back()
   {
     assert(head_ > 0);

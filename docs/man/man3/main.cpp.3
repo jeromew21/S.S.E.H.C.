@@ -12,8 +12,6 @@ src/uci/main.cpp
 .br
 \fC#include 'game/chessboard\&.hpp'\fP
 .br
-\fC#include 'misc/bits\&.hpp'\fP
-.br
 \fC#include 'uci/strings\&.hpp'\fP
 .br
 
@@ -24,10 +22,20 @@ src/uci/main.cpp
 .RI "void \fBtestPerft\fP ()"
 .br
 .ti -1c
+.RI "void \fBverbose_print\fP (const std::string &text)"
+.br
+.ti -1c
 .RI "void \fBinit\fP ()"
 .br
 .ti -1c
 .RI "int \fBmain\fP ()"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "bool \fBverbose\fP = true"
 .br
 .in -1c
 .SH "Function Documentation"
@@ -37,6 +45,12 @@ src/uci/main.cpp
 .SS "int main ()"
 
 .SS "void testPerft ()"
+
+.SS "void verbose_print (const std::string & text)"
+Prints only if the command line verbose flag is set\&. 
+.SH "Variable Documentation"
+.PP 
+.SS "bool verbose = true"
 
 .SH "Author"
 .PP 

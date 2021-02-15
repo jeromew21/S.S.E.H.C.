@@ -24,7 +24,7 @@ BoardStateStack
 .RI "bool \fBcan_pop\fP () const"
 .br
 .ti -1c
-.RI "int \fBgetindex\fP () const"
+.RI "int \fBsize\fP () const"
 .br
 .ti -1c
 .RI "void \fBPop\fP ()"
@@ -36,6 +36,11 @@ BoardStateStack
 .RI "void \fBPush\fP (\fBBoardState\fP &state)"
 .br
 .in -1c
+.SH "Detailed Description"
+.PP 
+A stack implemented with std::vector
+.PP
+Used to store past states of a chess board that are too heavy to be incrementally updated\&. 
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "BoardStateStack::BoardStateStack ()\fC [inline]\fP"
@@ -45,16 +50,18 @@ BoardStateStack
 .SS "bool BoardStateStack::can_pop () const\fC [inline]\fP"
 
 .SS "void BoardStateStack::Clear ()\fC [inline]\fP"
-
-.SS "int BoardStateStack::getindex () const\fC [inline]\fP"
-
+Clears the stack\&. 
 .SS "\fBBoardState\fP& BoardStateStack::peek ()\fC [inline]\fP"
-
+Return a reference to the top of the stack\&.
+.PP
+It's the position immediatly preceding the current one\&. 
 .SS "\fBBoardState\fP& BoardStateStack::peek_at (int i)\fC [inline]\fP"
-
+Return a reference to a particular index\&. 
 .SS "void BoardStateStack::Pop ()\fC [inline]\fP"
 
 .SS "void BoardStateStack::Push (\fBBoardState\fP & state)\fC [inline]\fP"
+Should deference and push copy to stack 
+.SS "int BoardStateStack::size () const\fC [inline]\fP"
 
 
 .SH "Author"

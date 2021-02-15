@@ -1,6 +1,6 @@
 # 🅂.🅂.🄴.🄷.🄲.
 ## Semi-supervised Scalable Evaluation-perfect Heuristic Chess 
-Chess backwards because I couldn't think of a better name
+Chess backwards because I couldn't think of a better name...
 
 A lot of code lifted from https://github.com/jeromew21/Blobfish
 
@@ -23,7 +23,7 @@ Portability (have it work on a raspberry pi)
 
 `make`
 
-The executable will be stored in ./build/apps
+The executable will be stored in `./build/apps`.
 
 ### Debug build
 `make clean`
@@ -60,27 +60,31 @@ Try to follow this as a rough guideline: https://google.github.io/styleguide/cpp
 
 The fewer indentation levels, the better.
 
-`camelCase` for functions
+`camelCase` for functions.
 
-`snake_case` for variables, parameters
+`snake_case` for variables, parameters.
 
-`PascalCase` for types, void class methods
+`PascalCase` for types, void class methods.
 
-`snake_case` for class getter/setters
+`snake_case` for class getter/setters.
 
-`leading_underscore_` for private variables
+`leading_underscore_` for private variables.
 
 
 ### Repository Layout
 
 #### ./include
-Header files
+Header files.
 
 #### ./src
-Source files
+Source files.
 
-#### ./scripts
-Useful scripts
+#### ./profiling
+Profiling scripts.
 
-#### ./tests
-Test and benchmark suite
+#### ./benchmarking
+Test and benchmark suite.
+
+#### ./docs
+Auto-generated Doxygen documentation.
+

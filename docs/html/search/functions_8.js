@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['init_335',['init',['../namespacezobrist.html#a3758b41a1876be8cdb13517666d8edab',1,'zobrist::init()'],['../namespacemove__cache.html#aeb054a2355563c7ab1d3e4aea80cf899',1,'move_cache::init()'],['../main_8cpp.html#a02fd73d861ef2e4aabb38c0c9ff82947',1,'init():&#160;main.cpp']]],
+  ['init_335',['init',['../namespacezobrist.html#a3758b41a1876be8cdb13517666d8edab',1,'zobrist::init()'],['../namespacemove__maps.html#ac0dc68279809aa34ce8164e37479eb68',1,'move_maps::init()'],['../main_8cpp.html#a02fd73d861ef2e4aabb38c0c9ff82947',1,'init():&#160;main.cpp']]],
   ['init_5fbits_336',['init_bits',['../bits_8hpp.html#ace83f6321d28809158ee180949b3e629',1,'init_bits():&#160;bits.cpp'],['../bits_8cpp.html#ace83f6321d28809158ee180949b3e629',1,'init_bits():&#160;bits.cpp']]],
   ['insert_337',['Insert',['../classMoveList.html#ab9a69bcf0d657481578f50a7dc720d1f',1,'MoveList']]],
   ['is_5fcastle_338',['is_castle',['../classCMove.html#aa1acc50b29e322551ea565031f9d399d',1,'CMove']]],

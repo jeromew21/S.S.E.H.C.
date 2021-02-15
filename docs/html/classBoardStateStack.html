@@ -83,8 +83,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a68faba9a58b8e1dfa0d89ed3e1e2c7e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a550feddccec7b95073aac92d2e59432a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBoardStateStack.html#a550feddccec7b95073aac92d2e59432a">can_pop</a> () const</td></tr>
 <tr class="separator:a550feddccec7b95073aac92d2e59432a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0a705bfb59dbc7f4051c1316ea0ddccd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBoardStateStack.html#a0a705bfb59dbc7f4051c1316ea0ddccd">getindex</a> () const</td></tr>
-<tr class="separator:a0a705bfb59dbc7f4051c1316ea0ddccd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a576dee891bf2706cbee0c91739c6d399"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBoardStateStack.html#a576dee891bf2706cbee0c91739c6d399">size</a> () const</td></tr>
+<tr class="separator:a576dee891bf2706cbee0c91739c6d399"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a703d4ab946de77771f222ffdfb4471d1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBoardStateStack.html#a703d4ab946de77771f222ffdfb4471d1">Pop</a> ()</td></tr>
 <tr class="separator:a703d4ab946de77771f222ffdfb4471d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c92ba8fd884033883b9c826005a8673"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBoardStateStack.html#a1c92ba8fd884033883b9c826005a8673">Clear</a> ()</td></tr>
@@ -92,7 +92,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a355f7d396ae13d6c070e963e6bc47686"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBoardStateStack.html#a355f7d396ae13d6c070e963e6bc47686">Push</a> (<a class="el" href="structBoardState.html">BoardState</a> &amp;state)</td></tr>
 <tr class="separator:a355f7d396ae13d6c070e963e6bc47686"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A stack implemented with std::vector</p>
+<p>Used to store past states of a chess board that are too heavy to be incrementally updated. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a4a3d9fc2de31b310645daa553e5c4948"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4a3d9fc2de31b310645daa553e5c4948">&#9670;&nbsp;</a></span>BoardStateStack()</h2>
 
@@ -166,31 +169,7 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-</div>
-</div>
-<a id="a0a705bfb59dbc7f4051c1316ea0ddccd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0a705bfb59dbc7f4051c1316ea0ddccd">&#9670;&nbsp;</a></span>getindex()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int BoardStateStack::getindex </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
+<p>Clears the stack. </p>
 
 </div>
 </div>
@@ -216,6 +195,8 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Return a reference to the top of the stack.</p>
+<p>It's the position immediatly preceding the current one. </p>
 
 </div>
 </div>
@@ -242,6 +223,7 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Return a reference to a particular index. </p>
 
 </div>
 </div>
@@ -285,6 +267,32 @@ Public Member Functions</h2></td></tr>
           <td class="paramtype"><a class="el" href="structBoardState.html">BoardState</a> &amp;&#160;</td>
           <td class="paramname"><em>state</em></td><td>)</td>
           <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Should deference and push copy to stack </p>
+
+</div>
+</div>
+<a id="a576dee891bf2706cbee0c91739c6d399"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a576dee891bf2706cbee0c91739c6d399">&#9670;&nbsp;</a></span>size()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int BoardStateStack::size </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
         </tr>
       </table>
   </td>

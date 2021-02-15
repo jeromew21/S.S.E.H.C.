@@ -51,9 +51,9 @@ MoveList< N >
 .SS "template<int N>
 .br
 class MoveList< N >"
-List of stored on stack with limited size\&.
+List of moves, stored on stack with limited size\&.
 .PP
-N=256 is probably fine for 100% of use cases\&.
+N=256 is probably fine for 100% of use cases and definitely overkill\&.
 .PP
 Returned by board methods \fBBoard::legal_moves()\fP and others\&. 
 .SH "Constructor & Destructor Documentation"
@@ -63,7 +63,7 @@ default constructor
 .SH "Member Function Documentation"
 .PP 
 .SS "template<int N> \fBCMove\fP \fBMoveList\fP< N >::back ()\fC [inline]\fP"
-
+Return the last item in the list\&. 
 .SS "template<int N> int \fBMoveList\fP< N >::begin () const\fC [inline]\fP"
 
 .SS "template<int N> void \fBMoveList\fP< N >::Clear ()\fC [inline]\fP"
@@ -77,7 +77,7 @@ Insert an item at index\&. Shifts other items up accordingly\&.
 .SS "template<int N> \fBCMove\fP \fBMoveList\fP< N >::operator[] (int index) const\fC [inline]\fP"
 
 .SS "template<int N> \fBCMove\fP \fBMoveList\fP< N >::pop_back ()\fC [inline]\fP"
-
+Delete and return last item in the list\&. 
 .SS "template<int N> void \fBMoveList\fP< N >::PushBack (\fBCMove\fP mv)\fC [inline]\fP"
 adds an element 
 .SS "template<int N> int \fBMoveList\fP< N >::size () const\fC [inline]\fP"

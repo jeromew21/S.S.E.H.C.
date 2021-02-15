@@ -3,7 +3,7 @@ var searchData=
   ['back_5',['back',['../classMoveList.html#a96f805bc1be5d4892143571c26707109',1,'MoveList']]],
   ['begin_6',['begin',['../classMoveList.html#a141f1deca6122b2cd547300086872091',1,'MoveList']]],
   ['bishop_7',['bishop',['../namespacepiece_1_1black.html#acee7f2e9ba4ec042dbb1573b075f2b6e',1,'piece::black::bishop()'],['../namespacepiece_1_1white.html#ab2c4266e1df92bc5bd283a5810ad685e',1,'piece::white::bishop()']]],
-  ['bishopmoves_8',['bishopMoves',['../namespacemove__cache.html#a12065a678946639950e682a844943aef',1,'move_cache::bishopMoves(Square piece_location, u64 occupants)'],['../namespacemove__cache.html#a8cc94c8dc7ec7c72872a2af76df72a58',1,'move_cache::bishopMoves(u64 piece_location, u64 occupants)']]],
+  ['bishopmoves_8',['bishopMoves',['../namespacemove__maps.html#a08b5a8fb6960e019cd991f5aa858a0a2',1,'move_maps::bishopMoves(Square piece_location, u64 occupants)'],['../namespacemove__maps.html#aa0f090e0693145551a43f8aef11b44c0',1,'move_maps::bishopMoves(u64 piece_location, u64 occupants)']]],
   ['bitboard_5fmove_5fcache_2ecpp_9',['bitboard_move_cache.cpp',['../bitboard__move__cache_8cpp.html',1,'']]],
   ['bits_2ecpp_10',['bits.cpp',['../bits_8cpp.html',1,'']]],
   ['bits_2ehpp_11',['bits.hpp',['../bits_8hpp.html',1,'']]],

@@ -145,108 +145,104 @@ $(function() {
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;  <span class="comment">//psuedoLegal?????</span></div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;};</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">// stack implemented with a std::vector</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="classBoardStateStack.html">   81</a></span>&#160;<span class="keyword">class </span><a class="code" href="classBoardStateStack.html">BoardStateStack</a></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;{</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;  <span class="keywordtype">int</span> index; <span class="comment">// length of stack</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;  std::vector&lt;BoardState&gt; data_;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="classBoardStateStack.html#a4a3d9fc2de31b310645daa553e5c4948">   88</a></span>&#160;  <a class="code" href="classBoardStateStack.html#a4a3d9fc2de31b310645daa553e5c4948">BoardStateStack</a>() { index = 0; }</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;  <span class="comment">// peek at back</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="classBoardStateStack.html#a02ac9f7b50d432b74ca3a6642f33ad07">   91</a></span>&#160;  <a class="code" href="structBoardState.html">BoardState</a> &amp;<a class="code" href="classBoardStateStack.html#a02ac9f7b50d432b74ca3a6642f33ad07">peek</a>()</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;  {</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    assert(index &gt; 0);</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keywordflow">return</span> data_.back();</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;  }</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;  <span class="comment">// peek at index</span></div>
-<div class="line"><a name="l00098"></a><span class="lineno"><a class="line" href="classBoardStateStack.html#a68faba9a58b8e1dfa0d89ed3e1e2c7e4">   98</a></span>&#160;  <a class="code" href="structBoardState.html">BoardState</a> &amp;<a class="code" href="classBoardStateStack.html#a68faba9a58b8e1dfa0d89ed3e1e2c7e4">peek_at</a>(<span class="keywordtype">int</span> i)</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;  {</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    assert(i &gt; 0 &amp;&amp; i &lt; index);</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keywordflow">return</span> data_[i];</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;  }</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
-<div class="line"><a name="l00104"></a><span class="lineno"><a class="line" href="classBoardStateStack.html#a550feddccec7b95073aac92d2e59432a">  104</a></span>&#160;  <span class="keywordtype">bool</span> <a class="code" href="classBoardStateStack.html#a550feddccec7b95073aac92d2e59432a">can_pop</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> index &gt; 0; }</div>
-<div class="line"><a name="l00105"></a><span class="lineno"><a class="line" href="classBoardStateStack.html#a0a705bfb59dbc7f4051c1316ea0ddccd">  105</a></span>&#160;  <span class="keywordtype">int</span> <a class="code" href="classBoardStateStack.html#a0a705bfb59dbc7f4051c1316ea0ddccd">getindex</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> index; };</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
-<div class="line"><a name="l00107"></a><span class="lineno"><a class="line" href="classBoardStateStack.html#a703d4ab946de77771f222ffdfb4471d1">  107</a></span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classBoardStateStack.html#a703d4ab946de77771f222ffdfb4471d1">Pop</a>()</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;  {</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    assert(index &gt; 0);</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    data_.pop_back();</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    index--;</div>
+<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="classBoardStateStack.html">   85</a></span>&#160;<span class="keyword">class </span><a class="code" href="classBoardStateStack.html">BoardStateStack</a></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;{</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;  <span class="keywordtype">int</span> head_; <span class="comment">// length of stack</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;  std::vector&lt;BoardState&gt; data_;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="classBoardStateStack.html#a4a3d9fc2de31b310645daa553e5c4948">   92</a></span>&#160;  <a class="code" href="classBoardStateStack.html#a4a3d9fc2de31b310645daa553e5c4948">BoardStateStack</a>() { head_ = 0; }</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
+<div class="line"><a name="l00099"></a><span class="lineno"><a class="line" href="classBoardStateStack.html#a02ac9f7b50d432b74ca3a6642f33ad07">   99</a></span>&#160;  <a class="code" href="structBoardState.html">BoardState</a> &amp;<a class="code" href="classBoardStateStack.html#a02ac9f7b50d432b74ca3a6642f33ad07">peek</a>()</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;  {</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    assert(head_ &gt; 0);</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="keywordflow">return</span> data_.back();</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;  }</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
+<div class="line"><a name="l00108"></a><span class="lineno"><a class="line" href="classBoardStateStack.html#a68faba9a58b8e1dfa0d89ed3e1e2c7e4">  108</a></span>&#160;  <a class="code" href="structBoardState.html">BoardState</a> &amp;<a class="code" href="classBoardStateStack.html#a68faba9a58b8e1dfa0d89ed3e1e2c7e4">peek_at</a>(<span class="keywordtype">int</span> i)</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;  {</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    assert(i &gt; 0 &amp;&amp; i &lt; head_);</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="keywordflow">return</span> data_[i];</div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;  }</div>
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
-<div class="line"><a name="l00114"></a><span class="lineno"><a class="line" href="classBoardStateStack.html#a1c92ba8fd884033883b9c826005a8673">  114</a></span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classBoardStateStack.html#a1c92ba8fd884033883b9c826005a8673">Clear</a>()</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;  {</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    index = 0;</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    data_.clear();</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;  }</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;  <span class="comment">// Should deference and push copy to stack</span></div>
-<div class="line"><a name="l00121"></a><span class="lineno"><a class="line" href="classBoardStateStack.html#a355f7d396ae13d6c070e963e6bc47686">  121</a></span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classBoardStateStack.html#a355f7d396ae13d6c070e963e6bc47686">Push</a>(<a class="code" href="structBoardState.html">BoardState</a> &amp;state)</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;  {</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    data_.push_back(state);</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    index++;</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;  };</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;};</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160; </div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="keyword">template</span> &lt;<span class="keywordtype">int</span> N&gt;</div>
-<div class="line"><a name="l00136"></a><span class="lineno"><a class="line" href="classMoveList.html">  136</a></span>&#160;<span class="keyword">class </span><a class="code" href="classMoveList.html">MoveList</a></div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;{</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;  <a class="code" href="classCMove.html">CMove</a> data_[N];</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;  <span class="keywordtype">int</span> head_;</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160; </div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00146"></a><span class="lineno"><a class="line" href="classMoveList.html#a6fe5c4ac837652f7d84d91d9715f9e91">  146</a></span>&#160;  <a class="code" href="classMoveList.html#a6fe5c4ac837652f7d84d91d9715f9e91">MoveList</a>() { head_ = 0; }</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160; </div>
-<div class="line"><a name="l00151"></a><span class="lineno"><a class="line" href="classMoveList.html#ae93165a467e1d29c8235a53f8536315a">  151</a></span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classMoveList.html#ae93165a467e1d29c8235a53f8536315a">Clear</a>() { head_ = 0; }</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160; </div>
-<div class="line"><a name="l00156"></a><span class="lineno"><a class="line" href="classMoveList.html#a5fb417214fb0fe68e24d88fff1d561af">  156</a></span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classMoveList.html#a5fb417214fb0fe68e24d88fff1d561af">PushBack</a>(<a class="code" href="classCMove.html">CMove</a> mv)</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;  {</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    data_[head_++] = mv;</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;  }</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160; </div>
-<div class="line"><a name="l00164"></a><span class="lineno"><a class="line" href="classMoveList.html#a4a869ed3bd4eae94964dc6da6ac69a58">  164</a></span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classMoveList.html#a4a869ed3bd4eae94964dc6da6ac69a58">Erase</a>(<span class="keywordtype">int</span> index)</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;  {</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    assert(index &lt; head_ &amp;&amp; head_ &gt; 0);</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    memmove(data_ + index, data_ + index + 1, (N - index - 1) * <span class="keyword">sizeof</span>(<a class="code" href="classCMove.html">CMove</a>));</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    head_--;</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;  }</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160; </div>
-<div class="line"><a name="l00174"></a><span class="lineno"><a class="line" href="classMoveList.html#ab9a69bcf0d657481578f50a7dc720d1f">  174</a></span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classMoveList.html#ab9a69bcf0d657481578f50a7dc720d1f">Insert</a>(<span class="keywordtype">int</span> index, <a class="code" href="classCMove.html">CMove</a> mv)</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;  {</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    assert(index &lt; head_ &amp;&amp; head_ &lt; N);</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    memmove(data_ + index + 1, data_ + index, (N - index - 1) * <span class="keyword">sizeof</span>(<a class="code" href="classCMove.html">CMove</a>));</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    data_[index] = mv;</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    head_++;</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;  }</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160; </div>
-<div class="line"><a name="l00182"></a><span class="lineno"><a class="line" href="classMoveList.html#a96f805bc1be5d4892143571c26707109">  182</a></span>&#160;  <a class="code" href="classCMove.html">CMove</a> <a class="code" href="classMoveList.html#a96f805bc1be5d4892143571c26707109">back</a>()</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;  {</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    assert(head_ &gt; 0);</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    <span class="keywordflow">return</span> data_[head_ - 1];</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;  }</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160; </div>
-<div class="line"><a name="l00188"></a><span class="lineno"><a class="line" href="classMoveList.html#a591861af3b770628c01e1be19b847458">  188</a></span>&#160;  <a class="code" href="classCMove.html">CMove</a> <a class="code" href="classMoveList.html#a591861af3b770628c01e1be19b847458">pop_back</a>()</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;  {</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    assert(head_ &gt; 0);</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    <a class="code" href="classCMove.html">CMove</a> mv = <a class="code" href="classMoveList.html#a96f805bc1be5d4892143571c26707109">back</a>();</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    head_--;</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    <span class="keywordflow">return</span> mv;</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;  }</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160; </div>
-<div class="line"><a name="l00196"></a><span class="lineno"><a class="line" href="classMoveList.html#ae54787ac46bd1e43d8d618f3c900822b">  196</a></span>&#160;  <span class="keywordtype">int</span> <a class="code" href="classMoveList.html#ae54787ac46bd1e43d8d618f3c900822b">size</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> head_; }</div>
-<div class="line"><a name="l00197"></a><span class="lineno"><a class="line" href="classMoveList.html#a141f1deca6122b2cd547300086872091">  197</a></span>&#160;  <span class="keywordtype">int</span> <a class="code" href="classMoveList.html#a141f1deca6122b2cd547300086872091">begin</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> 0; };</div>
-<div class="line"><a name="l00198"></a><span class="lineno"><a class="line" href="classMoveList.html#a6d5b524490c578fecac09d38bbfd96a8">  198</a></span>&#160;  <span class="keywordtype">bool</span> <a class="code" href="classMoveList.html#a6d5b524490c578fecac09d38bbfd96a8">is_empty</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> head_ == 0; }</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160; </div>
-<div class="line"><a name="l00200"></a><span class="lineno"><a class="line" href="classMoveList.html#aa3a935ab3254bd496a76245a9926422b">  200</a></span>&#160;  <a class="code" href="classCMove.html">CMove</a> <a class="code" href="classMoveList.html#aa3a935ab3254bd496a76245a9926422b">operator[]</a>(<span class="keywordtype">int</span> index)<span class="keyword"> const </span>{ <span class="keywordflow">return</span> data_[index]; }</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;};</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160; </div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno"><a class="line" href="classBoardStateStack.html#a550feddccec7b95073aac92d2e59432a">  114</a></span>&#160;  <span class="keywordtype">bool</span> <a class="code" href="classBoardStateStack.html#a550feddccec7b95073aac92d2e59432a">can_pop</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> head_ &gt; 0; }</div>
+<div class="line"><a name="l00115"></a><span class="lineno"><a class="line" href="classBoardStateStack.html#a576dee891bf2706cbee0c91739c6d399">  115</a></span>&#160;  <span class="keywordtype">int</span> <a class="code" href="classBoardStateStack.html#a576dee891bf2706cbee0c91739c6d399">size</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> head_; };</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160; </div>
+<div class="line"><a name="l00117"></a><span class="lineno"><a class="line" href="classBoardStateStack.html#a703d4ab946de77771f222ffdfb4471d1">  117</a></span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classBoardStateStack.html#a703d4ab946de77771f222ffdfb4471d1">Pop</a>()</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;  {</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    assert(head_ &gt; 0);</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    data_.pop_back();</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    head_--;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;  }</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
+<div class="line"><a name="l00127"></a><span class="lineno"><a class="line" href="classBoardStateStack.html#a1c92ba8fd884033883b9c826005a8673">  127</a></span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classBoardStateStack.html#a1c92ba8fd884033883b9c826005a8673">Clear</a>()</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;  {</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    head_ = 0;</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    data_.clear();</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;  }</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160; </div>
+<div class="line"><a name="l00136"></a><span class="lineno"><a class="line" href="classBoardStateStack.html#a355f7d396ae13d6c070e963e6bc47686">  136</a></span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classBoardStateStack.html#a355f7d396ae13d6c070e963e6bc47686">Push</a>(<a class="code" href="structBoardState.html">BoardState</a> &amp;state)</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;  {</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    data_.push_back(state);</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    head_++;</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;  };</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;};</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160; </div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="keyword">template</span> &lt;<span class="keywordtype">int</span> N&gt;</div>
+<div class="line"><a name="l00151"></a><span class="lineno"><a class="line" href="classMoveList.html">  151</a></span>&#160;<span class="keyword">class </span><a class="code" href="classMoveList.html">MoveList</a></div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;{</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;  <a class="code" href="classCMove.html">CMove</a> data_[N];</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;  <span class="keywordtype">int</span> head_;</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160; </div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00161"></a><span class="lineno"><a class="line" href="classMoveList.html#a6fe5c4ac837652f7d84d91d9715f9e91">  161</a></span>&#160;  <a class="code" href="classMoveList.html#a6fe5c4ac837652f7d84d91d9715f9e91">MoveList</a>() { head_ = 0; }</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160; </div>
+<div class="line"><a name="l00166"></a><span class="lineno"><a class="line" href="classMoveList.html#ae93165a467e1d29c8235a53f8536315a">  166</a></span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classMoveList.html#ae93165a467e1d29c8235a53f8536315a">Clear</a>() { head_ = 0; }</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160; </div>
+<div class="line"><a name="l00171"></a><span class="lineno"><a class="line" href="classMoveList.html#a5fb417214fb0fe68e24d88fff1d561af">  171</a></span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classMoveList.html#a5fb417214fb0fe68e24d88fff1d561af">PushBack</a>(<a class="code" href="classCMove.html">CMove</a> mv)</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;  {</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;    data_[head_++] = mv;</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;  }</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160; </div>
+<div class="line"><a name="l00179"></a><span class="lineno"><a class="line" href="classMoveList.html#a4a869ed3bd4eae94964dc6da6ac69a58">  179</a></span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classMoveList.html#a4a869ed3bd4eae94964dc6da6ac69a58">Erase</a>(<span class="keywordtype">int</span> index)</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;  {</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    assert(index &lt; head_ &amp;&amp; head_ &gt; 0);</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    memmove(data_ + index, data_ + index + 1, (N - index - 1) * <span class="keyword">sizeof</span>(<a class="code" href="classCMove.html">CMove</a>));</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    head_--;</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;  }</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160; </div>
+<div class="line"><a name="l00189"></a><span class="lineno"><a class="line" href="classMoveList.html#ab9a69bcf0d657481578f50a7dc720d1f">  189</a></span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classMoveList.html#ab9a69bcf0d657481578f50a7dc720d1f">Insert</a>(<span class="keywordtype">int</span> index, <a class="code" href="classCMove.html">CMove</a> mv)</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;  {</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    assert(index &lt; head_ &amp;&amp; head_ &lt; N);</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    memmove(data_ + index + 1, data_ + index, (N - index - 1) * <span class="keyword">sizeof</span>(<a class="code" href="classCMove.html">CMove</a>));</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    data_[index] = mv;</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    head_++;</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;  }</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160; </div>
+<div class="line"><a name="l00200"></a><span class="lineno"><a class="line" href="classMoveList.html#a96f805bc1be5d4892143571c26707109">  200</a></span>&#160;  <a class="code" href="classCMove.html">CMove</a> <a class="code" href="classMoveList.html#a96f805bc1be5d4892143571c26707109">back</a>()</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;  {</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;    assert(head_ &gt; 0);</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    <span class="keywordflow">return</span> data_[head_ - 1];</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;  }</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160; </div>
+<div class="line"><a name="l00209"></a><span class="lineno"><a class="line" href="classMoveList.html#a591861af3b770628c01e1be19b847458">  209</a></span>&#160;  <a class="code" href="classCMove.html">CMove</a> <a class="code" href="classMoveList.html#a591861af3b770628c01e1be19b847458">pop_back</a>()</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;  {</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    assert(head_ &gt; 0);</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;    <a class="code" href="classCMove.html">CMove</a> mv = <a class="code" href="classMoveList.html#a96f805bc1be5d4892143571c26707109">back</a>();</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;    head_--;</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;    <span class="keywordflow">return</span> mv;</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;  }</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160; </div>
+<div class="line"><a name="l00217"></a><span class="lineno"><a class="line" href="classMoveList.html#ae54787ac46bd1e43d8d618f3c900822b">  217</a></span>&#160;  <span class="keywordtype">int</span> <a class="code" href="classMoveList.html#ae54787ac46bd1e43d8d618f3c900822b">size</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> head_; }</div>
+<div class="line"><a name="l00218"></a><span class="lineno"><a class="line" href="classMoveList.html#a141f1deca6122b2cd547300086872091">  218</a></span>&#160;  <span class="keywordtype">int</span> <a class="code" href="classMoveList.html#a141f1deca6122b2cd547300086872091">begin</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> 0; };</div>
+<div class="line"><a name="l00219"></a><span class="lineno"><a class="line" href="classMoveList.html#a6d5b524490c578fecac09d38bbfd96a8">  219</a></span>&#160;  <span class="keywordtype">bool</span> <a class="code" href="classMoveList.html#a6d5b524490c578fecac09d38bbfd96a8">is_empty</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> head_ == 0; }</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160; </div>
+<div class="line"><a name="l00221"></a><span class="lineno"><a class="line" href="classMoveList.html#aa3a935ab3254bd496a76245a9926422b">  221</a></span>&#160;  <a class="code" href="classCMove.html">CMove</a> <a class="code" href="classMoveList.html#aa3a935ab3254bd496a76245a9926422b">operator[]</a>(<span class="keywordtype">int</span> index)<span class="keyword"> const </span>{ <span class="keywordflow">return</span> data_[index]; }</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;};</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160; </div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aboard_8hpp_html_a881b49e3802366255ad852f1c8624fd1"><div class="ttname"><a href="board_8hpp.html#a881b49e3802366255ad852f1c8624fd1">GameStatus</a></div><div class="ttdeci">GameStatus</div><div class="ttdef"><b>Definition:</b> board.hpp:15</div></div>
 <div class="ttc" id="aboard_8hpp_html_a881b49e3802366255ad852f1c8624fd1a63fb97da872bff3b2c623de28fdae93b"><div class="ttname"><a href="board_8hpp.html#a881b49e3802366255ad852f1c8624fd1a63fb97da872bff3b2c623de28fdae93b">Playing</a></div><div class="ttdeci">@ Playing</div><div class="ttdef"><b>Definition:</b> board.hpp:19</div></div>
 <div class="ttc" id="aboard_8hpp_html_a881b49e3802366255ad852f1c8624fd1a86f4e97f140ceb0fb65db639bfdc5433"><div class="ttname"><a href="board_8hpp.html#a881b49e3802366255ad852f1c8624fd1a86f4e97f140ceb0fb65db639bfdc5433">BlackWin</a></div><div class="ttdeci">@ BlackWin</div><div class="ttdef"><b>Definition:</b> board.hpp:17</div></div>
@@ -254,29 +250,29 @@ $(function() {
 <div class="ttc" id="aboard_8hpp_html_a881b49e3802366255ad852f1c8624fd1acd9f9c4d03dc5ca24d3cdd3bd7f2bde0"><div class="ttname"><a href="board_8hpp.html#a881b49e3802366255ad852f1c8624fd1acd9f9c4d03dc5ca24d3cdd3bd7f2bde0">Draw</a></div><div class="ttdeci">@ Draw</div><div class="ttdef"><b>Definition:</b> board.hpp:18</div></div>
 <div class="ttc" id="aboard_8hpp_html_a881b49e3802366255ad852f1c8624fd1ad45a4d89cf75d521c4291dece44f132a"><div class="ttname"><a href="board_8hpp.html#a881b49e3802366255ad852f1c8624fd1ad45a4d89cf75d521c4291dece44f132a">Stalemate</a></div><div class="ttdeci">@ Stalemate</div><div class="ttdef"><b>Definition:</b> board.hpp:20</div></div>
 <div class="ttc" id="aboard_8hpp_html_a881b49e3802366255ad852f1c8624fd1ade3cf4fd890a7c8b032eec3dbf521ac7"><div class="ttname"><a href="board_8hpp.html#a881b49e3802366255ad852f1c8624fd1ade3cf4fd890a7c8b032eec3dbf521ac7">WhiteWin</a></div><div class="ttdeci">@ WhiteWin</div><div class="ttdef"><b>Definition:</b> board.hpp:16</div></div>
-<div class="ttc" id="aclassBoardStateStack_html"><div class="ttname"><a href="classBoardStateStack.html">BoardStateStack</a></div><div class="ttdef"><b>Definition:</b> board.hpp:82</div></div>
-<div class="ttc" id="aclassBoardStateStack_html_a02ac9f7b50d432b74ca3a6642f33ad07"><div class="ttname"><a href="classBoardStateStack.html#a02ac9f7b50d432b74ca3a6642f33ad07">BoardStateStack::peek</a></div><div class="ttdeci">BoardState &amp; peek()</div><div class="ttdef"><b>Definition:</b> board.hpp:91</div></div>
-<div class="ttc" id="aclassBoardStateStack_html_a0a705bfb59dbc7f4051c1316ea0ddccd"><div class="ttname"><a href="classBoardStateStack.html#a0a705bfb59dbc7f4051c1316ea0ddccd">BoardStateStack::getindex</a></div><div class="ttdeci">int getindex() const</div><div class="ttdef"><b>Definition:</b> board.hpp:105</div></div>
-<div class="ttc" id="aclassBoardStateStack_html_a1c92ba8fd884033883b9c826005a8673"><div class="ttname"><a href="classBoardStateStack.html#a1c92ba8fd884033883b9c826005a8673">BoardStateStack::Clear</a></div><div class="ttdeci">void Clear()</div><div class="ttdef"><b>Definition:</b> board.hpp:114</div></div>
-<div class="ttc" id="aclassBoardStateStack_html_a355f7d396ae13d6c070e963e6bc47686"><div class="ttname"><a href="classBoardStateStack.html#a355f7d396ae13d6c070e963e6bc47686">BoardStateStack::Push</a></div><div class="ttdeci">void Push(BoardState &amp;state)</div><div class="ttdef"><b>Definition:</b> board.hpp:121</div></div>
-<div class="ttc" id="aclassBoardStateStack_html_a4a3d9fc2de31b310645daa553e5c4948"><div class="ttname"><a href="classBoardStateStack.html#a4a3d9fc2de31b310645daa553e5c4948">BoardStateStack::BoardStateStack</a></div><div class="ttdeci">BoardStateStack()</div><div class="ttdef"><b>Definition:</b> board.hpp:88</div></div>
-<div class="ttc" id="aclassBoardStateStack_html_a550feddccec7b95073aac92d2e59432a"><div class="ttname"><a href="classBoardStateStack.html#a550feddccec7b95073aac92d2e59432a">BoardStateStack::can_pop</a></div><div class="ttdeci">bool can_pop() const</div><div class="ttdef"><b>Definition:</b> board.hpp:104</div></div>
-<div class="ttc" id="aclassBoardStateStack_html_a68faba9a58b8e1dfa0d89ed3e1e2c7e4"><div class="ttname"><a href="classBoardStateStack.html#a68faba9a58b8e1dfa0d89ed3e1e2c7e4">BoardStateStack::peek_at</a></div><div class="ttdeci">BoardState &amp; peek_at(int i)</div><div class="ttdef"><b>Definition:</b> board.hpp:98</div></div>
-<div class="ttc" id="aclassBoardStateStack_html_a703d4ab946de77771f222ffdfb4471d1"><div class="ttname"><a href="classBoardStateStack.html#a703d4ab946de77771f222ffdfb4471d1">BoardStateStack::Pop</a></div><div class="ttdeci">void Pop()</div><div class="ttdef"><b>Definition:</b> board.hpp:107</div></div>
+<div class="ttc" id="aclassBoardStateStack_html"><div class="ttname"><a href="classBoardStateStack.html">BoardStateStack</a></div><div class="ttdef"><b>Definition:</b> board.hpp:86</div></div>
+<div class="ttc" id="aclassBoardStateStack_html_a02ac9f7b50d432b74ca3a6642f33ad07"><div class="ttname"><a href="classBoardStateStack.html#a02ac9f7b50d432b74ca3a6642f33ad07">BoardStateStack::peek</a></div><div class="ttdeci">BoardState &amp; peek()</div><div class="ttdef"><b>Definition:</b> board.hpp:99</div></div>
+<div class="ttc" id="aclassBoardStateStack_html_a1c92ba8fd884033883b9c826005a8673"><div class="ttname"><a href="classBoardStateStack.html#a1c92ba8fd884033883b9c826005a8673">BoardStateStack::Clear</a></div><div class="ttdeci">void Clear()</div><div class="ttdef"><b>Definition:</b> board.hpp:127</div></div>
+<div class="ttc" id="aclassBoardStateStack_html_a355f7d396ae13d6c070e963e6bc47686"><div class="ttname"><a href="classBoardStateStack.html#a355f7d396ae13d6c070e963e6bc47686">BoardStateStack::Push</a></div><div class="ttdeci">void Push(BoardState &amp;state)</div><div class="ttdef"><b>Definition:</b> board.hpp:136</div></div>
+<div class="ttc" id="aclassBoardStateStack_html_a4a3d9fc2de31b310645daa553e5c4948"><div class="ttname"><a href="classBoardStateStack.html#a4a3d9fc2de31b310645daa553e5c4948">BoardStateStack::BoardStateStack</a></div><div class="ttdeci">BoardStateStack()</div><div class="ttdef"><b>Definition:</b> board.hpp:92</div></div>
+<div class="ttc" id="aclassBoardStateStack_html_a550feddccec7b95073aac92d2e59432a"><div class="ttname"><a href="classBoardStateStack.html#a550feddccec7b95073aac92d2e59432a">BoardStateStack::can_pop</a></div><div class="ttdeci">bool can_pop() const</div><div class="ttdef"><b>Definition:</b> board.hpp:114</div></div>
+<div class="ttc" id="aclassBoardStateStack_html_a576dee891bf2706cbee0c91739c6d399"><div class="ttname"><a href="classBoardStateStack.html#a576dee891bf2706cbee0c91739c6d399">BoardStateStack::size</a></div><div class="ttdeci">int size() const</div><div class="ttdef"><b>Definition:</b> board.hpp:115</div></div>
+<div class="ttc" id="aclassBoardStateStack_html_a68faba9a58b8e1dfa0d89ed3e1e2c7e4"><div class="ttname"><a href="classBoardStateStack.html#a68faba9a58b8e1dfa0d89ed3e1e2c7e4">BoardStateStack::peek_at</a></div><div class="ttdeci">BoardState &amp; peek_at(int i)</div><div class="ttdef"><b>Definition:</b> board.hpp:108</div></div>
+<div class="ttc" id="aclassBoardStateStack_html_a703d4ab946de77771f222ffdfb4471d1"><div class="ttname"><a href="classBoardStateStack.html#a703d4ab946de77771f222ffdfb4471d1">BoardStateStack::Pop</a></div><div class="ttdeci">void Pop()</div><div class="ttdef"><b>Definition:</b> board.hpp:117</div></div>
 <div class="ttc" id="aclassCMove_html"><div class="ttname"><a href="classCMove.html">CMove</a></div><div class="ttdef"><b>Definition:</b> cmove.hpp:25</div></div>
 <div class="ttc" id="aclassCMove_html_a0d72ecf010dbf68f22ad9d1f402ede3c"><div class="ttname"><a href="classCMove.html#a0d72ecf010dbf68f22ad9d1f402ede3c">CMove::NullMove</a></div><div class="ttdeci">static CMove NullMove()</div><div class="ttdef"><b>Definition:</b> cmove.hpp:30</div></div>
-<div class="ttc" id="aclassMoveList_html"><div class="ttname"><a href="classMoveList.html">MoveList</a></div><div class="ttdef"><b>Definition:</b> board.hpp:137</div></div>
-<div class="ttc" id="aclassMoveList_html_a141f1deca6122b2cd547300086872091"><div class="ttname"><a href="classMoveList.html#a141f1deca6122b2cd547300086872091">MoveList::begin</a></div><div class="ttdeci">int begin() const</div><div class="ttdef"><b>Definition:</b> board.hpp:197</div></div>
-<div class="ttc" id="aclassMoveList_html_a4a869ed3bd4eae94964dc6da6ac69a58"><div class="ttname"><a href="classMoveList.html#a4a869ed3bd4eae94964dc6da6ac69a58">MoveList::Erase</a></div><div class="ttdeci">void Erase(int index)</div><div class="ttdef"><b>Definition:</b> board.hpp:164</div></div>
-<div class="ttc" id="aclassMoveList_html_a591861af3b770628c01e1be19b847458"><div class="ttname"><a href="classMoveList.html#a591861af3b770628c01e1be19b847458">MoveList::pop_back</a></div><div class="ttdeci">CMove pop_back()</div><div class="ttdef"><b>Definition:</b> board.hpp:188</div></div>
-<div class="ttc" id="aclassMoveList_html_a5fb417214fb0fe68e24d88fff1d561af"><div class="ttname"><a href="classMoveList.html#a5fb417214fb0fe68e24d88fff1d561af">MoveList::PushBack</a></div><div class="ttdeci">void PushBack(CMove mv)</div><div class="ttdef"><b>Definition:</b> board.hpp:156</div></div>
-<div class="ttc" id="aclassMoveList_html_a6d5b524490c578fecac09d38bbfd96a8"><div class="ttname"><a href="classMoveList.html#a6d5b524490c578fecac09d38bbfd96a8">MoveList::is_empty</a></div><div class="ttdeci">bool is_empty() const</div><div class="ttdef"><b>Definition:</b> board.hpp:198</div></div>
-<div class="ttc" id="aclassMoveList_html_a6fe5c4ac837652f7d84d91d9715f9e91"><div class="ttname"><a href="classMoveList.html#a6fe5c4ac837652f7d84d91d9715f9e91">MoveList::MoveList</a></div><div class="ttdeci">MoveList()</div><div class="ttdef"><b>Definition:</b> board.hpp:146</div></div>
-<div class="ttc" id="aclassMoveList_html_a96f805bc1be5d4892143571c26707109"><div class="ttname"><a href="classMoveList.html#a96f805bc1be5d4892143571c26707109">MoveList::back</a></div><div class="ttdeci">CMove back()</div><div class="ttdef"><b>Definition:</b> board.hpp:182</div></div>
-<div class="ttc" id="aclassMoveList_html_aa3a935ab3254bd496a76245a9926422b"><div class="ttname"><a href="classMoveList.html#aa3a935ab3254bd496a76245a9926422b">MoveList::operator[]</a></div><div class="ttdeci">CMove operator[](int index) const</div><div class="ttdef"><b>Definition:</b> board.hpp:200</div></div>
-<div class="ttc" id="aclassMoveList_html_ab9a69bcf0d657481578f50a7dc720d1f"><div class="ttname"><a href="classMoveList.html#ab9a69bcf0d657481578f50a7dc720d1f">MoveList::Insert</a></div><div class="ttdeci">void Insert(int index, CMove mv)</div><div class="ttdef"><b>Definition:</b> board.hpp:174</div></div>
-<div class="ttc" id="aclassMoveList_html_ae54787ac46bd1e43d8d618f3c900822b"><div class="ttname"><a href="classMoveList.html#ae54787ac46bd1e43d8d618f3c900822b">MoveList::size</a></div><div class="ttdeci">int size() const</div><div class="ttdef"><b>Definition:</b> board.hpp:196</div></div>
-<div class="ttc" id="aclassMoveList_html_ae93165a467e1d29c8235a53f8536315a"><div class="ttname"><a href="classMoveList.html#ae93165a467e1d29c8235a53f8536315a">MoveList::Clear</a></div><div class="ttdeci">void Clear()</div><div class="ttdef"><b>Definition:</b> board.hpp:151</div></div>
+<div class="ttc" id="aclassMoveList_html"><div class="ttname"><a href="classMoveList.html">MoveList</a></div><div class="ttdef"><b>Definition:</b> board.hpp:152</div></div>
+<div class="ttc" id="aclassMoveList_html_a141f1deca6122b2cd547300086872091"><div class="ttname"><a href="classMoveList.html#a141f1deca6122b2cd547300086872091">MoveList::begin</a></div><div class="ttdeci">int begin() const</div><div class="ttdef"><b>Definition:</b> board.hpp:218</div></div>
+<div class="ttc" id="aclassMoveList_html_a4a869ed3bd4eae94964dc6da6ac69a58"><div class="ttname"><a href="classMoveList.html#a4a869ed3bd4eae94964dc6da6ac69a58">MoveList::Erase</a></div><div class="ttdeci">void Erase(int index)</div><div class="ttdef"><b>Definition:</b> board.hpp:179</div></div>
+<div class="ttc" id="aclassMoveList_html_a591861af3b770628c01e1be19b847458"><div class="ttname"><a href="classMoveList.html#a591861af3b770628c01e1be19b847458">MoveList::pop_back</a></div><div class="ttdeci">CMove pop_back()</div><div class="ttdef"><b>Definition:</b> board.hpp:209</div></div>
+<div class="ttc" id="aclassMoveList_html_a5fb417214fb0fe68e24d88fff1d561af"><div class="ttname"><a href="classMoveList.html#a5fb417214fb0fe68e24d88fff1d561af">MoveList::PushBack</a></div><div class="ttdeci">void PushBack(CMove mv)</div><div class="ttdef"><b>Definition:</b> board.hpp:171</div></div>
+<div class="ttc" id="aclassMoveList_html_a6d5b524490c578fecac09d38bbfd96a8"><div class="ttname"><a href="classMoveList.html#a6d5b524490c578fecac09d38bbfd96a8">MoveList::is_empty</a></div><div class="ttdeci">bool is_empty() const</div><div class="ttdef"><b>Definition:</b> board.hpp:219</div></div>
+<div class="ttc" id="aclassMoveList_html_a6fe5c4ac837652f7d84d91d9715f9e91"><div class="ttname"><a href="classMoveList.html#a6fe5c4ac837652f7d84d91d9715f9e91">MoveList::MoveList</a></div><div class="ttdeci">MoveList()</div><div class="ttdef"><b>Definition:</b> board.hpp:161</div></div>
+<div class="ttc" id="aclassMoveList_html_a96f805bc1be5d4892143571c26707109"><div class="ttname"><a href="classMoveList.html#a96f805bc1be5d4892143571c26707109">MoveList::back</a></div><div class="ttdeci">CMove back()</div><div class="ttdef"><b>Definition:</b> board.hpp:200</div></div>
+<div class="ttc" id="aclassMoveList_html_aa3a935ab3254bd496a76245a9926422b"><div class="ttname"><a href="classMoveList.html#aa3a935ab3254bd496a76245a9926422b">MoveList::operator[]</a></div><div class="ttdeci">CMove operator[](int index) const</div><div class="ttdef"><b>Definition:</b> board.hpp:221</div></div>
+<div class="ttc" id="aclassMoveList_html_ab9a69bcf0d657481578f50a7dc720d1f"><div class="ttname"><a href="classMoveList.html#ab9a69bcf0d657481578f50a7dc720d1f">MoveList::Insert</a></div><div class="ttdeci">void Insert(int index, CMove mv)</div><div class="ttdef"><b>Definition:</b> board.hpp:189</div></div>
+<div class="ttc" id="aclassMoveList_html_ae54787ac46bd1e43d8d618f3c900822b"><div class="ttname"><a href="classMoveList.html#ae54787ac46bd1e43d8d618f3c900822b">MoveList::size</a></div><div class="ttdeci">int size() const</div><div class="ttdef"><b>Definition:</b> board.hpp:217</div></div>
+<div class="ttc" id="aclassMoveList_html_ae93165a467e1d29c8235a53f8536315a"><div class="ttname"><a href="classMoveList.html#ae93165a467e1d29c8235a53f8536315a">MoveList::Clear</a></div><div class="ttdeci">void Clear()</div><div class="ttdef"><b>Definition:</b> board.hpp:166</div></div>
 <div class="ttc" id="aclasscastle_1_1Rights_html"><div class="ttname"><a href="classcastle_1_1Rights.html">castle::Rights</a></div><div class="ttdef"><b>Definition:</b> board.hpp:32</div></div>
 <div class="ttc" id="aclasscastle_1_1Rights_html_a877d46acaeffe6281d126a73cd202c2a"><div class="ttname"><a href="classcastle_1_1Rights.html#a877d46acaeffe6281d126a73cd202c2a">castle::Rights::Set</a></div><div class="ttdeci">void Set(Color color, int direction, int value)</div><div class="ttdef"><b>Definition:</b> castle.cpp:31</div></div>
 <div class="ttc" id="aclasscastle_1_1Rights_html_a8e46810dbffa7b210a62e87be453454d"><div class="ttname"><a href="classcastle_1_1Rights.html#a8e46810dbffa7b210a62e87be453454d">castle::Rights::Rights</a></div><div class="ttdeci">Rights()</div><div class="ttdef"><b>Definition:</b> castle.cpp:3</div></div>
@@ -289,7 +285,7 @@ $(function() {
 <div class="ttc" id="anamespacecastle_html"><div class="ttname"><a href="namespacecastle.html">castle</a></div><div class="ttdef"><b>Definition:</b> board.hpp:25</div></div>
 <div class="ttc" id="anamespacecastle_html_a05388ffd3911679dc4b441d55d77fadf"><div class="ttname"><a href="namespacecastle.html#a05388ffd3911679dc4b441d55d77fadf">castle::long_</a></div><div class="ttdeci">const int long_</div><div class="ttdef"><b>Definition:</b> board.hpp:26</div></div>
 <div class="ttc" id="anamespacecastle_html_a380ededd70391c10f5b8df077c7dda5f"><div class="ttname"><a href="namespacecastle.html#a380ededd70391c10f5b8df077c7dda5f">castle::short_</a></div><div class="ttdeci">const int short_</div><div class="ttdef"><b>Definition:</b> board.hpp:27</div></div>
-<div class="ttc" id="anamespacedirection_html"><div class="ttname"><a href="namespacedirection.html">direction</a></div><div class="ttdef"><b>Definition:</b> chessboard.hpp:21</div></div>
+<div class="ttc" id="anamespacedirection_html"><div class="ttname"><a href="namespacedirection.html">direction</a></div><div class="ttdef"><b>Definition:</b> chessboard.hpp:34</div></div>
 <div class="ttc" id="anamespacepiece_html_ace2b1e4cfc50d82a62d3146e5a2ee804"><div class="ttname"><a href="namespacepiece.html#ace2b1e4cfc50d82a62d3146e5a2ee804">piece::EmptyPiece</a></div><div class="ttdeci">const PieceType EmptyPiece</div><div class="ttdef"><b>Definition:</b> pieces.hpp:26</div></div>
 <div class="ttc" id="apieces_8hpp_html"><div class="ttname"><a href="pieces_8hpp.html">pieces.hpp</a></div></div>
 <div class="ttc" id="astructBoardState_html"><div class="ttname"><a href="structBoardState.html">BoardState</a></div><div class="ttdef"><b>Definition:</b> board.hpp:49</div></div>

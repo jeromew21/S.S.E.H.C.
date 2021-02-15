@@ -18,6 +18,7 @@ u64 bitscan_cache[256][8][8];
 // The engine initialization methods go here.
 void init_bits()
 {
+  verbose_print("initializing bitscan cache");
   for (int i = 0; i < 256; i++)
   {
     int bits = i & 255; //11000110
@@ -41,6 +42,7 @@ void init_bits()
 
 void seedRand(int seed)
 {
+  verbose_print("set random seed to " + std::to_string(seed));
   rng.seed(seed);
 }
 

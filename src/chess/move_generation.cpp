@@ -36,7 +36,7 @@ void Board::GeneratePseudoLegal_() {
   // {
   //   u64 pos = arr[i]; // position of piece
   //   int posIndex = u64ToIndex(pos);
-  //   u64 attacks = KNIGHT_MOVE_CACHE[posIndex];
+  //   u64 attacks = KNIGHT_move_maps[posIndex];
   //   attackMap[posIndex] |= attacks;
   // }
 
@@ -45,7 +45,7 @@ void Board::GeneratePseudoLegal_() {
   // {
   //   u64 pos = arr[i]; // position of piece
   //   int posIndex = u64ToIndex(pos);
-  //   u64 attacks = KING_MOVE_CACHE[posIndex];
+  //   u64 attacks = KING_move_maps[posIndex];
   //   attackMap[posIndex] |= attacks;
   // }
 

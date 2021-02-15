@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['board_248',['Board',['../classBoard.html',1,'']]],
-  ['boardstate_249',['BoardState',['../structBoardState.html',1,'']]],
-  ['boardstatestack_250',['BoardStateStack',['../classBoardStateStack.html',1,'']]]
+  ['board_249',['Board',['../classBoard.html',1,'']]],
+  ['boardstate_250',['BoardState',['../structBoardState.html',1,'']]],
+  ['boardstatestack_251',['BoardStateStack',['../classBoardStateStack.html',1,'']]]
 ];

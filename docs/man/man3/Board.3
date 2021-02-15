@@ -81,9 +81,9 @@ Board
 .SS "bool Board::can_unmake () const"
 
 .SS "\fBMoveList\fP<256> Board::capture_moves ()"
-
+capture moves only, generated for q-search\&. 
 .SS "void Board::Dump ()"
-
+Prints information to the console\&. 
 .SS "std::string Board::fen () const"
 
 .SS "\fBu64\fP Board::get_hash () const"
@@ -97,7 +97,7 @@ Board
 .SS "\fBCMove\fP Board::last_move () const"
 
 .SS "\fBMoveList\fP< 256 > Board::legal_moves ()"
-
+List of all true legal moves in a position\&. 
 .SS "void Board::LoadPosition (\fBPieceType\fP piece_list[64], \fBColor\fP turn, int ep_square, \fBcastle::Rights\fP castling_rights, int fullmove, int halfmove)"
 
 .SS "void Board::LoadPosition (std::string fen)"
@@ -111,7 +111,7 @@ Board
 .SS "\fBu64\fP Board::occupancy (\fBColor\fP color) const"
 
 .SS "void Board::Reset ()"
-
+Sets the board to the classical starting position\&. 
 .SS "\fBGameStatus\fP Board::status ()"
 
 .SS "void Board::UnmakeMove ()"

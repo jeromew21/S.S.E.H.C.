@@ -167,7 +167,7 @@ const u64 PAWN_DOUBLE_CACHE[2][64] = {{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
 void move_maps::init()
 {
   //might be not needed
-  verbose_print("initializing move cache");
+  verbose_info("initializing move cache");
 }
 
 u64 move_maps::pawnCaptures(Square piece_location, Color color, u64 occupants)

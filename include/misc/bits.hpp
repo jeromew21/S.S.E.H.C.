@@ -1,7 +1,7 @@
 #ifndef BITS_HPP
 #define BITS_HPP
 
-#include <array>
+#include <random>
 #include "misc/definitions.hpp"
 
 /**

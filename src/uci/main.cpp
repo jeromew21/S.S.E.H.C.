@@ -11,7 +11,7 @@ void testPerft()
 {
 }
 
-void verbose_print(const std::string &text)
+void verbose_info(const std::string &text)
 {
   if (verbose)
     std::cout << "info string " << text << std::endl;
@@ -26,7 +26,7 @@ void init()
 
 int main()
 {
-  verbose_print("initializing engine");
+  verbose_info("initializing engine");
   init();
 
   Board board;

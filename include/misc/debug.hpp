@@ -15,9 +15,4 @@ void print_(const std::string &text);
  */
 void dump64(u64 x);
 
-/**
- * Prints only if the command line verbose flag is set.
- */
-void verbose_print(const std::string &text);
-
 #endif

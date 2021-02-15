@@ -4,7 +4,19 @@
 #include <string>
 #include <vector>
 
-void sendToUciClient(const std::string &cmd);            // prints to stdout
-std::vector<std::string> tokenize(std::string in_string); // sentence -> list of words
+/**
+ * prints to stdout
+ */
+void sendToUciClient(const std::string &cmd);
+
+/**
+ * sentence -> list of words
+ */
+std::vector<std::string> tokenize(std::string in_string);
+
+/**
+ * Sends info string if the command line verbose flag is set.
+ */
+void verbose_info(const std::string &text);
 
 #endif

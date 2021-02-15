@@ -1,6 +1,7 @@
 #include <chrono>
 #include "misc/bits.hpp"
 #include "misc/debug.hpp"
+#include "uci/utils.hpp"
 
 std::uniform_real_distribution<double> unif(0, 1);
 std::mt19937_64 rng;
@@ -17,7 +18,7 @@ u64 bitscan_cache[256][8][8];
 
 void init_bits()
 {
-  verbose_print("initializing bitscan cache");
+  verbose_info("initializing bitscan cache");
   for (int i = 0; i < 256; i++)
   {
     int bits = i & 255; //11000110
@@ -41,7 +42,7 @@ void init_bits()
 
 void seedRand(int seed)
 {
-  verbose_print("set random seed to " + std::to_string(seed));
+  verbose_info("set random seed to " + std::to_string(seed));
   rng.seed(seed);
 }
 

@@ -21,25 +21,13 @@ float randReal()
   return unif(rng);
 }
 
-// TODO: throw SIMD at this
 int hadd(u64 x)
 {
   int count = 0;
-  while (x)
-  {
-    int k = bitscanForward(x);
-    u64 bs = (u64)1 << k;
-    x &= ~bs;
-    count++;
+  while(x) {
+    count += (x & 1);
+    x>>=1;
   }
-  return count;
-}
-
-int hadd2(u64 x)
-{
-  int count = 0;
-  while (x)
-    count += (x &= 1);
   return count;
 }
 
@@ -47,12 +35,12 @@ int hadd2(u64 x)
 void bitscanAll(u64 x, std::array<u64, 64> &out_arr, int &out_size)
 {
   out_size = 0;
-  while (x)
+  for (int k=0; k<64; k++)
   {
-    int k = bitscanForward(x);
     u64 bs = (u64)1 << k;
-    out_arr[out_size] = bs;
-    x &= ~bs;
-    out_size++;
+    if (x & bs) {
+      out_arr[out_size] = x & bs;
+      out_size++;
+    }
   }
 }

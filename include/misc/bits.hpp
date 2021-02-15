@@ -9,7 +9,6 @@ void timeSeedRand();     //seed w/ time
 float randReal();        // between 0 and 1
 
 int hadd(u64 x); // count number of bits, also a hotspot IIRC
-int hadd2(u64 x);
 
 void bitscanAll(u64 x, std::array<u64, 64> &out_arr, int &out_size); // breaks into one-hots, hotspot, vectorize?
 

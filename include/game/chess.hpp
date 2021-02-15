@@ -16,7 +16,7 @@ void populateMoveCache();
 
 int distToClosestCorner(Row r, Col c); // manhattan distance
 
-class Board
+class Board //put board in board.hpp?
 {
 private:
   u64 bitboard_[12];

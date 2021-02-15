@@ -30,12 +30,12 @@ private:
 public:
   static CMove NullMove() { return CMove(); }
 
-  inline int type_code() { return data_ & 15; }
+  inline int type_code() { return data_ & 15; } //call move_type?
 
   inline bool is_null() { return type_code() == move_type::Null; }
-  inline bool not_null() { return type_code() != move_type::Null; }
+  inline bool not_null() { return type_code() != move_type::Null; } //could use !is_null?
 
-  inline PieceType promoting_piece()
+  inline PieceType promoting_piece() //does this still work since we changed the piecetype values?
   {
     assert(type_code() % 2 == 0 && type_code() != 0);
     return type_code();
@@ -47,7 +47,7 @@ public:
     return promoting_piece() + c;
   }
 
-  inline bool is_promotion()
+  inline bool is_promotion() //does this work? Shouldn't we check for evenness?
   {
     int tc = type_code();
     return tc >= move_type::KPromotion && tc <= move_type::QPromotion;

@@ -71,7 +71,7 @@ public:
 
     void Pop()
     {
-        assert(index > 0);
+        assert(index > 0); //use can pop?
         data_.pop_back();
         index--;
     }
@@ -140,7 +140,7 @@ struct MoveVector
     }
 
     int size() { return size_; }
-    int begin() { return 0; };
+    int begin() { return 0; }; //do we need int end() for for each or does size() work?
     bool is_empty() { return size_ == 0; }
 
     CMove operator[](int index) { return data_[index]; }

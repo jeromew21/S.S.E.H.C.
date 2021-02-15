@@ -11,12 +11,12 @@ void Board::UnmakeMove()
 GameStatus Board::status()
 {
     //Retrieve cached value
-    if (status_ != GameStatus::NotCalculated)
+    if (status_ != GameStatus::NotCalculated) //why not just return status_?
         return status_;
     return GameStatus::NotCalculated;
 }
 
-u64 Board::occupancy() const
+u64 Board::occupancy() const //maybe we can define bitboard = u64?
 {
     return occupancy(White) | occupancy(Black);
 }

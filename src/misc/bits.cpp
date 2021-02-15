@@ -35,7 +35,7 @@ int hadd(u64 x)
   return count;
 }
 
-int hadd(u64 x)
+int hadd2(u64 x)
 {
   int count = 0;
   while (x)

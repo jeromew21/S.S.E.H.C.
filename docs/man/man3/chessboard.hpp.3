@@ -1,0 +1,133 @@
+.TH "include/game/chessboard.hpp" 3 "Mon Feb 15 2021" "S.S.E.H.C" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+include/game/chessboard.hpp
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'misc/definitions\&.hpp'\fP
+.br
+\fC#include 'misc/bits\&.hpp'\fP
+.br
+\fC#include 'datastructures/board\&.hpp'\fP
+.br
+\fC#include 'game/pieces\&.hpp'\fP
+.br
+\fC#include 'uci/utils\&.hpp'\fP
+.br
+\fC#include 'misc/debug\&.hpp'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBBoard\fP"
+.br
+.in -1c
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI " \fBzobrist\fP"
+.br
+.ti -1c
+.RI " \fBdirection\fP"
+.br
+.ti -1c
+.RI " \fBdirection::rook\fP"
+.br
+.ti -1c
+.RI " \fBdirection::bishop\fP"
+.br
+.ti -1c
+.RI " \fBmove_cache\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBzobrist::init\fP ()"
+.br
+.ti -1c
+.RI "\fBu64\fP \fBzobrist::getHashFromId\fP ()"
+.br
+.ti -1c
+.RI "void \fBmove_cache::init\fP ()"
+.br
+.ti -1c
+.RI "\fBu64\fP \fBmove_cache::pawnCaptures\fP (\fBu64\fP piece_location, \fBColor\fP color, \fBu64\fP occupants)"
+.br
+.ti -1c
+.RI "\fBu64\fP \fBmove_cache::pawnCaptures\fP (\fBSquare\fP piece_location, \fBColor\fP color, \fBu64\fP occupants)"
+.br
+.ti -1c
+.RI "\fBu64\fP \fBmove_cache::pawnMoves\fP (\fBu64\fP piece_location, \fBColor\fP color, \fBu64\fP occupants)"
+.br
+.ti -1c
+.RI "\fBu64\fP \fBmove_cache::pawnMoves\fP (\fBSquare\fP piece_location, \fBColor\fP color, \fBu64\fP occupants)"
+.br
+.ti -1c
+.RI "\fBu64\fP \fBmove_cache::pawnDoubleMoves\fP (\fBu64\fP piece_location, \fBColor\fP color, \fBu64\fP occupants)"
+.br
+.ti -1c
+.RI "\fBu64\fP \fBmove_cache::pawnDoubleMoves\fP (\fBSquare\fP piece_location, \fBColor\fP color, \fBu64\fP occupants)"
+.br
+.ti -1c
+.RI "\fBu64\fP \fBmove_cache::knightMoves\fP (\fBu64\fP piece_location, \fBu64\fP occupants)"
+.br
+.ti -1c
+.RI "\fBu64\fP \fBmove_cache::knightMoves\fP (\fBSquare\fP piece_location, \fBu64\fP occupants)"
+.br
+.ti -1c
+.RI "\fBu64\fP \fBmove_cache::kingMoves\fP (\fBu64\fP piece_location, \fBu64\fP occupants)"
+.br
+.ti -1c
+.RI "\fBu64\fP \fBmove_cache::kingMoves\fP (\fBSquare\fP piece_location, \fBu64\fP occupants)"
+.br
+.ti -1c
+.RI "\fBu64\fP \fBmove_cache::bishopMoves\fP (\fBu64\fP piece_location, \fBu64\fP occupants)"
+.br
+.ti -1c
+.RI "\fBu64\fP \fBmove_cache::bishopMoves\fP (\fBSquare\fP piece_location, \fBu64\fP occupants)"
+.br
+.ti -1c
+.RI "\fBu64\fP \fBmove_cache::rookMoves\fP (\fBu64\fP piece_location, \fBu64\fP occupants)"
+.br
+.ti -1c
+.RI "\fBu64\fP \fBmove_cache::rookMoves\fP (\fBSquare\fP piece_location, \fBu64\fP occupants)"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "const int \fBdirection::rook::n\fP = 0"
+.br
+.ti -1c
+.RI "const int \fBdirection::rook::e\fP = 1"
+.br
+.ti -1c
+.RI "const int \fBdirection::rook::s\fP = 2"
+.br
+.ti -1c
+.RI "const int \fBdirection::rook::w\fP = 3"
+.br
+.ti -1c
+.RI "const int \fBdirection::bishop::nw\fP = 0"
+.br
+.ti -1c
+.RI "const int \fBdirection::bishop::ne\fP = 1"
+.br
+.ti -1c
+.RI "const int \fBdirection::bishop::se\fP = 2"
+.br
+.ti -1c
+.RI "const int \fBdirection::bishop::sw\fP = 3"
+.br
+.in -1c
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for S\&.S\&.E\&.H\&.C from the source code\&.

@@ -1,0 +1,86 @@
+.TH "BoardState" 3 "Mon Feb 15 2021" "S.S.E.H.C" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+BoardState
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <board\&.hpp>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBBoardState\fP ()"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "int \fBmove_count\fP"
+.br
+.ti -1c
+.RI "\fBColor\fP \fBturn\fP"
+.br
+.ti -1c
+.RI "int \fBhalfmove_counter\fP"
+.br
+.ti -1c
+.RI "int \fBen_passant_square\fP"
+.br
+.ti -1c
+.RI "int \fBis_check\fP"
+.br
+.ti -1c
+.RI "int \fBhas_repeated\fP"
+.br
+.ti -1c
+.RI "\fBPieceType\fP \fBlast_moved_piece\fP"
+.br
+.ti -1c
+.RI "\fBPieceType\fP \fBlast_captured_piece\fP"
+.br
+.ti -1c
+.RI "\fBu64\fP \fBhash\fP"
+.br
+.ti -1c
+.RI "\fBCMove\fP \fBlast_move\fP"
+.br
+.ti -1c
+.RI "\fBcastle::Rights\fP \fBcastling_rights\fP"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "BoardState::BoardState ()\fC [inline]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBcastle::Rights\fP BoardState::castling_rights"
+
+.SS "int BoardState::en_passant_square"
+
+.SS "int BoardState::halfmove_counter"
+
+.SS "int BoardState::has_repeated"
+
+.SS "\fBu64\fP BoardState::hash"
+
+.SS "int BoardState::is_check"
+
+.SS "\fBPieceType\fP BoardState::last_captured_piece"
+
+.SS "\fBCMove\fP BoardState::last_move"
+
+.SS "\fBPieceType\fP BoardState::last_moved_piece"
+
+.SS "int BoardState::move_count"
+
+.SS "\fBColor\fP BoardState::turn"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for S\&.S\&.E\&.H\&.C from the source code\&.

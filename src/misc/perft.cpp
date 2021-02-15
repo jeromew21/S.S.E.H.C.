@@ -5,7 +5,7 @@ void perft(Board &board, int depth, PerftCounter &counter)
     if (depth == 0)
         return;
 
-    MoveVector<256> moves = board.legal_moves();
+    MoveList<256> moves = board.legal_moves();
     int s = moves.size();
     u64 occ = board.occupancy();
     for (int i = 0; i < s; i++)

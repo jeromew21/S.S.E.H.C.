@@ -1,0 +1,106 @@
+.TH "CMove" 3 "Mon Feb 15 2021" "S.S.E.H.C" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+CMove
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <cmove\&.hpp>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBtype_code\fP ()"
+.br
+.ti -1c
+.RI "bool \fBis_null\fP ()"
+.br
+.ti -1c
+.RI "bool \fBnot_null\fP ()"
+.br
+.ti -1c
+.RI "\fBPieceType\fP \fBpromoting_piece\fP ()"
+.br
+.ti -1c
+.RI "\fBPieceType\fP \fBpromoting_piece\fP (\fBColor\fP color)"
+.br
+.ti -1c
+.RI "bool \fBis_promotion\fP ()"
+.br
+.ti -1c
+.RI "bool \fBis_castle\fP ()"
+.br
+.ti -1c
+.RI "\fBSquare\fP \fBsrc_square\fP ()"
+.br
+.ti -1c
+.RI "\fBSquare\fP \fBdest_square\fP ()"
+.br
+.ti -1c
+.RI "\fBu64\fP \fBsrc\fP ()"
+.br
+.ti -1c
+.RI "\fBu64\fP \fBdest\fP ()"
+.br
+.ti -1c
+.RI "\fBCMove\fP (\fBSquare\fP src0, \fBSquare\fP dest0, int typeCode)"
+.br
+.ti -1c
+.RI "\fBCMove\fP ()"
+.br
+.ti -1c
+.RI "bool \fBoperator==\fP (const \fBCMove\fP &other) const"
+.br
+.ti -1c
+.RI "bool \fBoperator!=\fP (const \fBCMove\fP &other) const"
+.br
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static \fBCMove\fP \fBNullMove\fP ()"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "CMove::CMove (\fBSquare\fP src0, \fBSquare\fP dest0, int typeCode)\fC [inline]\fP"
+
+.SS "CMove::CMove ()\fC [inline]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBu64\fP CMove::dest ()\fC [inline]\fP"
+
+.SS "\fBSquare\fP CMove::dest_square ()\fC [inline]\fP"
+
+.SS "bool CMove::is_castle ()\fC [inline]\fP"
+
+.SS "bool CMove::is_null ()\fC [inline]\fP"
+
+.SS "bool CMove::is_promotion ()\fC [inline]\fP"
+
+.SS "bool CMove::not_null ()\fC [inline]\fP"
+
+.SS "static \fBCMove\fP CMove::NullMove ()\fC [inline]\fP, \fC [static]\fP"
+
+.SS "bool CMove::operator!= (const \fBCMove\fP & other) const\fC [inline]\fP"
+
+.SS "bool CMove::operator== (const \fBCMove\fP & other) const\fC [inline]\fP"
+
+.SS "\fBPieceType\fP CMove::promoting_piece ()\fC [inline]\fP"
+
+.SS "\fBPieceType\fP CMove::promoting_piece (\fBColor\fP color)\fC [inline]\fP"
+
+.SS "\fBu64\fP CMove::src ()\fC [inline]\fP"
+
+.SS "\fBSquare\fP CMove::src_square ()\fC [inline]\fP"
+
+.SS "int CMove::type_code ()\fC [inline]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for S\&.S\&.E\&.H\&.C from the source code\&.

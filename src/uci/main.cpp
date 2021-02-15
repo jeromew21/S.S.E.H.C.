@@ -3,7 +3,7 @@
 
 #include "game/chessboard.hpp"
 #include "misc/bits.hpp"
-#include "misc/definitions.hpp"
+#include "uci/strings.hpp"
 
 // test move generator
 void testPerft()
@@ -11,8 +11,9 @@ void testPerft()
 }
 
 void init() {
-  init_bits();
   seedRand(6969);
+  init_bits();
+  move_cache::init();
 }
 
 int main()
@@ -24,6 +25,8 @@ int main()
   u64Stack<64> out_arr;
 
   bitscanAll(board.occupancy(), out_arr);
+
+  // dump64(move_cache::knightMoves(squareFromName("e4")));
 
   return 0;
 }

@@ -1,0 +1,80 @@
+.TH "md_README" 3 "Mon Feb 15 2021" "S.S.E.H.C" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+md_README \- 🅂\&.🅂\&.🄴\&.🄷\&.🄲\&. 
+
+.SH "Semi-supervised Scalable Evaluation-perfect Heuristic Chess"
+.PP
+Chess backwards because I couldn't think of a better name
+.PP
+A lot of code lifted from https://github.com/jeromew21/Blobfish
+.SH "Goals"
+.PP
+Reinforcement learning evaluation tuning
+.PP
+Parallelization + Scalable and high level of optimization (vector optimization, SSE, etc\&.)
+.PP
+Test engine strength and debug by comparing evaluation against other engines
+.SH "Secondary goals"
+.PP
+Support for variants
+.PP
+Full UCI support
+.PP
+Portability (have it work on a raspberry pi)
+.SH "Compiling"
+.PP
+\fCmake clean\fP
+.PP
+\fCmake\fP
+.PP
+The executable will be stored in \&./build/apps
+.SS "Debug build"
+\fCmake clean\fP
+.PP
+\fCmake debug\fP
+.SS "Release build"
+\fCmake clean\fP
+.PP
+\fCmake release\fP
+.SH "Contributing"
+.PP
+Please feel free to make a branch and pull request\&.
+.SS "Overall project notes"
+Be extremely pedantic with variable naming and logical seperation of code\&.
+.PP
+Explicit is better than implicit\&.
+.PP
+Faster is gooder\&.
+.PP
+Plan for the worst case scenario\&.
+.PP
+Modularity and seperation of concerns is key\&.
+.SS "C++ specific"
+Try to not type cast if possible\&.
+.PP
+Use assertions instead of throwing errors\&.
+.SS "Code Style"
+Try to follow this as a rough guideline: https://google.github.io/styleguide/cppguide.html
+.PP
+The fewer indentation levels, the better\&.
+.PP
+\fCcamelCase\fP for functions
+.PP
+\fCsnake_case\fP for variables, parameters
+.PP
+\fCPascalCase\fP for types, void class methods
+.PP
+\fCsnake_case\fP for class getter/setters
+.PP
+\fCleading_underscore_\fP for private variables
+.SS "Repository Layout"
+.SS "\&./include"
+Header files
+.SS "\&./src"
+Source files
+.SS "\&./scripts"
+Useful scripts
+.SS "\&./tests"
+Test and benchmark suite 

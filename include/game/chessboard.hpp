@@ -13,12 +13,69 @@ namespace zobrist
 {
   // populate initial zobrist hashes
   void init();
+  u64 getHashFromId();
+
 } // namespace zobrist
+
+namespace direction
+{
+  namespace rook
+  {
+    const int n = 0;
+    const int e = 1;
+    const int s = 2;
+    const int w = 3;
+  } // namespace rook
+  namespace bishop
+  {
+    const int nw = 0;
+    const int ne = 1;
+    const int se = 2;
+    const int sw = 3;
+  } // namespace bishop
+} // namespace direction
 
 namespace move_cache
 {
-  // populate legal move caches
+  /**
+   * may be unecessary
+   */
   void init();
+
+  // pawns
+
+  u64 pawnCaptures(u64 piece_location, Color color, u64 occupants);
+  u64 pawnCaptures(Square piece_location, Color color, u64 occupants);
+
+  u64 pawnMoves(u64 piece_location, Color color, u64 occupants);
+  u64 pawnMoves(Square piece_location, Color color, u64 occupants);
+
+  u64 pawnDoubleMoves(u64 piece_location, Color color, u64 occupants);
+  u64 pawnDoubleMoves(Square piece_location, Color color, u64 occupants);
+
+  // jumping pieces
+
+  u64 knightMoves(u64 piece_location, u64 occupants);
+  u64 knightMoves(Square piece_location, u64 occupants);
+
+  u64 kingMoves(u64 piece_location, u64 occupants);
+  u64 kingMoves(Square piece_location, u64 occupants);
+
+  // sliding pieces
+
+  // magic bitboards make rays deprecated for move generation
+  // u64 bishopRay(u64 piece_location, int direction, u64 occupants);
+  // u64 bishopRay(Square piece_location, int direction, u64 occupants);
+
+  // u64 rookRay(u64 piece_location, int direction, u64 occupants);
+  // u64 rookRay(Square piece_location, int direction, u64 occupants);
+
+  u64 bishopMoves(u64 piece_location, u64 occupants);
+  u64 bishopMoves(Square piece_location, u64 occupants);
+
+  u64 rookMoves(u64 piece_location, u64 occupants);
+  u64 rookMoves(Square piece_location, u64 occupants);
+
 } // namespace move_cache
 
 class Board //put board in board.hpp?
@@ -42,7 +99,7 @@ private:
   std::array<u64, 64> defend_map_;
 
   // shortcut move generator if board is check
-  MoveVector<256> produce_uncheck_moves_();
+  MoveList<256> produce_uncheck_moves_();
 
   // private methods that change hash accordingly
 
@@ -55,13 +112,13 @@ private:
   // move generation specific
 
   // fill attack/defend maps
-  void GeneratePseudoLegal_(); 
+  void GeneratePseudoLegal_();
 
 public:
   // non-const getters
 
-  MoveVector<256> legal_moves();
-  MoveVector<256> capture_moves();
+  MoveList<256> legal_moves();
+  MoveList<256> capture_moves();
   GameStatus status();
 
   // getters that might be const depending on implementation

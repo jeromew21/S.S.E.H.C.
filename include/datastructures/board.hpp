@@ -1,8 +1,10 @@
 #ifndef BOARDDATA_STRUCTURES_HPP
 #define BOARDDATA_STRUCTURES_HPP
 
-// This file contains data structures pertaining to the Board class
-// ie, legal move generation and move history
+/**
+ * This file contains data structures pertaining to the Board class
+ * ie, board state history and move history
+ */
 
 #include <array>
 #include <vector>
@@ -21,8 +23,8 @@ enum GameStatus
 
 namespace castle
 {
-  extern int long_;
-  extern int short_;
+  const int long_ = 0;
+  const int short_ = 2;
 
   // This class abstracts all 4 pieces of info
   // pertaining to castling
@@ -123,57 +125,77 @@ public:
   };
 };
 
-// Mutable list of moves with limited size
-// N=256 is probably fine 100% of use cases
+/**
+ * List of stored on stack with limited size.
+ * 
+ * N=256 is probably fine for 100% of use cases.
+ * 
+ * Returned by board methods Board::legal_moves() and others.
+ */
 template <int N>
-struct MoveVector
+class MoveList
 {
+private:
   CMove data_[N];
-  int size_;
+  int head_;
 
-  // default constructor
-  MoveVector() { size_ = 0; }
+public:
+  /** 
+   * default constructor
+   */
+  MoveList() { head_ = 0; }
 
-  // sets head pointer to 0
-  void Clear() { size_ = 0; }
+  /**
+   * Sets head pointer to 0, effectively deleting the list.
+   */
+  void Clear() { head_ = 0; }
 
+  /**
+   * adds an element
+   */
   void PushBack(CMove mv)
   {
-    data_[size_++] = mv;
+    data_[head_++] = mv;
   }
 
+  /**
+   * Removes an item at index. Shifts other items down accordingly.
+   */
   void Erase(int index)
   {
-    // shift items down
+    assert(index < head_ && head_ > 0);
     memmove(data_ + index, data_ + index + 1, (N - index - 1) * sizeof(CMove));
-    size_--;
+    head_--;
   }
 
+  /**
+   * Insert an item at index. Shifts other items up accordingly.
+   */
   void Insert(int index, CMove mv)
   {
-    // shift items up
+    assert(index < head_ && head_ < N);
     memmove(data_ + index + 1, data_ + index, (N - index - 1) * sizeof(CMove));
     data_[index] = mv;
-    size_++;
+    head_++;
   }
 
   CMove back()
   {
-    assert(size_ > 0);
-    return data_[size_ - 1];
+    assert(head_ > 0);
+    return data_[head_ - 1];
   }
 
   CMove pop_back()
   {
-    assert(size_ > 0);
+    assert(head_ > 0);
     CMove mv = back();
-    size_--;
+    head_--;
     return mv;
   }
 
-  int size() const { return size_; }
+  int size() const { return head_; }
   int begin() const { return 0; };
-  bool is_empty() const { return size_ == 0; }
+  bool is_empty() const { return head_ == 0; }
 
   CMove operator[](int index) const { return data_[index]; }
 };

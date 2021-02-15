@@ -93,6 +93,7 @@ int hadd(u64 x)
 
 void bitscanAll(u64 x, u64Stack<64> &out_arr)
 {
+  out_arr.Clear();
   for (int offset = 0; offset < 64; offset += 8)
   {
     int chunk = (x >> offset) & 255;

@@ -1,0 +1,115 @@
+.TH "src/misc/bits.cpp" 3 "Mon Feb 15 2021" "S.S.E.H.C" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/misc/bits.cpp
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <chrono>\fP
+.br
+\fC#include 'misc/bits\&.hpp'\fP
+.br
+\fC#include 'misc/debug\&.hpp'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "std::uniform_real_distribution< double > \fBunif\fP (0, 1)"
+.br
+.ti -1c
+.RI "void \fBinit_bits\fP ()"
+.br
+.ti -1c
+.RI "void \fBseedRand\fP (int seed)"
+.br
+.ti -1c
+.RI "void \fBtimeSeedRand\fP ()"
+.br
+.ti -1c
+.RI "float \fBrandReal\fP ()"
+.br
+.ti -1c
+.RI "\fBu64\fP \fBrandomBits\fP ()"
+.br
+.ti -1c
+.RI "int \fBhadd\fP (\fBu64\fP x)"
+.br
+.ti -1c
+.RI "void \fBbitscanAll\fP (\fBu64\fP x, \fBu64Stack\fP< 64 > &out_arr)"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "std::mt19937_64 \fBrng\fP"
+.br
+.ti -1c
+.RI "const uint64_t \fBm1\fP = 0x5555555555555555"
+.br
+.ti -1c
+.RI "const uint64_t \fBm2\fP = 0x3333333333333333"
+.br
+.ti -1c
+.RI "const uint64_t \fBm4\fP = 0x0f0f0f0f0f0f0f0f"
+.br
+.ti -1c
+.RI "const uint64_t \fBm8\fP = 0x00ff00ff00ff00ff"
+.br
+.ti -1c
+.RI "const uint64_t \fBm16\fP = 0x0000ffff0000ffff"
+.br
+.ti -1c
+.RI "const uint64_t \fBm32\fP = 0x00000000ffffffff"
+.br
+.ti -1c
+.RI "const uint64_t \fBh01\fP = 0x0101010101010101"
+.br
+.ti -1c
+.RI "\fBu64\fP \fBbitscan_cache\fP [256][8][8]"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "void bitscanAll (\fBu64\fP x, \fBu64Stack\fP< 64 > & out_arr)"
+
+.SS "int hadd (\fBu64\fP x)"
+
+.SS "void init_bits ()"
+
+.SS "\fBu64\fP randomBits ()"
+
+.SS "float randReal ()"
+
+.SS "void seedRand (int seed)"
+
+.SS "void timeSeedRand ()"
+
+.SS "std::uniform_real_distribution<double> unif (0, 1)"
+
+.SH "Variable Documentation"
+.PP 
+.SS "\fBu64\fP bitscan_cache[256][8][8]"
+
+.SS "const uint64_t h01 = 0x0101010101010101"
+
+.SS "const uint64_t m1 = 0x5555555555555555"
+
+.SS "const uint64_t m16 = 0x0000ffff0000ffff"
+
+.SS "const uint64_t m2 = 0x3333333333333333"
+
+.SS "const uint64_t m32 = 0x00000000ffffffff"
+
+.SS "const uint64_t m4 = 0x0f0f0f0f0f0f0f0f"
+
+.SS "const uint64_t m8 = 0x00ff00ff00ff00ff"
+
+.SS "std::mt19937_64 rng"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for S\&.S\&.E\&.H\&.C from the source code\&.

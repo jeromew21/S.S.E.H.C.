@@ -3,9 +3,13 @@
 
 #include "game/cmove.hpp"
 
-// This file contains data structures pertaining to AI
-// hash tables, etc
+/**This file contains data structures pertaining to AI
+ * hash tables, etc
+ */
 
+/**
+ * A tuple that contains a move and a corresponding score.
+ */
 struct MoveScoreTuple {
   CMove mv;
   int score;

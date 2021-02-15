@@ -1,0 +1,78 @@
+.TH "include/ai/ai.hpp" 3 "Mon Feb 15 2021" "S.S.E.H.C" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+include/ai/ai.hpp
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <limits>\fP
+.br
+\fC#include <chrono>\fP
+.br
+\fC#include <atomic>\fP
+.br
+\fC#include 'misc/definitions\&.hpp'\fP
+.br
+\fC#include 'datastructures/search\&.hpp'\fP
+.br
+\fC#include 'game/chessboard\&.hpp'\fP
+.br
+
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI " \fBAI\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBAI::evaluation\fP (\fBBoard\fP &board)"
+.br
+.ti -1c
+.RI "int \fBAI::flippedEval\fP (\fBBoard\fP &board)"
+.br
+.ti -1c
+.RI "void \fBAI::sendPV\fP (\fBBoard\fP &board, int depth, \fBCMove\fP pv_move, int node_count, \fBScore\fP score, std::chrono::_V2::system_clock::time_point start)"
+.br
+.ti -1c
+.RI "\fBCMove\fP \fBAI::rootMove\fP (\fBBoard\fP &board, int depth, std::atomic< bool > &stop, \fBScore\fP &out_score, \fBCMove\fP prevPv, int &count, std::chrono::_V2::system_clock::time_point start, std::vector< \fBMoveScoreTuple\fP > &prevScores)"
+.br
+.ti -1c
+.RI "\fBScore\fP \fBAI::quiescence\fP (\fBBoard\fP &board, int depth, int ply_count, \fBScore\fP alpha, \fBScore\fP beta, std::atomic< bool > &stop, int &count, int kickoff)"
+.br
+.ti -1c
+.RI "\fBScore\fP \fBAI::alphaBetaSearch\fP (\fBBoard\fP &board, int depth, int ply_count, \fBScore\fP alpha, \fBScore\fP beta, std::atomic< bool > &stop, int &count, \fBNodeType\fP my_node_type, bool is_save)"
+.br
+.ti -1c
+.RI "\fBScore\fP \fBAI::zeroWindowSearch\fP (\fBBoard\fP &board, int depth, int ply_count, \fBScore\fP beta, std::atomic< bool > &stop, int &count, \fBNodeType\fP my_node_type)"
+.br
+.ti -1c
+.RI "\fBMoveList\fP< 256 > \fBAI::generateMovesOrdered\fP (\fBBoard\fP &board, \fBCMove\fP hash_move, int ply_count, int &num_positive_moves)"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "const \fBNodeType\fP \fBAI::PV\fP = 0"
+.br
+.ti -1c
+.RI "const \fBNodeType\fP \fBAI::Cut\fP = 1"
+.br
+.ti -1c
+.RI "const \fBNodeType\fP \fBAI::All\fP = 2"
+.br
+.ti -1c
+.RI "const int \fBAI::SCORE_MIN\fP = std::numeric_limits<int>::\fBmin\fP()"
+.br
+.ti -1c
+.RI "const int \fBAI::SCORE_MAX\fP = std::numeric_limits<int>::\fBmax\fP()"
+.br
+.in -1c
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for S\&.S\&.E\&.H\&.C from the source code\&.

@@ -1,0 +1,79 @@
+.TH "include/datastructures/board.hpp" 3 "Mon Feb 15 2021" "S.S.E.H.C" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+include/datastructures/board.hpp
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <array>\fP
+.br
+\fC#include <vector>\fP
+.br
+\fC#include 'game/cmove\&.hpp'\fP
+.br
+\fC#include 'game/pieces\&.hpp'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBcastle::Rights\fP"
+.br
+.ti -1c
+.RI "struct \fBBoardState\fP"
+.br
+.ti -1c
+.RI "class \fBBoardStateStack\fP"
+.br
+.ti -1c
+.RI "class \fBMoveList< N >\fP"
+.br
+.in -1c
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI " \fBcastle\fP"
+.br
+.in -1c
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum \fBGameStatus\fP { \fBWhiteWin\fP, \fBBlackWin\fP, \fBDraw\fP, \fBPlaying\fP, \fBStalemate\fP, \fBNotCalculated\fP }"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "const int \fBcastle::long_\fP = 0"
+.br
+.ti -1c
+.RI "const int \fBcastle::short_\fP = 2"
+.br
+.in -1c
+.SH "Enumeration Type Documentation"
+.PP 
+.SS "enum \fBGameStatus\fP"
+This file contains data structures pertaining to the \fBBoard\fP class ie, board state history and move history 
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIWhiteWin \fP\fP
+.TP
+\fB\fIBlackWin \fP\fP
+.TP
+\fB\fIDraw \fP\fP
+.TP
+\fB\fIPlaying \fP\fP
+.TP
+\fB\fIStalemate \fP\fP
+.TP
+\fB\fINotCalculated \fP\fP
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for S\&.S\&.E\&.H\&.C from the source code\&.

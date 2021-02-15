@@ -37,7 +37,7 @@ namespace AI
   Score zeroWindowSearch(Board &board, int depth, int ply_count, Score beta,
                          std::atomic<bool> &stop, int &count, NodeType my_node_type);
 
-  MoveVector<256> generateMovesOrdered(Board &board, CMove hash_move, int ply_count,
+  MoveList<256> generateMovesOrdered(Board &board, CMove hash_move, int ply_count,
                                        int &num_positive_moves);
 
 } // namespace AI

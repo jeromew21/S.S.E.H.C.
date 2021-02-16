@@ -16,5 +16,6 @@ var namespacepiece =
       [ "queen", "namespacepiece_1_1white.html#ac8f0a3e9475bdac1ae0f52ed3f39825b", null ],
       [ "rook", "namespacepiece_1_1white.html#a9b8715170fa5483cff3e6e2b26fdb376", null ]
     ] ],
+    [ "is_pawn", "namespacepiece.html#a6fd1719583906078a65d7f13c72334c1", null ],
     [ "EmptyPiece", "namespacepiece.html#ace2b1e4cfc50d82a62d3146e5a2ee804", null ]
 ];

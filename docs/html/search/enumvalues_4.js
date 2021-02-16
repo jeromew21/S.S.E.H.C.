@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['stalemate_500',['Stalemate',['../board__state_8hpp.html#a881b49e3802366255ad852f1c8624fd1ad45a4d89cf75d521c4291dece44f132a',1,'board_state.hpp']]]
+  ['stalemate_508',['Stalemate',['../namespaceboard.html#a99acc96edd3007d46ff299bdc5db4221acb0fa7553f119bc984c16bedf051d4a0',1,'board']]]
 ];

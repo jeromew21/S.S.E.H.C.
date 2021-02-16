@@ -25,24 +25,18 @@ var namespaces_dup =
       [ "SCORE_MAX", "namespaceAI.html#a9e44ec28f9a130cb2cadd88b0b81ca78", null ],
       [ "SCORE_MIN", "namespaceAI.html#ac059fd557cb2d0864babca03e4d624a6", null ]
     ] ],
-    [ "castle", "namespacecastle.html", "namespacecastle" ],
+    [ "board", "namespaceboard.html", "namespaceboard" ],
     [ "direction", "namespacedirection.html", "namespacedirection" ],
     [ "move_maps", "namespacemove__maps.html", [
       [ "bishopMoves", "namespacemove__maps.html#a08b5a8fb6960e019cd991f5aa858a0a2", null ],
-      [ "bishopMoves", "namespacemove__maps.html#aa0f090e0693145551a43f8aef11b44c0", null ],
       [ "init", "namespacemove__maps.html#ac0dc68279809aa34ce8164e37479eb68", null ],
+      [ "isPromotingRank", "namespacemove__maps.html#a4c4dc7abb7c456a8558f8dff7033404e", null ],
       [ "kingMoves", "namespacemove__maps.html#a4dccd4365fa0799d8b64527ba62faf04", null ],
-      [ "kingMoves", "namespacemove__maps.html#a39217d235738a1859cce65e79086fc84", null ],
       [ "knightMoves", "namespacemove__maps.html#abb996abd85fb7a539a27ae6382f22dab", null ],
-      [ "knightMoves", "namespacemove__maps.html#ae9b395859878d63f0c5b65f1fb527206", null ],
       [ "pawnCaptures", "namespacemove__maps.html#a17f466637be6189cdc2a8f754bf2fecd", null ],
-      [ "pawnCaptures", "namespacemove__maps.html#ae85ae60a4fbe5cfa25c4b838cb127791", null ],
       [ "pawnDoubleMoves", "namespacemove__maps.html#ae444def99c763a6563fc306c14f53100", null ],
-      [ "pawnDoubleMoves", "namespacemove__maps.html#a3640858ef4c43b928a6b756a5fc5fd1b", null ],
       [ "pawnMoves", "namespacemove__maps.html#a1ebe41a335acfdf3c3734ee9d39e50eb", null ],
-      [ "pawnMoves", "namespacemove__maps.html#a147bab79ed448f22cfa59ea31bb4e0db", null ],
-      [ "rookMoves", "namespacemove__maps.html#a5c2755d0e4cfd8b52a04854067778c4c", null ],
-      [ "rookMoves", "namespacemove__maps.html#a748e7925249648127acd6e9e907bea85", null ]
+      [ "rookMoves", "namespacemove__maps.html#a5c2755d0e4cfd8b52a04854067778c4c", null ]
     ] ],
     [ "move_type", "namespacemove__type.html", [
       [ "BPromotion", "namespacemove__type.html#ac3db2da03aa3cd603d1eebe45536e069", null ],

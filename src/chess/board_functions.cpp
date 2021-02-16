@@ -38,23 +38,23 @@ void Board::SetTurn_(Color turn)
 
 bool Board::is_check()
 {
-  return false;
+  return state_.is_check;
 }
 
 void Board::LoadPosition(PieceType piece_list[64], Color turn_to_move, int ep_square,
-                         castle::Rights castling_rights, int fullmove, int halfmove)
+                         board::castle::Rights castling_rights, int fullmove, int halfmove)
 {
   // Clearing and resetting state
   // Need to hard reset completely.
   _maps_generated = false;
   state_stack_.Clear();
-  status_ = GameStatus::NotCalculated;
-  state_ = BoardState();
+  status_ = board::Status::NotCalculated;
+  state_ = board::State();
   SetEpSquare_(-1);
-  SetCastlingRights_(White, castle::long_, 1);
-  SetCastlingRights_(White, castle::short_, 1);
-  SetCastlingRights_(Black, castle::long_, 1);
-  SetCastlingRights_(Black, castle::short_, 1);
+  SetCastlingRights_(White, board::castle::long_, 1);
+  SetCastlingRights_(White, board::castle::short_, 1);
+  SetCastlingRights_(Black, board::castle::long_, 1);
+  SetCastlingRights_(Black, board::castle::short_, 1);
 
   for (PieceType i = 0; i < 12; i++)
   {

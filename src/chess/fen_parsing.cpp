@@ -41,25 +41,25 @@ void Board::LoadPosition(std::string fen)
   Color turn_to_move = elems[1] == "w" ? White : Black;
 
   // Set rights to false by default
-  castle::Rights castling_rights(0, 0, 0, 0);
+  board::castle::Rights castling_rights(0, 0, 0, 0);
   for (int k = 0; k < elems[2].size(); k++)
   {
     char ch = elems[2][k];
     if (ch == 'K')
     {
-      castling_rights.Set(White, castle::short_, 1);
+      castling_rights.Set(White, board::castle::short_, 1);
     }
     else if (ch == 'Q')
     {
-      castling_rights.Set(White, castle::long_, 1);
+      castling_rights.Set(White, board::castle::long_, 1);
     }
     else if (ch == 'k')
     {
-      castling_rights.Set(Black, castle::short_, 1);
+      castling_rights.Set(Black, board::castle::short_, 1);
     }
     else if (ch == 'q')
     {
-      castling_rights.Set(Black, castle::long_, 1);
+      castling_rights.Set(Black, board::castle::long_, 1);
     }
   }
 

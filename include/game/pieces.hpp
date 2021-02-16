@@ -24,6 +24,8 @@ namespace piece
     const PieceType king = (5 << 1) + 1;   //11
   }                                        // namespace black
   const PieceType EmptyPiece = -1;
+
+  inline bool is_pawn(PieceType piece) { return piece <= 1; }
 } // namespace piece
 
 int getMaterialValue(PieceType piece);

@@ -2,6 +2,7 @@ var pieces_8hpp =
 [
     [ "colorOf", "pieces_8hpp.html#ad124f99e9df05133c74661b8312040ff", null ],
     [ "getMaterialValue", "pieces_8hpp.html#af7b7d0e4536025a85bb6b3fc8a1e9dc7", null ],
+    [ "is_pawn", "pieces_8hpp.html#a6fd1719583906078a65d7f13c72334c1", null ],
     [ "oppositeColor", "pieces_8hpp.html#a7274c3c6025cc9e639afab350f1012e4", null ],
     [ "bishop", "pieces_8hpp.html#ab2c4266e1df92bc5bd283a5810ad685e", null ],
     [ "bishop", "pieces_8hpp.html#acee7f2e9ba4ec042dbb1573b075f2b6e", null ],

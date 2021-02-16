@@ -170,6 +170,11 @@ void move_maps::init()
   verbose_info("initializing move cache");
 }
 
+bool move_maps::isPromotingRank(Square piece_location, Color color)
+{
+  return (color == Black && squareToRow(piece_location) == 1) || (color == White && squareToRow(piece_location) == 6);
+}
+
 u64 move_maps::pawnCaptures(Square piece_location, Color color, u64 occupants)
 {
   return PAWN_CAPTURE_CACHE[color][piece_location] | occupants;

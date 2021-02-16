@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['h01_440',['h01',['../bits_8cpp.html#af2bf9caea0215a0fbb2f4108d6efd5dc',1,'bits.cpp']]],
-  ['halfmove_5fcounter_441',['halfmove_counter',['../structBoardState.html#afb96524f6b729af5aed65135661bda88',1,'BoardState']]],
-  ['has_5frepeated_442',['has_repeated',['../structBoardState.html#a1db18edd507707031eaac5be41ae958f',1,'BoardState']]],
-  ['hash_443',['hash',['../structBoardState.html#a3767cfa1a5705611f5db50f74292d54f',1,'BoardState']]]
+  ['h01_447',['h01',['../bits_8cpp.html#af2bf9caea0215a0fbb2f4108d6efd5dc',1,'bits.cpp']]],
+  ['halfmove_5fcounter_448',['halfmove_counter',['../structboard_1_1State.html#a77787c0a1d79b8df6360d0f474ec11c6',1,'board::State']]],
+  ['has_5frepeated_449',['has_repeated',['../structboard_1_1State.html#a1eb832e2d98642778be8ed0f8172b6c3',1,'board::State']]],
+  ['hash_450',['hash',['../structboard_1_1State.html#aff69bc15442d28744731226defc06b03',1,'board::State']]]
 ];

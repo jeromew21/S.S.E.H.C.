@@ -87,30 +87,97 @@ void Board::GeneratePseudoLegal_()
   _maps_generated = true;
 }
 
-MoveList<256> Board::legal_moves(bool captures_only)
-{
+MoveList<256> Board::produce_uncheck_moves_() {
   assert(_maps_generated);
-  MoveList<256> captures = Board::capture_moves_();
-  if (captures_only) {
-    return captures;
-  }
-  MoveList<256> move_list;
-  return captures;
+  assert(is_check());
+  MoveList<256> mv_list;
+  return mv_list;
 }
-
 
 MoveList<256> Board::legal_moves()
 {
-  return legal_moves(false);
+  assert(_maps_generated);
+  if (is_check()) {
+    return produce_uncheck_moves_();
+  }
+  MoveList<256> capture_moves = Board::capture_moves_();
+  MoveList<256> mv_list;
+  u64List src_arr;
+  u64List dest_arr;
+  Color curr_turn = get_turn();
+  Color friendlies = occupancy(curr_turn);
+  Color enemies = occupancy(oppositeColor(curr_turn));
+  for (int i = 0; i < capture_moves.size(); i++)
+  {
+    mv_list.PushBack(capture_moves[i]);
+  }
+
+  // find quiet moves
+  for (PieceType piece_ = curr_turn; piece_ < 12; piece_ += 2)
+  {
+    bitscanAll(bitboard_[piece_], src_arr);
+    for (int i = 0; i < src_arr.len(); i++)
+    {
+      Square src = u64ToSquare(src_arr[i]);
+      u64 captures = (~enemies) & (~friendlies) & attack_map_[src]; // can't capture allies
+      bitscanAll(captures, dest_arr);
+      for (int k = 0; k < dest_arr.len(); k++)
+      {
+        Square dest = u64ToSquare(dest_arr[i]);
+        if (piece::is_pawn(piece_) && move_maps::isPromotingRank(src, curr_turn)) // if pawn and promotion
+        {
+          mv_list.PushBack(CMove(src, dest, move_type::QPromotion));
+          mv_list.PushBack(CMove(src, dest, move_type::RPromotion));
+          mv_list.PushBack(CMove(src, dest, move_type::BPromotion));
+          mv_list.PushBack(CMove(src, dest, move_type::KPromotion));
+        }
+        else
+        {
+          mv_list.PushBack(CMove(src, dest, move_type::Default));
+        }
+      }
+    }
+  }
+
+  return mv_list;
 }
 
 MoveList<256> Board::capture_moves_()
 {
-  MoveList<256> mv_list;
-  u64List arr;
-  for (PieceType piece = get_turn(); piece < 12; piece += 2) {
-    u64 locations = bitboard_[piece];
+  assert(_maps_generated);
+  assert(!is_check());
 
+  MoveList<256> mv_list;
+  u64List src_arr;
+  u64List dest_arr;
+  Color curr_turn = get_turn();
+  Color friendlies = occupancy(curr_turn);
+  Color enemies = occupancy(oppositeColor(curr_turn));
+
+  for (PieceType piece_ = curr_turn; piece_ < 12; piece_ += 2)
+  {
+    bitscanAll(bitboard_[piece_], src_arr);
+    for (int i = 0; i < src_arr.len(); i++)
+    {
+      Square src = u64ToSquare(src_arr[i]);
+      u64 captures = enemies & (~friendlies) & attack_map_[src]; // can't capture allies
+      bitscanAll(captures, dest_arr);
+      for (int k = 0; k < dest_arr.len(); k++)
+      {
+        Square dest = u64ToSquare(dest_arr[i]);
+        if (piece::is_pawn(piece_) && move_maps::isPromotingRank(src, curr_turn)) // if pawn and promotion
+        {
+          mv_list.PushBack(CMove(src, dest, move_type::QPromotion));
+          mv_list.PushBack(CMove(src, dest, move_type::RPromotion));
+          mv_list.PushBack(CMove(src, dest, move_type::BPromotion));
+          mv_list.PushBack(CMove(src, dest, move_type::KPromotion));
+        }
+        else
+        {
+          mv_list.PushBack(CMove(src, dest, move_type::Default));
+        }
+      }
+    }
   }
 
   // add en passant

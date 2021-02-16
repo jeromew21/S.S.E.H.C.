@@ -39,8 +39,8 @@ void perft(Board &board, int depth, PerftCounter &counter)
         board.MakeMove(mv);
         if (depth == 1)
         {
-            GameStatus s = board.status();
-            if (s == GameStatus::WhiteWin || s == GameStatus::BlackWin)
+            board::Status s = board.status();
+            if (s == board::Status::WhiteWin || s == board::Status::BlackWin)
             {
                 counter.checkmates += 1;
             }

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['blackwin_496',['BlackWin',['../board__state_8hpp.html#a881b49e3802366255ad852f1c8624fd1a86f4e97f140ceb0fb65db639bfdc5433',1,'board_state.hpp']]]
+  ['blackwin_504',['BlackWin',['../namespaceboard.html#a99acc96edd3007d46ff299bdc5db4221a40d7baf052098898b7a8360b11019a28',1,'board']]]
 ];

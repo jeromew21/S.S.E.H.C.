@@ -73,7 +73,7 @@ std::string moveToUCIAlgebraic(CMove &mv)
   result += squareName(mv.dest());
   if (mv.is_promotion())
   {
-    result += pieceToStringLower(mv.promoting_piece());
+    result += pieceToStringLower(mv.promoting_piece(White));
   }
   return result;
 }

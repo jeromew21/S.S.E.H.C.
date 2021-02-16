@@ -1,18 +1,17 @@
 var classCMove =
 [
-    [ "CMove", "classCMove.html#aa2cec454adf9a48ef4b05ff624d2c66d", null ],
+    [ "CMove", "classCMove.html#a99a183d9760102bf0d7bc76d33b92c96", null ],
     [ "CMove", "classCMove.html#adeb004d888eeb9cec8015259df7e4479", null ],
-    [ "dest", "classCMove.html#aca40ef36d1515609b8762a277f7058e3", null ],
-    [ "dest_square", "classCMove.html#a5d03d1267a02909dd9e21acb313a60b6", null ],
-    [ "is_castle", "classCMove.html#aa1acc50b29e322551ea565031f9d399d", null ],
-    [ "is_null", "classCMove.html#a6cbe6c57944499abd9191767e986024c", null ],
-    [ "is_promotion", "classCMove.html#a8c09078209b7e773d745fada571d4d28", null ],
-    [ "not_null", "classCMove.html#ad89878684adde8ce34eea08bcef2c771", null ],
+    [ "dest", "classCMove.html#ae36029fa295013506452291a2c289c89", null ],
+    [ "dest_square", "classCMove.html#acd70ab98185d9d3cdddda4d11bc14aff", null ],
+    [ "is_castle", "classCMove.html#a0a6bca94f5893e6b3c311e547450132e", null ],
+    [ "is_null", "classCMove.html#a61723fd37bad16449afde20051912fd2", null ],
+    [ "is_promotion", "classCMove.html#af047405cb24f22ba7e03c6f9be6ed25b", null ],
+    [ "not_null", "classCMove.html#aa2874e06b15c5c7da7350c198bf935e9", null ],
     [ "operator!=", "classCMove.html#a2d81fdf7e26c91a963591f4ead7e44df", null ],
     [ "operator==", "classCMove.html#af088c49266203bdf3843ec6eb824534c", null ],
-    [ "promoting_piece", "classCMove.html#a6745764a88a64a0457362fda5273737d", null ],
-    [ "promoting_piece", "classCMove.html#a056b42257b4cb9d0eaf55621e82ad009", null ],
-    [ "src", "classCMove.html#af7fda0c31e54ee698ff2b90a682e0f9e", null ],
-    [ "src_square", "classCMove.html#aff8e0c2ee0b408612c145ef64393aa8c", null ],
-    [ "type_code", "classCMove.html#aea9ba755eeb14ce8103e11ced6204ad3", null ]
+    [ "promoting_piece", "classCMove.html#a7305115db5db99f8cf8300ff7a0db0a0", null ],
+    [ "src", "classCMove.html#aad5b92624c4e9f743a568fada3a2c508", null ],
+    [ "src_square", "classCMove.html#ab98b324b172077f15a1841054f1bd81c", null ],
+    [ "type_code", "classCMove.html#a98c0e4e3adc45a117ad4b989a8a39dda", null ]
 ];

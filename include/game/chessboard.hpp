@@ -187,6 +187,11 @@ private:
   void SetCastlingRights_(Color color, int direction, int value);
   void SetTurn_(Color turn);
 
+  /** 
+   * capture moves only, generated for q-search.
+   */
+  MoveList<256> capture_moves_();
+
   // move generation specific
 
   /** 
@@ -199,11 +204,8 @@ public:
    * List of all true legal moves in a position.
    */
   MoveList<256> legal_moves();
+  MoveList<256> legal_moves(bool captures_only);
 
-  /** 
-   * capture moves only, generated for q-search.
-   */
-  MoveList<256> capture_moves();
   GameStatus status();
 
   // getters that might be const depending on implementation

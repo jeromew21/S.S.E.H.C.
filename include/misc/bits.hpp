@@ -32,15 +32,14 @@ void init_bits();
 /**
  * A stack of u64 values, with a length limited to N.
  * 
- * Ideally, only to be traversed upwards.
+ * In practice, only to be traversed upwards.
  * 
  * Returned by bitscanAll().
  */
-template <int N>
-class u64Stack
+class u64List
 {
 private:
-  u64 data_[N];
+  u64 data_[64];
   int head_;
 
 public:
@@ -50,10 +49,10 @@ public:
    * 
    * Here we initialize to 0.
    */
-  u64Stack()
+  u64List()
   {
     head_ = 0;
-    for (int i = 0; i < N; i++)
+    for (int i = 0; i < 64; i++)
     {
       data_[i] = 0;
     }
@@ -100,7 +99,7 @@ int hadd(u64 x);
 /**
  * Split a u64 into a list of singleton u64 values.
  */
-void bitscanAll(u64 x, u64Stack<64> &out_arr); // breaks into one-hots, hotspot, vectorize?
+void bitscanAll(u64 x, u64List &out_arr); // breaks into one-hots, hotspot, vectorize?
 
 /**
  * Return the index of the LSB (rightmost, uppermost), from the least significant side

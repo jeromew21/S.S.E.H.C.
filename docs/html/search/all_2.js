@@ -13,7 +13,7 @@ var searchData=
   ['checkmates_37',['checkmates',['../structPerftCounter.html#a1aef57605e5710d34aab4644d2c17c1b',1,'PerftCounter']]],
   ['checks_38',['checks',['../structPerftCounter.html#accda28c29867ee2039e9bcde2642911d',1,'PerftCounter']]],
   ['chessboard_2ehpp_39',['chessboard.hpp',['../chessboard_8hpp.html',1,'']]],
-  ['clear_40',['Clear',['../classBoardStateStack.html#a1c92ba8fd884033883b9c826005a8673',1,'BoardStateStack::Clear()'],['../classMoveList.html#ae93165a467e1d29c8235a53f8536315a',1,'MoveList::Clear()'],['../classu64Stack.html#a982cd36ea51f9013d42330bc5bf38656',1,'u64Stack::Clear()']]],
+  ['clear_40',['Clear',['../classBoardStateStack.html#a1c92ba8fd884033883b9c826005a8673',1,'BoardStateStack::Clear()'],['../classMoveList.html#ae93165a467e1d29c8235a53f8536315a',1,'MoveList::Clear()'],['../classu64List.html#a982cd36ea51f9013d42330bc5bf38656',1,'u64List::Clear()']]],
   ['cmove_41',['CMove',['../classCMove.html',1,'CMove'],['../classCMove.html#aa2cec454adf9a48ef4b05ff624d2c66d',1,'CMove::CMove(Square src0, Square dest0, int typeCode)'],['../classCMove.html#adeb004d888eeb9cec8015259df7e4479',1,'CMove::CMove()']]],
   ['cmove_2ehpp_42',['cmove.hpp',['../cmove_8hpp.html',1,'']]],
   ['col_43',['Col',['../definitions_8hpp.html#a4ec00b1920fd854afa2b021f76d355fb',1,'definitions.hpp']]],

@@ -1,6 +1,6 @@
 var bits_8hpp =
 [
-    [ "u64Stack", "classu64Stack.html", "classu64Stack" ],
+    [ "u64List", "classu64List.html", "classu64List" ],
     [ "bitscanAll", "bits_8hpp.html#abdde7e08d431bb30fa33cf0315ebdc66", null ],
     [ "bitscanForward", "bits_8hpp.html#adff1b4bfcd334dd05de57ba7fa07fa16", null ],
     [ "bitscanReverse", "bits_8hpp.html#aa64a7c2aa15518bf2e129edfd3950570", null ],

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['u64stack_258',['u64Stack',['../classu64Stack.html',1,'']]]
+  ['u64List_258',['u64List',['../classu64List.html',1,'']]]
 ];

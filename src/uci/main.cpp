@@ -31,7 +31,7 @@ int main()
 
   Board board;
 
-  u64Stack<64> out_arr;
+  u64List out_arr;
 
   bitscanAll(board.occupancy(), out_arr);
 

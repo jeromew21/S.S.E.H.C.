@@ -10,5 +10,5 @@ var annotated_dup =
     [ "MoveList", "classMoveList.html", "classMoveList" ],
     [ "MoveScoreTuple", "structMoveScoreTuple.html", "structMoveScoreTuple" ],
     [ "PerftCounter", "structPerftCounter.html", "structPerftCounter" ],
-    [ "u64Stack", "classu64Stack.html", "classu64Stack" ]
+    [ "u64List", "classu64List.html", "classu64List" ]
 ];

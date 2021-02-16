@@ -58,6 +58,7 @@ namespace castle
 struct BoardState
 {
   int move_count;
+  int ply_count;
   Color turn;
   int halfmove_counter;           // plies since last capture or pawn move
   int en_passant_square;          // square behind the pawn, or -1
@@ -73,6 +74,7 @@ struct BoardState
   BoardState()
   {
     this->move_count = 0;
+    this->ply_count = 0;
     this->halfmove_counter = 0;
     this->en_passant_square = -1;
     this->is_check = 0;
@@ -156,6 +158,8 @@ public:
  * N=256 is probably fine for 100% of use cases and definitely overkill.
  * 
  * Returned by board methods Board::legal_moves() and others.
+ * 
+ * Attempts to copy the std::vector API for clarity's sake.
  */
 template <int N>
 class MoveList

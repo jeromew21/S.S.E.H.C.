@@ -9,7 +9,7 @@ var searchData=
   ['bits_2ecpp_11',['bits.cpp',['../bits_8cpp.html',1,'']]],
   ['bits_2ehpp_12',['bits.hpp',['../bits_8hpp.html',1,'']]],
   ['bitscan_5fcache_13',['bitscan_cache',['../bits_8cpp.html#abefe9c0fefe161f70a84602b3ae1e73e',1,'bits.cpp']]],
-  ['bitscanall_14',['bitscanAll',['../bits_8cpp.html#abdde7e08d431bb30fa33cf0315ebdc66',1,'bitscanAll(u64 x, u64Stack&lt; 64 &gt; &amp;out_arr):&#160;bits.cpp'],['../bits_8hpp.html#abdde7e08d431bb30fa33cf0315ebdc66',1,'bitscanAll(u64 x, u64Stack&lt; 64 &gt; &amp;out_arr):&#160;bits.cpp']]],
+  ['bitscanall_14',['bitscanAll',['../bits_8cpp.html#abdde7e08d431bb30fa33cf0315ebdc66',1,'bitscanAll(u64 x, u64List&lt; 64 &gt; &amp;out_arr):&#160;bits.cpp'],['../bits_8hpp.html#abdde7e08d431bb30fa33cf0315ebdc66',1,'bitscanAll(u64 x, u64List&lt; 64 &gt; &amp;out_arr):&#160;bits.cpp']]],
   ['bitscanforward_15',['bitscanForward',['../bits_8hpp.html#adff1b4bfcd334dd05de57ba7fa07fa16',1,'bits.hpp']]],
   ['bitscanreverse_16',['bitscanReverse',['../bits_8hpp.html#aa64a7c2aa15518bf2e129edfd3950570',1,'bits.hpp']]],
   ['black_17',['Black',['../definitions_8hpp.html#a87a4d78bf0f4c39f749c2c4f4bc5cd80',1,'definitions.hpp']]],

@@ -89,6 +89,9 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 <li>Append()
 : <a class="el" href="classu64List.html#a8abd4b520337ce40f37db4a142265b5f">u64List</a>
 </li>
+<li>attack_map_
+: <a class="el" href="structboard_1_1State.html#a38b43c4f48c819c763f90bf034bc3e5c">board::State</a>
+</li>
 </ul>
 
 
@@ -109,23 +112,20 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 <li>can_pop()
 : <a class="el" href="classboard_1_1StateStack.html#a09b091b0dd1eb6984ca9b61bf57a4d96">board::StateStack</a>
 </li>
-<li>can_unmake()
-: <a class="el" href="classBoard.html#a1fa592a5e6f9581ec426d82a196d9591">Board</a>
-</li>
 <li>captures
-: <a class="el" href="structPerftCounter.html#a83a1b11d22e9af61bb4a743497af5ac8">PerftCounter</a>
+: <a class="el" href="structperft_1_1Counter.html#a0f3b0ec98d916b9f99c9d676ca173173">perft::Counter</a>
 </li>
 <li>castles
-: <a class="el" href="structPerftCounter.html#a17a0811c902f77db0cd9d0283b3812d9">PerftCounter</a>
+: <a class="el" href="structperft_1_1Counter.html#a756096d3868986f025ac849889823893">perft::Counter</a>
 </li>
 <li>castling_rights
 : <a class="el" href="structboard_1_1State.html#a1b60d9dd3a4332ddb433b6d96d2120ea">board::State</a>
 </li>
 <li>checkmates
-: <a class="el" href="structPerftCounter.html#a1aef57605e5710d34aab4644d2c17c1b">PerftCounter</a>
+: <a class="el" href="structperft_1_1Counter.html#a57f327e15dc70e31bf5a51a2d34c32d6">perft::Counter</a>
 </li>
 <li>checks
-: <a class="el" href="structPerftCounter.html#accda28c29867ee2039e9bcde2642911d">PerftCounter</a>
+: <a class="el" href="structperft_1_1Counter.html#aaca1e4819a1eea4b5e126e14e8babbc7">perft::Counter</a>
 </li>
 <li>Clear()
 : <a class="el" href="classboard_1_1StateStack.html#a4d51ddefd52f4072526c0a9584b72687">board::StateStack</a>
@@ -135,10 +135,16 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 <li>CMove()
 : <a class="el" href="classCMove.html#a99a183d9760102bf0d7bc76d33b92c96">CMove</a>
 </li>
+<li>Counter()
+: <a class="el" href="structperft_1_1Counter.html#aa6d705a6be9835a81eea94aa4d005d24">perft::Counter</a>
+</li>
 </ul>
 
 
 <h3><a id="index_d"></a>- d -</h3><ul>
+<li>defend_map_
+: <a class="el" href="structboard_1_1State.html#a892141edf3c0ad2a6a1dd3d0b7356685">board::State</a>
+</li>
 <li>dest()
 : <a class="el" href="classCMove.html#ae36029fa295013506452291a2c289c89">CMove</a>
 </li>
@@ -156,7 +162,7 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 : <a class="el" href="structboard_1_1State.html#ac9eaae88bb97603ae4dd55cef218db0d">board::State</a>
 </li>
 <li>ep
-: <a class="el" href="structPerftCounter.html#a407597dbf482d09d0ca91a530af66c19">PerftCounter</a>
+: <a class="el" href="structperft_1_1Counter.html#afa5a965a7507fafdcd953087aaf6221b">perft::Counter</a>
 </li>
 <li>Erase()
 : <a class="el" href="classMoveList.html#a4a869ed3bd4eae94964dc6da6ac69a58">MoveList&lt; N &gt;</a>
@@ -175,12 +181,6 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 <li>get()
 : <a class="el" href="classboard_1_1castle_1_1Rights.html#aaa198ee7d90fe9ab6675ac4356d37ea9">board::castle::Rights</a>
 </li>
-<li>get_hash()
-: <a class="el" href="classBoard.html#a91431c17106d6e4282c1aeb79a915627">Board</a>
-</li>
-<li>turn()
-: <a class="el" href="classBoard.html#ab3b32fa6bef77fc7c887fe79dcdd9c8c">Board</a>
-</li>
 </ul>
 
 
@@ -189,10 +189,11 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 : <a class="el" href="structboard_1_1State.html#a77787c0a1d79b8df6360d0f474ec11c6">board::State</a>
 </li>
 <li>has_repeated
-: <a class="el" href="structboard_1_1State.html#a1eb832e2d98642778be8ed0f8172b6c3">board::State</a>
+: <a class="el" href="structboard_1_1State.html#a2bd7792001c49937967780d8c4fb82cc">board::State</a>
 </li>
-<li>hash
-: <a class="el" href="structboard_1_1State.html#aff69bc15442d28744731226defc06b03">board::State</a>
+<li>hash()
+: <a class="el" href="classBoard.html#a8ca3f97fa9f04e00fbdc98b8e5b383de">Board</a>
+, <a class="el" href="structboard_1_1State.html#aff69bc15442d28744731226defc06b03">board::State</a>
 </li>
 </ul>
 
@@ -206,7 +207,7 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 </li>
 <li>is_check()
 : <a class="el" href="classBoard.html#abd995d228ec8353b9c0a784b4c45cd79">Board</a>
-, <a class="el" href="structboard_1_1State.html#a7b656afa24be7663f1aaf18c1e616e0e">board::State</a>
+, <a class="el" href="structboard_1_1State.html#a5ab8157348277df4f177e18337a68b3a">board::State</a>
 </li>
 <li>is_checking_move()
 : <a class="el" href="classBoard.html#af38d727e983b2d5d9d9da5fd5b3d89a7">Board</a>
@@ -227,9 +228,8 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 <li>last_captured_piece
 : <a class="el" href="structboard_1_1State.html#ab5c2a9c0c2c89dc8ce0e7e53997b91a8">board::State</a>
 </li>
-<li>last_move()
-: <a class="el" href="classBoard.html#a081cf3448daf94d7282bc06cb84bae36">Board</a>
-, <a class="el" href="structboard_1_1State.html#a699d1fbfcf57f1dfb055a4e09e5ddf0f">board::State</a>
+<li>last_move
+: <a class="el" href="structboard_1_1State.html#a699d1fbfcf57f1dfb055a4e09e5ddf0f">board::State</a>
 </li>
 <li>last_moved_piece
 : <a class="el" href="structboard_1_1State.html#a9d6cc195eee2923927c19ea056bed11e">board::State</a>
@@ -270,7 +270,7 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 
 <h3><a id="index_n"></a>- n -</h3><ul>
 <li>nodes
-: <a class="el" href="structPerftCounter.html#a2a50638d06780066b88af1bce9209525">PerftCounter</a>
+: <a class="el" href="structperft_1_1Counter.html#adf4eaab89c5a3dc59966b5a691c04b45">perft::Counter</a>
 </li>
 <li>not_null()
 : <a class="el" href="classCMove.html#aa2874e06b15c5c7da7350c198bf935e9">CMove</a>
@@ -305,9 +305,6 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 <li>peek_at()
 : <a class="el" href="classboard_1_1StateStack.html#a96a2f41ade8721758b1f5e1c257be52c">board::StateStack</a>
 </li>
-<li>PerftCounter()
-: <a class="el" href="structPerftCounter.html#a79bc6482656f81d97bfdbc3f157b5326">PerftCounter</a>
-</li>
 <li>ply_count
 : <a class="el" href="structboard_1_1State.html#a4612c8ffff9d36f5ff678815cbb10d34">board::State</a>
 </li>
@@ -321,7 +318,7 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 : <a class="el" href="classCMove.html#a7305115db5db99f8cf8300ff7a0db0a0">CMove</a>
 </li>
 <li>promotions
-: <a class="el" href="structPerftCounter.html#a4e3dc9f1b6900ce757fda42085c6468c">PerftCounter</a>
+: <a class="el" href="structperft_1_1Counter.html#adb3840a969e1b4af6e4515d8941c61b6">perft::Counter</a>
 </li>
 <li>Push()
 : <a class="el" href="classboard_1_1StateStack.html#a91549c670c56be6afb247a0413ea25f9">board::StateStack</a>
@@ -374,6 +371,7 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 <h3><a id="index_t"></a>- t -</h3><ul>
 <li>turn
 : <a class="el" href="structboard_1_1State.html#a5c4f57ef916449709a591a3028fa5440">board::State</a>
+, <a class="el" href="classBoard.html#a7060b3d7dc901a73d3bf3d4280d2fbdb">Board</a>
 </li>
 <li>type_code()
 : <a class="el" href="classCMove.html#a98c0e4e3adc45a117ad4b989a8a39dda">CMove</a>

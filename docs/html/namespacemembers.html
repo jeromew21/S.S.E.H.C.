@@ -168,6 +168,9 @@ $(document).ready(function(){initNavTree('namespacemembers.html',''); initResiza
 <li>generateMovesOrdered()
 : <a class="el" href="namespaceAI.html#a5401c602c7949d89eaf2cc93d9aa6cb4">AI</a>
 </li>
+<li>get_king()
+: <a class="el" href="namespacepiece.html#a19daf7f159b93cdd53156cef11bdf823">piece</a>
+</li>
 <li>getHashFromId()
 : <a class="el" href="namespacezobrist.html#a036846ac7ca1851590e357e334d16f65">zobrist</a>
 </li>
@@ -185,11 +188,32 @@ $(document).ready(function(){initNavTree('namespacemembers.html',''); initResiza
 : <a class="el" href="namespacemove__maps.html#ac0dc68279809aa34ce8164e37479eb68">move_maps</a>
 , <a class="el" href="namespacezobrist.html#a3758b41a1876be8cdb13517666d8edab">zobrist</a>
 </li>
+<li>is_bishop()
+: <a class="el" href="namespacepiece.html#a3564ea551a481443869d0413bc6bff79">piece</a>
+</li>
+<li>is_empty()
+: <a class="el" href="namespacepiece.html#a1ff0a555d2758ef5caeb21a121b0ae99">piece</a>
+</li>
+<li>is_king()
+: <a class="el" href="namespacepiece.html#ae8204ef28e7f685f9ed3efbbb5f4e391">piece</a>
+</li>
+<li>is_knight()
+: <a class="el" href="namespacepiece.html#a8d4008c821214b00043171a8d2b47dd3">piece</a>
+</li>
 <li>is_pawn()
 : <a class="el" href="namespacepiece.html#a6fd1719583906078a65d7f13c72334c1">piece</a>
 </li>
+<li>is_queen()
+: <a class="el" href="namespacepiece.html#a16e7f930172505ceda31fc99b6e04658">piece</a>
+</li>
+<li>is_rook()
+: <a class="el" href="namespacepiece.html#a92822032e637e7814a287aef9c77ac63">piece</a>
+</li>
 <li>isPromotingRank()
 : <a class="el" href="namespacemove__maps.html#a4c4dc7abb7c456a8558f8dff7033404e">move_maps</a>
+</li>
+<li>isStartingRank()
+: <a class="el" href="namespacemove__maps.html#afeace7a38ea2b885705ca549b672c405">move_maps</a>
 </li>
 </ul>
 
@@ -200,14 +224,14 @@ $(document).ready(function(){initNavTree('namespacemembers.html',''); initResiza
 , <a class="el" href="namespacepiece_1_1white.html#a046601d691ab5bcc040eef5d9707e97d">piece::white</a>
 </li>
 <li>kingMoves()
-: <a class="el" href="namespacemove__maps.html#a4dccd4365fa0799d8b64527ba62faf04">move_maps</a>
+: <a class="el" href="namespacemove__maps.html#a18f6f80f3c3f5efe0f77417addd8e626">move_maps</a>
 </li>
 <li>knight
 : <a class="el" href="namespacepiece_1_1black.html#a49fd5a34348e03082db6c471d222b96b">piece::black</a>
 , <a class="el" href="namespacepiece_1_1white.html#a64f644620307bde02194360d93669729">piece::white</a>
 </li>
 <li>knightMoves()
-: <a class="el" href="namespacemove__maps.html#abb996abd85fb7a539a27ae6382f22dab">move_maps</a>
+: <a class="el" href="namespacemove__maps.html#abe621f8c6d35fe11ff5ac8cae97cdd31">move_maps</a>
 </li>
 <li>KPromotion
 : <a class="el" href="namespacemove__type.html#a972fca84e3d47fd1a963e62a6b015106">move_type</a>
@@ -235,8 +259,8 @@ $(document).ready(function(){initNavTree('namespacemembers.html',''); initResiza
 <li>NotCalculated
 : <a class="el" href="namespaceboard.html#a99acc96edd3007d46ff299bdc5db4221afcab07a43518ab4d97273967aa0c1274">board</a>
 </li>
-<li>Null
-: <a class="el" href="namespacemove__type.html#ada316609194db3c3014af9b4d80f37ca">move_type</a>
+<li>NullMove
+: <a class="el" href="namespacemove__type.html#a62593b4d2953d16580f16e3652fc21ce">move_type</a>
 </li>
 <li>nw
 : <a class="el" href="namespacedirection_1_1bishop.html#a84fb9f201291a4c9595e71096865fa46">direction::bishop</a>
@@ -250,13 +274,16 @@ $(document).ready(function(){initNavTree('namespacemembers.html',''); initResiza
 , <a class="el" href="namespacepiece_1_1white.html#ad651041a35c6f517a4f67c041327532e">piece::white</a>
 </li>
 <li>pawnCaptures()
-: <a class="el" href="namespacemove__maps.html#a17f466637be6189cdc2a8f754bf2fecd">move_maps</a>
+: <a class="el" href="namespacemove__maps.html#ace864fb1af65e747ccb6836283858d5a">move_maps</a>
 </li>
 <li>pawnDoubleMoves()
-: <a class="el" href="namespacemove__maps.html#ae444def99c763a6563fc306c14f53100">move_maps</a>
+: <a class="el" href="namespacemove__maps.html#a30c6e477204c1f6bcb7d8d1fcf5f2491">move_maps</a>
 </li>
 <li>pawnMoves()
-: <a class="el" href="namespacemove__maps.html#a1ebe41a335acfdf3c3734ee9d39e50eb">move_maps</a>
+: <a class="el" href="namespacemove__maps.html#a57788e65733b2e9bd7fd182dfe216b25">move_maps</a>
+</li>
+<li>perft()
+: <a class="el" href="namespaceperft.html#a9c55bf0d5bd173a87b7e4c859f61eff9">perft</a>
 </li>
 <li>Playing
 : <a class="el" href="namespaceboard.html#a99acc96edd3007d46ff299bdc5db4221aae750d6b19f6a05133db39d7d8da8210">board</a>

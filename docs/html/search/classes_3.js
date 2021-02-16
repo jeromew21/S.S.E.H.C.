@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['perftcounter_258',['PerftCounter',['../structPerftCounter.html',1,'']]]
+  ['rights_266',['Rights',['../classboard_1_1castle_1_1Rights.html',1,'board::castle']]]
 ];

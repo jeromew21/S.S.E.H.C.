@@ -366,7 +366,7 @@ PieceType Board::piece_at(u64 location) const
     if (location & bitboard_[i])
       return i;
   }
-  assert(false);
+  return piece::EmptyPiece;
 }
 
 void Board::Reset()

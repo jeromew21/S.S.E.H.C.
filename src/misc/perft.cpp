@@ -1,6 +1,6 @@
 #include "misc/perft.hpp"
 
-void perft(Board &board, int depth, PerftCounter &counter)
+void perft::perft(Board &board, int depth, perft::Counter &counter)
 {
     if (depth == 0)
         return;
@@ -37,6 +37,7 @@ void perft(Board &board, int depth, PerftCounter &counter)
             }
         }
         board.MakeMove(mv);
+
         if (depth == 1)
         {
             board::Status s = board.status();

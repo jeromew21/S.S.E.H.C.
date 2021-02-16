@@ -1,5 +1,5 @@
 var perft_8hpp =
 [
-    [ "PerftCounter", "structPerftCounter.html", "structPerftCounter" ],
-    [ "perft", "perft_8hpp.html#ad0a5c3ebcf02a456680bc9c1fdf9c9b8", null ]
+    [ "Counter", "structperft_1_1Counter.html", "structperft_1_1Counter" ],
+    [ "perft", "perft_8hpp.html#a9c55bf0d5bd173a87b7e4c859f61eff9", null ]
 ];

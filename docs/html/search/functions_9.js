@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['kingmoves_349',['kingMoves',['../namespacemove__maps.html#a4dccd4365fa0799d8b64527ba62faf04',1,'move_maps']]],
-  ['knightmoves_350',['knightMoves',['../namespacemove__maps.html#abb996abd85fb7a539a27ae6382f22dab',1,'move_maps']]]
+  ['kingmoves_365',['kingMoves',['../namespacemove__maps.html#a18f6f80f3c3f5efe0f77417addd8e626',1,'move_maps']]],
+  ['knightmoves_366',['knightMoves',['../namespacemove__maps.html#abe621f8c6d35fe11ff5ac8cae97cdd31',1,'move_maps']]]
 ];

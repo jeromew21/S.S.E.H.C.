@@ -31,11 +31,12 @@ var namespaces_dup =
       [ "bishopMoves", "namespacemove__maps.html#a08b5a8fb6960e019cd991f5aa858a0a2", null ],
       [ "init", "namespacemove__maps.html#ac0dc68279809aa34ce8164e37479eb68", null ],
       [ "isPromotingRank", "namespacemove__maps.html#a4c4dc7abb7c456a8558f8dff7033404e", null ],
-      [ "kingMoves", "namespacemove__maps.html#a4dccd4365fa0799d8b64527ba62faf04", null ],
-      [ "knightMoves", "namespacemove__maps.html#abb996abd85fb7a539a27ae6382f22dab", null ],
-      [ "pawnCaptures", "namespacemove__maps.html#a17f466637be6189cdc2a8f754bf2fecd", null ],
-      [ "pawnDoubleMoves", "namespacemove__maps.html#ae444def99c763a6563fc306c14f53100", null ],
-      [ "pawnMoves", "namespacemove__maps.html#a1ebe41a335acfdf3c3734ee9d39e50eb", null ],
+      [ "isStartingRank", "namespacemove__maps.html#afeace7a38ea2b885705ca549b672c405", null ],
+      [ "kingMoves", "namespacemove__maps.html#a18f6f80f3c3f5efe0f77417addd8e626", null ],
+      [ "knightMoves", "namespacemove__maps.html#abe621f8c6d35fe11ff5ac8cae97cdd31", null ],
+      [ "pawnCaptures", "namespacemove__maps.html#ace864fb1af65e747ccb6836283858d5a", null ],
+      [ "pawnDoubleMoves", "namespacemove__maps.html#a30c6e477204c1f6bcb7d8d1fcf5f2491", null ],
+      [ "pawnMoves", "namespacemove__maps.html#a57788e65733b2e9bd7fd182dfe216b25", null ],
       [ "rookMoves", "namespacemove__maps.html#a5c2755d0e4cfd8b52a04854067778c4c", null ]
     ] ],
     [ "move_type", "namespacemove__type.html", [
@@ -46,10 +47,11 @@ var namespaces_dup =
       [ "DoublePawn", "namespacemove__type.html#af635d9759a86d3c3fe47903bc78ae0da", null ],
       [ "EnPassant", "namespacemove__type.html#aa14cba943c2900562ab7a1485d14b09a", null ],
       [ "KPromotion", "namespacemove__type.html#a972fca84e3d47fd1a963e62a6b015106", null ],
-      [ "Null", "namespacemove__type.html#ada316609194db3c3014af9b4d80f37ca", null ],
+      [ "NullMove", "namespacemove__type.html#a62593b4d2953d16580f16e3652fc21ce", null ],
       [ "QPromotion", "namespacemove__type.html#a2e9f2256b234ceb5613c7274745d20a4", null ],
       [ "RPromotion", "namespacemove__type.html#a48af7bde8c79720a10b24deb31908f70", null ]
     ] ],
+    [ "perft", "namespaceperft.html", "namespaceperft" ],
     [ "piece", "namespacepiece.html", "namespacepiece" ],
     [ "profile", "namespaceprofile.html", [
       [ "fname", "namespaceprofile.html#abf1c1ad6e893921bd779a8a9bb333d55", null ],

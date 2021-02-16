@@ -13,11 +13,11 @@ void Board::Dump() {
   print_("occupancy (black)");
   dump64(occupancy(Black));
 
-  print_("legal moves");
-  MoveList<256> legal = legal_moves();
-  for (int i = 0; i < legal.size(); i++) {
-    CMove mv = legal[i];
-    std::cout << moveToUCIAlgebraic(mv) << " ";
-  }
-  std::cout << std::endl;
+  // print_("legal moves");
+  // MoveList<256> legal = legal_moves();
+  // for (int i = 0; i < legal.size(); i++) {
+  //   CMove mv = legal[i];
+  //   std::cout << moveToUCIAlgebraic(mv) << " ";
+  // }
+  // std::cout << std::endl;
 }

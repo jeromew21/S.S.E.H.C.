@@ -16,6 +16,13 @@ var namespacepiece =
       [ "queen", "namespacepiece_1_1white.html#ac8f0a3e9475bdac1ae0f52ed3f39825b", null ],
       [ "rook", "namespacepiece_1_1white.html#a9b8715170fa5483cff3e6e2b26fdb376", null ]
     ] ],
+    [ "get_king", "namespacepiece.html#a19daf7f159b93cdd53156cef11bdf823", null ],
+    [ "is_bishop", "namespacepiece.html#a3564ea551a481443869d0413bc6bff79", null ],
+    [ "is_empty", "namespacepiece.html#a1ff0a555d2758ef5caeb21a121b0ae99", null ],
+    [ "is_king", "namespacepiece.html#ae8204ef28e7f685f9ed3efbbb5f4e391", null ],
+    [ "is_knight", "namespacepiece.html#a8d4008c821214b00043171a8d2b47dd3", null ],
     [ "is_pawn", "namespacepiece.html#a6fd1719583906078a65d7f13c72334c1", null ],
+    [ "is_queen", "namespacepiece.html#a16e7f930172505ceda31fc99b6e04658", null ],
+    [ "is_rook", "namespacepiece.html#a92822032e637e7814a287aef9c77ac63", null ],
     [ "EmptyPiece", "namespacepiece.html#ace2b1e4cfc50d82a62d3146e5a2ee804", null ]
 ];

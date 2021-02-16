@@ -69,7 +69,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "ai_8hpp.html",
-"namespaceAI.html#a26586bdf5f020c8ff2fe5831e4e60681"
+"namespaceAI.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

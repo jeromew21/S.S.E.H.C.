@@ -3,12 +3,16 @@
 
 #include "game/chessboard.hpp"
 #include "uci/strings.hpp"
+#include "misc/perft.hpp"
 
 bool verbose = true;
 
 // test move generator
 void testPerft()
 {
+  Board chessboard;
+  perft::Counter counter;
+  perft::perft(chessboard, 1, counter);
 }
 
 void verbose_info(const std::string &text)
@@ -29,10 +33,7 @@ int main()
   verbose_info("initializing engine");
   init();
 
-  Board chessboard;
-  chessboard.Dump();
-
-  dump64(move_maps::knightMoves(squareFromName("b1")));
+  testPerft();
 
 
   return 0;

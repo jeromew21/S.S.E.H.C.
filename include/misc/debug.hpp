@@ -2,6 +2,7 @@
 #define DEBUG_HPP
 
 #include <iostream>
+#include <csignal>
 #include "misc/definitions.hpp"
 
 /**

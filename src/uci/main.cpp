@@ -13,6 +13,7 @@ void testPerft()
   Board chessboard;
   perft::Counter counter;
   perft::perft(chessboard, 1, counter);
+  chessboard.Dump();
 }
 
 void verbose_info(const std::string &text)

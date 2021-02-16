@@ -206,17 +206,18 @@ void Board::MakeMove(CMove mv)
 
 void Board::UnmakeMove()
 {
-  assert (state_stack_.can_pop());
+  assert(state_stack_.can_pop());
   board::State &node = state_stack_.peek();
   CMove mv = state_.last_move;
   const int move_type_ = mv.type_code();
 
-  if (move_type_ != move_type::NullMove) {
-    // u64 src = mv.getSrc();
-    // u64 dest = mv.getDest();
-    // int moveType = mv.getTypeCode();
-    // PieceType mover = boardState[LAST_MOVED_INDEX];
-    // PieceType destFormer = boardState[LAST_CAPTURED_INDEX];
+  if (move_type_ != move_type::NullMove)
+  {
+    const u64 src = mv.src();
+    const u64 dest = mv.dest();
+    const int move_type_ = mv.type_code();
+    PieceType mover = state_.last_moved_piece;
+    PieceType dest_former = state_.last_captured_piece;
 
     // if (moveType == MoveTypeCode::CastleLong ||
     //     moveType == MoveTypeCode::CastleShort) {
@@ -239,27 +240,34 @@ void Board::UnmakeMove()
     //   }
     // }
 
-    // // move piece to old src
-    // _addPiece(mover, src);
+    // restore piece to old src
+    AddPiece_(mover, src);
 
-    // if (mv.isPromotion()) {
-    //   _removePiece(mv.getPromotingPiece(flipColor(turn())), dest);
-    // } else {
-    //   _removePiece(mover, dest);
-    // }
+    // Remove piece from dest
+    if (mv.is_promotion())
+    {
+      RemovePiece_(mv.promoting_piece(oppositeColor(turn())), dest);
+    }
+    else
+    {
+      RemovePiece_(mover, dest);
+    }
 
-    // // restore dest
-    // if (moveType ==
-    //     MoveTypeCode::EnPassant) { // instead of restoring at capture
-    //                                // location, restore one above
-    //   if (mover == W_Pawn) {
-    //     _addPiece(B_Pawn, PAWN_MOVE_CACHE[u64ToIndex(dest)][Black]);
-    //   } else {
-    //     _addPiece(W_Pawn, PAWN_MOVE_CACHE[u64ToIndex(dest)][White]);
-    //   }
-    // } else if (destFormer != Empty) {
-    //   _addPiece(destFormer, dest); // restore to capture location
-    // }
+    // now restore the old piece that was at dest
+    if (move_type_ == move_type::EnPassant)
+    {
+      // instead of restoring at capture
+      // location, restore one above
+      // if (mover == W_Pawn) {
+      //   _addPiece(B_Pawn, PAWN_MOVE_CACHE[u64ToIndex(dest)][Black]);
+      // } else {
+      //   _addPiece(W_Pawn, PAWN_MOVE_CACHE[u64ToIndex(dest)][White]);
+      // }
+    }
+    else if (!piece::is_empty(dest_former))
+    {
+      AddPiece_(dest_former, dest); // restore to capture location
+    }
   }
 
   SetTurn_(node.turn);

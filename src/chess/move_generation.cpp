@@ -261,6 +261,10 @@ bool Board::is_checking_move(CMove mv)
   u64 src = mv.src();
   u64 dest = mv.dest();
   PieceType mover = piece_at(src);
+
+  if (colorOf(mover) != curr_turn) {
+    std::raise(SIGINT);
+  }
   assert(colorOf(mover) == curr_turn);
 
   u64 out_ray;

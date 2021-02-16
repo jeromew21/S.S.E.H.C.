@@ -166,19 +166,9 @@ private:
   board::Status status_;
 
   /**
-   * for each square index, a bitboard list of attacked squares
-   */
-  std::array<u64, 64> attack_map_;
-
-  /**
-   * for each square index, a bitboard list of attacker squares
-   */
-  std::array<u64, 64> defend_map_;
-
-  /**
    * Have the attack and defend maps been generated yet?
    */
-  bool _maps_generated;
+  bool maps_generated_;
 
   /** 
    * Update the attack and defend maps.
@@ -275,19 +265,7 @@ public:
   /**
    * Get the current hash.
    */
-  u64 get_hash() const;
-
-  /**
-   * Retrieve the last move; ie, the one that led to the current position.
-   */
-  CMove last_move() const;
-
-  /**
-   * Is it possible to unmake?
-   * 
-   * May not be needed.
-   */
-  bool can_unmake() const;
+  u64 hash() const;
 
   /**
    * A bitboard mask of pieces for a particular color.

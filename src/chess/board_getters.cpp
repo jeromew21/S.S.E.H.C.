@@ -13,16 +13,8 @@ Color Board::turn() const {
   return state_.turn;
 }
 
-u64 Board::get_hash() const {
+u64 Board::hash() const {
   return hash_;
-}
-
-CMove Board::last_move() const {
-  return state_.last_move;
-}
-
-bool Board::can_unmake() const {
-  return state_stack_.can_pop();
 }
 
 u64 Board::occupancy() const

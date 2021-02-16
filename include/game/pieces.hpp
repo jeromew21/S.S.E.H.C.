@@ -25,6 +25,7 @@ namespace piece
   }                                        // namespace black
   const PieceType EmptyPiece = -1;
 
+  inline bool is_empty(PieceType piece) { return piece == EmptyPiece; }
   inline bool is_pawn(PieceType piece) { return piece >> 1 == 0; }
   inline bool is_king(PieceType piece) { return piece >> 1 == 5; }
   inline bool is_knight(PieceType piece) { return piece >> 1 == 1; }

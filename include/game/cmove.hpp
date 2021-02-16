@@ -8,7 +8,7 @@
 // this serves the same purpose as one
 namespace move_type
 {
-  const int Null = 0;
+  const int NullMove = 0;
   const int Default = 1;
   const int KPromotion = 2;
   const int CastleShort = 3;
@@ -33,8 +33,8 @@ public:
 
   inline int type_code() const { return data_ & 15; } //call move_type?
 
-  inline bool is_null() const { return type_code() == move_type::Null; }
-  inline bool not_null() const { return type_code() != move_type::Null; } //could use !is_null?
+  inline bool is_null() const { return type_code() == move_type::NullMove; }
+  inline bool not_null() const { return type_code() != move_type::NullMove; } //could use !is_null?
 
   /**
    * Will return the the promotin piece given a color.
@@ -47,13 +47,13 @@ public:
 
   inline bool is_promotion() const //does this work? Shouldn't we check for evenness?
   {
-    int code = type_code();
+    const int code = type_code();
     return code > 0 && code % 2 == 0;
   }
 
   inline bool is_castle() const
   {
-    int code = type_code();
+    const int code = type_code();
     return code == move_type::CastleLong || code == move_type::CastleShort;
   }
 
@@ -66,7 +66,7 @@ public:
   CMove(Square src_, Square dest_, int type_code_)
   {
     if (!isValidSquare(src_)) {
-      dump32(src_);
+      dump32(dest_);
     }
     if (!isValidSquare(dest_)) {
       dump32(dest_);

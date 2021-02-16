@@ -65,13 +65,15 @@ namespace board
     Color turn;
     int halfmove_counter;           // plies since last capture or pawn move
     int en_passant_square;          // square behind the pawn, or -1
-    int is_check;                   // is the position a check
-    int has_repeated;               // three-fold repetition
     PieceType last_moved_piece;     // the piece type that last moved
     PieceType last_captured_piece;  // the piece type that was captured
     u64 hash;                       // the zobrist hash, saved for threefold testing
+    bool is_check;                   // is the position a check
+    bool has_repeated;               // three-fold repetition
     CMove last_move;                // the last move
     board::castle::Rights castling_rights; // rights to castle for both sides
+    std::array<u64, 64> attack_map_;
+    std::array<u64, 64> defend_map_;
 
     // default constructor
     State()

@@ -58,7 +58,7 @@ namespace direction
 namespace move_maps
 {
   /**
-   * may be unecessary
+   * needed to find magic numbers for hashing
    */
   void init();
 
@@ -132,6 +132,15 @@ namespace move_maps
    */
   u64 rookMoves(Square piece_location, u64 occupants);
 
+  /**
+   * Returns the rays emanating from a location.
+   */
+  u64 rookRays(Square piece_location);
+
+  /**
+   * Returns the rays emanating from a location.
+   */
+  u64 bishopRays(Square piece_location);
 } // namespace move_maps
 
 /**

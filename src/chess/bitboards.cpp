@@ -180,11 +180,6 @@ bool move_maps::isStartingRank(Square piece_location, Color color)
   return (color == Black && squareToRow(piece_location) == 6) || (color == White && squareToRow(piece_location) == 1);
 }
 
-u64 move_maps::pawnCaptures(Square piece_location, Color color, u64 occupants)
-{
-  return PAWN_CAPTURE_CACHE[color][piece_location] | occupants;
-}
-
 u64 move_maps::pawnCaptures(Square piece_location, Color color)
 {
   return PAWN_CAPTURE_CACHE[color][piece_location];
@@ -200,14 +195,14 @@ u64 move_maps::pawnMoves(Square piece_location, Color color)
   return PAWN_MOVE_CACHE[color][piece_location];
 }
 
-u64 move_maps::knightMoves(Square piece_location, u64 occupants)
+u64 move_maps::knightMoves(Square piece_location)
 {
-  return KNIGHT_MOVE_CACHE[piece_location] | occupants;
+  return KNIGHT_MOVE_CACHE[piece_location];
 }
 
-u64 move_maps::kingMoves(Square piece_location, u64 occupants)
+u64 move_maps::kingMoves(Square piece_location)
 {
-  return KING_MOVE_CACHE[piece_location] | occupants;
+  return KING_MOVE_CACHE[piece_location];
 }
 
 u64 move_maps::bishopMoves(Square piece_location, u64 occupants)

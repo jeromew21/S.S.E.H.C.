@@ -33,7 +33,9 @@ void init_bits()
       {
         if ((bits >> k) & 1)
         {
-          bitscan_cache[bits][offset][index++] = ((u64) 1) << (offset*8 + k);
+          u64 value = ((u64) 1) << (offset*8 + k);
+          assert (value != 0);
+          bitscan_cache[bits][offset][index++] = value;
         }
       }
     }
@@ -108,4 +110,13 @@ void bitscanAll(u64 x, u64List &out_arr)
       out_arr.Append(cached[i]);
     }
   }
+
+  // old implementation should work
+  // out_arr.Clear();
+  // while (x) {
+  //   int k = bitscanForward(x);
+  //   u64 bs = (u64) 1 << k;
+  //   out_arr.Append(bs);
+  //   x &= ~bs;
+  // }
 }

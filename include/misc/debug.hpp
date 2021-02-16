@@ -1,6 +1,7 @@
 #ifndef DEBUG_HPP
 #define DEBUG_HPP
 
+#include <iostream>
 #include "misc/definitions.hpp"
 
 /**
@@ -14,5 +15,10 @@ void print_(const std::string &text);
  * Prints a 64 bit bitboard to stdout, in chessboard order.
  */
 void dump64(u64 x);
+
+/**
+ * Prints a 32 bit int to stdout, in order.
+ */
+void dump32(int x);
 
 #endif

@@ -2,6 +2,7 @@
 #define CMOVE_HPP
 
 #include "misc/bits.hpp"
+#include "misc/debug.hpp"
 
 // not an enum because type casting is scary
 // this serves the same purpose as one
@@ -64,6 +65,14 @@ public:
 
   CMove(Square src_, Square dest_, int type_code_)
   {
+    if (!isValidSquare(src_)) {
+      dump32(src_);
+    }
+    if (!isValidSquare(dest_)) {
+      dump32(dest_);
+    }
+    assert(isValidSquare(src_));
+    assert(isValidSquare(dest_));
     data_ = (src_ << 10) | (dest_ << 4) | (type_code_ & 15);
   }
 

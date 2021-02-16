@@ -79,11 +79,6 @@ namespace move_maps
   bool isStartingRank(Square piece_location, Color color);
 
   /**
-   * Returns a bitboard of pawn captures at given location and occupancy map.
-   */
-  u64 pawnCaptures(Square piece_location, Color color, u64 occupants);
-
-  /**
    * Returns a bitboard of pawn captures at given location.
    */
   u64 pawnCaptures(Square piece_location, Color color);
@@ -105,14 +100,14 @@ namespace move_maps
   // jumping pieces
 
   /**
-   * Returns a bitboard of knight moves at given location and occupancy map.
+   * Returns a bitboard of knight moves at given location.
    */
-  u64 knightMoves(Square piece_location, u64 occupants);
+  u64 knightMoves(Square piece_location);
 
   /**
-   * Returns a bitboard of king moves at given location and occupancy map.
+   * Returns a bitboard of king moves at given location.
    */
-  u64 kingMoves(Square piece_location, u64 occupants);
+  u64 kingMoves(Square piece_location);
 
   // sliding pieces
 
@@ -125,11 +120,15 @@ namespace move_maps
 
   /**
    * Returns a bitboard of bishop moves at given location and occupancy map.
+   * 
+   * Uses magic bitboards.
    */
   u64 bishopMoves(Square piece_location, u64 occupants);
 
   /**
    * Returns a bitboard of rook moves at given location and occupancy map.
+   * 
+   * Uses magic bitboards.
    */
   u64 rookMoves(Square piece_location, u64 occupants);
 

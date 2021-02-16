@@ -1,6 +1,8 @@
 #ifndef MOVELIST_HPP
 #define MOVELIST_HPP
 
+#include "misc/debug.hpp"
+
 /**
  * List of moves, stored on stack with limited size.
  * 

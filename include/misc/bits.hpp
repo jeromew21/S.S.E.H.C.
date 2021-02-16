@@ -111,11 +111,22 @@ inline int bitscanForward(u64 x) { return __builtin_ffsll(x) - 1; }
  */
 inline int bitscanReverse(u64 x) { return 63 - __builtin_clzll(x); }
 
+inline bool isValidSquare(Square s) { return s >= 0 && s < 64; }
+
 // One-hot <=> int
 // Needs to be converted to 64 bit if shifting
 // 32 is too small and overflows.
-inline u64 u64FromSquare(Square s) { return ((u64)1) << s; }
-inline Square u64ToSquare(u64 x) { return bitscanForward(x); }
+inline u64 u64FromSquare(Square s)
+{
+  assert(isValidSquare(s));
+  return ((u64)1) << s;
+}
+
+inline Square u64ToSquare(u64 x)
+{
+  assert(x != 0);
+  return bitscanForward(x);
+}
 
 inline Row u64ToRow(u64 x) { return bitscanForward(x) / 8; }
 inline Col u64ToCol(u64 x) { return bitscanForward(x) % 8; }

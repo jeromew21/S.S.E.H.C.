@@ -3,7 +3,7 @@
 
 void print_(const std::string &text)
 {
-  std::cout << text << std::endl;
+  std::cout << "---" << text << "---" << std::endl;
 }
 
 void dump64(u64 x)
@@ -24,4 +24,22 @@ void dump64(u64 x)
     }
     std::cout << "\n";
   }
+  std::cout << std::endl;
+}
+
+void dump32(int x)
+{
+  unsigned arr[32];
+  int i(0);
+  while (i < 32)
+  {
+    arr[i] = x & 1;
+    x = x >> 1;
+    i++;
+  }
+  for (int i = 31; i >= 0; i--)
+  {
+    std::cout << arr[i];
+  }
+  std::cout << std::endl;
 }

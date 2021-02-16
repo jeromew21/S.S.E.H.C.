@@ -29,13 +29,10 @@ int main()
   verbose_info("initializing engine");
   init();
 
-  Board board;
+  Board chessboard;
+  chessboard.Dump();
 
-  u64List out_arr;
-
-  bitscanAll(board.occupancy(), out_arr);
-
-  dump64(0x810204080);
+  dump64(move_maps::knightMoves(squareFromName("b1")));
 
 
   return 0;

@@ -77,6 +77,8 @@ void Board::LoadPosition(PieceType piece_list[64], Color turn_to_move, int ep_sq
 
   SetEpSquare_(ep_square);
   // SetCastlingRights_(castling_rights)
+
+  GeneratePseudoLegal_();
 }
 
 PieceType Board::piece_at(u64 location) const {

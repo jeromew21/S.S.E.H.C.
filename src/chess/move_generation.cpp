@@ -1,92 +1,5 @@
 #include "game/chessboard.hpp"
 
-void Board::GeneratePseudoLegal_()
-{
-  assert(!_maps_generated);
-
-  // generate attack-defend sets
-  for (int i = 0; i < 64; i++)
-  {
-    attack_map_[i] = 0;
-    defend_map_[i] = 0;
-  }
-  u64 occ = occupancy();
-
-  // for each piece: drop in to squares attacked
-  u64List arr;
-
-  bitscanAll(bitboard_[piece::white::pawn], arr);
-  for (int i = 0; i < arr.len(); i++)
-  {
-    u64 pos = arr[i]; // position of piece
-    Square sq = u64ToSquare(sq);
-    u64 attacks = move_maps::pawnCaptures(sq, White, occ);
-    attack_map_[sq] |= attacks;
-  }
-
-  bitscanAll(bitboard_[piece::black::pawn], arr);
-  for (int i = 0; i < arr.len(); i++)
-  {
-    u64 pos = arr[i]; // position of piece
-    Square sq = u64ToSquare(sq);
-    u64 attacks = move_maps::pawnCaptures(sq, Black, occ);
-    attack_map_[sq] |= attacks;
-  }
-
-  bitscanAll(bitboard_[piece::white::knight] | bitboard_[piece::black::knight], arr);
-  for (int i = 0; i < arr.len(); i++)
-  {
-    u64 pos = arr[i]; // position of piece
-    Square sq = u64ToSquare(sq);
-    u64 attacks = move_maps::knightMoves(sq, occ);
-    attack_map_[sq] |= attacks;
-  }
-
-  bitscanAll(bitboard_[piece::white::king] | bitboard_[piece::black::king], arr);
-  for (int i = 0; i < arr.len(); i++)
-  {
-    u64 pos = arr[i]; // position of piece
-    Square sq = u64ToSquare(sq);
-    u64 attacks = move_maps::kingMoves(sq, occ);
-    attack_map_[sq] |= attacks;
-  }
-
-  bitscanAll(bitboard_[piece::white::bishop] | bitboard_[piece::black::bishop] | bitboard_[piece::white::queen] | bitboard_[piece::black::queen], arr);
-  for (int i = 0; i < arr.len(); i++)
-  {
-    u64 pos = arr[i]; // position of piece
-    Square sq = u64ToSquare(sq);
-    u64 attacks = move_maps::bishopMoves(sq, occ);
-    attack_map_[sq] |= attacks;
-  }
-
-  bitscanAll(bitboard_[piece::white::rook] | bitboard_[piece::black::rook] | bitboard_[piece::white::queen] | bitboard_[piece::black::queen], arr);
-  for (int i = 0; i < arr.len(); i++)
-  {
-    u64 pos = arr[i]; // position of piece
-    Square sq = u64ToSquare(sq);
-    u64 attacks = move_maps::rookMoves(sq, occ);
-    attack_map_[sq] |= attacks;
-  }
-
-  // fill defend map
-  for (Square sq = 0; sq < 64; sq++)
-  {
-    u64 attacker_square = u64FromSquare(sq);
-    u64 attacked = attack_map_[sq];
-
-    bitscanAll(attacked, arr);
-    for (int k = 0; k < arr.len(); k++)
-    {
-      u64 defender_square = arr[k];
-      Square defender_index = u64ToSquare(defender_square);
-      defend_map_[defender_index] |= attacker_square;
-    }
-  }
-
-  _maps_generated = true;
-}
-
 MoveList<256> Board::produce_uncheck_moves_()
 {
   assert(_maps_generated);
@@ -102,7 +15,7 @@ MoveList<256> Board::legal_moves()
   {
     return produce_uncheck_moves_();
   }
-  MoveList<256> capture_moves = Board::capture_moves_();
+  MoveList<256> capture_moves;// = Board::capture_moves_();
   MoveList<256> mv_list;
   u64List src_arr;
   u64List dest_arr;
@@ -117,10 +30,12 @@ MoveList<256> Board::legal_moves()
   // find quiet moves
   for (PieceType piece_ = curr_turn; piece_ < 12; piece_ += 2)
   {
+    print_(std::to_string(piece_));
     bitscanAll(bitboard_[piece_], src_arr);
     for (int i = 0; i < src_arr.len(); i++)
     {
       Square src = u64ToSquare(src_arr[i]);
+
       u64 quiet_destinations(0); // empty squares
       if (piece::is_pawn(piece_))
       {
@@ -128,18 +43,22 @@ MoveList<256> Board::legal_moves()
         quiet_destinations = (~occ) & move_maps::pawnMoves(src, curr_turn);
         if (move_maps::isStartingRank(src, curr_turn))
         {
-          quiet_destinations |= (~occ) & move_maps::pawnDoubleMoves(src, curr_turn);
+          // possible only if the single move is valid;
+          if (quiet_destinations) 
+            quiet_destinations |= (~occ) & move_maps::pawnDoubleMoves(src, curr_turn);
         }
       }
       else
       {
-        // non-pawns also go where they can capture
+        // non-pawns also go where they can attack
         quiet_destinations = (~occ) & attack_map_[src];
       }
+      dump64(attack_map_[src]);
+
       bitscanAll(quiet_destinations, dest_arr);
       for (int k = 0; k < dest_arr.len(); k++)
       {
-        Square dest = u64ToSquare(dest_arr[i]);
+        Square dest = u64ToSquare(dest_arr[k]); //all zeroes for some reason...
 
         if (piece::is_pawn(piece_))
         {
@@ -210,7 +129,7 @@ MoveList<256> Board::capture_moves_()
       bitscanAll(captures, dest_arr);
       for (int k = 0; k < dest_arr.len(); k++)
       {
-        Square dest = u64ToSquare(dest_arr[i]);
+        Square dest = u64ToSquare(dest_arr[k]);
         if (piece::is_pawn(piece_) && move_maps::isPromotingRank(dest, curr_turn)) // if pawn and promotion
         {
           // pawn promotion w/ capture
@@ -252,6 +171,7 @@ bool Board::verify_move_safety_(CMove mv)
 
   Color curr_turn = turn();
   Color enemy_turn = oppositeColor(curr_turn);
+
   u64 src = mv.src();
   u64 dest = mv.dest();
 
@@ -382,4 +302,85 @@ bool Board::is_checking_move(CMove mv)
   {
   }
   return false;
+}
+
+void Board::GeneratePseudoLegal_()
+{
+  assert(!_maps_generated);
+
+  // generate attack-defend sets
+  for (int i = 0; i < 64; i++)
+  {
+    attack_map_[i] = 0;
+    defend_map_[i] = 0;
+  }
+  u64 occ = occupancy();
+
+  // for each piece: drop in to squares attacked
+  u64List arr;
+
+  bitscanAll(bitboard_[piece::white::pawn], arr);
+  for (int i = 0; i < arr.len(); i++)
+  {
+    Square sq = u64ToSquare(arr[i]);
+    u64 attacks = move_maps::pawnCaptures(sq, White);
+    attack_map_[sq] |= attacks;
+  }
+
+  bitscanAll(bitboard_[piece::black::pawn], arr);
+  for (int i = 0; i < arr.len(); i++)
+  {
+    Square sq = u64ToSquare(arr[i]);
+    u64 attacks = move_maps::pawnCaptures(sq, Black);
+    attack_map_[sq] |= attacks;
+  }
+
+  bitscanAll(bitboard_[piece::white::knight] | bitboard_[piece::black::knight], arr);
+  for (int i = 0; i < arr.len(); i++)
+  {
+    Square sq = u64ToSquare(arr[i]);
+    u64 attacks = move_maps::knightMoves(sq);
+    attack_map_[sq] |= attacks;
+  }
+
+  bitscanAll(bitboard_[piece::white::king] | bitboard_[piece::black::king], arr);
+  for (int i = 0; i < arr.len(); i++)
+  {
+    Square sq = u64ToSquare(arr[i]);
+    u64 attacks = move_maps::kingMoves(sq);
+    attack_map_[sq] |= attacks;
+  }
+
+  bitscanAll(bitboard_[piece::white::bishop] | bitboard_[piece::black::bishop] | bitboard_[piece::white::queen] | bitboard_[piece::black::queen], arr);
+  for (int i = 0; i < arr.len(); i++)
+  {
+    Square sq = u64ToSquare(arr[i]);
+    u64 attacks = move_maps::bishopMoves(sq, occ);
+    attack_map_[sq] |= attacks;
+  }
+
+  bitscanAll(bitboard_[piece::white::rook] | bitboard_[piece::black::rook] | bitboard_[piece::white::queen] | bitboard_[piece::black::queen], arr);
+  for (int i = 0; i < arr.len(); i++)
+  {
+    Square sq = u64ToSquare(arr[i]);
+    u64 attacks = move_maps::rookMoves(sq, occ);
+    attack_map_[sq] |= attacks;
+  }
+
+  // fill defend map
+  for (Square sq = 0; sq < 64; sq++)
+  {
+    u64 attacker_square = u64FromSquare(sq);
+    u64 attacked = attack_map_[sq];
+
+    bitscanAll(attacked, arr);
+    for (int k = 0; k < arr.len(); k++)
+    {
+      u64 defender_square = arr[k];
+      Square defender_index = u64ToSquare(defender_square);
+      defend_map_[defender_index] |= attacker_square;
+    }
+  }
+
+  _maps_generated = true;
 }

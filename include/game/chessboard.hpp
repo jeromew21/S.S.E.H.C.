@@ -65,58 +65,49 @@ namespace move_maps
   // pawns
 
   /**
-   * Rank 1 for Black
+   * Rank 0 for Black
    * 
-   * Rank 2 for White
+   * Rank 7 for White
    */
   bool isPromotingRank(Square piece_location, Color color);
 
-  // /**
-  //  * Returns a bitboard of pawn captures at given location and occupancy map.
-  //  */
-  // u64 pawnCaptures(u64 piece_location, Color color, u64 occupants);
+  /**
+   * Rank 6 for Black
+   * 
+   * Rank 1 for White
+   */
+  bool isStartingRank(Square piece_location, Color color);
 
   /**
    * Returns a bitboard of pawn captures at given location and occupancy map.
    */
   u64 pawnCaptures(Square piece_location, Color color, u64 occupants);
 
-  // /**
-  //  * Returns a bitboard of pawn forward moves at given location and occupancy map.
-  //  */
-  // u64 pawnMoves(u64 piece_location, Color color, u64 occupants);
+  /**
+   * Returns a bitboard of pawn captures at given location.
+   */
+  u64 pawnCaptures(Square piece_location, Color color);
 
   /**
    * Returns a bitboard of pawn forward moves at given location and occupancy map.
+   * 
+   * Always a quiet move.
    */
-  u64 pawnMoves(Square piece_location, Color color, u64 occupants);
-
-  // /**
-  //  * Returns a bitboard of pawn double moves at given location and occupancy map.
-  //  */
-  // u64 pawnDoubleMoves(u64 piece_location, Color color, u64 occupants);
+  u64 pawnMoves(Square piece_location, Color color);
 
   /**
    * Returns a bitboard of pawn double moves at given location and occupancy map.
+   * 
+   * Always a quiet move.
    */
-  u64 pawnDoubleMoves(Square piece_location, Color color, u64 occupants);
+  u64 pawnDoubleMoves(Square piece_location, Color color);
 
   // jumping pieces
-
-  // /**
-  //  * Returns a bitboard of knight moves at given location and occupancy map.
-  //  */
-  // u64 knightMoves(u64 piece_location, u64 occupants);
 
   /**
    * Returns a bitboard of knight moves at given location and occupancy map.
    */
   u64 knightMoves(Square piece_location, u64 occupants);
-
-  // /**
-  //  * Returns a bitboard of king moves at given location and occupancy map.
-  //  */
-  // u64 kingMoves(u64 piece_location, u64 occupants);
 
   /**
    * Returns a bitboard of king moves at given location and occupancy map.
@@ -132,20 +123,10 @@ namespace move_maps
   // u64 rookRay(u64 piece_location, int direction, u64 occupants);
   // u64 rookRay(Square piece_location, int direction, u64 occupants);
 
-  // /**
-  //  * Returns a bitboard of bishop moves at given location and occupancy map.
-  //  */
-  // u64 bishopMoves(u64 piece_location, u64 occupants);
-
   /**
    * Returns a bitboard of bishop moves at given location and occupancy map.
    */
   u64 bishopMoves(Square piece_location, u64 occupants);
-
-  // /**
-  //  * Returns a bitboard of rook moves at given location and occupancy map.
-  //  */
-  // u64 rookMoves(u64 piece_location, u64 occupants);
 
   /**
    * Returns a bitboard of rook moves at given location and occupancy map.
@@ -216,6 +197,21 @@ private:
   MoveList<256> capture_moves_();
 
   /** 
+   * assuming not in check: verify that a move doesn't cause check
+   * 
+   * related to but not exactly the same as is_checking_move()
+   */
+  bool verify_move_safety_(CMove mv);
+
+  /** 
+   * Returns the piece at a particular location.
+   * 
+   * Try to use this as seldom as possible, since with the bitboard strategy we try to think
+   * in terms of pieces, not locations.
+   */
+  PieceType piece_at(u64 location) const;
+
+  /** 
    * Add a piece at a location.
    */
   void AddPiece_(PieceType piece, u64 location);
@@ -275,7 +271,7 @@ public:
    * 
    * Starts off as white by default.
    */
-  Color get_turn() const;
+  Color turn() const;
 
   /**
    * Get the current hash.

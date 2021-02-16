@@ -5,7 +5,7 @@ var classBoard =
     [ "Dump", "classBoard.html#a5611814a2ac7174da53c945ca646cb0d", null ],
     [ "fen", "classBoard.html#a0246e50fbf0abc3dcc19aa4fd8100e4a", null ],
     [ "get_hash", "classBoard.html#a91431c17106d6e4282c1aeb79a915627", null ],
-    [ "get_turn", "classBoard.html#ab3b32fa6bef77fc7c887fe79dcdd9c8c", null ],
+    [ "turn", "classBoard.html#ab3b32fa6bef77fc7c887fe79dcdd9c8c", null ],
     [ "is_check", "classBoard.html#abd995d228ec8353b9c0a784b4c45cd79", null ],
     [ "is_checking_move", "classBoard.html#af38d727e983b2d5d9d9da5fd5b3d89a7", null ],
     [ "last_move", "classBoard.html#a081cf3448daf94d7282bc06cb84bae36", null ],

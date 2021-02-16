@@ -25,7 +25,14 @@ namespace piece
   }                                        // namespace black
   const PieceType EmptyPiece = -1;
 
-  inline bool is_pawn(PieceType piece) { return piece <= 1; }
+  inline bool is_pawn(PieceType piece) { return piece >> 1 == 0; }
+  inline bool is_king(PieceType piece) { return piece >> 1 == 5; }
+  inline bool is_knight(PieceType piece) { return piece >> 1 == 1; }
+  inline bool is_bishop(PieceType piece) { return piece >> 1 == 2; }
+  inline bool is_rook(PieceType piece) { return piece >> 1 == 3; }
+  inline bool is_queen(PieceType piece) { return piece >> 1 == 4; }
+
+  inline PieceType get_king(Color color) { return white::king + color; }
 } // namespace piece
 
 int getMaterialValue(PieceType piece);

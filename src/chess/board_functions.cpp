@@ -79,6 +79,14 @@ void Board::LoadPosition(PieceType piece_list[64], Color turn_to_move, int ep_sq
   // SetCastlingRights_(castling_rights)
 }
 
+PieceType Board::piece_at(u64 location) const {
+  for (PieceType i = 0; i < 12; i++) {
+    if (location & bitboard_[i])
+      return i;
+  }
+  assert(false);
+}
+
 void Board::Reset()
 {
   LoadPosition("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");

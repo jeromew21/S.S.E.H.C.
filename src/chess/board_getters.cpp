@@ -9,7 +9,7 @@ board::Status Board::status()
   return board::Status::NotCalculated;
 }
 
-Color Board::get_turn() const {
+Color Board::turn() const {
   return state_.turn;
 }
 

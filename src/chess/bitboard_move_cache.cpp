@@ -172,7 +172,12 @@ void move_maps::init()
 
 bool move_maps::isPromotingRank(Square piece_location, Color color)
 {
-  return (color == Black && squareToRow(piece_location) == 1) || (color == White && squareToRow(piece_location) == 6);
+  return (color == Black && squareToRow(piece_location) == 0) || (color == White && squareToRow(piece_location) == 7);
+}
+
+bool move_maps::isStartingRank(Square piece_location, Color color)
+{
+  return (color == Black && squareToRow(piece_location) == 6) || (color == White && squareToRow(piece_location) == 1);
 }
 
 u64 move_maps::pawnCaptures(Square piece_location, Color color, u64 occupants)
@@ -180,67 +185,37 @@ u64 move_maps::pawnCaptures(Square piece_location, Color color, u64 occupants)
   return PAWN_CAPTURE_CACHE[color][piece_location] | occupants;
 }
 
-// u64 move_maps::pawnCaptures(u64 piece_location, Color color, u64 occupants)
-// {
-//   return move_maps::pawnCaptures(u64ToSquare(piece_location), color, occupants);
-// }
-
-u64 move_maps::pawnDoubleMoves(Square piece_location, Color color, u64 occupants)
+u64 move_maps::pawnCaptures(Square piece_location, Color color)
 {
-  return PAWN_DOUBLE_CACHE[color][piece_location] & ~occupants;
+  return PAWN_CAPTURE_CACHE[color][piece_location];
 }
 
-// u64 move_maps::pawnDoubleMoves(u64 piece_location, Color color, u64 occupants)
-// {
-//   return move_maps::pawnCaptures(u64ToSquare(piece_location), color, occupants);
-// }
-
-u64 move_maps::pawnMoves(Square piece_location, Color color, u64 occupants)
+u64 move_maps::pawnDoubleMoves(Square piece_location, Color color)
 {
-  return PAWN_MOVE_CACHE[color][piece_location] & ~occupants;
+  return PAWN_DOUBLE_CACHE[color][piece_location];
 }
 
-// u64 move_maps::pawnMoves(u64 piece_location, Color color, u64 occupants)
-// {
-//   return move_maps::pawnCaptures(u64ToSquare(piece_location), color, occupants);
-// }
+u64 move_maps::pawnMoves(Square piece_location, Color color)
+{
+  return PAWN_MOVE_CACHE[color][piece_location];
+}
 
 u64 move_maps::knightMoves(Square piece_location, u64 occupants)
 {
   return KNIGHT_MOVE_CACHE[piece_location] | occupants;
 }
 
-// u64 move_maps::knightMoves(u64 piece_location, u64 occupants)
-// {
-//   return move_maps::knightMoves(u64ToSquare(piece_location), occupants);
-// }
-
 u64 move_maps::kingMoves(Square piece_location, u64 occupants)
 {
   return KING_MOVE_CACHE[piece_location] | occupants;
 }
-
-// u64 move_maps::kingMoves(u64 piece_location, u64 occupants)
-// {
-//   return move_maps::knightMoves(u64ToSquare(piece_location), occupants);
-// }
 
 u64 move_maps::bishopMoves(Square piece_location, u64 occupants)
 {
   return 0;
 }
 
-// u64 move_maps::bishopMoves(u64 piece_location, u64 occupants)
-// {
-//   return move_maps::bishopMoves(u64ToSquare(piece_location), occupants);
-// }
-
 u64 move_maps::rookMoves(Square piece_location, u64 occupants)
 {
   return 0;
 }
-
-// u64 move_maps::rookMoves(u64 piece_location, u64 occupants)
-// {
-//   return move_maps::rookMoves(u64ToSquare(piece_location), occupants);
-// }

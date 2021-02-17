@@ -36,7 +36,7 @@ int main()
 
   testPerft();
 
-  dump64(move_maps::rookRays(squareFromName("e5")));
+  dump64(move_maps::rookMoves(squareFromName("e5"), 0));
 
 
   return 0;

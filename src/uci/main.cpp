@@ -34,10 +34,8 @@ int main()
   verbose_info("initializing engine");
   init();
 
-  testPerft();
-
-  dump64(move_maps::rookMoves(squareFromName("e5"), 0));
-
+  // testPerft();
+  
 
   return 0;
 }

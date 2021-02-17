@@ -111,14 +111,14 @@ const u64 BISHOP_ATTACK_CACHE[64] = {0x8040201008040200, 0x80402010080500, 0x804
 
 //need to fix rook edge masks
 const u64 ROOK_MASKED_ATTACKS[64] = {0x101010101017e, 0x202020202027c, 0x404040404047a, 0x8080808080876, 0x1010101010106e, 0x2020202020205e, 0x4040404040403e,
-                                     0x8080808080807e, 0x1010101017e00, 0x2020202027c00, 0x4040404047a00, 0x8080808087600, 0x10101010106e00, 0x20202020205e00, 
-                                     0x40404040403e00, 0x80808080807e00, 0x10101017e0100, 0x20202027c0200, 0x40404047a0400, 0x8080808760800, 0x101010106e1000, 
-                                     0x202020205e2000, 0x404040403e4000, 0x808080807e8000, 0x101017e010100, 0x202027c020200, 0x404047a040400, 0x8080876080800, 
-                                     0x1010106e101000, 0x2020205e202000, 0x4040403e404000, 0x8080807e808000, 0x1017e01010100, 0x2027c02020200, 0x4047a04040400, 
-                                     0x8087608080800, 0x10106e10101000, 0x20205e20202000, 0x40403e40404000, 0x80807e80808000, 0x17e0101010100, 0x27c0202020200, 
-                                     0x47a0404040400, 0x8760808080800, 0x106e1010101000, 0x205e2020202000, 0x403e4040404000, 0x807e8080808000, 0x7e010101010100, 
-                                     0x7c020202020200, 0x7a040404040400, 0x76080808080800, 0x6e101010101000, 0x5e202020202000, 0x3e404040404000, 0x7e808080808000, 
-                                     0x7e01010101010100, 0x7c02020202020200, 0x7a04040404040400, 0x7608080808080800, 0x6e10101010101000, 0x5e20202020202000, 
+                                     0x8080808080807e, 0x1010101017e00, 0x2020202027c00, 0x4040404047a00, 0x8080808087600, 0x10101010106e00, 0x20202020205e00,
+                                     0x40404040403e00, 0x80808080807e00, 0x10101017e0100, 0x20202027c0200, 0x40404047a0400, 0x8080808760800, 0x101010106e1000,
+                                     0x202020205e2000, 0x404040403e4000, 0x808080807e8000, 0x101017e010100, 0x202027c020200, 0x404047a040400, 0x8080876080800,
+                                     0x1010106e101000, 0x2020205e202000, 0x4040403e404000, 0x8080807e808000, 0x1017e01010100, 0x2027c02020200, 0x4047a04040400,
+                                     0x8087608080800, 0x10106e10101000, 0x20205e20202000, 0x40403e40404000, 0x80807e80808000, 0x17e0101010100, 0x27c0202020200,
+                                     0x47a0404040400, 0x8760808080800, 0x106e1010101000, 0x205e2020202000, 0x403e4040404000, 0x807e8080808000, 0x7e010101010100,
+                                     0x7c020202020200, 0x7a040404040400, 0x76080808080800, 0x6e101010101000, 0x5e202020202000, 0x3e404040404000, 0x7e808080808000,
+                                     0x7e01010101010100, 0x7c02020202020200, 0x7a04040404040400, 0x7608080808080800, 0x6e10101010101000, 0x5e20202020202000,
                                      0x3e40404040404000, 0x7e80808080808000};
 
 const u64 BISHOP_MASKED_ATTACKS[64] = {0x40201008040200, 0x402010080400, 0x4020100a00, 0x40221400, 0x2442800, 0x204085000, 0x20408102000,
@@ -134,15 +134,62 @@ const u64 BISHOP_MASKED_ATTACKS[64] = {0x40201008040200, 0x402010080400, 0x40201
 /**
  * the list of bishop magic numbers
  */
-u64 BISHOP_MAGIC_NUMBERS[64] = {0x100420000431024,   0x280800101073404,   0x42000a00840802,   0xca800c0410c2,   0x81004290941c20,   0x400200450020250,   0x444a019204022084,   0x88610802202109a,   0x11210a0800086008,   0x400a08c08802801,   0x1301a0500111c808,   0x1280100480180404,   0x720009020028445,   0x91880a9000010a01,   0x31200940150802b2,   0x5119080c20000602,   0x242400a002448023,   0x4819006001200008,   0x222c10400020090,   0x302008420409004,   0x504200070009045,   0x210071240c02046,   0x1182219000022611,   0x400c50000005801,   0x4004010000113100,   0x2008121604819400,   0xc4a4010000290101,   0x404a000888004802,   0x8820c004105010,   0x28280100908300,   0x4c013189c0320a80,   0x42008080042080,   0x90803000c080840,   0x2180001028220,   0x1084002a040036,   0x212009200401,   0x128110040c84a84,   0x81488020022802,   0x8c0014100181,   0x2222013020082,   0xa00100002382c03,   0x1000280001005c02,   0x84801010000114c,   0x480410048000084,   0x21204420080020a,   0x2020010000424a10,   0x240041021d500141,   0x420844000280214,   0x29084a280042108,   0x84102a8080a20a49,   0x104204908010212,   0x40a20280081860c1,   0x3044000200121004,   0x1001008807081122,   0x50066c000210811,   0xe3001240f8a106,   0x940c0204030020d4,   0x619204000210826a,   0x2010438002b00a2,   0x884042004005802,   0xa90240000006404,   0x500d082244010008,   0x28190d00040014e0,   0x825201600c082444};
-int BISHOP_MAGIC_SHIFTS[64];
-u64 BISHOP_MAGIC_TABLE[64][4096];
+u64 BISHOP_MAGIC_NUMBERS[64] = {0x89a1121896040240, 0x2004844802002010, 0x2068080051921000, 0x62880a0220200808,
+                                0x4042004000000, 0x100822020200011, 0xc00444222012000a, 0x28808801216001, 0x400492088408100,
+                                0x201c401040c0084, 0x840800910a0010, 0x82080240060, 0x2000840504006000, 0x30010c4108405004, 0x1008005410080802, 0x8144042209100900, 0x208081020014400,
+                                0x4800201208ca00, 0xf18140408012008, 0x1004002802102001, 0x841000820080811, 0x40200200a42008, 0x800054042000, 0x88010400410c9000, 0x520040470104290,
+                                0x1004040051500081, 0x2002081833080021, 0x400c00c010142, 0x941408200c002000, 0x658810000806011, 0x188071040440a00, 0x4800404002011c00, 0x104442040404200,
+                                0x511080202091021, 0x4022401120400, 0x80c0040400080120, 0x8040010040820802, 0x480810700020090, 0x102008e00040242, 0x809005202050100, 0x8002024220104080,
+                                0x431008804142000, 0x19001802081400, 0x200014208040080, 0x3308082008200100, 0x41010500040c020, 0x4012020c04210308, 0x208220a202004080, 0x111040120082000,
+                                0x6803040141280a00, 0x2101004202410000, 0x8200000041108022, 0x21082088000, 0x2410204010040, 0x40100400809000, 0x822088220820214, 0x40808090012004,
+                                0x910224040218c9, 0x402814422015008, 0x90014004842410, 0x1000042304105, 0x10008830412a00, 0x2520081090008908, 0x40102000a0a60140};
+
+/**
+ * the amount of data in bits we need to store for each square
+ */
+int BISHOP_MAGIC_SHIFTS[64] = {
+    6, 5, 5, 5, 5, 5, 5, 6,
+    5, 5, 5, 5, 5, 5, 5, 5,
+    5, 5, 7, 7, 7, 7, 5, 5,
+    5, 5, 7, 9, 9, 7, 5, 5,
+    5, 5, 7, 9, 9, 7, 5, 5,
+    5, 5, 7, 7, 7, 7, 5, 5,
+    5, 5, 5, 5, 5, 5, 5, 5,
+    6, 5, 5, 5, 5, 5, 5, 6};
+
+/**
+ * 512 because in theory we at most need 2^9 per square
+ */
+u64 BISHOP_MAGIC_TABLE[64][512];
 
 /**
  * the list of rook magic numbers
  */
-u64 ROOK_MAGIC_NUMBERS[64] = {0x2080020500400f0,   0x28444000400010,   0x20000a1004100014,   0x20010c090202006,   0x8408008200810004,   0x1746000808002,   0x2200098000808201,   0x12c0002080200041,   0x104000208e480804,   0x8084014008281008,   0x4200810910500410,   0x100014481c20400c,   0x4014a4040020808,   0x401002001010a4,   0x202000500010001,   0x8112808005810081,   0x40902108802020,   0x42002101008101,   0x459442200810c202,   0x81001103309808,   0x8110000080102,   0x8812806008080404,   0x104020000800101,   0x40a1048000028201,   0x4100ba0000004081,   0x44803a4003400109,   0xa010a00000030443,   0x91021a000100409,   0x4201e8040880a012,   0x22a000440201802,   0x30890a72000204,   0x10411402a0c482,   0x40004841102088,   0x40230000100040,   0x40100010000a0488,   0x1410100200050844,   0x100090808508411,   0x1410040024001142,   0x8840018001214002,   0x410201000098001,   0x8400802120088848,   0x2060080000021004,   0x82101002000d0022,   0x1001101001008241,   0x9040411808040102,   0x600800480009042,   0x1a020000040205,   0x4200404040505199,   0x2020081040080080,   0x40a3002000544108,   0x4501100800148402,   0x81440280100224,   0x88008000000804,   0x8084060000002812,   0x1840201000108312,   0x5080202000000141,   0x1042a180880281,   0x900802900c01040,   0x8205104104120,   0x9004220000440a,   0x8029510200708,   0x8008440100404241,   0x2420001111000bd,   0x4000882304000041};
-int ROOK_MAGIC_SHIFTS[64];
+u64 ROOK_MAGIC_NUMBERS[64] = {0xa8002c000108020, 0x6c00049b0002001, 0x100200010090040, 0x2480041000800801, 0x280028004000800, 0x900410008040022, 0x280020001001080, 0x2880002041000080, 0xa000800080400034,
+                              0x4808020004000, 0x2290802004801000, 0x411000d00100020, 0x402800800040080, 0xb000401004208, 0x2409000100040200, 0x1002100004082, 0x22878001e24000,
+                              0x1090810021004010, 0x801030040200012, 0x500808008001000, 0xa08018014000880, 0x8000808004000200, 0x201008080010200, 0x801020000441091, 0x800080204005,
+                              0x1040200040100048, 0x120200402082, 0xd14880480100080, 0x12040280080080, 0x100040080020080, 0x9020010080800200, 0x813241200148449, 0x491604001800080,
+                              0x100401000402001, 0x4820010021001040, 0x400402202000812, 0x209009005000802, 0x810800601800400, 0x4301083214000150, 0x204026458e001401, 0x40204000808000,
+                              0x8001008040010020, 0x8410820820420010, 0x1003001000090020, 0x804040008008080, 0x12000810020004, 0x1000100200040208, 0x430000a044020001, 0x280009023410300,
+                              0xe0100040002240, 0x200100401700, 0x2244100408008080, 0x8000400801980, 0x2000810040200, 0x8010100228810400, 0x2000009044210200, 0x4080008040102101,
+                              0x40002080411d01, 0x2005524060000901, 0x502001008400422, 0x489a000810200402, 0x1004400080a13, 0x4000011008020084, 0x26002114058042};
+
+/**
+ * the amount of data in bits we need to store for each square
+ */
+int ROOK_MAGIC_SHIFTS[64] = {
+    12, 11, 11, 11, 11, 11, 11, 12,
+    11, 10, 10, 10, 10, 10, 10, 11,
+    11, 10, 10, 10, 10, 10, 10, 11,
+    11, 10, 10, 10, 10, 10, 10, 11,
+    11, 10, 10, 10, 10, 10, 10, 11,
+    11, 10, 10, 10, 10, 10, 10, 11,
+    11, 10, 10, 10, 10, 10, 10, 11,
+    12, 11, 11, 11, 11, 11, 11, 12};
+
+/**
+ * 4096 because we need at most 2^12 per square
+ */
 u64 ROOK_MAGIC_TABLE[64][4096];
 
 const u64 KNIGHT_MOVE_CACHE[64] = {0x20400, 0x50800, 0xa1100, 0x142200, 0x284400, 0x508800, 0xa01000,
@@ -224,21 +271,162 @@ const u64 PAWN_DOUBLE_CACHE[2][64] = {{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
                                        0x200000000, 0x400000000, 0x800000000, 0x1000000000, 0x2000000000,
                                        0x4000000000, 0x8000000000, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}};
 
+/**
+ * Helper function for ground truth method for getting rook moves
+ */
+u64 rookMovesClassical(Square sq, u64 occupants)
+{
+  // given a color rook at index64
+  u64 ray = 0;
+  u64 overlaps = 0;
+  u64 result = 0;
+
+  ray = move_maps::rookRay(sq, direction::rook::n);
+  overlaps = ray & occupants;
+  result |= ray;
+  if (overlaps)
+  {
+    result &= ~move_maps::rookRay(bitscanForward(overlaps), direction::rook::n);
+  }
+
+  ray = move_maps::rookRay(sq, direction::rook::e);
+  overlaps = ray & occupants;
+  result |= ray;
+  if (overlaps)
+  {
+    result &= ~move_maps::rookRay(bitscanForward(overlaps), direction::rook::e);
+  }
+
+  ray = move_maps::rookRay(sq, direction::rook::s);
+  overlaps = ray & occupants;
+  result |= ray;
+  if (overlaps)
+  {
+    result &= ~move_maps::rookRay(bitscanReverse(overlaps), direction::rook::s);
+  }
+
+  ray = move_maps::rookRay(sq, direction::rook::w);
+  overlaps = ray & occupants;
+  result |= ray;
+  if (overlaps)
+  {
+    result &= ~move_maps::rookRay(bitscanReverse(overlaps), direction::rook::w);
+  }
+  return result;
+}
+
+/**
+ * Helper function for ground truth method for getting rook moves
+ */
+u64 bishopMovesClassical(Square sq, u64 occupants)
+{
+  // given a color rook at index64
+  u64 ray = 0;
+  u64 overlaps = 0;
+  u64 result = 0;
+
+  ray = move_maps::bishopRay(sq, direction::bishop::nw);
+  overlaps = ray & occupants;
+  result |= ray;
+  if (overlaps)
+  {
+    result &= ~move_maps::bishopRay(bitscanForward(overlaps), direction::bishop::nw);
+  }
+
+  ray = move_maps::bishopRay(sq, direction::bishop::ne);
+  overlaps = ray & occupants;
+  result |= ray;
+  if (overlaps)
+  {
+    result &= ~move_maps::bishopRay(bitscanForward(overlaps), direction::bishop::ne);
+  }
+
+  ray = move_maps::bishopRay(sq, direction::bishop::se);
+  overlaps = ray & occupants;
+  result |= ray;
+  if (overlaps)
+  {
+    result &= ~move_maps::bishopRay(bitscanReverse(overlaps), direction::bishop::se);
+  }
+
+  ray = move_maps::bishopRay(sq, direction::bishop::sw);
+  overlaps = ray & occupants;
+  result |= ray;
+  if (overlaps)
+  {
+    result &= ~move_maps::bishopRay(bitscanReverse(overlaps), direction::bishop::sw);
+  }
+  return result;
+}
+
+/**
+ * return the i-th permutation of mask with pop_count members
+ * 
+ * original method by Tord Romstad with modifications
+ */
+u64 permute_mask(u64 mask, int index, int pop_count)
+{
+  int i, j;
+  u64 result = 0;
+  for (i = 0; i < pop_count; i++)
+  {
+    j = bitscanForward(mask);
+    mask &= ~(((u64)1) << j);
+
+    if (index & (1 << i))
+      result |= (((u64)1) << j);
+  }
+  return result;
+}
+
 void move_maps::init()
 {
   verbose_info("initializing move cache");
 
+  for (int s = 0; s < 64; s++)
+  {
+    for (int i = 0; i < 4096; i++)
+    {
+      ROOK_MAGIC_TABLE[s][i] = 0;
+    }
+    for (int i = 0; i < 512; i++)
+    {
+      BISHOP_MAGIC_TABLE[s][i] = 0;
+    }
+  }
   // find magics
   // fill each combo with classically generated moves
   for (Square sq = 0; sq < 64; sq++)
   {
-    // get each combo of blockers
-    u64 mask = ROOK_MASKED_ATTACKS[sq];
-    print_(std::to_string(sq));
-    dump64(mask);
-    dump64(mask*ROOK_MAGIC_NUMBERS[sq]);
+    // for each possible blocker map
+    u64 attack_mask = ROOK_MASKED_ATTACKS[sq];
+    int n_bits = hadd(attack_mask);
+    // count up to 2^n
+    for (int i = 0; i < (1 << n_bits); i++)
+    {
+      u64 blocking_mask = permute_mask(attack_mask, i, n_bits);
+      u64 hash = (blocking_mask * ROOK_MAGIC_NUMBERS[sq]) >> (64 - ROOK_MAGIC_SHIFTS[sq]);
+      if (ROOK_MAGIC_TABLE[sq][hash] != 0)
+      {
+        assert(1 == 0);
+      }
+      ROOK_MAGIC_TABLE[sq][hash] = rookMovesClassical(sq, blocking_mask);
+    }
+  }
 
+  for (Square sq = 0; sq < 64; sq++)
+  {
+    // for each possible blocker map
+    u64 attack_mask = BISHOP_MASKED_ATTACKS[sq];
+    int n_bits = hadd(attack_mask);
 
+    // count up to 2^n
+    for (int i = 0; i < (1 << n_bits); i++)
+    {
+      u64 blocking_mask = permute_mask(attack_mask, i, n_bits);
+      u64 hash = (blocking_mask * BISHOP_MAGIC_NUMBERS[sq]) >> (64 - BISHOP_MAGIC_SHIFTS[sq]);
+      BISHOP_MAGIC_TABLE[sq][hash] = bishopMovesClassical(sq, blocking_mask);
+    }
   }
 }
 
@@ -277,28 +465,39 @@ u64 move_maps::kingMoves(Square piece_location)
   return KING_MOVE_CACHE[piece_location];
 }
 
+/**
+ * There is a bug with magic bitboards for some reason so for now we will use the naive approach
+ */
 u64 move_maps::bishopMoves(Square piece_location, u64 occupants)
 {
-  // u64 blocking_mask = BISHOP_MASKED_ATTACKS[piece_location] & occupants;
-  // u64 hash = (blocking_mask * BISHOP_MAGIC_NUMBERS[piece_location]) >> BISHOP_MAGIC_SHIFTS[piece_location];
-  // return BISHOP_MAGIC_TABLE[piece_location][hash];
-  return 0;
+  u64 blocking_mask = BISHOP_MASKED_ATTACKS[piece_location] & occupants;
+  u64 hash = (blocking_mask * BISHOP_MAGIC_NUMBERS[piece_location]) >> (64 - BISHOP_MAGIC_SHIFTS[piece_location]);
+  return BISHOP_MAGIC_TABLE[piece_location][hash];
 }
 
 u64 move_maps::rookMoves(Square piece_location, u64 occupants)
 {
-  // u64 blocking_mask = ROOK_MASKED_ATTACKS[piece_location] & occupants;
-  // u64 hash = (blocking_mask * ROOK_MAGIC_NUMBERS[piece_location]) >> ROOK_MAGIC_SHIFTS[piece_location];
-  // return ROOK_MAGIC_TABLE[piece_location][hash];
-  return 0;
+  u64 blocking_mask = ROOK_MASKED_ATTACKS[piece_location] & occupants;
+  u64 hash = (blocking_mask * ROOK_MAGIC_NUMBERS[piece_location]) >> (64 - ROOK_MAGIC_SHIFTS[piece_location]);
+  return ROOK_MAGIC_TABLE[piece_location][hash];
 }
 
-u64 move_maps::bishopRays(Square piece_location)
+u64 move_maps::bishopRay(Square piece_location, int direction)
+{
+  return BISHOP_RAY_CACHE[direction][piece_location];
+}
+
+u64 move_maps::rookRay(Square piece_location, int direction)
+{
+  return ROOKS_RAY_CACHE[direction][piece_location];
+}
+
+u64 move_maps::bishopRay(Square piece_location)
 {
   return BISHOP_ATTACK_CACHE[piece_location];
 }
 
-u64 move_maps::rookRays(Square piece_location)
+u64 move_maps::rookRay(Square piece_location)
 {
   return ROOK_ATTACK_CACHE[piece_location];
 }

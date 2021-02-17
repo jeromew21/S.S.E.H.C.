@@ -28,28 +28,6 @@ namespace zobrist
 } // namespace zobrist
 
 /**
- * Sometimes we care about the specific direction a ray goes 
- * for pin checking, or other things.
- */
-namespace direction
-{
-  namespace rook
-  {
-    const int n = 0;
-    const int e = 1;
-    const int s = 2;
-    const int w = 3;
-  } // namespace rook
-  namespace bishop
-  {
-    const int nw = 0;
-    const int ne = 1;
-    const int se = 2;
-    const int sw = 3;
-  } // namespace bishop
-} // namespace direction
-
-/**
  * In order to genereate pseudo-legal (moves that are legal irregardless of check)
  * we need to first determine the rules of movement for a given piece.
  * 
@@ -110,14 +88,7 @@ namespace move_maps
   u64 kingMoves(Square piece_location);
 
   // sliding pieces
-
-  // magic bitboards make rays deprecated for move generation
-  // u64 bishopRay(u64 piece_location, int direction, u64 occupants);
-  // u64 bishopRay(Square piece_location, int direction, u64 occupants);
-
-  // u64 rookRay(u64 piece_location, int direction, u64 occupants);
-  // u64 rookRay(Square piece_location, int direction, u64 occupants);
-
+ 
   /**
    * Returns a bitboard of bishop moves at given location and occupancy map.
    * 
@@ -131,17 +102,50 @@ namespace move_maps
    * Uses magic bitboards.
    */
   u64 rookMoves(Square piece_location, u64 occupants);
+  
+  /**
+   * Returns the single bishop ray from a particular direction
+   */
+  u64 bishopRay(Square piece_location, int direction);
 
   /**
-   * Returns the rays emanating from a location.
+   * Returns the single rook ray from a particular direction
    */
-  u64 rookRays(Square piece_location);
+  u64 rookRay(Square piece_location, int direction);
+
 
   /**
-   * Returns the rays emanating from a location.
+   * Returns all four rays emanating from a location.
    */
-  u64 bishopRays(Square piece_location);
+  u64 rookRay(Square piece_location);
+
+  /**
+   * Returns all four rays emanating from a location.
+   */
+  u64 bishopRay(Square piece_location);
 } // namespace move_maps
+
+/**
+ * Sometimes we care about the specific direction a ray goes 
+ * for pin checking, or other things.
+ */
+namespace direction
+{
+  namespace rook
+  {
+    const int n = 0;
+    const int e = 1;
+    const int s = 2;
+    const int w = 3;
+  } // namespace rook
+  namespace bishop
+  {
+    const int nw = 0;
+    const int ne = 1;
+    const int se = 2;
+    const int sw = 3;
+  } // namespace bishop
+} // namespace direction
 
 /**
  * This class encapsulates a game of chess and the elements that comprise it as such.

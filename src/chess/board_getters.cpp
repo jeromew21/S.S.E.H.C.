@@ -13,6 +13,11 @@ Color Board::turn() const {
   return state_.turn;
 }
 
+bool Board::is_check() const
+{
+  return state_.is_check;
+}
+
 u64 Board::hash() const {
   return hash_;
 }

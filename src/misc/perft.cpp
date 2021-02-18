@@ -1,4 +1,5 @@
 #include "misc/perft.hpp"
+#include "uci/strings.hpp"
 
 void perft::perft(Board &board, int depth, perft::Counter &counter)
 {
@@ -36,6 +37,9 @@ void perft::perft(Board &board, int depth, perft::Counter &counter)
                 counter.captures += 1;
             }
         }
+        board.Dump();
+        std::cout << moveToUCIAlgebraic(mv);
+
         board.MakeMove(mv);
 
         if (depth == 1)

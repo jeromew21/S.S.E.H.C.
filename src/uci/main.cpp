@@ -12,8 +12,8 @@ void testPerft()
 {
   Board chessboard;
   perft::Counter counter;
-  perft::perft(chessboard, 1, counter);
-  chessboard.Dump();
+  perft::perft(chessboard, 2, counter);
+  counter.Dump();
 }
 
 void verbose_info(const std::string &text)
@@ -35,7 +35,22 @@ int main()
   init();
 
   // testPerft();
-  
+  Board chessboard;
+
+
+  auto lm = chessboard.legal_moves();
+  for (int i = 0; i < lm.size(); i++) {
+    chessboard.MakeMove(lm[i]);
+    auto lm2 = chessboard.legal_moves();
+    for (int k = 0; k < lm2.size(); k++) {
+      chessboard.MakeMove(lm2[i]);
+      chessboard.Dump();
+      chessboard.UnmakeMove();
+    }
+    chessboard.UnmakeMove();
+  }
+
+  // testPerft();
 
   return 0;
 }

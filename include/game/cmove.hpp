@@ -34,7 +34,6 @@ public:
   inline int type_code() const { return data_ & 15; } //call move_type?
 
   inline bool is_null() const { return type_code() == move_type::NullMove; }
-  inline bool not_null() const { return type_code() != move_type::NullMove; } //could use !is_null?
 
   /**
    * Will return the the promotin piece given a color.

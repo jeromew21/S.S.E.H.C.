@@ -200,6 +200,9 @@ void Board::MakeMove(CMove mv)
   //   }
   // }
 
+  state_.ply_count += 1;
+  //state_.move_count
+
   // toggle turn
   SetTurn_(oppositeColor(move_color));
 }
@@ -281,6 +284,9 @@ void Board::UnmakeMove()
   state_.last_moved_piece = node.last_moved_piece;
   state_.has_repeated = node.has_repeated;
   state_.halfmove_counter = node.halfmove_counter;
+  state_.last_move = node.last_move;
+  state_.ply_count = node.ply_count;
+  state_.move_count = node.move_count;
 
   state_.hash = node.hash; // QUESTION: Do we do this??? Seems like a lot of the incremental update is for naught. Oh well...
 
@@ -320,11 +326,7 @@ void Board::SetCastlingRights_(Color color, int direction, int value)
 
 void Board::SetTurn_(Color turn)
 {
-}
-
-bool Board::is_check()
-{
-  return state_.is_check;
+  state_.turn = turn;
 }
 
 void Board::LoadPosition(PieceType piece_list[64], Color turn_to_move, int ep_square,
@@ -332,10 +334,14 @@ void Board::LoadPosition(PieceType piece_list[64], Color turn_to_move, int ep_sq
 {
   // Clearing and resetting state
   // Need to hard reset completely.
+  // Idea is to build up the board state from blank
+  state_ = board::State(); //clear entire state
+  
   maps_generated_ = false;
   state_stack_.Clear();
   status_ = board::Status::NotCalculated;
-  state_ = board::State();
+  hash_ = 0;
+  
   SetEpSquare_(-1);
   SetCastlingRights_(White, board::castle::long_, 1);
   SetCastlingRights_(White, board::castle::short_, 1);
@@ -347,10 +353,7 @@ void Board::LoadPosition(PieceType piece_list[64], Color turn_to_move, int ep_sq
     bitboard_[i] = 0;
   }
 
-  // Make sure the hash is properly initialized
-  // Otherwise there could be bugs
-  hash_ = 0; // start at zero?
-
+  // Set new state values
   for (Square i = 0; i < 64; i++)
   {
     PieceType piece = piece_list[i];
@@ -362,9 +365,26 @@ void Board::LoadPosition(PieceType piece_list[64], Color turn_to_move, int ep_sq
   }
 
   SetEpSquare_(ep_square);
-  // SetCastlingRights_(castling_rights)
+  SetCastlingRights_(White, board::castle::long_, castling_rights.get(White, board::castle::long_));
+  SetCastlingRights_(White, board::castle::short_, castling_rights.get(White, board::castle::short_));
+  SetCastlingRights_(Black, board::castle::long_, castling_rights.get(Black, board::castle::long_));
+  SetCastlingRights_(Black, board::castle::short_, castling_rights.get(Black, board::castle::short_));
 
   GeneratePseudoLegal_();
+}
+
+CMove Board::move_from_src_dest(Square src, Square dest) {
+  PieceType mover = piece_at(src);
+  assert(!piece::is_empty(mover));
+  if (piece::is_pawn(mover)) {
+    // handle pawn moves
+    return CMove(src, dest, move_type::Default);
+  } else if (piece::is_king(mover)) {
+    // handle king moves
+    return CMove(src, dest, move_type::Default);
+  } else {
+    return CMove(src, dest, move_type::Default);
+  }
 }
 
 PieceType Board::piece_at(u64 location) const
@@ -375,6 +395,10 @@ PieceType Board::piece_at(u64 location) const
       return i;
   }
   return piece::EmptyPiece;
+}
+
+PieceType Board::piece_at(Square location) const {
+  return piece_at(u64FromSquare(location));
 }
 
 void Board::Reset()

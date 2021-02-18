@@ -212,6 +212,8 @@ private:
    * in terms of pieces, not locations.
    */
   PieceType piece_at(u64 location) const;
+  
+  PieceType piece_at(Square location) const;
 
   /** 
    * Add a piece at a location.
@@ -251,11 +253,7 @@ public:
    */
   board::Status status();
 
-  /**
-   * Is the board currently in check?
-   */
-  bool is_check();
-
+  
   /**
    * Does this move put the opponent in check?
    */
@@ -289,6 +287,11 @@ public:
    * A bitboard mask of all pieces.
    */
   u64 occupancy() const;
+
+  /**
+   * Is the board currently in check?
+   */
+  bool is_check() const;
 
   /**
    * Outputs the FEN as a string.

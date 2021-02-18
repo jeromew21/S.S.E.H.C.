@@ -124,7 +124,7 @@ namespace board
    */
     board::State &peek_at(int i)
     {
-      assert(i > 0 && i < head_);
+      assert(i >= 0 && i < head_);
       return data_[i];
     }
 

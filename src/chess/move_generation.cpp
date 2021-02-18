@@ -2,7 +2,9 @@
 
 MoveList<256> Board::produce_uncheck_moves_()
 {
-  assert(maps_generated_);
+  if (!maps_generated_) {
+    GeneratePseudoLegal_();
+  }
   assert(is_check());
   MoveList<256> mv_list;
   return mv_list;
@@ -10,12 +12,14 @@ MoveList<256> Board::produce_uncheck_moves_()
 
 MoveList<256> Board::legal_moves()
 {
-  assert(maps_generated_);
+  if (!maps_generated_) {
+    GeneratePseudoLegal_();
+  }
   if (is_check())
   {
     return produce_uncheck_moves_();
   }
-  MoveList<256> capture_moves;// = Board::capture_moves_();
+  MoveList<256> capture_moves = Board::capture_moves_();
   MoveList<256> mv_list;
   u64List src_arr;
   u64List dest_arr;
@@ -107,7 +111,9 @@ MoveList<256> Board::legal_moves()
 
 MoveList<256> Board::capture_moves_()
 {
-  assert(maps_generated_); // the maps should be generated.
+  if (!maps_generated_) {
+    GeneratePseudoLegal_();
+  }
   assert(!is_check());     // we shouldn't be calling this if we're in check
 
   MoveList<256> mv_list;
@@ -164,7 +170,6 @@ MoveList<256> Board::capture_moves_()
 
 bool Board::verify_move_safety_(CMove mv)
 {
-  assert(maps_generated_); // the maps should be generated.
   assert(!is_check());     // we shouldn't be calling this if we're in check
 
   const Color curr_turn = turn();
@@ -307,7 +312,7 @@ bool Board::is_checking_move(CMove mv)
 
 void Board::GeneratePseudoLegal_()
 {
-  assert(!maps_generated_);
+  // assert(!maps_generated_);
 
   // generate attack-defend sets
   for (int i = 0; i < 64; i++)

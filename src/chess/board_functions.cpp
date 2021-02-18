@@ -4,26 +4,6 @@ const u64 CLASSICAL_KING_STARTING_LOCATIONS[2] = {0x10, 0x1000000000000000};
 const u64 CLASSICAL_QUEENSIDE_ROOK_STARTING_LOCATIONS[2] = {0x1, 0x100000000000000};
 const u64 CLASSICAL_KINGSIDE_ROOK_STARTING_LOCATIONS[2] = {0x80, 0x8000000000000000};
 
-u64 Board::attackers_to_(u64 subjects)
-{
-  assert(maps_generated_);
-  assert(subjects != 0);
-
-  u64 attacker_map = 0;
-  u64List arr;
-  bitscanAll(subjects, arr);
-  for (int i = 0; i < arr.len(); i++)
-  {
-    attacker_map |= state_.defend_map_[arr[i]];
-  }
-  return attacker_map;
-}
-
-u64 Board::attackers_to_(u64 subjects, Color attacking_color)
-{
-  return attackers_to_(subjects) & occupancy(attacking_color);
-}
-
 void Board::AddPiece_(PieceType piece, u64 location)
 {
   // Square sq = u64ToSquare(location);
@@ -110,29 +90,6 @@ void Board::LoadPosition(PieceType piece_list[64], Color turn_to_move, int ep_sq
   SetCastlingRights_(Black, board::castle::short_, castling_rights.get(Black, board::castle::short_));
 
   GeneratePseudoLegal_();
-}
-
-CMove Board::move_from_src_dest(Square src, Square dest)
-{
-  PieceType mover = piece_at_(src);
-  assert(!piece::is_empty(mover));
-
-  // this needs to be given more information... promotions...
-}
-
-PieceType Board::piece_at_(u64 location) const
-{
-  for (PieceType i = 0; i < 12; i++)
-  {
-    if (location & bitboard_[i])
-      return i;
-  }
-  return piece::EmptyPiece;
-}
-
-PieceType Board::piece_at_(Square location) const
-{
-  return piece_at_(u64FromSquare(location));
 }
 
 void Board::Reset()

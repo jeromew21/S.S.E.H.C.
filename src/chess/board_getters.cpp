@@ -38,3 +38,46 @@ u64 Board::occupancy(Color color) const
   return bitboard_[piece::black::king] | bitboard_[piece::black::queen] | bitboard_[piece::black::bishop] |
          bitboard_[piece::black::pawn] | bitboard_[piece::black::rook] | bitboard_[piece::black::knight];
 }
+
+CMove Board::move_from_src_dest(Square src, Square dest)
+{
+  PieceType mover = piece_at_(src);
+  assert(!piece::is_empty(mover));
+
+  // this needs to be given more information... promotions...
+}
+
+u64 Board::attackers_to_(u64 subjects)
+{
+  assert(maps_generated_);
+  assert(subjects != 0);
+
+  u64 attacker_map = 0;
+  u64List arr;
+  bitscanAll(subjects, arr);
+  for (int i = 0; i < arr.len(); i++)
+  {
+    attacker_map |= state_.defend_map_[arr[i]];
+  }
+  return attacker_map;
+}
+
+u64 Board::attackers_to_(u64 subjects, Color attacking_color)
+{
+  return attackers_to_(subjects) & occupancy(attacking_color);
+}
+
+PieceType Board::piece_at_(u64 location) const
+{
+  for (PieceType i = 0; i < 12; i++)
+  {
+    if (location & bitboard_[i])
+      return i;
+  }
+  return piece::EmptyPiece;
+}
+
+PieceType Board::piece_at_(Square location) const
+{
+  return piece_at_(u64FromSquare(location));
+}

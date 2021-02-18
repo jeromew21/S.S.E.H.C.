@@ -71,6 +71,10 @@ void Board::LoadPosition(std::string fen)
   LoadPosition(piece_list, turn_to_move, ep_square, castling_rights, halfmove, fullmove);
 }
 
+/**
+ * note to self: make sure that the move counter and other state elements are correctly outputted
+ */
 std::string Board::fen() const {
+
   return "foo";
 }

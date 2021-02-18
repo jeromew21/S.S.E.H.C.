@@ -7,9 +7,8 @@ void perft::perft(Board &board, int depth, perft::Counter &counter)
         return;
 
     MoveList<256> moves = board.legal_moves();
-    int s = moves.size();
     u64 occ = board.occupancy();
-    for (int i = 0; i < s; i++)
+    for (int i = 0; i < moves.size(); i++)
     {
         CMove mv = moves[i];
         if (depth == 1)
@@ -44,8 +43,8 @@ void perft::perft(Board &board, int depth, perft::Counter &counter)
 
         if (depth == 1)
         {
-            board::Status s = board.status();
-            if (s == board::Status::WhiteWin || s == board::Status::BlackWin)
+            board::Status status = board.status();
+            if (status == board::Status::WhiteWin || s == board::Status::BlackWin)
             {
                 counter.checkmates += 1;
             }

@@ -2,7 +2,8 @@
 
 MoveList<256> Board::produce_uncheck_moves_()
 {
-  if (!maps_generated_) {
+  if (!maps_generated_)
+  {
     GeneratePseudoLegal_();
   }
   assert(is_check());
@@ -12,7 +13,8 @@ MoveList<256> Board::produce_uncheck_moves_()
 
 MoveList<256> Board::legal_moves()
 {
-  if (!maps_generated_) {
+  if (!maps_generated_)
+  {
     GeneratePseudoLegal_();
   }
   if (is_check())
@@ -47,7 +49,7 @@ MoveList<256> Board::legal_moves()
         if (move_maps::isStartingRank(src, curr_turn))
         {
           // possible only if the single move is valid;
-          if (quiet_destinations) 
+          if (quiet_destinations)
             quiet_destinations |= (~occ) & move_maps::pawnDoubleMoves(src, curr_turn);
         }
       }
@@ -87,7 +89,9 @@ MoveList<256> Board::legal_moves()
               mv_list.PushBack(mv_b);
               mv_list.PushBack(mv_k);
             }
-          } else {
+          }
+          else
+          {
             // pawn single push
             CMove mv = CMove(src, dest, move_type::Default);
             if (verify_move_safety_(mv))
@@ -111,10 +115,11 @@ MoveList<256> Board::legal_moves()
 
 MoveList<256> Board::capture_moves_()
 {
-  if (!maps_generated_) {
+  if (!maps_generated_)
+  {
     GeneratePseudoLegal_();
   }
-  assert(!is_check());     // we shouldn't be calling this if we're in check
+  assert(!is_check()); // we shouldn't be calling this if we're in check
 
   MoveList<256> mv_list;
   u64List src_arr;
@@ -170,7 +175,7 @@ MoveList<256> Board::capture_moves_()
 
 bool Board::verify_move_safety_(CMove mv)
 {
-  assert(!is_check());     // we shouldn't be calling this if we're in check
+  assert(!is_check()); // we shouldn't be calling this if we're in check
 
   const Color curr_turn = turn();
   const Color enemy_turn = oppositeColor(curr_turn);
@@ -186,10 +191,11 @@ bool Board::verify_move_safety_(CMove mv)
   {
     Square dest_square = u64ToSquare(dest);
     u64 captured_pawn = move_maps::pawnCaptures(dest_square, enemy_turn);
-    // if (_isInLineWithKing(src | captured_pawn, c, bitboard[W_King + 6 * c])) {
-    //   return false;
-    // }
-    return true;
+    u64 enemy_queen = piece::get_queen(enemy_turn);
+    return !move_maps::isAttackedSliding(occupancy() & ~(src | captured_pawn),
+                                bitboard_[piece::get_king(curr_turn)],
+                                bitboard_[piece::get_rook(enemy_turn)] | enemy_queen,
+                                bitboard_[piece::get_bishop(enemy_turn)] | enemy_queen);
   }
 
   // we have a normal move and now need to check for pins or moving into an attack.
@@ -205,13 +211,12 @@ bool Board::verify_move_safety_(CMove mv)
   }
 
   // Otherwise, we need to make sure the piece isn't pinned.
-  u64 out_ray;
-  // if (_isInLineWithKing(src, c, bitboard[W_King + 6 * c], out_ray)) {
-  //   // can capture the piece that is pinning it
-  //   // or move along pinned path
-  //   return (dest & out_ray) ? true : false;
-  // }
-  return true;
+  u64 occ = occupancy() & (~src) & dest;
+  u64 enemy_rooks = occ & (bitboard_[piece::get_rook(enemy_turn)] | bitboard_[piece::get_queen(enemy_turn)]);
+  u64 enemy_bishops = occ & (bitboard_[piece::get_bishop(enemy_turn)] | bitboard_[piece::get_queen(enemy_turn)]);
+  u64 king = bitboard_[piece::get_king(curr_turn)];
+
+  return !move_maps::isAttackedSliding(occ, king, enemy_rooks, enemy_bishops);
 }
 
 bool Board::is_checking_move(CMove mv)
@@ -267,7 +272,8 @@ bool Board::is_checking_move(CMove mv)
   u64 dest = mv.dest();
   PieceType mover = piece_at(src);
 
-  if (colorOf(mover) != curr_turn) {
+  if (colorOf(mover) != curr_turn)
+  {
     std::raise(SIGINT);
   }
   assert(colorOf(mover) == curr_turn);

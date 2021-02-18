@@ -33,6 +33,10 @@ namespace piece
   inline bool is_rook(PieceType piece) { return piece >> 1 == 3; }
   inline bool is_queen(PieceType piece) { return piece >> 1 == 4; }
 
+  inline PieceType get_pawn(Color color) { return white::pawn + color; }
+  inline PieceType get_bishop(Color color) { return white::bishop + color; }
+  inline PieceType get_rook(Color color) { return white::rook + color; }
+  inline PieceType get_queen(Color color) { return white::queen + color; }
   inline PieceType get_king(Color color) { return white::king + color; }
 } // namespace piece
 

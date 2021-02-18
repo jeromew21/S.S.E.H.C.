@@ -271,6 +271,17 @@ const u64 PAWN_DOUBLE_CACHE[2][64] = {{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
                                        0x200000000, 0x400000000, 0x800000000, 0x1000000000, 0x2000000000,
                                        0x4000000000, 0x8000000000, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}};
 
+bool move_maps::isAttackedSliding(u64 occupancy_map, u64 subject, u64 rooks, u64 bishops)
+{
+  assert(isValidSquare(u64ToSquare(subject)));
+
+  Square king_location = u64ToSquare(subject);
+  if (rooks & rookMoves(king_location, occupancy_map) || bishops & bishopMoves(king_location, occupancy_map))
+    return true;
+  else
+    return false;
+}
+
 /**
  * Helper function for ground truth method for getting rook moves
  */

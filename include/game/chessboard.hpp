@@ -39,6 +39,12 @@ namespace move_maps
    * needed to find magic numbers for hashing
    */
   void init();
+   
+  /**
+   * given an occupancy map, subject location (can only contain 1 bit for now), and location of sliding pieces,
+   * check if the king is under attack by any of those sliding pieces
+   */
+  bool isAttackedSliding(u64 occupancy_map, u64 subject, u64 rooks, u64 bishops);
 
   // pawns
 

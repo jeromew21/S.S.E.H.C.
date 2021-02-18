@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['movelist_255',['MoveList',['../classMoveList.html',1,'']]],
-  ['movescoretuple_256',['MoveScoreTuple',['../structMoveScoreTuple.html',1,'']]]
+  ['minitable_308',['MiniTable',['../classMiniTable.html',1,'']]],
+  ['minitablebucket_309',['MiniTableBucket',['../structMiniTableBucket.html',1,'']]],
+  ['movelist_310',['MoveList',['../classMoveList.html',1,'']]],
+  ['movescore_311',['MoveScore',['../structMoveScore.html',1,'']]]
 ];

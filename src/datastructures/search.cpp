@@ -3,7 +3,7 @@
 #include "datastructures/search.hpp"
 
 //moved from ai.cpp
-Move popMin(std::vector<MoveScoreTuple> &vec)
+CMove popMin(std::vector<MoveScore> &vec)
 {
     int m = SCORE_MAX;
     int minI = 0;
@@ -15,12 +15,12 @@ Move popMin(std::vector<MoveScoreTuple> &vec)
             minI = i;
         }
     }
-    Move bm = vec[minI].mv;
+    CMove bm = vec[minI].mv;
     vec.erase(vec.begin() + minI);
     return bm;
 }
 
-Move popMax(std::vector<MoveScoreTuple> &vec)
+CMove popMax(std::vector<MoveScore> &vec)
 {
     int m = SCORE_MIN;
     int maxI = 0;
@@ -32,12 +32,12 @@ Move popMax(std::vector<MoveScoreTuple> &vec)
             maxI = i;
         }
     }
-    Move bm = vec[maxI].mv;
+    CMove bm = vec[maxI].mv;
     vec.erase(vec.begin() + maxI);
     return bm;
 }
 
-void sortMoves(std::vector<MoveScoreTuple> &vec)
+void sortMoves(std::vector<MoveScore> &vec)
 {
     int size = vec.size();
     for (int i = 1; i < size; i++)

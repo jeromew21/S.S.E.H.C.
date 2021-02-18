@@ -90,14 +90,14 @@ $(document).ready(function(){initNavTree('bits_8hpp.html',''); initResizable(); 
 <div class="title">bits.hpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;array&gt;</code><br />
+<div class="textblock"><code>#include &lt;random&gt;</code><br />
 <code>#include &quot;<a class="el" href="definitions_8hpp_source.html">misc/definitions.hpp</a>&quot;</code><br />
 </div>
 <p><a href="bits_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classu64Stack.html">u64Stack&lt; N &gt;</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classu64List.html">u64List</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
@@ -114,12 +114,14 @@ Functions</h2></td></tr>
 <tr class="separator:ace83f6321d28809158ee180949b3e629"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a59593b52db870adb52cfa4deb94c8f9f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bits_8hpp.html#a59593b52db870adb52cfa4deb94c8f9f">hadd</a> (<a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a> x)</td></tr>
 <tr class="separator:a59593b52db870adb52cfa4deb94c8f9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abdde7e08d431bb30fa33cf0315ebdc66"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bits_8hpp.html#abdde7e08d431bb30fa33cf0315ebdc66">bitscanAll</a> (<a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a> x, <a class="el" href="classu64Stack.html">u64Stack</a>&lt; 64 &gt; &amp;out_arr)</td></tr>
-<tr class="separator:abdde7e08d431bb30fa33cf0315ebdc66"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96d6f30ca1448310fec2f2e4c06068ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bits_8hpp.html#a96d6f30ca1448310fec2f2e4c06068ae">bitscanAll</a> (<a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a> x, <a class="el" href="classu64List.html">u64List</a> &amp;out_arr)</td></tr>
+<tr class="separator:a96d6f30ca1448310fec2f2e4c06068ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adff1b4bfcd334dd05de57ba7fa07fa16"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bits_8hpp.html#adff1b4bfcd334dd05de57ba7fa07fa16">bitscanForward</a> (<a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a> x)</td></tr>
 <tr class="separator:adff1b4bfcd334dd05de57ba7fa07fa16"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa64a7c2aa15518bf2e129edfd3950570"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bits_8hpp.html#aa64a7c2aa15518bf2e129edfd3950570">bitscanReverse</a> (<a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a> x)</td></tr>
 <tr class="separator:aa64a7c2aa15518bf2e129edfd3950570"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9622ba304d19c5da7c62d97603305bb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bits_8hpp.html#ad9622ba304d19c5da7c62d97603305bb">isValidSquare</a> (<a class="el" href="definitions_8hpp.html#a6de8fcf40523e5c1eecf939520f33f6b">Square</a> s)</td></tr>
+<tr class="separator:ad9622ba304d19c5da7c62d97603305bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad025c5a7db7da9378051c92c7007540d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bits_8hpp.html#ad025c5a7db7da9378051c92c7007540d">u64FromSquare</a> (<a class="el" href="definitions_8hpp.html#a6de8fcf40523e5c1eecf939520f33f6b">Square</a> s)</td></tr>
 <tr class="separator:ad025c5a7db7da9378051c92c7007540d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a327b9a3b915ba94aa038027439f80299"><td class="memItemLeft" align="right" valign="top"><a class="el" href="definitions_8hpp.html#a6de8fcf40523e5c1eecf939520f33f6b">Square</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bits_8hpp.html#a327b9a3b915ba94aa038027439f80299">u64ToSquare</a> (<a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a> x)</td></tr>
@@ -138,8 +140,8 @@ Functions</h2></td></tr>
 <tr class="separator:ade9dd0c14d8295d17a7f332edd16e7ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="abdde7e08d431bb30fa33cf0315ebdc66"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abdde7e08d431bb30fa33cf0315ebdc66">&#9670;&nbsp;</a></span>bitscanAll()</h2>
+<a id="a96d6f30ca1448310fec2f2e4c06068ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96d6f30ca1448310fec2f2e4c06068ae">&#9670;&nbsp;</a></span>bitscanAll()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -153,7 +155,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classu64Stack.html">u64Stack</a>&lt; 64 &gt; &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="classu64List.html">u64List</a> &amp;&#160;</td>
           <td class="paramname"><em>out_arr</em>&#160;</td>
         </tr>
         <tr>
@@ -163,6 +165,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Split a u64 into a list of singleton u64 values. </p>
 
 </div>
 </div>
@@ -189,6 +192,7 @@ Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Return the index of the LSB (rightmost, uppermost), from the least significant side </p>
 
 </div>
 </div>
@@ -215,6 +219,7 @@ Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Return the index of the MSB (leftmost, uppermost), from the most significant side </p>
 
 </div>
 </div>
@@ -233,6 +238,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Count number of 1 bits in a u64. </p>
 
 </div>
 </div>
@@ -249,6 +255,33 @@ Functions</h2></td></tr>
           <td></td>
         </tr>
       </table>
+</div><div class="memdoc">
+<p>Needs to be called in order to initialize the cache for <a class="el" href="bits_8hpp.html#a96d6f30ca1448310fec2f2e4c06068ae">bitscanAll()</a>. </p>
+
+</div>
+</div>
+<a id="ad9622ba304d19c5da7c62d97603305bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9622ba304d19c5da7c62d97603305bb">&#9670;&nbsp;</a></span>isValidSquare()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool isValidSquare </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="definitions_8hpp.html#a6de8fcf40523e5c1eecf939520f33f6b">Square</a>&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -267,6 +300,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Each bit in the output bitstring has a 50/50 chance of being 1 or 0. </p>
 
 </div>
 </div>
@@ -284,6 +318,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Return a random real [0, 1) </p>
 
 </div>
 </div>
@@ -302,6 +337,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Seed the RNG deterministically </p>
 
 </div>
 </div>
@@ -407,6 +443,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Seed the RNG w/ time </p>
 
 </div>
 </div>

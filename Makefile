@@ -30,7 +30,7 @@ build:
 debug: CXXFLAGS += -DDEBUG -g
 debug: all
 
-release: CXXFLAGS += -ffast-math -O3
+release: CXXFLAGS += -DNDEBUG -ffast-math -O3
 release: all
 
 clean:

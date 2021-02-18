@@ -1,14 +1,23 @@
 var annotated_dup =
 [
-    [ "castle", "namespacecastle.html", [
-      [ "Rights", "classcastle_1_1Rights.html", "classcastle_1_1Rights" ]
+    [ "board", "namespaceboard.html", [
+      [ "castle", "namespaceboard_1_1castle.html", [
+        [ "Rights", "classboard_1_1castle_1_1Rights.html", "classboard_1_1castle_1_1Rights" ]
+      ] ],
+      [ "State", "structboard_1_1State.html", "structboard_1_1State" ],
+      [ "StateStack", "classboard_1_1StateStack.html", "classboard_1_1StateStack" ]
+    ] ],
+    [ "perft", "namespaceperft.html", [
+      [ "Counter", "structperft_1_1Counter.html", "structperft_1_1Counter" ]
     ] ],
     [ "Board", "classBoard.html", "classBoard" ],
-    [ "BoardState", "structBoardState.html", "structBoardState" ],
-    [ "BoardStateStack", "classBoardStateStack.html", "classBoardStateStack" ],
     [ "CMove", "classCMove.html", "classCMove" ],
+    [ "MiniTable", "classMiniTable.html", "classMiniTable" ],
+    [ "MiniTableBucket", "structMiniTableBucket.html", "structMiniTableBucket" ],
     [ "MoveList", "classMoveList.html", "classMoveList" ],
-    [ "MoveScoreTuple", "structMoveScoreTuple.html", "structMoveScoreTuple" ],
-    [ "PerftCounter", "structPerftCounter.html", "structPerftCounter" ],
-    [ "u64Stack", "classu64Stack.html", "classu64Stack" ]
+    [ "MoveScore", "structMoveScore.html", "structMoveScore" ],
+    [ "TableBucket", "structTableBucket.html", "structTableBucket" ],
+    [ "TableNode", "structTableNode.html", "structTableNode" ],
+    [ "TranspositionTable", "classTranspositionTable.html", "classTranspositionTable" ],
+    [ "u64List", "classu64List.html", "classu64List" ]
 ];

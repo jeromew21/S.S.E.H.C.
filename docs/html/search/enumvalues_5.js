@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['whitewin_503',['WhiteWin',['../board_8hpp.html#a881b49e3802366255ad852f1c8624fd1ade3cf4fd890a7c8b032eec3dbf521ac7',1,'board.hpp']]]
+  ['whitewin_618',['WhiteWin',['../namespaceboard.html#a99acc96edd3007d46ff299bdc5db4221a14cdaea37bf0e56b2b61ac7b1b8e5473',1,'board']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['gamestatus_497',['GameStatus',['../board_8hpp.html#a881b49e3802366255ad852f1c8624fd1',1,'board.hpp']]]
+  ['status_612',['Status',['../namespaceboard.html#a99acc96edd3007d46ff299bdc5db4221',1,'board']]]
 ];

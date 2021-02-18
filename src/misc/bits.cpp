@@ -1,6 +1,7 @@
 #include <chrono>
 #include "misc/bits.hpp"
 #include "misc/debug.hpp"
+#include "uci/utils.hpp"
 
 std::uniform_real_distribution<double> unif(0, 1);
 std::mt19937_64 rng;
@@ -15,10 +16,9 @@ const uint64_t h01 = 0x0101010101010101; //the sum of 256 to the power of 0,1,2,
 
 u64 bitscan_cache[256][8][8];
 
-// The engine initialization methods go here.
 void init_bits()
 {
-  verbose_print("initializing bitscan cache");
+  verbose_info("initializing bitscan cache");
   for (int i = 0; i < 256; i++)
   {
     int bits = i & 255; //11000110
@@ -33,7 +33,9 @@ void init_bits()
       {
         if ((bits >> k) & 1)
         {
-          bitscan_cache[bits][offset][index++] = ((u64) 1) << (offset*8 + k);
+          u64 value = ((u64) 1) << (offset*8 + k);
+          assert (value != 0);
+          bitscan_cache[bits][offset][index++] = value;
         }
       }
     }
@@ -42,7 +44,7 @@ void init_bits()
 
 void seedRand(int seed)
 {
-  verbose_print("set random seed to " + std::to_string(seed));
+  verbose_info("set random seed to " + std::to_string(seed));
   rng.seed(seed);
 }
 
@@ -93,7 +95,7 @@ int hadd(u64 x)
 //   }
 // }
 
-void bitscanAll(u64 x, u64Stack<64> &out_arr)
+void bitscanAll(u64 x, u64List &out_arr)
 {
   out_arr.Clear();
   for (int offset = 0; offset < 64; offset += 8)
@@ -108,4 +110,13 @@ void bitscanAll(u64 x, u64Stack<64> &out_arr)
       out_arr.Append(cached[i]);
     }
   }
+
+  // old implementation should work
+  // out_arr.Clear();
+  // while (x) {
+  //   int k = bitscanForward(x);
+  //   u64 bs = (u64) 1 << k;
+  //   out_arr.Append(bs);
+  //   x &= ~bs;
+  // }
 }

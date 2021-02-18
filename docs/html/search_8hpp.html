@@ -84,20 +84,116 @@ $(document).ready(function(){initNavTree('search_8hpp.html',''); initResizable()
 
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a>  </div>
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">search.hpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="cmove_8hpp_source.html">game/cmove.hpp</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="definitions_8hpp_source.html">misc/definitions.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="chessboard_8hpp_source.html">game/chessboard.hpp</a>&quot;</code><br />
 </div>
 <p><a href="search_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMoveScoreTuple.html">MoveScoreTuple</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMoveScore.html">MoveScore</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTableNode.html">TableNode</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTableBucket.html">TableBucket</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTranspositionTable.html">TranspositionTable&lt; N &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMiniTableBucket.html">MiniTableBucket</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMiniTable.html">MiniTable&lt; N &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:acc6302086adaa4381d4c12a915294832"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="definitions_8hpp.html#afe87173a9abf8e529e1394168a9ac851">NodeType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="search_8hpp.html#acc6302086adaa4381d4c12a915294832">PV</a> = 0</td></tr>
+<tr class="separator:acc6302086adaa4381d4c12a915294832"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0213b81164c3873d5a0c7251c16314e7"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="definitions_8hpp.html#afe87173a9abf8e529e1394168a9ac851">NodeType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="search_8hpp.html#a0213b81164c3873d5a0c7251c16314e7">Cut</a> = 1</td></tr>
+<tr class="separator:a0213b81164c3873d5a0c7251c16314e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26592ef3cbe29bf4f8acb6dc7c0c470d"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="definitions_8hpp.html#afe87173a9abf8e529e1394168a9ac851">NodeType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="search_8hpp.html#a26592ef3cbe29bf4f8acb6dc7c0c470d">All</a> = 2</td></tr>
+<tr class="separator:a26592ef3cbe29bf4f8acb6dc7c0c470d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17a6bba34dc190b7b9633dca12b0df30"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="search_8hpp.html#a17a6bba34dc190b7b9633dca12b0df30">SCORE_MIN</a> = std::numeric_limits&lt;int&gt;::<a class="el" href="definitions_8hpp.html#abd8bbcfabb3ddef2ccaafb9928a37b95">min</a>()</td></tr>
+<tr class="separator:a17a6bba34dc190b7b9633dca12b0df30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60dfe29f268a4ec0e1169e0b64a84f54"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="search_8hpp.html#a60dfe29f268a4ec0e1169e0b64a84f54">SCORE_MAX</a> = std::numeric_limits&lt;int&gt;::<a class="el" href="definitions_8hpp.html#af082905f7eac6d03e92015146bbc1925">max</a>()</td></tr>
+<tr class="separator:a60dfe29f268a4ec0e1169e0b64a84f54"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="a26592ef3cbe29bf4f8acb6dc7c0c470d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26592ef3cbe29bf4f8acb6dc7c0c470d">&#9670;&nbsp;</a></span>All</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="definitions_8hpp.html#afe87173a9abf8e529e1394168a9ac851">NodeType</a> All = 2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0213b81164c3873d5a0c7251c16314e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0213b81164c3873d5a0c7251c16314e7">&#9670;&nbsp;</a></span>Cut</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="definitions_8hpp.html#afe87173a9abf8e529e1394168a9ac851">NodeType</a> Cut = 1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acc6302086adaa4381d4c12a915294832"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc6302086adaa4381d4c12a915294832">&#9670;&nbsp;</a></span>PV</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="definitions_8hpp.html#afe87173a9abf8e529e1394168a9ac851">NodeType</a> PV = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a60dfe29f268a4ec0e1169e0b64a84f54"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60dfe29f268a4ec0e1169e0b64a84f54">&#9670;&nbsp;</a></span>SCORE_MAX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int SCORE_MAX = std::numeric_limits&lt;int&gt;::<a class="el" href="definitions_8hpp.html#af082905f7eac6d03e92015146bbc1925">max</a>()</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a17a6bba34dc190b7b9633dca12b0df30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17a6bba34dc190b7b9633dca12b0df30">&#9670;&nbsp;</a></span>SCORE_MIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int SCORE_MIN = std::numeric_limits&lt;int&gt;::<a class="el" href="definitions_8hpp.html#abd8bbcfabb3ddef2ccaafb9928a37b95">min</a>()</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

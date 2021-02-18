@@ -24,6 +24,20 @@ namespace piece
     const PieceType king = (5 << 1) + 1;   //11
   }                                        // namespace black
   const PieceType EmptyPiece = -1;
+
+  inline bool is_empty(PieceType piece) { return piece == EmptyPiece; }
+  inline bool is_pawn(PieceType piece) { return piece >> 1 == 0; }
+  inline bool is_king(PieceType piece) { return piece >> 1 == 5; }
+  inline bool is_knight(PieceType piece) { return piece >> 1 == 1; }
+  inline bool is_bishop(PieceType piece) { return piece >> 1 == 2; }
+  inline bool is_rook(PieceType piece) { return piece >> 1 == 3; }
+  inline bool is_queen(PieceType piece) { return piece >> 1 == 4; }
+
+  inline PieceType get_pawn(Color color) { return white::pawn + color; }
+  inline PieceType get_bishop(Color color) { return white::bishop + color; }
+  inline PieceType get_rook(Color color) { return white::rook + color; }
+  inline PieceType get_queen(Color color) { return white::queen + color; }
+  inline PieceType get_king(Color color) { return white::king + color; }
 } // namespace piece
 
 int getMaterialValue(PieceType piece);

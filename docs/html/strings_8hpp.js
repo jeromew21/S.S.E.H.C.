@@ -1,6 +1,6 @@
 var strings_8hpp =
 [
-    [ "moveToUCIAlgebraic", "strings_8hpp.html#a5e93b5bcc08d7bba63f35a2c832e94f3", null ],
+    [ "moveToUCIAlgebraic", "strings_8hpp.html#a8d1a69ff0c3119872cef0abaf73b5b1b", null ],
     [ "pieceFromStringFen", "strings_8hpp.html#ac66bc40a966218f8ee9ec1ff63f0e35a", null ],
     [ "pieceToStringFen", "strings_8hpp.html#af529ede5035031c3fcf5b5ffecccd631", null ],
     [ "pieceToStringLower", "strings_8hpp.html#a8d5b07a89e222c2db40409662ecfaa19", null ],

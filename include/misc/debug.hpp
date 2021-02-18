@@ -1,6 +1,8 @@
 #ifndef DEBUG_HPP
 #define DEBUG_HPP
 
+#include <iostream>
+#include <csignal>
 #include "misc/definitions.hpp"
 
 /**
@@ -16,8 +18,8 @@ void print_(const std::string &text);
 void dump64(u64 x);
 
 /**
- * Prints only if the command line verbose flag is set.
+ * Prints a 32 bit int to stdout, in order.
  */
-void verbose_print(const std::string &text);
+void dump32(int x);
 
 #endif

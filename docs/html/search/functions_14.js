@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['verbose_5fprint_416',['verbose_print',['../debug_8hpp.html#af0b8c858620efa173ae39a8497638ace',1,'verbose_print(const std::string &amp;text):&#160;main.cpp'],['../main_8cpp.html#af0b8c858620efa173ae39a8497638ace',1,'verbose_print(const std::string &amp;text):&#160;main.cpp']]]
+  ['verbose_5finfo_513',['verbose_info',['../utils_8hpp.html#aac46295336bbfca7c7e6d0022ca3d792',1,'verbose_info(const std::string &amp;text):&#160;main.cpp'],['../main_8cpp.html#aac46295336bbfca7c7e6d0022ca3d792',1,'verbose_info(const std::string &amp;text):&#160;main.cpp']]]
 ];

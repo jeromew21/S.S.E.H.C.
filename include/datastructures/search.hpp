@@ -1,18 +1,25 @@
 #ifndef AIDATASTRUCTURES_HPP
 #define AIDATASTRUCTURES_HPP
 
-#include "game/cmove.hpp"
 #include "misc/definitions.hpp"
-#include "ai/ai.hpp"
+#include "game/chessboard.hpp"
+
+const NodeType PV = 0;
+const NodeType Cut = 1;
+const NodeType All = 2;
+
+const int SCORE_MIN = std::numeric_limits<int>::min();
+const int SCORE_MAX = std::numeric_limits<int>::max();
+
 /**
  * A tuple that contains a move and a corresponding score.
  */
-struct MoveScoreTuple
+struct MoveScore
 {
   CMove mv;
   Score score;
-  MoveScoreTuple(CMove mv0, Score score0) : mv(mv0), score(score0) {}
-  bool operator<(const MoveScoreTuple other) const { return (score < other.score); }
+  MoveScore(CMove mv0, Score score0) : mv(mv0), score(score0) {}
+  bool operator<(const MoveScore other) const { return (score < other.score); }
 };
 
 struct TableNode
@@ -20,14 +27,14 @@ struct TableNode
   u64 hash;
   int8_t depth;
   NodeType nodeType;
-  Move bestMove;
+  CMove bestMove;
 
   TableNode(Board &board, int d, NodeType typ)
   {
-    hash = board.zobrist();
+    hash = board.hash();
     depth = d;
     nodeType = typ;
-    bestMove = Move::NullMove();
+    bestMove = CMove::NullMove();
   }
 
   bool operator==(const TableNode &other) const { return (hash == other.hash); }
@@ -88,7 +95,7 @@ struct MiniTableBucket
   u64 hash; // position hash
   //int depth; // number of plies to root saved
   int8_t depth;
-  std::array<Move, 64> seq;
+  std::array<CMove, 64> seq;
 };
 
 template <int N>
@@ -124,7 +131,7 @@ public:
   }
 
   //can we pass by reference instead?
-  void insert(u64 hashval, int depth, std::array<Move, 64> *moveseq)
+  void insert(u64 hashval, int depth, std::array<CMove, 64> *moveseq)
   {
     int bucketIndex = hashval % N;
     MiniTableBucket *bucket = _arr + bucketIndex;

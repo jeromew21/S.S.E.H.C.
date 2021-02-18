@@ -1,6 +1,6 @@
 #include "datastructures/board_state.hpp"
 
-castle::Rights::Rights()
+board::castle::Rights::Rights()
 {
   data_[castle::long_] = 1;
   data_[castle::short_] = 1;
@@ -8,7 +8,7 @@ castle::Rights::Rights()
   data_[castle::short_+1] = 1;
 }
 
-castle::Rights::Rights(int w_long, int w_short, int b_long, int b_short)
+board::castle::Rights::Rights(int w_long, int w_short, int b_long, int b_short)
 {
   assert(w_long == 0 || w_long == 1);
   assert(w_short == 0 || w_short == 1);
@@ -22,13 +22,13 @@ castle::Rights::Rights(int w_long, int w_short, int b_long, int b_short)
   data_[castle::short_+1] = b_short;
 }
 
-int castle::Rights::get(Color color, int direction) const
+int board::castle::Rights::get(Color color, int direction) const
 {
   assert(direction == castle::long_ || direction == castle::short_);
   return data_[direction + color];
 }
 
-void castle::Rights::Set(Color color, int direction, int value)
+void board::castle::Rights::Set(Color color, int direction, int value)
 {
   assert(direction == castle::long_ || direction == castle::short_);
   assert(value == 0 || value == 1);

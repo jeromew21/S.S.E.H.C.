@@ -4,6 +4,7 @@
 #include "misc/definitions.hpp"
 #include "misc/bits.hpp"
 #include "datastructures/board_state.hpp"
+#include "datastructures/move_list.hpp"
 #include "game/pieces.hpp"
 #include "uci/utils.hpp"
 
@@ -25,6 +26,110 @@ namespace zobrist
   u64 getHashFromId(int feature_id);
 
 } // namespace zobrist
+
+/**
+ * In order to genereate pseudo-legal (moves that are legal irregardless of check)
+ * we need to first determine the rules of movement for a given piece.
+ * 
+ * This namespace provides functions that do just that.
+ */
+namespace move_maps
+{
+  /**
+   * needed to find magic numbers for hashing
+   */
+  void init();
+   
+  /**
+   * given an occupancy map, subject location (can only contain 1 bit for now), and location of sliding pieces,
+   * check if the king is under attack by any of those sliding pieces
+   */
+  bool isAttackedSliding(u64 occupancy_map, u64 subject, u64 rooks, u64 bishops);
+
+  // pawns
+
+  /**
+   * Rank 0 for Black
+   * 
+   * Rank 7 for White
+   */
+  bool isPromotingRank(Square piece_location, Color color);
+
+  /**
+   * Rank 6 for Black
+   * 
+   * Rank 1 for White
+   */
+  bool isStartingRank(Square piece_location, Color color);
+
+  /**
+   * Returns a bitboard of pawn captures at given location.
+   */
+  u64 pawnCaptures(Square piece_location, Color color);
+
+  /**
+   * Returns a bitboard of pawn forward moves at given location and occupancy map.
+   * 
+   * Always a quiet move.
+   */
+  u64 pawnMoves(Square piece_location, Color color);
+
+  /**
+   * Returns a bitboard of pawn double moves at given location and occupancy map.
+   * 
+   * Always a quiet move.
+   */
+  u64 pawnDoubleMoves(Square piece_location, Color color);
+
+  // jumping pieces
+
+  /**
+   * Returns a bitboard of knight moves at given location.
+   */
+  u64 knightMoves(Square piece_location);
+
+  /**
+   * Returns a bitboard of king moves at given location.
+   */
+  u64 kingMoves(Square piece_location);
+
+  // sliding pieces
+ 
+  /**
+   * Returns a bitboard of bishop moves at given location and occupancy map.
+   * 
+   * Uses magic bitboards.
+   */
+  u64 bishopMoves(Square piece_location, u64 occupants);
+
+  /**
+   * Returns a bitboard of rook moves at given location and occupancy map.
+   * 
+   * Uses magic bitboards.
+   */
+  u64 rookMoves(Square piece_location, u64 occupants);
+  
+  /**
+   * Returns the single bishop ray from a particular direction
+   */
+  u64 bishopRay(Square piece_location, int direction);
+
+  /**
+   * Returns the single rook ray from a particular direction
+   */
+  u64 rookRay(Square piece_location, int direction);
+
+
+  /**
+   * Returns all four rays emanating from a location.
+   */
+  u64 rookRay(Square piece_location);
+
+  /**
+   * Returns all four rays emanating from a location.
+   */
+  u64 bishopRay(Square piece_location);
+} // namespace move_maps
 
 /**
  * Sometimes we care about the specific direction a ray goes 
@@ -49,150 +154,97 @@ namespace direction
 } // namespace direction
 
 /**
- * In order to genereate pseudo-legal (moves that are legal irregardless of check)
- * we need to first determine the rules of movement for a given piece.
- * 
- * This namespace provides functions that do just that.
+ * This class encapsulates a game of chess and the elements that comprise it as such.
  */
-namespace move_maps
-{
-  /**
-   * may be unecessary
-   */
-  void init();
-
-  // pawns
-
-  /**
-   * Returns a bitboard of pawn captures at given location and occupancy map.
-   */
-  u64 pawnCaptures(u64 piece_location, Color color, u64 occupants);
-
-  /**
-   * Returns a bitboard of pawn captures at given location and occupancy map.
-   */
-  u64 pawnCaptures(Square piece_location, Color color, u64 occupants);
-
-  /**
-   * Returns a bitboard of pawn forward moves at given location and occupancy map.
-   */
-  u64 pawnMoves(u64 piece_location, Color color, u64 occupants);
-
-  /**
-   * Returns a bitboard of pawn forward moves at given location and occupancy map.
-   */
-  u64 pawnMoves(Square piece_location, Color color, u64 occupants);
-
-  /**
-   * Returns a bitboard of pawn double moves at given location and occupancy map.
-   */
-  u64 pawnDoubleMoves(u64 piece_location, Color color, u64 occupants);
-
-  /**
-   * Returns a bitboard of pawn double moves at given location and occupancy map.
-   */
-  u64 pawnDoubleMoves(Square piece_location, Color color, u64 occupants);
-
-  // jumping pieces
-
-  /**
-   * Returns a bitboard of knight moves at given location and occupancy map.
-   */
-  u64 knightMoves(u64 piece_location, u64 occupants);
-
-  /**
-   * Returns a bitboard of knight moves at given location and occupancy map.
-   */
-  u64 knightMoves(Square piece_location, u64 occupants);
-
-  /**
-   * Returns a bitboard of king moves at given location and occupancy map.
-   */
-  u64 kingMoves(u64 piece_location, u64 occupants);
-
-  /**
-   * Returns a bitboard of king moves at given location and occupancy map.
-   */
-  u64 kingMoves(Square piece_location, u64 occupants);
-
-  // sliding pieces
-
-  // magic bitboards make rays deprecated for move generation
-  // u64 bishopRay(u64 piece_location, int direction, u64 occupants);
-  // u64 bishopRay(Square piece_location, int direction, u64 occupants);
-
-  // u64 rookRay(u64 piece_location, int direction, u64 occupants);
-  // u64 rookRay(Square piece_location, int direction, u64 occupants);
-
-  /**
-   * Returns a bitboard of bishop moves at given location and occupancy map.
-   */
-  u64 bishopMoves(u64 piece_location, u64 occupants);
-
-  /**
-   * Returns a bitboard of bishop moves at given location and occupancy map.
-   */
-  u64 bishopMoves(Square piece_location, u64 occupants);
-
-  /**
-   * Returns a bitboard of rook moves at given location and occupancy map.
-   */
-  u64 rookMoves(u64 piece_location, u64 occupants);
-
-  /**
-   * Returns a bitboard of rook moves at given location and occupancy map.
-   */
-  u64 rookMoves(Square piece_location, u64 occupants);
-
-} // namespace move_maps
-
 class Board //put board in board.hpp?
 {
 private:
-  // Internal fields
-
+  /**
+   * the bitboard of locations for each piece.
+   */
   u64 bitboard_[12];
-  u64 hash_;
-  BoardState state_;
-  BoardStateStack state_stack_;
-  GameStatus status_;
 
-  // Attack and Defend maps
+  /**
+   * the current hash
+   */
+  u64 hash_;
+
+  /**
+   * the current board state
+   */
+  board::State state_;
+
+  /**
+   * the history of board states
+   */
+  board::StateStack state_stack_;
+
+  /**
+   * cached game status. may not be needed...
+   */
+  board::Status status_;
 
   /**
    * Have the attack and defend maps been generated yet?
    */
-  bool _maps_generated;
+  bool maps_generated_;
 
-  /**
-   * for each square index, a bitboard list of attacked squares
+  /** 
+   * Update the attack and defend maps.
    */
-  std::array<u64, 64> attack_map_;
-
-  /**
-   * for each square index, a bitboard list of attacker squares
-   */
-  std::array<u64, 64> defend_map_;
+  void GeneratePseudoLegal_();
 
   /** 
    * shortcut move generator if board is check
    */
   MoveList<256> produce_uncheck_moves_();
 
-  // private methods that change hash accordingly
-
-  void AddPiece_(PieceType piece, u64 location);
-  void RemovePiece_(PieceType piece, u64 location);
-  void SetEpSquare_(Square ep_square);
-  void SetCastlingRights_(Color color, int direction, int value);
-  void SetTurn_(Color turn);
-
-  // move generation specific
+  /** 
+   * capture moves only, generated for q-search.
+   */
+  MoveList<256> capture_moves_();
 
   /** 
-   * Update the attack and defend maps.
+   * assuming not in check: verify that a move doesn't cause check
+   * 
+   * related to but not exactly the same as is_checking_move()
    */
-  void GeneratePseudoLegal_();
+  bool verify_move_safety_(CMove mv);
+
+  /** 
+   * Returns the piece at a particular location.
+   * 
+   * Try to use this as seldom as possible, since with the bitboard strategy we try to think
+   * in terms of pieces, not locations.
+   */
+  PieceType piece_at(u64 location) const;
+  
+  PieceType piece_at(Square location) const;
+
+  /** 
+   * Add a piece at a location.
+   */
+  void AddPiece_(PieceType piece, u64 location);
+
+  /** 
+   * Remove a piece at a location.
+   */
+  void RemovePiece_(PieceType piece, u64 location);
+
+  /** 
+   * Set the en passant square.
+   */
+  void SetEpSquare_(Square ep_square);
+
+  /** 
+   * Set particular castling rights.
+   */
+  void SetCastlingRights_(Color color, int direction, int value);
+
+  /** 
+   * Set the turn.
+   */
+  void SetTurn_(Color turn);
 
 public:
   /** 
@@ -200,27 +252,57 @@ public:
    */
   MoveList<256> legal_moves();
 
-  /** 
-   * capture moves only, generated for q-search.
+  /**
+   * Whether the game is continuing, a win for a particular side, or drawn.
+   * 
+   * The value is cached and stored, though this may not be needed.
    */
-  MoveList<256> capture_moves();
-  GameStatus status();
+  board::Status status();
 
-  // getters that might be const depending on implementation
-
-  bool is_check();
+  
+  /**
+   * Does this move put the opponent in check?
+   */
   bool is_checking_move(CMove mv);
+
+  /**
+   * Given a move source square and dest square, create a move with the correct metadata.
+   * 
+   * This is used in the UCI interface when loading a sequence of moves.
+   */
   CMove move_from_src_dest(Square src, Square dest);
 
-  // const getters
+  /**
+   * Which side is it to move?
+   * 
+   * Starts off as white by default.
+   */
+  Color turn() const;
 
-  Color get_turn() const;
-  u64 get_hash() const;
-  CMove last_move() const;
-  bool can_unmake() const;
-  u64 occupancy() const; // mask of piece locations
+  /**
+   * Get the current hash.
+   */
+  u64 hash() const;
+
+  /**
+   * A bitboard mask of pieces for a particular color.
+   */
   u64 occupancy(Color color) const;
-  std::string fen() const; // output the FEN as a string
+
+  /**
+   * A bitboard mask of all pieces.
+   */
+  u64 occupancy() const;
+
+  /**
+   * Is the board currently in check?
+   */
+  bool is_check() const;
+
+  /**
+   * Outputs the FEN as a string.
+   */
+  std::string fen() const;
 
   // Public state-changing methods
 
@@ -229,20 +311,35 @@ public:
    */
   void Reset();
 
+  /**
+   * Makes a move and changes state accordingly.s
+   */
   void MakeMove(CMove mv);
+
+  /**
+   * Undoes the last move.
+   */
   void UnmakeMove();
 
+  /**
+   * Loads a position from a list of pieces and complete list of state parameters.
+   */
   void LoadPosition(PieceType piece_list[64], Color turn, int ep_square,
-                    castle::Rights castling_rights, int fullmove, int halfmove);
-  void LoadPosition(std::string fen); // loading from a FEN string
+                    board::castle::Rights castling_rights, int fullmove, int halfmove);
+
+  /**
+   * Loads a position from a FEN string.
+   */
+  void LoadPosition(std::string fen);
 
   /**
    * Prints information to the console.
    */
   void Dump();
 
-  GameStatus status() { return status_; }
-  // default constructor
+  /**
+   * Default constructor. Loads the classical starting position.
+   */
   Board();
 };
 

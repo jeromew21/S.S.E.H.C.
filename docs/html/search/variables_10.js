@@ -1,10 +1,11 @@
 var searchData=
 [
-  ['s_485',['s',['../namespacedirection_1_1rook.html#a5db6760b68a8e7042cbf75b7992c159c',1,'direction::rook']]],
-  ['score_486',['score',['../structMoveScoreTuple.html#a332993c159ab9e35576a18665b4a142e',1,'MoveScoreTuple']]],
-  ['score_5fmax_487',['SCORE_MAX',['../namespaceAI.html#a9e44ec28f9a130cb2cadd88b0b81ca78',1,'AI']]],
-  ['score_5fmin_488',['SCORE_MIN',['../namespaceAI.html#ac059fd557cb2d0864babca03e4d624a6',1,'AI']]],
-  ['se_489',['se',['../namespacedirection_1_1bishop.html#ab696a158989ce4f2b4241c4bcf71d4de',1,'direction::bishop']]],
-  ['short_5f_490',['short_',['../namespacecastle.html#a380ededd70391c10f5b8df077c7dda5f',1,'castle']]],
-  ['sw_491',['sw',['../namespacedirection_1_1bishop.html#aba8630bc1fb18730d84be4b2e80984c1',1,'direction::bishop']]]
+  ['s_599',['s',['../namespacedirection_1_1rook.html#a5db6760b68a8e7042cbf75b7992c159c',1,'direction::rook']]],
+  ['score_600',['score',['../structMoveScore.html#ac62130fe9cbb4720c1b9561de63d6ada',1,'MoveScore::score()'],['../structTableBucket.html#a2d334d42db0b472382c9c3a36664213b',1,'TableBucket::score()']]],
+  ['score_5fmax_601',['SCORE_MAX',['../search_8hpp.html#a60dfe29f268a4ec0e1169e0b64a84f54',1,'search.hpp']]],
+  ['score_5fmin_602',['SCORE_MIN',['../search_8hpp.html#a17a6bba34dc190b7b9633dca12b0df30',1,'search.hpp']]],
+  ['se_603',['se',['../namespacedirection_1_1bishop.html#ab696a158989ce4f2b4241c4bcf71d4de',1,'direction::bishop']]],
+  ['seq_604',['seq',['../structMiniTableBucket.html#a4359aa3f6322b0fc73b199aff55b6516',1,'MiniTableBucket']]],
+  ['short_5f_605',['short_',['../namespaceboard_1_1castle.html#ac58244b5f1758585f923512ea4260baf',1,'board::castle']]],
+  ['sw_606',['sw',['../namespacedirection_1_1bishop.html#aba8630bc1fb18730d84be4b2e80984c1',1,'direction::bishop']]]
 ];

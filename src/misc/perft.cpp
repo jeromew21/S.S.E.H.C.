@@ -1,6 +1,7 @@
 #include "misc/perft.hpp"
+#include "uci/strings.hpp"
 
-void perft(Board &board, int depth, PerftCounter &counter)
+void perft::perft(Board &board, int depth, perft::Counter &counter)
 {
     if (depth == 0)
         return;
@@ -36,11 +37,15 @@ void perft(Board &board, int depth, PerftCounter &counter)
                 counter.captures += 1;
             }
         }
+        board.Dump();
+        std::cout << moveToUCIAlgebraic(mv);
+
         board.MakeMove(mv);
+
         if (depth == 1)
         {
-            GameStatus s = board.status();
-            if (s == GameStatus::WhiteWin || s == GameStatus::BlackWin)
+            board::Status s = board.status();
+            if (s == board::Status::WhiteWin || s == board::Status::BlackWin)
             {
                 counter.checkmates += 1;
             }

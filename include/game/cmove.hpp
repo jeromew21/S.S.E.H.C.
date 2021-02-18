@@ -2,12 +2,13 @@
 #define CMOVE_HPP
 
 #include "misc/bits.hpp"
+#include "misc/debug.hpp"
 
 // not an enum because type casting is scary
 // this serves the same purpose as one
 namespace move_type
 {
-  const int Null = 0;
+  const int NullMove = 0;
   const int Default = 1;
   const int KPromotion = 2;
   const int CastleShort = 3;
@@ -30,47 +31,51 @@ private:
 public:
   static CMove NullMove() { return CMove(); }
 
-  inline int type_code() { return data_ & 15; } //call move_type?
+  inline int type_code() const { return data_ & 15; } //call move_type?
 
-  inline bool is_null() { return type_code() == move_type::Null; }
-  inline bool not_null() { return type_code() != move_type::Null; } //could use !is_null?
+  inline bool is_null() const { return type_code() == move_type::NullMove; }
 
-  inline PieceType promoting_piece() //does this still work since we changed the piecetype values?
+  /**
+   * Will return the the promotin piece given a color.
+   */
+  inline PieceType promoting_piece(Color color) const
   {
-    assert(type_code() % 2 == 0 && type_code() != 0);
-    return type_code();
+    assert(type_code() % 2 == 0 && type_code() > 0);
+    return type_code() + color;
   }
 
-  // don't remember why we need this exactly
-  inline PieceType promoting_piece(Color color)
+  inline bool is_promotion() const //does this work? Shouldn't we check for evenness?
   {
-    return promoting_piece() + color;
+    const int code = type_code();
+    return code > 0 && code % 2 == 0;
   }
 
-  inline bool is_promotion() //does this work? Shouldn't we check for evenness?
+  inline bool is_castle() const
   {
-    int tc = type_code();
-    return tc >= move_type::KPromotion && tc <= move_type::QPromotion;
+    const int code = type_code();
+    return code == move_type::CastleLong || code == move_type::CastleShort;
   }
 
-  inline bool is_castle()
+  inline Square src_square() const { return data_ >> 10; }
+  inline Square dest_square() const { return (data_ >> 4) & 63; }
+
+  inline u64 src() const { return u64FromSquare(data_ >> 10); }
+  inline u64 dest() const { return u64FromSquare((data_ >> 4) & 63); }
+
+  CMove(Square src_, Square dest_, int type_code_)
   {
-    int tc = type_code();
-    return tc == move_type::CastleLong || tc == move_type::CastleShort;
+    if (!isValidSquare(src_)) {
+      dump32(dest_);
+    }
+    if (!isValidSquare(dest_)) {
+      dump32(dest_);
+    }
+    assert(isValidSquare(src_));
+    assert(isValidSquare(dest_));
+    data_ = (src_ << 10) | (dest_ << 4) | (type_code_ & 15);
   }
 
-  inline Square src_square() { return data_ >> 10; }
-  inline Square dest_square() { return (data_ >> 4) & 63; }
-
-  inline u64 src() { return u64FromSquare(data_ >> 10); }
-  inline u64 dest() { return u64FromSquare((data_ >> 4) & 63); }
-
-  CMove(Square src0, Square dest0, int typeCode)
-  {
-    data_ = (src0 << 10) | (dest0 << 4) | (typeCode & 15);
-  }
-
-  CMove() : data_(0) {} //null move
+  CMove() : data_(0) {} // null move
 
   bool operator==(const CMove &other) const { return data_ == other.data_; }
   bool operator!=(const CMove &other) const { return data_ != other.data_; }

@@ -66,14 +66,18 @@ PieceType pieceFromStringFen(std::string val)
     return piece::EmptyPiece;
 }
 
-std::string moveToUCIAlgebraic(CMove &mv)
+std::string moveToUCIAlgebraic(CMove mv)
 {
   std::string result;
+  if (mv.is_null()) {
+    result += "null";
+    return result;
+  }
   result += squareName(mv.src());
   result += squareName(mv.dest());
   if (mv.is_promotion())
   {
-    result += pieceToStringLower(mv.promoting_piece());
+    result += pieceToStringLower(mv.promoting_piece(White));
   }
   return result;
 }

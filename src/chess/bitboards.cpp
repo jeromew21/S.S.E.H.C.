@@ -271,12 +271,22 @@ const u64 PAWN_DOUBLE_CACHE[2][64] = {{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
                                        0x200000000, 0x400000000, 0x800000000, 0x1000000000, 0x2000000000,
                                        0x4000000000, 0x8000000000, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}};
 
+const u64 ONE_FILE_ADJ_CACHE[64] = {0x2, 0x5, 0xa, 0x14, 0x28, 0x50, 0xa0, 0x40, 0x200, 0x500,
+                                    0xa00, 0x1400, 0x2800, 0x5000, 0xa000, 0x4000, 0x20000, 0x50000, 0xa0000, 0x140000, 0x280000,
+                                    0x500000, 0xa00000, 0x400000, 0x2000000, 0x5000000, 0xa000000, 0x14000000, 0x28000000,
+                                    0x50000000, 0xa0000000, 0x40000000, 0x200000000, 0x500000000, 0xa00000000, 0x1400000000,
+                                    0x2800000000, 0x5000000000, 0xa000000000, 0x4000000000, 0x20000000000, 0x50000000000,
+                                    0xa0000000000, 0x140000000000, 0x280000000000, 0x500000000000, 0xa00000000000, 0x400000000000,
+                                    0x2000000000000, 0x5000000000000, 0xa000000000000, 0x14000000000000, 0x28000000000000,
+                                    0x50000000000000, 0xa0000000000000, 0x40000000000000, 0x200000000000000, 0x500000000000000,
+                                    0xa00000000000000, 0x1400000000000000, 0x2800000000000000, 0x5000000000000000, 0xa000000000000000, 0x4000000000000000};
+
 bool move_maps::isAttackedSliding(u64 occupancy_map, u64 subject, u64 rooks, u64 bishops)
 {
   assert(isValidSquare(u64ToSquare(subject)));
 
-  Square king_location = u64ToSquare(subject);
-  if (rooks & rookMoves(king_location, occupancy_map) || bishops & bishopMoves(king_location, occupancy_map))
+  Square subj_location = u64ToSquare(subject);
+  if (rooks & rookMoves(subj_location, occupancy_map) || bishops & bishopMoves(subj_location, occupancy_map))
     return true;
   else
     return false;
@@ -449,6 +459,11 @@ bool move_maps::isPromotingRank(Square piece_location, Color color)
 bool move_maps::isStartingRank(Square piece_location, Color color)
 {
   return (color == Black && squareToRow(piece_location) == 6) || (color == White && squareToRow(piece_location) == 1);
+}
+
+u64 move_maps::oneFileAdjacent(Square piece_location)
+{
+  return ONE_FILE_ADJ_CACHE[piece_location];
 }
 
 u64 move_maps::pawnCaptures(Square piece_location, Color color)

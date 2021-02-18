@@ -63,19 +63,25 @@ namespace move_maps
   bool isStartingRank(Square piece_location, Color color);
 
   /**
+   * Returns the squares exactly one file adjacent to the current one. 
+   * Really only used for en passant.
+   */
+  u64 oneFileAdjacent(Square piece_location);
+
+  /**
    * Returns a bitboard of pawn captures at given location.
    */
   u64 pawnCaptures(Square piece_location, Color color);
 
   /**
-   * Returns a bitboard of pawn forward moves at given location and occupancy map.
+   * Returns a bitboard of pawn forward moves at given location.
    * 
    * Always a quiet move.
    */
   u64 pawnMoves(Square piece_location, Color color);
 
   /**
-   * Returns a bitboard of pawn double moves at given location and occupancy map.
+   * Returns a bitboard of pawn double moves at given location.
    * 
    * Always a quiet move.
    */
@@ -189,6 +195,21 @@ private:
    */
   bool maps_generated_;
 
+  /**
+   * The queenside starting location for rooks, depending on whether this is Chess960 or not.
+   */
+  u64 king_starting_location[2];
+
+  /**
+   * The queenside starting location for rooks, depending on whether this is Chess960 or not.
+   */
+  u64 queenside_rook_starting_location[2];
+
+  /**
+   * The kingside starting location for rooks, depending on whether this is Chess960 or not.
+   */
+  u64 kingside_rook_starting_location[2];
+
   /** 
    * Update the attack and defend maps.
    */
@@ -211,15 +232,27 @@ private:
    */
   bool verify_move_safety_(CMove mv);
 
+  /**
+   * This will return a mask of pieces that attack any pieces masked by subjects,
+   * of attacking_color.
+   */
+  u64 attackers_to_(u64 subjects, Color attacking_color);
+
+  /**
+   * This will return a mask of pieces that attack any pieces masked by subjects,
+   * of any color.
+   */
+  u64 attackers_to_(u64 subjects);
+
   /** 
    * Returns the piece at a particular location.
    * 
    * Try to use this as seldom as possible, since with the bitboard strategy we try to think
    * in terms of pieces, not locations.
    */
-  PieceType piece_at(u64 location) const;
+  PieceType piece_at_(u64 location) const;
   
-  PieceType piece_at(Square location) const;
+  PieceType piece_at_(Square location) const;
 
   /** 
    * Add a piece at a location.
@@ -323,6 +356,8 @@ public:
 
   /**
    * Loads a position from a list of pieces and complete list of state parameters.
+   * 
+   * This effectively acts as the constructor for the board.
    */
   void LoadPosition(PieceType piece_list[64], Color turn, int ep_square,
                     board::castle::Rights castling_rights, int fullmove, int halfmove);

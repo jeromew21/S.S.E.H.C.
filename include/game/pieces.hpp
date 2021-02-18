@@ -5,6 +5,16 @@
 
 namespace piece
 {
+  namespace colorless
+  {
+    const int pawn = 0;
+    const int knight = 1;
+    const int bishop = 2;
+    const int rook = 3;
+    const int queen = 4;
+    const int king = 5;
+  }
+
   namespace white
   {
     const PieceType pawn = (0 << 1);   //0
@@ -25,25 +35,39 @@ namespace piece
   }                                        // namespace black
   const PieceType EmptyPiece = -1;
 
-  inline bool is_empty(PieceType piece) { return piece == EmptyPiece; }
-  inline bool is_pawn(PieceType piece) { return piece >> 1 == 0; }
-  inline bool is_king(PieceType piece) { return piece >> 1 == 5; }
-  inline bool is_knight(PieceType piece) { return piece >> 1 == 1; }
-  inline bool is_bishop(PieceType piece) { return piece >> 1 == 2; }
-  inline bool is_rook(PieceType piece) { return piece >> 1 == 3; }
-  inline bool is_queen(PieceType piece) { return piece >> 1 == 4; }
+  inline int to_colorless(PieceType piece) { return piece >> 1; }
 
-  inline PieceType get_pawn(Color color) { return white::pawn + color; }
-  inline PieceType get_bishop(Color color) { return white::bishop + color; }
-  inline PieceType get_rook(Color color) { return white::rook + color; }
-  inline PieceType get_queen(Color color) { return white::queen + color; }
-  inline PieceType get_king(Color color) { return white::king + color; }
+  inline bool is_empty(PieceType piece) { return piece == EmptyPiece; }
+  inline bool is_pawn(PieceType piece) { return to_colorless(piece) == colorless::pawn; }
+  inline bool is_king(PieceType piece) { return to_colorless(piece) == colorless::king; }
+  inline bool is_knight(PieceType piece) { return to_colorless(piece) == colorless::knight; }
+  inline bool is_bishop(PieceType piece) { return to_colorless(piece) == colorless::bishop; }
+  inline bool is_rook(PieceType piece) { return to_colorless(piece) == colorless::rook; }
+  inline bool is_queen(PieceType piece) { return to_colorless(piece) == colorless::queen; }
+
+  inline PieceType flip(PieceType piece)
+  {
+    assert(!is_empty(piece));
+    return piece ^ 1;
+  }
+
+  inline PieceType get_pawn(Color color) { return colorless::pawn + color; }
+  inline PieceType get_bishop(Color color) { return colorless::bishop + color; }
+  inline PieceType get_rook(Color color) { return colorless::rook + color; }
+  inline PieceType get_queen(Color color) { return colorless::queen + color; }
+  inline PieceType get_king(Color color) { return colorless::king + color; }
 } // namespace piece
 
-int getMaterialValue(PieceType piece);
+/**
+ * Returns 0 if color is 1 and 1 if color is 0
+ */
+inline Color oppositeColor(Color color) { return color ^ 1; }
 
-inline Color oppositeColor(Color color) { return 1 & (~color); }
-
+/**
+ * Returns the color (1 or 0) of a piece.
+ */
 inline Color colorOf(PieceType piece) { return piece % 2; }
+
+int getMaterialValue(PieceType piece);
 
 #endif

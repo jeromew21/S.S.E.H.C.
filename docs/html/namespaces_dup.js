@@ -14,7 +14,7 @@ var namespaces_dup =
       [ "alphaBetaSearch", "namespaceai.html#a6d279c55f508787462b8a2dc8746c325", null ],
       [ "evaluation", "namespaceai.html#abbb2c58649546f6f23f8bacce61fb12f", null ],
       [ "flippedEval", "namespaceai.html#a4082aa3298620e03ccecf9cda22a1a74", null ],
-      [ "generateMovesOrdered", "namespaceai.html#ab67eb953f928476408640dd745729828", null ],
+      [ "generateMovesOrdered", "namespaceai.html#ad345fba335480d819c1fddeddfe51652", null ],
       [ "init", "namespaceai.html#af5a1daa2cbbde6eb090fa9b8434758f3", null ],
       [ "isCheckmateScore", "namespaceai.html#a87662194463bdeb5be5a68b17fa8c876", null ],
       [ "materialEvaluation", "namespaceai.html#a39b89833a79969ce93353ae367e9fc22", null ],

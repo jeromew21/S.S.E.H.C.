@@ -22,14 +22,52 @@ namespace board
   namespace castle
   {
     /**
-   * constant representing castling long (queenside)
-   */
+    * constant representing castling long (queenside)
+    */
     const int long_ = 0;
 
     /**
-   * constant representing castling short (kingside)
-   */
+    * constant representing castling short (kingside)
+    */
     const int short_ = 2;
+
+    namespace white
+    {
+      const int long_ = 0;
+      const int short_ = 1;
+    }
+
+    namespace black
+    {
+      const int long_ = 1;
+      const int short_ = 3;
+    }
+
+    const u64 king_long_dest[2] = {0x4, 0x400000000000000};
+    const u64 king_short_dest[2] = {0x40, 0x4000000000000000};
+
+    const u64 rook_long_dest[2] = {0x8, 0x800000000000000};
+    const u64 rook_short_dest[2] = {0x20, 0x2000000000000000};
+
+    /**
+     * the squares a king has to pass through during castling
+     */
+    const u64 king_long_slide[2] = {0xc, 0xc00000000000000};
+
+    /**
+     * the squares a king has to pass through during castling
+     */
+    const u64 king_short_slide[2] = {0x60, 0x6000000000000000};
+
+    /**
+     * the squares that must be vacant for castling
+     */
+    const u64 long_squares[2] = {0xe, 0xe00000000000000};
+
+    /**
+     * the squares that must be vacant for castling
+     */
+    const u64 short_squares[2] = {0x60, 0x6000000000000000};
 
     /**
      * We encapsulate the castling values of the board in one class.
@@ -63,14 +101,14 @@ namespace board
     int move_count;
     int ply_count;
     Color turn;
-    int halfmove_counter;           // plies since last capture or pawn move
-    int en_passant_square;          // square behind the pawn, or -1
-    PieceType last_moved_piece;     // the piece type that last moved
-    PieceType last_captured_piece;  // the piece type that was captured
-    u64 hash;                       // the zobrist hash, saved for threefold testing
-    bool is_check;                   // is the position a check
-    bool has_repeated;               // three-fold repetition
-    CMove last_move;                // the last move
+    int halfmove_counter;                  // plies since last capture or pawn move
+    int en_passant_square;                 // square behind the pawn, or -1
+    PieceType last_moved_piece;            // the piece type that last moved
+    PieceType last_captured_piece;         // the piece type that was captured
+    u64 hash;                              // the zobrist hash, saved for threefold testing
+    bool is_check;                         // is the position a check
+    bool has_repeated;                     // three-fold repetition
+    CMove last_move;                       // the last move
     board::castle::Rights castling_rights; // rights to castle for both sides
     std::array<u64, 64> attack_map_;
     std::array<u64, 64> defend_map_;

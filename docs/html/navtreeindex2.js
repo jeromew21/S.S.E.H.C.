@@ -1,5 +1,7 @@
 var NAVTREEINDEX2 =
 {
+"structboard_1_1State.html#a9d6cc195eee2923927c19ea056bed11e":[2,0,0,1,11],
+"structboard_1_1State.html#ab5c2a9c0c2c89dc8ce0e7e53997b91a8":[2,0,0,1,9],
 "structboard_1_1State.html#ac9eaae88bb97603ae4dd55cef218db0d":[2,0,0,1,4],
 "structboard_1_1State.html#aff69bc15442d28744731226defc06b03":[2,0,0,1,7],
 "structperft_1_1Counter.html":[2,0,1,0],

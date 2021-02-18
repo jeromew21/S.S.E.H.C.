@@ -191,27 +191,31 @@ bool Board::verify_move_safety_(CMove mv)
   if (mv.type_code() == move_type::EnPassant)
   {
     Square dest_square = u64ToSquare(dest);
-    u64 captured_pawn = move_maps::pawnCaptures(dest_square, enemy_turn);
+    u64 captured_pawn = move_maps::pawnMoves(dest_square, enemy_turn);
     u64 enemy_queen = piece::get_queen(enemy_turn);
     return !move_maps::isAttackedSliding(occupancy() & ~(src | captured_pawn),
-                                bitboard_[piece::get_king(curr_turn)],
-                                bitboard_[piece::get_rook(enemy_turn)] | enemy_queen,
-                                bitboard_[piece::get_bishop(enemy_turn)] | enemy_queen);
+                                         bitboard_[piece::get_king(curr_turn)],
+                                         bitboard_[piece::get_rook(enemy_turn)] | enemy_queen,
+                                         bitboard_[piece::get_bishop(enemy_turn)] | enemy_queen);
   }
 
   // we have a normal move and now need to check for pins or moving into an attack.
-  PieceType mover = piece_at(src);
+  PieceType mover = piece_at_(src);
   assert(colorOf(mover) == curr_turn);
 
   // If the piece is a king, we simply want to make sure we're not moving onto a controlled square.
   // we can't move king into a controlled square
   if (piece::is_king(mover))
   {
-
-    // return _isUnderAttack(dest, enemyColor) ? false : true;
+    u64 enemy_locations = occupancy(enemy_turn);
+    if (state_.defend_map_[u64ToSquare(dest)] & enemy_locations)
+      return true;
+    else
+      return false;
   }
 
   // Otherwise, we need to make sure the piece isn't pinned.
+  // We create a dummy occupancy mask and then see if any lanes or diagonals are opened up to the king.
   u64 occ = occupancy() & (~src) & dest;
   u64 enemy_rooks = occ & (bitboard_[piece::get_rook(enemy_turn)] | bitboard_[piece::get_queen(enemy_turn)]);
   u64 enemy_bishops = occ & (bitboard_[piece::get_bishop(enemy_turn)] | bitboard_[piece::get_queen(enemy_turn)]);
@@ -220,17 +224,19 @@ bool Board::verify_move_safety_(CMove mv)
   return !move_maps::isAttackedSliding(occ, king, enemy_rooks, enemy_bishops);
 }
 
+/**
+ * Assuming a move is legal for a particular side,
+ * we want to know if it puts the opponent in check.
+ */
 bool Board::is_checking_move(CMove mv)
 {
   const Color curr_turn = turn();
   const Color enemy_turn = oppositeColor(curr_turn);
 
-  const PieceType king = piece::get_king(enemy_turn);
-
   // Castling
   if (mv.is_castle())
   {
-    // Create mask with castled position. Check if rook has access to enemy
+    // Create mask with castled position. Check if rook has access to enemy king.
     u64 rook_position;
     u64 king_position;
     int k;
@@ -255,12 +261,13 @@ bool Board::is_checking_move(CMove mv)
     // return attacks & bitboard_[king] ? true : false;
   }
 
+  const u64 src = mv.src();
+  const u64 dest = mv.dest();
+
   // en passant discovered check is the bane of all chess programs
   if (mv.type_code() == move_type::EnPassant)
   {
-    u64 src = mv.src();
-    u64 dest = mv.dest();
-    Square dest_square = u64ToSquare(dest);
+    const Square dest_square = u64ToSquare(dest);
     // u64 captured_pawn = PAWN_MOVE_CACHE[dest_square][enemyColor];
     // if (_isInLineWithKing(src | captured_pawn, enemyColor, bitboard_[king]))
     // {
@@ -269,57 +276,53 @@ bool Board::is_checking_move(CMove mv)
     // return PAWN_CAPTURE_CACHE[destIndex][moveColor] & bitboard[king] ? true
   }
 
-  u64 src = mv.src();
-  u64 dest = mv.dest();
-  PieceType mover = piece_at(src);
-
-  if (colorOf(mover) != curr_turn)
-  {
-    std::raise(SIGINT);
-  }
+  PieceType mover = piece_at_(src);
   assert(colorOf(mover) == curr_turn);
 
-  u64 out_ray;
-  // check for discoveries
-  // if (_isInLineWithKing(src, enemy_turn, bitboard_[king], out_ray))
-  // {
-  //   return (dest & out_ray) ? false : true;
-  // }
+  // create a dummy occupancy map
+  const u64 occ = occupancy() & (~src) & dest;
 
-  // the mover color can attack the king. check for attacks based
-  // on piece type
-  u64 occ = occupancy();
-  u64 king_position = bitboard_[king];
+  // Let's see if moving the piece away leaves the king in check.
+  const u64 friendly_rooks = occ & (bitboard_[piece::get_rook(curr_turn)] | bitboard_[piece::get_queen(curr_turn)]);
+  const u64 friendly_bishops = occ & (bitboard_[piece::get_bishop(curr_turn)] | bitboard_[piece::get_queen(curr_turn)]);
+  const u64 enemy_king = bitboard_[piece::get_king(enemy_turn)];
+  if (move_maps::isAttackedSliding(occ, enemy_king, friendly_rooks, friendly_bishops)) {
+    return true;
+  }
 
+  // Now we want to see, once the piece has moved normally, what the situation is
   if (mv.is_promotion())
     mover = mv.promoting_piece(curr_turn);
 
-  u64 pieceMap = dest | (occ & ~src);
-  Square dest_square = u64ToSquare(dest);
+  const Square dest_square = u64ToSquare(dest);
 
-  if (piece::is_pawn(mover))
-  {
-    //return PAWN_CAPTURE_CACHE[dest_square][moveColor] & king_position ? true : false;
+  switch(piece::to_colorless(mover)) {
+    case piece::colorless::pawn:
+      return move_maps::pawnCaptures(dest_square, curr_turn) & enemy_king ? true : false; //TODO: do we need this construct? probably not
+    case piece::colorless::knight:
+      return move_maps::knightMoves(dest_square) & enemy_king ? true : false;
+    case piece::colorless::bishop:
+      return move_maps::bishopMoves(dest_square, occ) & enemy_king ? true : false;
+    case piece::colorless::rook:
+      return move_maps::rookMoves(dest_square, occ) & enemy_king ? true : false;
+    case piece::colorless::queen:
+      return (move_maps::bishopMoves(dest_square, occ) & enemy_king || move_maps::rookMoves(dest_square, occ) & enemy_king) ? true : false;
+    default:
+      return false;
   }
-  if (piece::is_knight(mover))
-  {
-    // return KNIGHT_MOVE_CACHE[dest_square] & king_position ? true : false;
-  }
-  if (piece::is_bishop(mover))
-  {
-  }
-  if (piece::is_rook(mover))
-  {
-  }
-  if (piece::is_queen(mover))
-  {
-  }
-  return false;
 }
 
+/**
+ * Procedure: For each piece location we add its attacking squares to the mask for that location...
+ * 
+ * Then we calculate the inverse, for each square, we look up the squares it attacks and add the defending square to each of those...
+ * 
+ * Almost definitely going to be a hotspot...
+ */
 void Board::GeneratePseudoLegal_()
 {
-  // assert(!maps_generated_);
+  // We don't want to generate twice.
+  assert(!maps_generated_);
 
   // generate attack-defend sets
   for (int i = 0; i < 64; i++)

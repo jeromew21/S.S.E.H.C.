@@ -1,1 +1,1 @@
-make -j 6 debug && gdb ./build/apps/ssehc
+make debug && gdb ./build/apps/ssehc

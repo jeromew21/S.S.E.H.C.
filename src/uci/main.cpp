@@ -37,18 +37,18 @@ int main()
   // testPerft();
   Board chessboard;
 
-
-  auto lm = chessboard.legal_moves();
-  for (int i = 0; i < lm.size(); i++) {
-    chessboard.MakeMove(lm[i]);
-    auto lm2 = chessboard.legal_moves();
-    for (int k = 0; k < lm2.size(); k++) {
-      chessboard.MakeMove(lm2[i]);
-      chessboard.Dump();
-      chessboard.UnmakeMove();
-    }
-    chessboard.UnmakeMove();
-  }
+  dump64(move_maps::oneFileAdjacent(squareFromName("e4")));
+  // auto lm = chessboard.legal_moves();
+  // for (int i = 0; i < lm.size(); i++) {
+  //   chessboard.MakeMove(lm[i]);
+  //   auto lm2 = chessboard.legal_moves();
+  //   for (int k = 0; k < lm2.size(); k++) {
+  //     chessboard.MakeMove(lm2[i]);
+  //     chessboard.Dump();
+  //     chessboard.UnmakeMove();
+  //   }
+  //   chessboard.UnmakeMove();
+  // }
 
   // testPerft();
 

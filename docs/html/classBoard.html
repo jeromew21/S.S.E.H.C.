@@ -103,6 +103,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:af38d727e983b2d5d9d9da5fd5b3d89a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa083e610e8e34be9695620ed5ef8ff5e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCMove.html">CMove</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBoard.html#aa083e610e8e34be9695620ed5ef8ff5e">move_from_src_dest</a> (<a class="el" href="definitions_8hpp.html#a6de8fcf40523e5c1eecf939520f33f6b">Square</a> src, <a class="el" href="definitions_8hpp.html#a6de8fcf40523e5c1eecf939520f33f6b">Square</a> dest)</td></tr>
 <tr class="separator:aa083e610e8e34be9695620ed5ef8ff5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abffeda6f0ce632445f0e1b12b558b364"><td class="memItemLeft" align="right" valign="top"><a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBoard.html#abffeda6f0ce632445f0e1b12b558b364">attackers_to</a> (<a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a> subjects, <a class="el" href="definitions_8hpp.html#a2f17017b1ef643696b678a0703f0f166">Color</a> attacking_color)</td></tr>
+<tr class="separator:abffeda6f0ce632445f0e1b12b558b364"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b8ac83e24d93e416184136e1e744e4e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBoard.html#a3b8ac83e24d93e416184136e1e744e4e">attackers_to</a> (<a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a> subjects)</td></tr>
+<tr class="separator:a3b8ac83e24d93e416184136e1e744e4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7060b3d7dc901a73d3bf3d4280d2fbdb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="definitions_8hpp.html#a2f17017b1ef643696b678a0703f0f166">Color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBoard.html#a7060b3d7dc901a73d3bf3d4280d2fbdb">turn</a> () const</td></tr>
 <tr class="separator:a7060b3d7dc901a73d3bf3d4280d2fbdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8ca3f97fa9f04e00fbdc98b8e5b383de"><td class="memItemLeft" align="right" valign="top"><a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBoard.html#a8ca3f97fa9f04e00fbdc98b8e5b383de">hash</a> () const</td></tr>
@@ -152,6 +156,54 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a3b8ac83e24d93e416184136e1e744e4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b8ac83e24d93e416184136e1e744e4e">&#9670;&nbsp;</a></span>attackers_to() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a> Board::attackers_to </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a>&#160;</td>
+          <td class="paramname"><em>subjects</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This will return a mask of pieces that attack any pieces masked by subjects, of any color. </p>
+
+</div>
+</div>
+<a id="abffeda6f0ce632445f0e1b12b558b364"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abffeda6f0ce632445f0e1b12b558b364">&#9670;&nbsp;</a></span>attackers_to() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a> Board::attackers_to </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a>&#160;</td>
+          <td class="paramname"><em>subjects</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="definitions_8hpp.html#a2f17017b1ef643696b678a0703f0f166">Color</a>&#160;</td>
+          <td class="paramname"><em>attacking_color</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This will return a mask of pieces that attack any pieces masked by subjects, of attacking_color. </p>
+
+</div>
+</div>
 <a id="a5611814a2ac7174da53c945ca646cb0d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5611814a2ac7174da53c945ca646cb0d">&#9670;&nbsp;</a></span>Dump()</h2>
 

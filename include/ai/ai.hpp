@@ -4,9 +4,11 @@
 #include <limits>
 #include <chrono>
 #include <atomic>
+
 #include "misc/definitions.hpp"
 #include "datastructures/search.hpp"
 #include "game/chessboard.hpp"
+#include "game/cmove.hpp"
 
 namespace AI
 {
@@ -16,6 +18,8 @@ namespace AI
 
   const int SCORE_MIN = std::numeric_limits<int>::min();
   const int SCORE_MAX = std::numeric_limits<int>::max();
+
+  int materialEvaluation(Board &board);
   int evaluation(Board &board);  // absolute
   int flippedEval(Board &board); // depends on turn
 
@@ -40,6 +44,9 @@ namespace AI
   MoveVector<256> generateMovesOrdered(Board &board, CMove hash_move, int ply_count,
                                        int &num_positive_moves);
 
+  bool isCheckmateScore(Score sc);
+  void init();
+  void reset();
 } // namespace AI
 
 #endif

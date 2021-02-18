@@ -241,6 +241,7 @@ public:
    */
   void Dump();
 
+  GameStatus status() { return status_; }
   // default constructor
   Board();
 };

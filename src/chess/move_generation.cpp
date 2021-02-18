@@ -175,6 +175,7 @@ MoveList<256> Board::capture_moves_()
 
 bool Board::verify_move_safety_(CMove mv)
 {
+  assert(maps_generated_);
   assert(!is_check()); // we shouldn't be calling this if we're in check
 
   const Color curr_turn = turn();

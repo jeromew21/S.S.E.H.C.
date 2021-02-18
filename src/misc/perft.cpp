@@ -44,7 +44,7 @@ void perft::perft(Board &board, int depth, perft::Counter &counter)
         if (depth == 1)
         {
             board::Status status = board.status();
-            if (status == board::Status::WhiteWin || s == board::Status::BlackWin)
+            if (status == board::Status::WhiteWin || status == board::Status::BlackWin)
             {
                 counter.checkmates += 1;
             }

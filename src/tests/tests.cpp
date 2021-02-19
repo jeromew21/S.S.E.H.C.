@@ -17,9 +17,13 @@ const int perft_kp_eps[6] = {0, 0, 1, 45, 1929, 73365};
 const int perft_kp_castles[6] = {0, 2, 91, 3162, 128013, 4993637};
 const int perft_kp_promos[6] = {0, 0, 0, 0, 15172, 8392};
 const int perft_kp_checks[6] = {0, 0, 3, 993, 25523, 3309887};
-const int perft_kp_mates[6] = {0, 0, 1, 43, 30171, 360003};
+const int perft_kp_mates[6] = {0, 0, 0, 1, 43, 30171};
 
 const int perft_tricky_nodes[6] = {0, 44, 1486, 62379, 2103487, 89941194};
+
+const int perft_test4_nodes[5] = {0, 6, 264, 9467, 422333};
+const int perft_test4_mates[5] = {0, 0, 0, 22, 5};
+const int perft_test4_promotions[5] = {0, 0, 48, 120, 60032};
 
 void expect(int ground_truth, int value, std::string const &message, int &total_cases, int &passes)
 {
@@ -62,6 +66,17 @@ void position_mate_test(std::string const &fen, bool is_mate, int &total_cases, 
   board::Status st = chessboard.status();
   expect(is_mate, st == board::Status::BlackWin || st == board::Status::WhiteWin, "is mate?", total_cases, passes);
 }
+
+void perft4_test(int depth, int &total_cases, int &passes) {
+  Board chessboard;
+  perft::Counter counter;
+  chessboard.LoadPosition("r3k2r/Pppp1ppp/1b3nbN/nP6/BBP1P3/q4N2/Pp1P2PP/R2Q1RK1 w kq - 0 1");
+  perft::perft(chessboard, depth, counter);
+  expect(perft_test4_nodes[depth], counter.nodes, "node count", total_cases, passes);
+  expect(perft_test4_mates[depth], counter.checkmates, "mate count", total_cases, passes);
+  expect(perft_test4_promotions[depth], counter.promotions, "promo count", total_cases, passes);
+}
+
 
 void perft_tricky_test(int depth, int &total_cases, int &passes) {
   Board chessboard;
@@ -146,6 +161,11 @@ void run_tests()
   position_mate_test("3rk1nr/p1ppqQb1/Bn2p1p1/1N1PN3/1p2P3/7p/PPPB1PPP/R3K2R b KQk - 0 3", false, total_cases, passes);
   position_mate_test("3r1knr/p1Npqpb1/Bn2p1N1/3P4/1p2P3/5Q1p/PPPB1PPP/R3K2R b KQ - 0 4", true, total_cases, passes);
   position_mate_test("r2qk2r/p1pp1Qb1/bn2p1p1/3PN3/1p2P3/2N4p/PPPBBPPP/R3K2R b KQkq - 0 2", true, total_cases, passes);
+
+  for (int d = 1; d < 5; d++) {
+    banner("PERFT 4 depth=" + std::to_string(d));
+    perft4_test(d, total_cases, passes);
+  }
 
   for (int d = 1; d < 6; d++)
   {

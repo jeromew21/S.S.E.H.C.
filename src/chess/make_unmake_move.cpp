@@ -12,6 +12,7 @@ void Board::MakeMove(CMove mv)
 
   // wipe current state to reflect move
   state_.last_move = mv;
+  state_.is_check = false;
 
   const Color curr_turn = turn();
   const int move_type_ = mv.type_code();

@@ -57,6 +57,7 @@ _ZN5Board8MakeMoveE5CMove:              # @_ZN5Board8MakeMoveE5CMove
 	movw	-16(%rbp), %r8w
 	movq	-120(%rbp), %rax                # 8-byte Reload
 	movw	%r8w, 138(%rax)
+	movb	$0, 136(%rax)
 	movq	%rax, %rdi
 	callq	_ZNK5Board4turnEv@PLT
 	movl	%eax, -36(%rbp)
@@ -893,7 +894,7 @@ _ZN5Board10UnmakeMoveEv:                # @_ZN5Board10UnmakeMoveEv
 .LBB17_2:
 	leaq	.L.str(%rip), %rdi
 	leaq	.L.str.1(%rip), %rsi
-	movl	$184, %edx
+	movl	$185, %edx
 	leaq	.L__PRETTY_FUNCTION__._ZN5Board10UnmakeMoveEv(%rip), %rcx
 	callq	__assert_fail@PLT
 .LBB17_3:

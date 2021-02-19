@@ -60,9 +60,16 @@ int main(int argc, char* argv[])
   }
 
   Board bd;
-  bd.LoadPosition("r1b1kbnr/pppp1Npp/8/8/4q3/5n2/PPPPBP1P/RNBQKR2 w Qkq - 2 8");
+  bd.LoadPosition("r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - ");
   bd.Dump();
-  
+  auto ml = bd.legal_moves();
+  for (int i = 0; i < ml.size(); i++) {
+    CMove mv = ml[i];
+    std::cout << moveToUCIAlgebraic(mv) << "\n";
+    bd.MakeMove(mv);
+    bd.UnmakeMove();
+  }
+
   uci::listen();
 
   return 0;

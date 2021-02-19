@@ -106,10 +106,12 @@ MoveList<256> Board::legal_moves()
       u64 king_slide = board::castle::king_long_slide[curr_turn]; // slide should contain dest
       if (!attackers_to_(king_slide, enemy_color))
       {
-        mv_list.PushBack(CMove(king_starting_location[curr_turn], board::castle::king_long_dest[curr_turn], move_type::CastleLong));
+        mv_list.PushBack(CMove(u64ToSquare(king_starting_location[curr_turn]), u64ToSquare(board::castle::king_long_dest[curr_turn]), move_type::CastleLong));
       }
     }
-  } else if (state_.castling_rights.get(curr_turn, board::castle::short_)) {
+  }
+  if (state_.castling_rights.get(curr_turn, board::castle::short_))
+  {
     assert(bitboard_[piece::get_king(curr_turn)] & king_starting_location[curr_turn]);
 
     u64 squares_between = board::castle::short_squares[curr_turn];
@@ -119,7 +121,7 @@ MoveList<256> Board::legal_moves()
       u64 king_slide = board::castle::king_short_slide[curr_turn]; // slide should contain dest
       if (!attackers_to_(king_slide, enemy_color))
       {
-        mv_list.PushBack(CMove(king_starting_location[curr_turn], board::castle::king_short_dest[curr_turn], move_type::CastleShort));
+        mv_list.PushBack(CMove(u64ToSquare(king_starting_location[curr_turn]), u64ToSquare(board::castle::king_short_dest[curr_turn]), move_type::CastleShort));
       }
     }
   }
@@ -185,13 +187,14 @@ MoveList<256> Board::capture_moves_()
         // pawns can sometimes attack an empty square (no intersection w/ occupancy)
         // that's the case of en passant
         const Square ep_square = state_.en_passant_square;
-        if (ep_square != -1 && u64FromSquare(ep_square) & state_.attack_map_[ep_square])
+        if (ep_square != -1 &&
+            u64FromSquare(ep_square) & state_.attack_map_[src])
         {
           CMove mv = CMove(src, ep_square, move_type::EnPassant);
           if (verify_move_safety_(mv))
             mv_list.PushBack(mv);
         }
-      }
+      } // end if checking for en passant
     } // end for over locations of specific piece type
   }
 

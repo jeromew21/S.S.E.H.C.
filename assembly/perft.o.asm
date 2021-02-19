@@ -756,7 +756,7 @@ _ZN5perft5perftER5BoardiRNS_7CounterE:  # @_ZN5perft5perftER5BoardiRNS_7CounterE
 	cmpl	$0, -564(%rbp)
 	jne	.LBB5_2
 # %bb.1:
-	jmp	.LBB5_23
+	jmp	.LBB5_24
 .LBB5_2:
 	movq	-560(%rbp), %rsi
 	leaq	-528(%rbp), %rdi
@@ -772,14 +772,14 @@ _ZN5perft5perftER5BoardiRNS_7CounterE:  # @_ZN5perft5perftER5BoardiRNS_7CounterE
 	callq	_ZNK8MoveListILi256EE4sizeEv
 	movl	-596(%rbp), %ecx                # 4-byte Reload
 	cmpl	%eax, %ecx
-	jge	.LBB5_23
+	jge	.LBB5_24
 # %bb.4:                                #   in Loop: Header=BB5_3 Depth=1
 	movl	-588(%rbp), %esi
 	leaq	-528(%rbp), %rdi
 	callq	_ZNK8MoveListILi256EEixEi
 	movw	%ax, -536(%rbp)
 	cmpl	$1, -564(%rbp)
-	jne	.LBB5_16
+	jne	.LBB5_17
 # %bb.5:                                #   in Loop: Header=BB5_3 Depth=1
 	movq	-576(%rbp), %rax
 	movl	(%rax), %ecx
@@ -795,6 +795,7 @@ _ZN5perft5perftER5BoardiRNS_7CounterE:  # @_ZN5perft5perftER5BoardiRNS_7CounterE
 	movl	12(%rax), %ecx
 	addl	$1, %ecx
 	movl	%ecx, 12(%rax)
+	jmp	.LBB5_10
 .LBB5_7:                                #   in Loop: Header=BB5_3 Depth=1
 	leaq	-536(%rbp), %rdi
 	callq	_ZNK5CMove12is_promotionEv
@@ -807,36 +808,38 @@ _ZN5perft5perftER5BoardiRNS_7CounterE:  # @_ZN5perft5perftER5BoardiRNS_7CounterE
 	addl	$1, %ecx
 	movl	%ecx, 16(%rax)
 .LBB5_9:                                #   in Loop: Header=BB5_3 Depth=1
+	jmp	.LBB5_10
+.LBB5_10:                               #   in Loop: Header=BB5_3 Depth=1
 	movq	-560(%rbp), %rdi
 	movw	-536(%rbp), %ax
 	movw	%ax, -544(%rbp)
 	movzwl	-544(%rbp), %esi
 	callq	_ZN5Board16is_checking_moveE5CMove@PLT
 	testb	$1, %al
-	jne	.LBB5_10
-	jmp	.LBB5_11
-.LBB5_10:                               #   in Loop: Header=BB5_3 Depth=1
+	jne	.LBB5_11
+	jmp	.LBB5_12
+.LBB5_11:                               #   in Loop: Header=BB5_3 Depth=1
 	movq	-576(%rbp), %rax
 	movl	20(%rax), %ecx
 	addl	$1, %ecx
 	movl	%ecx, 20(%rax)
-.LBB5_11:                               #   in Loop: Header=BB5_3 Depth=1
+.LBB5_12:                               #   in Loop: Header=BB5_3 Depth=1
 	leaq	-536(%rbp), %rdi
 	callq	_ZNK5CMove4destEv
 	andq	-584(%rbp), %rax
 	cmpq	$0, %rax
-	je	.LBB5_13
-# %bb.12:                               #   in Loop: Header=BB5_3 Depth=1
+	je	.LBB5_14
+# %bb.13:                               #   in Loop: Header=BB5_3 Depth=1
 	movq	-576(%rbp), %rax
 	movl	4(%rax), %ecx
 	addl	$1, %ecx
 	movl	%ecx, 4(%rax)
-.LBB5_13:                               #   in Loop: Header=BB5_3 Depth=1
+.LBB5_14:                               #   in Loop: Header=BB5_3 Depth=1
 	leaq	-536(%rbp), %rdi
 	callq	_ZNK5CMove9type_codeEv
 	cmpl	$5, %eax
-	jne	.LBB5_15
-# %bb.14:                               #   in Loop: Header=BB5_3 Depth=1
+	jne	.LBB5_16
+# %bb.15:                               #   in Loop: Header=BB5_3 Depth=1
 	movq	-576(%rbp), %rax
 	movl	8(%rax), %ecx
 	addl	$1, %ecx
@@ -845,33 +848,33 @@ _ZN5perft5perftER5BoardiRNS_7CounterE:  # @_ZN5perft5perftER5BoardiRNS_7CounterE
 	movl	4(%rax), %ecx
 	addl	$1, %ecx
 	movl	%ecx, 4(%rax)
-.LBB5_15:                               #   in Loop: Header=BB5_3 Depth=1
-	jmp	.LBB5_16
 .LBB5_16:                               #   in Loop: Header=BB5_3 Depth=1
+	jmp	.LBB5_17
+.LBB5_17:                               #   in Loop: Header=BB5_3 Depth=1
 	movq	-560(%rbp), %rdi
 	movw	-536(%rbp), %ax
 	movw	%ax, -552(%rbp)
 	movzwl	-552(%rbp), %esi
 	callq	_ZN5Board8MakeMoveE5CMove@PLT
 	cmpl	$1, -564(%rbp)
-	jne	.LBB5_21
-# %bb.17:                               #   in Loop: Header=BB5_3 Depth=1
+	jne	.LBB5_22
+# %bb.18:                               #   in Loop: Header=BB5_3 Depth=1
 	movq	-560(%rbp), %rdi
 	callq	_ZN5Board6statusEv@PLT
 	movl	%eax, -592(%rbp)
 	cmpl	$0, -592(%rbp)
-	je	.LBB5_19
-# %bb.18:                               #   in Loop: Header=BB5_3 Depth=1
+	je	.LBB5_20
+# %bb.19:                               #   in Loop: Header=BB5_3 Depth=1
 	cmpl	$1, -592(%rbp)
-	jne	.LBB5_20
-.LBB5_19:                               #   in Loop: Header=BB5_3 Depth=1
+	jne	.LBB5_21
+.LBB5_20:                               #   in Loop: Header=BB5_3 Depth=1
 	movq	-576(%rbp), %rax
 	movl	24(%rax), %ecx
 	addl	$1, %ecx
 	movl	%ecx, 24(%rax)
-.LBB5_20:                               #   in Loop: Header=BB5_3 Depth=1
-	jmp	.LBB5_21
 .LBB5_21:                               #   in Loop: Header=BB5_3 Depth=1
+	jmp	.LBB5_22
+.LBB5_22:                               #   in Loop: Header=BB5_3 Depth=1
 	movq	-560(%rbp), %rdi
 	movl	-564(%rbp), %eax
 	subl	$1, %eax
@@ -880,22 +883,22 @@ _ZN5perft5perftER5BoardiRNS_7CounterE:  # @_ZN5perft5perftER5BoardiRNS_7CounterE
 	callq	_ZN5perft5perftER5BoardiRNS_7CounterE
 	movq	-560(%rbp), %rdi
 	callq	_ZN5Board10UnmakeMoveEv@PLT
-# %bb.22:                               #   in Loop: Header=BB5_3 Depth=1
+# %bb.23:                               #   in Loop: Header=BB5_3 Depth=1
 	movl	-588(%rbp), %eax
 	addl	$1, %eax
 	movl	%eax, -588(%rbp)
 	jmp	.LBB5_3
-.LBB5_23:
+.LBB5_24:
 	movq	%fs:40, %rax
 	movq	-8(%rbp), %rcx
 	cmpq	%rcx, %rax
-	jne	.LBB5_25
-# %bb.24:
+	jne	.LBB5_26
+# %bb.25:
 	addq	$608, %rsp                      # imm = 0x260
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.LBB5_25:
+.LBB5_26:
 	.cfi_def_cfa %rbp, 16
 	callq	__stack_chk_fail@PLT
 .Lfunc_end5:

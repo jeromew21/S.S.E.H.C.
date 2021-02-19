@@ -65,8 +65,11 @@ void Board::LoadPosition(std::string fen)
 
   int ep_square = elems[3] != "-" ? squareFromName(elems[3]) : -1;
 
-  int halfmove = std::stoi(elems[4]);
-  int fullmove = std::stoi(elems[5]);
+  int halfmove(0), fullmove(0);
+  if (elems.size() > 4) {
+    halfmove = std::stoi(elems[4]);
+    fullmove = std::stoi(elems[5]);
+  }
 
   LoadPosition(piece_list, turn_to_move, ep_square, castling_rights, halfmove, fullmove);
 }

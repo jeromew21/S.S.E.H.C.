@@ -69,14 +69,14 @@ u64 Board::occupancy(Color color) const
          bitboard_[piece::black::pawn] | bitboard_[piece::black::rook] | bitboard_[piece::black::knight];
 }
 
-CMove Board::move_from_src_dest(Square src, Square dest)
-{
-  PieceType mover = piece_at_(src);
-  assert(!piece::is_empty(mover));
+// CMove Board::move_from_src_dest(Square src, Square dest)
+// {
+//   PieceType mover = piece_at_(src);
+//   assert(!piece::is_empty(mover));
 
-  // this needs to be given more information... promotions...
-  return CMove::NullMove();
-}
+//   // this needs to be given more information... promotions...
+//   return CMove::NullMove();
+// }
 
 u64 Board::attackers_to_(u64 subjects)
 {

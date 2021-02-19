@@ -17,8 +17,7 @@ void perft::perft(Board &board_, int depth, perft::Counter &counter)
       if (mv.is_castle())
       {
         counter.castles += 1;
-      }
-      if (mv.is_promotion())
+      } else if (mv.is_promotion())
       {
         counter.promotions += 1;
       }
@@ -28,8 +27,6 @@ void perft::perft(Board &board_, int depth, perft::Counter &counter)
       }
       if (mv.dest() & occ)
       {
-        // board_.Dump();
-        // std::cout << "the move: " << moveToUCIAlgebraic(mv) << std::endl;
         counter.captures += 1;
       }
       if (mv.type_code() == move_type::EnPassant)

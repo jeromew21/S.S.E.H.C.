@@ -224,7 +224,7 @@ _ZN5Board8MakeMoveE5CMove:              # @_ZN5Board8MakeMoveE5CMove
 	movl	-88(%rbp), %esi
 	movslq	-36(%rbp), %rcx
 	movq	-112(%rbp), %rdx                # 8-byte Reload
-	movq	1240(%rdx,%rcx,8), %rdx
+	movq	1256(%rdx,%rcx,8), %rdx
 	movq	-112(%rbp), %rdi                # 8-byte Reload
 	callq	_ZN5Board12RemovePiece_Eim@PLT
 	movl	-88(%rbp), %esi
@@ -631,7 +631,7 @@ _Z11u64ToSquarem:                       # @_Z11u64ToSquarem
 .LBB10_2:
 	leaq	.L.str.5(%rip), %rdi
 	leaq	.L.str.4(%rip), %rsi
-	movl	$127, %edx
+	movl	$130, %edx
 	leaq	.L__PRETTY_FUNCTION__._Z11u64ToSquarem(%rip), %rcx
 	callq	__assert_fail@PLT
 .LBB10_3:

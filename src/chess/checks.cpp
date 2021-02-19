@@ -38,9 +38,9 @@ bool Board::verify_move_safety_(CMove mv)
   if (piece::is_king(mover))
   {
     if (state_.defend_map_[u64ToSquare(dest)] & occupancy(enemy_turn))
-      return true;
+      return false; // if trying to move to square covered by enemy attack
     else
-      return false;
+      return true;
   }
 
   // Otherwise, we need to make sure the piece isn't pinned.

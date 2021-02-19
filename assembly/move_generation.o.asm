@@ -37,7 +37,7 @@ _ZN5Board11legal_movesEv:               # @_ZN5Board11legal_movesEv
 	.cfi_offset %rbp, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register %rbp
-	subq	$1888, %rsp                     # imm = 0x760
+	subq	$1904, %rsp                     # imm = 0x770
 	movq	%rdi, %rax
 	movq	%fs:40, %rcx
 	movq	%rcx, -8(%rbp)
@@ -61,7 +61,7 @@ _ZN5Board11legal_movesEv:               # @_ZN5Board11legal_movesEv
 	movq	-1832(%rbp), %rdi               # 8-byte Reload
 	movq	-1848(%rbp), %rsi               # 8-byte Reload
 	callq	_ZN5Board22produce_uncheck_moves_Ev@PLT
-	jmp	.LBB1_62
+	jmp	.LBB1_61
 .LBB1_4:
 	leaq	-528(%rbp), %rdi
 	movq	-1848(%rbp), %rsi               # 8-byte Reload
@@ -410,16 +410,17 @@ _ZN5Board11legal_movesEv:               # @_ZN5Board11legal_movesEv
 # %bb.47:
 	movslq	-1740(%rbp), %rax
 	movq	-1848(%rbp), %rcx               # 8-byte Reload
-	movq	1224(%rcx,%rax,8), %rax
-                                        # kill: def $eax killed $eax killed $rax
-	movslq	-1740(%rbp), %rdx
-	leaq	_ZN5board6castleL14king_long_destE(%rip), %rsi
-	movq	(%rsi,%rdx,8), %rdx
-                                        # kill: def $edx killed $edx killed $rdx
+	movq	1224(%rcx,%rax,8), %rdi
+	callq	_Z11u64ToSquarem
+	movslq	-1740(%rbp), %rcx
+	leaq	_ZN5board6castleL14king_long_destE(%rip), %rdx
+	movq	(%rdx,%rcx,8), %rdi
+	movl	%eax, -1892(%rbp)               # 4-byte Spill
+	callq	_Z11u64ToSquarem
 	leaq	-1720(%rbp), %rdi
-	movl	%eax, %esi
-	movl	$9, %eax
-	movl	%eax, %ecx
+	movl	-1892(%rbp), %esi               # 4-byte Reload
+	movl	%eax, %edx
+	movl	$9, %ecx
 	callq	_ZN5CMoveC2Eiii
 	leaq	-528(%rbp), %rdi
 	movzwl	-1720(%rbp), %esi
@@ -427,7 +428,7 @@ _ZN5Board11legal_movesEv:               # @_ZN5Board11legal_movesEv
 .LBB1_48:
 	jmp	.LBB1_49
 .LBB1_49:
-	jmp	.LBB1_61
+	jmp	.LBB1_50
 .LBB1_50:
 	movq	-1848(%rbp), %rax               # 8-byte Reload
 	addq	$96, %rax
@@ -453,7 +454,7 @@ _ZN5Board11legal_movesEv:               # @_ZN5Board11legal_movesEv
 .LBB1_53:
 	leaq	.L.str(%rip), %rdi
 	leaq	.L.str.1(%rip), %rsi
-	movl	$113, %edx
+	movl	$115, %edx
 	leaq	.L__PRETTY_FUNCTION__._ZN5Board11legal_movesEv(%rip), %rcx
 	callq	__assert_fail@PLT
 .LBB1_54:
@@ -486,16 +487,17 @@ _ZN5Board11legal_movesEv:               # @_ZN5Board11legal_movesEv
 # %bb.57:
 	movslq	-1740(%rbp), %rax
 	movq	-1848(%rbp), %rcx               # 8-byte Reload
-	movq	1224(%rcx,%rax,8), %rax
-                                        # kill: def $eax killed $eax killed $rax
-	movslq	-1740(%rbp), %rdx
-	leaq	_ZN5board6castleL15king_short_destE(%rip), %rsi
-	movq	(%rsi,%rdx,8), %rdx
-                                        # kill: def $edx killed $edx killed $rdx
+	movq	1224(%rcx,%rax,8), %rdi
+	callq	_Z11u64ToSquarem
+	movslq	-1740(%rbp), %rcx
+	leaq	_ZN5board6castleL15king_short_destE(%rip), %rdx
+	movq	(%rdx,%rcx,8), %rdi
+	movl	%eax, -1896(%rbp)               # 4-byte Spill
+	callq	_Z11u64ToSquarem
 	leaq	-1728(%rbp), %rdi
-	movl	%eax, %esi
-	movl	$3, %eax
-	movl	%eax, %ecx
+	movl	-1896(%rbp), %esi               # 4-byte Reload
+	movl	%eax, %edx
+	movl	$3, %ecx
 	callq	_ZN5CMoveC2Eiii
 	leaq	-528(%rbp), %rdi
 	movzwl	-1728(%rbp), %esi
@@ -505,26 +507,24 @@ _ZN5Board11legal_movesEv:               # @_ZN5Board11legal_movesEv
 .LBB1_59:
 	jmp	.LBB1_60
 .LBB1_60:
-	jmp	.LBB1_61
-.LBB1_61:
 	movq	-1832(%rbp), %rax               # 8-byte Reload
 	leaq	-528(%rbp), %rcx
 	movq	%rax, %rdi
 	movq	%rcx, %rsi
 	movl	$516, %edx                      # imm = 0x204
 	callq	memcpy@PLT
-.LBB1_62:
+.LBB1_61:
 	movq	%fs:40, %rax
 	movq	-8(%rbp), %rcx
 	cmpq	%rcx, %rax
-	jne	.LBB1_64
-# %bb.63:
+	jne	.LBB1_63
+# %bb.62:
 	movq	-1840(%rbp), %rax               # 8-byte Reload
-	addq	$1888, %rsp                     # imm = 0x760
+	addq	$1904, %rsp                     # imm = 0x770
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.LBB1_64:
+.LBB1_63:
 	.cfi_def_cfa %rbp, 16
 	callq	__stack_chk_fail@PLT
 .Lfunc_end1:
@@ -568,7 +568,7 @@ _ZN5Board14capture_moves_Ev:            # @_ZN5Board14capture_moves_Ev
 .LBB2_4:
 	leaq	.L.str.2(%rip), %rdi
 	leaq	.L.str.1(%rip), %rsi
-	movl	$139, %edx
+	movl	$141, %edx
 	leaq	.L__PRETTY_FUNCTION__._ZN5Board14capture_moves_Ev(%rip), %rcx
 	callq	__assert_fail@PLT
 .LBB2_5:
@@ -766,7 +766,7 @@ _ZN5Board14capture_moves_Ev:            # @_ZN5Board14capture_moves_Ev
 	movq	-1264(%rbp), %rcx               # 8-byte Reload
 	addq	$96, %rcx
 	addq	$64, %rcx
-	movslq	-1236(%rbp), %rsi
+	movslq	-1212(%rbp), %rsi
 	movq	%rcx, %rdi
 	movq	%rax, -1280(%rbp)               # 8-byte Spill
 	callq	_ZNSt5arrayImLm64EEixEm
@@ -910,7 +910,7 @@ _Z11u64ToSquarem:                       # @_Z11u64ToSquarem
 .LBB5_2:
 	leaq	.L.str.3(%rip), %rdi
 	leaq	.L.str.4(%rip), %rsi
-	movl	$127, %edx
+	movl	$130, %edx
 	leaq	.L__PRETTY_FUNCTION__._Z11u64ToSquarem(%rip), %rcx
 	callq	__assert_fail@PLT
 .LBB5_3:

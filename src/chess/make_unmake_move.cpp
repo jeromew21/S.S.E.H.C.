@@ -94,7 +94,7 @@ void Board::MakeMove(CMove mv)
     else if (move_type_ == move_type::CastleShort)
     {
       PieceType rook = piece::get_rook(curr_turn);
-      RemovePiece_(rook, queenside_rook_starting_location[curr_turn]);
+      RemovePiece_(rook, kingside_rook_starting_location[curr_turn]);
       AddPiece_(rook, board::castle::rook_short_dest[curr_turn]);
     }
 

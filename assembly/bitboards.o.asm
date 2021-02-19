@@ -164,7 +164,7 @@ _Z11u64ToSquarem:                       # @_Z11u64ToSquarem
 .LBB3_2:
 	leaq	.L.str.5(%rip), %rdi
 	leaq	.L.str.6(%rip), %rsi
-	movl	$127, %edx
+	movl	$130, %edx
 	leaq	.L__PRETTY_FUNCTION__._Z11u64ToSquarem(%rip), %rcx
 	callq	__assert_fail@PLT
 .LBB3_3:

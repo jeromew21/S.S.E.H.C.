@@ -188,10 +188,10 @@ _ZN5Board19verify_move_safety_E5CMove:  # @_ZN5Board19verify_move_safety_E5CMove
 	cmpq	$0, %rcx
 	je	.LBB1_16
 # %bb.15:
-	movb	$1, -17(%rbp)
+	movb	$0, -17(%rbp)
 	jmp	.LBB1_18
 .LBB1_16:
-	movb	$0, -17(%rbp)
+	movb	$1, -17(%rbp)
 	jmp	.LBB1_18
 .LBB1_17:
 	movq	-144(%rbp), %rdi                # 8-byte Reload
@@ -432,7 +432,7 @@ _Z11u64ToSquarem:                       # @_Z11u64ToSquarem
 .LBB7_2:
 	leaq	.L.str.6(%rip), %rdi
 	leaq	.L.str.5(%rip), %rsi
-	movl	$127, %edx
+	movl	$130, %edx
 	leaq	.L__PRETTY_FUNCTION__._Z11u64ToSquarem(%rip), %rcx
 	callq	__assert_fail@PLT
 .LBB7_3:

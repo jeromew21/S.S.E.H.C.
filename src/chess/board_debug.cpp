@@ -14,6 +14,8 @@ void Board::Dump() {
   }
 
   std::cout << "is check: " << is_check() << "\n";
+  std::cout << "can castle queenside: " << state_.castling_rights.get(turn(), board::castle::long_);
+  std::cout << "can castle kingside: " << state_.castling_rights.get(turn(), board::castle::short_);
 
   if (state_stack_.size() > 0)
     std::cout << moveToUCIAlgebraic(state_.last_move);

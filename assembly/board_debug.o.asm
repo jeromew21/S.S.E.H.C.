@@ -750,7 +750,7 @@ _ZN5Board4DumpEv:                       # @_ZN5Board4DumpEv
 	.cfi_offset %rbp, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register %rbp
-	subq	$912, %rsp                      # imm = 0x390
+	subq	$960, %rsp                      # imm = 0x3C0
 	movq	%fs:40, %rax
 	movq	%rax, -8(%rbp)
 	movq	%rdi, -736(%rbp)
@@ -907,10 +907,45 @@ _ZN5Board4DumpEv:                       # @_ZN5Board4DumpEv
 	movq	%rax, %rdi
 	leaq	.L.str.28(%rip), %rsi
 	callq	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@PLT
-	movq	-776(%rbp), %rdx                # 8-byte Reload
-	addq	$1184, %rdx                     # imm = 0x4A0
-	movq	%rdx, %rdi
+	movq	_ZSt4cout@GOTPCREL(%rip), %rdi
+	leaq	.L.str.29(%rip), %rsi
 	movq	%rax, -864(%rbp)                # 8-byte Spill
+	callq	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@PLT
+	movq	-776(%rbp), %rdx                # 8-byte Reload
+	addq	$96, %rdx
+	addq	$44, %rdx
+	movq	-776(%rbp), %rdi                # 8-byte Reload
+	movq	%rax, -872(%rbp)                # 8-byte Spill
+	movq	%rdx, -880(%rbp)                # 8-byte Spill
+	callq	_ZNK5Board4turnEv@PLT
+	xorl	%edx, %edx
+	movq	-880(%rbp), %rdi                # 8-byte Reload
+	movl	%eax, %esi
+	callq	_ZNK5board6castle6Rights3getEii@PLT
+	movq	-872(%rbp), %rdi                # 8-byte Reload
+	movl	%eax, %esi
+	callq	_ZNSolsEi@PLT
+	movq	_ZSt4cout@GOTPCREL(%rip), %rdi
+	leaq	.L.str.30(%rip), %rsi
+	movq	%rax, -888(%rbp)                # 8-byte Spill
+	callq	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@PLT
+	movq	-776(%rbp), %rsi                # 8-byte Reload
+	addq	$96, %rsi
+	addq	$44, %rsi
+	movq	-776(%rbp), %rdi                # 8-byte Reload
+	movq	%rax, -896(%rbp)                # 8-byte Spill
+	movq	%rsi, -904(%rbp)                # 8-byte Spill
+	callq	_ZNK5Board4turnEv@PLT
+	movq	-904(%rbp), %rdi                # 8-byte Reload
+	movl	%eax, %esi
+	movl	$2, %edx
+	callq	_ZNK5board6castle6Rights3getEii@PLT
+	movq	-896(%rbp), %rdi                # 8-byte Reload
+	movl	%eax, %esi
+	callq	_ZNSolsEi@PLT
+	movq	-776(%rbp), %rdi                # 8-byte Reload
+	addq	$1184, %rdi                     # imm = 0x4A0
+	movq	%rax, -912(%rbp)                # 8-byte Spill
 	callq	_ZNK5board10StateStack4sizeEv
 	cmpl	$0, %eax
 	jle	.LBB5_19
@@ -921,11 +956,11 @@ _ZN5Board4DumpEv:                       # @_ZN5Board4DumpEv
 	movzwl	-712(%rbp), %esi
 	leaq	-104(%rbp), %rdx
 	movq	%rdx, %rdi
-	movq	%rdx, -872(%rbp)                # 8-byte Spill
+	movq	%rdx, -920(%rbp)                # 8-byte Spill
 	callq	_Z18moveToUCIAlgebraicB5cxx115CMove@PLT
 .Ltmp54:
 	movq	_ZSt4cout@GOTPCREL(%rip), %rdi
-	movq	-872(%rbp), %rsi                # 8-byte Reload
+	movq	-920(%rbp), %rsi                # 8-byte Reload
 	callq	_ZStlsIcSt11char_traitsIcESaIcEERSt13basic_ostreamIT_T0_ES7_RKNSt7__cxx1112basic_stringIS4_S5_T1_EE@PLT
 .Ltmp55:
 	jmp	.LBB5_17
@@ -966,11 +1001,11 @@ _ZN5Board4DumpEv:                       # @_ZN5Board4DumpEv
 	leaq	-136(%rbp), %rcx
 	movq	%rcx, %rdi
 	movl	%eax, %esi
-	movq	%rcx, -880(%rbp)                # 8-byte Spill
+	movq	%rcx, -928(%rbp)                # 8-byte Spill
 	callq	_Z16pieceToStringFenB5cxx11i@PLT
 .Ltmp62:
 	movq	_ZSt4cout@GOTPCREL(%rip), %rdi
-	movq	-880(%rbp), %rsi                # 8-byte Reload
+	movq	-928(%rbp), %rsi                # 8-byte Reload
 	callq	_ZStlsIcSt11char_traitsIcESaIcEERSt13basic_ostreamIT_T0_ES7_RKNSt7__cxx1112basic_stringIS4_S5_T1_EE@PLT
 .Ltmp63:
 	jmp	.LBB5_24
@@ -1001,19 +1036,19 @@ _ZN5Board4DumpEv:                       # @_ZN5Board4DumpEv
 	jmp	.LBB5_20
 .LBB5_29:
 	movq	_ZSt4cout@GOTPCREL(%rip), %rdi
-	leaq	.L.str.29(%rip), %rsi
+	leaq	.L.str.31(%rip), %rsi
 	callq	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@PLT
 	leaq	-656(%rbp), %rdi
 	movq	-776(%rbp), %rsi                # 8-byte Reload
-	movq	%rax, -888(%rbp)                # 8-byte Spill
+	movq	%rax, -936(%rbp)                # 8-byte Spill
 	callq	_ZN5Board11legal_movesEv@PLT
 	movl	$0, -764(%rbp)
 .LBB5_30:                               # =>This Inner Loop Header: Depth=1
 	movl	-764(%rbp), %eax
 	leaq	-656(%rbp), %rdi
-	movl	%eax, -892(%rbp)                # 4-byte Spill
+	movl	%eax, -940(%rbp)                # 4-byte Spill
 	callq	_ZNK8MoveListILi256EE4sizeEv
-	movl	-892(%rbp), %ecx                # 4-byte Reload
+	movl	-940(%rbp), %ecx                # 4-byte Reload
 	cmpl	%eax, %ecx
 	jge	.LBB5_36
 # %bb.31:                               #   in Loop: Header=BB5_30 Depth=1
@@ -1026,19 +1061,19 @@ _ZN5Board4DumpEv:                       # @_ZN5Board4DumpEv
 	movzwl	-728(%rbp), %esi
 	leaq	-688(%rbp), %rcx
 	movq	%rcx, %rdi
-	movq	%rcx, -904(%rbp)                # 8-byte Spill
+	movq	%rcx, -952(%rbp)                # 8-byte Spill
 	callq	_Z18moveToUCIAlgebraicB5cxx115CMove@PLT
 .Ltmp57:
 	movq	_ZSt4cout@GOTPCREL(%rip), %rdi
-	movq	-904(%rbp), %rsi                # 8-byte Reload
+	movq	-952(%rbp), %rsi                # 8-byte Reload
 	callq	_ZStlsIcSt11char_traitsIcESaIcEERSt13basic_ostreamIT_T0_ES7_RKNSt7__cxx1112basic_stringIS4_S5_T1_EE@PLT
 .Ltmp58:
-	movq	%rax, -912(%rbp)                # 8-byte Spill
+	movq	%rax, -960(%rbp)                # 8-byte Spill
 	jmp	.LBB5_32
 .LBB5_32:                               #   in Loop: Header=BB5_30 Depth=1
 .Ltmp59:
 	leaq	.L.str.26(%rip), %rsi
-	movq	-912(%rbp), %rdi                # 8-byte Reload
+	movq	-960(%rbp), %rdi                # 8-byte Reload
 	callq	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@PLT
 .Ltmp60:
 	jmp	.LBB5_33
@@ -1067,7 +1102,7 @@ _ZN5Board4DumpEv:                       # @_ZN5Board4DumpEv
 	cmpq	%rdx, %rcx
 	jne	.LBB5_39
 # %bb.37:
-	addq	$912, %rsp                      # imm = 0x390
+	addq	$960, %rsp                      # imm = 0x3C0
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
@@ -1198,8 +1233,8 @@ _ZN5board10StateStack7peek_atEi:        # @_ZN5board10StateStack7peek_atEi
 .LBB7_3:
 	jmp	.LBB7_5
 .LBB7_4:
-	leaq	.L.str.30(%rip), %rdi
-	leaq	.L.str.31(%rip), %rsi
+	leaq	.L.str.32(%rip), %rdi
+	leaq	.L.str.33(%rip), %rsi
 	movl	$165, %edx
 	leaq	.L__PRETTY_FUNCTION__._ZN5board10StateStack7peek_atEi(%rip), %rcx
 	callq	__assert_fail@PLT
@@ -1354,8 +1389,8 @@ _Z13u64FromSquarei:                     # @_Z13u64FromSquarei
 .LBB12_1:
 	jmp	.LBB12_3
 .LBB12_2:
-	leaq	.L.str.32(%rip), %rdi
-	leaq	.L.str.33(%rip), %rsi
+	leaq	.L.str.34(%rip), %rdi
+	leaq	.L.str.35(%rip), %rsi
 	movl	$121, %edx
 	leaq	.L__PRETTY_FUNCTION__._Z13u64FromSquarei(%rip), %rcx
 	callq	__assert_fail@PLT
@@ -1571,33 +1606,43 @@ _GLOBAL__sub_I_board_debug.cpp:         # @_GLOBAL__sub_I_board_debug.cpp
 
 	.type	.L.str.29,@object               # @.str.29
 .L.str.29:
-	.asciz	"legal moves: "
-	.size	.L.str.29, 14
+	.asciz	"can castle queenside: "
+	.size	.L.str.29, 23
 
 	.type	.L.str.30,@object               # @.str.30
 .L.str.30:
-	.asciz	"i >= 0 && i < head_"
-	.size	.L.str.30, 20
+	.asciz	"can castle kingside: "
+	.size	.L.str.30, 22
 
 	.type	.L.str.31,@object               # @.str.31
 .L.str.31:
+	.asciz	"legal moves: "
+	.size	.L.str.31, 14
+
+	.type	.L.str.32,@object               # @.str.32
+.L.str.32:
+	.asciz	"i >= 0 && i < head_"
+	.size	.L.str.32, 20
+
+	.type	.L.str.33,@object               # @.str.33
+.L.str.33:
 	.asciz	"include/datastructures/board_state.hpp"
-	.size	.L.str.31, 39
+	.size	.L.str.33, 39
 
 	.type	.L__PRETTY_FUNCTION__._ZN5board10StateStack7peek_atEi,@object # @__PRETTY_FUNCTION__._ZN5board10StateStack7peek_atEi
 .L__PRETTY_FUNCTION__._ZN5board10StateStack7peek_atEi:
 	.asciz	"board::State &board::StateStack::peek_at(int)"
 	.size	.L__PRETTY_FUNCTION__._ZN5board10StateStack7peek_atEi, 46
 
-	.type	.L.str.32,@object               # @.str.32
-.L.str.32:
+	.type	.L.str.34,@object               # @.str.34
+.L.str.34:
 	.asciz	"isValidSquare(s)"
-	.size	.L.str.32, 17
+	.size	.L.str.34, 17
 
-	.type	.L.str.33,@object               # @.str.33
-.L.str.33:
+	.type	.L.str.35,@object               # @.str.35
+.L.str.35:
 	.asciz	"include/misc/bits.hpp"
-	.size	.L.str.33, 22
+	.size	.L.str.35, 22
 
 	.type	.L__PRETTY_FUNCTION__._Z13u64FromSquarei,@object # @__PRETTY_FUNCTION__._Z13u64FromSquarei
 .L__PRETTY_FUNCTION__._Z13u64FromSquarei:
@@ -1637,6 +1682,7 @@ DW.ref.__gxx_personality_v0:
 	.addrsig_sym _ZN5board10StateStack7peek_atEi
 	.addrsig_sym _ZNSolsEb
 	.addrsig_sym _ZNK5Board8is_checkEv
+	.addrsig_sym _ZNK5board6castle6Rights3getEii
 	.addrsig_sym _Z16pieceToStringFenB5cxx11i
 	.addrsig_sym _ZNK5Board9piece_at_Em
 	.addrsig_sym _Z11u64FromPairii

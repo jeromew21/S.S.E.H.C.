@@ -72,9 +72,6 @@ The fewer indentation levels, the better.
 
 ### Repository Layout
 
-#### ./assembly
-Generated assembly code.
-
 #### ./benchmarking
 Benchmark suite.
 
@@ -83,9 +80,6 @@ Auto-generated Doxygen documentation.
 
 #### ./include
 Header files.
-
-#### ./profiling
-Profiling scripts.
 
 #### ./src
 Source files.

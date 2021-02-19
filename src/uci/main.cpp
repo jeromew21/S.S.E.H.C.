@@ -21,12 +21,27 @@ void init()
   move_maps::init();
 }
 
+/**
+ * The main executable
+ * 
+ * --test
+ * runs tests and exits the program
+ * 
+ * --verbose
+ * prints verbose output to command line
+ * 
+ * --version
+ * prints version and exits
+ */
 int main(int argc, char* argv[])
 {
   // parse args
   for (int i = 1; i < argc; i++) {
-    if (std::string(argv[i]) == "--test") {
-      run_tests();
+    std::string arg = std::string(argv[i]);
+    if (arg == "--verbose") {
+      verbose = true;
+    } else if (arg == "--version") {
+      std::cout << "0.00" << std::endl;
       exit(0);
     }
   }
@@ -34,6 +49,15 @@ int main(int argc, char* argv[])
   verbose_info("initializing engine");
   init();
 
+  for (int i = 1; i < argc; i++) {
+    std::string arg = std::string(argv[i]);
+    if (arg == "--test") {
+      run_tests();
+      exit(0);
+    }
+  }
+
+  
   // testPerft();
   Board chessboard;
 

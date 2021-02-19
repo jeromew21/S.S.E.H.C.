@@ -37,7 +37,7 @@ _ZN5Board8MakeMoveE5CMove:              # @_ZN5Board8MakeMoveE5CMove
 	.cfi_offset %rbp, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register %rbp
-	subq	$144, %rsp
+	subq	$128, %rsp
                                         # kill: def $si killed $si killed $esi
 	movq	%fs:40, %rax
 	movq	%rax, -8(%rbp)
@@ -75,7 +75,7 @@ _ZN5Board8MakeMoveE5CMove:              # @_ZN5Board8MakeMoveE5CMove
 	movq	%rax, %rdi
 	movl	$4294967295, %esi               # imm = 0xFFFFFFFF
 	callq	_ZN5Board12SetEpSquare_Ei@PLT
-	jmp	.LBB1_50
+	jmp	.LBB1_45
 .LBB1_2:
 	movw	-16(%rbp), %ax
 	movw	%ax, -24(%rbp)
@@ -240,30 +240,8 @@ _ZN5Board8MakeMoveE5CMove:              # @_ZN5Board8MakeMoveE5CMove
 	callq	_ZN5piece7is_kingEi
 	testb	$1, %al
 	jne	.LBB1_23
-	jmp	.LBB1_29
+	jmp	.LBB1_24
 .LBB1_23:
-	cmpl	$9, -40(%rbp)
-	movb	$1, %al
-	movb	%al, -113(%rbp)                 # 1-byte Spill
-	je	.LBB1_25
-# %bb.24:
-	cmpl	$3, -40(%rbp)
-	sete	%al
-	movb	%al, -113(%rbp)                 # 1-byte Spill
-.LBB1_25:
-	movb	-113(%rbp), %al                 # 1-byte Reload
-	testb	$1, %al
-	jne	.LBB1_26
-	jmp	.LBB1_27
-.LBB1_26:
-	jmp	.LBB1_28
-.LBB1_27:
-	leaq	.L.str(%rip), %rdi
-	leaq	.L.str.1(%rip), %rsi
-	movl	$104, %edx
-	leaq	.L__PRETTY_FUNCTION__._ZN5Board8MakeMoveE5CMove(%rip), %rcx
-	callq	__assert_fail@PLT
-.LBB1_28:
 	xorl	%eax, %eax
 	movl	-36(%rbp), %esi
 	movq	-112(%rbp), %rdi                # 8-byte Reload
@@ -275,18 +253,18 @@ _ZN5Board8MakeMoveE5CMove:              # @_ZN5Board8MakeMoveE5CMove
 	movq	-112(%rbp), %rdi                # 8-byte Reload
 	movl	$2, %edx
 	callq	_ZN5Board18SetCastlingRights_Eiii@PLT
-.LBB1_29:
+.LBB1_24:
 	movl	-60(%rbp), %edi
 	callq	_ZN5piece7is_rookEi
 	testb	$1, %al
-	jne	.LBB1_31
-# %bb.30:
+	jne	.LBB1_26
+# %bb.25:
 	movl	-64(%rbp), %edi
 	callq	_ZN5piece7is_rookEi
 	testb	$1, %al
-	jne	.LBB1_31
-	jmp	.LBB1_43
-.LBB1_31:
+	jne	.LBB1_26
+	jmp	.LBB1_38
+.LBB1_26:
 	movq	-48(%rbp), %rax
 	orq	-56(%rbp), %rax
 	movq	%rax, -96(%rbp)
@@ -294,67 +272,67 @@ _ZN5Board8MakeMoveE5CMove:              # @_ZN5Board8MakeMoveE5CMove
 	movq	-112(%rbp), %rcx                # 8-byte Reload
 	andq	1240(%rcx), %rax
 	cmpq	$0, %rax
-	je	.LBB1_33
-# %bb.32:
+	je	.LBB1_28
+# %bb.27:
 	xorl	%eax, %eax
 	movq	-112(%rbp), %rdi                # 8-byte Reload
 	movl	%eax, %esi
 	movl	%eax, %edx
 	movl	%eax, %ecx
 	callq	_ZN5Board18SetCastlingRights_Eiii@PLT
-	jmp	.LBB1_42
-.LBB1_33:
+	jmp	.LBB1_37
+.LBB1_28:
 	movq	-96(%rbp), %rax
 	movq	-112(%rbp), %rcx                # 8-byte Reload
 	andq	1256(%rcx), %rax
 	cmpq	$0, %rax
-	je	.LBB1_35
-# %bb.34:
+	je	.LBB1_30
+# %bb.29:
 	xorl	%eax, %eax
 	movq	-112(%rbp), %rdi                # 8-byte Reload
 	movl	%eax, %esi
 	movl	$2, %edx
 	movl	%eax, %ecx
 	callq	_ZN5Board18SetCastlingRights_Eiii@PLT
-	jmp	.LBB1_41
-.LBB1_35:
+	jmp	.LBB1_36
+.LBB1_30:
 	movq	-96(%rbp), %rax
 	movq	-112(%rbp), %rcx                # 8-byte Reload
 	andq	1248(%rcx), %rax
 	cmpq	$0, %rax
-	je	.LBB1_37
-# %bb.36:
+	je	.LBB1_32
+# %bb.31:
 	xorl	%eax, %eax
 	movq	-112(%rbp), %rdi                # 8-byte Reload
 	movl	$1, %esi
 	movl	%eax, %edx
 	movl	%eax, %ecx
 	callq	_ZN5Board18SetCastlingRights_Eiii@PLT
-	jmp	.LBB1_40
-.LBB1_37:
+	jmp	.LBB1_35
+.LBB1_32:
 	movq	-96(%rbp), %rax
 	movq	-112(%rbp), %rcx                # 8-byte Reload
 	andq	1264(%rcx), %rax
 	cmpq	$0, %rax
-	je	.LBB1_39
-# %bb.38:
+	je	.LBB1_34
+# %bb.33:
 	xorl	%ecx, %ecx
 	movq	-112(%rbp), %rdi                # 8-byte Reload
 	movl	$1, %esi
 	movl	$2, %edx
 	callq	_ZN5Board18SetCastlingRights_Eiii@PLT
-.LBB1_39:
-	jmp	.LBB1_40
-.LBB1_40:
-	jmp	.LBB1_41
-.LBB1_41:
-	jmp	.LBB1_42
-.LBB1_42:
-	jmp	.LBB1_43
-.LBB1_43:
+.LBB1_34:
+	jmp	.LBB1_35
+.LBB1_35:
+	jmp	.LBB1_36
+.LBB1_36:
+	jmp	.LBB1_37
+.LBB1_37:
+	jmp	.LBB1_38
+.LBB1_38:
 	cmpl	$7, -40(%rbp)
-	jne	.LBB1_48
-# %bb.44:
+	jne	.LBB1_43
+# %bb.39:
 	movq	-56(%rbp), %rdi
 	callq	_Z11u64ToSquarem
 	movl	%eax, -100(%rbp)
@@ -364,19 +342,19 @@ _ZN5Board8MakeMoveE5CMove:              # @_ZN5Board8MakeMoveE5CMove
 	movq	-112(%rbp), %rdx                # 8-byte Reload
 	movq	(%rdx,%rcx,8), %rcx
 	movl	-100(%rbp), %edi
-	movq	%rcx, -128(%rbp)                # 8-byte Spill
+	movq	%rcx, -120(%rbp)                # 8-byte Spill
 	callq	_ZN9move_maps15oneFileAdjacentEi@PLT
-	movq	-128(%rbp), %rcx                # 8-byte Reload
+	movq	-120(%rbp), %rcx                # 8-byte Reload
 	andq	%rax, %rcx
 	cmpq	$0, %rcx
-	je	.LBB1_46
-# %bb.45:
+	je	.LBB1_41
+# %bb.40:
 	movl	-100(%rbp), %edi
 	movl	-36(%rbp), %eax
-	movl	%edi, -132(%rbp)                # 4-byte Spill
+	movl	%edi, -124(%rbp)                # 4-byte Spill
 	movl	%eax, %edi
 	callq	_Z13oppositeColori
-	movl	-132(%rbp), %edi                # 4-byte Reload
+	movl	-124(%rbp), %edi                # 4-byte Reload
 	movl	%eax, %esi
 	callq	_ZN9move_maps9pawnMovesEii@PLT
 	movq	%rax, %rdi
@@ -384,20 +362,20 @@ _ZN5Board8MakeMoveE5CMove:              # @_ZN5Board8MakeMoveE5CMove
 	movq	-112(%rbp), %rdi                # 8-byte Reload
 	movl	%eax, %esi
 	callq	_ZN5Board12SetEpSquare_Ei@PLT
-	jmp	.LBB1_47
-.LBB1_46:
+	jmp	.LBB1_42
+.LBB1_41:
 	movq	-112(%rbp), %rdi                # 8-byte Reload
 	movl	$4294967295, %esi               # imm = 0xFFFFFFFF
 	callq	_ZN5Board12SetEpSquare_Ei@PLT
-.LBB1_47:
-	jmp	.LBB1_49
-.LBB1_48:
+.LBB1_42:
+	jmp	.LBB1_44
+.LBB1_43:
 	movq	-112(%rbp), %rdi                # 8-byte Reload
 	movl	$4294967295, %esi               # imm = 0xFFFFFFFF
 	callq	_ZN5Board12SetEpSquare_Ei@PLT
-.LBB1_49:
-	jmp	.LBB1_50
-.LBB1_50:
+.LBB1_44:
+	jmp	.LBB1_45
+.LBB1_45:
 	movq	-112(%rbp), %rax                # 8-byte Reload
 	movl	100(%rax), %ecx
 	addl	$1, %ecx
@@ -410,13 +388,13 @@ _ZN5Board8MakeMoveE5CMove:              # @_ZN5Board8MakeMoveE5CMove
 	movq	%fs:40, %rdx
 	movq	-8(%rbp), %rdi
 	cmpq	%rdi, %rdx
-	jne	.LBB1_52
-# %bb.51:
-	addq	$144, %rsp
+	jne	.LBB1_47
+# %bb.46:
+	addq	$128, %rsp
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.LBB1_52:
+.LBB1_47:
 	.cfi_def_cfa %rbp, 16
 	callq	__stack_chk_fail@PLT
 .Lfunc_end1:
@@ -651,8 +629,8 @@ _Z11u64ToSquarem:                       # @_Z11u64ToSquarem
 # %bb.1:
 	jmp	.LBB10_3
 .LBB10_2:
-	leaq	.L.str.6(%rip), %rdi
-	leaq	.L.str.5(%rip), %rsi
+	leaq	.L.str.5(%rip), %rdi
+	leaq	.L.str.4(%rip), %rsi
 	movl	$127, %edx
 	leaq	.L__PRETTY_FUNCTION__._Z11u64ToSquarem(%rip), %rcx
 	callq	__assert_fail@PLT
@@ -750,8 +728,8 @@ _ZNK5CMove15promoting_pieceEi:          # @_ZNK5CMove15promoting_pieceEi
 .LBB12_3:
 	jmp	.LBB12_5
 .LBB12_4:
-	leaq	.L.str.7(%rip), %rdi
-	leaq	.L.str.8(%rip), %rsi
+	leaq	.L.str.6(%rip), %rdi
+	leaq	.L.str.7(%rip), %rsi
 	movl	$43, %edx
 	leaq	.L__PRETTY_FUNCTION__._ZNK5CMove15promoting_pieceEi(%rip), %rcx
 	callq	__assert_fail@PLT
@@ -868,8 +846,8 @@ _ZN5piece4flipEi:                       # @_ZN5piece4flipEi
 .LBB16_1:
 	jmp	.LBB16_3
 .LBB16_2:
-	leaq	.L.str.9(%rip), %rdi
-	leaq	.L.str.10(%rip), %rsi
+	leaq	.L.str.8(%rip), %rdi
+	leaq	.L.str.9(%rip), %rsi
 	movl	$50, %edx
 	leaq	.L__PRETTY_FUNCTION__._ZN5piece4flipEi(%rip), %rcx
 	callq	__assert_fail@PLT
@@ -912,9 +890,9 @@ _ZN5Board10UnmakeMoveEv:                # @_ZN5Board10UnmakeMoveEv
 .LBB17_1:
 	jmp	.LBB17_3
 .LBB17_2:
-	leaq	.L.str.2(%rip), %rdi
+	leaq	.L.str(%rip), %rdi
 	leaq	.L.str.1(%rip), %rsi
-	movl	$183, %edx
+	movl	$182, %edx
 	leaq	.L__PRETTY_FUNCTION__._ZN5Board10UnmakeMoveEv(%rip), %rcx
 	callq	__assert_fail@PLT
 .LBB17_3:
@@ -1125,8 +1103,8 @@ _ZN5board10StateStack4peekEv:           # @_ZN5board10StateStack4peekEv
 # %bb.1:
 	jmp	.LBB19_3
 .LBB19_2:
-	leaq	.L.str.11(%rip), %rdi
-	leaq	.L.str.12(%rip), %rsi
+	leaq	.L.str.10(%rip), %rdi
+	leaq	.L.str.11(%rip), %rsi
 	movl	$156, %edx
 	leaq	.L__PRETTY_FUNCTION__._ZN5board10StateStack4peekEv(%rip), %rcx
 	callq	__assert_fail@PLT
@@ -1164,8 +1142,8 @@ _ZN5board10StateStack3PopEv:            # @_ZN5board10StateStack3PopEv
 # %bb.1:
 	jmp	.LBB20_3
 .LBB20_2:
-	leaq	.L.str.11(%rip), %rdi
-	leaq	.L.str.12(%rip), %rsi
+	leaq	.L.str.10(%rip), %rdi
+	leaq	.L.str.11(%rip), %rsi
 	movl	$174, %edx
 	leaq	.L__PRETTY_FUNCTION__._ZN5board10StateStack3PopEv(%rip), %rcx
 	callq	__assert_fail@PLT
@@ -1288,7 +1266,7 @@ _ZNSt6vectorIN5board5StateESaIS1_EE17_M_realloc_insertIJRKS1_EEEvN9__gnu_cxx17__
 	movq	%rdi, -32(%rbp)
 	movq	%rdx, -40(%rbp)
 	movq	-32(%rbp), %rax
-	leaq	.L.str.3(%rip), %rdx
+	leaq	.L.str.2(%rip), %rdx
 	movl	$1, %esi
 	movq	%rax, %rdi
 	movq	%rax, -96(%rbp)                 # 8-byte Spill
@@ -2648,8 +2626,8 @@ _Z13u64FromSquarei:                     # @_Z13u64FromSquarei
 .LBB62_1:
 	jmp	.LBB62_3
 .LBB62_2:
-	leaq	.L.str.4(%rip), %rdi
-	leaq	.L.str.5(%rip), %rsi
+	leaq	.L.str.3(%rip), %rdi
+	leaq	.L.str.4(%rip), %rsi
 	movl	$121, %edx
 	leaq	.L__PRETTY_FUNCTION__._Z13u64FromSquarei(%rip), %rcx
 	callq	__assert_fail@PLT
@@ -2935,98 +2913,88 @@ _ZN5board6castleL15rook_short_destE:
 	.type	.L.str,@object                  # @.str
 	.section	.rodata.str1.1,"aMS",@progbits,1
 .L.str:
-	.asciz	"move_type_ == move_type::CastleLong || move_type_ == move_type::CastleShort"
-	.size	.L.str, 76
+	.asciz	"state_stack_.can_pop()"
+	.size	.L.str, 23
 
 	.type	.L.str.1,@object                # @.str.1
 .L.str.1:
 	.asciz	"src/chess/make_unmake_move.cpp"
 	.size	.L.str.1, 31
 
-	.type	.L__PRETTY_FUNCTION__._ZN5Board8MakeMoveE5CMove,@object # @__PRETTY_FUNCTION__._ZN5Board8MakeMoveE5CMove
-.L__PRETTY_FUNCTION__._ZN5Board8MakeMoveE5CMove:
-	.asciz	"void Board::MakeMove(CMove)"
-	.size	.L__PRETTY_FUNCTION__._ZN5Board8MakeMoveE5CMove, 28
-
-	.type	.L.str.2,@object                # @.str.2
-.L.str.2:
-	.asciz	"state_stack_.can_pop()"
-	.size	.L.str.2, 23
-
 	.type	.L__PRETTY_FUNCTION__._ZN5Board10UnmakeMoveEv,@object # @__PRETTY_FUNCTION__._ZN5Board10UnmakeMoveEv
 .L__PRETTY_FUNCTION__._ZN5Board10UnmakeMoveEv:
 	.asciz	"void Board::UnmakeMove()"
 	.size	.L__PRETTY_FUNCTION__._ZN5Board10UnmakeMoveEv, 25
 
+	.type	.L.str.2,@object                # @.str.2
+.L.str.2:
+	.asciz	"vector::_M_realloc_insert"
+	.size	.L.str.2, 26
+
 	.type	.L.str.3,@object                # @.str.3
 .L.str.3:
-	.asciz	"vector::_M_realloc_insert"
-	.size	.L.str.3, 26
+	.asciz	"isValidSquare(s)"
+	.size	.L.str.3, 17
 
 	.type	.L.str.4,@object                # @.str.4
 .L.str.4:
-	.asciz	"isValidSquare(s)"
-	.size	.L.str.4, 17
-
-	.type	.L.str.5,@object                # @.str.5
-.L.str.5:
 	.asciz	"include/misc/bits.hpp"
-	.size	.L.str.5, 22
+	.size	.L.str.4, 22
 
 	.type	.L__PRETTY_FUNCTION__._Z13u64FromSquarei,@object # @__PRETTY_FUNCTION__._Z13u64FromSquarei
 .L__PRETTY_FUNCTION__._Z13u64FromSquarei:
 	.asciz	"uint64_t u64FromSquare(int)"
 	.size	.L__PRETTY_FUNCTION__._Z13u64FromSquarei, 28
 
-	.type	.L.str.6,@object                # @.str.6
-.L.str.6:
+	.type	.L.str.5,@object                # @.str.5
+.L.str.5:
 	.asciz	"x != 0"
-	.size	.L.str.6, 7
+	.size	.L.str.5, 7
 
 	.type	.L__PRETTY_FUNCTION__._Z11u64ToSquarem,@object # @__PRETTY_FUNCTION__._Z11u64ToSquarem
 .L__PRETTY_FUNCTION__._Z11u64ToSquarem:
 	.asciz	"int u64ToSquare(uint64_t)"
 	.size	.L__PRETTY_FUNCTION__._Z11u64ToSquarem, 26
 
+	.type	.L.str.6,@object                # @.str.6
+.L.str.6:
+	.asciz	"type_code() % 2 == 0 && type_code() > 0"
+	.size	.L.str.6, 40
+
 	.type	.L.str.7,@object                # @.str.7
 .L.str.7:
-	.asciz	"type_code() % 2 == 0 && type_code() > 0"
-	.size	.L.str.7, 40
-
-	.type	.L.str.8,@object                # @.str.8
-.L.str.8:
 	.asciz	"include/game/cmove.hpp"
-	.size	.L.str.8, 23
+	.size	.L.str.7, 23
 
 	.type	.L__PRETTY_FUNCTION__._ZNK5CMove15promoting_pieceEi,@object # @__PRETTY_FUNCTION__._ZNK5CMove15promoting_pieceEi
 .L__PRETTY_FUNCTION__._ZNK5CMove15promoting_pieceEi:
 	.asciz	"int CMove::promoting_piece(int) const"
 	.size	.L__PRETTY_FUNCTION__._ZNK5CMove15promoting_pieceEi, 38
 
+	.type	.L.str.8,@object                # @.str.8
+.L.str.8:
+	.asciz	"!is_empty(piece)"
+	.size	.L.str.8, 17
+
 	.type	.L.str.9,@object                # @.str.9
 .L.str.9:
-	.asciz	"!is_empty(piece)"
-	.size	.L.str.9, 17
-
-	.type	.L.str.10,@object               # @.str.10
-.L.str.10:
 	.asciz	"include/game/pieces.hpp"
-	.size	.L.str.10, 24
+	.size	.L.str.9, 24
 
 	.type	.L__PRETTY_FUNCTION__._ZN5piece4flipEi,@object # @__PRETTY_FUNCTION__._ZN5piece4flipEi
 .L__PRETTY_FUNCTION__._ZN5piece4flipEi:
 	.asciz	"int piece::flip(int)"
 	.size	.L__PRETTY_FUNCTION__._ZN5piece4flipEi, 21
 
+	.type	.L.str.10,@object               # @.str.10
+.L.str.10:
+	.asciz	"head_ > 0"
+	.size	.L.str.10, 10
+
 	.type	.L.str.11,@object               # @.str.11
 .L.str.11:
-	.asciz	"head_ > 0"
-	.size	.L.str.11, 10
-
-	.type	.L.str.12,@object               # @.str.12
-.L.str.12:
 	.asciz	"include/datastructures/board_state.hpp"
-	.size	.L.str.12, 39
+	.size	.L.str.11, 39
 
 	.type	.L__PRETTY_FUNCTION__._ZN5board10StateStack4peekEv,@object # @__PRETTY_FUNCTION__._ZN5board10StateStack4peekEv
 .L__PRETTY_FUNCTION__._ZN5board10StateStack4peekEv:
@@ -3074,13 +3042,13 @@ DW.ref.__gxx_personality_v0:
 	.addrsig_sym _ZNK5CMove15promoting_pieceEi
 	.addrsig_sym _ZN5piece8get_rookEi
 	.addrsig_sym _ZN5piece7is_kingEi
-	.addrsig_sym __assert_fail
 	.addrsig_sym _ZN5Board18SetCastlingRights_Eiii
 	.addrsig_sym _ZN5piece7is_rookEi
 	.addrsig_sym _ZN5piece4flipEi
 	.addrsig_sym _ZN9move_maps15oneFileAdjacentEi
 	.addrsig_sym _ZN5Board8SetTurn_Ei
 	.addrsig_sym _ZNK5board10StateStack7can_popEv
+	.addrsig_sym __assert_fail
 	.addrsig_sym _ZN5board10StateStack4peekEv
 	.addrsig_sym _ZN5board10StateStack3PopEv
 	.addrsig_sym _ZNSt6vectorIN5board5StateESaIS1_EE9push_backERKS1_

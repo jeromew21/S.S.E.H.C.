@@ -101,7 +101,6 @@ void Board::MakeMove(CMove mv)
     // revoke ALL castling rights if king moves (or if castle)
     if (piece::is_king(mover))
     {
-      assert(move_type_ == move_type::CastleLong || move_type_ == move_type::CastleShort);
       SetCastlingRights_(curr_turn, board::castle::long_, 0);
       SetCastlingRights_(curr_turn, board::castle::short_, 0);
     }

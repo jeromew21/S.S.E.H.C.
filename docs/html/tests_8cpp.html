@@ -112,6 +112,8 @@ Functions</h2></td></tr>
 <tr class="separator:a67597acd761efd4d858abe09c4344632"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8625bb4b6237ba89f607a97a647a034a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tests_8cpp.html#a8625bb4b6237ba89f607a97a647a034a">position_mate_test</a> (std::string const &amp;fen, bool is_mate, int &amp;total_cases, int &amp;passes)</td></tr>
 <tr class="separator:a8625bb4b6237ba89f607a97a647a034a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28ee526707a133c74bb2ec34e2f7d5b1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tests_8cpp.html#a28ee526707a133c74bb2ec34e2f7d5b1">perft4_test</a> (int depth, int &amp;total_cases, int &amp;passes)</td></tr>
+<tr class="separator:a28ee526707a133c74bb2ec34e2f7d5b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a192e84934ef18be1dec1be1c533353ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tests_8cpp.html#a192e84934ef18be1dec1be1c533353ab">perft_tricky_test</a> (int depth, int &amp;total_cases, int &amp;passes)</td></tr>
 <tr class="separator:a192e84934ef18be1dec1be1c533353ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d37d0e18c13a688eb1a048b973d50a4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tests_8cpp.html#a7d37d0e18c13a688eb1a048b973d50a4">perft_kiwipete_test</a> (int depth, int &amp;total_cases, int &amp;passes)</td></tr>
@@ -149,6 +151,12 @@ Variables</h2></td></tr>
 <tr class="separator:adf9bafbbf85e2551a031ceb5c98f84b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a49c97d815d1d32d25607f157046ff545"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tests_8cpp.html#a49c97d815d1d32d25607f157046ff545">perft_tricky_nodes</a> [6] = {0, 44, 1486, 62379, 2103487, 89941194}</td></tr>
 <tr class="separator:a49c97d815d1d32d25607f157046ff545"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82bd329d206276c5fa8b292c606b3772"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tests_8cpp.html#a82bd329d206276c5fa8b292c606b3772">perft_test4_nodes</a> [5] = {0, 6, 264, 9467, 422333}</td></tr>
+<tr class="separator:a82bd329d206276c5fa8b292c606b3772"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3078ee44563a1879bce644bfa992819"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tests_8cpp.html#ad3078ee44563a1879bce644bfa992819">perft_test4_mates</a> [5] = {0, 0, 0, 22, 5}</td></tr>
+<tr class="separator:ad3078ee44563a1879bce644bfa992819"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a752c0d8c6c8f1a2acddc3520d3e6be1c"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tests_8cpp.html#a752c0d8c6c8f1a2acddc3520d3e6be1c">perft_test4_promotions</a> [5] = {0, 0, 48, 120, 60032}</td></tr>
+<tr class="separator:a752c0d8c6c8f1a2acddc3520d3e6be1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="acfbc006ea433ad708fdee3e82996e721"></a>
@@ -235,6 +243,40 @@ Variables</h2></td></tr>
           <td></td>
           <td class="paramtype">std::string const &amp;&#160;</td>
           <td class="paramname"><em>message</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;&#160;</td>
+          <td class="paramname"><em>total_cases</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;&#160;</td>
+          <td class="paramname"><em>passes</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a28ee526707a133c74bb2ec34e2f7d5b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28ee526707a133c74bb2ec34e2f7d5b1">&#9670;&nbsp;</a></span>perft4_test()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void perft4_test </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>depth</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -618,6 +660,48 @@ Variables</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">const int perft_kp_promos[6] = {0, 0, 0, 0, 15172, 8392}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad3078ee44563a1879bce644bfa992819"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3078ee44563a1879bce644bfa992819">&#9670;&nbsp;</a></span>perft_test4_mates</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int perft_test4_mates[5] = {0, 0, 0, 22, 5}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a82bd329d206276c5fa8b292c606b3772"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82bd329d206276c5fa8b292c606b3772">&#9670;&nbsp;</a></span>perft_test4_nodes</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int perft_test4_nodes[5] = {0, 6, 264, 9467, 422333}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a752c0d8c6c8f1a2acddc3520d3e6be1c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a752c0d8c6c8f1a2acddc3520d3e6be1c">&#9670;&nbsp;</a></span>perft_test4_promotions</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int perft_test4_promotions[5] = {0, 0, 48, 120, 60032}</td>
         </tr>
       </table>
 </div><div class="memdoc">

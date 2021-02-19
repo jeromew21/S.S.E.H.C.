@@ -5,6 +5,7 @@ var tests_8cpp =
     [ "RESET", "tests_8cpp.html#ab702106cf3b3e96750b6845ded4e0299", null ],
     [ "banner", "tests_8cpp.html#a75899f90a493b756ba1529a263b9ab30", null ],
     [ "expect", "tests_8cpp.html#a1724944d7c18fa413babb419c322cce6", null ],
+    [ "perft4_test", "tests_8cpp.html#a28ee526707a133c74bb2ec34e2f7d5b1", null ],
     [ "perft_classical_test", "tests_8cpp.html#a01660a4674aef4fda82b42abc5a396a3", null ],
     [ "perft_kiwipete_test", "tests_8cpp.html#a7d37d0e18c13a688eb1a048b973d50a4", null ],
     [ "perft_tricky_test", "tests_8cpp.html#a192e84934ef18be1dec1be1c533353ab", null ],
@@ -22,5 +23,8 @@ var tests_8cpp =
     [ "perft_kp_mates", "tests_8cpp.html#adf9bafbbf85e2551a031ceb5c98f84b9", null ],
     [ "perft_kp_nodes", "tests_8cpp.html#ad617094718bea51ebd5142e38e11b713", null ],
     [ "perft_kp_promos", "tests_8cpp.html#ae69eebad735b89d67a9107a9d8b7610a", null ],
+    [ "perft_test4_mates", "tests_8cpp.html#ad3078ee44563a1879bce644bfa992819", null ],
+    [ "perft_test4_nodes", "tests_8cpp.html#a82bd329d206276c5fa8b292c606b3772", null ],
+    [ "perft_test4_promotions", "tests_8cpp.html#a752c0d8c6c8f1a2acddc3520d3e6be1c", null ],
     [ "perft_tricky_nodes", "tests_8cpp.html#a49c97d815d1d32d25607f157046ff545", null ]
 ];

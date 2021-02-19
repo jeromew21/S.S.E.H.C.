@@ -51,20 +51,20 @@ _ZN5Board6statusEv:                     # @_ZN5Board6statusEv
 	movl	%ecx, -532(%rbp)
 	jmp	.LBB1_12
 .LBB1_2:
+	movq	-552(%rbp), %rdi                # 8-byte Reload
+	callq	_ZNK5Board8is_checkEv
+	testb	$1, %al
+	jne	.LBB1_3
+	jmp	.LBB1_10
+.LBB1_3:
 	leaq	-528(%rbp), %rdi
 	movq	-552(%rbp), %rsi                # 8-byte Reload
 	callq	_ZN5Board11legal_movesEv@PLT
 	leaq	-528(%rbp), %rdi
 	callq	_ZNK8MoveListILi256EE4sizeEv
 	cmpl	$0, %eax
-	jne	.LBB1_10
-# %bb.3:
-	movq	-552(%rbp), %rdi                # 8-byte Reload
-	callq	_ZNK5Board8is_checkEv
-	testb	$1, %al
-	jne	.LBB1_4
-	jmp	.LBB1_8
-.LBB1_4:
+	jne	.LBB1_8
+# %bb.4:
 	movq	-552(%rbp), %rdi                # 8-byte Reload
 	callq	_ZNK5Board4turnEv
 	cmpl	$0, %eax
@@ -80,7 +80,7 @@ _ZN5Board6statusEv:                     # @_ZN5Board6statusEv
 	jmp	.LBB1_9
 .LBB1_8:
 	movq	-552(%rbp), %rax                # 8-byte Reload
-	movl	$4, 1216(%rax)
+	movl	$3, 1216(%rax)
 .LBB1_9:
 	jmp	.LBB1_11
 .LBB1_10:
@@ -110,29 +110,6 @@ _ZN5Board6statusEv:                     # @_ZN5Board6statusEv
 	.size	_ZN5Board6statusEv, .Lfunc_end1-_ZN5Board6statusEv
 	.cfi_endproc
                                         # -- End function
-	.section	.text._ZNK8MoveListILi256EE4sizeEv,"axG",@progbits,_ZNK8MoveListILi256EE4sizeEv,comdat
-	.weak	_ZNK8MoveListILi256EE4sizeEv    # -- Begin function _ZNK8MoveListILi256EE4sizeEv
-	.p2align	4, 0x90
-	.type	_ZNK8MoveListILi256EE4sizeEv,@function
-_ZNK8MoveListILi256EE4sizeEv:           # @_ZNK8MoveListILi256EE4sizeEv
-	.cfi_startproc
-# %bb.0:
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset %rbp, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register %rbp
-	movq	%rdi, -8(%rbp)
-	movq	-8(%rbp), %rax
-	movl	512(%rax), %eax
-	popq	%rbp
-	.cfi_def_cfa %rsp, 8
-	retq
-.Lfunc_end2:
-	.size	_ZNK8MoveListILi256EE4sizeEv, .Lfunc_end2-_ZNK8MoveListILi256EE4sizeEv
-	.cfi_endproc
-                                        # -- End function
-	.text
 	.globl	_ZNK5Board8is_checkEv           # -- Begin function _ZNK5Board8is_checkEv
 	.p2align	4, 0x90
 	.type	_ZNK5Board8is_checkEv,@function
@@ -152,10 +129,33 @@ _ZNK5Board8is_checkEv:                  # @_ZNK5Board8is_checkEv
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.Lfunc_end3:
-	.size	_ZNK5Board8is_checkEv, .Lfunc_end3-_ZNK5Board8is_checkEv
+.Lfunc_end2:
+	.size	_ZNK5Board8is_checkEv, .Lfunc_end2-_ZNK5Board8is_checkEv
 	.cfi_endproc
                                         # -- End function
+	.section	.text._ZNK8MoveListILi256EE4sizeEv,"axG",@progbits,_ZNK8MoveListILi256EE4sizeEv,comdat
+	.weak	_ZNK8MoveListILi256EE4sizeEv    # -- Begin function _ZNK8MoveListILi256EE4sizeEv
+	.p2align	4, 0x90
+	.type	_ZNK8MoveListILi256EE4sizeEv,@function
+_ZNK8MoveListILi256EE4sizeEv:           # @_ZNK8MoveListILi256EE4sizeEv
+	.cfi_startproc
+# %bb.0:
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset %rbp, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register %rbp
+	movq	%rdi, -8(%rbp)
+	movq	-8(%rbp), %rax
+	movl	512(%rax), %eax
+	popq	%rbp
+	.cfi_def_cfa %rsp, 8
+	retq
+.Lfunc_end3:
+	.size	_ZNK8MoveListILi256EE4sizeEv, .Lfunc_end3-_ZNK8MoveListILi256EE4sizeEv
+	.cfi_endproc
+                                        # -- End function
+	.text
 	.globl	_ZNK5Board4turnEv               # -- Begin function _ZNK5Board4turnEv
 	.p2align	4, 0x90
 	.type	_ZNK5Board4turnEv,@function
@@ -1102,9 +1102,9 @@ _GLOBAL__sub_I_board_getters.cpp:       # @_GLOBAL__sub_I_board_getters.cpp
 	.addrsig
 	.addrsig_sym __cxx_global_var_init
 	.addrsig_sym __cxa_atexit
+	.addrsig_sym _ZNK5Board8is_checkEv
 	.addrsig_sym _ZN5Board11legal_movesEv
 	.addrsig_sym _ZNK8MoveListILi256EE4sizeEv
-	.addrsig_sym _ZNK5Board8is_checkEv
 	.addrsig_sym _ZNK5Board4turnEv
 	.addrsig_sym _ZNK5Board9occupancyEi
 	.addrsig_sym __assert_fail

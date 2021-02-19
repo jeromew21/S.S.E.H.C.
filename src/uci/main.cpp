@@ -5,6 +5,7 @@
 #include "uci/strings.hpp"
 #include "uci/interface.hpp"
 #include "tests/tests.hpp"
+#include "tests/benchmarks.hpp"
 
 const int random_seed = 39132644;
 
@@ -35,14 +36,18 @@ void init()
  * --version
  * prints version and exits
  */
-int main(int argc, char* argv[])
+int main(int argc, char *argv[])
 {
   // parse args
-  for (int i = 1; i < argc; i++) {
+  for (int i = 1; i < argc; i++)
+  {
     std::string arg = std::string(argv[i]);
-    if (arg == "--verbose") {
+    if (arg == "--verbose")
+    {
       verbose = true;
-    } else if (arg == "--version") {
+    }
+    else if (arg == "--version")
+    {
       std::cout << "0.00" << std::endl;
       exit(0);
     }
@@ -51,10 +56,22 @@ int main(int argc, char* argv[])
   verbose_info("initializing engine");
   init();
 
-  for (int i = 1; i < argc; i++) {
+  for (int i = 1; i < argc; i++)
+  {
     std::string arg = std::string(argv[i]);
-    if (arg == "--test") {
+    if (arg == "--test")
+    {
       run_tests();
+      exit(0);
+    }
+  }
+  
+  for (int i = 1; i < argc; i++)
+  {
+    std::string arg = std::string(argv[i]);
+    if (arg == "--benchmark")
+    {
+      run_benchmarks();
       exit(0);
     }
   }
@@ -63,7 +80,8 @@ int main(int argc, char* argv[])
   bd.LoadPosition("r3k2r/Pppp1ppp/1b3nbN/nP6/BBP1P3/q4N2/Pp1P2PP/R2Q1RK1 w kq - 0 1");
   bd.Dump();
   auto ml = bd.legal_moves();
-  for (int i = 0; i < ml.size(); i++) {
+  for (int i = 0; i < ml.size(); i++)
+  {
     CMove mv = ml[i];
     std::cout << moveToUCIAlgebraic(mv) << "\n";
     std::cout << bd.is_checking_move(mv);

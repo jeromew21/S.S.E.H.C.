@@ -1,5 +1,5 @@
-#ifndef TEST_HPP
-#define TEST_HPP
+#ifndef test_hpp
+#define test_hpp
 
 void run_tests();
 

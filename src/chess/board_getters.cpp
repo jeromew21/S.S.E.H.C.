@@ -7,10 +7,10 @@ board::Status Board::status()
     return status_;
 
   // Calculate and store value
-  MoveList<256> legals = legal_moves();
-  if (legals.size() == 0)
+  if (is_check())
   {
-    if (is_check())
+    MoveList<256> legals = legal_moves();
+    if (legals.size() == 0)
     {
       if (turn() == White)
       {
@@ -20,14 +20,15 @@ board::Status Board::status()
       {
         status_ = board::Status::WhiteWin;
       }
-    }
-    else
-    {
-      status_ = board::Status::Stalemate;
+    } else {
+      status_ = board::Status::Playing;
     }
   }
   else
   {
+    // check for stalemate will slow down a little
+    // will need a dedicated function
+    // status_ = board::Status::Stalemate;
     status_ = board::Status::Playing;
   }
 

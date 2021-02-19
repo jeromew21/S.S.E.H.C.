@@ -103,6 +103,7 @@ void perft_kiwipete_test(int depth, int &total_cases, int &passes)
   expect(perft_kp_eps[depth], counter.ep, "en passant count", total_cases, passes);
   expect(perft_kp_castles[depth], counter.castles, "castle count", total_cases, passes);
   expect(perft_kp_mates[depth], counter.checkmates, "mate count", total_cases, passes);
+  expect(perft_kp_promos[depth], counter.promotions, "promo count", total_cases, passes);
 }
 
 /**
@@ -179,7 +180,7 @@ void run_tests()
     perft_kiwipete_test(d, total_cases, passes);
   }
 
-  for (int d = 1; d < 5; d++)
+  for (int d = 1; d < 6; d++)
   {
     banner("PERFT tricky depth=" + std::to_string(d));
     perft_tricky_test(d, total_cases, passes);

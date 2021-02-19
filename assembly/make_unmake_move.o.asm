@@ -377,9 +377,9 @@ _ZN5Board8MakeMoveE5CMove:              # @_ZN5Board8MakeMoveE5CMove
 	jmp	.LBB1_45
 .LBB1_45:
 	movq	-112(%rbp), %rax                # 8-byte Reload
-	movl	100(%rax), %ecx
+	movl	96(%rax), %ecx
 	addl	$1, %ecx
-	movl	%ecx, 100(%rax)
+	movl	%ecx, 96(%rax)
 	movl	-36(%rbp), %edi
 	callq	_Z13oppositeColori
 	movq	-112(%rbp), %rdi                # 8-byte Reload
@@ -920,7 +920,7 @@ _ZN5Board10UnmakeMoveEv:                # @_ZN5Board10UnmakeMoveEv
 	callq	_ZNK5CMove9type_codeEv
 	movl	%eax, -60(%rbp)
 	movq	-32(%rbp), %rcx
-	movl	8(%rcx), %eax
+	movl	4(%rcx), %eax
 	movl	%eax, -64(%rbp)
 	movq	-96(%rbp), %rcx                 # 8-byte Reload
 	movl	116(%rcx), %eax

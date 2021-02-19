@@ -18,6 +18,16 @@ Full UCI support
 
 Portability (have it work on a raspberry pi)
 
+## Implementation details
+
+C++11
+
+Magic bitboards
+
+## Testing
+
+## Documentation
+
 ## Compiling 
 `make clean`
 
@@ -37,17 +47,6 @@ The executable will be stored in `./build/apps`.
 
 # Contributing
 Please feel free to make a branch and pull request.
-
-### Overall project notes
-Be extremely pedantic with variable naming and logical seperation of code.
-
-Explicit is better than implicit.
-
-Faster is gooder.
-
-Plan for the worst case scenario.
-
-Modularity and seperation of concerns is key.
 
 ### C++ specific
 
@@ -73,18 +72,23 @@ The fewer indentation levels, the better.
 
 ### Repository Layout
 
-#### ./include
-Header files.
-
-#### ./src
-Source files.
-
-#### ./profiling
-Profiling scripts.
+#### ./assembly
+Generated assembly code.
 
 #### ./benchmarking
-Test and benchmark suite.
+Benchmark suite.
 
 #### ./docs
 Auto-generated Doxygen documentation.
 
+#### ./include
+Header files.
+
+#### ./profiling
+Profiling scripts.
+
+#### ./src
+Source files.
+
+#### ./resources
+Images, documents, etc.

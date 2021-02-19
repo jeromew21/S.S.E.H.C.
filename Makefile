@@ -1,5 +1,5 @@
 CXX      := -clang++
-CXXFLAGS := -std=c++11 -pedantic-errors -Wno-strict-overflow -Wextra -pthread
+CXXFLAGS := -std=c++11 -pedantic-errors -Wall -Wextra -pthread
 MAKEFLAGS := --jobs=$(shell nproc)
 BUILD    := ./build
 OBJ_DIR  := $(BUILD)/objects

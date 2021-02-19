@@ -3,8 +3,10 @@
 
 #include "game/chessboard.hpp"
 #include "uci/strings.hpp"
-#include "misc/perft.hpp"
+#include "uci/interface.hpp"
 #include "tests/tests.hpp"
+
+const int random_seed = 39132644;
 
 bool verbose = false;
 
@@ -16,7 +18,7 @@ void verbose_info(const std::string &text)
 
 void init()
 {
-  seedRand(6969);
+  seedRand(random_seed);
   init_bits();
   move_maps::init();
 }
@@ -56,22 +58,8 @@ int main(int argc, char* argv[])
       exit(0);
     }
   }
-
   
-  // testPerft();
-  Board chessboard;
-
-  // auto lm = chessboard.legal_moves();
-  // for (int i = 0; i < lm.size(); i++) {
-  //   chessboard.MakeMove(lm[i]);
-  //   auto lm2 = chessboard.legal_moves();
-  //   for (int k = 0; k < lm2.size(); k++) {
-  //     chessboard.MakeMove(lm2[i]);
-  //     chessboard.Dump();
-  //     chessboard.UnmakeMove();
-  //   }
-  //   chessboard.UnmakeMove();
-  // }
+  uci::listen();
 
   return 0;
 }

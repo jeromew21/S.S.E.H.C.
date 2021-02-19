@@ -5,11 +5,6 @@
 #include <vector>
 
 /**
- * prints to stdout
- */
-void sendToUciClient(const std::string &cmd);
-
-/**
  * sentence -> list of words
  */
 std::vector<std::string> tokenize(std::string in_string);

@@ -78,11 +78,15 @@ void Board::LoadPosition(PieceType piece_list[64], Color turn_to_move, int ep_sq
     }
   }
 
+  SetTurn_(turn_to_move);
   SetEpSquare_(ep_square);
   SetCastlingRights_(White, board::castle::long_, castling_rights.get(White, board::castle::long_));
   SetCastlingRights_(White, board::castle::short_, castling_rights.get(White, board::castle::short_));
   SetCastlingRights_(Black, board::castle::long_, castling_rights.get(Black, board::castle::long_));
   SetCastlingRights_(Black, board::castle::short_, castling_rights.get(Black, board::castle::short_));
+  
+  state_.halfmove_counter = halfmove;
+  state_.fullmove_counter = fullmove;
 
   GeneratePseudoLegal_();
 

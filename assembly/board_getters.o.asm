@@ -169,7 +169,7 @@ _ZNK5Board4turnEv:                      # @_ZNK5Board4turnEv
 	.cfi_def_cfa_register %rbp
 	movq	%rdi, -8(%rbp)
 	movq	-8(%rbp), %rax
-	movl	104(%rax), %eax
+	movl	100(%rax), %eax
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq

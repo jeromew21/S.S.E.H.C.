@@ -98,9 +98,9 @@ namespace board
    */
   struct State
   {
-    int move_count;
     int ply_count;
     Color turn;
+    int fullmove_counter;                  // "It starts at 1, and is incremented after Black's move" - wikipedia
     int halfmove_counter;                  // plies since last capture or pawn move
     int en_passant_square;                 // square behind the pawn, or -1
     PieceType last_moved_piece;            // the piece type that last moved
@@ -116,7 +116,7 @@ namespace board
     // default constructor
     State()
     {
-      this->move_count = 0;
+      this->fullmove_counter = 0;
       this->ply_count = 0;
       this->halfmove_counter = 0;
       this->en_passant_square = -1;

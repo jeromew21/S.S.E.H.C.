@@ -4,7 +4,7 @@
  * The rationale for doing an entirely different function for check situations
  * is that there are a much more limited number of moves in such a sitaution:
  * if it's double check, then you can only move,
- * and if it's single check you can move, block, or capture.
+ * and if it's single check you can only move, block, or capture.
  */
 MoveList<256> Board::produce_uncheck_moves_()
 {
@@ -128,7 +128,7 @@ MoveList<256> Board::produce_uncheck_moves_()
             }
           }
         }
-      }
+      } // end loop over pawns
 
       u64List target_locations_bitscan;
       bitscanAll(target_locations, target_locations_bitscan);
@@ -155,7 +155,7 @@ MoveList<256> Board::produce_uncheck_moves_()
             PieceType mover = piece_at_(unchecking_src);
             if (piece::is_pawn(mover))
             {
-              // we can't simply block w/ a pawn, we need to capture an enemy piece.
+              // we can't simply move w/ a pawn attack, we need to capture an enemy piece.
               if (enemy_occ & target)
               {
                 // promoting capture

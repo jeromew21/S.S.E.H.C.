@@ -203,7 +203,7 @@ _ZN5Board8SetTurn_Ei:                   # @_ZN5Board8SetTurn_Ei
 	movl	%esi, -12(%rbp)
 	movq	-8(%rbp), %rax
 	movl	-12(%rbp), %ecx
-	movl	%ecx, 104(%rax)
+	movl	%ecx, 100(%rax)
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
@@ -308,6 +308,9 @@ _ZN5Board12LoadPositionEPiiiN5board6castle6RightsEii: # @_ZN5Board12LoadPosition
 	movl	%eax, -1144(%rbp)
 	jmp	.LBB6_5
 .LBB6_10:
+	movl	-1132(%rbp), %esi
+	movq	-1168(%rbp), %rdi               # 8-byte Reload
+	callq	_ZN5Board8SetTurn_Ei
 	movl	-1136(%rbp), %esi
 	movq	-1168(%rbp), %rdi               # 8-byte Reload
 	callq	_ZN5Board12SetEpSquare_Ei
@@ -355,7 +358,11 @@ _ZN5Board12LoadPositionEPiiiN5board6castle6RightsEii: # @_ZN5Board12LoadPosition
 	movl	-1200(%rbp), %edx               # 4-byte Reload
 	movl	%eax, %ecx
 	callq	_ZN5Board18SetCastlingRights_Eiii
+	movl	24(%rbp), %eax
 	movq	-1168(%rbp), %rdi               # 8-byte Reload
+	movl	%eax, 108(%rdi)
+	movl	16(%rbp), %eax
+	movl	%eax, 104(%rdi)
 	callq	_ZN5Board20GeneratePseudoLegal_Ev@PLT
 	movq	%fs:40, %rdi
 	movq	-8(%rbp), %r8
@@ -400,13 +407,13 @@ _ZN5board5StateC2Ev:                    # @_ZN5board5StateC2Ev
 	movq	%rax, %rdi
 	callq	_ZN5board6castle6RightsC1Ev@PLT
 	movq	-32(%rbp), %rax                 # 8-byte Reload
+	movl	$0, 8(%rax)
 	movl	$0, (%rax)
-	movl	$0, 4(%rax)
 	movl	$0, 12(%rax)
 	movl	$-1, 16(%rax)
 	movb	$0, 40(%rax)
 	movb	$0, 41(%rax)
-	movl	$0, 8(%rax)
+	movl	$0, 4(%rax)
 	movl	$-1, 20(%rax)
 	movl	$-1, 24(%rax)
 	callq	_ZN5CMove8NullMoveEv
@@ -1632,6 +1639,7 @@ DW.ref.__gxx_personality_v0:
 	.addrsig_sym _ZN5Board18SetCastlingRights_Eiii
 	.addrsig_sym _ZNK5board6castle6Rights3getEii
 	.addrsig_sym _ZN5board6castle6Rights3SetEiii
+	.addrsig_sym _ZN5Board8SetTurn_Ei
 	.addrsig_sym _ZN5board10StateStack5ClearEv
 	.addrsig_sym _Z13u64FromSquarei
 	.addrsig_sym _ZN5Board20GeneratePseudoLegal_Ev

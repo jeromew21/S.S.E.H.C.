@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['row_625',['Row',['../definitions_8hpp.html#ab81515fdde1539eca8d2b04145561f1b',1,'definitions.hpp']]]
+  ['piecetype_714',['PieceType',['../definitions_8hpp.html#a3d9e6d722827e8ae0d0c35aa9ceede65',1,'definitions.hpp']]]
 ];

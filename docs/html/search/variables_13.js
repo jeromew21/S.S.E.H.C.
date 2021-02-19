@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['w_612',['w',['../namespacedirection_1_1rook.html#a4811a3feec399e5d14057c20ddd7195d',1,'direction::rook']]],
-  ['white_613',['White',['../definitions_8hpp.html#a7a43a04cb403aa5f48a6c416ab72051d',1,'definitions.hpp']]]
+  ['valgrind_699',['valgrind',['../namespaceprofile.html#a1398d4f579785cce89e45ad2291b5015',1,'profile']]],
+  ['verbose_700',['verbose',['../main_8cpp.html#ab3f078684998b83967d507d0f453f454',1,'main.cpp']]]
 ];

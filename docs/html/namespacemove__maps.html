@@ -100,6 +100,8 @@ Functions</h2></td></tr>
 <tr class="separator:a4c4dc7abb7c456a8558f8dff7033404e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afeace7a38ea2b885705ca549b672c405"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemove__maps.html#afeace7a38ea2b885705ca549b672c405">isStartingRank</a> (<a class="el" href="definitions_8hpp.html#a6de8fcf40523e5c1eecf939520f33f6b">Square</a> piece_location, <a class="el" href="definitions_8hpp.html#a2f17017b1ef643696b678a0703f0f166">Color</a> color)</td></tr>
 <tr class="separator:afeace7a38ea2b885705ca549b672c405"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5368731cea1b0cbac77296b8f21f97b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemove__maps.html#af5368731cea1b0cbac77296b8f21f97b">oneFileAdjacent</a> (<a class="el" href="definitions_8hpp.html#a6de8fcf40523e5c1eecf939520f33f6b">Square</a> piece_location)</td></tr>
+<tr class="separator:af5368731cea1b0cbac77296b8f21f97b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ace864fb1af65e747ccb6836283858d5a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemove__maps.html#ace864fb1af65e747ccb6836283858d5a">pawnCaptures</a> (<a class="el" href="definitions_8hpp.html#a6de8fcf40523e5c1eecf939520f33f6b">Square</a> piece_location, <a class="el" href="definitions_8hpp.html#a2f17017b1ef643696b678a0703f0f166">Color</a> color)</td></tr>
 <tr class="separator:ace864fb1af65e747ccb6836283858d5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a57788e65733b2e9bd7fd182dfe216b25"><td class="memItemLeft" align="right" valign="top"><a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemove__maps.html#a57788e65733b2e9bd7fd182dfe216b25">pawnMoves</a> (<a class="el" href="definitions_8hpp.html#a6de8fcf40523e5c1eecf939520f33f6b">Square</a> piece_location, <a class="el" href="definitions_8hpp.html#a2f17017b1ef643696b678a0703f0f166">Color</a> color)</td></tr>
@@ -363,6 +365,25 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="af5368731cea1b0cbac77296b8f21f97b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5368731cea1b0cbac77296b8f21f97b">&#9670;&nbsp;</a></span>oneFileAdjacent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a> move_maps::oneFileAdjacent </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="definitions_8hpp.html#a6de8fcf40523e5c1eecf939520f33f6b">Square</a>&#160;</td>
+          <td class="paramname"><em>piece_location</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Returns the squares exactly one file adjacent to the current one. Really only used for en passant. </p>
+
+</div>
+</div>
 <a id="ace864fb1af65e747ccb6836283858d5a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ace864fb1af65e747ccb6836283858d5a">&#9670;&nbsp;</a></span>pawnCaptures()</h2>
 
@@ -417,7 +438,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Returns a bitboard of pawn double moves at given location and occupancy map.</p>
+<p>Returns a bitboard of pawn double moves at given location.</p>
 <p>Always a quiet move. </p>
 
 </div>
@@ -447,7 +468,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Returns a bitboard of pawn forward moves at given location and occupancy map.</p>
+<p>Returns a bitboard of pawn forward moves at given location.</p>
 <p>Always a quiet move. </p>
 
 </div>

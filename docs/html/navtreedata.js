@@ -29,11 +29,14 @@ var NAVTREE =
       [ "Semi-supervised Scalable Evaluation-perfect Heuristic Chess", "md_README.html#autotoc_md1", null ],
       [ "Goals", "md_README.html#autotoc_md2", null ],
       [ "Secondary goals", "md_README.html#autotoc_md3", null ],
-      [ "Compiling", "md_README.html#autotoc_md4", [
-        [ "Debug build", "md_README.html#autotoc_md5", null ],
-        [ "Release build", "md_README.html#autotoc_md6", null ]
+      [ "Implementation details", "md_README.html#autotoc_md4", null ],
+      [ "Testing", "md_README.html#autotoc_md5", null ],
+      [ "Documentation", "md_README.html#autotoc_md6", null ],
+      [ "Compiling", "md_README.html#autotoc_md7", [
+        [ "Debug build", "md_README.html#autotoc_md8", null ],
+        [ "Release build", "md_README.html#autotoc_md9", null ]
       ] ],
-      [ "Contributing", "md_README.html#autotoc_md7", null ]
+      [ "Contributing", "md_README.html#autotoc_md10", null ]
     ] ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
@@ -69,8 +72,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "ai_8cpp.html",
-"functions_vars.html",
-"structboard_1_1State.html#a9d6cc195eee2923927c19ea056bed11e"
+"dir_522fe5b055c97b51bcd19333f401fe37.html",
+"search_8hpp.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

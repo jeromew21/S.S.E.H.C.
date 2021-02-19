@@ -1,0 +1,26 @@
+var tests_8cpp =
+[
+    [ "GREEN", "tests_8cpp.html#acfbc006ea433ad708fdee3e82996e721", null ],
+    [ "RED", "tests_8cpp.html#a8d23feea868a983c8c2b661e1e16972f", null ],
+    [ "RESET", "tests_8cpp.html#ab702106cf3b3e96750b6845ded4e0299", null ],
+    [ "banner", "tests_8cpp.html#a75899f90a493b756ba1529a263b9ab30", null ],
+    [ "expect", "tests_8cpp.html#a1724944d7c18fa413babb419c322cce6", null ],
+    [ "perft_classical_test", "tests_8cpp.html#a01660a4674aef4fda82b42abc5a396a3", null ],
+    [ "perft_kiwipete_test", "tests_8cpp.html#a7d37d0e18c13a688eb1a048b973d50a4", null ],
+    [ "perft_tricky_test", "tests_8cpp.html#a192e84934ef18be1dec1be1c533353ab", null ],
+    [ "position_load_test", "tests_8cpp.html#a67597acd761efd4d858abe09c4344632", null ],
+    [ "position_mate_test", "tests_8cpp.html#a8625bb4b6237ba89f607a97a647a034a", null ],
+    [ "run_tests", "tests_8cpp.html#ac3ef4e4ac9b8681e56bf390cb4c152cd", null ],
+    [ "perft_classical_captures", "tests_8cpp.html#a8ae616d5eb24ff498d1eb550d66881b2", null ],
+    [ "perft_classical_checks", "tests_8cpp.html#ab6bb1e1e1241195998839c269293f9f0", null ],
+    [ "perft_classical_mates", "tests_8cpp.html#a864614a45d5a4ca244f81e16380dc943", null ],
+    [ "perft_classical_nodes", "tests_8cpp.html#a4cc512ca8c31ef7c397ab02a1a04b3d0", null ],
+    [ "perft_kp_captures", "tests_8cpp.html#ace1eb6f0122b341159096d010b3d3cc2", null ],
+    [ "perft_kp_castles", "tests_8cpp.html#a2c7720629b813c86ddd07bb379a2e749", null ],
+    [ "perft_kp_checks", "tests_8cpp.html#a3fb38a06bf822ce5e50160d03cd8fea2", null ],
+    [ "perft_kp_eps", "tests_8cpp.html#a585bb470ac5c30a4c2bae25c7b6cb4d0", null ],
+    [ "perft_kp_mates", "tests_8cpp.html#adf9bafbbf85e2551a031ceb5c98f84b9", null ],
+    [ "perft_kp_nodes", "tests_8cpp.html#ad617094718bea51ebd5142e38e11b713", null ],
+    [ "perft_kp_promos", "tests_8cpp.html#ae69eebad735b89d67a9107a9d8b7610a", null ],
+    [ "perft_tricky_nodes", "tests_8cpp.html#a49c97d815d1d32d25607f157046ff545", null ]
+];

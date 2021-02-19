@@ -94,22 +94,23 @@ $(document).ready(function(){initNavTree('main_8cpp.html',''); initResizable(); 
 <code>#include &lt;chrono&gt;</code><br />
 <code>#include &quot;<a class="el" href="chessboard_8hpp_source.html">game/chessboard.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="strings_8hpp_source.html">uci/strings.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="perft_8hpp_source.html">misc/perft.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="interface_8hpp_source.html">uci/interface.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="tests_8hpp_source.html">tests/tests.hpp</a>&quot;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aee92efb48d508f253f116197d862ce95"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#aee92efb48d508f253f116197d862ce95">testPerft</a> ()</td></tr>
-<tr class="separator:aee92efb48d508f253f116197d862ce95"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aac46295336bbfca7c7e6d0022ca3d792"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#aac46295336bbfca7c7e6d0022ca3d792">verbose_info</a> (const std::string &amp;text)</td></tr>
 <tr class="separator:aac46295336bbfca7c7e6d0022ca3d792"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a02fd73d861ef2e4aabb38c0c9ff82947"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a02fd73d861ef2e4aabb38c0c9ff82947">init</a> ()</td></tr>
 <tr class="separator:a02fd73d861ef2e4aabb38c0c9ff82947"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a> ()</td></tr>
-<tr class="separator:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a> (int argc, char *argv[])</td></tr>
+<tr class="separator:a0ddf1224851353fc92bfbff6f499fa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:ab3f078684998b83967d507d0f453f454"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#ab3f078684998b83967d507d0f453f454">verbose</a> = true</td></tr>
+<tr class="memitem:a6c21a93d4c98e6bded6b4a62d3f0f71a"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a6c21a93d4c98e6bded6b4a62d3f0f71a">random_seed</a> = 39132644</td></tr>
+<tr class="separator:a6c21a93d4c98e6bded6b4a62d3f0f71a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3f078684998b83967d507d0f453f454"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#ab3f078684998b83967d507d0f453f454">verbose</a> = false</td></tr>
 <tr class="separator:ab3f078684998b83967d507d0f453f454"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -130,8 +131,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="ae66f6b31b5ad750f1fe042a706a4e3d4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae66f6b31b5ad750f1fe042a706a4e3d4">&#9670;&nbsp;</a></span>main()</h2>
+<a id="a0ddf1224851353fc92bfbff6f499fa97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ddf1224851353fc92bfbff6f499fa97">&#9670;&nbsp;</a></span>main()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -139,28 +140,26 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">int main </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
         </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="aee92efb48d508f253f116197d862ce95"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aee92efb48d508f253f116197d862ce95">&#9670;&nbsp;</a></span>testPerft()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
         <tr>
-          <td class="memname">void testPerft </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>argv</em>[]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>The main executable</p>
+<p>&ndash;test runs tests and exits the program</p>
+<p>&ndash;verbose prints verbose output to command line</p>
+<p>&ndash;version prints version and exits </p>
 
 </div>
 </div>
@@ -184,6 +183,20 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
+<a id="a6c21a93d4c98e6bded6b4a62d3f0f71a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c21a93d4c98e6bded6b4a62d3f0f71a">&#9670;&nbsp;</a></span>random_seed</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int random_seed = 39132644</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="ab3f078684998b83967d507d0f453f454"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab3f078684998b83967d507d0f453f454">&#9670;&nbsp;</a></span>verbose</h2>
 
@@ -191,7 +204,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool verbose = true</td>
+          <td class="memname">bool verbose = false</td>
         </tr>
       </table>
 </div><div class="memdoc">

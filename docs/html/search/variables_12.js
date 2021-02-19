@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['valgrind_610',['valgrind',['../namespaceprofile.html#a1398d4f579785cce89e45ad2291b5015',1,'profile']]],
-  ['verbose_611',['verbose',['../main_8cpp.html#ab3f078684998b83967d507d0f453f454',1,'main.cpp']]]
+  ['turn_698',['turn',['../structboard_1_1State.html#a5c4f57ef916449709a591a3028fa5440',1,'board::State']]]
 ];

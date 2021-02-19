@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['zobrist_334',['zobrist',['../namespacezobrist.html',1,'']]]
+  ['uci_383',['uci',['../namespaceuci.html',1,'']]]
 ];

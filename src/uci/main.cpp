@@ -60,7 +60,11 @@ int main(int argc, char* argv[])
   }
 
   Board bd;
-  bd.LoadPosition("rnbqkbnr/ppppp1pp/8/5p1Q/4P3/8/PPPP1PPP/RNB1KBNR b KQkq - 1 2");
+  bd.LoadPosition("r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - ");
+  bd.MakeMove(bd.move_from_src_dest(squareFromName("f3"), squareFromName("f6")));
+  bd.MakeMove(bd.move_from_src_dest(squareFromName("e7"), squareFromName("d8")));
+  bd.MakeMove(bd.move_from_src_dest(squareFromName("f6"), squareFromName("f7")));
+  std::cout << (int) (bd.status() == board::Status::WhiteWin);
   bd.Dump();
   // auto ml = bd.legal_moves();
   // for (int i = 0; i < ml.size(); i++) {

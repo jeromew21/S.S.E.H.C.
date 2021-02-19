@@ -17,6 +17,7 @@ const int perft_kp_eps[6] = {0, 0, 1, 45, 1929, 73365};
 const int perft_kp_castles[6] = {0, 2, 91, 3162, 128013, 4993637};
 const int perft_kp_promos[6] = {0, 0, 0, 0, 15172, 8392};
 const int perft_kp_checks[6] = {0, 0, 3, 993, 25523, 3309887};
+const int perft_kp_mates[6] = {0, 0, 1, 43, 30171, 360003};
 
 const int perft_tricky_nodes[6] = {0, 44, 1486, 62379, 2103487, 89941194};
 
@@ -86,6 +87,7 @@ void perft_kiwipete_test(int depth, int &total_cases, int &passes)
   expect(perft_kp_checks[depth], counter.checks, "check count", total_cases, passes);
   expect(perft_kp_eps[depth], counter.ep, "en passant count", total_cases, passes);
   expect(perft_kp_castles[depth], counter.castles, "castle count", total_cases, passes);
+  expect(perft_kp_mates[depth], counter.checkmates, "mate count", total_cases, passes);
 }
 
 /**
@@ -138,20 +140,26 @@ void run_tests()
   
   banner("Checkmate tests");
   position_mate_test("rnbqkbnr/ppppp1pp/8/5p1Q/4P3/8/PPPP1PPP/RNB1KBNR b KQkq - 1 2", false, total_cases, passes);
+  position_mate_test("rnb1kbnr/pppp1ppp/8/4p3/5PPq/8/PPPPP2P/RNBQKBNR w KQkq - 1 3", true, total_cases, passes);
+  position_mate_test("kr6/ppN5/8/8/8/6P1/3K4/8 b - - 0 1", true, total_cases, passes);
+  position_mate_test("r2qk2r/p1pp1Qb1/bn1Pp1p1/4N3/1p2P1n1/P1N4p/1PPBBPPP/R3K2R b KQkq - 0 3", true, total_cases, passes);
+  position_mate_test("3rk1nr/p1ppqQb1/Bn2p1p1/1N1PN3/1p2P3/7p/PPPB1PPP/R3K2R b KQk - 0 3", false, total_cases, passes);
+  position_mate_test("3r1knr/p1Npqpb1/Bn2p1N1/3P4/1p2P3/5Q1p/PPPB1PPP/R3K2R b KQ - 0 4", true, total_cases, passes);
+  position_mate_test("r2qk2r/p1pp1Qb1/bn2p1p1/3PN3/1p2P3/2N4p/PPPBBPPP/R3K2R b KQkq - 0 2", true, total_cases, passes);
 
-  for (int d = 1; d < 4; d++)
+  for (int d = 1; d < 6; d++)
   {
     banner("PERFT classical depth=" + std::to_string(d));
     perft_classical_test(d, total_cases, passes);
   }
 
-  for (int d = 1; d < 4; d++)
+  for (int d = 1; d < 5; d++)
   {
     banner("PERFT kiwipete depth=" + std::to_string(d));
     perft_kiwipete_test(d, total_cases, passes);
   }
 
-  for (int d = 1; d < 4; d++)
+  for (int d = 1; d < 5; d++)
   {
     banner("PERFT tricky depth=" + std::to_string(d));
     perft_tricky_test(d, total_cases, passes);

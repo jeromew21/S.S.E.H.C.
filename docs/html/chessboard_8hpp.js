@@ -12,6 +12,7 @@ var chessboard_8hpp =
     [ "isStartingRank", "chessboard_8hpp.html#afeace7a38ea2b885705ca549b672c405", null ],
     [ "kingMoves", "chessboard_8hpp.html#a18f6f80f3c3f5efe0f77417addd8e626", null ],
     [ "knightMoves", "chessboard_8hpp.html#abe621f8c6d35fe11ff5ac8cae97cdd31", null ],
+    [ "oneFileAdjacent", "chessboard_8hpp.html#af5368731cea1b0cbac77296b8f21f97b", null ],
     [ "pawnCaptures", "chessboard_8hpp.html#ace864fb1af65e747ccb6836283858d5a", null ],
     [ "pawnDoubleMoves", "chessboard_8hpp.html#a30c6e477204c1f6bcb7d8d1fcf5f2491", null ],
     [ "pawnMoves", "chessboard_8hpp.html#a57788e65733b2e9bd7fd182dfe216b25", null ],

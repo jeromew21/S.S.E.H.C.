@@ -57,7 +57,7 @@ MoveList<256> Board::produce_uncheck_moves_()
         u64 rook_attacks = move_maps::rookMoves(checking_piece_location, occ);
         if (rook_attacks & king_position)
         {
-	  found_ray = true;
+          found_ray = true;
           for (int d = 0; d < 4; d++)
           {
             u64 ray = rook_attacks & move_maps::rookRay(checking_piece_location, d);
@@ -71,8 +71,8 @@ MoveList<256> Board::produce_uncheck_moves_()
       } // end rook ray
       if (piece::is_bishop(checking_piece) || (piece::is_queen(checking_piece) && !found_ray))
       {
-	u64 bishop_attacks = move_maps::bishopMoves(checking_piece_location, occ);
-	if (bishop_attacks & king_position)
+        u64 bishop_attacks = move_maps::bishopMoves(checking_piece_location, occ);
+        if (bishop_attacks & king_position)
         {
           found_ray = true;
           for (int d = 0; d < 4; d++)
@@ -86,7 +86,7 @@ MoveList<256> Board::produce_uncheck_moves_()
           }
         }
       } // end bishop ray
-      
+
       // make sure king is masked out of ray
       target_locations &= ~king_position;
 

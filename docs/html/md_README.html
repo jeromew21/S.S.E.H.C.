@@ -102,33 +102,34 @@ Secondary goals</h1>
 <p>Full UCI support</p>
 <p>Portability (have it work on a raspberry pi)</p>
 <h1><a class="anchor" id="autotoc_md4"></a>
+Implementation details</h1>
+<p>C++11</p>
+<p>Magic bitboards</p>
+<h1><a class="anchor" id="autotoc_md5"></a>
+Testing</h1>
+<h1><a class="anchor" id="autotoc_md6"></a>
+Documentation</h1>
+<h1><a class="anchor" id="autotoc_md7"></a>
 Compiling</h1>
 <p><code>make clean</code></p>
 <p><code>make</code></p>
 <p>The executable will be stored in <code>./build/apps</code>.</p>
-<h2><a class="anchor" id="autotoc_md5"></a>
+<h2><a class="anchor" id="autotoc_md8"></a>
 Debug build</h2>
 <p><code>make clean</code></p>
 <p><code>make debug</code></p>
-<h2><a class="anchor" id="autotoc_md6"></a>
+<h2><a class="anchor" id="autotoc_md9"></a>
 Release build</h2>
 <p><code>make clean</code></p>
 <p><code>make release</code></p>
-<h1><a class="anchor" id="autotoc_md7"></a>
+<h1><a class="anchor" id="autotoc_md10"></a>
 Contributing</h1>
 <p>Please feel free to make a branch and pull request.</p>
-<h3><a class="anchor" id="autotoc_md8"></a>
-Overall project notes</h3>
-<p>Be extremely pedantic with variable naming and logical seperation of code.</p>
-<p>Explicit is better than implicit.</p>
-<p>Faster is gooder.</p>
-<p>Plan for the worst case scenario.</p>
-<p>Modularity and seperation of concerns is key.</p>
-<h3><a class="anchor" id="autotoc_md9"></a>
+<h3><a class="anchor" id="autotoc_md11"></a>
 C++ specific</h3>
 <p>Try to not type cast if possible.</p>
 <p>Use assertions instead of throwing errors.</p>
-<h3><a class="anchor" id="autotoc_md10"></a>
+<h3><a class="anchor" id="autotoc_md12"></a>
 Code Style</h3>
 <p>Try to follow this as a rough guideline: <a href="https://google.github.io/styleguide/cppguide.html">https://google.github.io/styleguide/cppguide.html</a></p>
 <p>The fewer indentation levels, the better.</p>
@@ -137,23 +138,29 @@ Code Style</h3>
 <p><code>PascalCase</code> for types, void class methods.</p>
 <p><code>snake_case</code> for class getter/setters.</p>
 <p><code>leading_underscore_</code> for private variables.</p>
-<h3><a class="anchor" id="autotoc_md11"></a>
+<h3><a class="anchor" id="autotoc_md13"></a>
 Repository Layout</h3>
-<h4><a class="anchor" id="autotoc_md12"></a>
-./include</h4>
-<p>Header files.</p>
-<h4><a class="anchor" id="autotoc_md13"></a>
-./src</h4>
-<p>Source files.</p>
 <h4><a class="anchor" id="autotoc_md14"></a>
-./profiling</h4>
-<p>Profiling scripts.</p>
+./assembly</h4>
+<p>Generated assembly code.</p>
 <h4><a class="anchor" id="autotoc_md15"></a>
 ./benchmarking</h4>
-<p>Test and benchmark suite.</p>
+<p>Benchmark suite.</p>
 <h4><a class="anchor" id="autotoc_md16"></a>
 ./docs</h4>
-<p>Auto-generated Doxygen documentation. </p>
+<p>Auto-generated Doxygen documentation.</p>
+<h4><a class="anchor" id="autotoc_md17"></a>
+./include</h4>
+<p>Header files.</p>
+<h4><a class="anchor" id="autotoc_md18"></a>
+./profiling</h4>
+<p>Profiling scripts.</p>
+<h4><a class="anchor" id="autotoc_md19"></a>
+./src</h4>
+<p>Source files.</p>
+<h4><a class="anchor" id="autotoc_md20"></a>
+./resources</h4>
+<p>Images, documents, etc. </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->

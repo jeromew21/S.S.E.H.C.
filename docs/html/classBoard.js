@@ -1,8 +1,6 @@
 var classBoard =
 [
     [ "Board", "classBoard.html#a9ee491d4fea680cf69b033374a9fdfcb", null ],
-    [ "attackers_to", "classBoard.html#a3b8ac83e24d93e416184136e1e744e4e", null ],
-    [ "attackers_to", "classBoard.html#abffeda6f0ce632445f0e1b12b558b364", null ],
     [ "Dump", "classBoard.html#a5611814a2ac7174da53c945ca646cb0d", null ],
     [ "fen", "classBoard.html#a0246e50fbf0abc3dcc19aa4fd8100e4a", null ],
     [ "hash", "classBoard.html#a8ca3f97fa9f04e00fbdc98b8e5b383de", null ],

@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['score_626',['Score',['../definitions_8hpp.html#a862a575ea2feae2f14171755a6c46410',1,'definitions.hpp']]],
-  ['square_627',['Square',['../definitions_8hpp.html#a6de8fcf40523e5c1eecf939520f33f6b',1,'definitions.hpp']]]
+  ['red_715',['RED',['../tests_8cpp.html#a8d23feea868a983c8c2b661e1e16972f',1,'tests.cpp']]],
+  ['reset_716',['RESET',['../tests_8cpp.html#ab702106cf3b3e96750b6845ded4e0299',1,'tests.cpp']]],
+  ['row_717',['Row',['../definitions_8hpp.html#ab81515fdde1539eca8d2b04145561f1b',1,'definitions.hpp']]]
 ];

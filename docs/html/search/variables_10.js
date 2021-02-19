@@ -1,11 +1,16 @@
 var searchData=
 [
-  ['s_601',['s',['../namespacedirection_1_1rook.html#a5db6760b68a8e7042cbf75b7992c159c',1,'direction::rook']]],
-  ['score_602',['score',['../structMoveScore.html#ac62130fe9cbb4720c1b9561de63d6ada',1,'MoveScore::score()'],['../structTableBucket.html#a2d334d42db0b472382c9c3a36664213b',1,'TableBucket::score()']]],
-  ['score_5fmax_603',['SCORE_MAX',['../search_8hpp.html#a60dfe29f268a4ec0e1169e0b64a84f54',1,'search.hpp']]],
-  ['score_5fmin_604',['SCORE_MIN',['../search_8hpp.html#a17a6bba34dc190b7b9633dca12b0df30',1,'search.hpp']]],
-  ['se_605',['se',['../namespacedirection_1_1bishop.html#ab696a158989ce4f2b4241c4bcf71d4de',1,'direction::bishop']]],
-  ['seq_606',['seq',['../structMiniTableBucket.html#a4359aa3f6322b0fc73b199aff55b6516',1,'MiniTableBucket']]],
-  ['short_5f_607',['short_',['../namespaceboard_1_1castle.html#ac58244b5f1758585f923512ea4260baf',1,'board::castle']]],
-  ['sw_608',['sw',['../namespacedirection_1_1bishop.html#aba8630bc1fb18730d84be4b2e80984c1',1,'direction::bishop']]]
+  ['random_5fseed_676',['random_seed',['../main_8cpp.html#a6c21a93d4c98e6bded6b4a62d3f0f71a',1,'main.cpp']]],
+  ['rank_5fnames_677',['RANK_NAMES',['../strings_8hpp.html#a471d9b92a9619419e81635b2e018d60f',1,'strings.hpp']]],
+  ['rng_678',['rng',['../bits_8cpp.html#a3c92e7467de2596c99e78a5114b0068a',1,'bits.cpp']]],
+  ['rook_679',['rook',['../namespacepiece_1_1colorless.html#a9a3f56d719461622dd067e204a269070',1,'piece::colorless::rook()'],['../namespacepiece_1_1white.html#a9b8715170fa5483cff3e6e2b26fdb376',1,'piece::white::rook()'],['../namespacepiece_1_1black.html#afda8736af711a6e2cf28b66c12861320',1,'piece::black::rook()']]],
+  ['rook_5fattack_5fcache_680',['ROOK_ATTACK_CACHE',['../bitboards_8cpp.html#a26522930d7381b805c3c7141690e78c6',1,'bitboards.cpp']]],
+  ['rook_5flong_5fdest_681',['rook_long_dest',['../namespaceboard_1_1castle.html#a0d80e0c8bb6499e0fae243762b556f12',1,'board::castle']]],
+  ['rook_5fmagic_5fnumbers_682',['ROOK_MAGIC_NUMBERS',['../bitboards_8cpp.html#a6c2abe08cfcaa3d95d30940e42da1284',1,'bitboards.cpp']]],
+  ['rook_5fmagic_5fshifts_683',['ROOK_MAGIC_SHIFTS',['../bitboards_8cpp.html#a602099fd3b61047cdc2bd8beec45bc32',1,'bitboards.cpp']]],
+  ['rook_5fmagic_5ftable_684',['ROOK_MAGIC_TABLE',['../bitboards_8cpp.html#acd6c159b2468ab4510582737cec5495c',1,'bitboards.cpp']]],
+  ['rook_5fmasked_5fattacks_685',['ROOK_MASKED_ATTACKS',['../bitboards_8cpp.html#abd08d629be1ea78f7b36cb80fb0874ed',1,'bitboards.cpp']]],
+  ['rook_5fshort_5fdest_686',['rook_short_dest',['../namespaceboard_1_1castle.html#ade1467cc342b3174041c034bd7b31fbe',1,'board::castle']]],
+  ['rooks_5fray_5fcache_687',['ROOKS_RAY_CACHE',['../bitboards_8cpp.html#acc30587304e26cbaf3247d2fa2f81264',1,'bitboards.cpp']]],
+  ['rpromotion_688',['RPromotion',['../namespacemove__type.html#a48af7bde8c79720a10b24deb31908f70',1,'move_type']]]
 ];

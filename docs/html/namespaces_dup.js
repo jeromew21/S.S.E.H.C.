@@ -1,15 +1,16 @@
 var namespaces_dup =
 [
     [ "ai", "namespaceai.html", [
-      [ "Overall project notes", "md_README.html#autotoc_md8", null ],
-      [ "C++ specific", "md_README.html#autotoc_md9", null ],
-      [ "Code Style", "md_README.html#autotoc_md10", null ],
-      [ "Repository Layout", "md_README.html#autotoc_md11", [
-        [ "./include", "md_README.html#autotoc_md12", null ],
-        [ "./src", "md_README.html#autotoc_md13", null ],
-        [ "./profiling", "md_README.html#autotoc_md14", null ],
+      [ "C++ specific", "md_README.html#autotoc_md11", null ],
+      [ "Code Style", "md_README.html#autotoc_md12", null ],
+      [ "Repository Layout", "md_README.html#autotoc_md13", [
+        [ "./assembly", "md_README.html#autotoc_md14", null ],
         [ "./benchmarking", "md_README.html#autotoc_md15", null ],
-        [ "./docs", "md_README.html#autotoc_md16", null ]
+        [ "./docs", "md_README.html#autotoc_md16", null ],
+        [ "./include", "md_README.html#autotoc_md17", null ],
+        [ "./profiling", "md_README.html#autotoc_md18", null ],
+        [ "./src", "md_README.html#autotoc_md19", null ],
+        [ "./resources", "md_README.html#autotoc_md20", null ]
       ] ],
       [ "alphaBetaSearch", "namespaceai.html#a6d279c55f508787462b8a2dc8746c325", null ],
       [ "evaluation", "namespaceai.html#abbb2c58649546f6f23f8bacce61fb12f", null ],
@@ -36,6 +37,7 @@ var namespaces_dup =
       [ "isStartingRank", "namespacemove__maps.html#afeace7a38ea2b885705ca549b672c405", null ],
       [ "kingMoves", "namespacemove__maps.html#a18f6f80f3c3f5efe0f77417addd8e626", null ],
       [ "knightMoves", "namespacemove__maps.html#abe621f8c6d35fe11ff5ac8cae97cdd31", null ],
+      [ "oneFileAdjacent", "namespacemove__maps.html#af5368731cea1b0cbac77296b8f21f97b", null ],
       [ "pawnCaptures", "namespacemove__maps.html#ace864fb1af65e747ccb6836283858d5a", null ],
       [ "pawnDoubleMoves", "namespacemove__maps.html#a30c6e477204c1f6bcb7d8d1fcf5f2491", null ],
       [ "pawnMoves", "namespacemove__maps.html#a57788e65733b2e9bd7fd182dfe216b25", null ],
@@ -65,6 +67,10 @@ var namespaces_dup =
       [ "valgrind", "namespaceprofile.html#a1398d4f579785cce89e45ad2291b5015", null ]
     ] ],
     [ "test", "namespacetest.html", null ],
+    [ "uci", "namespaceuci.html", [
+      [ "listen", "namespaceuci.html#adab383c743b3efacb5713c96e7728390", null ],
+      [ "sendToUciClient", "namespaceuci.html#aeffe66b247940c17b61ee1ff4f43f647", null ]
+    ] ],
     [ "zobrist", "namespacezobrist.html", [
       [ "getHashFromId", "namespacezobrist.html#a036846ac7ca1851590e357e334d16f65", null ],
       [ "init", "namespacezobrist.html#a3758b41a1876be8cdb13517666d8edab", null ]

@@ -9,12 +9,9 @@ var bits_8cpp =
     [ "timeSeedRand", "bits_8cpp.html#a007a420906e3c9513cebe931484f3d8b", null ],
     [ "unif", "bits_8cpp.html#a0f9ff08c966ba547d1ab6c68b4c34c4b", null ],
     [ "bitscan_cache", "bits_8cpp.html#abefe9c0fefe161f70a84602b3ae1e73e", null ],
-    [ "h01", "bits_8cpp.html#af2bf9caea0215a0fbb2f4108d6efd5dc", null ],
-    [ "m1", "bits_8cpp.html#a6caa089f3878ecdc4c51b8845a0b4ce1", null ],
-    [ "m16", "bits_8cpp.html#a9501b4d058bfe3d945cb54400bfb4f11", null ],
-    [ "m2", "bits_8cpp.html#aa06145bae1294f051ac7ad3666ac3cf4", null ],
-    [ "m32", "bits_8cpp.html#afc0de758063af40cacb4fd1a821263d0", null ],
-    [ "m4", "bits_8cpp.html#a4a82bd20d252ba0986590c3b813d0369", null ],
-    [ "m8", "bits_8cpp.html#a77c13069d52450b2028bd2a51d42777e", null ],
+    [ "h01", "bits_8cpp.html#a341d8f070cffe9dcbb7a4f92759dde45", null ],
+    [ "m1", "bits_8cpp.html#af77acce3ea8eb6cb8059698ab10de08c", null ],
+    [ "m2", "bits_8cpp.html#ab587da9660e9c9541682c73d024aa89b", null ],
+    [ "m4", "bits_8cpp.html#a10a526be54238a5a23cba3d1cf9d0b10", null ],
     [ "rng", "bits_8cpp.html#a3c92e7467de2596c99e78a5114b0068a", null ]
 ];

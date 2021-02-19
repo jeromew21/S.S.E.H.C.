@@ -6,7 +6,7 @@ var dir_a469c1a447a1fbb4c350399e58cec756 =
     [ "board_getters.cpp", "board__getters_8cpp.html", null ],
     [ "checks.cpp", "checks_8cpp.html", null ],
     [ "fen.cpp", "fen_8cpp.html", null ],
-    [ "hashing.cpp", "hashing_8cpp.html", null ],
+    [ "hashing.cpp", "hashing_8cpp.html", "hashing_8cpp" ],
     [ "make_unmake_move.cpp", "make__unmake__move_8cpp.html", null ],
     [ "move_generation.cpp", "move__generation_8cpp.html", null ],
     [ "pieces.cpp", "pieces_8cpp.html", "pieces_8cpp" ],

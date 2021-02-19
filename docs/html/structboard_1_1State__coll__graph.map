@@ -1,0 +1,5 @@
+<map id="board::State" name="board::State">
+<area shape="rect" id="node1" title=" " alt="" coords="99,95,200,121"/>
+<area shape="rect" id="node2" href="$classboard_1_1castle_1_1Rights.html" title=" " alt="" coords="5,5,160,32"/>
+<area shape="rect" id="node3" href="$classCMove.html" title=" " alt="" coords="184,5,251,32"/>
+</map>

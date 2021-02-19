@@ -9,10 +9,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -52,22 +48,6 @@ $(function() {
 /* @license-end */</script>
 <div id="main-nav"></div>
 </div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('functions.html',''); initResizable(); });
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -104,9 +84,13 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 </li>
 <li>bestMove
 : <a class="el" href="structTableNode.html#a5a2c7ecd628d7c1f1987850665810daa">TableNode</a>
+, <a class="el" href="classuci_1_1Interface.html#a6ac0ac739442eb9461708c5dc98b9348">uci::Interface</a>
 </li>
 <li>Board()
 : <a class="el" href="classBoard.html#a9ee491d4fea680cf69b033374a9fdfcb">Board</a>
+</li>
+<li>board
+: <a class="el" href="classuci_1_1Interface.html#a108d520d56884e6408a8d372cfdd9d0e">uci::Interface</a>
 </li>
 </ul>
 
@@ -152,6 +136,9 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 <h3><a id="index_d"></a>- d -</h3><ul>
 <li>defend_map_
 : <a class="el" href="structboard_1_1State.html#a892141edf3c0ad2a6a1dd3d0b7356685">board::State</a>
+</li>
+<li>DelayStop()
+: <a class="el" href="classuci_1_1Interface.html#ad44f1dfffccf29c34028f38ba94d110e">uci::Interface</a>
 </li>
 <li>depth
 : <a class="el" href="structMiniTableBucket.html#aaf443bc8895f28226aa371d903c31701">MiniTableBucket</a>
@@ -234,6 +221,9 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 <li>insert()
 : <a class="el" href="classTranspositionTable.html#a759e2ad25c97597069d87caaeb589b1b">TranspositionTable&lt; N &gt;</a>
 </li>
+<li>Interface()
+: <a class="el" href="classuci_1_1Interface.html#a73faa9b43b2cd82e63b1fa76f43db621">uci::Interface</a>
+</li>
 <li>is_castle()
 : <a class="el" href="classCMove.html#a0a6bca94f5893e6b3c311e547450132e">CMove</a>
 </li>
@@ -310,6 +300,9 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 <li>nodeType
 : <a class="el" href="structTableNode.html#a0fd6aebe325b3ab05077de59e25a1565">TableNode</a>
 </li>
+<li>not_thinking
+: <a class="el" href="classuci_1_1Interface.html#ad8401da1df45f5dc888e8650f6093f74">uci::Interface</a>
+</li>
 <li>NullMove()
 : <a class="el" href="classCMove.html#a0d72ecf010dbf68f22ad9d1f402ede3c">CMove</a>
 </li>
@@ -373,6 +366,9 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 
 
 <h3><a id="index_r"></a>- r -</h3><ul>
+<li>RecieveCommand()
+: <a class="el" href="classuci_1_1Interface.html#aedffb636834bb30b64ef91b6944e06fc">uci::Interface</a>
+</li>
 <li>Reset()
 : <a class="el" href="classBoard.html#ae271e730f0fe79cafd85871f171b6fe2">Board</a>
 </li>
@@ -386,6 +382,9 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 <li>score
 : <a class="el" href="structMoveScore.html#ac62130fe9cbb4720c1b9561de63d6ada">MoveScore</a>
 , <a class="el" href="structTableBucket.html#a2d334d42db0b472382c9c3a36664213b">TableBucket</a>
+</li>
+<li>search_thread
+: <a class="el" href="classuci_1_1Interface.html#a3c437bbc330d98bb27971dc5dcff6412">uci::Interface</a>
 </li>
 <li>seq
 : <a class="el" href="structMiniTableBucket.html#a4359aa3f6322b0fc73b199aff55b6516">MiniTableBucket</a>
@@ -403,6 +402,9 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 <li>src_square()
 : <a class="el" href="classCMove.html#ab98b324b172077f15a1841054f1bd81c">CMove</a>
 </li>
+<li>StartThinking()
+: <a class="el" href="classuci_1_1Interface.html#ad183b97ae3d6b8eddd9cb1d8e98529f9">uci::Interface</a>
+</li>
 <li>State()
 : <a class="el" href="structboard_1_1State.html#a1cd03308e98ad86bc0ccd7c3f55b0af1">board::State</a>
 </li>
@@ -411,6 +413,12 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 </li>
 <li>status()
 : <a class="el" href="classBoard.html#a7f3321ad312d9b3e70bb24f333001a74">Board</a>
+</li>
+<li>stop_timer
+: <a class="el" href="classuci_1_1Interface.html#a5e6fd064ec0fdebaf6efe99f7feae2c4">uci::Interface</a>
+</li>
+<li>StopThinking()
+: <a class="el" href="classuci_1_1Interface.html#a267f3b4629ccbc8a997623923f6b8fae">uci::Interface</a>
 </li>
 </ul>
 
@@ -421,6 +429,12 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 </li>
 <li>TableNode()
 : <a class="el" href="structTableNode.html#a9bdb219fb57d255e1107074a785e1f75">TableNode</a>
+</li>
+<li>Think()
+: <a class="el" href="classuci_1_1Interface.html#a2410ae72fc7666cd4fbcba91cd411d3c">uci::Interface</a>
+</li>
+<li>timer_thread
+: <a class="el" href="classuci_1_1Interface.html#a8898ef660174384e9db7a81e69ad8605">uci::Interface</a>
 </li>
 <li>TranspositionTable()
 : <a class="el" href="classTranspositionTable.html#a6e1198a47ee8e715171420dd83ff92bd">TranspositionTable&lt; N &gt;</a>
@@ -443,13 +457,17 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 : <a class="el" href="classBoard.html#a125a007d6079cd3bc6e7b221cb90d15c">Board</a>
 </li>
 </ul>
+
+
+<h3><a id="index__7E"></a>- ~ -</h3><ul>
+<li>~Interface()
+: <a class="el" href="classuci_1_1Interface.html#a32aa63e2811d3b166fffb064424b0b03">uci::Interface</a>
+</li>
+</ul>
 </div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
 </body>
 </html>

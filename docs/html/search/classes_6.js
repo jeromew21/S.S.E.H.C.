@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['u64list_372',['u64List',['../classu64List.html',1,'']]]
+  ['tablebucket_387',['TableBucket',['../structTableBucket.html',1,'']]],
+  ['tablenode_388',['TableNode',['../structTableNode.html',1,'']]],
+  ['transpositiontable_389',['TranspositionTable',['../classTranspositionTable.html',1,'']]]
 ];

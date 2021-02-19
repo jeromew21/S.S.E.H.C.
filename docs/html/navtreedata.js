@@ -25,6 +25,7 @@
 var NAVTREE =
 [
   [ "S.S.E.H.C", "index.html", [
+    [ "SSEHC", "index.html", null ],
     [ "🅂.🅂.🄴.🄷.🄲.", "md_README.html", [
       [ "Semi-supervised Scalable Evaluation-perfect Heuristic Chess", "md_README.html#autotoc_md1", null ],
       [ "Goals", "md_README.html#autotoc_md2", null ],
@@ -72,8 +73,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "ai_8cpp.html",
-"dir_128a93aeeff33a8423f079f46929dbb3.html",
-"search_8cpp.html"
+"definitions_8hpp.html#a2f17017b1ef643696b678a0703f0f166",
+"pieces_8hpp.html#ad64babb0d1fbe51df8af36b5e83ab370"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

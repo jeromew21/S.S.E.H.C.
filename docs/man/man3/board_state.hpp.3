@@ -1,0 +1,102 @@
+.TH "include/datastructures/board_state.hpp" 3 "Fri Feb 19 2021" "S.S.E.H.C" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+include/datastructures/board_state.hpp
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <array>\fP
+.br
+\fC#include <vector>\fP
+.br
+\fC#include 'game/cmove\&.hpp'\fP
+.br
+\fC#include 'game/pieces\&.hpp'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBboard::castle::Rights\fP"
+.br
+.ti -1c
+.RI "struct \fBboard::State\fP"
+.br
+.ti -1c
+.RI "class \fBboard::StateStack\fP"
+.br
+.in -1c
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI " \fBboard\fP"
+.br
+.ti -1c
+.RI " \fBboard::castle\fP"
+.br
+.ti -1c
+.RI " \fBboard::castle::white\fP"
+.br
+.ti -1c
+.RI " \fBboard::castle::black\fP"
+.br
+.in -1c
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum \fBboard::Status\fP { \fBboard::WhiteWin\fP, \fBboard::BlackWin\fP, \fBboard::Draw\fP, \fBboard::Playing\fP, \fBboard::Stalemate\fP, \fBboard::NotCalculated\fP }"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "const int \fBboard::castle::long_\fP = 0"
+.br
+.ti -1c
+.RI "const int \fBboard::castle::short_\fP = 2"
+.br
+.ti -1c
+.RI "const int \fBboard::castle::white::long_\fP = 0"
+.br
+.ti -1c
+.RI "const int \fBboard::castle::white::short_\fP = 1"
+.br
+.ti -1c
+.RI "const int \fBboard::castle::black::long_\fP = 1"
+.br
+.ti -1c
+.RI "const int \fBboard::castle::black::short_\fP = 3"
+.br
+.ti -1c
+.RI "const \fBu64\fP \fBboard::castle::king_long_dest\fP [2] = {0x4, 0x400000000000000}"
+.br
+.ti -1c
+.RI "const \fBu64\fP \fBboard::castle::king_short_dest\fP [2] = {0x40, 0x4000000000000000}"
+.br
+.ti -1c
+.RI "const \fBu64\fP \fBboard::castle::rook_long_dest\fP [2] = {0x8, 0x800000000000000}"
+.br
+.ti -1c
+.RI "const \fBu64\fP \fBboard::castle::rook_short_dest\fP [2] = {0x20, 0x2000000000000000}"
+.br
+.ti -1c
+.RI "const \fBu64\fP \fBboard::castle::king_long_slide\fP [2] = {0xc, 0xc00000000000000}"
+.br
+.ti -1c
+.RI "const \fBu64\fP \fBboard::castle::king_short_slide\fP [2] = {0x60, 0x6000000000000000}"
+.br
+.ti -1c
+.RI "const \fBu64\fP \fBboard::castle::long_squares\fP [2] = {0xe, 0xe00000000000000}"
+.br
+.ti -1c
+.RI "const \fBu64\fP \fBboard::castle::short_squares\fP [2] = {0x60, 0x6000000000000000}"
+.br
+.in -1c
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for S\&.S\&.E\&.H\&.C from the source code\&.

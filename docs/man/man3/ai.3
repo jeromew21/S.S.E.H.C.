@@ -1,0 +1,77 @@
+.TH "ai" 3 "Fri Feb 19 2021" "S.S.E.H.C" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ai
+.SH SYNOPSIS
+.br
+.PP
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBmaterialEvaluation\fP (\fBBoard\fP &board)"
+.br
+.ti -1c
+.RI "int \fBevaluation\fP (\fBBoard\fP &board)"
+.br
+.ti -1c
+.RI "int \fBflippedEval\fP (\fBBoard\fP &board)"
+.br
+.ti -1c
+.RI "void \fBsendPV\fP (\fBBoard\fP &board, int depth, \fBCMove\fP pv_move, int node_count, \fBScore\fP score, std::chrono::_V2::system_clock::time_point start)"
+.br
+.ti -1c
+.RI "\fBCMove\fP \fBrootMove\fP (\fBBoard\fP &board, int depth, std::atomic< bool > &stop, \fBScore\fP &out_score, \fBCMove\fP prevPv, int &count, std::chrono::_V2::system_clock::time_point start, std::vector< \fBMoveScore\fP > &prevScores)"
+.br
+.ti -1c
+.RI "\fBScore\fP \fBquiescence\fP (\fBBoard\fP &board, int depth, int ply_count, \fBScore\fP alpha, \fBScore\fP beta, std::atomic< bool > &stop, int &count, int kickoff)"
+.br
+.ti -1c
+.RI "\fBScore\fP \fBalphaBetaSearch\fP (\fBBoard\fP &board, int depth, int ply_count, \fBScore\fP alpha, \fBScore\fP beta, std::atomic< bool > &stop, int &count, \fBNodeType\fP my_node_type, bool is_save)"
+.br
+.ti -1c
+.RI "\fBScore\fP \fBzeroWindowSearch\fP (\fBBoard\fP &board, int depth, int ply_count, \fBScore\fP beta, std::atomic< bool > &stop, int &count, \fBNodeType\fP my_node_type)"
+.br
+.ti -1c
+.RI "\fBMoveList\fP< 256 > \fBgenerateMovesOrdered\fP (\fBBoard\fP &board, \fBCMove\fP hash_move, int ply_count, int &num_positive_moves)"
+.br
+.ti -1c
+.RI "bool \fBisCheckmateScore\fP (\fBScore\fP sc)"
+.br
+.ti -1c
+.RI "void \fBinit\fP ()"
+.br
+.ti -1c
+.RI "void \fBreset\fP ()"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "\fBScore\fP ai::alphaBetaSearch (\fBBoard\fP & board, int depth, int ply_count, \fBScore\fP alpha, \fBScore\fP beta, std::atomic< bool > & stop, int & count, \fBNodeType\fP my_node_type, bool is_save)"
+
+.SS "int ai::evaluation (\fBBoard\fP & board)"
+
+.SS "int ai::flippedEval (\fBBoard\fP & board)"
+
+.SS "\fBMoveList\fP<256> ai::generateMovesOrdered (\fBBoard\fP & board, \fBCMove\fP hash_move, int ply_count, int & num_positive_moves)"
+
+.SS "void ai::init ()"
+
+.SS "bool ai::isCheckmateScore (\fBScore\fP sc)"
+
+.SS "int ai::materialEvaluation (\fBBoard\fP & board)"
+
+.SS "\fBScore\fP ai::quiescence (\fBBoard\fP & board, int depth, int ply_count, \fBScore\fP alpha, \fBScore\fP beta, std::atomic< bool > & stop, int & count, int kickoff)"
+
+.SS "void ai::reset ()"
+
+.SS "\fBCMove\fP ai::rootMove (\fBBoard\fP & board, int depth, std::atomic< bool > & stop, \fBScore\fP & out_score, \fBCMove\fP prevPv, int & count, std::chrono::_V2::system_clock::time_point start, std::vector< \fBMoveScore\fP > & prevScores)"
+
+.SS "void ai::sendPV (\fBBoard\fP & board, int depth, \fBCMove\fP pv_move, int node_count, \fBScore\fP score, std::chrono::_V2::system_clock::time_point start)"
+
+.SS "\fBScore\fP ai::zeroWindowSearch (\fBBoard\fP & board, int depth, int ply_count, \fBScore\fP beta, std::atomic< bool > & stop, int & count, \fBNodeType\fP my_node_type)"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for S\&.S\&.E\&.H\&.C from the source code\&.

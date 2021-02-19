@@ -10,6 +10,9 @@ var annotated_dup =
     [ "perft", "namespaceperft.html", [
       [ "Counter", "structperft_1_1Counter.html", "structperft_1_1Counter" ]
     ] ],
+    [ "uci", "namespaceuci.html", [
+      [ "Interface", "classuci_1_1Interface.html", "classuci_1_1Interface" ]
+    ] ],
     [ "Board", "classBoard.html", "classBoard" ],
     [ "CMove", "classCMove.html", "classCMove" ],
     [ "MiniTable", "classMiniTable.html", "classMiniTable" ],

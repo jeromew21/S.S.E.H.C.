@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['🅂_2e🅂_2e🄴_2e🄷_2e🄲_2e_735',['🅂.🅂.🄴.🄷.🄲.',['../md_README.html',1,'']]]
+  ['doxygen_20dark_20theme_770',['Doxygen dark theme',['../md_resources_doxygen_dark_theme_master_README.html',1,'']]]
 ];

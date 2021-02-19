@@ -1,0 +1,32 @@
+.TH "md_resources_doxygen_bootstrapped_master_example_site_README" 3 "Fri Feb 19 2021" "S.S.E.H.C" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+md_resources_doxygen_bootstrapped_master_example_site_README \- Example project 
+This is a minimal working example to get you started\&.
+.SH "How to run this example"
+.PP
+Run: 
+.PP
+.nf
+doxygen Doxyfile
+
+.fi
+.PP
+ within this folder and the documentation for this minimal example will be generated in Doc/html\&.
+.SH "How to Integrate"
+.PP
+This example uses the provided header and footer as well as the root projects customdoxygen\&.css and doxyboot\&.js files\&.
+.PP
+.IP "\(bu" 2
+HTML_HEADER=header\&.html
+.IP "\(bu" 2
+HTML_FOOTER=footer\&.html
+.IP "\(bu" 2
+HTML_EXTRA_STYLESHEET=\&.\&./customdoxygen\&.css 
+.br
+
+.IP "\(bu" 2
+HTML_EXTRA_FILES=\&.\&./doxy-boot\&.js 
+.PP
+

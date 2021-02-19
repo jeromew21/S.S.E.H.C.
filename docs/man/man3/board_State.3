@@ -1,0 +1,106 @@
+.TH "board::State" 3 "Fri Feb 19 2021" "S.S.E.H.C" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+board::State
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <board_state\&.hpp>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBState\fP ()"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "int \fBply_count\fP"
+.br
+.ti -1c
+.RI "\fBColor\fP \fBturn\fP"
+.br
+.ti -1c
+.RI "int \fBfullmove_counter\fP"
+.br
+.ti -1c
+.RI "int \fBhalfmove_counter\fP"
+.br
+.ti -1c
+.RI "int \fBen_passant_square\fP"
+.br
+.ti -1c
+.RI "\fBPieceType\fP \fBlast_moved_piece\fP"
+.br
+.ti -1c
+.RI "\fBPieceType\fP \fBlast_captured_piece\fP"
+.br
+.ti -1c
+.RI "\fBu64\fP \fBhash\fP"
+.br
+.ti -1c
+.RI "bool \fBis_check\fP"
+.br
+.ti -1c
+.RI "bool \fBhas_repeated\fP"
+.br
+.ti -1c
+.RI "\fBCMove\fP \fBlast_move\fP"
+.br
+.ti -1c
+.RI "\fBboard::castle::Rights\fP \fBcastling_rights\fP"
+.br
+.ti -1c
+.RI "std::array< \fBu64\fP, 64 > \fBattack_map_\fP"
+.br
+.ti -1c
+.RI "std::array< \fBu64\fP, 64 > \fBdefend_map_\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Cached state elements of a board
+.PP
+This is the stuff that isn't incrementally updated on unmake\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "board::State::State ()\fC [inline]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "std::array<\fBu64\fP, 64> board::State::attack_map_"
+
+.SS "\fBboard::castle::Rights\fP board::State::castling_rights"
+
+.SS "std::array<\fBu64\fP, 64> board::State::defend_map_"
+
+.SS "int board::State::en_passant_square"
+
+.SS "int board::State::fullmove_counter"
+
+.SS "int board::State::halfmove_counter"
+
+.SS "bool board::State::has_repeated"
+
+.SS "\fBu64\fP board::State::hash"
+
+.SS "bool board::State::is_check"
+
+.SS "\fBPieceType\fP board::State::last_captured_piece"
+
+.SS "\fBCMove\fP board::State::last_move"
+
+.SS "\fBPieceType\fP board::State::last_moved_piece"
+
+.SS "int board::State::ply_count"
+
+.SS "\fBColor\fP board::State::turn"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for S\&.S\&.E\&.H\&.C from the source code\&.

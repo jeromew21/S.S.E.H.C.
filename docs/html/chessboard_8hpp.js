@@ -4,7 +4,6 @@ var chessboard_8hpp =
     [ "bishopMoves", "chessboard_8hpp.html#a08b5a8fb6960e019cd991f5aa858a0a2", null ],
     [ "bishopRay", "chessboard_8hpp.html#a3d639d99f44203ee757291245d8bd526", null ],
     [ "bishopRay", "chessboard_8hpp.html#aaa72ae9ea622eaea40dadb00837ffe90", null ],
-    [ "getHashFromId", "chessboard_8hpp.html#a036846ac7ca1851590e357e334d16f65", null ],
     [ "init", "chessboard_8hpp.html#a3758b41a1876be8cdb13517666d8edab", null ],
     [ "init", "chessboard_8hpp.html#ac0dc68279809aa34ce8164e37479eb68", null ],
     [ "isAttackedSliding", "chessboard_8hpp.html#a3e3251e1e05844fca26dee56425a4a4e", null ],

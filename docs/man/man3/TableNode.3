@@ -1,0 +1,63 @@
+.TH "TableNode" 3 "Fri Feb 19 2021" "S.S.E.H.C" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+TableNode
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <search\&.hpp>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBTableNode\fP (\fBBoard\fP &board, int d, \fBNodeType\fP typ)"
+.br
+.ti -1c
+.RI "bool \fBoperator==\fP (const \fBTableNode\fP &other) const"
+.br
+.ti -1c
+.RI "\fBTableNode\fP ()"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBu64\fP \fBhash\fP"
+.br
+.ti -1c
+.RI "int8_t \fBdepth\fP"
+.br
+.ti -1c
+.RI "\fBNodeType\fP \fBnodeType\fP"
+.br
+.ti -1c
+.RI "\fBCMove\fP \fBbestMove\fP"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "TableNode::TableNode (\fBBoard\fP & board, int d, \fBNodeType\fP typ)\fC [inline]\fP"
+
+.SS "TableNode::TableNode ()\fC [inline]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "bool TableNode::operator== (const \fBTableNode\fP & other) const\fC [inline]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBCMove\fP TableNode::bestMove"
+
+.SS "int8_t TableNode::depth"
+
+.SS "\fBu64\fP TableNode::hash"
+
+.SS "\fBNodeType\fP TableNode::nodeType"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for S\&.S\&.E\&.H\&.C from the source code\&.

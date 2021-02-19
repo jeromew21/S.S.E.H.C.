@@ -1,0 +1,65 @@
+.TH "src/uci/main.cpp" 3 "Fri Feb 19 2021" "S.S.E.H.C" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/uci/main.cpp
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <iostream>\fP
+.br
+\fC#include <chrono>\fP
+.br
+\fC#include 'game/chessboard\&.hpp'\fP
+.br
+\fC#include 'uci/strings\&.hpp'\fP
+.br
+\fC#include 'uci/interface\&.hpp'\fP
+.br
+\fC#include 'tests/tests\&.hpp'\fP
+.br
+\fC#include 'tests/benchmarks\&.hpp'\fP
+.br
+\fC#include 'misc/version\&.hpp'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBverbose_info\fP (const std::string &text)"
+.br
+.ti -1c
+.RI "void \fBinit\fP ()"
+.br
+.ti -1c
+.RI "int \fBmain\fP (int argc, char *argv[])"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "const int \fBrandom_seed\fP = 39132644"
+.br
+.ti -1c
+.RI "bool \fBverbose\fP = false"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "void init ()"
+
+.SS "int main (int argc, char * argv[])"
+
+.SS "void verbose_info (const std::string & text)"
+Sends info string if the command line verbose flag is set\&. 
+.SH "Variable Documentation"
+.PP 
+.SS "const int random_seed = 39132644"
+
+.SS "bool verbose = false"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for S\&.S\&.E\&.H\&.C from the source code\&.

@@ -25,17 +25,8 @@ void init()
   move_maps::init();
 }
 
-/**
- * The main executable
- * 
- * --test
- * runs tests and exits the program
- * 
- * --verbose
- * prints verbose output to command line
- * 
- * --version
- * prints version and exits
+/*! \mainpage SSEHC
+ * Main page
  */
 int main(int argc, char *argv[])
 {

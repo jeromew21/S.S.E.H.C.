@@ -1,0 +1,84 @@
+.TH "board::castle" 3 "Fri Feb 19 2021" "S.S.E.H.C" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+board::castle
+.SH SYNOPSIS
+.br
+.PP
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI " \fBblack\fP"
+.br
+.ti -1c
+.RI " \fBwhite\fP"
+.br
+.in -1c
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBRights\fP"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "const int \fBlong_\fP = 0"
+.br
+.ti -1c
+.RI "const int \fBshort_\fP = 2"
+.br
+.ti -1c
+.RI "const \fBu64\fP \fBking_long_dest\fP [2] = {0x4, 0x400000000000000}"
+.br
+.ti -1c
+.RI "const \fBu64\fP \fBking_short_dest\fP [2] = {0x40, 0x4000000000000000}"
+.br
+.ti -1c
+.RI "const \fBu64\fP \fBrook_long_dest\fP [2] = {0x8, 0x800000000000000}"
+.br
+.ti -1c
+.RI "const \fBu64\fP \fBrook_short_dest\fP [2] = {0x20, 0x2000000000000000}"
+.br
+.ti -1c
+.RI "const \fBu64\fP \fBking_long_slide\fP [2] = {0xc, 0xc00000000000000}"
+.br
+.ti -1c
+.RI "const \fBu64\fP \fBking_short_slide\fP [2] = {0x60, 0x6000000000000000}"
+.br
+.ti -1c
+.RI "const \fBu64\fP \fBlong_squares\fP [2] = {0xe, 0xe00000000000000}"
+.br
+.ti -1c
+.RI "const \fBu64\fP \fBshort_squares\fP [2] = {0x60, 0x6000000000000000}"
+.br
+.in -1c
+.SH "Variable Documentation"
+.PP 
+.SS "const \fBu64\fP board::castle::king_long_dest[2] = {0x4, 0x400000000000000}"
+
+.SS "const \fBu64\fP board::castle::king_long_slide[2] = {0xc, 0xc00000000000000}"
+the squares a king has to pass through during castling 
+.SS "const \fBu64\fP board::castle::king_short_dest[2] = {0x40, 0x4000000000000000}"
+
+.SS "const \fBu64\fP board::castle::king_short_slide[2] = {0x60, 0x6000000000000000}"
+the squares a king has to pass through during castling 
+.SS "const int board::castle::long_ = 0"
+constant representing castling long (queenside) 
+.SS "const \fBu64\fP board::castle::long_squares[2] = {0xe, 0xe00000000000000}"
+the squares that must be vacant for castling 
+.SS "const \fBu64\fP board::castle::rook_long_dest[2] = {0x8, 0x800000000000000}"
+
+.SS "const \fBu64\fP board::castle::rook_short_dest[2] = {0x20, 0x2000000000000000}"
+
+.SS "const int board::castle::short_ = 2"
+constant representing castling short (kingside) 
+.SS "const \fBu64\fP board::castle::short_squares[2] = {0x60, 0x6000000000000000}"
+the squares that must be vacant for castling 
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for S\&.S\&.E\&.H\&.C from the source code\&.

@@ -1,0 +1,119 @@
+.TH "include/misc/bits.hpp" 3 "Fri Feb 19 2021" "S.S.E.H.C" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+include/misc/bits.hpp
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <random>\fP
+.br
+\fC#include 'misc/definitions\&.hpp'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBu64List\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBseedRand\fP (int seed)"
+.br
+.ti -1c
+.RI "void \fBtimeSeedRand\fP ()"
+.br
+.ti -1c
+.RI "float \fBrandReal\fP ()"
+.br
+.ti -1c
+.RI "\fBu64\fP \fBrandomBits\fP ()"
+.br
+.ti -1c
+.RI "void \fBinit_bits\fP ()"
+.br
+.ti -1c
+.RI "int \fBhadd\fP (\fBu64\fP x)"
+.br
+.ti -1c
+.RI "void \fBbitscanAll\fP (\fBu64\fP x, \fBu64List\fP &out_arr)"
+.br
+.ti -1c
+.RI "int \fBbitscanForward\fP (\fBu64\fP x)"
+.br
+.ti -1c
+.RI "int \fBbitscanReverse\fP (\fBu64\fP x)"
+.br
+.ti -1c
+.RI "bool \fBisValidSquare\fP (\fBSquare\fP s)"
+.br
+.ti -1c
+.RI "\fBu64\fP \fBu64FromSquare\fP (\fBSquare\fP s)"
+.br
+.ti -1c
+.RI "\fBSquare\fP \fBu64ToSquare\fP (\fBu64\fP x)"
+.br
+.ti -1c
+.RI "\fBRow\fP \fBu64ToRow\fP (\fBu64\fP x)"
+.br
+.ti -1c
+.RI "\fBCol\fP \fBu64ToCol\fP (\fBu64\fP x)"
+.br
+.ti -1c
+.RI "\fBRow\fP \fBsquareToRow\fP (\fBSquare\fP s)"
+.br
+.ti -1c
+.RI "\fBCol\fP \fBsquareToCol\fP (\fBSquare\fP s)"
+.br
+.ti -1c
+.RI "\fBu64\fP \fBu64FromPair\fP (\fBRow\fP r, \fBCol\fP c)"
+.br
+.ti -1c
+.RI "\fBSquare\fP \fBsquareFromPair\fP (\fBRow\fP r, \fBCol\fP c)"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "void bitscanAll (\fBu64\fP x, \fBu64List\fP & out_arr)"
+Split a u64 into a list of singleton u64 values\&. 
+.SS "int bitscanForward (\fBu64\fP x)\fC [inline]\fP"
+Return the index of the LSB (rightmost, uppermost), from the least significant side 
+.SS "int bitscanReverse (\fBu64\fP x)\fC [inline]\fP"
+Return the index of the MSB (leftmost, uppermost), from the most significant side 
+.SS "int hadd (\fBu64\fP x)"
+Count number of 1 bits in a u64\&. 
+.SS "void init_bits ()"
+Needs to be called in order to initialize the cache for \fBbitscanAll()\fP\&. 
+.SS "bool isValidSquare (\fBSquare\fP s)\fC [inline]\fP"
+
+.SS "\fBu64\fP randomBits ()"
+Each bit in the output bitstring has a 50/50 chance of being 1 or 0\&. 
+.SS "float randReal ()"
+Return a random real [0, 1) 
+.SS "void seedRand (int seed)"
+Seed the RNG deterministically 
+.SS "\fBSquare\fP squareFromPair (\fBRow\fP r, \fBCol\fP c)\fC [inline]\fP"
+
+.SS "\fBCol\fP squareToCol (\fBSquare\fP s)\fC [inline]\fP"
+
+.SS "\fBRow\fP squareToRow (\fBSquare\fP s)\fC [inline]\fP"
+
+.SS "void timeSeedRand ()"
+Seed the RNG w/ time 
+.SS "\fBu64\fP u64FromPair (\fBRow\fP r, \fBCol\fP c)\fC [inline]\fP"
+
+.SS "\fBu64\fP u64FromSquare (\fBSquare\fP s)\fC [inline]\fP"
+One-hot => int 
+.SS "\fBCol\fP u64ToCol (\fBu64\fP x)\fC [inline]\fP"
+
+.SS "\fBRow\fP u64ToRow (\fBu64\fP x)\fC [inline]\fP"
+
+.SS "\fBSquare\fP u64ToSquare (\fBu64\fP x)\fC [inline]\fP"
+int => One-hot 
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for S\&.S\&.E\&.H\&.C from the source code\&.

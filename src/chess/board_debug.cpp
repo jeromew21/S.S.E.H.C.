@@ -12,7 +12,11 @@ void Board::Dump() {
   for (int i = 1; i < state_stack_.size(); i++) {
     std::cout << moveToUCIAlgebraic(state_stack_.peek_at(i).last_move) << " ";
   }
-  std::cout << moveToUCIAlgebraic(state_.last_move);
+
+  std::cout << "is check: " << is_check() << "\n";
+
+  if (state_stack_.size() > 0)
+    std::cout << moveToUCIAlgebraic(state_.last_move);
   std::cout << "\n";
   
   for (int i = 7; i >= 0; i--)
@@ -24,11 +28,11 @@ void Board::Dump() {
     std::cout << "\n";
   }
   
-  std::cout << "white occ\n";
-  dump64(occupancy(White));
+  // std::cout << "white occ\n";
+  // dump64(occupancy(White));
 
-  std::cout << "black occ \n";
-  dump64(occupancy(Black));
+  // std::cout << "black occ \n";
+  // dump64(occupancy(Black));
 
   std::cout << "legal moves: ";
   MoveList<256> legal = legal_moves();

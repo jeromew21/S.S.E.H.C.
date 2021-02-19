@@ -171,11 +171,6 @@ private:
   u64 bitboard_[12];
 
   /**
-   * the current hash
-   */
-  u64 hash_;
-
-  /**
    * the current board state
    */
   board::State state_;

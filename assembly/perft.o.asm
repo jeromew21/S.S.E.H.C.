@@ -740,223 +740,167 @@ __cxx_global_array_dtor.18:             # @__cxx_global_array_dtor.18
 	.p2align	4, 0x90
 	.type	_ZN5perft5perftER5BoardiRNS_7CounterE,@function
 _ZN5perft5perftER5BoardiRNS_7CounterE:  # @_ZN5perft5perftER5BoardiRNS_7CounterE
-.Lfunc_begin2:
 	.cfi_startproc
-	.cfi_personality 155, DW.ref.__gxx_personality_v0
-	.cfi_lsda 27, .Lexception2
 # %bb.0:
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
 	.cfi_offset %rbp, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register %rbp
-	subq	$672, %rsp                      # imm = 0x2A0
+	subq	$608, %rsp                      # imm = 0x260
 	movq	%fs:40, %rax
 	movq	%rax, -8(%rbp)
-	movq	%rdi, -600(%rbp)
-	movl	%esi, -604(%rbp)
-	movq	%rdx, -616(%rbp)
-	cmpl	$0, -604(%rbp)
+	movq	%rdi, -560(%rbp)
+	movl	%esi, -564(%rbp)
+	movq	%rdx, -576(%rbp)
+	cmpl	$0, -564(%rbp)
 	jne	.LBB5_2
 # %bb.1:
-	jmp	.LBB5_25
+	jmp	.LBB5_23
 .LBB5_2:
-	movq	-600(%rbp), %rsi
+	movq	-560(%rbp), %rsi
 	leaq	-528(%rbp), %rdi
 	callq	_ZN5Board11legal_movesEv@PLT
-	movq	-600(%rbp), %rdi
+	movq	-560(%rbp), %rdi
 	callq	_ZNK5Board9occupancyEv@PLT
-	movq	%rax, -624(%rbp)
-	movl	$0, -628(%rbp)
+	movq	%rax, -584(%rbp)
+	movl	$0, -588(%rbp)
 .LBB5_3:                                # =>This Inner Loop Header: Depth=1
-	movl	-628(%rbp), %eax
+	movl	-588(%rbp), %eax
 	leaq	-528(%rbp), %rdi
-	movl	%eax, -652(%rbp)                # 4-byte Spill
+	movl	%eax, -596(%rbp)                # 4-byte Spill
 	callq	_ZNK8MoveListILi256EE4sizeEv
-	movl	-652(%rbp), %ecx                # 4-byte Reload
+	movl	-596(%rbp), %ecx                # 4-byte Reload
 	cmpl	%eax, %ecx
-	jge	.LBB5_25
+	jge	.LBB5_23
 # %bb.4:                                #   in Loop: Header=BB5_3 Depth=1
-	movl	-628(%rbp), %esi
+	movl	-588(%rbp), %esi
 	leaq	-528(%rbp), %rdi
 	callq	_ZNK8MoveListILi256EEixEi
-	movw	%ax, -568(%rbp)
-	cmpl	$1, -604(%rbp)
+	movw	%ax, -536(%rbp)
+	cmpl	$1, -564(%rbp)
 	jne	.LBB5_16
 # %bb.5:                                #   in Loop: Header=BB5_3 Depth=1
-	movq	-616(%rbp), %rax
-	movq	(%rax), %rcx
-	addq	$1, %rcx
-	movq	%rcx, (%rax)
-	leaq	-568(%rbp), %rdi
+	movq	-576(%rbp), %rax
+	movl	(%rax), %ecx
+	addl	$1, %ecx
+	movl	%ecx, (%rax)
+	leaq	-536(%rbp), %rdi
 	callq	_ZNK5CMove9is_castleEv
 	testb	$1, %al
 	jne	.LBB5_6
 	jmp	.LBB5_7
 .LBB5_6:                                #   in Loop: Header=BB5_3 Depth=1
-	movq	-616(%rbp), %rax
-	movq	24(%rax), %rcx
-	addq	$1, %rcx
-	movq	%rcx, 24(%rax)
+	movq	-576(%rbp), %rax
+	movl	12(%rax), %ecx
+	addl	$1, %ecx
+	movl	%ecx, 12(%rax)
 .LBB5_7:                                #   in Loop: Header=BB5_3 Depth=1
-	leaq	-568(%rbp), %rdi
+	leaq	-536(%rbp), %rdi
 	callq	_ZNK5CMove12is_promotionEv
 	testb	$1, %al
 	jne	.LBB5_8
 	jmp	.LBB5_9
 .LBB5_8:                                #   in Loop: Header=BB5_3 Depth=1
-	movq	-616(%rbp), %rax
-	movq	32(%rax), %rcx
-	addq	$1, %rcx
-	movq	%rcx, 32(%rax)
+	movq	-576(%rbp), %rax
+	movl	16(%rax), %ecx
+	addl	$1, %ecx
+	movl	%ecx, 16(%rax)
 .LBB5_9:                                #   in Loop: Header=BB5_3 Depth=1
-	movq	-600(%rbp), %rdi
-	movw	-568(%rbp), %ax
-	movw	%ax, -576(%rbp)
-	movzwl	-576(%rbp), %esi
+	movq	-560(%rbp), %rdi
+	movw	-536(%rbp), %ax
+	movw	%ax, -544(%rbp)
+	movzwl	-544(%rbp), %esi
 	callq	_ZN5Board16is_checking_moveE5CMove@PLT
 	testb	$1, %al
 	jne	.LBB5_10
 	jmp	.LBB5_11
 .LBB5_10:                               #   in Loop: Header=BB5_3 Depth=1
-	movq	-616(%rbp), %rax
-	movq	40(%rax), %rcx
-	addq	$1, %rcx
-	movq	%rcx, 40(%rax)
+	movq	-576(%rbp), %rax
+	movl	20(%rax), %ecx
+	addl	$1, %ecx
+	movl	%ecx, 20(%rax)
 .LBB5_11:                               #   in Loop: Header=BB5_3 Depth=1
-	leaq	-568(%rbp), %rdi
+	leaq	-536(%rbp), %rdi
 	callq	_ZNK5CMove4destEv
-	andq	-624(%rbp), %rax
+	andq	-584(%rbp), %rax
 	cmpq	$0, %rax
 	je	.LBB5_13
 # %bb.12:                               #   in Loop: Header=BB5_3 Depth=1
-	movq	-616(%rbp), %rax
-	movq	8(%rax), %rcx
-	addq	$1, %rcx
-	movq	%rcx, 8(%rax)
+	movq	-576(%rbp), %rax
+	movl	4(%rax), %ecx
+	addl	$1, %ecx
+	movl	%ecx, 4(%rax)
 .LBB5_13:                               #   in Loop: Header=BB5_3 Depth=1
-	leaq	-568(%rbp), %rdi
+	leaq	-536(%rbp), %rdi
 	callq	_ZNK5CMove9type_codeEv
 	cmpl	$5, %eax
 	jne	.LBB5_15
 # %bb.14:                               #   in Loop: Header=BB5_3 Depth=1
-	movq	-616(%rbp), %rax
-	movq	16(%rax), %rcx
-	addq	$1, %rcx
-	movq	%rcx, 16(%rax)
-	movq	-616(%rbp), %rax
-	movq	8(%rax), %rcx
-	addq	$1, %rcx
-	movq	%rcx, 8(%rax)
+	movq	-576(%rbp), %rax
+	movl	8(%rax), %ecx
+	addl	$1, %ecx
+	movl	%ecx, 8(%rax)
+	movq	-576(%rbp), %rax
+	movl	4(%rax), %ecx
+	addl	$1, %ecx
+	movl	%ecx, 4(%rax)
 .LBB5_15:                               #   in Loop: Header=BB5_3 Depth=1
 	jmp	.LBB5_16
 .LBB5_16:                               #   in Loop: Header=BB5_3 Depth=1
-	movq	-600(%rbp), %rdi
-	callq	_ZN5Board4DumpEv@PLT
-	movw	-568(%rbp), %ax
-	movw	%ax, -584(%rbp)
-	movzwl	-584(%rbp), %esi
-	leaq	-560(%rbp), %rcx
-	movq	%rcx, %rdi
-	movq	%rcx, -664(%rbp)                # 8-byte Spill
-	callq	_Z18moveToUCIAlgebraicB5cxx115CMove@PLT
-.Ltmp48:
-	movq	_ZSt4cout@GOTPCREL(%rip), %rdi
-	movq	-664(%rbp), %rsi                # 8-byte Reload
-	callq	_ZStlsIcSt11char_traitsIcESaIcEERSt13basic_ostreamIT_T0_ES7_RKNSt7__cxx1112basic_stringIS4_S5_T1_EE@PLT
-.Ltmp49:
-	jmp	.LBB5_17
-.LBB5_17:                               #   in Loop: Header=BB5_3 Depth=1
-	leaq	-560(%rbp), %rdi
-	callq	_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEED1Ev@PLT
-	movq	-600(%rbp), %rdi
-	movw	-568(%rbp), %ax
-	movw	%ax, -592(%rbp)
-	movzwl	-592(%rbp), %esi
+	movq	-560(%rbp), %rdi
+	movw	-536(%rbp), %ax
+	movw	%ax, -552(%rbp)
+	movzwl	-552(%rbp), %esi
 	callq	_ZN5Board8MakeMoveE5CMove@PLT
-	cmpl	$1, -604(%rbp)
-	jne	.LBB5_23
-# %bb.18:                               #   in Loop: Header=BB5_3 Depth=1
-	movq	-600(%rbp), %rdi
+	cmpl	$1, -564(%rbp)
+	jne	.LBB5_21
+# %bb.17:                               #   in Loop: Header=BB5_3 Depth=1
+	movq	-560(%rbp), %rdi
 	callq	_ZN5Board6statusEv@PLT
-	movl	%eax, -648(%rbp)
-	cmpl	$0, -648(%rbp)
-	je	.LBB5_20
-# %bb.19:                               #   in Loop: Header=BB5_3 Depth=1
-	cmpl	$1, -648(%rbp)
-	jne	.LBB5_22
+	movl	%eax, -592(%rbp)
+	cmpl	$0, -592(%rbp)
+	je	.LBB5_19
+# %bb.18:                               #   in Loop: Header=BB5_3 Depth=1
+	cmpl	$1, -592(%rbp)
+	jne	.LBB5_20
+.LBB5_19:                               #   in Loop: Header=BB5_3 Depth=1
+	movq	-576(%rbp), %rax
+	movl	24(%rax), %ecx
+	addl	$1, %ecx
+	movl	%ecx, 24(%rax)
 .LBB5_20:                               #   in Loop: Header=BB5_3 Depth=1
-	movq	-616(%rbp), %rax
-	movq	48(%rax), %rcx
-	addq	$1, %rcx
-	movq	%rcx, 48(%rax)
-	jmp	.LBB5_22
-.LBB5_21:
-.Ltmp50:
-                                        # kill: def $edx killed $edx killed $rdx
-	movq	%rax, -640(%rbp)
-	movl	%edx, -644(%rbp)
-	leaq	-560(%rbp), %rdi
-	callq	_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEED1Ev@PLT
-	jmp	.LBB5_27
-.LBB5_22:                               #   in Loop: Header=BB5_3 Depth=1
-	jmp	.LBB5_23
-.LBB5_23:                               #   in Loop: Header=BB5_3 Depth=1
-	movq	-600(%rbp), %rdi
-	movl	-604(%rbp), %eax
+	jmp	.LBB5_21
+.LBB5_21:                               #   in Loop: Header=BB5_3 Depth=1
+	movq	-560(%rbp), %rdi
+	movl	-564(%rbp), %eax
 	subl	$1, %eax
-	movq	-616(%rbp), %rdx
+	movq	-576(%rbp), %rdx
 	movl	%eax, %esi
 	callq	_ZN5perft5perftER5BoardiRNS_7CounterE
-	movq	-600(%rbp), %rdi
+	movq	-560(%rbp), %rdi
 	callq	_ZN5Board10UnmakeMoveEv@PLT
-# %bb.24:                               #   in Loop: Header=BB5_3 Depth=1
-	movl	-628(%rbp), %eax
+# %bb.22:                               #   in Loop: Header=BB5_3 Depth=1
+	movl	-588(%rbp), %eax
 	addl	$1, %eax
-	movl	%eax, -628(%rbp)
+	movl	%eax, -588(%rbp)
 	jmp	.LBB5_3
-.LBB5_25:
+.LBB5_23:
 	movq	%fs:40, %rax
 	movq	-8(%rbp), %rcx
 	cmpq	%rcx, %rax
-	jne	.LBB5_28
-# %bb.26:
-	addq	$672, %rsp                      # imm = 0x2A0
+	jne	.LBB5_25
+# %bb.24:
+	addq	$608, %rsp                      # imm = 0x260
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.LBB5_27:
+.LBB5_25:
 	.cfi_def_cfa %rbp, 16
-	movq	-640(%rbp), %rdi
-	callq	_Unwind_Resume@PLT
-.LBB5_28:
 	callq	__stack_chk_fail@PLT
 .Lfunc_end5:
 	.size	_ZN5perft5perftER5BoardiRNS_7CounterE, .Lfunc_end5-_ZN5perft5perftER5BoardiRNS_7CounterE
 	.cfi_endproc
-	.section	.gcc_except_table,"a",@progbits
-	.p2align	2
-GCC_except_table5:
-.Lexception2:
-	.byte	255                             # @LPStart Encoding = omit
-	.byte	255                             # @TType Encoding = omit
-	.byte	1                               # Call site Encoding = uleb128
-	.uleb128 .Lcst_end2-.Lcst_begin2
-.Lcst_begin2:
-	.uleb128 .Lfunc_begin2-.Lfunc_begin2    # >> Call Site 1 <<
-	.uleb128 .Ltmp48-.Lfunc_begin2          #   Call between .Lfunc_begin2 and .Ltmp48
-	.byte	0                               #     has no landing pad
-	.byte	0                               #   On action: cleanup
-	.uleb128 .Ltmp48-.Lfunc_begin2          # >> Call Site 2 <<
-	.uleb128 .Ltmp49-.Ltmp48                #   Call between .Ltmp48 and .Ltmp49
-	.uleb128 .Ltmp50-.Lfunc_begin2          #     jumps to .Ltmp50
-	.byte	0                               #   On action: cleanup
-	.uleb128 .Ltmp49-.Lfunc_begin2          # >> Call Site 3 <<
-	.uleb128 .Lfunc_end5-.Ltmp49            #   Call between .Ltmp49 and .Lfunc_end5
-	.byte	0                               #     has no landing pad
-	.byte	0                               #   On action: cleanup
-.Lcst_end2:
-	.p2align	2
                                         # -- End function
 	.section	.text._ZNK8MoveListILi256EE4sizeEv,"axG",@progbits,_ZNK8MoveListILi256EE4sizeEv,comdat
 	.weak	_ZNK8MoveListILi256EE4sizeEv    # -- Begin function _ZNK8MoveListILi256EE4sizeEv
@@ -1384,9 +1328,6 @@ DW.ref.__gxx_personality_v0:
 	.addrsig_sym _ZN5Board16is_checking_moveE5CMove
 	.addrsig_sym _ZNK5CMove4destEv
 	.addrsig_sym _ZNK5CMove9type_codeEv
-	.addrsig_sym _ZN5Board4DumpEv
-	.addrsig_sym _ZStlsIcSt11char_traitsIcESaIcEERSt13basic_ostreamIT_T0_ES7_RKNSt7__cxx1112basic_stringIS4_S5_T1_EE
-	.addrsig_sym _Z18moveToUCIAlgebraicB5cxx115CMove
 	.addrsig_sym _ZN5Board8MakeMoveE5CMove
 	.addrsig_sym _ZN5Board6statusEv
 	.addrsig_sym _ZN5Board10UnmakeMoveEv
@@ -1400,4 +1341,3 @@ DW.ref.__gxx_personality_v0:
 	.addrsig_sym __dso_handle
 	.addrsig_sym _ZL10RANK_NAMESB5cxx11
 	.addrsig_sym _ZL10FILE_NAMESB5cxx11
-	.addrsig_sym _ZSt4cout

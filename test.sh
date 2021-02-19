@@ -1,0 +1,1 @@
+make debug && ./build/apps/ssehc --test

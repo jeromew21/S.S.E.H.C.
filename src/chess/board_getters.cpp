@@ -5,11 +5,37 @@ board::Status Board::status()
   // Retrieve cached value
   if (status_ != board::Status::NotCalculated)
     return status_;
+
   // Calculate and store value
-  return board::Status::NotCalculated;
+  MoveList<256> legals = legal_moves();
+  if (legals.size() == 0)
+  {
+    if (is_check())
+    {
+      if (turn() == White)
+      {
+        status_ = board::Status::BlackWin;
+      }
+      else
+      {
+        status_ = board::Status::BlackWin;
+      }
+    }
+    else
+    {
+      status_ = board::Status::Stalemate;
+    }
+  }
+  else
+  {
+    status_ = board::Status::Playing;
+  }
+
+  return status_;
 }
 
-Color Board::turn() const {
+Color Board::turn() const
+{
   return state_.turn;
 }
 
@@ -18,18 +44,22 @@ bool Board::is_check() const
   return state_.is_check;
 }
 
-u64 Board::hash() const {
-  return hash_;
+u64 Board::hash() const
+{
+  return state_.hash;
 }
 
 u64 Board::occupancy() const
 {
+  assert(!(occupancy(White) & occupancy(Black)));
+
   return occupancy(White) | occupancy(Black);
 }
 
 u64 Board::occupancy(Color color) const
 {
   assert(color == White || color == Black);
+
   if (color == White)
   {
     return bitboard_[piece::white::king] | bitboard_[piece::white::queen] | bitboard_[piece::white::bishop] |

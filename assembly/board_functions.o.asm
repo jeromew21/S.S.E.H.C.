@@ -37,14 +37,36 @@ _ZN5Board9AddPiece_Eim:                 # @_ZN5Board9AddPiece_Eim
 	.cfi_offset %rbp, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register %rbp
+	subq	$32, %rsp
 	movq	%rdi, -8(%rbp)
 	movl	%esi, -12(%rbp)
 	movq	%rdx, -24(%rbp)
 	movq	-8(%rbp), %rax
-	movq	-24(%rbp), %rcx
-	movslq	-12(%rbp), %rdx
-	orq	(%rax,%rdx,8), %rcx
-	movq	%rcx, (%rax,%rdx,8)
+	movslq	-12(%rbp), %rcx
+	movq	(%rax,%rcx,8), %rcx
+	andq	-24(%rbp), %rcx
+	cmpq	$0, %rcx
+	setne	%r8b
+	xorb	$-1, %r8b
+	testb	$1, %r8b
+	movq	%rax, -32(%rbp)                 # 8-byte Spill
+	jne	.LBB1_1
+	jmp	.LBB1_2
+.LBB1_1:
+	jmp	.LBB1_3
+.LBB1_2:
+	leaq	.L.str(%rip), %rdi
+	leaq	.L.str.1(%rip), %rsi
+	movl	$9, %edx
+	leaq	.L__PRETTY_FUNCTION__._ZN5Board9AddPiece_Eim(%rip), %rcx
+	callq	__assert_fail@PLT
+.LBB1_3:
+	movq	-24(%rbp), %rax
+	movslq	-12(%rbp), %rcx
+	movq	-32(%rbp), %rdx                 # 8-byte Reload
+	orq	(%rdx,%rcx,8), %rax
+	movq	%rax, (%rdx,%rcx,8)
+	addq	$32, %rsp
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
@@ -63,15 +85,33 @@ _ZN5Board12RemovePiece_Eim:             # @_ZN5Board12RemovePiece_Eim
 	.cfi_offset %rbp, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register %rbp
+	subq	$32, %rsp
 	movq	%rdi, -8(%rbp)
 	movl	%esi, -12(%rbp)
 	movq	%rdx, -24(%rbp)
 	movq	-8(%rbp), %rax
-	movq	-24(%rbp), %rcx
-	xorq	$-1, %rcx
-	movslq	-12(%rbp), %rdx
-	andq	(%rax,%rdx,8), %rcx
-	movq	%rcx, (%rax,%rdx,8)
+	movslq	-12(%rbp), %rcx
+	movq	(%rax,%rcx,8), %rcx
+	andq	-24(%rbp), %rcx
+	cmpq	$0, %rcx
+	movq	%rax, -32(%rbp)                 # 8-byte Spill
+	je	.LBB2_2
+# %bb.1:
+	jmp	.LBB2_3
+.LBB2_2:
+	leaq	.L.str.2(%rip), %rdi
+	leaq	.L.str.1(%rip), %rsi
+	movl	$18, %edx
+	leaq	.L__PRETTY_FUNCTION__._ZN5Board12RemovePiece_Eim(%rip), %rcx
+	callq	__assert_fail@PLT
+.LBB2_3:
+	movq	-24(%rbp), %rax
+	xorq	$-1, %rax
+	movslq	-12(%rbp), %rcx
+	movq	-32(%rbp), %rdx                 # 8-byte Reload
+	andq	(%rdx,%rcx,8), %rax
+	movq	%rax, (%rdx,%rcx,8)
+	addq	$32, %rsp
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
@@ -94,7 +134,7 @@ _ZN5Board12SetEpSquare_Ei:              # @_ZN5Board12SetEpSquare_Ei
 	movl	%esi, -12(%rbp)
 	movq	-8(%rbp), %rax
 	movl	-12(%rbp), %ecx
-	movl	%ecx, 120(%rax)
+	movl	%ecx, 112(%rax)
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
@@ -120,7 +160,7 @@ _ZN5Board18SetCastlingRights_Eiii:      # @_ZN5Board18SetCastlingRights_Eiii
 	movl	%ecx, -20(%rbp)
 	movq	-8(%rbp), %rax
 	movq	%rax, %rdi
-	addq	$104, %rdi
+	addq	$96, %rdi
 	addq	$44, %rdi
 	movl	-12(%rbp), %esi
 	movl	-16(%rbp), %edx
@@ -132,7 +172,7 @@ _ZN5Board18SetCastlingRights_Eiii:      # @_ZN5Board18SetCastlingRights_Eiii
 	jmp	.LBB4_3
 .LBB4_2:
 	movq	-32(%rbp), %rax                 # 8-byte Reload
-	addq	$104, %rax
+	addq	$96, %rax
 	addq	$44, %rax
 	movl	-12(%rbp), %esi
 	movl	-16(%rbp), %edx
@@ -163,7 +203,7 @@ _ZN5Board8SetTurn_Ei:                   # @_ZN5Board8SetTurn_Ei
 	movl	%esi, -12(%rbp)
 	movq	-8(%rbp), %rax
 	movl	-12(%rbp), %ecx
-	movl	%ecx, 112(%rax)
+	movl	%ecx, 104(%rax)
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
@@ -195,24 +235,24 @@ _ZN5Board12LoadPositionEPiiiN5board6castle6RightsEii: # @_ZN5Board12LoadPosition
 	movl	%ecx, -1136(%rbp)
 	movq	-1120(%rbp), %rsi
 	movq	_ZL42CLASSICAL_KINGSIDE_ROOK_STARTING_LOCATIONS(%rip), %rdi
-	movq	%rdi, 1264(%rsi)
-	movq	_ZL42CLASSICAL_KINGSIDE_ROOK_STARTING_LOCATIONS+8(%rip), %rdi
-	movq	%rdi, 1272(%rsi)
-	movq	_ZL43CLASSICAL_QUEENSIDE_ROOK_STARTING_LOCATIONS(%rip), %rdi
-	movq	%rdi, 1248(%rsi)
-	movq	_ZL43CLASSICAL_QUEENSIDE_ROOK_STARTING_LOCATIONS+8(%rip), %rdi
 	movq	%rdi, 1256(%rsi)
-	movq	_ZL33CLASSICAL_KING_STARTING_LOCATIONS(%rip), %rdi
-	movq	%rdi, 1232(%rsi)
-	movq	_ZL33CLASSICAL_KING_STARTING_LOCATIONS+8(%rip), %rdi
+	movq	_ZL42CLASSICAL_KINGSIDE_ROOK_STARTING_LOCATIONS+8(%rip), %rdi
+	movq	%rdi, 1264(%rsi)
+	movq	_ZL43CLASSICAL_QUEENSIDE_ROOK_STARTING_LOCATIONS(%rip), %rdi
 	movq	%rdi, 1240(%rsi)
+	movq	_ZL43CLASSICAL_QUEENSIDE_ROOK_STARTING_LOCATIONS+8(%rip), %rdi
+	movq	%rdi, 1248(%rsi)
+	movq	_ZL33CLASSICAL_KING_STARTING_LOCATIONS(%rip), %rdi
+	movq	%rdi, 1224(%rsi)
+	movq	_ZL33CLASSICAL_KING_STARTING_LOCATIONS+8(%rip), %rdi
+	movq	%rdi, 1232(%rsi)
 	leaq	-1112(%rbp), %rdi
 	movl	%eax, -1152(%rbp)               # 4-byte Spill
 	movl	%r10d, -1156(%rbp)              # 4-byte Spill
 	movq	%rsi, -1168(%rbp)               # 8-byte Spill
 	callq	_ZN5board5StateC2Ev
 	movq	-1168(%rbp), %rsi               # 8-byte Reload
-	addq	$104, %rsi
+	addq	$96, %rsi
 	leaq	-1112(%rbp), %rdi
 	movq	%rdi, -1176(%rbp)               # 8-byte Spill
 	movq	%rsi, %rdi
@@ -220,39 +260,12 @@ _ZN5Board12LoadPositionEPiiiN5board6castle6RightsEii: # @_ZN5Board12LoadPosition
 	movl	$1088, %edx                     # imm = 0x440
 	callq	memcpy@PLT
 	movq	-1168(%rbp), %rdx               # 8-byte Reload
-	movb	$0, 1228(%rdx)
-	addq	$1192, %rdx                     # imm = 0x4A8
+	movb	$0, 1220(%rdx)
+	addq	$1184, %rdx                     # imm = 0x4A0
 	movq	%rdx, %rdi
 	callq	_ZN5board10StateStack5ClearEv
 	movq	-1168(%rbp), %rdx               # 8-byte Reload
-	movl	$5, 1224(%rdx)
-	movq	$0, 96(%rdx)
-	movq	%rdx, %rdi
-	movl	$4294967295, %esi               # imm = 0xFFFFFFFF
-	callq	_ZN5Board12SetEpSquare_Ei
-	xorl	%eax, %eax
-	movq	-1168(%rbp), %rdi               # 8-byte Reload
-	movl	%eax, %esi
-	movl	%eax, %edx
-	movl	$1, %ecx
-	callq	_ZN5Board18SetCastlingRights_Eiii
-	xorl	%esi, %esi
-	movq	-1168(%rbp), %rdi               # 8-byte Reload
-	movl	$2, %edx
-	movl	$1, %ecx
-	callq	_ZN5Board18SetCastlingRights_Eiii
-	xorl	%edx, %edx
-	movq	-1168(%rbp), %rdi               # 8-byte Reload
-	movl	$1, %eax
-	movl	%eax, %esi
-	movl	%eax, %ecx
-	callq	_ZN5Board18SetCastlingRights_Eiii
-	movq	-1168(%rbp), %rdi               # 8-byte Reload
-	movl	$1, %eax
-	movl	%eax, %esi
-	movl	$2, %edx
-	movl	%eax, %ecx
-	callq	_ZN5Board18SetCastlingRights_Eiii
+	movl	$5, 1216(%rdx)
 	movl	$0, -1140(%rbp)
 .LBB6_1:                                # =>This Inner Loop Header: Depth=1
 	cmpl	$12, -1140(%rbp)
@@ -467,8 +480,8 @@ _Z13u64FromSquarei:                     # @_Z13u64FromSquarei
 .LBB9_1:
 	jmp	.LBB9_3
 .LBB9_2:
-	leaq	.L.str.1(%rip), %rdi
-	leaq	.L.str.2(%rip), %rsi
+	leaq	.L.str.4(%rip), %rdi
+	leaq	.L.str.5(%rip), %rsi
 	movl	$121, %edx
 	leaq	.L__PRETTY_FUNCTION__._Z13u64FromSquarei(%rip), %rcx
 	callq	__assert_fail@PLT
@@ -513,7 +526,7 @@ _ZN5Board5ResetEv:                      # @_ZN5Board5ResetEv
 	movq	%rax, -88(%rbp)                 # 8-byte Spill
 	callq	_ZNSaIcEC1Ev@PLT
 .Ltmp0:
-	leaq	.L.str(%rip), %rsi
+	leaq	.L.str.3(%rip), %rsi
 	leaq	-40(%rbp), %rdi
 	movq	-88(%rbp), %rdx                 # 8-byte Reload
 	callq	_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEC1EPKcRKS3_@PLT
@@ -608,12 +621,12 @@ _ZN5BoardC2Ev:                          # @_ZN5BoardC2Ev
 	movq	%rdi, -8(%rbp)
 	movq	-8(%rbp), %rax
 	movq	%rax, %rcx
-	addq	$104, %rcx
+	addq	$96, %rcx
 	movq	%rcx, %rdi
 	movq	%rax, -32(%rbp)                 # 8-byte Spill
 	callq	_ZN5board5StateC2Ev
 	movq	-32(%rbp), %rax                 # 8-byte Reload
-	addq	$1192, %rax                     # imm = 0x4A8
+	addq	$1184, %rax                     # imm = 0x4A0
 	movq	%rax, %rdi
 	movq	%rax, -40(%rbp)                 # 8-byte Spill
 	callq	_ZN5board10StateStackC2Ev
@@ -1525,6 +1538,32 @@ _GLOBAL__sub_I_board_functions.cpp:     # @_GLOBAL__sub_I_board_functions.cpp
 	.local	_ZStL8__ioinit
 	.comm	_ZStL8__ioinit,1,1
 	.hidden	__dso_handle
+	.type	.L.str,@object                  # @.str
+	.section	.rodata.str1.1,"aMS",@progbits,1
+.L.str:
+	.asciz	"!(bitboard_[piece] & location)"
+	.size	.L.str, 31
+
+	.type	.L.str.1,@object                # @.str.1
+.L.str.1:
+	.asciz	"src/chess/board_functions.cpp"
+	.size	.L.str.1, 30
+
+	.type	.L__PRETTY_FUNCTION__._ZN5Board9AddPiece_Eim,@object # @__PRETTY_FUNCTION__._ZN5Board9AddPiece_Eim
+.L__PRETTY_FUNCTION__._ZN5Board9AddPiece_Eim:
+	.asciz	"void Board::AddPiece_(int, uint64_t)"
+	.size	.L__PRETTY_FUNCTION__._ZN5Board9AddPiece_Eim, 37
+
+	.type	.L.str.2,@object                # @.str.2
+.L.str.2:
+	.asciz	"bitboard_[piece] & location"
+	.size	.L.str.2, 28
+
+	.type	.L__PRETTY_FUNCTION__._ZN5Board12RemovePiece_Eim,@object # @__PRETTY_FUNCTION__._ZN5Board12RemovePiece_Eim
+.L__PRETTY_FUNCTION__._ZN5Board12RemovePiece_Eim:
+	.asciz	"void Board::RemovePiece_(int, uint64_t)"
+	.size	.L__PRETTY_FUNCTION__._ZN5Board12RemovePiece_Eim, 40
+
 	.type	_ZL42CLASSICAL_KINGSIDE_ROOK_STARTING_LOCATIONS,@object # @_ZL42CLASSICAL_KINGSIDE_ROOK_STARTING_LOCATIONS
 	.section	.rodata,"a",@progbits
 	.p2align	4
@@ -1547,21 +1586,21 @@ _ZL33CLASSICAL_KING_STARTING_LOCATIONS:
 	.quad	1152921504606846976             # 0x1000000000000000
 	.size	_ZL33CLASSICAL_KING_STARTING_LOCATIONS, 16
 
-	.type	.L.str,@object                  # @.str
+	.type	.L.str.3,@object                # @.str.3
 	.section	.rodata.str1.1,"aMS",@progbits,1
-.L.str:
+.L.str.3:
 	.asciz	"rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
-	.size	.L.str, 57
+	.size	.L.str.3, 57
 
-	.type	.L.str.1,@object                # @.str.1
-.L.str.1:
+	.type	.L.str.4,@object                # @.str.4
+.L.str.4:
 	.asciz	"isValidSquare(s)"
-	.size	.L.str.1, 17
+	.size	.L.str.4, 17
 
-	.type	.L.str.2,@object                # @.str.2
-.L.str.2:
+	.type	.L.str.5,@object                # @.str.5
+.L.str.5:
 	.asciz	"include/misc/bits.hpp"
-	.size	.L.str.2, 22
+	.size	.L.str.5, 22
 
 	.type	.L__PRETTY_FUNCTION__._Z13u64FromSquarei,@object # @__PRETTY_FUNCTION__._Z13u64FromSquarei
 .L__PRETTY_FUNCTION__._Z13u64FromSquarei:
@@ -1588,6 +1627,7 @@ DW.ref.__gxx_personality_v0:
 	.addrsig_sym __cxx_global_var_init
 	.addrsig_sym __cxa_atexit
 	.addrsig_sym _ZN5Board9AddPiece_Eim
+	.addrsig_sym __assert_fail
 	.addrsig_sym _ZN5Board12SetEpSquare_Ei
 	.addrsig_sym _ZN5Board18SetCastlingRights_Eiii
 	.addrsig_sym _ZNK5board6castle6Rights3getEii
@@ -1609,7 +1649,6 @@ DW.ref.__gxx_personality_v0:
 	.addrsig_sym _ZSt8_DestroyIPN5board5StateEEvT_S3_
 	.addrsig_sym _ZNSt12_Destroy_auxILb1EE9__destroyIPN5board5StateEEEvT_S5_
 	.addrsig_sym _Z13isValidSquarei
-	.addrsig_sym __assert_fail
 	.addrsig_sym _ZNSt12_Vector_baseIN5board5StateESaIS1_EE13_M_deallocateEPS1_m
 	.addrsig_sym _ZNSt16allocator_traitsISaIN5board5StateEEE10deallocateERS2_PS1_m
 	.addrsig_sym _ZN9__gnu_cxx13new_allocatorIN5board5StateEE10deallocateEPS2_m

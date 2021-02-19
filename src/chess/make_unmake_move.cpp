@@ -56,30 +56,22 @@ void Board::MakeMove(CMove mv)
     // Capturing
     if (move_type_ == move_type::EnPassant)
     {
-      // Handle en passant capture
-      if (mover == piece::white::pawn)
-      {
-        // u64 capturedPawn = PAWN_MOVE_CACHE[u64ToIndex(dest)][Black];
-        // _removePiece(B_Pawn, capturedPawn);
-        // boardState[LAST_CAPTURED_INDEX] = B_Pawn;
-      }
-      else
-      {
-        // u64 capturedPawn = PAWN_MOVE_CACHE[u64ToIndex(dest)][White];
-        // _removePiece(W_Pawn, capturedPawn);
-        // boardState[LAST_CAPTURED_INDEX] = W_Pawn;
-      }
-      //state_.last_captured_piece = piece::EmptyPiece;
+      const Color enemy_turn = oppositeColor(curr_turn);
+      const PieceType enemy_pawn = piece::get_pawn(enemy_turn);
+      const u64 captured_pawn = move_maps::pawnMoves(u64ToSquare(dest), enemy_turn);
+      RemovePiece_(enemy_pawn, captured_pawn);
+      state_.last_captured_piece = enemy_pawn;
     }
-    else if (!piece::is_empty(dest_former))
+    else if (piece::is_empty(dest_former))
+    {
+      // Not a capture
+      state_.last_captured_piece = piece::EmptyPiece;
+    }
+    else
     {
       // Any other capture
       RemovePiece_(dest_former, dest);
       state_.last_captured_piece = dest_former;
-    }
-    else
-    {
-      state_.last_captured_piece = piece::EmptyPiece;
     }
 
     // drop piece at new location
@@ -92,6 +84,7 @@ void Board::MakeMove(CMove mv)
       AddPiece_(mover, dest);
     }
 
+    // If castle, then move the rook.
     if (move_type_ == move_type::CastleLong)
     {
       PieceType rook = piece::get_rook(curr_turn);
@@ -105,9 +98,10 @@ void Board::MakeMove(CMove mv)
       AddPiece_(rook, board::castle::rook_short_dest[curr_turn]);
     }
 
-    // revoke castling rights if king moves
+    // revoke ALL castling rights if king moves (or if castle)
     if (piece::is_king(mover))
     {
+      assert(move_type_ == move_type::CastleLong || move_type_ == move_type::CastleShort);
       SetCastlingRights_(curr_turn, board::castle::long_, 0);
       SetCastlingRights_(curr_turn, board::castle::short_, 0);
     }
@@ -187,6 +181,7 @@ void Board::MakeMove(CMove mv)
 void Board::UnmakeMove()
 {
   assert(state_stack_.can_pop());
+  
   board::State &node = state_stack_.peek();
   CMove mv = state_.last_move;
   const int move_type_ = mv.type_code();
@@ -197,11 +192,10 @@ void Board::UnmakeMove()
     const u64 dest = mv.dest();
     const int move_type_ = mv.type_code();
     const Color move_turn = node.turn;
-    PieceType mover = state_.last_moved_piece;
-    PieceType dest_former = state_.last_captured_piece;
+    const PieceType mover = state_.last_moved_piece;
+    const PieceType dest_former = state_.last_captured_piece;
 
     // if castle then restore rook location
-
     if (move_type_ == move_type::CastleLong)
     {
       PieceType rook = piece::get_rook(move_turn);
@@ -221,7 +215,7 @@ void Board::UnmakeMove()
     // Remove piece from dest
     if (mv.is_promotion())
     {
-      RemovePiece_(mv.promoting_piece(oppositeColor(turn())), dest);
+      RemovePiece_(mv.promoting_piece(oppositeColor(move_turn)), dest);
     }
     else
     {
@@ -231,10 +225,7 @@ void Board::UnmakeMove()
     // now restore the old piece that was at dest
     if (move_type_ == move_type::EnPassant)
     {
-      // instead of restoring at capture
-      // location, restore one above
-      // if (mover == W_Pawn) {
-      //   _addPiece(B_Pawn, PAWN_MOVE_CACHE[u64ToIndex(dest)][Black]);
+      // instead of restoring at capture location, restore one above
       Color enemy_color = oppositeColor(move_turn);
       AddPiece_(piece::get_pawn(enemy_color), move_maps::pawnMoves(u64ToSquare(dest), enemy_color));
     }
@@ -244,25 +235,31 @@ void Board::UnmakeMove()
     }
   }
 
-  SetTurn_(node.turn);
-  SetEpSquare_(node.en_passant_square);
-  SetCastlingRights_(White, board::castle::long_, node.castling_rights.get(White, board::castle::long_));
-  SetCastlingRights_(White, board::castle::short_, node.castling_rights.get(White, board::castle::short_));
-  SetCastlingRights_(Black, board::castle::long_, node.castling_rights.get(Black, board::castle::long_));
-  SetCastlingRights_(Black, board::castle::short_, node.castling_rights.get(Black, board::castle::short_));
+  // if it's a null move we just don't do anything
 
-  state_.last_captured_piece = node.last_captured_piece;
-  state_.last_moved_piece = node.last_moved_piece;
-  state_.has_repeated = node.has_repeated;
-  state_.halfmove_counter = node.halfmove_counter;
-  state_.last_move = node.last_move;
-  state_.ply_count = node.ply_count;
-  state_.move_count = node.move_count;
+  // // set hashing states
+  // SetTurn_(node.turn);
+  // SetEpSquare_(node.en_passant_square);
+  // SetCastlingRights_(White, board::castle::long_, node.castling_rights.get(White, board::castle::long_));
+  // SetCastlingRights_(White, board::castle::short_, node.castling_rights.get(White, board::castle::short_));
+  // SetCastlingRights_(Black, board::castle::long_, node.castling_rights.get(Black, board::castle::long_));
+  // SetCastlingRights_(Black, board::castle::short_, node.castling_rights.get(Black, board::castle::short_));
 
-  state_.hash = node.hash; // QUESTION: Do we do this??? Seems like a lot of the incremental update is for naught. Oh well...
+  // // set non-hashing state members
+  // state_.last_captured_piece = node.last_captured_piece;
+  // state_.last_moved_piece = node.last_moved_piece;
+  // state_.has_repeated = node.has_repeated;
+  // state_.halfmove_counter = node.halfmove_counter;
+  // state_.last_move = node.last_move;
+  // state_.ply_count = node.ply_count;
+  // state_.move_count = node.move_count;
 
-  state_.attack_map_ = node.attack_map_;
-  state_.defend_map_ = node.defend_map_;
+  // state_.hash = node.hash; // QUESTION: Do we do this??? Seems like a lot of the incremental update is for naught. Oh well...
+
+  // state_.attack_map_ = node.attack_map_;
+  // state_.defend_map_ = node.defend_map_;
+
+  state_ = node; // is this all we need???? make sure this is the correct lvalue assignment
 
   // update flags
   maps_generated_ = true;

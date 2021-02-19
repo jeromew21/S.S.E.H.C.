@@ -6,6 +6,7 @@ const u64 CLASSICAL_KINGSIDE_ROOK_STARTING_LOCATIONS[2] = {0x80, 0x8000000000000
 
 void Board::AddPiece_(PieceType piece, u64 location)
 {
+  assert(!(bitboard_[piece] & location));
   // Square sq = u64ToSquare(location);
   // u64 p_hash = ZOBRIST_HASHES[64 * piece + sq];
   // _zobristHash ^= p_hash;
@@ -14,6 +15,7 @@ void Board::AddPiece_(PieceType piece, u64 location)
 
 void Board::RemovePiece_(PieceType piece, u64 location)
 {
+  assert(bitboard_[piece] & location);
   // Square sq = u64ToSquare(location);
   // u64 p_hash = ZOBRIST_HASHES[64 * piece + sq];
   // _zobristHash ^= p_hash;
@@ -54,18 +56,11 @@ void Board::LoadPosition(PieceType piece_list[64], Color turn_to_move, int ep_sq
   // Clearing and resetting state
   // Need to hard reset completely.
   // Idea is to build up the board state from blank.
-  state_ = board::State(); //clear entire state
+  state_ = board::State();
 
   maps_generated_ = false;
   state_stack_.Clear();
   status_ = board::Status::NotCalculated;
-  hash_ = 0;
-
-  SetEpSquare_(-1);
-  SetCastlingRights_(White, board::castle::long_, 1);
-  SetCastlingRights_(White, board::castle::short_, 1);
-  SetCastlingRights_(Black, board::castle::long_, 1);
-  SetCastlingRights_(Black, board::castle::short_, 1);
 
   for (PieceType i = 0; i < 12; i++)
   {
@@ -90,6 +85,9 @@ void Board::LoadPosition(PieceType piece_list[64], Color turn_to_move, int ep_sq
   SetCastlingRights_(Black, board::castle::short_, castling_rights.get(Black, board::castle::short_));
 
   GeneratePseudoLegal_();
+
+  // TODO: edge case: check for check...
+
 }
 
 void Board::Reset()

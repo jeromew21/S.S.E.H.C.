@@ -58,6 +58,19 @@ _ZN9move_maps17isAttackedSlidingEmmmm:  # @_ZN9move_maps17isAttackedSlidingEmmmm
 	leaq	.L__PRETTY_FUNCTION__._ZN9move_maps17isAttackedSlidingEmmmm(%rip), %rcx
 	callq	__assert_fail@PLT
 .LBB1_3:
+	movq	-16(%rbp), %rax
+	andq	-24(%rbp), %rax
+	cmpq	$0, %rax
+	je	.LBB1_5
+# %bb.4:
+	jmp	.LBB1_6
+.LBB1_5:
+	leaq	.L.str.2(%rip), %rdi
+	leaq	.L.str.1(%rip), %rsi
+	movl	$287, %edx                      # imm = 0x11F
+	leaq	.L__PRETTY_FUNCTION__._ZN9move_maps17isAttackedSlidingEmmmm(%rip), %rcx
+	callq	__assert_fail@PLT
+.LBB1_6:
 	movq	-24(%rbp), %rdi
 	callq	_Z11u64ToSquarem
 	movl	%eax, -44(%rbp)
@@ -69,8 +82,8 @@ _ZN9move_maps17isAttackedSlidingEmmmm:  # @_ZN9move_maps17isAttackedSlidingEmmmm
 	movq	-56(%rbp), %rcx                 # 8-byte Reload
 	andq	%rax, %rcx
 	cmpq	$0, %rcx
-	jne	.LBB1_5
-# %bb.4:
+	jne	.LBB1_8
+# %bb.7:
 	movq	-40(%rbp), %rax
 	movl	-44(%rbp), %edi
 	movq	-16(%rbp), %rsi
@@ -79,13 +92,13 @@ _ZN9move_maps17isAttackedSlidingEmmmm:  # @_ZN9move_maps17isAttackedSlidingEmmmm
 	movq	-64(%rbp), %rcx                 # 8-byte Reload
 	andq	%rax, %rcx
 	cmpq	$0, %rcx
-	je	.LBB1_6
-.LBB1_5:
+	je	.LBB1_9
+.LBB1_8:
 	movb	$1, -1(%rbp)
-	jmp	.LBB1_7
-.LBB1_6:
+	jmp	.LBB1_10
+.LBB1_9:
 	movb	$0, -1(%rbp)
-.LBB1_7:
+.LBB1_10:
 	movb	-1(%rbp), %al
 	andb	$1, %al
 	movzbl	%al, %eax
@@ -149,8 +162,8 @@ _Z11u64ToSquarem:                       # @_Z11u64ToSquarem
 # %bb.1:
 	jmp	.LBB3_3
 .LBB3_2:
-	leaq	.L.str.4(%rip), %rdi
-	leaq	.L.str.5(%rip), %rsi
+	leaq	.L.str.5(%rip), %rdi
+	leaq	.L.str.6(%rip), %rsi
 	movl	$127, %edx
 	leaq	.L__PRETTY_FUNCTION__._Z11u64ToSquarem(%rip), %rcx
 	callq	__assert_fail@PLT
@@ -682,7 +695,7 @@ _ZN9move_maps4initEv:                   # @_ZN9move_maps4initEv
 	movq	%rax, -160(%rbp)                # 8-byte Spill
 	callq	_ZNSaIcEC1Ev@PLT
 .Ltmp0:
-	leaq	.L.str.2(%rip), %rsi
+	leaq	.L.str.3(%rip), %rsi
 	leaq	-40(%rbp), %rdi
 	movq	-160(%rbp), %rdx                # 8-byte Reload
 	callq	_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEC1EPKcRKS3_@PLT
@@ -816,9 +829,9 @@ _ZN9move_maps4initEv:                   # @_ZN9move_maps4initEv
 	cmpq	$0, (%rdi,%rax,8)
 	je	.LBB13_23
 # %bb.22:
-	leaq	.L.str.3(%rip), %rdi
+	leaq	.L.str.4(%rip), %rdi
 	leaq	.L.str.1(%rip), %rsi
-	movl	$432, %edx                      # imm = 0x1B0
+	movl	$433, %edx                      # imm = 0x1B1
 	leaq	.L__PRETTY_FUNCTION__._ZN9move_maps4initEv(%rip), %rcx
 	callq	__assert_fail@PLT
 .LBB13_23:                              #   in Loop: Header=BB13_20 Depth=2
@@ -1603,8 +1616,13 @@ ROOK_MAGIC_TABLE:
 
 	.type	.L.str.2,@object                # @.str.2
 .L.str.2:
-	.asciz	"initializing move cache"
+	.asciz	"occupancy_map & subject"
 	.size	.L.str.2, 24
+
+	.type	.L.str.3,@object                # @.str.3
+.L.str.3:
+	.asciz	"initializing move cache"
+	.size	.L.str.3, 24
 
 	.type	_ZL19ROOK_MASKED_ATTACKS,@object # @_ZL19ROOK_MASKED_ATTACKS
 	.section	.rodata,"a",@progbits
@@ -1676,11 +1694,11 @@ _ZL19ROOK_MASKED_ATTACKS:
 	.quad	9115426935197958144             # 0x7e80808080808000
 	.size	_ZL19ROOK_MASKED_ATTACKS, 512
 
-	.type	.L.str.3,@object                # @.str.3
+	.type	.L.str.4,@object                # @.str.4
 	.section	.rodata.str1.1,"aMS",@progbits,1
-.L.str.3:
+.L.str.4:
 	.asciz	"1 == 0"
-	.size	.L.str.3, 7
+	.size	.L.str.4, 7
 
 	.type	.L__PRETTY_FUNCTION__._ZN9move_maps4initEv,@object # @__PRETTY_FUNCTION__._ZN9move_maps4initEv
 .L__PRETTY_FUNCTION__._ZN9move_maps4initEv:
@@ -2102,16 +2120,16 @@ _ZL17ROOK_ATTACK_CACHE:
 	.quad	9187484529235886208             # 0x7f80808080808080
 	.size	_ZL17ROOK_ATTACK_CACHE, 512
 
-	.type	.L.str.4,@object                # @.str.4
-	.section	.rodata.str1.1,"aMS",@progbits,1
-.L.str.4:
-	.asciz	"x != 0"
-	.size	.L.str.4, 7
-
 	.type	.L.str.5,@object                # @.str.5
+	.section	.rodata.str1.1,"aMS",@progbits,1
 .L.str.5:
+	.asciz	"x != 0"
+	.size	.L.str.5, 7
+
+	.type	.L.str.6,@object                # @.str.6
+.L.str.6:
 	.asciz	"include/misc/bits.hpp"
-	.size	.L.str.5, 22
+	.size	.L.str.6, 22
 
 	.type	.L__PRETTY_FUNCTION__._Z11u64ToSquarem,@object # @__PRETTY_FUNCTION__._Z11u64ToSquarem
 .L__PRETTY_FUNCTION__._Z11u64ToSquarem:

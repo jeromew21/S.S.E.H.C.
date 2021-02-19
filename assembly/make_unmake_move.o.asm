@@ -37,26 +37,26 @@ _ZN5Board8MakeMoveE5CMove:              # @_ZN5Board8MakeMoveE5CMove
 	.cfi_offset %rbp, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register %rbp
-	subq	$112, %rsp
+	subq	$144, %rsp
                                         # kill: def $si killed $si killed $esi
 	movq	%fs:40, %rax
 	movq	%rax, -8(%rbp)
 	movw	%si, -16(%rbp)
 	movq	%rdi, -32(%rbp)
 	movq	-32(%rbp), %rax
-	movl	$5, 1224(%rax)
-	movb	$0, 1228(%rax)
+	movl	$5, 1216(%rax)
+	movb	$0, 1220(%rax)
 	movq	%rax, %rcx
-	addq	$1192, %rcx                     # imm = 0x4A8
+	addq	$1184, %rcx                     # imm = 0x4A0
 	movq	%rax, %rdx
-	addq	$104, %rdx
+	addq	$96, %rdx
 	movq	%rcx, %rdi
 	movq	%rdx, %rsi
-	movq	%rax, -96(%rbp)                 # 8-byte Spill
+	movq	%rax, -112(%rbp)                # 8-byte Spill
 	callq	_ZN5board10StateStack4PushERNS_5StateE
 	movw	-16(%rbp), %r8w
-	movq	-96(%rbp), %rax                 # 8-byte Reload
-	movw	%r8w, 146(%rax)
+	movq	-112(%rbp), %rax                # 8-byte Reload
+	movw	%r8w, 138(%rax)
 	movq	%rax, %rdi
 	callq	_ZNK5Board4turnEv@PLT
 	movl	%eax, -36(%rbp)
@@ -66,28 +66,28 @@ _ZN5Board8MakeMoveE5CMove:              # @_ZN5Board8MakeMoveE5CMove
 	cmpl	$0, -40(%rbp)
 	jne	.LBB1_2
 # %bb.1:
-	movq	-96(%rbp), %rax                 # 8-byte Reload
-	movl	116(%rax), %ecx
+	movq	-112(%rbp), %rax                # 8-byte Reload
+	movl	108(%rax), %ecx
 	addl	$1, %ecx
-	movl	%ecx, 116(%rax)
-	movl	$-1, 124(%rax)
-	movl	$-1, 128(%rax)
+	movl	%ecx, 108(%rax)
+	movl	$-1, 116(%rax)
+	movl	$-1, 120(%rax)
 	movq	%rax, %rdi
 	movl	$4294967295, %esi               # imm = 0xFFFFFFFF
 	callq	_ZN5Board12SetEpSquare_Ei@PLT
-	jmp	.LBB1_48
+	jmp	.LBB1_50
 .LBB1_2:
 	movw	-16(%rbp), %ax
 	movw	%ax, -24(%rbp)
-	movq	-96(%rbp), %rdi                 # 8-byte Reload
+	movq	-112(%rbp), %rdi                # 8-byte Reload
 	movzwl	-24(%rbp), %esi
 	callq	_ZN5Board16is_checking_moveE5CMove@PLT
 	testb	$1, %al
 	jne	.LBB1_3
 	jmp	.LBB1_4
 .LBB1_3:
-	movq	-96(%rbp), %rax                 # 8-byte Reload
-	movb	$1, 144(%rax)
+	movq	-112(%rbp), %rax                # 8-byte Reload
+	movb	$1, 136(%rax)
 .LBB1_4:
 	leaq	-16(%rbp), %rdi
 	callq	_ZNK5CMove3srcEv
@@ -96,11 +96,11 @@ _ZN5Board8MakeMoveE5CMove:              # @_ZN5Board8MakeMoveE5CMove
 	callq	_ZNK5CMove4destEv
 	movq	%rax, -56(%rbp)
 	movq	-48(%rbp), %rsi
-	movq	-96(%rbp), %rdi                 # 8-byte Reload
+	movq	-112(%rbp), %rdi                # 8-byte Reload
 	callq	_ZNK5Board9piece_at_Em@PLT
 	movl	%eax, -60(%rbp)
 	movq	-56(%rbp), %rsi
-	movq	-96(%rbp), %rdi                 # 8-byte Reload
+	movq	-112(%rbp), %rdi                # 8-byte Reload
 	callq	_ZNK5Board9piece_at_Em@PLT
 	movl	%eax, -64(%rbp)
 	movl	-60(%rbp), %edi
@@ -114,274 +114,309 @@ _ZN5Board8MakeMoveE5CMove:              # @_ZN5Board8MakeMoveE5CMove
 	jne	.LBB1_6
 	jmp	.LBB1_7
 .LBB1_6:
-	movq	-96(%rbp), %rax                 # 8-byte Reload
-	movl	$0, 116(%rax)
-	movb	$0, 145(%rax)
+	movq	-112(%rbp), %rax                # 8-byte Reload
+	movl	$0, 108(%rax)
+	movb	$0, 137(%rax)
 	jmp	.LBB1_8
 .LBB1_7:
-	movq	-96(%rbp), %rax                 # 8-byte Reload
-	movl	116(%rax), %ecx
+	movq	-112(%rbp), %rax                # 8-byte Reload
+	movl	108(%rax), %ecx
 	addl	$1, %ecx
-	movl	%ecx, 116(%rax)
+	movl	%ecx, 108(%rax)
 .LBB1_8:
 	movl	-60(%rbp), %esi
 	movq	-48(%rbp), %rdx
-	movq	-96(%rbp), %rdi                 # 8-byte Reload
+	movq	-112(%rbp), %rdi                # 8-byte Reload
 	callq	_ZN5Board12RemovePiece_Eim@PLT
 	movl	-60(%rbp), %eax
-	movq	-96(%rbp), %rcx                 # 8-byte Reload
-	movl	%eax, 124(%rcx)
+	movq	-112(%rbp), %rcx                # 8-byte Reload
+	movl	%eax, 116(%rcx)
 	cmpl	$5, -40(%rbp)
-	jne	.LBB1_13
+	jne	.LBB1_10
 # %bb.9:
-	cmpl	$0, -60(%rbp)
-	jne	.LBB1_11
-# %bb.10:
-	jmp	.LBB1_12
-.LBB1_11:
-	jmp	.LBB1_12
-.LBB1_12:
-	jmp	.LBB1_17
-.LBB1_13:
+	movl	-36(%rbp), %edi
+	callq	_Z13oppositeColori
+	movl	%eax, -68(%rbp)
+	movl	-68(%rbp), %edi
+	callq	_ZN5piece8get_pawnEi
+	movl	%eax, -72(%rbp)
+	movq	-56(%rbp), %rdi
+	callq	_Z11u64ToSquarem
+	movl	-68(%rbp), %esi
+	movl	%eax, %edi
+	callq	_ZN9move_maps9pawnMovesEii@PLT
+	movq	%rax, -80(%rbp)
+	movl	-72(%rbp), %esi
+	movq	-80(%rbp), %rdx
+	movq	-112(%rbp), %rdi                # 8-byte Reload
+	callq	_ZN5Board12RemovePiece_Eim@PLT
+	movl	-72(%rbp), %ecx
+	movq	-112(%rbp), %rax                # 8-byte Reload
+	movl	%ecx, 120(%rax)
+	jmp	.LBB1_14
+.LBB1_10:
 	movl	-64(%rbp), %edi
 	callq	_ZN5piece8is_emptyEi
 	testb	$1, %al
-	jne	.LBB1_15
-# %bb.14:
+	jne	.LBB1_11
+	jmp	.LBB1_12
+.LBB1_11:
+	movq	-112(%rbp), %rax                # 8-byte Reload
+	movl	$-1, 120(%rax)
+	jmp	.LBB1_13
+.LBB1_12:
 	movl	-64(%rbp), %esi
 	movq	-56(%rbp), %rdx
-	movq	-96(%rbp), %rdi                 # 8-byte Reload
+	movq	-112(%rbp), %rdi                # 8-byte Reload
 	callq	_ZN5Board12RemovePiece_Eim@PLT
 	movl	-64(%rbp), %eax
-	movq	-96(%rbp), %rcx                 # 8-byte Reload
-	movl	%eax, 128(%rcx)
-	jmp	.LBB1_16
-.LBB1_15:
-	movq	-96(%rbp), %rax                 # 8-byte Reload
-	movl	$-1, 128(%rax)
-.LBB1_16:
-	jmp	.LBB1_17
-.LBB1_17:
+	movq	-112(%rbp), %rcx                # 8-byte Reload
+	movl	%eax, 120(%rcx)
+.LBB1_13:
+	jmp	.LBB1_14
+.LBB1_14:
 	leaq	-16(%rbp), %rdi
 	callq	_ZNK5CMove12is_promotionEv
 	testb	$1, %al
-	jne	.LBB1_18
-	jmp	.LBB1_19
-.LBB1_18:
+	jne	.LBB1_15
+	jmp	.LBB1_16
+.LBB1_15:
 	movl	-36(%rbp), %esi
 	leaq	-16(%rbp), %rdi
 	callq	_ZNK5CMove15promoting_pieceEi
 	movq	-56(%rbp), %rdx
-	movq	-96(%rbp), %rdi                 # 8-byte Reload
+	movq	-112(%rbp), %rdi                # 8-byte Reload
 	movl	%eax, %esi
 	callq	_ZN5Board9AddPiece_Eim@PLT
-	jmp	.LBB1_20
-.LBB1_19:
+	jmp	.LBB1_17
+.LBB1_16:
 	movl	-60(%rbp), %esi
 	movq	-56(%rbp), %rdx
-	movq	-96(%rbp), %rdi                 # 8-byte Reload
+	movq	-112(%rbp), %rdi                # 8-byte Reload
 	callq	_ZN5Board9AddPiece_Eim@PLT
-.LBB1_20:
+.LBB1_17:
 	cmpl	$9, -40(%rbp)
-	jne	.LBB1_22
-# %bb.21:
+	jne	.LBB1_19
+# %bb.18:
 	movl	-36(%rbp), %edi
 	callq	_ZN5piece8get_rookEi
-	movl	%eax, -68(%rbp)
-	movl	-68(%rbp), %esi
+	movl	%eax, -84(%rbp)
+	movl	-84(%rbp), %esi
 	movslq	-36(%rbp), %rcx
-	movq	-96(%rbp), %rdx                 # 8-byte Reload
-	movq	1248(%rdx,%rcx,8), %rdx
-	movq	-96(%rbp), %rdi                 # 8-byte Reload
+	movq	-112(%rbp), %rdx                # 8-byte Reload
+	movq	1240(%rdx,%rcx,8), %rdx
+	movq	-112(%rbp), %rdi                # 8-byte Reload
 	callq	_ZN5Board12RemovePiece_Eim@PLT
-	movl	-68(%rbp), %esi
+	movl	-84(%rbp), %esi
 	movslq	-36(%rbp), %rcx
 	leaq	_ZN5board6castleL14rook_long_destE(%rip), %rdx
 	movq	(%rdx,%rcx,8), %rdx
-	movq	-96(%rbp), %rdi                 # 8-byte Reload
+	movq	-112(%rbp), %rdi                # 8-byte Reload
 	callq	_ZN5Board9AddPiece_Eim@PLT
-	jmp	.LBB1_25
-.LBB1_22:
+	jmp	.LBB1_22
+.LBB1_19:
 	cmpl	$3, -40(%rbp)
-	jne	.LBB1_24
-# %bb.23:
+	jne	.LBB1_21
+# %bb.20:
 	movl	-36(%rbp), %edi
 	callq	_ZN5piece8get_rookEi
-	movl	%eax, -72(%rbp)
-	movl	-72(%rbp), %esi
+	movl	%eax, -88(%rbp)
+	movl	-88(%rbp), %esi
 	movslq	-36(%rbp), %rcx
-	movq	-96(%rbp), %rdx                 # 8-byte Reload
-	movq	1248(%rdx,%rcx,8), %rdx
-	movq	-96(%rbp), %rdi                 # 8-byte Reload
+	movq	-112(%rbp), %rdx                # 8-byte Reload
+	movq	1240(%rdx,%rcx,8), %rdx
+	movq	-112(%rbp), %rdi                # 8-byte Reload
 	callq	_ZN5Board12RemovePiece_Eim@PLT
-	movl	-72(%rbp), %esi
+	movl	-88(%rbp), %esi
 	movslq	-36(%rbp), %rcx
 	leaq	_ZN5board6castleL15rook_short_destE(%rip), %rdx
 	movq	(%rdx,%rcx,8), %rdx
-	movq	-96(%rbp), %rdi                 # 8-byte Reload
+	movq	-112(%rbp), %rdi                # 8-byte Reload
 	callq	_ZN5Board9AddPiece_Eim@PLT
-.LBB1_24:
-	jmp	.LBB1_25
-.LBB1_25:
+.LBB1_21:
+	jmp	.LBB1_22
+.LBB1_22:
 	movl	-60(%rbp), %edi
 	callq	_ZN5piece7is_kingEi
+	testb	$1, %al
+	jne	.LBB1_23
+	jmp	.LBB1_29
+.LBB1_23:
+	cmpl	$9, -40(%rbp)
+	movb	$1, %al
+	movb	%al, -113(%rbp)                 # 1-byte Spill
+	je	.LBB1_25
+# %bb.24:
+	cmpl	$3, -40(%rbp)
+	sete	%al
+	movb	%al, -113(%rbp)                 # 1-byte Spill
+.LBB1_25:
+	movb	-113(%rbp), %al                 # 1-byte Reload
 	testb	$1, %al
 	jne	.LBB1_26
 	jmp	.LBB1_27
 .LBB1_26:
+	jmp	.LBB1_28
+.LBB1_27:
+	leaq	.L.str(%rip), %rdi
+	leaq	.L.str.1(%rip), %rsi
+	movl	$104, %edx
+	leaq	.L__PRETTY_FUNCTION__._ZN5Board8MakeMoveE5CMove(%rip), %rcx
+	callq	__assert_fail@PLT
+.LBB1_28:
 	xorl	%eax, %eax
 	movl	-36(%rbp), %esi
-	movq	-96(%rbp), %rdi                 # 8-byte Reload
+	movq	-112(%rbp), %rdi                # 8-byte Reload
 	movl	%eax, %edx
 	movl	%eax, %ecx
 	callq	_ZN5Board18SetCastlingRights_Eiii@PLT
 	xorl	%ecx, %ecx
 	movl	-36(%rbp), %esi
-	movq	-96(%rbp), %rdi                 # 8-byte Reload
+	movq	-112(%rbp), %rdi                # 8-byte Reload
 	movl	$2, %edx
 	callq	_ZN5Board18SetCastlingRights_Eiii@PLT
-.LBB1_27:
+.LBB1_29:
 	movl	-60(%rbp), %edi
 	callq	_ZN5piece7is_rookEi
 	testb	$1, %al
-	jne	.LBB1_29
-# %bb.28:
+	jne	.LBB1_31
+# %bb.30:
 	movl	-64(%rbp), %edi
 	callq	_ZN5piece7is_rookEi
 	testb	$1, %al
-	jne	.LBB1_29
-	jmp	.LBB1_41
-.LBB1_29:
+	jne	.LBB1_31
+	jmp	.LBB1_43
+.LBB1_31:
 	movq	-48(%rbp), %rax
 	orq	-56(%rbp), %rax
-	movq	%rax, -80(%rbp)
-	movq	-80(%rbp), %rax
-	movq	-96(%rbp), %rcx                 # 8-byte Reload
-	andq	1248(%rcx), %rax
-	cmpq	$0, %rax
-	je	.LBB1_31
-# %bb.30:
-	xorl	%eax, %eax
-	movq	-96(%rbp), %rdi                 # 8-byte Reload
-	movl	%eax, %esi
-	movl	%eax, %edx
-	movl	%eax, %ecx
-	callq	_ZN5Board18SetCastlingRights_Eiii@PLT
-	jmp	.LBB1_40
-.LBB1_31:
-	movq	-80(%rbp), %rax
-	movq	-96(%rbp), %rcx                 # 8-byte Reload
-	andq	1264(%rcx), %rax
+	movq	%rax, -96(%rbp)
+	movq	-96(%rbp), %rax
+	movq	-112(%rbp), %rcx                # 8-byte Reload
+	andq	1240(%rcx), %rax
 	cmpq	$0, %rax
 	je	.LBB1_33
 # %bb.32:
 	xorl	%eax, %eax
-	movq	-96(%rbp), %rdi                 # 8-byte Reload
+	movq	-112(%rbp), %rdi                # 8-byte Reload
 	movl	%eax, %esi
-	movl	$2, %edx
+	movl	%eax, %edx
 	movl	%eax, %ecx
 	callq	_ZN5Board18SetCastlingRights_Eiii@PLT
-	jmp	.LBB1_39
+	jmp	.LBB1_42
 .LBB1_33:
-	movq	-80(%rbp), %rax
-	movq	-96(%rbp), %rcx                 # 8-byte Reload
+	movq	-96(%rbp), %rax
+	movq	-112(%rbp), %rcx                # 8-byte Reload
 	andq	1256(%rcx), %rax
 	cmpq	$0, %rax
 	je	.LBB1_35
 # %bb.34:
 	xorl	%eax, %eax
-	movq	-96(%rbp), %rdi                 # 8-byte Reload
+	movq	-112(%rbp), %rdi                # 8-byte Reload
+	movl	%eax, %esi
+	movl	$2, %edx
+	movl	%eax, %ecx
+	callq	_ZN5Board18SetCastlingRights_Eiii@PLT
+	jmp	.LBB1_41
+.LBB1_35:
+	movq	-96(%rbp), %rax
+	movq	-112(%rbp), %rcx                # 8-byte Reload
+	andq	1248(%rcx), %rax
+	cmpq	$0, %rax
+	je	.LBB1_37
+# %bb.36:
+	xorl	%eax, %eax
+	movq	-112(%rbp), %rdi                # 8-byte Reload
 	movl	$1, %esi
 	movl	%eax, %edx
 	movl	%eax, %ecx
 	callq	_ZN5Board18SetCastlingRights_Eiii@PLT
-	jmp	.LBB1_38
-.LBB1_35:
-	movq	-80(%rbp), %rax
-	movq	-96(%rbp), %rcx                 # 8-byte Reload
-	andq	1272(%rcx), %rax
+	jmp	.LBB1_40
+.LBB1_37:
+	movq	-96(%rbp), %rax
+	movq	-112(%rbp), %rcx                # 8-byte Reload
+	andq	1264(%rcx), %rax
 	cmpq	$0, %rax
-	je	.LBB1_37
-# %bb.36:
+	je	.LBB1_39
+# %bb.38:
 	xorl	%ecx, %ecx
-	movq	-96(%rbp), %rdi                 # 8-byte Reload
+	movq	-112(%rbp), %rdi                # 8-byte Reload
 	movl	$1, %esi
 	movl	$2, %edx
 	callq	_ZN5Board18SetCastlingRights_Eiii@PLT
-.LBB1_37:
-	jmp	.LBB1_38
-.LBB1_38:
-	jmp	.LBB1_39
 .LBB1_39:
 	jmp	.LBB1_40
 .LBB1_40:
 	jmp	.LBB1_41
 .LBB1_41:
+	jmp	.LBB1_42
+.LBB1_42:
+	jmp	.LBB1_43
+.LBB1_43:
 	cmpl	$7, -40(%rbp)
-	jne	.LBB1_46
-# %bb.42:
+	jne	.LBB1_48
+# %bb.44:
 	movq	-56(%rbp), %rdi
 	callq	_Z11u64ToSquarem
-	movl	%eax, -84(%rbp)
+	movl	%eax, -100(%rbp)
 	movl	-60(%rbp), %edi
 	callq	_ZN5piece4flipEi
 	movslq	%eax, %rcx
-	movq	-96(%rbp), %rdx                 # 8-byte Reload
+	movq	-112(%rbp), %rdx                # 8-byte Reload
 	movq	(%rdx,%rcx,8), %rcx
-	movl	-84(%rbp), %edi
-	movq	%rcx, -104(%rbp)                # 8-byte Spill
+	movl	-100(%rbp), %edi
+	movq	%rcx, -128(%rbp)                # 8-byte Spill
 	callq	_ZN9move_maps15oneFileAdjacentEi@PLT
-	movq	-104(%rbp), %rcx                # 8-byte Reload
+	movq	-128(%rbp), %rcx                # 8-byte Reload
 	andq	%rax, %rcx
 	cmpq	$0, %rcx
-	je	.LBB1_44
-# %bb.43:
-	movl	-84(%rbp), %edi
+	je	.LBB1_46
+# %bb.45:
+	movl	-100(%rbp), %edi
 	movl	-36(%rbp), %eax
-	movl	%edi, -108(%rbp)                # 4-byte Spill
+	movl	%edi, -132(%rbp)                # 4-byte Spill
 	movl	%eax, %edi
 	callq	_Z13oppositeColori
-	movl	-108(%rbp), %edi                # 4-byte Reload
+	movl	-132(%rbp), %edi                # 4-byte Reload
 	movl	%eax, %esi
 	callq	_ZN9move_maps9pawnMovesEii@PLT
 	movq	%rax, %rdi
 	callq	_Z11u64ToSquarem
-	movq	-96(%rbp), %rdi                 # 8-byte Reload
+	movq	-112(%rbp), %rdi                # 8-byte Reload
 	movl	%eax, %esi
 	callq	_ZN5Board12SetEpSquare_Ei@PLT
-	jmp	.LBB1_45
-.LBB1_44:
-	movq	-96(%rbp), %rdi                 # 8-byte Reload
-	movl	$4294967295, %esi               # imm = 0xFFFFFFFF
-	callq	_ZN5Board12SetEpSquare_Ei@PLT
-.LBB1_45:
 	jmp	.LBB1_47
 .LBB1_46:
-	movq	-96(%rbp), %rdi                 # 8-byte Reload
+	movq	-112(%rbp), %rdi                # 8-byte Reload
 	movl	$4294967295, %esi               # imm = 0xFFFFFFFF
 	callq	_ZN5Board12SetEpSquare_Ei@PLT
 .LBB1_47:
-	jmp	.LBB1_48
+	jmp	.LBB1_49
 .LBB1_48:
-	movq	-96(%rbp), %rax                 # 8-byte Reload
-	movl	108(%rax), %ecx
+	movq	-112(%rbp), %rdi                # 8-byte Reload
+	movl	$4294967295, %esi               # imm = 0xFFFFFFFF
+	callq	_ZN5Board12SetEpSquare_Ei@PLT
+.LBB1_49:
+	jmp	.LBB1_50
+.LBB1_50:
+	movq	-112(%rbp), %rax                # 8-byte Reload
+	movl	100(%rax), %ecx
 	addl	$1, %ecx
-	movl	%ecx, 108(%rax)
+	movl	%ecx, 100(%rax)
 	movl	-36(%rbp), %edi
 	callq	_Z13oppositeColori
-	movq	-96(%rbp), %rdi                 # 8-byte Reload
+	movq	-112(%rbp), %rdi                # 8-byte Reload
 	movl	%eax, %esi
 	callq	_ZN5Board8SetTurn_Ei@PLT
 	movq	%fs:40, %rdx
 	movq	-8(%rbp), %rdi
 	cmpq	%rdi, %rdx
-	jne	.LBB1_50
-# %bb.49:
-	addq	$112, %rsp
+	jne	.LBB1_52
+# %bb.51:
+	addq	$144, %rsp
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.LBB1_50:
+.LBB1_52:
 	.cfi_def_cfa %rbp, 16
 	callq	__stack_chk_fail@PLT
 .Lfunc_end1:
@@ -553,6 +588,85 @@ _ZN5piece8is_emptyEi:                   # @_ZN5piece8is_emptyEi
 	.size	_ZN5piece8is_emptyEi, .Lfunc_end7-_ZN5piece8is_emptyEi
 	.cfi_endproc
                                         # -- End function
+	.section	.text._Z13oppositeColori,"axG",@progbits,_Z13oppositeColori,comdat
+	.weak	_Z13oppositeColori              # -- Begin function _Z13oppositeColori
+	.p2align	4, 0x90
+	.type	_Z13oppositeColori,@function
+_Z13oppositeColori:                     # @_Z13oppositeColori
+	.cfi_startproc
+# %bb.0:
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset %rbp, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register %rbp
+	movl	%edi, -4(%rbp)
+	movl	-4(%rbp), %eax
+	xorl	$1, %eax
+	popq	%rbp
+	.cfi_def_cfa %rsp, 8
+	retq
+.Lfunc_end8:
+	.size	_Z13oppositeColori, .Lfunc_end8-_Z13oppositeColori
+	.cfi_endproc
+                                        # -- End function
+	.section	.text._ZN5piece8get_pawnEi,"axG",@progbits,_ZN5piece8get_pawnEi,comdat
+	.weak	_ZN5piece8get_pawnEi            # -- Begin function _ZN5piece8get_pawnEi
+	.p2align	4, 0x90
+	.type	_ZN5piece8get_pawnEi,@function
+_ZN5piece8get_pawnEi:                   # @_ZN5piece8get_pawnEi
+	.cfi_startproc
+# %bb.0:
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset %rbp, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register %rbp
+	movl	%edi, -4(%rbp)
+	movl	-4(%rbp), %eax
+	addl	$0, %eax
+	popq	%rbp
+	.cfi_def_cfa %rsp, 8
+	retq
+.Lfunc_end9:
+	.size	_ZN5piece8get_pawnEi, .Lfunc_end9-_ZN5piece8get_pawnEi
+	.cfi_endproc
+                                        # -- End function
+	.section	.text._Z11u64ToSquarem,"axG",@progbits,_Z11u64ToSquarem,comdat
+	.weak	_Z11u64ToSquarem                # -- Begin function _Z11u64ToSquarem
+	.p2align	4, 0x90
+	.type	_Z11u64ToSquarem,@function
+_Z11u64ToSquarem:                       # @_Z11u64ToSquarem
+	.cfi_startproc
+# %bb.0:
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset %rbp, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register %rbp
+	subq	$16, %rsp
+	movq	%rdi, -8(%rbp)
+	cmpq	$0, -8(%rbp)
+	je	.LBB10_2
+# %bb.1:
+	jmp	.LBB10_3
+.LBB10_2:
+	leaq	.L.str.6(%rip), %rdi
+	leaq	.L.str.5(%rip), %rsi
+	movl	$127, %edx
+	leaq	.L__PRETTY_FUNCTION__._Z11u64ToSquarem(%rip), %rcx
+	callq	__assert_fail@PLT
+.LBB10_3:
+	movq	-8(%rbp), %rdi
+	callq	_Z14bitscanForwardm
+	addq	$16, %rsp
+	popq	%rbp
+	.cfi_def_cfa %rsp, 8
+	retq
+.Lfunc_end10:
+	.size	_Z11u64ToSquarem, .Lfunc_end10-_Z11u64ToSquarem
+	.cfi_endproc
+                                        # -- End function
 	.section	.text._ZNK5CMove12is_promotionEv,"axG",@progbits,_ZNK5CMove12is_promotionEv,comdat
 	.weak	_ZNK5CMove12is_promotionEv      # -- Begin function _ZNK5CMove12is_promotionEv
 	.p2align	4, 0x90
@@ -574,7 +688,7 @@ _ZNK5CMove12is_promotionEv:             # @_ZNK5CMove12is_promotionEv
 	movl	%eax, -12(%rbp)
 	cmpl	$0, -12(%rbp)
 	movb	%cl, -13(%rbp)                  # 1-byte Spill
-	jle	.LBB8_2
+	jle	.LBB11_2
 # %bb.1:
 	movl	-12(%rbp), %eax
 	cltd
@@ -583,7 +697,7 @@ _ZNK5CMove12is_promotionEv:             # @_ZNK5CMove12is_promotionEv
 	cmpl	$0, %edx
 	sete	%sil
 	movb	%sil, -13(%rbp)                 # 1-byte Spill
-.LBB8_2:
+.LBB11_2:
 	movb	-13(%rbp), %al                  # 1-byte Reload
 	andb	$1, %al
 	movzbl	%al, %eax
@@ -591,8 +705,8 @@ _ZNK5CMove12is_promotionEv:             # @_ZNK5CMove12is_promotionEv
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.Lfunc_end8:
-	.size	_ZNK5CMove12is_promotionEv, .Lfunc_end8-_ZNK5CMove12is_promotionEv
+.Lfunc_end11:
+	.size	_ZNK5CMove12is_promotionEv, .Lfunc_end11-_ZNK5CMove12is_promotionEv
 	.cfi_endproc
                                         # -- End function
 	.section	.text._ZNK5CMove15promoting_pieceEi,"axG",@progbits,_ZNK5CMove15promoting_pieceEi,comdat
@@ -621,27 +735,27 @@ _ZNK5CMove15promoting_pieceEi:          # @_ZNK5CMove15promoting_pieceEi
 	idivl	%esi
 	cmpl	$0, %edx
 	movb	%cl, -25(%rbp)                  # 1-byte Spill
-	jne	.LBB9_2
+	jne	.LBB12_2
 # %bb.1:
 	movq	-24(%rbp), %rdi                 # 8-byte Reload
 	callq	_ZNK5CMove9type_codeEv
 	cmpl	$0, %eax
 	setg	%cl
 	movb	%cl, -25(%rbp)                  # 1-byte Spill
-.LBB9_2:
+.LBB12_2:
 	movb	-25(%rbp), %al                  # 1-byte Reload
 	testb	$1, %al
-	jne	.LBB9_3
-	jmp	.LBB9_4
-.LBB9_3:
-	jmp	.LBB9_5
-.LBB9_4:
-	leaq	.L.str.5(%rip), %rdi
-	leaq	.L.str.6(%rip), %rsi
+	jne	.LBB12_3
+	jmp	.LBB12_4
+.LBB12_3:
+	jmp	.LBB12_5
+.LBB12_4:
+	leaq	.L.str.7(%rip), %rdi
+	leaq	.L.str.8(%rip), %rsi
 	movl	$43, %edx
 	leaq	.L__PRETTY_FUNCTION__._ZNK5CMove15promoting_pieceEi(%rip), %rcx
 	callq	__assert_fail@PLT
-.LBB9_5:
+.LBB12_5:
 	movq	-24(%rbp), %rdi                 # 8-byte Reload
 	callq	_ZNK5CMove9type_codeEv
 	addl	-12(%rbp), %eax
@@ -649,8 +763,8 @@ _ZNK5CMove15promoting_pieceEi:          # @_ZNK5CMove15promoting_pieceEi
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.Lfunc_end9:
-	.size	_ZNK5CMove15promoting_pieceEi, .Lfunc_end9-_ZNK5CMove15promoting_pieceEi
+.Lfunc_end12:
+	.size	_ZNK5CMove15promoting_pieceEi, .Lfunc_end12-_ZNK5CMove15promoting_pieceEi
 	.cfi_endproc
                                         # -- End function
 	.section	.text._ZN5piece8get_rookEi,"axG",@progbits,_ZN5piece8get_rookEi,comdat
@@ -667,12 +781,12 @@ _ZN5piece8get_rookEi:                   # @_ZN5piece8get_rookEi
 	.cfi_def_cfa_register %rbp
 	movl	%edi, -4(%rbp)
 	movl	-4(%rbp), %eax
-	addl	$3, %eax
+	addl	$6, %eax
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.Lfunc_end10:
-	.size	_ZN5piece8get_rookEi, .Lfunc_end10-_ZN5piece8get_rookEi
+.Lfunc_end13:
+	.size	_ZN5piece8get_rookEi, .Lfunc_end13-_ZN5piece8get_rookEi
 	.cfi_endproc
                                         # -- End function
 	.section	.text._ZN5piece7is_kingEi,"axG",@progbits,_ZN5piece7is_kingEi,comdat
@@ -699,8 +813,8 @@ _ZN5piece7is_kingEi:                    # @_ZN5piece7is_kingEi
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.Lfunc_end11:
-	.size	_ZN5piece7is_kingEi, .Lfunc_end11-_ZN5piece7is_kingEi
+.Lfunc_end14:
+	.size	_ZN5piece7is_kingEi, .Lfunc_end14-_ZN5piece7is_kingEi
 	.cfi_endproc
                                         # -- End function
 	.section	.text._ZN5piece7is_rookEi,"axG",@progbits,_ZN5piece7is_rookEi,comdat
@@ -727,43 +841,8 @@ _ZN5piece7is_rookEi:                    # @_ZN5piece7is_rookEi
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.Lfunc_end12:
-	.size	_ZN5piece7is_rookEi, .Lfunc_end12-_ZN5piece7is_rookEi
-	.cfi_endproc
-                                        # -- End function
-	.section	.text._Z11u64ToSquarem,"axG",@progbits,_Z11u64ToSquarem,comdat
-	.weak	_Z11u64ToSquarem                # -- Begin function _Z11u64ToSquarem
-	.p2align	4, 0x90
-	.type	_Z11u64ToSquarem,@function
-_Z11u64ToSquarem:                       # @_Z11u64ToSquarem
-	.cfi_startproc
-# %bb.0:
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset %rbp, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register %rbp
-	subq	$16, %rsp
-	movq	%rdi, -8(%rbp)
-	cmpq	$0, -8(%rbp)
-	je	.LBB13_2
-# %bb.1:
-	jmp	.LBB13_3
-.LBB13_2:
-	leaq	.L.str.7(%rip), %rdi
-	leaq	.L.str.4(%rip), %rsi
-	movl	$127, %edx
-	leaq	.L__PRETTY_FUNCTION__._Z11u64ToSquarem(%rip), %rcx
-	callq	__assert_fail@PLT
-.LBB13_3:
-	movq	-8(%rbp), %rdi
-	callq	_Z14bitscanForwardm
-	addq	$16, %rsp
-	popq	%rbp
-	.cfi_def_cfa %rsp, 8
-	retq
-.Lfunc_end13:
-	.size	_Z11u64ToSquarem, .Lfunc_end13-_Z11u64ToSquarem
+.Lfunc_end15:
+	.size	_ZN5piece7is_rookEi, .Lfunc_end15-_ZN5piece7is_rookEi
 	.cfi_endproc
                                         # -- End function
 	.section	.text._ZN5piece4flipEi,"axG",@progbits,_ZN5piece4flipEi,comdat
@@ -784,47 +863,25 @@ _ZN5piece4flipEi:                       # @_ZN5piece4flipEi
 	callq	_ZN5piece8is_emptyEi
 	xorb	$-1, %al
 	testb	$1, %al
-	jne	.LBB14_1
-	jmp	.LBB14_2
-.LBB14_1:
-	jmp	.LBB14_3
-.LBB14_2:
-	leaq	.L.str.8(%rip), %rdi
-	leaq	.L.str.9(%rip), %rsi
+	jne	.LBB16_1
+	jmp	.LBB16_2
+.LBB16_1:
+	jmp	.LBB16_3
+.LBB16_2:
+	leaq	.L.str.9(%rip), %rdi
+	leaq	.L.str.10(%rip), %rsi
 	movl	$50, %edx
 	leaq	.L__PRETTY_FUNCTION__._ZN5piece4flipEi(%rip), %rcx
 	callq	__assert_fail@PLT
-.LBB14_3:
+.LBB16_3:
 	movl	-4(%rbp), %eax
 	xorl	$1, %eax
 	addq	$16, %rsp
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.Lfunc_end14:
-	.size	_ZN5piece4flipEi, .Lfunc_end14-_ZN5piece4flipEi
-	.cfi_endproc
-                                        # -- End function
-	.section	.text._Z13oppositeColori,"axG",@progbits,_Z13oppositeColori,comdat
-	.weak	_Z13oppositeColori              # -- Begin function _Z13oppositeColori
-	.p2align	4, 0x90
-	.type	_Z13oppositeColori,@function
-_Z13oppositeColori:                     # @_Z13oppositeColori
-	.cfi_startproc
-# %bb.0:
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset %rbp, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register %rbp
-	movl	%edi, -4(%rbp)
-	movl	-4(%rbp), %eax
-	xorl	$1, %eax
-	popq	%rbp
-	.cfi_def_cfa %rsp, 8
-	retq
-.Lfunc_end15:
-	.size	_Z13oppositeColori, .Lfunc_end15-_Z13oppositeColori
+.Lfunc_end16:
+	.size	_ZN5piece4flipEi, .Lfunc_end16-_ZN5piece4flipEi
 	.cfi_endproc
                                         # -- End function
 	.text
@@ -839,41 +896,41 @@ _ZN5Board10UnmakeMoveEv:                # @_ZN5Board10UnmakeMoveEv
 	.cfi_offset %rbp, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register %rbp
-	subq	$144, %rsp
+	subq	$112, %rsp
 	movq	%fs:40, %rax
 	movq	%rax, -8(%rbp)
 	movq	%rdi, -24(%rbp)
 	movq	-24(%rbp), %rax
 	movq	%rax, %rcx
-	addq	$1192, %rcx                     # imm = 0x4A8
+	addq	$1184, %rcx                     # imm = 0x4A0
 	movq	%rcx, %rdi
 	movq	%rax, -96(%rbp)                 # 8-byte Spill
 	callq	_ZNK5board10StateStack7can_popEv
 	testb	$1, %al
-	jne	.LBB16_1
-	jmp	.LBB16_2
-.LBB16_1:
-	jmp	.LBB16_3
-.LBB16_2:
-	leaq	.L.str(%rip), %rdi
+	jne	.LBB17_1
+	jmp	.LBB17_2
+.LBB17_1:
+	jmp	.LBB17_3
+.LBB17_2:
+	leaq	.L.str.2(%rip), %rdi
 	leaq	.L.str.1(%rip), %rsi
-	movl	$189, %edx
+	movl	$183, %edx
 	leaq	.L__PRETTY_FUNCTION__._ZN5Board10UnmakeMoveEv(%rip), %rcx
 	callq	__assert_fail@PLT
-.LBB16_3:
+.LBB17_3:
 	movq	-96(%rbp), %rax                 # 8-byte Reload
-	addq	$1192, %rax                     # imm = 0x4A8
+	addq	$1184, %rax                     # imm = 0x4A0
 	movq	%rax, %rdi
 	callq	_ZN5board10StateStack4peekEv
 	movq	%rax, -32(%rbp)
 	movq	-96(%rbp), %rax                 # 8-byte Reload
-	movw	146(%rax), %cx
+	movw	138(%rax), %cx
 	movw	%cx, -16(%rbp)
 	leaq	-16(%rbp), %rdi
 	callq	_ZNK5CMove9type_codeEv
 	movl	%eax, -36(%rbp)
 	cmpl	$0, -36(%rbp)
-	je	.LBB16_18
+	je	.LBB17_18
 # %bb.4:
 	leaq	-16(%rbp), %rdi
 	callq	_ZNK5CMove3srcEv
@@ -888,12 +945,12 @@ _ZN5Board10UnmakeMoveEv:                # @_ZN5Board10UnmakeMoveEv
 	movl	8(%rcx), %eax
 	movl	%eax, -64(%rbp)
 	movq	-96(%rbp), %rcx                 # 8-byte Reload
-	movl	124(%rcx), %eax
+	movl	116(%rcx), %eax
 	movl	%eax, -68(%rbp)
-	movl	128(%rcx), %eax
+	movl	120(%rcx), %eax
 	movl	%eax, -72(%rbp)
 	cmpl	$9, -60(%rbp)
-	jne	.LBB16_6
+	jne	.LBB17_6
 # %bb.5:
 	movl	-64(%rbp), %edi
 	callq	_ZN5piece8get_rookEi
@@ -907,13 +964,13 @@ _ZN5Board10UnmakeMoveEv:                # @_ZN5Board10UnmakeMoveEv
 	movl	-76(%rbp), %esi
 	movslq	-64(%rbp), %rcx
 	movq	-96(%rbp), %rdx                 # 8-byte Reload
-	movq	1248(%rdx,%rcx,8), %rdx
+	movq	1240(%rdx,%rcx,8), %rdx
 	movq	-96(%rbp), %rdi                 # 8-byte Reload
 	callq	_ZN5Board9AddPiece_Eim@PLT
-	jmp	.LBB16_9
-.LBB16_6:
+	jmp	.LBB17_9
+.LBB17_6:
 	cmpl	$3, -60(%rbp)
-	jne	.LBB16_8
+	jne	.LBB17_8
 # %bb.7:
 	movl	-64(%rbp), %edi
 	callq	_ZN5piece8get_rookEi
@@ -927,12 +984,12 @@ _ZN5Board10UnmakeMoveEv:                # @_ZN5Board10UnmakeMoveEv
 	movl	-80(%rbp), %esi
 	movslq	-64(%rbp), %rcx
 	movq	-96(%rbp), %rdx                 # 8-byte Reload
-	movq	1264(%rdx,%rcx,8), %rdx
+	movq	1256(%rdx,%rcx,8), %rdx
 	movq	-96(%rbp), %rdi                 # 8-byte Reload
 	callq	_ZN5Board9AddPiece_Eim@PLT
-.LBB16_8:
-	jmp	.LBB16_9
-.LBB16_9:
+.LBB17_8:
+	jmp	.LBB17_9
+.LBB17_9:
 	movl	-68(%rbp), %esi
 	movq	-48(%rbp), %rdx
 	movq	-96(%rbp), %rdi                 # 8-byte Reload
@@ -940,12 +997,10 @@ _ZN5Board10UnmakeMoveEv:                # @_ZN5Board10UnmakeMoveEv
 	leaq	-16(%rbp), %rdi
 	callq	_ZNK5CMove12is_promotionEv
 	testb	$1, %al
-	jne	.LBB16_10
-	jmp	.LBB16_11
-.LBB16_10:
-	movq	-96(%rbp), %rdi                 # 8-byte Reload
-	callq	_ZNK5Board4turnEv@PLT
-	movl	%eax, %edi
+	jne	.LBB17_10
+	jmp	.LBB17_11
+.LBB17_10:
+	movl	-64(%rbp), %edi
 	callq	_Z13oppositeColori
 	leaq	-16(%rbp), %rdi
 	movl	%eax, %esi
@@ -954,15 +1009,15 @@ _ZN5Board10UnmakeMoveEv:                # @_ZN5Board10UnmakeMoveEv
 	movq	-96(%rbp), %rdi                 # 8-byte Reload
 	movl	%eax, %esi
 	callq	_ZN5Board12RemovePiece_Eim@PLT
-	jmp	.LBB16_12
-.LBB16_11:
+	jmp	.LBB17_12
+.LBB17_11:
 	movl	-68(%rbp), %esi
 	movq	-56(%rbp), %rdx
 	movq	-96(%rbp), %rdi                 # 8-byte Reload
 	callq	_ZN5Board12RemovePiece_Eim@PLT
-.LBB16_12:
+.LBB17_12:
 	cmpl	$5, -60(%rbp)
-	jne	.LBB16_14
+	jne	.LBB17_14
 # %bb.13:
 	movl	-64(%rbp), %edi
 	callq	_Z13oppositeColori
@@ -979,141 +1034,49 @@ _ZN5Board10UnmakeMoveEv:                # @_ZN5Board10UnmakeMoveEv
 	movl	-100(%rbp), %esi                # 4-byte Reload
 	movq	%rax, %rdx
 	callq	_ZN5Board9AddPiece_Eim@PLT
-	jmp	.LBB16_17
-.LBB16_14:
+	jmp	.LBB17_17
+.LBB17_14:
 	movl	-72(%rbp), %edi
 	callq	_ZN5piece8is_emptyEi
 	testb	$1, %al
-	jne	.LBB16_16
+	jne	.LBB17_16
 # %bb.15:
 	movl	-72(%rbp), %esi
 	movq	-56(%rbp), %rdx
 	movq	-96(%rbp), %rdi                 # 8-byte Reload
 	callq	_ZN5Board9AddPiece_Eim@PLT
-.LBB16_16:
-	jmp	.LBB16_17
-.LBB16_17:
-	jmp	.LBB16_18
-.LBB16_18:
-	movq	-32(%rbp), %rax
-	movl	8(%rax), %esi
-	movq	-96(%rbp), %rdi                 # 8-byte Reload
-	callq	_ZN5Board8SetTurn_Ei@PLT
-	movq	-32(%rbp), %rax
-	movl	16(%rax), %esi
-	movq	-96(%rbp), %rdi                 # 8-byte Reload
-	callq	_ZN5Board12SetEpSquare_Ei@PLT
-	movq	-32(%rbp), %rax
-	addq	$44, %rax
-	xorl	%ecx, %ecx
+.LBB17_16:
+	jmp	.LBB17_17
+.LBB17_17:
+	jmp	.LBB17_18
+.LBB17_18:
+	movq	-32(%rbp), %rsi
+	movq	-96(%rbp), %rax                 # 8-byte Reload
+	addq	$96, %rax
+	movl	$1088, %edx                     # imm = 0x440
 	movq	%rax, %rdi
-	movl	%ecx, %esi
-	movl	%ecx, %edx
-	movl	%ecx, -104(%rbp)                # 4-byte Spill
-	callq	_ZNK5board6castle6Rights3getEii@PLT
-	movq	-96(%rbp), %rdi                 # 8-byte Reload
-	movl	-104(%rbp), %esi                # 4-byte Reload
-	movl	-104(%rbp), %edx                # 4-byte Reload
-	movl	%eax, %ecx
-	callq	_ZN5Board18SetCastlingRights_Eiii@PLT
-	movq	-32(%rbp), %rdi
-	addq	$44, %rdi
-	movl	$2, %eax
-	movl	-104(%rbp), %esi                # 4-byte Reload
-	movl	%eax, %edx
-	movl	%eax, -108(%rbp)                # 4-byte Spill
-	callq	_ZNK5board6castle6Rights3getEii@PLT
-	movq	-96(%rbp), %rdi                 # 8-byte Reload
-	movl	-104(%rbp), %esi                # 4-byte Reload
-	movl	-108(%rbp), %edx                # 4-byte Reload
-	movl	%eax, %ecx
-	callq	_ZN5Board18SetCastlingRights_Eiii@PLT
-	movq	-32(%rbp), %rdi
-	addq	$44, %rdi
-	movl	$1, %eax
-	movl	%eax, %esi
-	movl	-104(%rbp), %edx                # 4-byte Reload
-	movl	%eax, -112(%rbp)                # 4-byte Spill
-	callq	_ZNK5board6castle6Rights3getEii@PLT
-	movq	-96(%rbp), %rdi                 # 8-byte Reload
-	movl	-112(%rbp), %esi                # 4-byte Reload
-	movl	-104(%rbp), %edx                # 4-byte Reload
-	movl	%eax, %ecx
-	callq	_ZN5Board18SetCastlingRights_Eiii@PLT
-	movq	-32(%rbp), %rdi
-	addq	$44, %rdi
-	movl	-112(%rbp), %esi                # 4-byte Reload
-	movl	-108(%rbp), %edx                # 4-byte Reload
-	callq	_ZNK5board6castle6Rights3getEii@PLT
-	movq	-96(%rbp), %rdi                 # 8-byte Reload
-	movl	-112(%rbp), %esi                # 4-byte Reload
-	movl	-108(%rbp), %edx                # 4-byte Reload
-	movl	%eax, %ecx
-	callq	_ZN5Board18SetCastlingRights_Eiii@PLT
-	movq	-32(%rbp), %rdi
-	movl	24(%rdi), %eax
-	movq	-96(%rbp), %rdi                 # 8-byte Reload
-	movl	%eax, 128(%rdi)
-	movq	-32(%rbp), %r8
-	movl	20(%r8), %eax
-	movl	%eax, 124(%rdi)
-	movq	-32(%rbp), %r8
-	movb	41(%r8), %r9b
-	andb	$1, %r9b
-	movb	%r9b, 145(%rdi)
-	movq	-32(%rbp), %r8
-	movl	12(%r8), %eax
-	movl	%eax, 116(%rdi)
-	movq	-32(%rbp), %r8
-	movw	42(%r8), %r10w
-	movw	%r10w, 146(%rdi)
-	movq	-32(%rbp), %r8
-	movl	4(%r8), %eax
-	movl	%eax, 108(%rdi)
-	movq	-32(%rbp), %r8
-	movl	(%r8), %eax
-	movl	%eax, 104(%rdi)
-	movq	-32(%rbp), %r8
-	movq	32(%r8), %r8
-	movq	%r8, 136(%rdi)
-	movq	-32(%rbp), %r8
-	addq	$64, %r8
-	addq	$168, %rdi
-	movl	$512, %r11d                     # imm = 0x200
-	movq	%r8, %rsi
-	movq	%r11, %rdx
-	movq	%r11, -120(%rbp)                # 8-byte Spill
 	callq	memcpy@PLT
-	movq	-32(%rbp), %rdx
-	addq	$576, %rdx                      # imm = 0x240
-	movq	-96(%rbp), %rsi                 # 8-byte Reload
-	addq	$680, %rsi                      # imm = 0x2A8
-	movq	%rsi, %rdi
-	movq	%rdx, %rsi
-	movq	-120(%rbp), %rdx                # 8-byte Reload
-	movq	%rax, -128(%rbp)                # 8-byte Spill
-	callq	memcpy@PLT
-	movq	-96(%rbp), %rdx                 # 8-byte Reload
-	movb	$1, 1228(%rdx)
-	movl	$3, 1224(%rdx)
-	addq	$1192, %rdx                     # imm = 0x4A8
-	movq	%rdx, %rdi
-	movq	%rax, -136(%rbp)                # 8-byte Spill
+	movq	-96(%rbp), %rcx                 # 8-byte Reload
+	movb	$1, 1220(%rcx)
+	movl	$3, 1216(%rcx)
+	addq	$1184, %rcx                     # imm = 0x4A0
+	movq	%rcx, %rdi
+	movq	%rax, -112(%rbp)                # 8-byte Spill
 	callq	_ZN5board10StateStack3PopEv
 	movq	%fs:40, %rax
-	movq	-8(%rbp), %rdx
-	cmpq	%rdx, %rax
-	jne	.LBB16_20
+	movq	-8(%rbp), %rcx
+	cmpq	%rcx, %rax
+	jne	.LBB17_20
 # %bb.19:
-	addq	$144, %rsp
+	addq	$112, %rsp
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.LBB16_20:
+.LBB17_20:
 	.cfi_def_cfa %rbp, 16
 	callq	__stack_chk_fail@PLT
-.Lfunc_end16:
-	.size	_ZN5Board10UnmakeMoveEv, .Lfunc_end16-_ZN5Board10UnmakeMoveEv
+.Lfunc_end17:
+	.size	_ZN5Board10UnmakeMoveEv, .Lfunc_end17-_ZN5Board10UnmakeMoveEv
 	.cfi_endproc
                                         # -- End function
 	.section	.text._ZNK5board10StateStack7can_popEv,"axG",@progbits,_ZNK5board10StateStack7can_popEv,comdat
@@ -1137,8 +1100,8 @@ _ZNK5board10StateStack7can_popEv:       # @_ZNK5board10StateStack7can_popEv
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.Lfunc_end17:
-	.size	_ZNK5board10StateStack7can_popEv, .Lfunc_end17-_ZNK5board10StateStack7can_popEv
+.Lfunc_end18:
+	.size	_ZNK5board10StateStack7can_popEv, .Lfunc_end18-_ZNK5board10StateStack7can_popEv
 	.cfi_endproc
                                         # -- End function
 	.section	.text._ZN5board10StateStack4peekEv,"axG",@progbits,_ZN5board10StateStack4peekEv,comdat
@@ -1158,16 +1121,16 @@ _ZN5board10StateStack4peekEv:           # @_ZN5board10StateStack4peekEv
 	movq	-8(%rbp), %rax
 	cmpl	$0, (%rax)
 	movq	%rax, -16(%rbp)                 # 8-byte Spill
-	jle	.LBB18_2
+	jle	.LBB19_2
 # %bb.1:
-	jmp	.LBB18_3
-.LBB18_2:
-	leaq	.L.str.10(%rip), %rdi
-	leaq	.L.str.11(%rip), %rsi
+	jmp	.LBB19_3
+.LBB19_2:
+	leaq	.L.str.11(%rip), %rdi
+	leaq	.L.str.12(%rip), %rsi
 	movl	$156, %edx
 	leaq	.L__PRETTY_FUNCTION__._ZN5board10StateStack4peekEv(%rip), %rcx
 	callq	__assert_fail@PLT
-.LBB18_3:
+.LBB19_3:
 	movq	-16(%rbp), %rax                 # 8-byte Reload
 	addq	$8, %rax
 	movq	%rax, %rdi
@@ -1176,30 +1139,8 @@ _ZN5board10StateStack4peekEv:           # @_ZN5board10StateStack4peekEv
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.Lfunc_end18:
-	.size	_ZN5board10StateStack4peekEv, .Lfunc_end18-_ZN5board10StateStack4peekEv
-	.cfi_endproc
-                                        # -- End function
-	.section	.text._ZN5piece8get_pawnEi,"axG",@progbits,_ZN5piece8get_pawnEi,comdat
-	.weak	_ZN5piece8get_pawnEi            # -- Begin function _ZN5piece8get_pawnEi
-	.p2align	4, 0x90
-	.type	_ZN5piece8get_pawnEi,@function
-_ZN5piece8get_pawnEi:                   # @_ZN5piece8get_pawnEi
-	.cfi_startproc
-# %bb.0:
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset %rbp, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register %rbp
-	movl	%edi, -4(%rbp)
-	movl	-4(%rbp), %eax
-	addl	$0, %eax
-	popq	%rbp
-	.cfi_def_cfa %rsp, 8
-	retq
 .Lfunc_end19:
-	.size	_ZN5piece8get_pawnEi, .Lfunc_end19-_ZN5piece8get_pawnEi
+	.size	_ZN5board10StateStack4peekEv, .Lfunc_end19-_ZN5board10StateStack4peekEv
 	.cfi_endproc
                                         # -- End function
 	.section	.text._ZN5board10StateStack3PopEv,"axG",@progbits,_ZN5board10StateStack3PopEv,comdat
@@ -1223,8 +1164,8 @@ _ZN5board10StateStack3PopEv:            # @_ZN5board10StateStack3PopEv
 # %bb.1:
 	jmp	.LBB20_3
 .LBB20_2:
-	leaq	.L.str.10(%rip), %rdi
-	leaq	.L.str.11(%rip), %rsi
+	leaq	.L.str.11(%rip), %rdi
+	leaq	.L.str.12(%rip), %rsi
 	movl	$174, %edx
 	leaq	.L__PRETTY_FUNCTION__._ZN5board10StateStack3PopEv(%rip), %rcx
 	callq	__assert_fail@PLT
@@ -1347,7 +1288,7 @@ _ZNSt6vectorIN5board5StateESaIS1_EE17_M_realloc_insertIJRKS1_EEEvN9__gnu_cxx17__
 	movq	%rdi, -32(%rbp)
 	movq	%rdx, -40(%rbp)
 	movq	-32(%rbp), %rax
-	leaq	.L.str.2(%rip), %rdx
+	leaq	.L.str.3(%rip), %rdx
 	movl	$1, %esi
 	movq	%rax, %rdi
 	movq	%rax, -96(%rbp)                 # 8-byte Spill
@@ -2707,8 +2648,8 @@ _Z13u64FromSquarei:                     # @_Z13u64FromSquarei
 .LBB62_1:
 	jmp	.LBB62_3
 .LBB62_2:
-	leaq	.L.str.3(%rip), %rdi
-	leaq	.L.str.4(%rip), %rsi
+	leaq	.L.str.4(%rip), %rdi
+	leaq	.L.str.5(%rip), %rsi
 	movl	$121, %edx
 	leaq	.L__PRETTY_FUNCTION__._Z13u64FromSquarei(%rip), %rcx
 	callq	__assert_fail@PLT
@@ -2994,88 +2935,98 @@ _ZN5board6castleL15rook_short_destE:
 	.type	.L.str,@object                  # @.str
 	.section	.rodata.str1.1,"aMS",@progbits,1
 .L.str:
-	.asciz	"state_stack_.can_pop()"
-	.size	.L.str, 23
+	.asciz	"move_type_ == move_type::CastleLong || move_type_ == move_type::CastleShort"
+	.size	.L.str, 76
 
 	.type	.L.str.1,@object                # @.str.1
 .L.str.1:
 	.asciz	"src/chess/make_unmake_move.cpp"
 	.size	.L.str.1, 31
 
+	.type	.L__PRETTY_FUNCTION__._ZN5Board8MakeMoveE5CMove,@object # @__PRETTY_FUNCTION__._ZN5Board8MakeMoveE5CMove
+.L__PRETTY_FUNCTION__._ZN5Board8MakeMoveE5CMove:
+	.asciz	"void Board::MakeMove(CMove)"
+	.size	.L__PRETTY_FUNCTION__._ZN5Board8MakeMoveE5CMove, 28
+
+	.type	.L.str.2,@object                # @.str.2
+.L.str.2:
+	.asciz	"state_stack_.can_pop()"
+	.size	.L.str.2, 23
+
 	.type	.L__PRETTY_FUNCTION__._ZN5Board10UnmakeMoveEv,@object # @__PRETTY_FUNCTION__._ZN5Board10UnmakeMoveEv
 .L__PRETTY_FUNCTION__._ZN5Board10UnmakeMoveEv:
 	.asciz	"void Board::UnmakeMove()"
 	.size	.L__PRETTY_FUNCTION__._ZN5Board10UnmakeMoveEv, 25
 
-	.type	.L.str.2,@object                # @.str.2
-.L.str.2:
-	.asciz	"vector::_M_realloc_insert"
-	.size	.L.str.2, 26
-
 	.type	.L.str.3,@object                # @.str.3
 .L.str.3:
-	.asciz	"isValidSquare(s)"
-	.size	.L.str.3, 17
+	.asciz	"vector::_M_realloc_insert"
+	.size	.L.str.3, 26
 
 	.type	.L.str.4,@object                # @.str.4
 .L.str.4:
+	.asciz	"isValidSquare(s)"
+	.size	.L.str.4, 17
+
+	.type	.L.str.5,@object                # @.str.5
+.L.str.5:
 	.asciz	"include/misc/bits.hpp"
-	.size	.L.str.4, 22
+	.size	.L.str.5, 22
 
 	.type	.L__PRETTY_FUNCTION__._Z13u64FromSquarei,@object # @__PRETTY_FUNCTION__._Z13u64FromSquarei
 .L__PRETTY_FUNCTION__._Z13u64FromSquarei:
 	.asciz	"uint64_t u64FromSquare(int)"
 	.size	.L__PRETTY_FUNCTION__._Z13u64FromSquarei, 28
 
-	.type	.L.str.5,@object                # @.str.5
-.L.str.5:
-	.asciz	"type_code() % 2 == 0 && type_code() > 0"
-	.size	.L.str.5, 40
-
 	.type	.L.str.6,@object                # @.str.6
 .L.str.6:
-	.asciz	"include/game/cmove.hpp"
-	.size	.L.str.6, 23
-
-	.type	.L__PRETTY_FUNCTION__._ZNK5CMove15promoting_pieceEi,@object # @__PRETTY_FUNCTION__._ZNK5CMove15promoting_pieceEi
-.L__PRETTY_FUNCTION__._ZNK5CMove15promoting_pieceEi:
-	.asciz	"int CMove::promoting_piece(int) const"
-	.size	.L__PRETTY_FUNCTION__._ZNK5CMove15promoting_pieceEi, 38
-
-	.type	.L.str.7,@object                # @.str.7
-.L.str.7:
 	.asciz	"x != 0"
-	.size	.L.str.7, 7
+	.size	.L.str.6, 7
 
 	.type	.L__PRETTY_FUNCTION__._Z11u64ToSquarem,@object # @__PRETTY_FUNCTION__._Z11u64ToSquarem
 .L__PRETTY_FUNCTION__._Z11u64ToSquarem:
 	.asciz	"int u64ToSquare(uint64_t)"
 	.size	.L__PRETTY_FUNCTION__._Z11u64ToSquarem, 26
 
+	.type	.L.str.7,@object                # @.str.7
+.L.str.7:
+	.asciz	"type_code() % 2 == 0 && type_code() > 0"
+	.size	.L.str.7, 40
+
 	.type	.L.str.8,@object                # @.str.8
 .L.str.8:
-	.asciz	"!is_empty(piece)"
-	.size	.L.str.8, 17
+	.asciz	"include/game/cmove.hpp"
+	.size	.L.str.8, 23
+
+	.type	.L__PRETTY_FUNCTION__._ZNK5CMove15promoting_pieceEi,@object # @__PRETTY_FUNCTION__._ZNK5CMove15promoting_pieceEi
+.L__PRETTY_FUNCTION__._ZNK5CMove15promoting_pieceEi:
+	.asciz	"int CMove::promoting_piece(int) const"
+	.size	.L__PRETTY_FUNCTION__._ZNK5CMove15promoting_pieceEi, 38
 
 	.type	.L.str.9,@object                # @.str.9
 .L.str.9:
+	.asciz	"!is_empty(piece)"
+	.size	.L.str.9, 17
+
+	.type	.L.str.10,@object               # @.str.10
+.L.str.10:
 	.asciz	"include/game/pieces.hpp"
-	.size	.L.str.9, 24
+	.size	.L.str.10, 24
 
 	.type	.L__PRETTY_FUNCTION__._ZN5piece4flipEi,@object # @__PRETTY_FUNCTION__._ZN5piece4flipEi
 .L__PRETTY_FUNCTION__._ZN5piece4flipEi:
 	.asciz	"int piece::flip(int)"
 	.size	.L__PRETTY_FUNCTION__._ZN5piece4flipEi, 21
 
-	.type	.L.str.10,@object               # @.str.10
-.L.str.10:
-	.asciz	"head_ > 0"
-	.size	.L.str.10, 10
-
 	.type	.L.str.11,@object               # @.str.11
 .L.str.11:
+	.asciz	"head_ > 0"
+	.size	.L.str.11, 10
+
+	.type	.L.str.12,@object               # @.str.12
+.L.str.12:
 	.asciz	"include/datastructures/board_state.hpp"
-	.size	.L.str.11, 39
+	.size	.L.str.12, 39
 
 	.type	.L__PRETTY_FUNCTION__._ZN5board10StateStack4peekEv,@object # @__PRETTY_FUNCTION__._ZN5board10StateStack4peekEv
 .L__PRETTY_FUNCTION__._ZN5board10StateStack4peekEv:
@@ -3114,24 +3065,23 @@ DW.ref.__gxx_personality_v0:
 	.addrsig_sym _ZN5piece7is_pawnEi
 	.addrsig_sym _ZN5piece8is_emptyEi
 	.addrsig_sym _ZN5Board12RemovePiece_Eim
+	.addrsig_sym _Z13oppositeColori
+	.addrsig_sym _ZN5piece8get_pawnEi
+	.addrsig_sym _ZN9move_maps9pawnMovesEii
+	.addrsig_sym _Z11u64ToSquarem
 	.addrsig_sym _ZNK5CMove12is_promotionEv
 	.addrsig_sym _ZN5Board9AddPiece_Eim
 	.addrsig_sym _ZNK5CMove15promoting_pieceEi
 	.addrsig_sym _ZN5piece8get_rookEi
 	.addrsig_sym _ZN5piece7is_kingEi
+	.addrsig_sym __assert_fail
 	.addrsig_sym _ZN5Board18SetCastlingRights_Eiii
 	.addrsig_sym _ZN5piece7is_rookEi
-	.addrsig_sym _Z11u64ToSquarem
 	.addrsig_sym _ZN5piece4flipEi
 	.addrsig_sym _ZN9move_maps15oneFileAdjacentEi
-	.addrsig_sym _ZN9move_maps9pawnMovesEii
-	.addrsig_sym _Z13oppositeColori
 	.addrsig_sym _ZN5Board8SetTurn_Ei
 	.addrsig_sym _ZNK5board10StateStack7can_popEv
-	.addrsig_sym __assert_fail
 	.addrsig_sym _ZN5board10StateStack4peekEv
-	.addrsig_sym _ZN5piece8get_pawnEi
-	.addrsig_sym _ZNK5board6castle6Rights3getEii
 	.addrsig_sym _ZN5board10StateStack3PopEv
 	.addrsig_sym _ZNSt6vectorIN5board5StateESaIS1_EE9push_backERKS1_
 	.addrsig_sym _ZNSt16allocator_traitsISaIN5board5StateEEE9constructIS1_JRKS1_EEEvRS2_PT_DpOT0_

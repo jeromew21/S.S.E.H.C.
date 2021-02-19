@@ -10,13 +10,13 @@ namespace perft
 {
   struct Counter
   {
-    u64 nodes;
-    u64 captures;
-    u64 ep;
-    u64 castles;
-    u64 promotions;
-    u64 checks;
-    u64 checkmates;
+    int nodes;
+    int captures;
+    int ep;
+    int castles;
+    int promotions;
+    int checks;
+    int checkmates;
 
     Counter()
     {
@@ -39,7 +39,7 @@ namespace perft
   };
 
   //fills counter struct with values after perft test.
-  void perft(Board &board, int depth, Counter &counter);
+  void perft(Board &board_, int depth, Counter &counter);
 } // namespace perft
 
 #endif

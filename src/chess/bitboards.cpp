@@ -284,6 +284,7 @@ const u64 ONE_FILE_ADJ_CACHE[64] = {0x2, 0x5, 0xa, 0x14, 0x28, 0x50, 0xa0, 0x40,
 bool move_maps::isAttackedSliding(u64 occupancy_map, u64 subject, u64 rooks, u64 bishops)
 {
   assert(isValidSquare(u64ToSquare(subject)));
+  assert(occupancy_map & subject);
 
   Square subj_location = u64ToSquare(subject);
   if (rooks & rookMoves(subj_location, occupancy_map) || bishops & bishopMoves(subj_location, occupancy_map))

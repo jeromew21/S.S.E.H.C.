@@ -44,7 +44,7 @@ _ZN5Board19verify_move_safety_E5CMove:  # @_ZN5Board19verify_move_safety_E5CMove
 	movw	%si, -16(%rbp)
 	movq	%rdi, -32(%rbp)
 	movq	-32(%rbp), %rax
-	testb	$1, 1228(%rax)
+	testb	$1, 1220(%rax)
 	movq	%rax, -144(%rbp)                # 8-byte Spill
 	je	.LBB1_2
 # %bb.1:
@@ -170,7 +170,7 @@ _ZN5Board19verify_move_safety_E5CMove:  # @_ZN5Board19verify_move_safety_E5CMove
 	jmp	.LBB1_17
 .LBB1_14:
 	movq	-144(%rbp), %rax                # 8-byte Reload
-	addq	$104, %rax
+	addq	$96, %rax
 	addq	$576, %rax                      # imm = 0x240
 	movq	-56(%rbp), %rdi
 	movq	%rax, -160(%rbp)                # 8-byte Spill
@@ -199,9 +199,10 @@ _ZN5Board19verify_move_safety_E5CMove:  # @_ZN5Board19verify_move_safety_E5CMove
 	movq	-48(%rbp), %rcx
 	xorq	$-1, %rcx
 	andq	%rcx, %rax
-	andq	-56(%rbp), %rax
+	orq	-56(%rbp), %rax
 	movq	%rax, -112(%rbp)
-	movq	-112(%rbp), %rax
+	movq	-56(%rbp), %rax
+	xorq	$-1, %rax
 	movl	-40(%rbp), %edi
 	movq	%rax, -176(%rbp)                # 8-byte Spill
 	callq	_ZN5piece8get_rookEi
@@ -218,7 +219,8 @@ _ZN5Board19verify_move_safety_E5CMove:  # @_ZN5Board19verify_move_safety_E5CMove
 	movq	-176(%rbp), %rcx                # 8-byte Reload
 	andq	%rdx, %rcx
 	movq	%rcx, -120(%rbp)
-	movq	-112(%rbp), %rcx
+	movq	-56(%rbp), %rcx
+	xorq	$-1, %rcx
 	movl	-40(%rbp), %edi
 	movq	%rcx, -192(%rbp)                # 8-byte Spill
 	callq	_ZN5piece10get_bishopEi
@@ -458,7 +460,7 @@ _ZN5piece9get_queenEi:                  # @_ZN5piece9get_queenEi
 	.cfi_def_cfa_register %rbp
 	movl	%edi, -4(%rbp)
 	movl	-4(%rbp), %eax
-	addl	$4, %eax
+	addl	$8, %eax
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
@@ -480,7 +482,7 @@ _ZN5piece8get_rookEi:                   # @_ZN5piece8get_rookEi
 	.cfi_def_cfa_register %rbp
 	movl	%edi, -4(%rbp)
 	movl	-4(%rbp), %eax
-	addl	$3, %eax
+	addl	$6, %eax
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
@@ -502,7 +504,7 @@ _ZN5piece10get_bishopEi:                # @_ZN5piece10get_bishopEi
 	.cfi_def_cfa_register %rbp
 	movl	%edi, -4(%rbp)
 	movl	-4(%rbp), %eax
-	addl	$2, %eax
+	addl	$4, %eax
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
@@ -524,7 +526,7 @@ _ZN5piece8get_kingEi:                   # @_ZN5piece8get_kingEi
 	.cfi_def_cfa_register %rbp
 	movl	%edi, -4(%rbp)
 	movl	-4(%rbp), %eax
-	addl	$5, %eax
+	addl	$10, %eax
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
@@ -623,7 +625,7 @@ _ZN5Board16is_checking_moveE5CMove:     # @_ZN5Board16is_checking_moveE5CMove
 	.cfi_offset %rbp, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register %rbp
-	subq	$272, %rsp                      # imm = 0x110
+	subq	$256, %rsp                      # imm = 0x100
                                         # kill: def $si killed $si killed $esi
 	movq	%fs:40, %rax
 	movq	%rax, -8(%rbp)
@@ -666,7 +668,7 @@ _ZN5Board16is_checking_moveE5CMove:     # @_ZN5Board16is_checking_moveE5CMove
 	movq	%rax, -72(%rbp)
 	movslq	-36(%rbp), %rax
 	movq	-184(%rbp), %rcx                # 8-byte Reload
-	movq	1248(%rcx,%rax,8), %rax
+	movq	1240(%rcx,%rax,8), %rax
 	movq	%rax, -80(%rbp)
 	jmp	.LBB15_4
 .LBB15_3:
@@ -676,7 +678,7 @@ _ZN5Board16is_checking_moveE5CMove:     # @_ZN5Board16is_checking_moveE5CMove
 	movq	%rax, -72(%rbp)
 	movslq	-36(%rbp), %rax
 	movq	-184(%rbp), %rcx                # 8-byte Reload
-	movq	1264(%rcx,%rax,8), %rax
+	movq	1256(%rcx,%rax,8), %rax
 	movq	%rax, -80(%rbp)
 .LBB15_4:
 	movq	-184(%rbp), %rdi                # 8-byte Reload
@@ -684,7 +686,7 @@ _ZN5Board16is_checking_moveE5CMove:     # @_ZN5Board16is_checking_moveE5CMove
 	movq	%rax, -88(%rbp)
 	movslq	-36(%rbp), %rax
 	movq	-184(%rbp), %rcx                # 8-byte Reload
-	movq	1232(%rcx,%rax,8), %rax
+	movq	1224(%rcx,%rax,8), %rax
 	notq	%rax
 	movq	-56(%rbp), %rdx
 	orq	%rdx, %rax
@@ -814,12 +816,23 @@ _ZN5Board16is_checking_moveE5CMove:     # @_ZN5Board16is_checking_moveE5CMove
 	movq	-48(%rbp), %rcx
 	xorq	$-1, %rcx
 	andq	%rcx, %rax
-	andq	-56(%rbp), %rax
+	orq	-56(%rbp), %rax
 	movq	%rax, -152(%rbp)
-	movq	-152(%rbp), %rax
 	movl	-36(%rbp), %edi
-	movq	%rax, -224(%rbp)                # 8-byte Spill
 	callq	_ZN5piece8get_rookEi
+	movslq	%eax, %rcx
+	movq	-184(%rbp), %rdx                # 8-byte Reload
+	movq	(%rdx,%rcx,8), %rcx
+	movl	-36(%rbp), %edi
+	movq	%rcx, -224(%rbp)                # 8-byte Spill
+	callq	_ZN5piece9get_queenEi
+	movslq	%eax, %rcx
+	movq	-224(%rbp), %rdx                # 8-byte Reload
+	movq	-184(%rbp), %rsi                # 8-byte Reload
+	orq	(%rsi,%rcx,8), %rdx
+	movq	%rdx, -160(%rbp)
+	movl	-36(%rbp), %edi
+	callq	_ZN5piece10get_bishopEi
 	movslq	%eax, %rcx
 	movq	-184(%rbp), %rdx                # 8-byte Reload
 	movq	(%rdx,%rcx,8), %rcx
@@ -830,26 +843,7 @@ _ZN5Board16is_checking_moveE5CMove:     # @_ZN5Board16is_checking_moveE5CMove
 	movq	-232(%rbp), %rdx                # 8-byte Reload
 	movq	-184(%rbp), %rsi                # 8-byte Reload
 	orq	(%rsi,%rcx,8), %rdx
-	movq	-224(%rbp), %rcx                # 8-byte Reload
-	andq	%rdx, %rcx
-	movq	%rcx, -160(%rbp)
-	movq	-152(%rbp), %rcx
-	movl	-36(%rbp), %edi
-	movq	%rcx, -240(%rbp)                # 8-byte Spill
-	callq	_ZN5piece10get_bishopEi
-	movslq	%eax, %rcx
-	movq	-184(%rbp), %rdx                # 8-byte Reload
-	movq	(%rdx,%rcx,8), %rcx
-	movl	-36(%rbp), %edi
-	movq	%rcx, -248(%rbp)                # 8-byte Spill
-	callq	_ZN5piece9get_queenEi
-	movslq	%eax, %rcx
-	movq	-248(%rbp), %rdx                # 8-byte Reload
-	movq	-184(%rbp), %rsi                # 8-byte Reload
-	orq	(%rsi,%rcx,8), %rdx
-	movq	-240(%rbp), %rcx                # 8-byte Reload
-	andq	%rdx, %rcx
-	movq	%rcx, -168(%rbp)
+	movq	%rdx, -168(%rbp)
 	movq	-152(%rbp), %rdi
 	movq	-64(%rbp), %rsi
 	movq	-160(%rbp), %rdx
@@ -881,11 +875,11 @@ _ZN5Board16is_checking_moveE5CMove:     # @_ZN5Board16is_checking_moveE5CMove
 	movl	%eax, %ecx
 	movl	%ecx, %edx
 	subl	$4, %eax
-	movq	%rdx, -256(%rbp)                # 8-byte Spill
+	movq	%rdx, -240(%rbp)                # 8-byte Spill
 	ja	.LBB15_24
 # %bb.28:
 	leaq	.LJTI15_0(%rip), %rax
-	movq	-256(%rbp), %rcx                # 8-byte Reload
+	movq	-240(%rbp), %rcx                # 8-byte Reload
 	movslq	(%rax,%rcx,4), %rdx
 	addq	%rax, %rdx
 	jmpq	*%rdx
@@ -943,7 +937,7 @@ _ZN5Board16is_checking_moveE5CMove:     # @_ZN5Board16is_checking_moveE5CMove
 	andq	-64(%rbp), %rax
 	cmpq	$0, %rax
 	movb	$1, %cl
-	movb	%cl, -257(%rbp)                 # 1-byte Spill
+	movb	%cl, -241(%rbp)                 # 1-byte Spill
 	jne	.LBB15_23
 # %bb.22:
 	movl	-172(%rbp), %edi
@@ -952,9 +946,9 @@ _ZN5Board16is_checking_moveE5CMove:     # @_ZN5Board16is_checking_moveE5CMove
 	andq	-64(%rbp), %rax
 	cmpq	$0, %rax
 	setne	%cl
-	movb	%cl, -257(%rbp)                 # 1-byte Spill
+	movb	%cl, -241(%rbp)                 # 1-byte Spill
 .LBB15_23:
-	movb	-257(%rbp), %al                 # 1-byte Reload
+	movb	-241(%rbp), %al                 # 1-byte Reload
 	andb	$1, %al
 	negb	%al
 	andb	$1, %al
@@ -967,13 +961,13 @@ _ZN5Board16is_checking_moveE5CMove:     # @_ZN5Board16is_checking_moveE5CMove
 	movq	%fs:40, %rcx
 	movq	-8(%rbp), %rdx
 	cmpq	%rdx, %rcx
-	movb	%al, -258(%rbp)                 # 1-byte Spill
+	movb	%al, -242(%rbp)                 # 1-byte Spill
 	jne	.LBB15_27
 # %bb.26:
-	movb	-258(%rbp), %al                 # 1-byte Reload
+	movb	-242(%rbp), %al                 # 1-byte Reload
 	andb	$1, %al
 	movzbl	%al, %eax
-	addq	$272, %rsp                      # imm = 0x110
+	addq	$256, %rsp                      # imm = 0x100
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq

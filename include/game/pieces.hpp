@@ -51,11 +51,11 @@ namespace piece
     return piece ^ 1;
   }
 
-  inline PieceType get_pawn(Color color) { return colorless::pawn + color; }
-  inline PieceType get_bishop(Color color) { return colorless::bishop + color; }
-  inline PieceType get_rook(Color color) { return colorless::rook + color; }
-  inline PieceType get_queen(Color color) { return colorless::queen + color; }
-  inline PieceType get_king(Color color) { return colorless::king + color; }
+  inline PieceType get_pawn(Color color) { return (colorless::pawn << 1) + color; }
+  inline PieceType get_bishop(Color color) { return (colorless::bishop << 1) + color; }
+  inline PieceType get_rook(Color color) { return (colorless::rook << 1) + color; }
+  inline PieceType get_queen(Color color) { return (colorless::queen << 1) + color; }
+  inline PieceType get_king(Color color) { return (colorless::king << 1) + color; }
 } // namespace piece
 
 /**

@@ -982,10 +982,11 @@ _ZN5Board12LoadPositionENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE: # 
 .LBB5_30:
 	movl	$0, -516(%rbp)
 .LBB5_31:                               # =>This Inner Loop Header: Depth=1
-	movslq	-516(%rbp), %rax
+	movl	-516(%rbp), %eax
+	movl	%eax, %ecx
 	leaq	-456(%rbp), %rdi
 	movl	$2, %esi
-	movq	%rax, -616(%rbp)                # 8-byte Spill
+	movq	%rcx, -616(%rbp)                # 8-byte Spill
 	callq	_ZNSt6vectorINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESaIS5_EEixEm
 	movq	%rax, %rdi
 	callq	_ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE4sizeEv@PLT
@@ -996,7 +997,8 @@ _ZN5Board12LoadPositionENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE: # 
 	leaq	-456(%rbp), %rdi
 	movl	$2, %esi
 	callq	_ZNSt6vectorINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESaIS5_EEixEm
-	movslq	-516(%rbp), %rsi
+	movl	-516(%rbp), %ecx
+	movl	%ecx, %esi
 .Ltmp68:
 	movq	%rax, %rdi
 	callq	_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEixEm@PLT

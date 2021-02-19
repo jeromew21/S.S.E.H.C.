@@ -736,212 +736,6 @@ __cxx_global_array_dtor.18:             # @__cxx_global_array_dtor.18
 	.cfi_endproc
                                         # -- End function
 	.text
-	.globl	_Z9testPerftv                   # -- Begin function _Z9testPerftv
-	.p2align	4, 0x90
-	.type	_Z9testPerftv,@function
-_Z9testPerftv:                          # @_Z9testPerftv
-.Lfunc_begin2:
-	.cfi_startproc
-	.cfi_personality 155, DW.ref.__gxx_personality_v0
-	.cfi_lsda 27, .Lexception2
-# %bb.0:
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset %rbp, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register %rbp
-	subq	$1360, %rsp                     # imm = 0x550
-	movq	%fs:40, %rax
-	movq	%rax, -8(%rbp)
-	leaq	-1288(%rbp), %rdi
-	callq	_ZN5BoardC1Ev@PLT
-.Ltmp48:
-	leaq	-1344(%rbp), %rdi
-	callq	_ZN5perft7CounterC2Ev
-.Ltmp49:
-	jmp	.LBB5_1
-.LBB5_1:
-.Ltmp50:
-	leaq	-1288(%rbp), %rdi
-	movl	$2, %esi
-	leaq	-1344(%rbp), %rdx
-	callq	_ZN5perft5perftER5BoardiRNS_7CounterE@PLT
-.Ltmp51:
-	jmp	.LBB5_2
-.LBB5_2:
-.Ltmp52:
-	leaq	-1344(%rbp), %rdi
-	callq	_ZN5perft7Counter4DumpEv
-.Ltmp53:
-	jmp	.LBB5_3
-.LBB5_3:
-	leaq	-1288(%rbp), %rdi
-	callq	_ZN5BoardD2Ev
-	movq	%fs:40, %rax
-	movq	-8(%rbp), %rcx
-	cmpq	%rcx, %rax
-	jne	.LBB5_7
-# %bb.4:
-	addq	$1360, %rsp                     # imm = 0x550
-	popq	%rbp
-	.cfi_def_cfa %rsp, 8
-	retq
-.LBB5_5:
-	.cfi_def_cfa %rbp, 16
-.Ltmp54:
-                                        # kill: def $edx killed $edx killed $rdx
-	movq	%rax, -1352(%rbp)
-	movl	%edx, -1356(%rbp)
-	leaq	-1288(%rbp), %rdi
-	callq	_ZN5BoardD2Ev
-# %bb.6:
-	movq	-1352(%rbp), %rdi
-	callq	_Unwind_Resume@PLT
-.LBB5_7:
-	callq	__stack_chk_fail@PLT
-.Lfunc_end5:
-	.size	_Z9testPerftv, .Lfunc_end5-_Z9testPerftv
-	.cfi_endproc
-	.section	.gcc_except_table,"a",@progbits
-	.p2align	2
-GCC_except_table5:
-.Lexception2:
-	.byte	255                             # @LPStart Encoding = omit
-	.byte	255                             # @TType Encoding = omit
-	.byte	1                               # Call site Encoding = uleb128
-	.uleb128 .Lcst_end2-.Lcst_begin2
-.Lcst_begin2:
-	.uleb128 .Lfunc_begin2-.Lfunc_begin2    # >> Call Site 1 <<
-	.uleb128 .Ltmp48-.Lfunc_begin2          #   Call between .Lfunc_begin2 and .Ltmp48
-	.byte	0                               #     has no landing pad
-	.byte	0                               #   On action: cleanup
-	.uleb128 .Ltmp48-.Lfunc_begin2          # >> Call Site 2 <<
-	.uleb128 .Ltmp53-.Ltmp48                #   Call between .Ltmp48 and .Ltmp53
-	.uleb128 .Ltmp54-.Lfunc_begin2          #     jumps to .Ltmp54
-	.byte	0                               #   On action: cleanup
-	.uleb128 .Ltmp53-.Lfunc_begin2          # >> Call Site 3 <<
-	.uleb128 .Lfunc_end5-.Ltmp53            #   Call between .Ltmp53 and .Lfunc_end5
-	.byte	0                               #     has no landing pad
-	.byte	0                               #   On action: cleanup
-.Lcst_end2:
-	.p2align	2
-                                        # -- End function
-	.section	.text._ZN5perft7CounterC2Ev,"axG",@progbits,_ZN5perft7CounterC2Ev,comdat
-	.weak	_ZN5perft7CounterC2Ev           # -- Begin function _ZN5perft7CounterC2Ev
-	.p2align	4, 0x90
-	.type	_ZN5perft7CounterC2Ev,@function
-_ZN5perft7CounterC2Ev:                  # @_ZN5perft7CounterC2Ev
-	.cfi_startproc
-# %bb.0:
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset %rbp, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register %rbp
-	movq	%rdi, -8(%rbp)
-	movq	-8(%rbp), %rax
-	movq	$0, (%rax)
-	movq	$0, 8(%rax)
-	movq	$0, 16(%rax)
-	movq	$0, 24(%rax)
-	movq	$0, 32(%rax)
-	movq	$0, 40(%rax)
-	movq	$0, 48(%rax)
-	popq	%rbp
-	.cfi_def_cfa %rsp, 8
-	retq
-.Lfunc_end6:
-	.size	_ZN5perft7CounterC2Ev, .Lfunc_end6-_ZN5perft7CounterC2Ev
-	.cfi_endproc
-                                        # -- End function
-	.section	.text._ZN5perft7Counter4DumpEv,"axG",@progbits,_ZN5perft7Counter4DumpEv,comdat
-	.weak	_ZN5perft7Counter4DumpEv        # -- Begin function _ZN5perft7Counter4DumpEv
-	.p2align	4, 0x90
-	.type	_ZN5perft7Counter4DumpEv,@function
-_ZN5perft7Counter4DumpEv:               # @_ZN5perft7Counter4DumpEv
-	.cfi_startproc
-# %bb.0:
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset %rbp, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register %rbp
-	subq	$48, %rsp
-	movq	_ZSt4cout@GOTPCREL(%rip), %rax
-	movq	%rdi, -8(%rbp)
-	movq	-8(%rbp), %rcx
-	movq	%rax, %rdi
-	leaq	.L.str.22(%rip), %rsi
-	movq	%rcx, -16(%rbp)                 # 8-byte Spill
-	callq	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@PLT
-	movq	-16(%rbp), %rcx                 # 8-byte Reload
-	movq	(%rcx), %rsi
-	movq	%rax, %rdi
-	callq	_ZNSolsEm@PLT
-	movq	%rax, %rdi
-	leaq	.L.str.23(%rip), %rsi
-	callq	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@PLT
-	movq	_ZSt4cout@GOTPCREL(%rip), %rdi
-	leaq	.L.str.24(%rip), %rsi
-	movq	%rax, -24(%rbp)                 # 8-byte Spill
-	callq	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@PLT
-	movq	-16(%rbp), %rcx                 # 8-byte Reload
-	movq	8(%rcx), %rsi
-	movq	%rax, %rdi
-	callq	_ZNSolsEm@PLT
-	movq	%rax, %rdi
-	leaq	.L.str.23(%rip), %rsi
-	callq	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@PLT
-	movq	_ZSt4cout@GOTPCREL(%rip), %rdi
-	leaq	.L.str.25(%rip), %rsi
-	movq	%rax, -32(%rbp)                 # 8-byte Spill
-	callq	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@PLT
-	movq	-16(%rbp), %rcx                 # 8-byte Reload
-	movq	16(%rcx), %rsi
-	movq	%rax, %rdi
-	callq	_ZNSolsEm@PLT
-	movq	%rax, %rdi
-	leaq	.L.str.23(%rip), %rsi
-	callq	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@PLT
-	movq	_ZSt4cout@GOTPCREL(%rip), %rdi
-	movq	_ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_@GOTPCREL(%rip), %rsi
-	movq	%rax, -40(%rbp)                 # 8-byte Spill
-	callq	_ZNSolsEPFRSoS_E@PLT
-	addq	$48, %rsp
-	popq	%rbp
-	.cfi_def_cfa %rsp, 8
-	retq
-.Lfunc_end7:
-	.size	_ZN5perft7Counter4DumpEv, .Lfunc_end7-_ZN5perft7Counter4DumpEv
-	.cfi_endproc
-                                        # -- End function
-	.section	.text._ZN5BoardD2Ev,"axG",@progbits,_ZN5BoardD2Ev,comdat
-	.weak	_ZN5BoardD2Ev                   # -- Begin function _ZN5BoardD2Ev
-	.p2align	4, 0x90
-	.type	_ZN5BoardD2Ev,@function
-_ZN5BoardD2Ev:                          # @_ZN5BoardD2Ev
-	.cfi_startproc
-# %bb.0:
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset %rbp, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register %rbp
-	subq	$16, %rsp
-	movq	%rdi, -8(%rbp)
-	movq	-8(%rbp), %rax
-	addq	$1192, %rax                     # imm = 0x4A8
-	movq	%rax, %rdi
-	callq	_ZN5board10StateStackD2Ev
-	addq	$16, %rsp
-	popq	%rbp
-	.cfi_def_cfa %rsp, 8
-	retq
-.Lfunc_end8:
-	.size	_ZN5BoardD2Ev, .Lfunc_end8-_ZN5BoardD2Ev
-	.cfi_endproc
-                                        # -- End function
-	.text
 	.globl	_Z12verbose_infoRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE # -- Begin function _Z12verbose_infoRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
 	.p2align	4, 0x90
 	.type	_Z12verbose_infoRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE,@function
@@ -956,7 +750,7 @@ _Z12verbose_infoRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE: # @_Z12v
 	subq	$16, %rsp
 	movq	%rdi, -8(%rbp)
 	testb	$1, verbose(%rip)
-	je	.LBB9_2
+	je	.LBB5_2
 # %bb.1:
 	movq	_ZSt4cout@GOTPCREL(%rip), %rdi
 	leaq	.L.str.19(%rip), %rsi
@@ -967,13 +761,13 @@ _Z12verbose_infoRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE: # @_Z12v
 	movq	_ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_@GOTPCREL(%rip), %rsi
 	movq	%rax, %rdi
 	callq	_ZNSolsEPFRSoS_E@PLT
-.LBB9_2:
+.LBB5_2:
 	addq	$16, %rsp
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.Lfunc_end9:
-	.size	_Z12verbose_infoRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE, .Lfunc_end9-_Z12verbose_infoRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+.Lfunc_end5:
+	.size	_Z12verbose_infoRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE, .Lfunc_end5-_Z12verbose_infoRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
 	.cfi_endproc
                                         # -- End function
 	.globl	_Z4initv                        # -- Begin function _Z4initv
@@ -994,183 +788,255 @@ _Z4initv:                               # @_Z4initv
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.Lfunc_end10:
-	.size	_Z4initv, .Lfunc_end10-_Z4initv
+.Lfunc_end6:
+	.size	_Z4initv, .Lfunc_end6-_Z4initv
 	.cfi_endproc
                                         # -- End function
 	.globl	main                            # -- Begin function main
 	.p2align	4, 0x90
 	.type	main,@function
 main:                                   # @main
-.Lfunc_begin3:
+.Lfunc_begin2:
 	.cfi_startproc
 	.cfi_personality 155, DW.ref.__gxx_personality_v0
-	.cfi_lsda 27, .Lexception3
+	.cfi_lsda 27, .Lexception2
 # %bb.0:
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
 	.cfi_offset %rbp, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register %rbp
-	subq	$1440, %rsp                     # imm = 0x5A0
+	subq	$1456, %rsp                     # imm = 0x5B0
 	movq	%fs:40, %rax
 	movq	%rax, -8(%rbp)
-	movl	$0, -1372(%rbp)
-	leaq	-1360(%rbp), %rax
+	movl	$0, -1364(%rbp)
+	movl	%edi, -1368(%rbp)
+	movq	%rsi, -1376(%rbp)
+	movl	$1, -1380(%rbp)
+.LBB7_1:                                # =>This Inner Loop Header: Depth=1
+	movl	-1380(%rbp), %eax
+	cmpl	-1368(%rbp), %eax
+	jge	.LBB7_11
+# %bb.2:                                #   in Loop: Header=BB7_1 Depth=1
+	movq	-1376(%rbp), %rax
+	movslq	-1380(%rbp), %rcx
+	movq	(%rax,%rcx,8), %rsi
+	leaq	-1352(%rbp), %rax
 	movq	%rax, %rdi
-	movq	%rax, -1400(%rbp)               # 8-byte Spill
+	movq	%rsi, -1408(%rbp)               # 8-byte Spill
+	movq	%rax, -1416(%rbp)               # 8-byte Spill
 	callq	_ZNSaIcEC1Ev@PLT
+.Ltmp54:
+	leaq	-40(%rbp), %rdi
+	movq	-1408(%rbp), %rsi               # 8-byte Reload
+	movq	-1416(%rbp), %rdx               # 8-byte Reload
+	callq	_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEC1EPKcRKS3_@PLT
 .Ltmp55:
+	jmp	.LBB7_3
+.LBB7_3:                                #   in Loop: Header=BB7_1 Depth=1
+.Ltmp57:
 	leaq	.L.str.20(%rip), %rsi
 	leaq	-40(%rbp), %rdi
-	movq	-1400(%rbp), %rdx               # 8-byte Reload
-	callq	_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEC1EPKcRKS3_@PLT
-.Ltmp56:
-	jmp	.LBB11_1
-.LBB11_1:
+	callq	_ZSteqIcSt11char_traitsIcESaIcEEbRKNSt7__cxx1112basic_stringIT_T0_T1_EEPKS5_
 .Ltmp58:
+	movb	%al, -1417(%rbp)                # 1-byte Spill
+	jmp	.LBB7_4
+.LBB7_4:                                #   in Loop: Header=BB7_1 Depth=1
 	leaq	-40(%rbp), %rdi
-	callq	_Z12verbose_infoRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+	callq	_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEED1Ev@PLT
+	leaq	-1352(%rbp), %rdi
+	callq	_ZNSaIcED1Ev@PLT
+	movb	-1417(%rbp), %al                # 1-byte Reload
+	testb	$1, %al
+	jne	.LBB7_5
+	jmp	.LBB7_9
+.LBB7_5:
+	callq	_Z9run_testsv@PLT
+	xorl	%edi, %edi
+	callq	exit@PLT
+.LBB7_6:
+.Ltmp56:
+                                        # kill: def $edx killed $edx killed $rdx
+	movq	%rax, -1392(%rbp)
+	movl	%edx, -1396(%rbp)
+	jmp	.LBB7_8
+.LBB7_7:
 .Ltmp59:
-	jmp	.LBB11_2
-.LBB11_2:
+                                        # kill: def $edx killed $edx killed $rdx
+	movq	%rax, -1392(%rbp)
+	movl	%edx, -1396(%rbp)
 	leaq	-40(%rbp), %rdi
+	callq	_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEED1Ev@PLT
+.LBB7_8:
+	leaq	-1352(%rbp), %rdi
+	callq	_ZNSaIcED1Ev@PLT
+	jmp	.LBB7_18
+.LBB7_9:                                #   in Loop: Header=BB7_1 Depth=1
+	jmp	.LBB7_10
+.LBB7_10:                               #   in Loop: Header=BB7_1 Depth=1
+	movl	-1380(%rbp), %eax
+	addl	$1, %eax
+	movl	%eax, -1380(%rbp)
+	jmp	.LBB7_1
+.LBB7_11:
+	leaq	-1360(%rbp), %rax
+	movq	%rax, %rdi
+	movq	%rax, -1432(%rbp)               # 8-byte Spill
+	callq	_ZNSaIcEC1Ev@PLT
+.Ltmp48:
+	leaq	.L.str.21(%rip), %rsi
+	leaq	-72(%rbp), %rdi
+	movq	-1432(%rbp), %rdx               # 8-byte Reload
+	callq	_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEC1EPKcRKS3_@PLT
+.Ltmp49:
+	jmp	.LBB7_12
+.LBB7_12:
+.Ltmp51:
+	leaq	-72(%rbp), %rdi
+	callq	_Z12verbose_infoRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
+.Ltmp52:
+	jmp	.LBB7_13
+.LBB7_13:
+	leaq	-72(%rbp), %rdi
 	callq	_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEED1Ev@PLT
 	leaq	-1360(%rbp), %rdi
 	callq	_ZNSaIcED1Ev@PLT
 	callq	_Z4initv
-	leaq	-1320(%rbp), %rdi
-	callq	_ZN5BoardC1Ev@PLT
-	leaq	-1368(%rbp), %rax
+	leaq	-1344(%rbp), %rax
 	movq	%rax, %rdi
-	movq	%rax, -1408(%rbp)               # 8-byte Spill
-	callq	_ZNSaIcEC1Ev@PLT
-.Ltmp61:
-	leaq	.L.str.21(%rip), %rsi
-	leaq	-1352(%rbp), %rdi
-	movq	-1408(%rbp), %rdx               # 8-byte Reload
-	callq	_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEC1EPKcRKS3_@PLT
-.Ltmp62:
-	jmp	.LBB11_3
-.LBB11_3:
-.Ltmp64:
-	leaq	-1352(%rbp), %rdi
-	callq	_Z14squareFromNameNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE@PLT
-.Ltmp65:
-	movl	%eax, -1412(%rbp)               # 4-byte Spill
-	jmp	.LBB11_4
-.LBB11_4:
-.Ltmp66:
-	movl	-1412(%rbp), %edi               # 4-byte Reload
-	callq	_ZN9move_maps15oneFileAdjacentEi@PLT
-.Ltmp67:
-	movq	%rax, -1424(%rbp)               # 8-byte Spill
-	jmp	.LBB11_5
-.LBB11_5:
-.Ltmp68:
-	movq	-1424(%rbp), %rdi               # 8-byte Reload
-	callq	_Z6dump64m@PLT
-.Ltmp69:
-	jmp	.LBB11_6
-.LBB11_6:
-	leaq	-1352(%rbp), %rdi
-	callq	_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEED1Ev@PLT
-	leaq	-1368(%rbp), %rdi
-	callq	_ZNSaIcED1Ev@PLT
-	movl	$0, -1372(%rbp)
-	leaq	-1320(%rbp), %rdi
+	movq	%rax, -1440(%rbp)               # 8-byte Spill
+	callq	_ZN5BoardC1Ev@PLT
+	movl	$0, -1364(%rbp)
+	movq	-1440(%rbp), %rdi               # 8-byte Reload
 	callq	_ZN5BoardD2Ev
-	movl	-1372(%rbp), %eax
+	movl	-1364(%rbp), %eax
 	movq	%fs:40, %rcx
 	movq	-8(%rbp), %rdx
 	cmpq	%rdx, %rcx
-	movl	%eax, -1428(%rbp)               # 4-byte Spill
-	jne	.LBB11_15
-# %bb.7:
-	movl	-1428(%rbp), %eax               # 4-byte Reload
-	addq	$1440, %rsp                     # imm = 0x5A0
+	movl	%eax, -1444(%rbp)               # 4-byte Spill
+	jne	.LBB7_19
+# %bb.14:
+	movl	-1444(%rbp), %eax               # 4-byte Reload
+	addq	$1456, %rsp                     # imm = 0x5B0
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.LBB11_8:
+.LBB7_15:
 	.cfi_def_cfa %rbp, 16
-.Ltmp57:
+.Ltmp50:
                                         # kill: def $edx killed $edx killed $rdx
-	movq	%rax, -1384(%rbp)
-	movl	%edx, -1388(%rbp)
-	jmp	.LBB11_10
-.LBB11_9:
-.Ltmp60:
+	movq	%rax, -1392(%rbp)
+	movl	%edx, -1396(%rbp)
+	jmp	.LBB7_17
+.LBB7_16:
+.Ltmp53:
                                         # kill: def $edx killed $edx killed $rdx
-	movq	%rax, -1384(%rbp)
-	movl	%edx, -1388(%rbp)
-	leaq	-40(%rbp), %rdi
+	movq	%rax, -1392(%rbp)
+	movl	%edx, -1396(%rbp)
+	leaq	-72(%rbp), %rdi
 	callq	_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEED1Ev@PLT
-.LBB11_10:
+.LBB7_17:
 	leaq	-1360(%rbp), %rdi
 	callq	_ZNSaIcED1Ev@PLT
-	jmp	.LBB11_14
-.LBB11_11:
-.Ltmp63:
-                                        # kill: def $edx killed $edx killed $rdx
-	movq	%rax, -1384(%rbp)
-	movl	%edx, -1388(%rbp)
-	jmp	.LBB11_13
-.LBB11_12:
-.Ltmp70:
-                                        # kill: def $edx killed $edx killed $rdx
-	movq	%rax, -1384(%rbp)
-	movl	%edx, -1388(%rbp)
-	leaq	-1352(%rbp), %rdi
-	callq	_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEED1Ev@PLT
-.LBB11_13:
-	leaq	-1368(%rbp), %rdi
-	callq	_ZNSaIcED1Ev@PLT
-	leaq	-1320(%rbp), %rdi
-	callq	_ZN5BoardD2Ev
-.LBB11_14:
-	movq	-1384(%rbp), %rdi
+.LBB7_18:
+	movq	-1392(%rbp), %rdi
 	callq	_Unwind_Resume@PLT
-.LBB11_15:
+.LBB7_19:
 	callq	__stack_chk_fail@PLT
-.Lfunc_end11:
-	.size	main, .Lfunc_end11-main
+.Lfunc_end7:
+	.size	main, .Lfunc_end7-main
 	.cfi_endproc
 	.section	.gcc_except_table,"a",@progbits
 	.p2align	2
-GCC_except_table11:
-.Lexception3:
+GCC_except_table7:
+.Lexception2:
 	.byte	255                             # @LPStart Encoding = omit
 	.byte	255                             # @TType Encoding = omit
 	.byte	1                               # Call site Encoding = uleb128
-	.uleb128 .Lcst_end3-.Lcst_begin3
-.Lcst_begin3:
-	.uleb128 .Ltmp55-.Lfunc_begin3          # >> Call Site 1 <<
-	.uleb128 .Ltmp56-.Ltmp55                #   Call between .Ltmp55 and .Ltmp56
-	.uleb128 .Ltmp57-.Lfunc_begin3          #     jumps to .Ltmp57
+	.uleb128 .Lcst_end2-.Lcst_begin2
+.Lcst_begin2:
+	.uleb128 .Ltmp54-.Lfunc_begin2          # >> Call Site 1 <<
+	.uleb128 .Ltmp55-.Ltmp54                #   Call between .Ltmp54 and .Ltmp55
+	.uleb128 .Ltmp56-.Lfunc_begin2          #     jumps to .Ltmp56
 	.byte	0                               #   On action: cleanup
-	.uleb128 .Ltmp58-.Lfunc_begin3          # >> Call Site 2 <<
-	.uleb128 .Ltmp59-.Ltmp58                #   Call between .Ltmp58 and .Ltmp59
-	.uleb128 .Ltmp60-.Lfunc_begin3          #     jumps to .Ltmp60
+	.uleb128 .Ltmp57-.Lfunc_begin2          # >> Call Site 2 <<
+	.uleb128 .Ltmp58-.Ltmp57                #   Call between .Ltmp57 and .Ltmp58
+	.uleb128 .Ltmp59-.Lfunc_begin2          #     jumps to .Ltmp59
 	.byte	0                               #   On action: cleanup
-	.uleb128 .Ltmp59-.Lfunc_begin3          # >> Call Site 3 <<
-	.uleb128 .Ltmp61-.Ltmp59                #   Call between .Ltmp59 and .Ltmp61
+	.uleb128 .Ltmp58-.Lfunc_begin2          # >> Call Site 3 <<
+	.uleb128 .Ltmp48-.Ltmp58                #   Call between .Ltmp58 and .Ltmp48
 	.byte	0                               #     has no landing pad
 	.byte	0                               #   On action: cleanup
-	.uleb128 .Ltmp61-.Lfunc_begin3          # >> Call Site 4 <<
-	.uleb128 .Ltmp62-.Ltmp61                #   Call between .Ltmp61 and .Ltmp62
-	.uleb128 .Ltmp63-.Lfunc_begin3          #     jumps to .Ltmp63
+	.uleb128 .Ltmp48-.Lfunc_begin2          # >> Call Site 4 <<
+	.uleb128 .Ltmp49-.Ltmp48                #   Call between .Ltmp48 and .Ltmp49
+	.uleb128 .Ltmp50-.Lfunc_begin2          #     jumps to .Ltmp50
 	.byte	0                               #   On action: cleanup
-	.uleb128 .Ltmp64-.Lfunc_begin3          # >> Call Site 5 <<
-	.uleb128 .Ltmp69-.Ltmp64                #   Call between .Ltmp64 and .Ltmp69
-	.uleb128 .Ltmp70-.Lfunc_begin3          #     jumps to .Ltmp70
+	.uleb128 .Ltmp51-.Lfunc_begin2          # >> Call Site 5 <<
+	.uleb128 .Ltmp52-.Ltmp51                #   Call between .Ltmp51 and .Ltmp52
+	.uleb128 .Ltmp53-.Lfunc_begin2          #     jumps to .Ltmp53
 	.byte	0                               #   On action: cleanup
-	.uleb128 .Ltmp69-.Lfunc_begin3          # >> Call Site 6 <<
-	.uleb128 .Lfunc_end11-.Ltmp69           #   Call between .Ltmp69 and .Lfunc_end11
+	.uleb128 .Ltmp52-.Lfunc_begin2          # >> Call Site 6 <<
+	.uleb128 .Lfunc_end7-.Ltmp52            #   Call between .Ltmp52 and .Lfunc_end7
 	.byte	0                               #     has no landing pad
 	.byte	0                               #   On action: cleanup
-.Lcst_end3:
+.Lcst_end2:
 	.p2align	2
+                                        # -- End function
+	.section	.text._ZSteqIcSt11char_traitsIcESaIcEEbRKNSt7__cxx1112basic_stringIT_T0_T1_EEPKS5_,"axG",@progbits,_ZSteqIcSt11char_traitsIcESaIcEEbRKNSt7__cxx1112basic_stringIT_T0_T1_EEPKS5_,comdat
+	.weak	_ZSteqIcSt11char_traitsIcESaIcEEbRKNSt7__cxx1112basic_stringIT_T0_T1_EEPKS5_ # -- Begin function _ZSteqIcSt11char_traitsIcESaIcEEbRKNSt7__cxx1112basic_stringIT_T0_T1_EEPKS5_
+	.p2align	4, 0x90
+	.type	_ZSteqIcSt11char_traitsIcESaIcEEbRKNSt7__cxx1112basic_stringIT_T0_T1_EEPKS5_,@function
+_ZSteqIcSt11char_traitsIcESaIcEEbRKNSt7__cxx1112basic_stringIT_T0_T1_EEPKS5_: # @_ZSteqIcSt11char_traitsIcESaIcEEbRKNSt7__cxx1112basic_stringIT_T0_T1_EEPKS5_
+	.cfi_startproc
+# %bb.0:
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset %rbp, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register %rbp
+	subq	$16, %rsp
+	movq	%rdi, -8(%rbp)
+	movq	%rsi, -16(%rbp)
+	movq	-8(%rbp), %rdi
+	movq	-16(%rbp), %rsi
+	callq	_ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE7compareEPKc@PLT
+	cmpl	$0, %eax
+	sete	%cl
+	andb	$1, %cl
+	movzbl	%cl, %eax
+	addq	$16, %rsp
+	popq	%rbp
+	.cfi_def_cfa %rsp, 8
+	retq
+.Lfunc_end8:
+	.size	_ZSteqIcSt11char_traitsIcESaIcEEbRKNSt7__cxx1112basic_stringIT_T0_T1_EEPKS5_, .Lfunc_end8-_ZSteqIcSt11char_traitsIcESaIcEEbRKNSt7__cxx1112basic_stringIT_T0_T1_EEPKS5_
+	.cfi_endproc
+                                        # -- End function
+	.section	.text._ZN5BoardD2Ev,"axG",@progbits,_ZN5BoardD2Ev,comdat
+	.weak	_ZN5BoardD2Ev                   # -- Begin function _ZN5BoardD2Ev
+	.p2align	4, 0x90
+	.type	_ZN5BoardD2Ev,@function
+_ZN5BoardD2Ev:                          # @_ZN5BoardD2Ev
+	.cfi_startproc
+# %bb.0:
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset %rbp, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register %rbp
+	subq	$16, %rsp
+	movq	%rdi, -8(%rbp)
+	movq	-8(%rbp), %rax
+	addq	$1184, %rax                     # imm = 0x4A0
+	movq	%rax, %rdi
+	callq	_ZN5board10StateStackD2Ev
+	addq	$16, %rsp
+	popq	%rbp
+	.cfi_def_cfa %rsp, 8
+	retq
+.Lfunc_end9:
+	.size	_ZN5BoardD2Ev, .Lfunc_end9-_ZN5BoardD2Ev
+	.cfi_endproc
                                         # -- End function
 	.section	.text._ZN5board10StateStackD2Ev,"axG",@progbits,_ZN5board10StateStackD2Ev,comdat
 	.weak	_ZN5board10StateStackD2Ev       # -- Begin function _ZN5board10StateStackD2Ev
@@ -1194,8 +1060,8 @@ _ZN5board10StateStackD2Ev:              # @_ZN5board10StateStackD2Ev
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.Lfunc_end12:
-	.size	_ZN5board10StateStackD2Ev, .Lfunc_end12-_ZN5board10StateStackD2Ev
+.Lfunc_end10:
+	.size	_ZN5board10StateStackD2Ev, .Lfunc_end10-_ZN5board10StateStackD2Ev
 	.cfi_endproc
                                         # -- End function
 	.section	.text._ZNSt6vectorIN5board5StateESaIS1_EED2Ev,"axG",@progbits,_ZNSt6vectorIN5board5StateESaIS1_EED2Ev,comdat
@@ -1203,10 +1069,10 @@ _ZN5board10StateStackD2Ev:              # @_ZN5board10StateStackD2Ev
 	.p2align	4, 0x90
 	.type	_ZNSt6vectorIN5board5StateESaIS1_EED2Ev,@function
 _ZNSt6vectorIN5board5StateESaIS1_EED2Ev: # @_ZNSt6vectorIN5board5StateESaIS1_EED2Ev
-.Lfunc_begin4:
+.Lfunc_begin3:
 	.cfi_startproc
 	.cfi_personality 155, DW.ref.__gxx_personality_v0
-	.cfi_lsda 27, .Lexception4
+	.cfi_lsda 27, .Lexception3
 # %bb.0:
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -1223,14 +1089,14 @@ _ZNSt6vectorIN5board5StateESaIS1_EED2Ev: # @_ZNSt6vectorIN5board5StateESaIS1_EED
 	movq	%rax, -40(%rbp)                 # 8-byte Spill
 	movq	%rsi, -48(%rbp)                 # 8-byte Spill
 	callq	_ZNSt12_Vector_baseIN5board5StateESaIS1_EE19_M_get_Tp_allocatorEv
-.Ltmp71:
+.Ltmp60:
 	movq	-32(%rbp), %rdi                 # 8-byte Reload
 	movq	-48(%rbp), %rsi                 # 8-byte Reload
 	movq	%rax, %rdx
 	callq	_ZSt8_DestroyIPN5board5StateES1_EvT_S3_RSaIT0_E
-.Ltmp72:
-	jmp	.LBB13_1
-.LBB13_1:
+.Ltmp61:
+	jmp	.LBB11_1
+.LBB11_1:
 	movq	-40(%rbp), %rax                 # 8-byte Reload
 	movq	%rax, %rdi
 	callq	_ZNSt12_Vector_baseIN5board5StateESaIS1_EED2Ev
@@ -1238,9 +1104,9 @@ _ZNSt6vectorIN5board5StateESaIS1_EED2Ev: # @_ZNSt6vectorIN5board5StateESaIS1_EED
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.LBB13_2:
+.LBB11_2:
 	.cfi_def_cfa %rbp, 16
-.Ltmp73:
+.Ltmp62:
                                         # kill: def $edx killed $edx killed $rdx
 	movq	%rax, -16(%rbp)
 	movl	%edx, -20(%rbp)
@@ -1250,25 +1116,25 @@ _ZNSt6vectorIN5board5StateESaIS1_EED2Ev: # @_ZNSt6vectorIN5board5StateESaIS1_EED
 # %bb.3:
 	movq	-16(%rbp), %rdi
 	callq	__clang_call_terminate
-.Lfunc_end13:
-	.size	_ZNSt6vectorIN5board5StateESaIS1_EED2Ev, .Lfunc_end13-_ZNSt6vectorIN5board5StateESaIS1_EED2Ev
+.Lfunc_end11:
+	.size	_ZNSt6vectorIN5board5StateESaIS1_EED2Ev, .Lfunc_end11-_ZNSt6vectorIN5board5StateESaIS1_EED2Ev
 	.cfi_endproc
 	.section	.gcc_except_table,"a",@progbits
 	.p2align	2
-GCC_except_table13:
-.Lexception4:
+GCC_except_table11:
+.Lexception3:
 	.byte	255                             # @LPStart Encoding = omit
 	.byte	156                             # @TType Encoding = indirect pcrel sdata8
 	.uleb128 .Lttbase0-.Lttbaseref0
 .Lttbaseref0:
 	.byte	1                               # Call site Encoding = uleb128
-	.uleb128 .Lcst_end4-.Lcst_begin4
-.Lcst_begin4:
-	.uleb128 .Ltmp71-.Lfunc_begin4          # >> Call Site 1 <<
-	.uleb128 .Ltmp72-.Ltmp71                #   Call between .Ltmp71 and .Ltmp72
-	.uleb128 .Ltmp73-.Lfunc_begin4          #     jumps to .Ltmp73
+	.uleb128 .Lcst_end3-.Lcst_begin3
+.Lcst_begin3:
+	.uleb128 .Ltmp60-.Lfunc_begin3          # >> Call Site 1 <<
+	.uleb128 .Ltmp61-.Ltmp60                #   Call between .Ltmp60 and .Ltmp61
+	.uleb128 .Ltmp62-.Lfunc_begin3          #     jumps to .Ltmp62
 	.byte	1                               #   On action: 1
-.Lcst_end4:
+.Lcst_end3:
 	.byte	1                               # >> Action Record 1 <<
                                         #   Catch TypeInfo 1
 	.byte	0                               #   No further actions
@@ -1301,8 +1167,8 @@ _ZSt8_DestroyIPN5board5StateES1_EvT_S3_RSaIT0_E: # @_ZSt8_DestroyIPN5board5State
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.Lfunc_end14:
-	.size	_ZSt8_DestroyIPN5board5StateES1_EvT_S3_RSaIT0_E, .Lfunc_end14-_ZSt8_DestroyIPN5board5StateES1_EvT_S3_RSaIT0_E
+.Lfunc_end12:
+	.size	_ZSt8_DestroyIPN5board5StateES1_EvT_S3_RSaIT0_E, .Lfunc_end12-_ZSt8_DestroyIPN5board5StateES1_EvT_S3_RSaIT0_E
 	.cfi_endproc
                                         # -- End function
 	.section	.text._ZNSt12_Vector_baseIN5board5StateESaIS1_EE19_M_get_Tp_allocatorEv,"axG",@progbits,_ZNSt12_Vector_baseIN5board5StateESaIS1_EE19_M_get_Tp_allocatorEv,comdat
@@ -1322,8 +1188,8 @@ _ZNSt12_Vector_baseIN5board5StateESaIS1_EE19_M_get_Tp_allocatorEv: # @_ZNSt12_Ve
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.Lfunc_end15:
-	.size	_ZNSt12_Vector_baseIN5board5StateESaIS1_EE19_M_get_Tp_allocatorEv, .Lfunc_end15-_ZNSt12_Vector_baseIN5board5StateESaIS1_EE19_M_get_Tp_allocatorEv
+.Lfunc_end13:
+	.size	_ZNSt12_Vector_baseIN5board5StateESaIS1_EE19_M_get_Tp_allocatorEv, .Lfunc_end13-_ZNSt12_Vector_baseIN5board5StateESaIS1_EE19_M_get_Tp_allocatorEv
 	.cfi_endproc
                                         # -- End function
 	.section	.text._ZNSt12_Vector_baseIN5board5StateESaIS1_EED2Ev,"axG",@progbits,_ZNSt12_Vector_baseIN5board5StateESaIS1_EED2Ev,comdat
@@ -1331,10 +1197,10 @@ _ZNSt12_Vector_baseIN5board5StateESaIS1_EE19_M_get_Tp_allocatorEv: # @_ZNSt12_Ve
 	.p2align	4, 0x90
 	.type	_ZNSt12_Vector_baseIN5board5StateESaIS1_EED2Ev,@function
 _ZNSt12_Vector_baseIN5board5StateESaIS1_EED2Ev: # @_ZNSt12_Vector_baseIN5board5StateESaIS1_EED2Ev
-.Lfunc_begin5:
+.Lfunc_begin4:
 	.cfi_startproc
 	.cfi_personality 155, DW.ref.__gxx_personality_v0
-	.cfi_lsda 27, .Lexception5
+	.cfi_lsda 27, .Lexception4
 # %bb.0:
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -1350,23 +1216,23 @@ _ZNSt12_Vector_baseIN5board5StateESaIS1_EED2Ev: # @_ZNSt12_Vector_baseIN5board5S
 	sarq	$6, %rdx
 	movabsq	$-1085102592571150095, %rsi     # imm = 0xF0F0F0F0F0F0F0F1
 	imulq	%rsi, %rdx
-.Ltmp74:
+.Ltmp63:
 	movq	%rax, %rdi
 	movq	%rcx, %rsi
 	movq	%rax, -32(%rbp)                 # 8-byte Spill
 	callq	_ZNSt12_Vector_baseIN5board5StateESaIS1_EE13_M_deallocateEPS1_m
-.Ltmp75:
-	jmp	.LBB16_1
-.LBB16_1:
+.Ltmp64:
+	jmp	.LBB14_1
+.LBB14_1:
 	movq	-32(%rbp), %rdi                 # 8-byte Reload
 	callq	_ZNSt12_Vector_baseIN5board5StateESaIS1_EE12_Vector_implD2Ev
 	addq	$32, %rsp
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.LBB16_2:
+.LBB14_2:
 	.cfi_def_cfa %rbp, 16
-.Ltmp76:
+.Ltmp65:
                                         # kill: def $edx killed $edx killed $rdx
 	movq	%rax, -16(%rbp)
 	movl	%edx, -20(%rbp)
@@ -1375,25 +1241,25 @@ _ZNSt12_Vector_baseIN5board5StateESaIS1_EED2Ev: # @_ZNSt12_Vector_baseIN5board5S
 # %bb.3:
 	movq	-16(%rbp), %rdi
 	callq	__clang_call_terminate
-.Lfunc_end16:
-	.size	_ZNSt12_Vector_baseIN5board5StateESaIS1_EED2Ev, .Lfunc_end16-_ZNSt12_Vector_baseIN5board5StateESaIS1_EED2Ev
+.Lfunc_end14:
+	.size	_ZNSt12_Vector_baseIN5board5StateESaIS1_EED2Ev, .Lfunc_end14-_ZNSt12_Vector_baseIN5board5StateESaIS1_EED2Ev
 	.cfi_endproc
 	.section	.gcc_except_table,"a",@progbits
 	.p2align	2
-GCC_except_table16:
-.Lexception5:
+GCC_except_table14:
+.Lexception4:
 	.byte	255                             # @LPStart Encoding = omit
 	.byte	156                             # @TType Encoding = indirect pcrel sdata8
 	.uleb128 .Lttbase1-.Lttbaseref1
 .Lttbaseref1:
 	.byte	1                               # Call site Encoding = uleb128
-	.uleb128 .Lcst_end5-.Lcst_begin5
-.Lcst_begin5:
-	.uleb128 .Ltmp74-.Lfunc_begin5          # >> Call Site 1 <<
-	.uleb128 .Ltmp75-.Ltmp74                #   Call between .Ltmp74 and .Ltmp75
-	.uleb128 .Ltmp76-.Lfunc_begin5          #     jumps to .Ltmp76
+	.uleb128 .Lcst_end4-.Lcst_begin4
+.Lcst_begin4:
+	.uleb128 .Ltmp63-.Lfunc_begin4          # >> Call Site 1 <<
+	.uleb128 .Ltmp64-.Ltmp63                #   Call between .Ltmp63 and .Ltmp64
+	.uleb128 .Ltmp65-.Lfunc_begin4          #     jumps to .Ltmp65
 	.byte	1                               #   On action: 1
-.Lcst_end5:
+.Lcst_end4:
 	.byte	1                               # >> Action Record 1 <<
                                         #   Catch TypeInfo 1
 	.byte	0                               #   No further actions
@@ -1414,8 +1280,8 @@ __clang_call_terminate:                 # @__clang_call_terminate
 	callq	__cxa_begin_catch@PLT
 	movq	%rax, (%rsp)                    # 8-byte Spill
 	callq	_ZSt9terminatev@PLT
-.Lfunc_end17:
-	.size	__clang_call_terminate, .Lfunc_end17-__clang_call_terminate
+.Lfunc_end15:
+	.size	__clang_call_terminate, .Lfunc_end15-__clang_call_terminate
                                         # -- End function
 	.section	.text._ZSt8_DestroyIPN5board5StateEEvT_S3_,"axG",@progbits,_ZSt8_DestroyIPN5board5StateEEvT_S3_,comdat
 	.weak	_ZSt8_DestroyIPN5board5StateEEvT_S3_ # -- Begin function _ZSt8_DestroyIPN5board5StateEEvT_S3_
@@ -1439,8 +1305,8 @@ _ZSt8_DestroyIPN5board5StateEEvT_S3_:   # @_ZSt8_DestroyIPN5board5StateEEvT_S3_
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.Lfunc_end18:
-	.size	_ZSt8_DestroyIPN5board5StateEEvT_S3_, .Lfunc_end18-_ZSt8_DestroyIPN5board5StateEEvT_S3_
+.Lfunc_end16:
+	.size	_ZSt8_DestroyIPN5board5StateEEvT_S3_, .Lfunc_end16-_ZSt8_DestroyIPN5board5StateEEvT_S3_
 	.cfi_endproc
                                         # -- End function
 	.section	.text._ZNSt12_Destroy_auxILb1EE9__destroyIPN5board5StateEEEvT_S5_,"axG",@progbits,_ZNSt12_Destroy_auxILb1EE9__destroyIPN5board5StateEEEvT_S5_,comdat
@@ -1460,8 +1326,8 @@ _ZNSt12_Destroy_auxILb1EE9__destroyIPN5board5StateEEEvT_S5_: # @_ZNSt12_Destroy_
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.Lfunc_end19:
-	.size	_ZNSt12_Destroy_auxILb1EE9__destroyIPN5board5StateEEEvT_S5_, .Lfunc_end19-_ZNSt12_Destroy_auxILb1EE9__destroyIPN5board5StateEEEvT_S5_
+.Lfunc_end17:
+	.size	_ZNSt12_Destroy_auxILb1EE9__destroyIPN5board5StateEEEvT_S5_, .Lfunc_end17-_ZNSt12_Destroy_auxILb1EE9__destroyIPN5board5StateEEEvT_S5_
 	.cfi_endproc
                                         # -- End function
 	.section	.text._ZNSt12_Vector_baseIN5board5StateESaIS1_EE13_M_deallocateEPS1_m,"axG",@progbits,_ZNSt12_Vector_baseIN5board5StateESaIS1_EE13_M_deallocateEPS1_m,comdat
@@ -1483,20 +1349,20 @@ _ZNSt12_Vector_baseIN5board5StateESaIS1_EE13_M_deallocateEPS1_m: # @_ZNSt12_Vect
 	movq	-8(%rbp), %rax
 	cmpq	$0, -16(%rbp)
 	movq	%rax, -32(%rbp)                 # 8-byte Spill
-	je	.LBB20_2
+	je	.LBB18_2
 # %bb.1:
 	movq	-32(%rbp), %rax                 # 8-byte Reload
 	movq	-16(%rbp), %rsi
 	movq	-24(%rbp), %rdx
 	movq	%rax, %rdi
 	callq	_ZNSt16allocator_traitsISaIN5board5StateEEE10deallocateERS2_PS1_m
-.LBB20_2:
+.LBB18_2:
 	addq	$32, %rsp
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.Lfunc_end20:
-	.size	_ZNSt12_Vector_baseIN5board5StateESaIS1_EE13_M_deallocateEPS1_m, .Lfunc_end20-_ZNSt12_Vector_baseIN5board5StateESaIS1_EE13_M_deallocateEPS1_m
+.Lfunc_end18:
+	.size	_ZNSt12_Vector_baseIN5board5StateESaIS1_EE13_M_deallocateEPS1_m, .Lfunc_end18-_ZNSt12_Vector_baseIN5board5StateESaIS1_EE13_M_deallocateEPS1_m
 	.cfi_endproc
                                         # -- End function
 	.section	.text._ZNSt12_Vector_baseIN5board5StateESaIS1_EE12_Vector_implD2Ev,"axG",@progbits,_ZNSt12_Vector_baseIN5board5StateESaIS1_EE12_Vector_implD2Ev,comdat
@@ -1520,8 +1386,8 @@ _ZNSt12_Vector_baseIN5board5StateESaIS1_EE12_Vector_implD2Ev: # @_ZNSt12_Vector_
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.Lfunc_end21:
-	.size	_ZNSt12_Vector_baseIN5board5StateESaIS1_EE12_Vector_implD2Ev, .Lfunc_end21-_ZNSt12_Vector_baseIN5board5StateESaIS1_EE12_Vector_implD2Ev
+.Lfunc_end19:
+	.size	_ZNSt12_Vector_baseIN5board5StateESaIS1_EE12_Vector_implD2Ev, .Lfunc_end19-_ZNSt12_Vector_baseIN5board5StateESaIS1_EE12_Vector_implD2Ev
 	.cfi_endproc
                                         # -- End function
 	.section	.text._ZNSt16allocator_traitsISaIN5board5StateEEE10deallocateERS2_PS1_m,"axG",@progbits,_ZNSt16allocator_traitsISaIN5board5StateEEE10deallocateERS2_PS1_m,comdat
@@ -1549,8 +1415,8 @@ _ZNSt16allocator_traitsISaIN5board5StateEEE10deallocateERS2_PS1_m: # @_ZNSt16all
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.Lfunc_end22:
-	.size	_ZNSt16allocator_traitsISaIN5board5StateEEE10deallocateERS2_PS1_m, .Lfunc_end22-_ZNSt16allocator_traitsISaIN5board5StateEEE10deallocateERS2_PS1_m
+.Lfunc_end20:
+	.size	_ZNSt16allocator_traitsISaIN5board5StateEEE10deallocateERS2_PS1_m, .Lfunc_end20-_ZNSt16allocator_traitsISaIN5board5StateEEE10deallocateERS2_PS1_m
 	.cfi_endproc
                                         # -- End function
 	.section	.text._ZN9__gnu_cxx13new_allocatorIN5board5StateEE10deallocateEPS2_m,"axG",@progbits,_ZN9__gnu_cxx13new_allocatorIN5board5StateEE10deallocateEPS2_m,comdat
@@ -1576,8 +1442,8 @@ _ZN9__gnu_cxx13new_allocatorIN5board5StateEE10deallocateEPS2_m: # @_ZN9__gnu_cxx
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.Lfunc_end23:
-	.size	_ZN9__gnu_cxx13new_allocatorIN5board5StateEE10deallocateEPS2_m, .Lfunc_end23-_ZN9__gnu_cxx13new_allocatorIN5board5StateEE10deallocateEPS2_m
+.Lfunc_end21:
+	.size	_ZN9__gnu_cxx13new_allocatorIN5board5StateEE10deallocateEPS2_m, .Lfunc_end21-_ZN9__gnu_cxx13new_allocatorIN5board5StateEE10deallocateEPS2_m
 	.cfi_endproc
                                         # -- End function
 	.section	.text._ZNSaIN5board5StateEED2Ev,"axG",@progbits,_ZNSaIN5board5StateEED2Ev,comdat
@@ -1601,8 +1467,8 @@ _ZNSaIN5board5StateEED2Ev:              # @_ZNSaIN5board5StateEED2Ev
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.Lfunc_end24:
-	.size	_ZNSaIN5board5StateEED2Ev, .Lfunc_end24-_ZNSaIN5board5StateEED2Ev
+.Lfunc_end22:
+	.size	_ZNSaIN5board5StateEED2Ev, .Lfunc_end22-_ZNSaIN5board5StateEED2Ev
 	.cfi_endproc
                                         # -- End function
 	.section	.text._ZN9__gnu_cxx13new_allocatorIN5board5StateEED2Ev,"axG",@progbits,_ZN9__gnu_cxx13new_allocatorIN5board5StateEED2Ev,comdat
@@ -1621,8 +1487,8 @@ _ZN9__gnu_cxx13new_allocatorIN5board5StateEED2Ev: # @_ZN9__gnu_cxx13new_allocato
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.Lfunc_end25:
-	.size	_ZN9__gnu_cxx13new_allocatorIN5board5StateEED2Ev, .Lfunc_end25-_ZN9__gnu_cxx13new_allocatorIN5board5StateEED2Ev
+.Lfunc_end23:
+	.size	_ZN9__gnu_cxx13new_allocatorIN5board5StateEED2Ev, .Lfunc_end23-_ZN9__gnu_cxx13new_allocatorIN5board5StateEED2Ev
 	.cfi_endproc
                                         # -- End function
 	.section	.text.startup,"ax",@progbits
@@ -1642,8 +1508,8 @@ _GLOBAL__sub_I_main.cpp:                # @_GLOBAL__sub_I_main.cpp
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.Lfunc_end26:
-	.size	_GLOBAL__sub_I_main.cpp, .Lfunc_end26-_GLOBAL__sub_I_main.cpp
+.Lfunc_end24:
+	.size	_GLOBAL__sub_I_main.cpp, .Lfunc_end24-_GLOBAL__sub_I_main.cpp
 	.cfi_endproc
                                         # -- End function
 	.type	_ZStL8__ioinit,@object          # @_ZStL8__ioinit
@@ -1738,10 +1604,10 @@ _GLOBAL__sub_I_main.cpp:                # @_GLOBAL__sub_I_main.cpp
 	.size	.L.str.17, 2
 
 	.type	verbose,@object                 # @verbose
-	.data
+	.bss
 	.globl	verbose
 verbose:
-	.byte	1                               # 0x1
+	.byte	0                               # 0x0
 	.size	verbose, 1
 
 	.type	.L.str.19,@object               # @.str.19
@@ -1752,33 +1618,13 @@ verbose:
 
 	.type	.L.str.20,@object               # @.str.20
 .L.str.20:
-	.asciz	"initializing engine"
-	.size	.L.str.20, 20
+	.asciz	"--test"
+	.size	.L.str.20, 7
 
 	.type	.L.str.21,@object               # @.str.21
 .L.str.21:
-	.asciz	"e4"
-	.size	.L.str.21, 3
-
-	.type	.L.str.22,@object               # @.str.22
-.L.str.22:
-	.asciz	"Nodes visited: "
-	.size	.L.str.22, 16
-
-	.type	.L.str.23,@object               # @.str.23
-.L.str.23:
-	.asciz	"\n"
-	.size	.L.str.23, 2
-
-	.type	.L.str.24,@object               # @.str.24
-.L.str.24:
-	.asciz	"Captures: "
-	.size	.L.str.24, 11
-
-	.type	.L.str.25,@object               # @.str.25
-.L.str.25:
-	.asciz	"En passant: "
-	.size	.L.str.25, 13
+	.asciz	"initializing engine"
+	.size	.L.str.21, 20
 
 	.section	.init_array,"aw",@init_array
 	.p2align	3
@@ -1801,8 +1647,6 @@ DW.ref.__gxx_personality_v0:
 	.addrsig_sym __cxx_global_array_dtor
 	.addrsig_sym __cxx_global_var_init.9
 	.addrsig_sym __cxx_global_array_dtor.18
-	.addrsig_sym _ZN5perft5perftER5BoardiRNS_7CounterE
-	.addrsig_sym _ZN5perft7Counter4DumpEv
 	.addrsig_sym _Z12verbose_infoRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
 	.addrsig_sym _ZStlsIcSt11char_traitsIcESaIcEERSt13basic_ostreamIT_T0_ES7_RKNSt7__cxx1112basic_stringIS4_S5_T1_EE
 	.addrsig_sym _ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc
@@ -1812,10 +1656,9 @@ DW.ref.__gxx_personality_v0:
 	.addrsig_sym _Z8seedRandi
 	.addrsig_sym _Z9init_bitsv
 	.addrsig_sym _ZN9move_maps4initEv
-	.addrsig_sym _Z6dump64m
-	.addrsig_sym _ZN9move_maps15oneFileAdjacentEi
-	.addrsig_sym _Z14squareFromNameNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
-	.addrsig_sym _ZNSolsEm
+	.addrsig_sym _ZSteqIcSt11char_traitsIcESaIcEEbRKNSt7__cxx1112basic_stringIT_T0_T1_EEPKS5_
+	.addrsig_sym _Z9run_testsv
+	.addrsig_sym exit
 	.addrsig_sym _ZSt8_DestroyIPN5board5StateES1_EvT_S3_RSaIT0_E
 	.addrsig_sym _ZNSt12_Vector_baseIN5board5StateESaIS1_EE19_M_get_Tp_allocatorEv
 	.addrsig_sym __clang_call_terminate
@@ -1827,6 +1670,7 @@ DW.ref.__gxx_personality_v0:
 	.addrsig_sym _ZNSt16allocator_traitsISaIN5board5StateEEE10deallocateERS2_PS1_m
 	.addrsig_sym _ZN9__gnu_cxx13new_allocatorIN5board5StateEE10deallocateEPS2_m
 	.addrsig_sym _ZdlPv
+	.addrsig_sym _ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE7compareEPKc
 	.addrsig_sym _GLOBAL__sub_I_main.cpp
 	.addrsig_sym _Unwind_Resume
 	.addrsig_sym __stack_chk_fail

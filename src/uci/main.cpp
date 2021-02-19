@@ -4,17 +4,9 @@
 #include "game/chessboard.hpp"
 #include "uci/strings.hpp"
 #include "misc/perft.hpp"
+#include "tests/tests.hpp"
 
-bool verbose = true;
-
-// test move generator
-void testPerft()
-{
-  Board chessboard;
-  perft::Counter counter;
-  perft::perft(chessboard, 2, counter);
-  counter.Dump();
-}
+bool verbose = false;
 
 void verbose_info(const std::string &text)
 {
@@ -29,15 +21,22 @@ void init()
   move_maps::init();
 }
 
-int main()
+int main(int argc, char* argv[])
 {
+  // parse args
+  for (int i = 1; i < argc; i++) {
+    if (std::string(argv[i]) == "--test") {
+      run_tests();
+      exit(0);
+    }
+  }
+
   verbose_info("initializing engine");
   init();
 
   // testPerft();
   Board chessboard;
 
-  dump64(move_maps::oneFileAdjacent(squareFromName("e4")));
   // auto lm = chessboard.legal_moves();
   // for (int i = 0; i < lm.size(); i++) {
   //   chessboard.MakeMove(lm[i]);
@@ -49,8 +48,6 @@ int main()
   //   }
   //   chessboard.UnmakeMove();
   // }
-
-  // testPerft();
 
   return 0;
 }

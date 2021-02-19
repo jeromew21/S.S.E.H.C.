@@ -42,7 +42,7 @@ _ZN5Board20GeneratePseudoLegal_Ev:      # @_ZN5Board20GeneratePseudoLegal_Ev
 	movq	%rax, -8(%rbp)
 	movq	%rdi, -536(%rbp)
 	movq	-536(%rbp), %rax
-	movb	1228(%rax), %cl
+	movb	1220(%rax), %cl
 	xorb	$-1, %cl
 	testb	$1, %cl
 	movq	%rax, -704(%rbp)                # 8-byte Spill
@@ -63,14 +63,14 @@ _ZN5Board20GeneratePseudoLegal_Ev:      # @_ZN5Board20GeneratePseudoLegal_Ev
 	jge	.LBB1_7
 # %bb.5:                                #   in Loop: Header=BB1_4 Depth=1
 	movq	-704(%rbp), %rax                # 8-byte Reload
-	addq	$104, %rax
+	addq	$96, %rax
 	addq	$64, %rax
 	movslq	-540(%rbp), %rsi
 	movq	%rax, %rdi
 	callq	_ZNSt5arrayImLm64EEixEm
 	movq	$0, (%rax)
 	movq	-704(%rbp), %rax                # 8-byte Reload
-	addq	$104, %rax
+	addq	$96, %rax
 	addq	$576, %rax                      # imm = 0x240
 	movslq	-540(%rbp), %rsi
 	movq	%rax, %rdi
@@ -113,7 +113,7 @@ _ZN5Board20GeneratePseudoLegal_Ev:      # @_ZN5Board20GeneratePseudoLegal_Ev
 	movq	%rax, -568(%rbp)
 	movq	-568(%rbp), %rax
 	movq	-704(%rbp), %rcx                # 8-byte Reload
-	addq	$104, %rcx
+	addq	$96, %rcx
 	addq	$64, %rcx
 	movslq	-560(%rbp), %rsi
 	movq	%rcx, %rdi
@@ -154,7 +154,7 @@ _ZN5Board20GeneratePseudoLegal_Ev:      # @_ZN5Board20GeneratePseudoLegal_Ev
 	movq	%rax, -584(%rbp)
 	movq	-584(%rbp), %rax
 	movq	-704(%rbp), %rcx                # 8-byte Reload
-	addq	$104, %rcx
+	addq	$96, %rcx
 	addq	$64, %rcx
 	movslq	-576(%rbp), %rsi
 	movq	%rcx, %rdi
@@ -196,7 +196,7 @@ _ZN5Board20GeneratePseudoLegal_Ev:      # @_ZN5Board20GeneratePseudoLegal_Ev
 	movq	%rax, -600(%rbp)
 	movq	-600(%rbp), %rax
 	movq	-704(%rbp), %rcx                # 8-byte Reload
-	addq	$104, %rcx
+	addq	$96, %rcx
 	addq	$64, %rcx
 	movslq	-592(%rbp), %rsi
 	movq	%rcx, %rdi
@@ -238,7 +238,7 @@ _ZN5Board20GeneratePseudoLegal_Ev:      # @_ZN5Board20GeneratePseudoLegal_Ev
 	movq	%rax, -616(%rbp)
 	movq	-616(%rbp), %rax
 	movq	-704(%rbp), %rcx                # 8-byte Reload
-	addq	$104, %rcx
+	addq	$96, %rcx
 	addq	$64, %rcx
 	movslq	-608(%rbp), %rsi
 	movq	%rcx, %rdi
@@ -283,7 +283,7 @@ _ZN5Board20GeneratePseudoLegal_Ev:      # @_ZN5Board20GeneratePseudoLegal_Ev
 	movq	%rax, -632(%rbp)
 	movq	-632(%rbp), %rax
 	movq	-704(%rbp), %rcx                # 8-byte Reload
-	addq	$104, %rcx
+	addq	$96, %rcx
 	addq	$64, %rcx
 	movslq	-624(%rbp), %rsi
 	movq	%rcx, %rdi
@@ -328,7 +328,7 @@ _ZN5Board20GeneratePseudoLegal_Ev:      # @_ZN5Board20GeneratePseudoLegal_Ev
 	movq	%rax, -648(%rbp)
 	movq	-648(%rbp), %rax
 	movq	-704(%rbp), %rcx                # 8-byte Reload
-	addq	$104, %rcx
+	addq	$96, %rcx
 	addq	$64, %rcx
 	movslq	-640(%rbp), %rsi
 	movq	%rcx, %rdi
@@ -353,7 +353,7 @@ _ZN5Board20GeneratePseudoLegal_Ev:      # @_ZN5Board20GeneratePseudoLegal_Ev
 	callq	_Z13u64FromSquarei
 	movq	%rax, -664(%rbp)
 	movq	-704(%rbp), %rax                # 8-byte Reload
-	addq	$104, %rax
+	addq	$96, %rax
 	addq	$64, %rax
 	movslq	-652(%rbp), %rsi
 	movq	%rax, %rdi
@@ -383,7 +383,7 @@ _ZN5Board20GeneratePseudoLegal_Ev:      # @_ZN5Board20GeneratePseudoLegal_Ev
 	movl	%eax, -692(%rbp)
 	movq	-664(%rbp), %rcx
 	movq	-704(%rbp), %rdx                # 8-byte Reload
-	addq	$104, %rdx
+	addq	$96, %rdx
 	addq	$576, %rdx                      # imm = 0x240
 	movslq	-692(%rbp), %rsi
 	movq	%rdx, %rdi
@@ -406,7 +406,7 @@ _ZN5Board20GeneratePseudoLegal_Ev:      # @_ZN5Board20GeneratePseudoLegal_Ev
 	jmp	.LBB1_32
 .LBB1_39:
 	movq	-704(%rbp), %rax                # 8-byte Reload
-	movb	$1, 1228(%rax)
+	movb	$1, 1220(%rax)
 	movq	%fs:40, %rcx
 	movq	-8(%rbp), %rdx
 	cmpq	%rdx, %rcx

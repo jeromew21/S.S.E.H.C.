@@ -42,7 +42,7 @@ void Board::LoadPosition(std::string fen)
 
   // Set rights to false by default
   board::castle::Rights castling_rights(0, 0, 0, 0);
-  for (int k = 0; k < elems[2].size(); k++)
+  for (unsigned k = 0; k < elems[2].size(); k++)
   {
     char ch = elems[2][k];
     if (ch == 'K')

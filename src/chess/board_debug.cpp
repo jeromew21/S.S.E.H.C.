@@ -12,15 +12,17 @@ void Board::Dump() {
   for (int i = 1; i < state_stack_.size(); i++) {
     std::cout << moveToUCIAlgebraic(state_stack_.peek_at(i).last_move) << " ";
   }
-
-  std::cout << "is check: " << is_check() << "\n";
-  std::cout << "can castle queenside: " << state_.castling_rights.get(turn(), board::castle::long_);
-  std::cout << "can castle kingside: " << state_.castling_rights.get(turn(), board::castle::short_);
-
   if (state_stack_.size() > 0)
     std::cout << moveToUCIAlgebraic(state_.last_move);
   std::cout << "\n";
   
+  std::cout << "is check: " << is_check() << "\n";
+  std::cout << "can castle queenside: " << state_.castling_rights.get(turn(), board::castle::long_) << "\n";
+  std::cout << "can castle kingside: " << state_.castling_rights.get(turn(), board::castle::short_) << "\n";
+
+  std::cout << "en passant square: " << (state_.en_passant_square == -1 ? "none" : squareName(state_.en_passant_square)) << "\n";
+
+ 
   for (int i = 7; i >= 0; i--)
   {
     for (int k = 0; k < 8; k++)

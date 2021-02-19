@@ -18,7 +18,8 @@ MoveList<256> Board::legal_moves()
   u64List dest_arr;
   const Color curr_turn = turn();
   const u64 occ = occupancy();
-
+  const Color enemy_color = oppositeColor(curr_turn);
+  
   // find quiet moves
   for (PieceType piece_ = curr_turn; piece_ < 12; piece_ += 2)
   {
@@ -94,16 +95,16 @@ MoveList<256> Board::legal_moves()
     }
   }
 
-  const Color enemy_color = oppositeColor(curr_turn);
+  // castling moves
   if (state_.castling_rights.get(curr_turn, board::castle::long_))
   {
     assert(bitboard_[piece::get_king(curr_turn)] & king_starting_location[curr_turn]);
 
     u64 squares_between = board::castle::long_squares[curr_turn];
-    if (!(squares_between & occ) && !(attackers_to_(squares_between, enemy_color)))
+    u64 king_slide = board::castle::king_long_slide[curr_turn]; // slide should contain dest
+    if (!(squares_between & occ) && !(attackers_to_(king_slide, enemy_color)))
     {
       // in-between is empty
-      u64 king_slide = board::castle::king_long_slide[curr_turn]; // slide should contain dest
       if (!attackers_to_(king_slide, enemy_color))
       {
         mv_list.PushBack(CMove(u64ToSquare(king_starting_location[curr_turn]), u64ToSquare(board::castle::king_long_dest[curr_turn]), move_type::CastleLong));
@@ -115,10 +116,10 @@ MoveList<256> Board::legal_moves()
     assert(bitboard_[piece::get_king(curr_turn)] & king_starting_location[curr_turn]);
 
     u64 squares_between = board::castle::short_squares[curr_turn];
-    if (!(squares_between & occ) && !(attackers_to_(squares_between, enemy_color)))
+    u64 king_slide = board::castle::king_short_slide[curr_turn]; // slide should contain dest
+    if (!(squares_between & occ) && !(attackers_to_(king_slide, enemy_color)))
     {
       // in-between is empty
-      u64 king_slide = board::castle::king_short_slide[curr_turn]; // slide should contain dest
       if (!attackers_to_(king_slide, enemy_color))
       {
         mv_list.PushBack(CMove(u64ToSquare(king_starting_location[curr_turn]), u64ToSquare(board::castle::king_short_dest[curr_turn]), move_type::CastleShort));
@@ -182,6 +183,7 @@ MoveList<256> Board::capture_moves_()
             mv_list.PushBack(mv);
         }
       } // end for over possible destinations
+      
       if (piece::is_pawn(piece_))
       {
         // pawns can sometimes attack an empty square (no intersection w/ occupancy)

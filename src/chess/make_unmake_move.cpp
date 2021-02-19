@@ -132,11 +132,13 @@ void Board::MakeMove(CMove mv)
     // handle pawn double moves
     if (move_type_ == move_type::DoublePawn)
     {
+      // note to self: does the ep square get stored in FEN regardless of adjacency to a pawn?
       Square dest_square = u64ToSquare(dest);
-      // if we're adjacent
-      if (bitboard_[piece::flip(mover)] & move_maps::oneFileAdjacent(dest_square))
+      // if we're adjacent to a pawn of the opposite color
+      u64 ep_overlap = bitboard_[piece::flip(mover)] & move_maps::oneFileAdjacent(dest_square);
+      if (ep_overlap)
       {
-        // set ep square to one above the destination
+        // set ep square to one below the destination
         SetEpSquare_(u64ToSquare(move_maps::pawnMoves(dest_square, oppositeColor(curr_turn))));
       }
       else
@@ -214,7 +216,7 @@ void Board::UnmakeMove()
     // Remove piece from dest
     if (mv.is_promotion())
     {
-      RemovePiece_(mv.promoting_piece(oppositeColor(move_turn)), dest);
+      RemovePiece_(mv.promoting_piece(move_turn), dest);
     }
     else
     {

@@ -37,7 +37,7 @@ _ZN5Board8MakeMoveE5CMove:              # @_ZN5Board8MakeMoveE5CMove
 	.cfi_offset %rbp, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register %rbp
-	subq	$128, %rsp
+	subq	$144, %rsp
                                         # kill: def $si killed $si killed $esi
 	movq	%fs:40, %rax
 	movq	%rax, -8(%rbp)
@@ -52,10 +52,10 @@ _ZN5Board8MakeMoveE5CMove:              # @_ZN5Board8MakeMoveE5CMove
 	addq	$96, %rdx
 	movq	%rcx, %rdi
 	movq	%rdx, %rsi
-	movq	%rax, -112(%rbp)                # 8-byte Spill
+	movq	%rax, -120(%rbp)                # 8-byte Spill
 	callq	_ZN5board10StateStack4PushERNS_5StateE
 	movw	-16(%rbp), %r8w
-	movq	-112(%rbp), %rax                # 8-byte Reload
+	movq	-120(%rbp), %rax                # 8-byte Reload
 	movw	%r8w, 138(%rax)
 	movq	%rax, %rdi
 	callq	_ZNK5Board4turnEv@PLT
@@ -66,7 +66,7 @@ _ZN5Board8MakeMoveE5CMove:              # @_ZN5Board8MakeMoveE5CMove
 	cmpl	$0, -40(%rbp)
 	jne	.LBB1_2
 # %bb.1:
-	movq	-112(%rbp), %rax                # 8-byte Reload
+	movq	-120(%rbp), %rax                # 8-byte Reload
 	movl	108(%rax), %ecx
 	addl	$1, %ecx
 	movl	%ecx, 108(%rax)
@@ -79,14 +79,14 @@ _ZN5Board8MakeMoveE5CMove:              # @_ZN5Board8MakeMoveE5CMove
 .LBB1_2:
 	movw	-16(%rbp), %ax
 	movw	%ax, -24(%rbp)
-	movq	-112(%rbp), %rdi                # 8-byte Reload
+	movq	-120(%rbp), %rdi                # 8-byte Reload
 	movzwl	-24(%rbp), %esi
 	callq	_ZN5Board16is_checking_moveE5CMove@PLT
 	testb	$1, %al
 	jne	.LBB1_3
 	jmp	.LBB1_4
 .LBB1_3:
-	movq	-112(%rbp), %rax                # 8-byte Reload
+	movq	-120(%rbp), %rax                # 8-byte Reload
 	movb	$1, 136(%rax)
 .LBB1_4:
 	leaq	-16(%rbp), %rdi
@@ -96,11 +96,11 @@ _ZN5Board8MakeMoveE5CMove:              # @_ZN5Board8MakeMoveE5CMove
 	callq	_ZNK5CMove4destEv
 	movq	%rax, -56(%rbp)
 	movq	-48(%rbp), %rsi
-	movq	-112(%rbp), %rdi                # 8-byte Reload
+	movq	-120(%rbp), %rdi                # 8-byte Reload
 	callq	_ZNK5Board9piece_at_Em@PLT
 	movl	%eax, -60(%rbp)
 	movq	-56(%rbp), %rsi
-	movq	-112(%rbp), %rdi                # 8-byte Reload
+	movq	-120(%rbp), %rdi                # 8-byte Reload
 	callq	_ZNK5Board9piece_at_Em@PLT
 	movl	%eax, -64(%rbp)
 	movl	-60(%rbp), %edi
@@ -114,22 +114,22 @@ _ZN5Board8MakeMoveE5CMove:              # @_ZN5Board8MakeMoveE5CMove
 	jne	.LBB1_6
 	jmp	.LBB1_7
 .LBB1_6:
-	movq	-112(%rbp), %rax                # 8-byte Reload
+	movq	-120(%rbp), %rax                # 8-byte Reload
 	movl	$0, 108(%rax)
 	movb	$0, 137(%rax)
 	jmp	.LBB1_8
 .LBB1_7:
-	movq	-112(%rbp), %rax                # 8-byte Reload
+	movq	-120(%rbp), %rax                # 8-byte Reload
 	movl	108(%rax), %ecx
 	addl	$1, %ecx
 	movl	%ecx, 108(%rax)
 .LBB1_8:
 	movl	-60(%rbp), %esi
 	movq	-48(%rbp), %rdx
-	movq	-112(%rbp), %rdi                # 8-byte Reload
+	movq	-120(%rbp), %rdi                # 8-byte Reload
 	callq	_ZN5Board12RemovePiece_Eim@PLT
 	movl	-60(%rbp), %eax
-	movq	-112(%rbp), %rcx                # 8-byte Reload
+	movq	-120(%rbp), %rcx                # 8-byte Reload
 	movl	%eax, 116(%rcx)
 	cmpl	$5, -40(%rbp)
 	jne	.LBB1_10
@@ -148,10 +148,10 @@ _ZN5Board8MakeMoveE5CMove:              # @_ZN5Board8MakeMoveE5CMove
 	movq	%rax, -80(%rbp)
 	movl	-72(%rbp), %esi
 	movq	-80(%rbp), %rdx
-	movq	-112(%rbp), %rdi                # 8-byte Reload
+	movq	-120(%rbp), %rdi                # 8-byte Reload
 	callq	_ZN5Board12RemovePiece_Eim@PLT
 	movl	-72(%rbp), %ecx
-	movq	-112(%rbp), %rax                # 8-byte Reload
+	movq	-120(%rbp), %rax                # 8-byte Reload
 	movl	%ecx, 120(%rax)
 	jmp	.LBB1_14
 .LBB1_10:
@@ -161,16 +161,16 @@ _ZN5Board8MakeMoveE5CMove:              # @_ZN5Board8MakeMoveE5CMove
 	jne	.LBB1_11
 	jmp	.LBB1_12
 .LBB1_11:
-	movq	-112(%rbp), %rax                # 8-byte Reload
+	movq	-120(%rbp), %rax                # 8-byte Reload
 	movl	$-1, 120(%rax)
 	jmp	.LBB1_13
 .LBB1_12:
 	movl	-64(%rbp), %esi
 	movq	-56(%rbp), %rdx
-	movq	-112(%rbp), %rdi                # 8-byte Reload
+	movq	-120(%rbp), %rdi                # 8-byte Reload
 	callq	_ZN5Board12RemovePiece_Eim@PLT
 	movl	-64(%rbp), %eax
-	movq	-112(%rbp), %rcx                # 8-byte Reload
+	movq	-120(%rbp), %rcx                # 8-byte Reload
 	movl	%eax, 120(%rcx)
 .LBB1_13:
 	jmp	.LBB1_14
@@ -185,14 +185,14 @@ _ZN5Board8MakeMoveE5CMove:              # @_ZN5Board8MakeMoveE5CMove
 	leaq	-16(%rbp), %rdi
 	callq	_ZNK5CMove15promoting_pieceEi
 	movq	-56(%rbp), %rdx
-	movq	-112(%rbp), %rdi                # 8-byte Reload
+	movq	-120(%rbp), %rdi                # 8-byte Reload
 	movl	%eax, %esi
 	callq	_ZN5Board9AddPiece_Eim@PLT
 	jmp	.LBB1_17
 .LBB1_16:
 	movl	-60(%rbp), %esi
 	movq	-56(%rbp), %rdx
-	movq	-112(%rbp), %rdi                # 8-byte Reload
+	movq	-120(%rbp), %rdi                # 8-byte Reload
 	callq	_ZN5Board9AddPiece_Eim@PLT
 .LBB1_17:
 	cmpl	$9, -40(%rbp)
@@ -203,15 +203,15 @@ _ZN5Board8MakeMoveE5CMove:              # @_ZN5Board8MakeMoveE5CMove
 	movl	%eax, -84(%rbp)
 	movl	-84(%rbp), %esi
 	movslq	-36(%rbp), %rcx
-	movq	-112(%rbp), %rdx                # 8-byte Reload
+	movq	-120(%rbp), %rdx                # 8-byte Reload
 	movq	1240(%rdx,%rcx,8), %rdx
-	movq	-112(%rbp), %rdi                # 8-byte Reload
+	movq	-120(%rbp), %rdi                # 8-byte Reload
 	callq	_ZN5Board12RemovePiece_Eim@PLT
 	movl	-84(%rbp), %esi
 	movslq	-36(%rbp), %rcx
 	leaq	_ZN5board6castleL14rook_long_destE(%rip), %rdx
 	movq	(%rdx,%rcx,8), %rdx
-	movq	-112(%rbp), %rdi                # 8-byte Reload
+	movq	-120(%rbp), %rdi                # 8-byte Reload
 	callq	_ZN5Board9AddPiece_Eim@PLT
 	jmp	.LBB1_22
 .LBB1_19:
@@ -223,15 +223,15 @@ _ZN5Board8MakeMoveE5CMove:              # @_ZN5Board8MakeMoveE5CMove
 	movl	%eax, -88(%rbp)
 	movl	-88(%rbp), %esi
 	movslq	-36(%rbp), %rcx
-	movq	-112(%rbp), %rdx                # 8-byte Reload
+	movq	-120(%rbp), %rdx                # 8-byte Reload
 	movq	1256(%rdx,%rcx,8), %rdx
-	movq	-112(%rbp), %rdi                # 8-byte Reload
+	movq	-120(%rbp), %rdi                # 8-byte Reload
 	callq	_ZN5Board12RemovePiece_Eim@PLT
 	movl	-88(%rbp), %esi
 	movslq	-36(%rbp), %rcx
 	leaq	_ZN5board6castleL15rook_short_destE(%rip), %rdx
 	movq	(%rdx,%rcx,8), %rdx
-	movq	-112(%rbp), %rdi                # 8-byte Reload
+	movq	-120(%rbp), %rdi                # 8-byte Reload
 	callq	_ZN5Board9AddPiece_Eim@PLT
 .LBB1_21:
 	jmp	.LBB1_22
@@ -244,13 +244,13 @@ _ZN5Board8MakeMoveE5CMove:              # @_ZN5Board8MakeMoveE5CMove
 .LBB1_23:
 	xorl	%eax, %eax
 	movl	-36(%rbp), %esi
-	movq	-112(%rbp), %rdi                # 8-byte Reload
+	movq	-120(%rbp), %rdi                # 8-byte Reload
 	movl	%eax, %edx
 	movl	%eax, %ecx
 	callq	_ZN5Board18SetCastlingRights_Eiii@PLT
 	xorl	%ecx, %ecx
 	movl	-36(%rbp), %esi
-	movq	-112(%rbp), %rdi                # 8-byte Reload
+	movq	-120(%rbp), %rdi                # 8-byte Reload
 	movl	$2, %edx
 	callq	_ZN5Board18SetCastlingRights_Eiii@PLT
 .LBB1_24:
@@ -269,13 +269,13 @@ _ZN5Board8MakeMoveE5CMove:              # @_ZN5Board8MakeMoveE5CMove
 	orq	-56(%rbp), %rax
 	movq	%rax, -96(%rbp)
 	movq	-96(%rbp), %rax
-	movq	-112(%rbp), %rcx                # 8-byte Reload
+	movq	-120(%rbp), %rcx                # 8-byte Reload
 	andq	1240(%rcx), %rax
 	cmpq	$0, %rax
 	je	.LBB1_28
 # %bb.27:
 	xorl	%eax, %eax
-	movq	-112(%rbp), %rdi                # 8-byte Reload
+	movq	-120(%rbp), %rdi                # 8-byte Reload
 	movl	%eax, %esi
 	movl	%eax, %edx
 	movl	%eax, %ecx
@@ -283,13 +283,13 @@ _ZN5Board8MakeMoveE5CMove:              # @_ZN5Board8MakeMoveE5CMove
 	jmp	.LBB1_37
 .LBB1_28:
 	movq	-96(%rbp), %rax
-	movq	-112(%rbp), %rcx                # 8-byte Reload
+	movq	-120(%rbp), %rcx                # 8-byte Reload
 	andq	1256(%rcx), %rax
 	cmpq	$0, %rax
 	je	.LBB1_30
 # %bb.29:
 	xorl	%eax, %eax
-	movq	-112(%rbp), %rdi                # 8-byte Reload
+	movq	-120(%rbp), %rdi                # 8-byte Reload
 	movl	%eax, %esi
 	movl	$2, %edx
 	movl	%eax, %ecx
@@ -297,13 +297,13 @@ _ZN5Board8MakeMoveE5CMove:              # @_ZN5Board8MakeMoveE5CMove
 	jmp	.LBB1_36
 .LBB1_30:
 	movq	-96(%rbp), %rax
-	movq	-112(%rbp), %rcx                # 8-byte Reload
+	movq	-120(%rbp), %rcx                # 8-byte Reload
 	andq	1248(%rcx), %rax
 	cmpq	$0, %rax
 	je	.LBB1_32
 # %bb.31:
 	xorl	%eax, %eax
-	movq	-112(%rbp), %rdi                # 8-byte Reload
+	movq	-120(%rbp), %rdi                # 8-byte Reload
 	movl	$1, %esi
 	movl	%eax, %edx
 	movl	%eax, %ecx
@@ -311,13 +311,13 @@ _ZN5Board8MakeMoveE5CMove:              # @_ZN5Board8MakeMoveE5CMove
 	jmp	.LBB1_35
 .LBB1_32:
 	movq	-96(%rbp), %rax
-	movq	-112(%rbp), %rcx                # 8-byte Reload
+	movq	-120(%rbp), %rcx                # 8-byte Reload
 	andq	1264(%rcx), %rax
 	cmpq	$0, %rax
 	je	.LBB1_34
 # %bb.33:
 	xorl	%ecx, %ecx
-	movq	-112(%rbp), %rdi                # 8-byte Reload
+	movq	-120(%rbp), %rdi                # 8-byte Reload
 	movl	$1, %esi
 	movl	$2, %edx
 	callq	_ZN5Board18SetCastlingRights_Eiii@PLT
@@ -339,50 +339,51 @@ _ZN5Board8MakeMoveE5CMove:              # @_ZN5Board8MakeMoveE5CMove
 	movl	-60(%rbp), %edi
 	callq	_ZN5piece4flipEi
 	movslq	%eax, %rcx
-	movq	-112(%rbp), %rdx                # 8-byte Reload
+	movq	-120(%rbp), %rdx                # 8-byte Reload
 	movq	(%rdx,%rcx,8), %rcx
 	movl	-100(%rbp), %edi
-	movq	%rcx, -120(%rbp)                # 8-byte Spill
+	movq	%rcx, -128(%rbp)                # 8-byte Spill
 	callq	_ZN9move_maps15oneFileAdjacentEi@PLT
-	movq	-120(%rbp), %rcx                # 8-byte Reload
+	movq	-128(%rbp), %rcx                # 8-byte Reload
 	andq	%rax, %rcx
-	cmpq	$0, %rcx
+	movq	%rcx, -112(%rbp)
+	cmpq	$0, -112(%rbp)
 	je	.LBB1_41
 # %bb.40:
 	movl	-100(%rbp), %edi
 	movl	-36(%rbp), %eax
-	movl	%edi, -124(%rbp)                # 4-byte Spill
+	movl	%edi, -132(%rbp)                # 4-byte Spill
 	movl	%eax, %edi
 	callq	_Z13oppositeColori
-	movl	-124(%rbp), %edi                # 4-byte Reload
+	movl	-132(%rbp), %edi                # 4-byte Reload
 	movl	%eax, %esi
 	callq	_ZN9move_maps9pawnMovesEii@PLT
 	movq	%rax, %rdi
 	callq	_Z11u64ToSquarem
-	movq	-112(%rbp), %rdi                # 8-byte Reload
+	movq	-120(%rbp), %rdi                # 8-byte Reload
 	movl	%eax, %esi
 	callq	_ZN5Board12SetEpSquare_Ei@PLT
 	jmp	.LBB1_42
 .LBB1_41:
-	movq	-112(%rbp), %rdi                # 8-byte Reload
+	movq	-120(%rbp), %rdi                # 8-byte Reload
 	movl	$4294967295, %esi               # imm = 0xFFFFFFFF
 	callq	_ZN5Board12SetEpSquare_Ei@PLT
 .LBB1_42:
 	jmp	.LBB1_44
 .LBB1_43:
-	movq	-112(%rbp), %rdi                # 8-byte Reload
+	movq	-120(%rbp), %rdi                # 8-byte Reload
 	movl	$4294967295, %esi               # imm = 0xFFFFFFFF
 	callq	_ZN5Board12SetEpSquare_Ei@PLT
 .LBB1_44:
 	jmp	.LBB1_45
 .LBB1_45:
-	movq	-112(%rbp), %rax                # 8-byte Reload
+	movq	-120(%rbp), %rax                # 8-byte Reload
 	movl	96(%rax), %ecx
 	addl	$1, %ecx
 	movl	%ecx, 96(%rax)
 	movl	-36(%rbp), %edi
 	callq	_Z13oppositeColori
-	movq	-112(%rbp), %rdi                # 8-byte Reload
+	movq	-120(%rbp), %rdi                # 8-byte Reload
 	movl	%eax, %esi
 	callq	_ZN5Board8SetTurn_Ei@PLT
 	movq	%fs:40, %rdx
@@ -390,7 +391,7 @@ _ZN5Board8MakeMoveE5CMove:              # @_ZN5Board8MakeMoveE5CMove
 	cmpq	%rdi, %rdx
 	jne	.LBB1_47
 # %bb.46:
-	addq	$128, %rsp
+	addq	$144, %rsp
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
@@ -892,7 +893,7 @@ _ZN5Board10UnmakeMoveEv:                # @_ZN5Board10UnmakeMoveEv
 .LBB17_2:
 	leaq	.L.str(%rip), %rdi
 	leaq	.L.str.1(%rip), %rsi
-	movl	$182, %edx
+	movl	$184, %edx
 	leaq	.L__PRETTY_FUNCTION__._ZN5Board10UnmakeMoveEv(%rip), %rcx
 	callq	__assert_fail@PLT
 .LBB17_3:
@@ -978,10 +979,8 @@ _ZN5Board10UnmakeMoveEv:                # @_ZN5Board10UnmakeMoveEv
 	jne	.LBB17_10
 	jmp	.LBB17_11
 .LBB17_10:
-	movl	-64(%rbp), %edi
-	callq	_Z13oppositeColori
+	movl	-64(%rbp), %esi
 	leaq	-16(%rbp), %rdi
-	movl	%eax, %esi
 	callq	_ZNK5CMove15promoting_pieceEi
 	movq	-56(%rbp), %rdx
 	movq	-96(%rbp), %rdi                 # 8-byte Reload

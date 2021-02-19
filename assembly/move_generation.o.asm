@@ -37,78 +37,81 @@ _ZN5Board11legal_movesEv:               # @_ZN5Board11legal_movesEv
 	.cfi_offset %rbp, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register %rbp
-	subq	$1904, %rsp                     # imm = 0x770
+	subq	$1888, %rsp                     # imm = 0x760
 	movq	%rdi, %rax
 	movq	%fs:40, %rcx
 	movq	%rcx, -8(%rbp)
 	movq	%rsi, -1736(%rbp)
 	movq	-1736(%rbp), %rcx
 	testb	$1, 1220(%rcx)
-	movq	%rdi, -1832(%rbp)               # 8-byte Spill
-	movq	%rax, -1840(%rbp)               # 8-byte Spill
-	movq	%rcx, -1848(%rbp)               # 8-byte Spill
+	movq	%rdi, -1824(%rbp)               # 8-byte Spill
+	movq	%rax, -1832(%rbp)               # 8-byte Spill
+	movq	%rcx, -1840(%rbp)               # 8-byte Spill
 	jne	.LBB1_2
 # %bb.1:
-	movq	-1848(%rbp), %rdi               # 8-byte Reload
+	movq	-1840(%rbp), %rdi               # 8-byte Reload
 	callq	_ZN5Board20GeneratePseudoLegal_Ev@PLT
 .LBB1_2:
-	movq	-1848(%rbp), %rdi               # 8-byte Reload
+	movq	-1840(%rbp), %rdi               # 8-byte Reload
 	callq	_ZNK5Board8is_checkEv@PLT
 	testb	$1, %al
 	jne	.LBB1_3
 	jmp	.LBB1_4
 .LBB1_3:
-	movq	-1832(%rbp), %rdi               # 8-byte Reload
-	movq	-1848(%rbp), %rsi               # 8-byte Reload
+	movq	-1824(%rbp), %rdi               # 8-byte Reload
+	movq	-1840(%rbp), %rsi               # 8-byte Reload
 	callq	_ZN5Board22produce_uncheck_moves_Ev@PLT
 	jmp	.LBB1_61
 .LBB1_4:
 	leaq	-528(%rbp), %rdi
-	movq	-1848(%rbp), %rsi               # 8-byte Reload
+	movq	-1840(%rbp), %rsi               # 8-byte Reload
 	callq	_ZN5Board14capture_moves_Ev
 	leaq	-1048(%rbp), %rdi
 	callq	_ZN7u64ListC2Ev
 	leaq	-1568(%rbp), %rdi
 	callq	_ZN7u64ListC2Ev
-	movq	-1848(%rbp), %rdi               # 8-byte Reload
+	movq	-1840(%rbp), %rdi               # 8-byte Reload
 	callq	_ZNK5Board4turnEv@PLT
 	movl	%eax, -1740(%rbp)
-	movq	-1848(%rbp), %rdi               # 8-byte Reload
+	movq	-1840(%rbp), %rdi               # 8-byte Reload
 	callq	_ZNK5Board9occupancyEv@PLT
 	movq	%rax, -1752(%rbp)
-	movl	-1740(%rbp), %ecx
-	movl	%ecx, -1756(%rbp)
+	movl	-1740(%rbp), %edi
+	callq	_Z13oppositeColori
+	movl	%eax, -1756(%rbp)
+	movl	-1740(%rbp), %eax
+	movl	%eax, -1760(%rbp)
 .LBB1_5:                                # =>This Loop Header: Depth=1
                                         #     Child Loop BB1_7 Depth 2
                                         #       Child Loop BB1_16 Depth 3
-	cmpl	$12, -1756(%rbp)
+	cmpl	$12, -1760(%rbp)
 	jge	.LBB1_40
 # %bb.6:                                #   in Loop: Header=BB1_5 Depth=1
-	movslq	-1756(%rbp), %rax
-	movq	-1848(%rbp), %rcx               # 8-byte Reload
+	movslq	-1760(%rbp), %rax
+	movq	-1840(%rbp), %rcx               # 8-byte Reload
 	movq	(%rcx,%rax,8), %rdi
 	leaq	-1048(%rbp), %rsi
 	callq	_Z10bitscanAllmR7u64List@PLT
-	movl	$0, -1760(%rbp)
+	movl	$0, -1764(%rbp)
 .LBB1_7:                                #   Parent Loop BB1_5 Depth=1
                                         # =>  This Loop Header: Depth=2
                                         #       Child Loop BB1_16 Depth 3
-	movl	-1760(%rbp), %eax
+	movl	-1764(%rbp), %eax
 	leaq	-1048(%rbp), %rdi
-	movl	%eax, -1852(%rbp)               # 4-byte Spill
+	movl	%eax, -1844(%rbp)               # 4-byte Spill
 	callq	_ZNK7u64List3lenEv
-	movl	-1852(%rbp), %ecx               # 4-byte Reload
+	movl	-1844(%rbp), %ecx               # 4-byte Reload
 	cmpl	%eax, %ecx
 	jge	.LBB1_38
 # %bb.8:                                #   in Loop: Header=BB1_7 Depth=2
-	movl	-1760(%rbp), %esi
+	movl	-1764(%rbp), %esi
 	leaq	-1048(%rbp), %rdi
 	callq	_ZNK7u64ListixEi
 	movq	%rax, %rdi
 	callq	_Z11u64ToSquarem
-	movl	%eax, -1764(%rbp)
+	movl	%eax, -1768(%rbp)
 	movq	$0, -1776(%rbp)
-	movl	-1756(%rbp), %edi
+	movl	-1760(%rbp), %edi
 	callq	_ZN5piece7is_pawnEi
 	testb	$1, %al
 	jne	.LBB1_9
@@ -116,14 +119,14 @@ _ZN5Board11legal_movesEv:               # @_ZN5Board11legal_movesEv
 .LBB1_9:                                #   in Loop: Header=BB1_7 Depth=2
 	movq	-1752(%rbp), %rax
 	xorq	$-1, %rax
-	movl	-1764(%rbp), %edi
+	movl	-1768(%rbp), %edi
 	movl	-1740(%rbp), %esi
-	movq	%rax, -1864(%rbp)               # 8-byte Spill
+	movq	%rax, -1856(%rbp)               # 8-byte Spill
 	callq	_ZN9move_maps9pawnMovesEii@PLT
-	movq	-1864(%rbp), %rcx               # 8-byte Reload
+	movq	-1856(%rbp), %rcx               # 8-byte Reload
 	andq	%rax, %rcx
 	movq	%rcx, -1776(%rbp)
-	movl	-1764(%rbp), %edi
+	movl	-1768(%rbp), %edi
 	movl	-1740(%rbp), %esi
 	callq	_ZN9move_maps14isStartingRankEii@PLT
 	testb	$1, %al
@@ -135,11 +138,11 @@ _ZN5Board11legal_movesEv:               # @_ZN5Board11legal_movesEv
 # %bb.11:                               #   in Loop: Header=BB1_7 Depth=2
 	movq	-1752(%rbp), %rax
 	xorq	$-1, %rax
-	movl	-1764(%rbp), %edi
+	movl	-1768(%rbp), %edi
 	movl	-1740(%rbp), %esi
-	movq	%rax, -1872(%rbp)               # 8-byte Spill
+	movq	%rax, -1864(%rbp)               # 8-byte Spill
 	callq	_ZN9move_maps15pawnDoubleMovesEii@PLT
-	movq	-1872(%rbp), %rcx               # 8-byte Reload
+	movq	-1864(%rbp), %rcx               # 8-byte Reload
 	andq	%rax, %rcx
 	orq	-1776(%rbp), %rcx
 	movq	%rcx, -1776(%rbp)
@@ -150,14 +153,14 @@ _ZN5Board11legal_movesEv:               # @_ZN5Board11legal_movesEv
 .LBB1_14:                               #   in Loop: Header=BB1_7 Depth=2
 	movq	-1752(%rbp), %rax
 	xorq	$-1, %rax
-	movq	-1848(%rbp), %rcx               # 8-byte Reload
+	movq	-1840(%rbp), %rcx               # 8-byte Reload
 	addq	$96, %rcx
 	addq	$64, %rcx
-	movslq	-1764(%rbp), %rsi
+	movslq	-1768(%rbp), %rsi
 	movq	%rcx, %rdi
-	movq	%rax, -1880(%rbp)               # 8-byte Spill
+	movq	%rax, -1872(%rbp)               # 8-byte Spill
 	callq	_ZNSt5arrayImLm64EEixEm
-	movq	-1880(%rbp), %rcx               # 8-byte Reload
+	movq	-1872(%rbp), %rcx               # 8-byte Reload
 	andq	(%rax), %rcx
 	movq	%rcx, -1776(%rbp)
 .LBB1_15:                               #   in Loop: Header=BB1_7 Depth=2
@@ -170,9 +173,9 @@ _ZN5Board11legal_movesEv:               # @_ZN5Board11legal_movesEv
                                         # =>    This Inner Loop Header: Depth=3
 	movl	-1780(%rbp), %eax
 	leaq	-1568(%rbp), %rdi
-	movl	%eax, -1884(%rbp)               # 4-byte Spill
+	movl	%eax, -1876(%rbp)               # 4-byte Spill
 	callq	_ZNK7u64List3lenEv
-	movl	-1884(%rbp), %ecx               # 4-byte Reload
+	movl	-1876(%rbp), %ecx               # 4-byte Reload
 	cmpl	%eax, %ecx
 	jge	.LBB1_36
 # %bb.17:                               #   in Loop: Header=BB1_16 Depth=3
@@ -182,32 +185,32 @@ _ZN5Board11legal_movesEv:               # @_ZN5Board11legal_movesEv
 	movq	%rax, %rdi
 	callq	_Z11u64ToSquarem
 	movl	%eax, -1784(%rbp)
-	movl	-1756(%rbp), %edi
+	movl	-1760(%rbp), %edi
 	callq	_ZN5piece7is_pawnEi
 	testb	$1, %al
 	jne	.LBB1_18
 	jmp	.LBB1_31
 .LBB1_18:                               #   in Loop: Header=BB1_16 Depth=3
-	movl	-1764(%rbp), %edi
+	movl	-1768(%rbp), %edi
 	callq	_Z11squareToRowi
 	movl	-1784(%rbp), %edi
-	movl	%eax, -1888(%rbp)               # 4-byte Spill
+	movl	%eax, -1880(%rbp)               # 4-byte Spill
 	callq	_Z11squareToRowi
-	movl	-1888(%rbp), %ecx               # 4-byte Reload
+	movl	-1880(%rbp), %ecx               # 4-byte Reload
 	subl	%eax, %ecx
 	movl	%ecx, %edi
 	callq	abs@PLT
 	cmpl	$2, %eax
 	jne	.LBB1_22
 # %bb.19:                               #   in Loop: Header=BB1_16 Depth=3
-	movl	-1764(%rbp), %esi
+	movl	-1768(%rbp), %esi
 	movl	-1784(%rbp), %edx
 	leaq	-1576(%rbp), %rdi
 	movl	$7, %ecx
 	callq	_ZN5CMoveC2Eiii
 	movw	-1576(%rbp), %ax
 	movw	%ax, -1584(%rbp)
-	movq	-1848(%rbp), %rdi               # 8-byte Reload
+	movq	-1840(%rbp), %rdi               # 8-byte Reload
 	movzwl	-1584(%rbp), %esi
 	callq	_ZN5Board19verify_move_safety_E5CMove@PLT
 	testb	$1, %al
@@ -229,29 +232,29 @@ _ZN5Board11legal_movesEv:               # @_ZN5Board11legal_movesEv
 	jne	.LBB1_23
 	jmp	.LBB1_26
 .LBB1_23:                               #   in Loop: Header=BB1_16 Depth=3
-	movl	-1764(%rbp), %esi
+	movl	-1768(%rbp), %esi
 	movl	-1784(%rbp), %edx
 	leaq	-1600(%rbp), %rdi
 	movl	$8, %ecx
 	callq	_ZN5CMoveC2Eiii
-	movl	-1764(%rbp), %esi
+	movl	-1768(%rbp), %esi
 	movl	-1784(%rbp), %edx
 	leaq	-1608(%rbp), %rdi
 	movl	$6, %ecx
 	callq	_ZN5CMoveC2Eiii
-	movl	-1764(%rbp), %esi
+	movl	-1768(%rbp), %esi
 	movl	-1784(%rbp), %edx
 	leaq	-1616(%rbp), %rdi
 	movl	$4, %ecx
 	callq	_ZN5CMoveC2Eiii
-	movl	-1764(%rbp), %esi
+	movl	-1768(%rbp), %esi
 	movl	-1784(%rbp), %edx
 	leaq	-1624(%rbp), %rdi
 	movl	$2, %ecx
 	callq	_ZN5CMoveC2Eiii
 	movw	-1600(%rbp), %ax
 	movw	%ax, -1632(%rbp)
-	movq	-1848(%rbp), %rdi               # 8-byte Reload
+	movq	-1840(%rbp), %rdi               # 8-byte Reload
 	movzwl	-1632(%rbp), %esi
 	callq	_ZN5Board19verify_move_safety_E5CMove@PLT
 	testb	$1, %al
@@ -281,14 +284,14 @@ _ZN5Board11legal_movesEv:               # @_ZN5Board11legal_movesEv
 .LBB1_25:                               #   in Loop: Header=BB1_16 Depth=3
 	jmp	.LBB1_29
 .LBB1_26:                               #   in Loop: Header=BB1_16 Depth=3
-	movl	-1764(%rbp), %esi
+	movl	-1768(%rbp), %esi
 	movl	-1784(%rbp), %edx
 	leaq	-1672(%rbp), %rdi
 	movl	$1, %ecx
 	callq	_ZN5CMoveC2Eiii
 	movw	-1672(%rbp), %ax
 	movw	%ax, -1680(%rbp)
-	movq	-1848(%rbp), %rdi               # 8-byte Reload
+	movq	-1840(%rbp), %rdi               # 8-byte Reload
 	movzwl	-1680(%rbp), %esi
 	callq	_ZN5Board19verify_move_safety_E5CMove@PLT
 	testb	$1, %al
@@ -307,14 +310,14 @@ _ZN5Board11legal_movesEv:               # @_ZN5Board11legal_movesEv
 .LBB1_30:                               #   in Loop: Header=BB1_16 Depth=3
 	jmp	.LBB1_34
 .LBB1_31:                               #   in Loop: Header=BB1_16 Depth=3
-	movl	-1764(%rbp), %esi
+	movl	-1768(%rbp), %esi
 	movl	-1784(%rbp), %edx
 	leaq	-1696(%rbp), %rdi
 	movl	$1, %ecx
 	callq	_ZN5CMoveC2Eiii
 	movw	-1696(%rbp), %ax
 	movw	%ax, -1704(%rbp)
-	movq	-1848(%rbp), %rdi               # 8-byte Reload
+	movq	-1840(%rbp), %rdi               # 8-byte Reload
 	movzwl	-1704(%rbp), %esi
 	callq	_ZN5Board19verify_move_safety_E5CMove@PLT
 	testb	$1, %al
@@ -338,27 +341,24 @@ _ZN5Board11legal_movesEv:               # @_ZN5Board11legal_movesEv
 .LBB1_36:                               #   in Loop: Header=BB1_7 Depth=2
 	jmp	.LBB1_37
 .LBB1_37:                               #   in Loop: Header=BB1_7 Depth=2
-	movl	-1760(%rbp), %eax
+	movl	-1764(%rbp), %eax
 	addl	$1, %eax
-	movl	%eax, -1760(%rbp)
+	movl	%eax, -1764(%rbp)
 	jmp	.LBB1_7
 .LBB1_38:                               #   in Loop: Header=BB1_5 Depth=1
 	jmp	.LBB1_39
 .LBB1_39:                               #   in Loop: Header=BB1_5 Depth=1
-	movl	-1756(%rbp), %eax
+	movl	-1760(%rbp), %eax
 	addl	$2, %eax
-	movl	%eax, -1756(%rbp)
+	movl	%eax, -1760(%rbp)
 	jmp	.LBB1_5
 .LBB1_40:
-	movl	-1740(%rbp), %edi
-	callq	_Z13oppositeColori
 	xorl	%edx, %edx
-	movl	%eax, -1788(%rbp)
-	movq	-1848(%rbp), %rcx               # 8-byte Reload
-	addq	$96, %rcx
-	addq	$44, %rcx
+	movq	-1840(%rbp), %rax               # 8-byte Reload
+	addq	$96, %rax
+	addq	$44, %rax
 	movl	-1740(%rbp), %esi
-	movq	%rcx, %rdi
+	movq	%rax, %rdi
 	callq	_ZNK5board6castle6Rights3getEii@PLT
 	cmpl	$0, %eax
 	je	.LBB1_50
@@ -366,7 +366,7 @@ _ZN5Board11legal_movesEv:               # @_ZN5Board11legal_movesEv
 	movl	-1740(%rbp), %edi
 	callq	_ZN5piece8get_kingEi
 	movslq	%eax, %rcx
-	movq	-1848(%rbp), %rdx               # 8-byte Reload
+	movq	-1840(%rbp), %rdx               # 8-byte Reload
 	movq	(%rdx,%rcx,8), %rcx
 	movslq	-1740(%rbp), %rsi
 	andq	1224(%rdx,%rsi,8), %rcx
@@ -377,48 +377,48 @@ _ZN5Board11legal_movesEv:               # @_ZN5Board11legal_movesEv
 .LBB1_43:
 	leaq	.L.str(%rip), %rdi
 	leaq	.L.str.1(%rip), %rsi
-	movl	$100, %edx
+	movl	$101, %edx
 	leaq	.L__PRETTY_FUNCTION__._ZN5Board11legal_movesEv(%rip), %rcx
 	callq	__assert_fail@PLT
 .LBB1_44:
 	movslq	-1740(%rbp), %rax
 	leaq	_ZN5board6castleL12long_squaresE(%rip), %rcx
 	movq	(%rcx,%rax,8), %rax
+	movq	%rax, -1792(%rbp)
+	movslq	-1740(%rbp), %rax
+	leaq	_ZN5board6castleL15king_long_slideE(%rip), %rcx
+	movq	(%rcx,%rax,8), %rax
 	movq	%rax, -1800(%rbp)
-	movq	-1800(%rbp), %rax
+	movq	-1792(%rbp), %rax
 	andq	-1752(%rbp), %rax
 	cmpq	$0, %rax
 	jne	.LBB1_49
 # %bb.45:
 	movq	-1800(%rbp), %rsi
-	movl	-1788(%rbp), %edx
-	movq	-1848(%rbp), %rdi               # 8-byte Reload
+	movl	-1756(%rbp), %edx
+	movq	-1840(%rbp), %rdi               # 8-byte Reload
 	callq	_ZN5Board13attackers_to_Emi@PLT
 	cmpq	$0, %rax
 	jne	.LBB1_49
 # %bb.46:
-	movslq	-1740(%rbp), %rax
-	leaq	_ZN5board6castleL15king_long_slideE(%rip), %rcx
-	movq	(%rcx,%rax,8), %rax
-	movq	%rax, -1808(%rbp)
-	movq	-1808(%rbp), %rsi
-	movl	-1788(%rbp), %edx
-	movq	-1848(%rbp), %rdi               # 8-byte Reload
+	movq	-1800(%rbp), %rsi
+	movl	-1756(%rbp), %edx
+	movq	-1840(%rbp), %rdi               # 8-byte Reload
 	callq	_ZN5Board13attackers_to_Emi@PLT
 	cmpq	$0, %rax
 	jne	.LBB1_48
 # %bb.47:
 	movslq	-1740(%rbp), %rax
-	movq	-1848(%rbp), %rcx               # 8-byte Reload
+	movq	-1840(%rbp), %rcx               # 8-byte Reload
 	movq	1224(%rcx,%rax,8), %rdi
 	callq	_Z11u64ToSquarem
 	movslq	-1740(%rbp), %rcx
 	leaq	_ZN5board6castleL14king_long_destE(%rip), %rdx
 	movq	(%rdx,%rcx,8), %rdi
-	movl	%eax, -1892(%rbp)               # 4-byte Spill
+	movl	%eax, -1884(%rbp)               # 4-byte Spill
 	callq	_Z11u64ToSquarem
 	leaq	-1720(%rbp), %rdi
-	movl	-1892(%rbp), %esi               # 4-byte Reload
+	movl	-1884(%rbp), %esi               # 4-byte Reload
 	movl	%eax, %edx
 	movl	$9, %ecx
 	callq	_ZN5CMoveC2Eiii
@@ -430,7 +430,7 @@ _ZN5Board11legal_movesEv:               # @_ZN5Board11legal_movesEv
 .LBB1_49:
 	jmp	.LBB1_50
 .LBB1_50:
-	movq	-1848(%rbp), %rax               # 8-byte Reload
+	movq	-1840(%rbp), %rax               # 8-byte Reload
 	addq	$96, %rax
 	addq	$44, %rax
 	movl	-1740(%rbp), %esi
@@ -443,7 +443,7 @@ _ZN5Board11legal_movesEv:               # @_ZN5Board11legal_movesEv
 	movl	-1740(%rbp), %edi
 	callq	_ZN5piece8get_kingEi
 	movslq	%eax, %rcx
-	movq	-1848(%rbp), %rdx               # 8-byte Reload
+	movq	-1840(%rbp), %rdx               # 8-byte Reload
 	movq	(%rdx,%rcx,8), %rcx
 	movslq	-1740(%rbp), %rsi
 	andq	1224(%rdx,%rsi,8), %rcx
@@ -454,48 +454,48 @@ _ZN5Board11legal_movesEv:               # @_ZN5Board11legal_movesEv
 .LBB1_53:
 	leaq	.L.str(%rip), %rdi
 	leaq	.L.str.1(%rip), %rsi
-	movl	$115, %edx
+	movl	$116, %edx
 	leaq	.L__PRETTY_FUNCTION__._ZN5Board11legal_movesEv(%rip), %rcx
 	callq	__assert_fail@PLT
 .LBB1_54:
 	movslq	-1740(%rbp), %rax
 	leaq	_ZN5board6castleL13short_squaresE(%rip), %rcx
 	movq	(%rcx,%rax,8), %rax
+	movq	%rax, -1808(%rbp)
+	movslq	-1740(%rbp), %rax
+	leaq	_ZN5board6castleL16king_short_slideE(%rip), %rcx
+	movq	(%rcx,%rax,8), %rax
 	movq	%rax, -1816(%rbp)
-	movq	-1816(%rbp), %rax
+	movq	-1808(%rbp), %rax
 	andq	-1752(%rbp), %rax
 	cmpq	$0, %rax
 	jne	.LBB1_59
 # %bb.55:
 	movq	-1816(%rbp), %rsi
-	movl	-1788(%rbp), %edx
-	movq	-1848(%rbp), %rdi               # 8-byte Reload
+	movl	-1756(%rbp), %edx
+	movq	-1840(%rbp), %rdi               # 8-byte Reload
 	callq	_ZN5Board13attackers_to_Emi@PLT
 	cmpq	$0, %rax
 	jne	.LBB1_59
 # %bb.56:
-	movslq	-1740(%rbp), %rax
-	leaq	_ZN5board6castleL16king_short_slideE(%rip), %rcx
-	movq	(%rcx,%rax,8), %rax
-	movq	%rax, -1824(%rbp)
-	movq	-1824(%rbp), %rsi
-	movl	-1788(%rbp), %edx
-	movq	-1848(%rbp), %rdi               # 8-byte Reload
+	movq	-1816(%rbp), %rsi
+	movl	-1756(%rbp), %edx
+	movq	-1840(%rbp), %rdi               # 8-byte Reload
 	callq	_ZN5Board13attackers_to_Emi@PLT
 	cmpq	$0, %rax
 	jne	.LBB1_58
 # %bb.57:
 	movslq	-1740(%rbp), %rax
-	movq	-1848(%rbp), %rcx               # 8-byte Reload
+	movq	-1840(%rbp), %rcx               # 8-byte Reload
 	movq	1224(%rcx,%rax,8), %rdi
 	callq	_Z11u64ToSquarem
 	movslq	-1740(%rbp), %rcx
 	leaq	_ZN5board6castleL15king_short_destE(%rip), %rdx
 	movq	(%rdx,%rcx,8), %rdi
-	movl	%eax, -1896(%rbp)               # 4-byte Spill
+	movl	%eax, -1888(%rbp)               # 4-byte Spill
 	callq	_Z11u64ToSquarem
 	leaq	-1728(%rbp), %rdi
-	movl	-1896(%rbp), %esi               # 4-byte Reload
+	movl	-1888(%rbp), %esi               # 4-byte Reload
 	movl	%eax, %edx
 	movl	$3, %ecx
 	callq	_ZN5CMoveC2Eiii
@@ -507,7 +507,7 @@ _ZN5Board11legal_movesEv:               # @_ZN5Board11legal_movesEv
 .LBB1_59:
 	jmp	.LBB1_60
 .LBB1_60:
-	movq	-1832(%rbp), %rax               # 8-byte Reload
+	movq	-1824(%rbp), %rax               # 8-byte Reload
 	leaq	-528(%rbp), %rcx
 	movq	%rax, %rdi
 	movq	%rcx, %rsi
@@ -519,8 +519,8 @@ _ZN5Board11legal_movesEv:               # @_ZN5Board11legal_movesEv
 	cmpq	%rcx, %rax
 	jne	.LBB1_63
 # %bb.62:
-	movq	-1840(%rbp), %rax               # 8-byte Reload
-	addq	$1904, %rsp                     # imm = 0x770
+	movq	-1832(%rbp), %rax               # 8-byte Reload
+	addq	$1888, %rsp                     # imm = 0x760
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
@@ -568,7 +568,7 @@ _ZN5Board14capture_moves_Ev:            # @_ZN5Board14capture_moves_Ev
 .LBB2_4:
 	leaq	.L.str.2(%rip), %rdi
 	leaq	.L.str.1(%rip), %rsi
-	movl	$141, %edx
+	movl	$142, %edx
 	leaq	.L__PRETTY_FUNCTION__._ZN5Board14capture_moves_Ev(%rip), %rcx
 	callq	__assert_fail@PLT
 .LBB2_5:
@@ -867,6 +867,28 @@ _ZN7u64ListC2Ev:                        # @_ZN7u64ListC2Ev
 	.size	_ZN7u64ListC2Ev, .Lfunc_end3-_ZN7u64ListC2Ev
 	.cfi_endproc
                                         # -- End function
+	.section	.text._Z13oppositeColori,"axG",@progbits,_Z13oppositeColori,comdat
+	.weak	_Z13oppositeColori              # -- Begin function _Z13oppositeColori
+	.p2align	4, 0x90
+	.type	_Z13oppositeColori,@function
+_Z13oppositeColori:                     # @_Z13oppositeColori
+	.cfi_startproc
+# %bb.0:
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset %rbp, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register %rbp
+	movl	%edi, -4(%rbp)
+	movl	-4(%rbp), %eax
+	xorl	$1, %eax
+	popq	%rbp
+	.cfi_def_cfa %rsp, 8
+	retq
+.Lfunc_end4:
+	.size	_Z13oppositeColori, .Lfunc_end4-_Z13oppositeColori
+	.cfi_endproc
+                                        # -- End function
 	.section	.text._ZNK7u64List3lenEv,"axG",@progbits,_ZNK7u64List3lenEv,comdat
 	.weak	_ZNK7u64List3lenEv              # -- Begin function _ZNK7u64List3lenEv
 	.p2align	4, 0x90
@@ -885,8 +907,8 @@ _ZNK7u64List3lenEv:                     # @_ZNK7u64List3lenEv
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.Lfunc_end4:
-	.size	_ZNK7u64List3lenEv, .Lfunc_end4-_ZNK7u64List3lenEv
+.Lfunc_end5:
+	.size	_ZNK7u64List3lenEv, .Lfunc_end5-_ZNK7u64List3lenEv
 	.cfi_endproc
                                         # -- End function
 	.section	.text._Z11u64ToSquarem,"axG",@progbits,_Z11u64ToSquarem,comdat
@@ -904,24 +926,24 @@ _Z11u64ToSquarem:                       # @_Z11u64ToSquarem
 	subq	$16, %rsp
 	movq	%rdi, -8(%rbp)
 	cmpq	$0, -8(%rbp)
-	je	.LBB5_2
+	je	.LBB6_2
 # %bb.1:
-	jmp	.LBB5_3
-.LBB5_2:
+	jmp	.LBB6_3
+.LBB6_2:
 	leaq	.L.str.3(%rip), %rdi
 	leaq	.L.str.4(%rip), %rsi
 	movl	$130, %edx
 	leaq	.L__PRETTY_FUNCTION__._Z11u64ToSquarem(%rip), %rcx
 	callq	__assert_fail@PLT
-.LBB5_3:
+.LBB6_3:
 	movq	-8(%rbp), %rdi
 	callq	_Z14bitscanForwardm
 	addq	$16, %rsp
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.Lfunc_end5:
-	.size	_Z11u64ToSquarem, .Lfunc_end5-_Z11u64ToSquarem
+.Lfunc_end6:
+	.size	_Z11u64ToSquarem, .Lfunc_end6-_Z11u64ToSquarem
 	.cfi_endproc
                                         # -- End function
 	.section	.text._ZNK7u64ListixEi,"axG",@progbits,_ZNK7u64ListixEi,comdat
@@ -944,8 +966,8 @@ _ZNK7u64ListixEi:                       # @_ZNK7u64ListixEi
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.Lfunc_end6:
-	.size	_ZNK7u64ListixEi, .Lfunc_end6-_ZNK7u64ListixEi
+.Lfunc_end7:
+	.size	_ZNK7u64ListixEi, .Lfunc_end7-_ZNK7u64ListixEi
 	.cfi_endproc
                                         # -- End function
 	.section	.text._ZN5piece7is_pawnEi,"axG",@progbits,_ZN5piece7is_pawnEi,comdat
@@ -972,8 +994,8 @@ _ZN5piece7is_pawnEi:                    # @_ZN5piece7is_pawnEi
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.Lfunc_end7:
-	.size	_ZN5piece7is_pawnEi, .Lfunc_end7-_ZN5piece7is_pawnEi
+.Lfunc_end8:
+	.size	_ZN5piece7is_pawnEi, .Lfunc_end8-_ZN5piece7is_pawnEi
 	.cfi_endproc
                                         # -- End function
 	.section	.text._ZNSt5arrayImLm64EEixEm,"axG",@progbits,_ZNSt5arrayImLm64EEixEm,comdat
@@ -998,8 +1020,8 @@ _ZNSt5arrayImLm64EEixEm:                # @_ZNSt5arrayImLm64EEixEm
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.Lfunc_end8:
-	.size	_ZNSt5arrayImLm64EEixEm, .Lfunc_end8-_ZNSt5arrayImLm64EEixEm
+.Lfunc_end9:
+	.size	_ZNSt5arrayImLm64EEixEm, .Lfunc_end9-_ZNSt5arrayImLm64EEixEm
 	.cfi_endproc
                                         # -- End function
 	.section	.text._Z11squareToRowi,"axG",@progbits,_Z11squareToRowi,comdat
@@ -1022,8 +1044,8 @@ _Z11squareToRowi:                       # @_Z11squareToRowi
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.Lfunc_end9:
-	.size	_Z11squareToRowi, .Lfunc_end9-_Z11squareToRowi
+.Lfunc_end10:
+	.size	_Z11squareToRowi, .Lfunc_end10-_Z11squareToRowi
 	.cfi_endproc
                                         # -- End function
 	.section	.text._ZN5CMoveC2Eiii,"axG",@progbits,_ZN5CMoveC2Eiii,comdat
@@ -1048,47 +1070,47 @@ _ZN5CMoveC2Eiii:                        # @_ZN5CMoveC2Eiii
 	movq	%rax, -32(%rbp)                 # 8-byte Spill
 	callq	_Z13isValidSquarei
 	testb	$1, %al
-	jne	.LBB10_2
+	jne	.LBB11_2
 # %bb.1:
 	movl	-16(%rbp), %edi
 	callq	_Z6dump32i@PLT
-.LBB10_2:
+.LBB11_2:
 	movl	-16(%rbp), %edi
 	callq	_Z13isValidSquarei
 	testb	$1, %al
-	jne	.LBB10_4
+	jne	.LBB11_4
 # %bb.3:
 	movl	-16(%rbp), %edi
 	callq	_Z6dump32i@PLT
-.LBB10_4:
+.LBB11_4:
 	movl	-12(%rbp), %edi
 	callq	_Z13isValidSquarei
 	testb	$1, %al
-	jne	.LBB10_5
-	jmp	.LBB10_6
-.LBB10_5:
-	jmp	.LBB10_7
-.LBB10_6:
+	jne	.LBB11_5
+	jmp	.LBB11_6
+.LBB11_5:
+	jmp	.LBB11_7
+.LBB11_6:
 	leaq	.L.str.5(%rip), %rdi
 	leaq	.L.str.6(%rip), %rsi
 	movl	$73, %edx
 	leaq	.L__PRETTY_FUNCTION__._ZN5CMoveC2Eiii(%rip), %rcx
 	callq	__assert_fail@PLT
-.LBB10_7:
+.LBB11_7:
 	movl	-16(%rbp), %edi
 	callq	_Z13isValidSquarei
 	testb	$1, %al
-	jne	.LBB10_8
-	jmp	.LBB10_9
-.LBB10_8:
-	jmp	.LBB10_10
-.LBB10_9:
+	jne	.LBB11_8
+	jmp	.LBB11_9
+.LBB11_8:
+	jmp	.LBB11_10
+.LBB11_9:
 	leaq	.L.str.7(%rip), %rdi
 	leaq	.L.str.6(%rip), %rsi
 	movl	$74, %edx
 	leaq	.L__PRETTY_FUNCTION__._ZN5CMoveC2Eiii(%rip), %rcx
 	callq	__assert_fail@PLT
-.LBB10_10:
+.LBB11_10:
 	movl	-12(%rbp), %eax
 	shll	$10, %eax
 	movl	-16(%rbp), %ecx
@@ -1104,8 +1126,8 @@ _ZN5CMoveC2Eiii:                        # @_ZN5CMoveC2Eiii
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.Lfunc_end10:
-	.size	_ZN5CMoveC2Eiii, .Lfunc_end10-_ZN5CMoveC2Eiii
+.Lfunc_end11:
+	.size	_ZN5CMoveC2Eiii, .Lfunc_end11-_ZN5CMoveC2Eiii
 	.cfi_endproc
                                         # -- End function
 	.section	.text._ZN8MoveListILi256EE8PushBackE5CMove,"axG",@progbits,_ZN8MoveListILi256EE8PushBackE5CMove,comdat
@@ -1136,39 +1158,17 @@ _ZN8MoveListILi256EE8PushBackE5CMove:   # @_ZN8MoveListILi256EE8PushBackE5CMove
 	movq	%fs:40, %rax
 	movq	-8(%rbp), %rcx
 	cmpq	%rcx, %rax
-	jne	.LBB11_2
+	jne	.LBB12_2
 # %bb.1:
 	addq	$32, %rsp
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.LBB11_2:
+.LBB12_2:
 	.cfi_def_cfa %rbp, 16
 	callq	__stack_chk_fail@PLT
-.Lfunc_end11:
-	.size	_ZN8MoveListILi256EE8PushBackE5CMove, .Lfunc_end11-_ZN8MoveListILi256EE8PushBackE5CMove
-	.cfi_endproc
-                                        # -- End function
-	.section	.text._Z13oppositeColori,"axG",@progbits,_Z13oppositeColori,comdat
-	.weak	_Z13oppositeColori              # -- Begin function _Z13oppositeColori
-	.p2align	4, 0x90
-	.type	_Z13oppositeColori,@function
-_Z13oppositeColori:                     # @_Z13oppositeColori
-	.cfi_startproc
-# %bb.0:
-	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset %rbp, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register %rbp
-	movl	%edi, -4(%rbp)
-	movl	-4(%rbp), %eax
-	xorl	$1, %eax
-	popq	%rbp
-	.cfi_def_cfa %rsp, 8
-	retq
 .Lfunc_end12:
-	.size	_Z13oppositeColori, .Lfunc_end12-_Z13oppositeColori
+	.size	_ZN8MoveListILi256EE8PushBackE5CMove, .Lfunc_end12-_ZN8MoveListILi256EE8PushBackE5CMove
 	.cfi_endproc
                                         # -- End function
 	.section	.text._ZN5piece8get_kingEi,"axG",@progbits,_ZN5piece8get_kingEi,comdat
@@ -1562,6 +1562,7 @@ _ZN5board6castleL15king_short_destE:
 	.addrsig_sym _ZN5Board14capture_moves_Ev
 	.addrsig_sym _ZNK5Board4turnEv
 	.addrsig_sym _ZNK5Board9occupancyEv
+	.addrsig_sym _Z13oppositeColori
 	.addrsig_sym _Z10bitscanAllmR7u64List
 	.addrsig_sym _ZNK7u64List3lenEv
 	.addrsig_sym _Z11u64ToSquarem
@@ -1576,7 +1577,6 @@ _ZN5board6castleL15king_short_destE:
 	.addrsig_sym _ZN5Board19verify_move_safety_E5CMove
 	.addrsig_sym _ZN8MoveListILi256EE8PushBackE5CMove
 	.addrsig_sym _ZN9move_maps15isPromotingRankEii
-	.addrsig_sym _Z13oppositeColori
 	.addrsig_sym _ZNK5board6castle6Rights3getEii
 	.addrsig_sym _ZN5piece8get_kingEi
 	.addrsig_sym __assert_fail

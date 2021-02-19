@@ -37,16 +37,16 @@ _ZN5Board22produce_uncheck_moves_Ev:    # @_ZN5Board22produce_uncheck_moves_Ev
 	.cfi_offset %rbp, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register %rbp
-	subq	$3232, %rsp                     # imm = 0xCA0
+	subq	$3248, %rsp                     # imm = 0xCB0
 	movq	%rdi, %rax
 	movq	%fs:40, %rcx
 	movq	%rcx, -8(%rbp)
 	movq	%rsi, -2760(%rbp)
 	movq	-2760(%rbp), %rcx
 	testb	$1, 1220(%rcx)
-	movq	%rdi, -3104(%rbp)               # 8-byte Spill
-	movq	%rax, -3112(%rbp)               # 8-byte Spill
-	movq	%rcx, -3120(%rbp)               # 8-byte Spill
+	movq	%rdi, -3112(%rbp)               # 8-byte Spill
+	movq	%rax, -3120(%rbp)               # 8-byte Spill
+	movq	%rcx, -3128(%rbp)               # 8-byte Spill
 	je	.LBB1_2
 # %bb.1:
 	jmp	.LBB1_3
@@ -57,7 +57,7 @@ _ZN5Board22produce_uncheck_moves_Ev:    # @_ZN5Board22produce_uncheck_moves_Ev
 	leaq	.L__PRETTY_FUNCTION__._ZN5Board22produce_uncheck_moves_Ev(%rip), %rcx
 	callq	__assert_fail@PLT
 .LBB1_3:
-	movq	-3120(%rbp), %rdi               # 8-byte Reload
+	movq	-3128(%rbp), %rdi               # 8-byte Reload
 	callq	_ZNK5Board8is_checkEv@PLT
 	testb	$1, %al
 	jne	.LBB1_4
@@ -71,9 +71,9 @@ _ZN5Board22produce_uncheck_moves_Ev:    # @_ZN5Board22produce_uncheck_moves_Ev
 	leaq	.L__PRETTY_FUNCTION__._ZN5Board22produce_uncheck_moves_Ev(%rip), %rcx
 	callq	__assert_fail@PLT
 .LBB1_6:
-	movq	-3104(%rbp), %rdi               # 8-byte Reload
+	movq	-3112(%rbp), %rdi               # 8-byte Reload
 	callq	_ZN8MoveListILi256EEC2Ev
-	movq	-3120(%rbp), %rdi               # 8-byte Reload
+	movq	-3128(%rbp), %rdi               # 8-byte Reload
 	callq	_ZNK5Board4turnEv@PLT
 	movl	%eax, -2764(%rbp)
 	movl	-2764(%rbp), %edi
@@ -82,7 +82,7 @@ _ZN5Board22produce_uncheck_moves_Ev:    # @_ZN5Board22produce_uncheck_moves_Ev
 	movl	-2764(%rbp), %edi
 	callq	_ZN5piece8get_kingEi
 	movslq	%eax, %rcx
-	movq	-3120(%rbp), %rdx               # 8-byte Reload
+	movq	-3128(%rbp), %rdx               # 8-byte Reload
 	movq	(%rdx,%rcx,8), %rcx
 	movq	%rcx, -2776(%rbp)
 	movq	-2776(%rbp), %rdi
@@ -91,18 +91,18 @@ _ZN5Board22produce_uncheck_moves_Ev:    # @_ZN5Board22produce_uncheck_moves_Ev
 	movq	%rcx, -2784(%rbp)
 	movq	-2776(%rbp), %rsi
 	movl	-2768(%rbp), %edx
-	movq	-3120(%rbp), %rdi               # 8-byte Reload
+	movq	-3128(%rbp), %rdi               # 8-byte Reload
 	callq	_ZN5Board13attackers_to_Emi@PLT
 	movq	%rax, -2792(%rbp)
 	movq	-2792(%rbp), %rdi
 	callq	_Z4haddm@PLT
 	movl	%eax, -2796(%rbp)
 	movl	-2764(%rbp), %esi
-	movq	-3120(%rbp), %rdi               # 8-byte Reload
+	movq	-3128(%rbp), %rdi               # 8-byte Reload
 	callq	_ZNK5Board9occupancyEi@PLT
 	movq	%rax, -2808(%rbp)
 	movl	-2768(%rbp), %esi
-	movq	-3120(%rbp), %rdi               # 8-byte Reload
+	movq	-3128(%rbp), %rdi               # 8-byte Reload
 	callq	_ZNK5Board9occupancyEi@PLT
 	movq	%rax, -2816(%rbp)
 	movq	-2808(%rbp), %rax
@@ -111,36 +111,36 @@ _ZN5Board22produce_uncheck_moves_Ev:    # @_ZN5Board22produce_uncheck_moves_Ev
 	movl	-2768(%rbp), %edi
 	callq	_ZN5piece8get_rookEi
 	movslq	%eax, %rcx
-	movq	-3120(%rbp), %r8                # 8-byte Reload
-	movq	(%r8,%rcx,8), %rcx
-	movl	-2768(%rbp), %edi
-	movq	%rcx, -3128(%rbp)               # 8-byte Spill
-	callq	_ZN5piece9get_queenEi
-	movslq	%eax, %rcx
 	movq	-3128(%rbp), %r8                # 8-byte Reload
-	movq	-3120(%rbp), %r9                # 8-byte Reload
-	orq	(%r9,%rcx,8), %r8
-	movq	%r8, -2832(%rbp)
-	movl	-2768(%rbp), %edi
-	callq	_ZN5piece10get_bishopEi
-	movslq	%eax, %rcx
-	movq	-3120(%rbp), %r8                # 8-byte Reload
 	movq	(%r8,%rcx,8), %rcx
 	movl	-2768(%rbp), %edi
 	movq	%rcx, -3136(%rbp)               # 8-byte Spill
 	callq	_ZN5piece9get_queenEi
 	movslq	%eax, %rcx
 	movq	-3136(%rbp), %r8                # 8-byte Reload
-	movq	-3120(%rbp), %r9                # 8-byte Reload
+	movq	-3128(%rbp), %r9                # 8-byte Reload
+	orq	(%r9,%rcx,8), %r8
+	movq	%r8, -2832(%rbp)
+	movl	-2768(%rbp), %edi
+	callq	_ZN5piece10get_bishopEi
+	movslq	%eax, %rcx
+	movq	-3128(%rbp), %r8                # 8-byte Reload
+	movq	(%r8,%rcx,8), %rcx
+	movl	-2768(%rbp), %edi
+	movq	%rcx, -3144(%rbp)               # 8-byte Spill
+	callq	_ZN5piece9get_queenEi
+	movslq	%eax, %rcx
+	movq	-3144(%rbp), %r8                # 8-byte Reload
+	movq	-3128(%rbp), %r9                # 8-byte Reload
 	orq	(%r9,%rcx,8), %r8
 	movq	%r8, -2840(%rbp)
 	cmpl	$1, -2796(%rbp)
-	jne	.LBB1_91
+	jne	.LBB1_90
 # %bb.7:
 	movq	-2792(%rbp), %rax
 	movq	%rax, -2848(%rbp)
 	movq	-2848(%rbp), %rsi
-	movq	-3120(%rbp), %rdi               # 8-byte Reload
+	movq	-3128(%rbp), %rdi               # 8-byte Reload
 	callq	_ZNK5Board9piece_at_Em@PLT
 	movl	%eax, -2852(%rbp)
 	movl	-2852(%rbp), %edi
@@ -187,12 +187,14 @@ _ZN5Board22produce_uncheck_moves_Ev:    # @_ZN5Board22produce_uncheck_moves_Ev
 	callq	_ZN5piece8is_queenEi
 	testb	$1, %al
 	jne	.LBB1_16
-	jmp	.LBB1_79
+	jmp	.LBB1_78
 .LBB1_16:
-	movslq	-2852(%rbp), %rdi
+	movq	-2848(%rbp), %rax
+	movq	%rax, -2864(%rbp)
+	movq	-2864(%rbp), %rdi
 	callq	_Z11u64ToSquarem
-	movl	%eax, -2856(%rbp)
-	movb	$0, -2857(%rbp)
+	movl	%eax, -2868(%rbp)
+	movb	$0, -2869(%rbp)
 	movl	-2852(%rbp), %edi
 	callq	_ZN5piece7is_rookEi
 	testb	$1, %al
@@ -204,49 +206,49 @@ _ZN5Board22produce_uncheck_moves_Ev:    # @_ZN5Board22produce_uncheck_moves_Ev
 	jne	.LBB1_18
 	jmp	.LBB1_27
 .LBB1_18:
-	movl	-2856(%rbp), %edi
+	movl	-2868(%rbp), %edi
 	movq	-2824(%rbp), %rsi
 	callq	_ZN9move_maps9rookMovesEim@PLT
-	movq	%rax, -2872(%rbp)
-	movq	-2872(%rbp), %rax
+	movq	%rax, -2880(%rbp)
+	movq	-2880(%rbp), %rax
 	andq	-2776(%rbp), %rax
 	cmpq	$0, %rax
 	je	.LBB1_26
 # %bb.19:
-	movb	$1, -2857(%rbp)
-	movl	$0, -2876(%rbp)
+	movb	$1, -2869(%rbp)
+	movl	$0, -2884(%rbp)
 .LBB1_20:                               # =>This Inner Loop Header: Depth=1
-	cmpl	$4, -2876(%rbp)
+	cmpl	$4, -2884(%rbp)
 	jge	.LBB1_25
 # %bb.21:                               #   in Loop: Header=BB1_20 Depth=1
-	movq	-2872(%rbp), %rax
-	movl	-2856(%rbp), %edi
-	movl	-2876(%rbp), %esi
-	movq	%rax, -3144(%rbp)               # 8-byte Spill
+	movq	-2880(%rbp), %rax
+	movl	-2868(%rbp), %edi
+	movl	-2884(%rbp), %esi
+	movq	%rax, -3152(%rbp)               # 8-byte Spill
 	callq	_ZN9move_maps7rookRayEii@PLT
-	movq	-3144(%rbp), %rcx               # 8-byte Reload
+	movq	-3152(%rbp), %rcx               # 8-byte Reload
 	andq	%rax, %rcx
-	movq	%rcx, -2888(%rbp)
-	movq	-2888(%rbp), %rax
+	movq	%rcx, -2896(%rbp)
+	movq	-2896(%rbp), %rax
 	andq	-2776(%rbp), %rax
 	cmpq	$0, %rax
 	je	.LBB1_23
 # %bb.22:
-	movq	-2888(%rbp), %rax
+	movq	-2896(%rbp), %rax
 	orq	-2848(%rbp), %rax
 	movq	%rax, -2848(%rbp)
 	jmp	.LBB1_25
 .LBB1_23:                               #   in Loop: Header=BB1_20 Depth=1
 	jmp	.LBB1_24
 .LBB1_24:                               #   in Loop: Header=BB1_20 Depth=1
-	movl	-2876(%rbp), %eax
+	movl	-2884(%rbp), %eax
 	addl	$1, %eax
-	movl	%eax, -2876(%rbp)
+	movl	%eax, -2884(%rbp)
 	jmp	.LBB1_20
 .LBB1_25:
 	jmp	.LBB1_26
 .LBB1_26:
-	jmp	.LBB1_40
+	jmp	.LBB1_27
 .LBB1_27:
 	movl	-2852(%rbp), %edi
 	callq	_ZN5piece9is_bishopEi
@@ -259,402 +261,414 @@ _ZN5Board22produce_uncheck_moves_Ev:    # @_ZN5Board22produce_uncheck_moves_Ev
 	jne	.LBB1_29
 	jmp	.LBB1_39
 .LBB1_29:
-	testb	$1, -2857(%rbp)
+	testb	$1, -2869(%rbp)
 	jne	.LBB1_39
 .LBB1_30:
-	movl	-2856(%rbp), %edi
+	movl	-2868(%rbp), %edi
 	movq	-2824(%rbp), %rsi
 	callq	_ZN9move_maps11bishopMovesEim@PLT
-	movq	%rax, -2896(%rbp)
-	movq	-2896(%rbp), %rax
+	movq	%rax, -2904(%rbp)
+	movq	-2904(%rbp), %rax
 	andq	-2776(%rbp), %rax
 	cmpq	$0, %rax
 	je	.LBB1_38
 # %bb.31:
-	movb	$1, -2857(%rbp)
-	movl	$0, -2900(%rbp)
+	movb	$1, -2869(%rbp)
+	movl	$0, -2908(%rbp)
 .LBB1_32:                               # =>This Inner Loop Header: Depth=1
-	cmpl	$4, -2900(%rbp)
+	cmpl	$4, -2908(%rbp)
 	jge	.LBB1_37
 # %bb.33:                               #   in Loop: Header=BB1_32 Depth=1
-	movq	-2896(%rbp), %rax
-	movl	-2856(%rbp), %edi
-	movl	-2900(%rbp), %esi
-	movq	%rax, -3152(%rbp)               # 8-byte Spill
+	movq	-2904(%rbp), %rax
+	movl	-2868(%rbp), %edi
+	movl	-2908(%rbp), %esi
+	movq	%rax, -3160(%rbp)               # 8-byte Spill
 	callq	_ZN9move_maps9bishopRayEii@PLT
-	movq	-3152(%rbp), %rcx               # 8-byte Reload
+	movq	-3160(%rbp), %rcx               # 8-byte Reload
 	andq	%rax, %rcx
-	movq	%rcx, -2912(%rbp)
-	movq	-2912(%rbp), %rax
+	movq	%rcx, -2920(%rbp)
+	movq	-2920(%rbp), %rax
 	andq	-2776(%rbp), %rax
 	cmpq	$0, %rax
 	je	.LBB1_35
 # %bb.34:
-	movq	-2912(%rbp), %rax
+	movq	-2920(%rbp), %rax
 	orq	-2848(%rbp), %rax
 	movq	%rax, -2848(%rbp)
 	jmp	.LBB1_37
 .LBB1_35:                               #   in Loop: Header=BB1_32 Depth=1
 	jmp	.LBB1_36
 .LBB1_36:                               #   in Loop: Header=BB1_32 Depth=1
-	movl	-2900(%rbp), %eax
+	movl	-2908(%rbp), %eax
 	addl	$1, %eax
-	movl	%eax, -2900(%rbp)
+	movl	%eax, -2908(%rbp)
 	jmp	.LBB1_32
 .LBB1_37:
 	jmp	.LBB1_38
 .LBB1_38:
 	jmp	.LBB1_39
 .LBB1_39:
-	jmp	.LBB1_40
-.LBB1_40:
+	movq	-2776(%rbp), %rax
+	xorq	$-1, %rax
+	andq	-2848(%rbp), %rax
+	movq	%rax, -2848(%rbp)
 	leaq	-528(%rbp), %rdi
 	callq	_ZN7u64ListC2Ev
 	movl	-2764(%rbp), %edi
 	callq	_ZN5piece8get_pawnEi
 	movslq	%eax, %rcx
-	movq	-3120(%rbp), %rdx               # 8-byte Reload
+	movq	-3128(%rbp), %rdx               # 8-byte Reload
 	movq	(%rdx,%rcx,8), %rcx
-	movq	%rcx, -2920(%rbp)
-	movq	-2920(%rbp), %rdi
+	movq	%rcx, -2928(%rbp)
+	movq	-2928(%rbp), %rdi
 	leaq	-528(%rbp), %rsi
 	callq	_Z10bitscanAllmR7u64List@PLT
-	movl	$0, -2924(%rbp)
-.LBB1_41:                               # =>This Inner Loop Header: Depth=1
-	movl	-2924(%rbp), %eax
+	movl	$0, -2932(%rbp)
+.LBB1_40:                               # =>This Inner Loop Header: Depth=1
+	movl	-2932(%rbp), %eax
 	leaq	-528(%rbp), %rdi
-	movl	%eax, -3156(%rbp)               # 4-byte Spill
+	movl	%eax, -3164(%rbp)               # 4-byte Spill
 	callq	_ZNK7u64List3lenEv
-	movl	-3156(%rbp), %ecx               # 4-byte Reload
+	movl	-3164(%rbp), %ecx               # 4-byte Reload
 	cmpl	%eax, %ecx
-	jge	.LBB1_58
-# %bb.42:                               #   in Loop: Header=BB1_41 Depth=1
-	movl	-2924(%rbp), %esi
+	jge	.LBB1_57
+# %bb.41:                               #   in Loop: Header=BB1_40 Depth=1
+	movl	-2932(%rbp), %esi
 	leaq	-528(%rbp), %rdi
 	callq	_ZNK7u64ListixEi
-	movq	%rax, -2936(%rbp)
-	movq	-2936(%rbp), %rdi
+	movq	%rax, -2944(%rbp)
+	movq	-2944(%rbp), %rdi
 	callq	_Z11u64ToSquarem
-	movl	%eax, -2940(%rbp)
+	movl	%eax, -2948(%rbp)
 	movq	-2824(%rbp), %rcx
-	movq	-2936(%rbp), %rdx
+	movq	-2944(%rbp), %rdx
 	xorq	$-1, %rdx
 	andq	%rdx, %rcx
 	movq	-2776(%rbp), %rsi
-	movq	-2832(%rbp), %rdx
-	movq	-2840(%rbp), %rdi
-	movq	%rdi, -3168(%rbp)               # 8-byte Spill
+	movq	-2864(%rbp), %rdx
+	xorq	$-1, %rdx
+	andq	-2832(%rbp), %rdx
+	movq	-2864(%rbp), %rdi
+	xorq	$-1, %rdi
+	andq	-2840(%rbp), %rdi
+	movq	%rdi, -3176(%rbp)               # 8-byte Spill
 	movq	%rcx, %rdi
-	movq	-3168(%rbp), %rcx               # 8-byte Reload
+	movq	-3176(%rbp), %rcx               # 8-byte Reload
 	callq	_ZN9move_maps17isAttackedSlidingEmmmm@PLT
 	testb	$1, %al
-	jne	.LBB1_43
-	jmp	.LBB1_44
-.LBB1_43:                               #   in Loop: Header=BB1_41 Depth=1
-	jmp	.LBB1_57
-.LBB1_44:                               #   in Loop: Header=BB1_41 Depth=1
-	movl	-2940(%rbp), %edi
+	jne	.LBB1_42
+	jmp	.LBB1_43
+.LBB1_42:                               #   in Loop: Header=BB1_40 Depth=1
+	jmp	.LBB1_56
+.LBB1_43:                               #   in Loop: Header=BB1_40 Depth=1
+	movl	-2948(%rbp), %edi
 	movl	-2764(%rbp), %esi
 	callq	_ZN9move_maps9pawnMovesEii@PLT
-	movq	%rax, -2952(%rbp)
-	movq	-2952(%rbp), %rdi
+	movq	%rax, -2960(%rbp)
+	movq	-2960(%rbp), %rdi
 	callq	_Z11u64ToSquarem
-	movl	%eax, -2956(%rbp)
-	movq	-2952(%rbp), %rcx
+	movl	%eax, -2964(%rbp)
+	movq	-2960(%rbp), %rcx
 	andq	-2824(%rbp), %rcx
 	cmpq	$0, %rcx
-	jne	.LBB1_56
-# %bb.45:                               #   in Loop: Header=BB1_41 Depth=1
-	movq	-2952(%rbp), %rax
+	jne	.LBB1_55
+# %bb.44:                               #   in Loop: Header=BB1_40 Depth=1
+	movq	-2960(%rbp), %rax
 	andq	-2848(%rbp), %rax
 	cmpq	$0, %rax
-	je	.LBB1_50
-# %bb.46:                               #   in Loop: Header=BB1_41 Depth=1
-	movl	-2956(%rbp), %edi
+	je	.LBB1_49
+# %bb.45:                               #   in Loop: Header=BB1_40 Depth=1
+	movl	-2964(%rbp), %edi
 	movl	-2764(%rbp), %esi
 	callq	_ZN9move_maps15isPromotingRankEii@PLT
 	testb	$1, %al
-	jne	.LBB1_47
-	jmp	.LBB1_48
-.LBB1_47:                               #   in Loop: Header=BB1_41 Depth=1
-	movl	-2940(%rbp), %esi
-	movl	-2956(%rbp), %edx
+	jne	.LBB1_46
+	jmp	.LBB1_47
+.LBB1_46:                               #   in Loop: Header=BB1_40 Depth=1
+	movl	-2948(%rbp), %esi
+	movl	-2964(%rbp), %edx
 	leaq	-2616(%rbp), %rdi
 	movl	$8, %ecx
 	callq	_ZN5CMoveC2Eiii
-	movq	-3104(%rbp), %rdi               # 8-byte Reload
+	movq	-3112(%rbp), %rdi               # 8-byte Reload
 	movzwl	-2616(%rbp), %esi
 	callq	_ZN8MoveListILi256EE8PushBackE5CMove
-	movl	-2940(%rbp), %esi
-	movl	-2956(%rbp), %edx
+	movl	-2948(%rbp), %esi
+	movl	-2964(%rbp), %edx
 	leaq	-2624(%rbp), %rdi
 	movl	$6, %ecx
 	callq	_ZN5CMoveC2Eiii
-	movq	-3104(%rbp), %rdi               # 8-byte Reload
+	movq	-3112(%rbp), %rdi               # 8-byte Reload
 	movzwl	-2624(%rbp), %esi
 	callq	_ZN8MoveListILi256EE8PushBackE5CMove
-	movl	-2940(%rbp), %esi
-	movl	-2956(%rbp), %edx
+	movl	-2948(%rbp), %esi
+	movl	-2964(%rbp), %edx
 	leaq	-2632(%rbp), %rdi
 	movl	$4, %ecx
 	callq	_ZN5CMoveC2Eiii
-	movq	-3104(%rbp), %rdi               # 8-byte Reload
+	movq	-3112(%rbp), %rdi               # 8-byte Reload
 	movzwl	-2632(%rbp), %esi
 	callq	_ZN8MoveListILi256EE8PushBackE5CMove
-	movl	-2940(%rbp), %esi
-	movl	-2956(%rbp), %edx
+	movl	-2948(%rbp), %esi
+	movl	-2964(%rbp), %edx
 	leaq	-2640(%rbp), %rdi
 	movl	$2, %ecx
 	callq	_ZN5CMoveC2Eiii
-	movq	-3104(%rbp), %rdi               # 8-byte Reload
+	movq	-3112(%rbp), %rdi               # 8-byte Reload
 	movzwl	-2640(%rbp), %esi
 	callq	_ZN8MoveListILi256EE8PushBackE5CMove
-	jmp	.LBB1_49
-.LBB1_48:                               #   in Loop: Header=BB1_41 Depth=1
-	movl	-2940(%rbp), %esi
-	movl	-2956(%rbp), %edx
+	jmp	.LBB1_48
+.LBB1_47:                               #   in Loop: Header=BB1_40 Depth=1
+	movl	-2948(%rbp), %esi
+	movl	-2964(%rbp), %edx
 	leaq	-2648(%rbp), %rdi
 	movl	$1, %ecx
 	callq	_ZN5CMoveC2Eiii
-	movq	-3104(%rbp), %rdi               # 8-byte Reload
+	movq	-3112(%rbp), %rdi               # 8-byte Reload
 	movzwl	-2648(%rbp), %esi
 	callq	_ZN8MoveListILi256EE8PushBackE5CMove
-.LBB1_49:                               #   in Loop: Header=BB1_41 Depth=1
-	jmp	.LBB1_50
-.LBB1_50:                               #   in Loop: Header=BB1_41 Depth=1
-	movl	-2940(%rbp), %edi
+.LBB1_48:                               #   in Loop: Header=BB1_40 Depth=1
+	jmp	.LBB1_49
+.LBB1_49:                               #   in Loop: Header=BB1_40 Depth=1
+	movl	-2948(%rbp), %edi
 	movl	-2764(%rbp), %esi
 	callq	_ZN9move_maps14isStartingRankEii@PLT
 	testb	$1, %al
-	jne	.LBB1_51
-	jmp	.LBB1_55
-.LBB1_51:                               #   in Loop: Header=BB1_41 Depth=1
-	movl	-2940(%rbp), %edi
+	jne	.LBB1_50
+	jmp	.LBB1_54
+.LBB1_50:                               #   in Loop: Header=BB1_40 Depth=1
+	movl	-2948(%rbp), %edi
 	movl	-2764(%rbp), %esi
 	callq	_ZN9move_maps15pawnDoubleMovesEii@PLT
-	movq	%rax, -2968(%rbp)
-	movq	-2968(%rbp), %rax
+	movq	%rax, -2976(%rbp)
+	movq	-2976(%rbp), %rax
 	andq	-2824(%rbp), %rax
 	cmpq	$0, %rax
-	jne	.LBB1_54
-# %bb.52:                               #   in Loop: Header=BB1_41 Depth=1
-	movq	-2968(%rbp), %rax
+	jne	.LBB1_53
+# %bb.51:                               #   in Loop: Header=BB1_40 Depth=1
+	movq	-2976(%rbp), %rax
 	andq	-2848(%rbp), %rax
 	cmpq	$0, %rax
-	je	.LBB1_54
-# %bb.53:                               #   in Loop: Header=BB1_41 Depth=1
-	movl	-2940(%rbp), %esi
-	movq	-2968(%rbp), %rdi
-	movl	%esi, -3172(%rbp)               # 4-byte Spill
+	je	.LBB1_53
+# %bb.52:                               #   in Loop: Header=BB1_40 Depth=1
+	movl	-2948(%rbp), %esi
+	movq	-2976(%rbp), %rdi
+	movl	%esi, -3180(%rbp)               # 4-byte Spill
 	callq	_Z11u64ToSquarem
 	leaq	-2656(%rbp), %rdi
-	movl	-3172(%rbp), %esi               # 4-byte Reload
+	movl	-3180(%rbp), %esi               # 4-byte Reload
 	movl	%eax, %edx
 	movl	$7, %ecx
 	callq	_ZN5CMoveC2Eiii
-	movq	-3104(%rbp), %rdi               # 8-byte Reload
+	movq	-3112(%rbp), %rdi               # 8-byte Reload
 	movzwl	-2656(%rbp), %esi
 	callq	_ZN8MoveListILi256EE8PushBackE5CMove
-.LBB1_54:                               #   in Loop: Header=BB1_41 Depth=1
+.LBB1_53:                               #   in Loop: Header=BB1_40 Depth=1
+	jmp	.LBB1_54
+.LBB1_54:                               #   in Loop: Header=BB1_40 Depth=1
 	jmp	.LBB1_55
-.LBB1_55:                               #   in Loop: Header=BB1_41 Depth=1
+.LBB1_55:                               #   in Loop: Header=BB1_40 Depth=1
 	jmp	.LBB1_56
-.LBB1_56:                               #   in Loop: Header=BB1_41 Depth=1
-	jmp	.LBB1_57
-.LBB1_57:                               #   in Loop: Header=BB1_41 Depth=1
-	movl	-2924(%rbp), %eax
+.LBB1_56:                               #   in Loop: Header=BB1_40 Depth=1
+	movl	-2932(%rbp), %eax
 	addl	$1, %eax
-	movl	%eax, -2924(%rbp)
-	jmp	.LBB1_41
-.LBB1_58:
+	movl	%eax, -2932(%rbp)
+	jmp	.LBB1_40
+.LBB1_57:
 	leaq	-1048(%rbp), %rdi
 	callq	_ZN7u64ListC2Ev
 	movq	-2848(%rbp), %rdi
 	leaq	-1048(%rbp), %rsi
 	callq	_Z10bitscanAllmR7u64List@PLT
-	movl	$0, -2972(%rbp)
-.LBB1_59:                               # =>This Loop Header: Depth=1
-                                        #     Child Loop BB1_61 Depth 2
-	movl	-2972(%rbp), %eax
+	movl	$0, -2980(%rbp)
+.LBB1_58:                               # =>This Loop Header: Depth=1
+                                        #     Child Loop BB1_60 Depth 2
+	movl	-2980(%rbp), %eax
 	leaq	-1048(%rbp), %rdi
-	movl	%eax, -3176(%rbp)               # 4-byte Spill
+	movl	%eax, -3184(%rbp)               # 4-byte Spill
 	callq	_ZNK7u64List3lenEv
-	movl	-3176(%rbp), %ecx               # 4-byte Reload
+	movl	-3184(%rbp), %ecx               # 4-byte Reload
 	cmpl	%eax, %ecx
-	jge	.LBB1_78
-# %bb.60:                               #   in Loop: Header=BB1_59 Depth=1
-	movl	-2972(%rbp), %esi
+	jge	.LBB1_77
+# %bb.59:                               #   in Loop: Header=BB1_58 Depth=1
+	movl	-2980(%rbp), %esi
 	leaq	-1048(%rbp), %rdi
 	callq	_ZNK7u64ListixEi
-	movq	%rax, -2984(%rbp)
-	movq	-2984(%rbp), %rdi
+	movq	%rax, -2992(%rbp)
+	movq	-2992(%rbp), %rdi
 	callq	_Z11u64ToSquarem
-	movl	%eax, -2988(%rbp)
-	movq	-3120(%rbp), %rcx               # 8-byte Reload
+	movl	%eax, -2996(%rbp)
+	movq	-3128(%rbp), %rcx               # 8-byte Reload
 	addq	$96, %rcx
 	addq	$576, %rcx                      # imm = 0x240
-	movslq	-2988(%rbp), %rsi
+	movslq	-2996(%rbp), %rsi
 	movq	%rcx, %rdi
 	callq	_ZNSt5arrayImLm64EEixEm
 	movq	(%rax), %rax
 	andq	-2808(%rbp), %rax
-	movq	%rax, -3000(%rbp)
+	movq	%rax, -3008(%rbp)
 	leaq	-1568(%rbp), %rdi
 	callq	_ZN7u64ListC2Ev
-	movq	-3000(%rbp), %rdi
+	movq	-3008(%rbp), %rdi
 	leaq	-1568(%rbp), %rsi
 	callq	_Z10bitscanAllmR7u64List@PLT
-	movl	$0, -3004(%rbp)
-.LBB1_61:                               #   Parent Loop BB1_59 Depth=1
+	movl	$0, -3012(%rbp)
+.LBB1_60:                               #   Parent Loop BB1_58 Depth=1
                                         # =>  This Inner Loop Header: Depth=2
-	movl	-3004(%rbp), %eax
+	movl	-3012(%rbp), %eax
 	leaq	-1568(%rbp), %rdi
-	movl	%eax, -3180(%rbp)               # 4-byte Spill
+	movl	%eax, -3188(%rbp)               # 4-byte Spill
 	callq	_ZNK7u64List3lenEv
-	movl	-3180(%rbp), %ecx               # 4-byte Reload
+	movl	-3188(%rbp), %ecx               # 4-byte Reload
 	cmpl	%eax, %ecx
-	jge	.LBB1_76
-# %bb.62:                               #   in Loop: Header=BB1_61 Depth=2
-	movl	-3004(%rbp), %esi
+	jge	.LBB1_75
+# %bb.61:                               #   in Loop: Header=BB1_60 Depth=2
+	movl	-3012(%rbp), %esi
 	leaq	-1568(%rbp), %rdi
 	callq	_ZNK7u64ListixEi
 	andq	-2776(%rbp), %rax
 	cmpq	$0, %rax
-	je	.LBB1_64
-# %bb.63:                               #   in Loop: Header=BB1_61 Depth=2
-	jmp	.LBB1_75
-.LBB1_64:                               #   in Loop: Header=BB1_61 Depth=2
-	movl	-3004(%rbp), %esi
+	je	.LBB1_63
+# %bb.62:                               #   in Loop: Header=BB1_60 Depth=2
+	jmp	.LBB1_74
+.LBB1_63:                               #   in Loop: Header=BB1_60 Depth=2
+	movl	-3012(%rbp), %esi
 	leaq	-1568(%rbp), %rdi
 	callq	_ZNK7u64ListixEi
-	movq	%rax, -3016(%rbp)
-	movq	-3016(%rbp), %rdi
+	movq	%rax, -3024(%rbp)
+	movq	-3024(%rbp), %rdi
 	callq	_Z11u64ToSquarem
-	movl	%eax, -3020(%rbp)
+	movl	%eax, -3028(%rbp)
 	movq	-2824(%rbp), %rcx
-	movq	-3016(%rbp), %rdx
+	movq	-3024(%rbp), %rdx
 	xorq	$-1, %rdx
 	andq	%rdx, %rcx
-	orq	-2984(%rbp), %rcx
+	orq	-2992(%rbp), %rcx
 	movq	-2776(%rbp), %rsi
-	movq	-2984(%rbp), %rdx
+	movq	-2992(%rbp), %rdx
 	xorq	$-1, %rdx
-	andq	-2832(%rbp), %rdx
-	movq	-2984(%rbp), %rdi
+	movq	-2864(%rbp), %rdi
 	xorq	$-1, %rdi
+	andq	%rdi, %rdx
+	andq	-2832(%rbp), %rdx
+	movq	-2992(%rbp), %rdi
+	xorq	$-1, %rdi
+	movq	-2864(%rbp), %r8
+	xorq	$-1, %r8
+	andq	%r8, %rdi
 	andq	-2840(%rbp), %rdi
-	movq	%rdi, -3192(%rbp)               # 8-byte Spill
+	movq	%rdi, -3200(%rbp)               # 8-byte Spill
 	movq	%rcx, %rdi
-	movq	-3192(%rbp), %rcx               # 8-byte Reload
+	movq	-3200(%rbp), %rcx               # 8-byte Reload
 	callq	_ZN9move_maps17isAttackedSlidingEmmmm@PLT
 	testb	$1, %al
-	jne	.LBB1_74
-# %bb.65:                               #   in Loop: Header=BB1_61 Depth=2
-	movq	-3016(%rbp), %rsi
-	movq	-3120(%rbp), %rdi               # 8-byte Reload
+	jne	.LBB1_73
+# %bb.64:                               #   in Loop: Header=BB1_60 Depth=2
+	movq	-3024(%rbp), %rsi
+	movq	-3128(%rbp), %rdi               # 8-byte Reload
 	callq	_ZNK5Board9piece_at_Em@PLT
-	movl	%eax, -3024(%rbp)
-	movl	-3024(%rbp), %edi
+	movl	%eax, -3032(%rbp)
+	movl	-3032(%rbp), %edi
 	callq	_ZN5piece7is_pawnEi
 	testb	$1, %al
-	jne	.LBB1_66
-	jmp	.LBB1_72
-.LBB1_66:                               #   in Loop: Header=BB1_61 Depth=2
+	jne	.LBB1_65
+	jmp	.LBB1_71
+.LBB1_65:                               #   in Loop: Header=BB1_60 Depth=2
 	movq	-2816(%rbp), %rax
-	andq	-2984(%rbp), %rax
+	andq	-2992(%rbp), %rax
 	cmpq	$0, %rax
-	je	.LBB1_71
-# %bb.67:                               #   in Loop: Header=BB1_61 Depth=2
-	movl	-2988(%rbp), %edi
+	je	.LBB1_70
+# %bb.66:                               #   in Loop: Header=BB1_60 Depth=2
+	movl	-2996(%rbp), %edi
 	movl	-2764(%rbp), %esi
 	callq	_ZN9move_maps15isPromotingRankEii@PLT
 	testb	$1, %al
-	jne	.LBB1_68
-	jmp	.LBB1_69
-.LBB1_68:                               #   in Loop: Header=BB1_61 Depth=2
-	movl	-3020(%rbp), %esi
-	movl	-2988(%rbp), %edx
+	jne	.LBB1_67
+	jmp	.LBB1_68
+.LBB1_67:                               #   in Loop: Header=BB1_60 Depth=2
+	movl	-3028(%rbp), %esi
+	movl	-2996(%rbp), %edx
 	leaq	-2664(%rbp), %rdi
 	movl	$8, %ecx
 	callq	_ZN5CMoveC2Eiii
-	movq	-3104(%rbp), %rdi               # 8-byte Reload
+	movq	-3112(%rbp), %rdi               # 8-byte Reload
 	movzwl	-2664(%rbp), %esi
 	callq	_ZN8MoveListILi256EE8PushBackE5CMove
-	movl	-3020(%rbp), %esi
-	movl	-2988(%rbp), %edx
+	movl	-3028(%rbp), %esi
+	movl	-2996(%rbp), %edx
 	leaq	-2672(%rbp), %rdi
 	movl	$6, %ecx
 	callq	_ZN5CMoveC2Eiii
-	movq	-3104(%rbp), %rdi               # 8-byte Reload
+	movq	-3112(%rbp), %rdi               # 8-byte Reload
 	movzwl	-2672(%rbp), %esi
 	callq	_ZN8MoveListILi256EE8PushBackE5CMove
-	movl	-3020(%rbp), %esi
-	movl	-2988(%rbp), %edx
+	movl	-3028(%rbp), %esi
+	movl	-2996(%rbp), %edx
 	leaq	-2680(%rbp), %rdi
 	movl	$4, %ecx
 	callq	_ZN5CMoveC2Eiii
-	movq	-3104(%rbp), %rdi               # 8-byte Reload
+	movq	-3112(%rbp), %rdi               # 8-byte Reload
 	movzwl	-2680(%rbp), %esi
 	callq	_ZN8MoveListILi256EE8PushBackE5CMove
-	movl	-3020(%rbp), %esi
-	movl	-2988(%rbp), %edx
+	movl	-3028(%rbp), %esi
+	movl	-2996(%rbp), %edx
 	leaq	-2688(%rbp), %rdi
 	movl	$2, %ecx
 	callq	_ZN5CMoveC2Eiii
-	movq	-3104(%rbp), %rdi               # 8-byte Reload
+	movq	-3112(%rbp), %rdi               # 8-byte Reload
 	movzwl	-2688(%rbp), %esi
 	callq	_ZN8MoveListILi256EE8PushBackE5CMove
-	jmp	.LBB1_70
-.LBB1_69:                               #   in Loop: Header=BB1_61 Depth=2
-	movl	-3020(%rbp), %esi
-	movl	-2988(%rbp), %edx
+	jmp	.LBB1_69
+.LBB1_68:                               #   in Loop: Header=BB1_60 Depth=2
+	movl	-3028(%rbp), %esi
+	movl	-2996(%rbp), %edx
 	leaq	-2696(%rbp), %rdi
 	movl	$1, %ecx
 	callq	_ZN5CMoveC2Eiii
-	movq	-3104(%rbp), %rdi               # 8-byte Reload
+	movq	-3112(%rbp), %rdi               # 8-byte Reload
 	movzwl	-2696(%rbp), %esi
 	callq	_ZN8MoveListILi256EE8PushBackE5CMove
-.LBB1_70:                               #   in Loop: Header=BB1_61 Depth=2
-	jmp	.LBB1_71
-.LBB1_71:                               #   in Loop: Header=BB1_61 Depth=2
-	jmp	.LBB1_73
-.LBB1_72:                               #   in Loop: Header=BB1_61 Depth=2
-	movl	-3020(%rbp), %esi
-	movl	-2988(%rbp), %edx
+.LBB1_69:                               #   in Loop: Header=BB1_60 Depth=2
+	jmp	.LBB1_70
+.LBB1_70:                               #   in Loop: Header=BB1_60 Depth=2
+	jmp	.LBB1_72
+.LBB1_71:                               #   in Loop: Header=BB1_60 Depth=2
+	movl	-3028(%rbp), %esi
+	movl	-2996(%rbp), %edx
 	leaq	-2704(%rbp), %rdi
 	movl	$1, %ecx
 	callq	_ZN5CMoveC2Eiii
-	movq	-3104(%rbp), %rdi               # 8-byte Reload
+	movq	-3112(%rbp), %rdi               # 8-byte Reload
 	movzwl	-2704(%rbp), %esi
 	callq	_ZN8MoveListILi256EE8PushBackE5CMove
-.LBB1_73:                               #   in Loop: Header=BB1_61 Depth=2
+.LBB1_72:                               #   in Loop: Header=BB1_60 Depth=2
+	jmp	.LBB1_73
+.LBB1_73:                               #   in Loop: Header=BB1_60 Depth=2
 	jmp	.LBB1_74
-.LBB1_74:                               #   in Loop: Header=BB1_61 Depth=2
-	jmp	.LBB1_75
-.LBB1_75:                               #   in Loop: Header=BB1_61 Depth=2
-	movl	-3004(%rbp), %eax
+.LBB1_74:                               #   in Loop: Header=BB1_60 Depth=2
+	movl	-3012(%rbp), %eax
 	addl	$1, %eax
-	movl	%eax, -3004(%rbp)
-	jmp	.LBB1_61
-.LBB1_76:                               #   in Loop: Header=BB1_59 Depth=1
-	jmp	.LBB1_77
-.LBB1_77:                               #   in Loop: Header=BB1_59 Depth=1
-	movl	-2972(%rbp), %eax
+	movl	%eax, -3012(%rbp)
+	jmp	.LBB1_60
+.LBB1_75:                               #   in Loop: Header=BB1_58 Depth=1
+	jmp	.LBB1_76
+.LBB1_76:                               #   in Loop: Header=BB1_58 Depth=1
+	movl	-2980(%rbp), %eax
 	addl	$1, %eax
-	movl	%eax, -2972(%rbp)
-	jmp	.LBB1_59
+	movl	%eax, -2980(%rbp)
+	jmp	.LBB1_58
+.LBB1_77:
+	jmp	.LBB1_89
 .LBB1_78:
-	jmp	.LBB1_90
-.LBB1_79:
 	movq	-2848(%rbp), %rax
-	movq	%rax, -3032(%rbp)
+	movq	%rax, -3040(%rbp)
 	movq	-2848(%rbp), %rdi
 	callq	_Z11u64ToSquarem
-	movl	%eax, -3036(%rbp)
-	movq	-3120(%rbp), %rcx               # 8-byte Reload
+	movl	%eax, -3044(%rbp)
+	movq	-3128(%rbp), %rcx               # 8-byte Reload
 	addq	$96, %rcx
 	addq	$576, %rcx                      # imm = 0x240
-	movslq	-3036(%rbp), %rsi
+	movslq	-3044(%rbp), %rsi
 	movq	%rcx, %rdi
 	callq	_ZNSt5arrayImLm64EEixEm
 	movq	(%rax), %rax
@@ -662,214 +676,214 @@ _ZN5Board22produce_uncheck_moves_Ev:    # @_ZN5Board22produce_uncheck_moves_Ev
 	movq	-2776(%rbp), %rcx
 	xorq	$-1, %rcx
 	andq	%rcx, %rax
-	movq	%rax, -3048(%rbp)
+	movq	%rax, -3056(%rbp)
 	leaq	-2088(%rbp), %rdi
 	callq	_ZN7u64ListC2Ev
-	movq	-3048(%rbp), %rdi
+	movq	-3056(%rbp), %rdi
 	leaq	-2088(%rbp), %rsi
 	callq	_Z10bitscanAllmR7u64List@PLT
-	movl	$0, -3052(%rbp)
-.LBB1_80:                               # =>This Inner Loop Header: Depth=1
-	movl	-3052(%rbp), %eax
+	movl	$0, -3060(%rbp)
+.LBB1_79:                               # =>This Inner Loop Header: Depth=1
+	movl	-3060(%rbp), %eax
 	leaq	-2088(%rbp), %rdi
-	movl	%eax, -3196(%rbp)               # 4-byte Spill
+	movl	%eax, -3204(%rbp)               # 4-byte Spill
 	callq	_ZNK7u64List3lenEv
-	movl	-3196(%rbp), %ecx               # 4-byte Reload
+	movl	-3204(%rbp), %ecx               # 4-byte Reload
 	cmpl	%eax, %ecx
-	jge	.LBB1_89
-# %bb.81:                               #   in Loop: Header=BB1_80 Depth=1
-	movl	-3052(%rbp), %esi
+	jge	.LBB1_88
+# %bb.80:                               #   in Loop: Header=BB1_79 Depth=1
+	movl	-3060(%rbp), %esi
 	leaq	-2088(%rbp), %rdi
 	callq	_ZNK7u64ListixEi
-	movq	%rax, -3064(%rbp)
-	movq	-3064(%rbp), %rdi
+	movq	%rax, -3072(%rbp)
+	movq	-3072(%rbp), %rdi
 	callq	_Z11u64ToSquarem
-	movl	%eax, -3068(%rbp)
+	movl	%eax, -3076(%rbp)
 	movq	-2824(%rbp), %rcx
-	movq	-3064(%rbp), %rdx
+	movq	-3072(%rbp), %rdx
 	xorq	$-1, %rdx
 	andq	%rdx, %rcx
 	movq	-2776(%rbp), %rsi
-	movq	-3032(%rbp), %rdx
+	movq	-3040(%rbp), %rdx
 	xorq	$-1, %rdx
 	andq	-2832(%rbp), %rdx
-	movq	-3032(%rbp), %rdi
+	movq	-3040(%rbp), %rdi
 	xorq	$-1, %rdi
 	andq	-2840(%rbp), %rdi
-	movq	%rdi, -3208(%rbp)               # 8-byte Spill
+	movq	%rdi, -3216(%rbp)               # 8-byte Spill
 	movq	%rcx, %rdi
-	movq	-3208(%rbp), %rcx               # 8-byte Reload
+	movq	-3216(%rbp), %rcx               # 8-byte Reload
 	callq	_ZN9move_maps17isAttackedSlidingEmmmm@PLT
 	testb	$1, %al
-	jne	.LBB1_82
-	jmp	.LBB1_83
-.LBB1_82:                               #   in Loop: Header=BB1_80 Depth=1
-	jmp	.LBB1_88
-.LBB1_83:                               #   in Loop: Header=BB1_80 Depth=1
-	movl	-3036(%rbp), %edi
+	jne	.LBB1_81
+	jmp	.LBB1_82
+.LBB1_81:                               #   in Loop: Header=BB1_79 Depth=1
+	jmp	.LBB1_87
+.LBB1_82:                               #   in Loop: Header=BB1_79 Depth=1
+	movl	-3044(%rbp), %edi
 	movl	-2764(%rbp), %esi
 	callq	_ZN9move_maps15isPromotingRankEii@PLT
 	testb	$1, %al
-	jne	.LBB1_84
-	jmp	.LBB1_86
-.LBB1_84:                               #   in Loop: Header=BB1_80 Depth=1
-	movq	-3064(%rbp), %rsi
-	movq	-3120(%rbp), %rdi               # 8-byte Reload
+	jne	.LBB1_83
+	jmp	.LBB1_85
+.LBB1_83:                               #   in Loop: Header=BB1_79 Depth=1
+	movq	-3072(%rbp), %rsi
+	movq	-3128(%rbp), %rdi               # 8-byte Reload
 	callq	_ZNK5Board9piece_at_Em@PLT
 	movl	%eax, %edi
 	callq	_ZN5piece7is_pawnEi
 	testb	$1, %al
-	jne	.LBB1_85
-	jmp	.LBB1_86
-.LBB1_85:                               #   in Loop: Header=BB1_80 Depth=1
-	movl	-3068(%rbp), %esi
-	movl	-3036(%rbp), %edx
+	jne	.LBB1_84
+	jmp	.LBB1_85
+.LBB1_84:                               #   in Loop: Header=BB1_79 Depth=1
+	movl	-3076(%rbp), %esi
+	movl	-3044(%rbp), %edx
 	leaq	-2712(%rbp), %rdi
 	movl	$8, %ecx
 	callq	_ZN5CMoveC2Eiii
-	movq	-3104(%rbp), %rdi               # 8-byte Reload
+	movq	-3112(%rbp), %rdi               # 8-byte Reload
 	movzwl	-2712(%rbp), %esi
 	callq	_ZN8MoveListILi256EE8PushBackE5CMove
-	movl	-3068(%rbp), %esi
-	movl	-3036(%rbp), %edx
+	movl	-3076(%rbp), %esi
+	movl	-3044(%rbp), %edx
 	leaq	-2720(%rbp), %rdi
 	movl	$6, %ecx
 	callq	_ZN5CMoveC2Eiii
-	movq	-3104(%rbp), %rdi               # 8-byte Reload
+	movq	-3112(%rbp), %rdi               # 8-byte Reload
 	movzwl	-2720(%rbp), %esi
 	callq	_ZN8MoveListILi256EE8PushBackE5CMove
-	movl	-3068(%rbp), %esi
-	movl	-3036(%rbp), %edx
+	movl	-3076(%rbp), %esi
+	movl	-3044(%rbp), %edx
 	leaq	-2728(%rbp), %rdi
 	movl	$4, %ecx
 	callq	_ZN5CMoveC2Eiii
-	movq	-3104(%rbp), %rdi               # 8-byte Reload
+	movq	-3112(%rbp), %rdi               # 8-byte Reload
 	movzwl	-2728(%rbp), %esi
 	callq	_ZN8MoveListILi256EE8PushBackE5CMove
-	movl	-3068(%rbp), %esi
-	movl	-3036(%rbp), %edx
+	movl	-3076(%rbp), %esi
+	movl	-3044(%rbp), %edx
 	leaq	-2736(%rbp), %rdi
 	movl	$2, %ecx
 	callq	_ZN5CMoveC2Eiii
-	movq	-3104(%rbp), %rdi               # 8-byte Reload
+	movq	-3112(%rbp), %rdi               # 8-byte Reload
 	movzwl	-2736(%rbp), %esi
 	callq	_ZN8MoveListILi256EE8PushBackE5CMove
-	jmp	.LBB1_87
-.LBB1_86:                               #   in Loop: Header=BB1_80 Depth=1
-	movl	-3068(%rbp), %esi
-	movl	-3036(%rbp), %edx
+	jmp	.LBB1_86
+.LBB1_85:                               #   in Loop: Header=BB1_79 Depth=1
+	movl	-3076(%rbp), %esi
+	movl	-3044(%rbp), %edx
 	leaq	-2744(%rbp), %rdi
 	movl	$1, %ecx
 	callq	_ZN5CMoveC2Eiii
-	movq	-3104(%rbp), %rdi               # 8-byte Reload
+	movq	-3112(%rbp), %rdi               # 8-byte Reload
 	movzwl	-2744(%rbp), %esi
 	callq	_ZN8MoveListILi256EE8PushBackE5CMove
-.LBB1_87:                               #   in Loop: Header=BB1_80 Depth=1
-	jmp	.LBB1_88
-.LBB1_88:                               #   in Loop: Header=BB1_80 Depth=1
-	movl	-3052(%rbp), %eax
+.LBB1_86:                               #   in Loop: Header=BB1_79 Depth=1
+	jmp	.LBB1_87
+.LBB1_87:                               #   in Loop: Header=BB1_79 Depth=1
+	movl	-3060(%rbp), %eax
 	addl	$1, %eax
-	movl	%eax, -3052(%rbp)
-	jmp	.LBB1_80
+	movl	%eax, -3060(%rbp)
+	jmp	.LBB1_79
+.LBB1_88:
+	jmp	.LBB1_89
 .LBB1_89:
 	jmp	.LBB1_90
 .LBB1_90:
-	jmp	.LBB1_91
-.LBB1_91:
-	movq	-3120(%rbp), %rax               # 8-byte Reload
+	movq	-3128(%rbp), %rax               # 8-byte Reload
 	addq	$96, %rax
 	addq	$64, %rax
 	movq	-2784(%rbp), %rsi
 	movq	%rax, %rdi
 	callq	_ZNSt5arrayImLm64EEixEm
 	movq	(%rax), %rax
-	movq	%rax, -3080(%rbp)
+	movq	%rax, -3088(%rbp)
 	leaq	-2608(%rbp), %rdi
 	callq	_ZN7u64ListC2Ev
-	movq	-3080(%rbp), %rdi
+	movq	-3088(%rbp), %rdi
 	leaq	-2608(%rbp), %rsi
 	callq	_Z10bitscanAllmR7u64List@PLT
-	movl	$0, -3084(%rbp)
-.LBB1_92:                               # =>This Inner Loop Header: Depth=1
-	movl	-3084(%rbp), %eax
+	movl	$0, -3092(%rbp)
+.LBB1_91:                               # =>This Inner Loop Header: Depth=1
+	movl	-3092(%rbp), %eax
 	leaq	-2608(%rbp), %rdi
-	movl	%eax, -3212(%rbp)               # 4-byte Spill
+	movl	%eax, -3220(%rbp)               # 4-byte Spill
 	callq	_ZNK7u64List3lenEv
-	movl	-3212(%rbp), %ecx               # 4-byte Reload
+	movl	-3220(%rbp), %ecx               # 4-byte Reload
 	cmpl	%eax, %ecx
-	jge	.LBB1_100
-# %bb.93:                               #   in Loop: Header=BB1_92 Depth=1
-	movl	-3084(%rbp), %esi
+	jge	.LBB1_99
+# %bb.92:                               #   in Loop: Header=BB1_91 Depth=1
+	movl	-3092(%rbp), %esi
 	leaq	-2608(%rbp), %rdi
 	callq	_ZNK7u64ListixEi
-	movq	%rax, -3096(%rbp)
-	movq	-3096(%rbp), %rsi
+	movq	%rax, -3104(%rbp)
+	movq	-3104(%rbp), %rsi
 	movl	-2768(%rbp), %edx
-	movq	-3120(%rbp), %rdi               # 8-byte Reload
+	movq	-3128(%rbp), %rdi               # 8-byte Reload
 	callq	_ZN5Board13attackers_to_Emi@PLT
 	cmpq	$0, %rax
-	jne	.LBB1_98
-# %bb.94:                               #   in Loop: Header=BB1_92 Depth=1
-	movq	-3096(%rbp), %rax
+	jne	.LBB1_97
+# %bb.93:                               #   in Loop: Header=BB1_91 Depth=1
+	movq	-3104(%rbp), %rax
 	andq	-2808(%rbp), %rax
 	cmpq	$0, %rax
-	jne	.LBB1_98
-# %bb.95:                               #   in Loop: Header=BB1_92 Depth=1
+	jne	.LBB1_97
+# %bb.94:                               #   in Loop: Header=BB1_91 Depth=1
 	movq	-2824(%rbp), %rax
 	movq	-2776(%rbp), %rcx
 	xorq	$-1, %rcx
 	andq	%rcx, %rax
-	orq	-3096(%rbp), %rax
-	movq	-3096(%rbp), %rsi
-	movq	-3096(%rbp), %rcx
+	orq	-3104(%rbp), %rax
+	movq	-3104(%rbp), %rsi
+	movq	-3104(%rbp), %rcx
 	xorq	$-1, %rcx
 	andq	-2832(%rbp), %rcx
-	movq	-3096(%rbp), %rdx
+	movq	-3104(%rbp), %rdx
 	xorq	$-1, %rdx
 	andq	-2840(%rbp), %rdx
 	movq	%rax, %rdi
-	movq	%rdx, -3224(%rbp)               # 8-byte Spill
+	movq	%rdx, -3232(%rbp)               # 8-byte Spill
 	movq	%rcx, %rdx
-	movq	-3224(%rbp), %rcx               # 8-byte Reload
+	movq	-3232(%rbp), %rcx               # 8-byte Reload
 	callq	_ZN9move_maps17isAttackedSlidingEmmmm@PLT
 	testb	$1, %al
-	jne	.LBB1_96
-	jmp	.LBB1_97
-.LBB1_96:                               #   in Loop: Header=BB1_92 Depth=1
-	jmp	.LBB1_99
-.LBB1_97:                               #   in Loop: Header=BB1_92 Depth=1
+	jne	.LBB1_95
+	jmp	.LBB1_96
+.LBB1_95:                               #   in Loop: Header=BB1_91 Depth=1
+	jmp	.LBB1_98
+.LBB1_96:                               #   in Loop: Header=BB1_91 Depth=1
 	movq	-2784(%rbp), %rax
                                         # kill: def $eax killed $eax killed $rax
-	movq	-3096(%rbp), %rdi
-	movl	%eax, -3228(%rbp)               # 4-byte Spill
+	movq	-3104(%rbp), %rdi
+	movl	%eax, -3236(%rbp)               # 4-byte Spill
 	callq	_Z11u64ToSquarem
 	leaq	-2752(%rbp), %rdi
-	movl	-3228(%rbp), %esi               # 4-byte Reload
+	movl	-3236(%rbp), %esi               # 4-byte Reload
 	movl	%eax, %edx
 	movl	$1, %ecx
 	callq	_ZN5CMoveC2Eiii
-	movq	-3104(%rbp), %rdi               # 8-byte Reload
+	movq	-3112(%rbp), %rdi               # 8-byte Reload
 	movzwl	-2752(%rbp), %esi
 	callq	_ZN8MoveListILi256EE8PushBackE5CMove
-.LBB1_98:                               #   in Loop: Header=BB1_92 Depth=1
-	jmp	.LBB1_99
-.LBB1_99:                               #   in Loop: Header=BB1_92 Depth=1
-	movl	-3084(%rbp), %eax
+.LBB1_97:                               #   in Loop: Header=BB1_91 Depth=1
+	jmp	.LBB1_98
+.LBB1_98:                               #   in Loop: Header=BB1_91 Depth=1
+	movl	-3092(%rbp), %eax
 	addl	$1, %eax
-	movl	%eax, -3084(%rbp)
-	jmp	.LBB1_92
-.LBB1_100:
+	movl	%eax, -3092(%rbp)
+	jmp	.LBB1_91
+.LBB1_99:
 	movq	%fs:40, %rax
 	movq	-8(%rbp), %rcx
 	cmpq	%rcx, %rax
-	jne	.LBB1_102
-# %bb.101:
-	movq	-3112(%rbp), %rax               # 8-byte Reload
-	addq	$3232, %rsp                     # imm = 0xCA0
+	jne	.LBB1_101
+# %bb.100:
+	movq	-3120(%rbp), %rax               # 8-byte Reload
+	addq	$3248, %rsp                     # imm = 0xCB0
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.LBB1_102:
+.LBB1_101:
 	.cfi_def_cfa %rbp, 16
 	callq	__stack_chk_fail@PLT
 .Lfunc_end1:

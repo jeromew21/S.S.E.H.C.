@@ -750,24 +750,24 @@ _ZN5Board4DumpEv:                       # @_ZN5Board4DumpEv
 	.cfi_offset %rbp, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register %rbp
-	subq	$960, %rsp                      # imm = 0x3C0
+	subq	$1040, %rsp                     # imm = 0x410
 	movq	%fs:40, %rax
 	movq	%rax, -8(%rbp)
-	movq	%rdi, -736(%rbp)
-	movq	-736(%rbp), %rax
+	movq	%rdi, -776(%rbp)
+	movq	-776(%rbp), %rax
 	movq	_ZSt4cout@GOTPCREL(%rip), %rdi
 	leaq	.L.str.19(%rip), %rsi
-	movq	%rax, -776(%rbp)                # 8-byte Spill
+	movq	%rax, -816(%rbp)                # 8-byte Spill
 	callq	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@PLT
-	leaq	-696(%rbp), %rcx
+	leaq	-728(%rbp), %rcx
 	movq	%rcx, %rdi
-	movq	%rax, -784(%rbp)                # 8-byte Spill
-	movq	%rcx, -792(%rbp)                # 8-byte Spill
+	movq	%rax, -824(%rbp)                # 8-byte Spill
+	movq	%rcx, -832(%rbp)                # 8-byte Spill
 	callq	_ZNSaIcEC1Ev@PLT
 .Ltmp48:
 	leaq	.L.str.20(%rip), %rsi
 	leaq	-40(%rbp), %rdi
-	movq	-792(%rbp), %rdx                # 8-byte Reload
+	movq	-832(%rbp), %rdx                # 8-byte Reload
 	callq	_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEC1EPKcRKS3_@PLT
 .Ltmp49:
 	jmp	.LBB5_1
@@ -780,27 +780,27 @@ _ZN5Board4DumpEv:                       # @_ZN5Board4DumpEv
 .LBB5_2:
 	leaq	-40(%rbp), %rdi
 	callq	_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEED1Ev@PLT
-	leaq	-696(%rbp), %rdi
+	leaq	-728(%rbp), %rdi
 	callq	_ZNSaIcED1Ev@PLT
 	movq	_ZSt4cout@GOTPCREL(%rip), %rdi
 	leaq	.L.str.21(%rip), %rsi
 	callq	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@PLT
-	movq	-776(%rbp), %rdi                # 8-byte Reload
-	movq	%rax, -800(%rbp)                # 8-byte Spill
+	movq	-816(%rbp), %rdi                # 8-byte Reload
+	movq	%rax, -840(%rbp)                # 8-byte Spill
 	callq	_ZNK5Board4turnEv@PLT
 	cmpl	$0, %eax
 	jne	.LBB5_4
 # %bb.3:
 	leaq	.L.str.22(%rip), %rax
-	movq	%rax, -808(%rbp)                # 8-byte Spill
+	movq	%rax, -848(%rbp)                # 8-byte Spill
 	jmp	.LBB5_5
 .LBB5_4:
 	leaq	.L.str.23(%rip), %rax
-	movq	%rax, -808(%rbp)                # 8-byte Spill
+	movq	%rax, -848(%rbp)                # 8-byte Spill
 	jmp	.LBB5_5
 .LBB5_5:
-	movq	-808(%rbp), %rax                # 8-byte Reload
-	movq	-800(%rbp), %rdi                # 8-byte Reload
+	movq	-848(%rbp), %rax                # 8-byte Reload
+	movq	-840(%rbp), %rdi                # 8-byte Reload
 	movq	%rax, %rsi
 	callq	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@PLT
 	movq	_ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_@GOTPCREL(%rip), %rsi
@@ -808,159 +808,109 @@ _ZN5Board4DumpEv:                       # @_ZN5Board4DumpEv
 	callq	_ZNSolsEPFRSoS_E@PLT
 	movq	_ZSt4cout@GOTPCREL(%rip), %rdi
 	leaq	.L.str.24(%rip), %rsi
-	movq	%rax, -816(%rbp)                # 8-byte Spill
+	movq	%rax, -856(%rbp)                # 8-byte Spill
 	callq	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@PLT
-	movq	-776(%rbp), %rcx                # 8-byte Reload
+	movq	-816(%rbp), %rcx                # 8-byte Reload
 	addq	$1184, %rcx                     # imm = 0x4A0
 	movq	%rcx, %rdi
-	movq	%rax, -824(%rbp)                # 8-byte Spill
+	movq	%rax, -864(%rbp)                # 8-byte Spill
 	callq	_ZNK5board10StateStack4sizeEv
-	movq	-824(%rbp), %rdi                # 8-byte Reload
+	movq	-864(%rbp), %rdi                # 8-byte Reload
 	movl	%eax, %esi
 	callq	_ZNSolsEi@PLT
 	movq	%rax, %rdi
 	leaq	.L.str.25(%rip), %rsi
 	callq	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@PLT
-	movl	$1, -752(%rbp)
+	movl	$1, -792(%rbp)
 .LBB5_6:                                # =>This Inner Loop Header: Depth=1
-	movl	-752(%rbp), %eax
-	movq	-776(%rbp), %rcx                # 8-byte Reload
+	movl	-792(%rbp), %eax
+	movq	-816(%rbp), %rcx                # 8-byte Reload
 	addq	$1184, %rcx                     # imm = 0x4A0
 	movq	%rcx, %rdi
-	movl	%eax, -828(%rbp)                # 4-byte Spill
+	movl	%eax, -868(%rbp)                # 4-byte Spill
 	callq	_ZNK5board10StateStack4sizeEv
-	movl	-828(%rbp), %edx                # 4-byte Reload
+	movl	-868(%rbp), %edx                # 4-byte Reload
 	cmpl	%eax, %edx
 	jge	.LBB5_15
 # %bb.7:                                #   in Loop: Header=BB5_6 Depth=1
-	movq	-776(%rbp), %rax                # 8-byte Reload
+	movq	-816(%rbp), %rax                # 8-byte Reload
 	addq	$1184, %rax                     # imm = 0x4A0
-	movl	-752(%rbp), %esi
+	movl	-792(%rbp), %esi
 	movq	%rax, %rdi
 	callq	_ZN5board10StateStack7peek_atEi
 	movw	42(%rax), %cx
-	movw	%cx, -704(%rbp)
-	movzwl	-704(%rbp), %esi
+	movw	%cx, -736(%rbp)
+	movzwl	-736(%rbp), %esi
 	leaq	-72(%rbp), %rax
 	movq	%rax, %rdi
-	movq	%rax, -840(%rbp)                # 8-byte Spill
+	movq	%rax, -880(%rbp)                # 8-byte Spill
 	callq	_Z18moveToUCIAlgebraicB5cxx115CMove@PLT
-.Ltmp65:
+.Ltmp75:
 	movq	_ZSt4cout@GOTPCREL(%rip), %rdi
-	movq	-840(%rbp), %rsi                # 8-byte Reload
+	movq	-880(%rbp), %rsi                # 8-byte Reload
 	callq	_ZStlsIcSt11char_traitsIcESaIcEERSt13basic_ostreamIT_T0_ES7_RKNSt7__cxx1112basic_stringIS4_S5_T1_EE@PLT
-.Ltmp66:
-	movq	%rax, -848(%rbp)                # 8-byte Spill
+.Ltmp76:
+	movq	%rax, -888(%rbp)                # 8-byte Spill
 	jmp	.LBB5_8
 .LBB5_8:                                #   in Loop: Header=BB5_6 Depth=1
-.Ltmp67:
+.Ltmp77:
 	leaq	.L.str.26(%rip), %rsi
-	movq	-848(%rbp), %rdi                # 8-byte Reload
+	movq	-888(%rbp), %rdi                # 8-byte Reload
 	callq	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@PLT
-.Ltmp68:
+.Ltmp78:
 	jmp	.LBB5_9
 .LBB5_9:                                #   in Loop: Header=BB5_6 Depth=1
 	leaq	-72(%rbp), %rdi
 	callq	_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEED1Ev@PLT
 # %bb.10:                               #   in Loop: Header=BB5_6 Depth=1
-	movl	-752(%rbp), %eax
+	movl	-792(%rbp), %eax
 	addl	$1, %eax
-	movl	%eax, -752(%rbp)
+	movl	%eax, -792(%rbp)
 	jmp	.LBB5_6
 .LBB5_11:
 .Ltmp50:
                                         # kill: def $edx killed $edx killed $rdx
-	movq	%rax, -744(%rbp)
-	movl	%edx, -748(%rbp)
+	movq	%rax, -784(%rbp)
+	movl	%edx, -788(%rbp)
 	jmp	.LBB5_13
 .LBB5_12:
 .Ltmp53:
                                         # kill: def $edx killed $edx killed $rdx
-	movq	%rax, -744(%rbp)
-	movl	%edx, -748(%rbp)
+	movq	%rax, -784(%rbp)
+	movl	%edx, -788(%rbp)
 	leaq	-40(%rbp), %rdi
 	callq	_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEED1Ev@PLT
 .LBB5_13:
-	leaq	-696(%rbp), %rdi
+	leaq	-728(%rbp), %rdi
 	callq	_ZNSaIcED1Ev@PLT
-	jmp	.LBB5_38
+	jmp	.LBB5_52
 .LBB5_14:
-.Ltmp69:
+.Ltmp79:
                                         # kill: def $edx killed $edx killed $rdx
-	movq	%rax, -744(%rbp)
-	movl	%edx, -748(%rbp)
+	movq	%rax, -784(%rbp)
+	movl	%edx, -788(%rbp)
 	leaq	-72(%rbp), %rdi
 	callq	_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEED1Ev@PLT
-	jmp	.LBB5_38
+	jmp	.LBB5_52
 .LBB5_15:
-	movq	_ZSt4cout@GOTPCREL(%rip), %rdi
-	leaq	.L.str.27(%rip), %rsi
-	callq	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@PLT
-	movq	-776(%rbp), %rdi                # 8-byte Reload
-	movq	%rax, -856(%rbp)                # 8-byte Spill
-	callq	_ZNK5Board8is_checkEv@PLT
-	movzbl	%al, %ecx
-	andl	$1, %ecx
-	movq	-856(%rbp), %rdi                # 8-byte Reload
-	movl	%ecx, %esi
-	callq	_ZNSolsEb@PLT
+	movq	-816(%rbp), %rax                # 8-byte Reload
+	addq	$1184, %rax                     # imm = 0x4A0
 	movq	%rax, %rdi
-	leaq	.L.str.28(%rip), %rsi
-	callq	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@PLT
-	movq	_ZSt4cout@GOTPCREL(%rip), %rdi
-	leaq	.L.str.29(%rip), %rsi
-	movq	%rax, -864(%rbp)                # 8-byte Spill
-	callq	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@PLT
-	movq	-776(%rbp), %rdx                # 8-byte Reload
-	addq	$96, %rdx
-	addq	$44, %rdx
-	movq	-776(%rbp), %rdi                # 8-byte Reload
-	movq	%rax, -872(%rbp)                # 8-byte Spill
-	movq	%rdx, -880(%rbp)                # 8-byte Spill
-	callq	_ZNK5Board4turnEv@PLT
-	xorl	%edx, %edx
-	movq	-880(%rbp), %rdi                # 8-byte Reload
-	movl	%eax, %esi
-	callq	_ZNK5board6castle6Rights3getEii@PLT
-	movq	-872(%rbp), %rdi                # 8-byte Reload
-	movl	%eax, %esi
-	callq	_ZNSolsEi@PLT
-	movq	_ZSt4cout@GOTPCREL(%rip), %rdi
-	leaq	.L.str.30(%rip), %rsi
-	movq	%rax, -888(%rbp)                # 8-byte Spill
-	callq	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@PLT
-	movq	-776(%rbp), %rsi                # 8-byte Reload
-	addq	$96, %rsi
-	addq	$44, %rsi
-	movq	-776(%rbp), %rdi                # 8-byte Reload
-	movq	%rax, -896(%rbp)                # 8-byte Spill
-	movq	%rsi, -904(%rbp)                # 8-byte Spill
-	callq	_ZNK5Board4turnEv@PLT
-	movq	-904(%rbp), %rdi                # 8-byte Reload
-	movl	%eax, %esi
-	movl	$2, %edx
-	callq	_ZNK5board6castle6Rights3getEii@PLT
-	movq	-896(%rbp), %rdi                # 8-byte Reload
-	movl	%eax, %esi
-	callq	_ZNSolsEi@PLT
-	movq	-776(%rbp), %rdi                # 8-byte Reload
-	addq	$1184, %rdi                     # imm = 0x4A0
-	movq	%rax, -912(%rbp)                # 8-byte Spill
 	callq	_ZNK5board10StateStack4sizeEv
 	cmpl	$0, %eax
 	jle	.LBB5_19
 # %bb.16:
-	movq	-776(%rbp), %rax                # 8-byte Reload
+	movq	-816(%rbp), %rax                # 8-byte Reload
 	movw	138(%rax), %cx
-	movw	%cx, -712(%rbp)
-	movzwl	-712(%rbp), %esi
+	movw	%cx, -744(%rbp)
+	movzwl	-744(%rbp), %esi
 	leaq	-104(%rbp), %rdx
 	movq	%rdx, %rdi
-	movq	%rdx, -920(%rbp)                # 8-byte Spill
+	movq	%rdx, -896(%rbp)                # 8-byte Spill
 	callq	_Z18moveToUCIAlgebraicB5cxx115CMove@PLT
 .Ltmp54:
 	movq	_ZSt4cout@GOTPCREL(%rip), %rdi
-	movq	-920(%rbp), %rsi                # 8-byte Reload
+	movq	-896(%rbp), %rsi                # 8-byte Reload
 	callq	_ZStlsIcSt11char_traitsIcESaIcEERSt13basic_ostreamIT_T0_ES7_RKNSt7__cxx1112basic_stringIS4_S5_T1_EE@PLT
 .Ltmp55:
 	jmp	.LBB5_17
@@ -971,146 +921,285 @@ _ZN5Board4DumpEv:                       # @_ZN5Board4DumpEv
 .LBB5_18:
 .Ltmp56:
                                         # kill: def $edx killed $edx killed $rdx
-	movq	%rax, -744(%rbp)
-	movl	%edx, -748(%rbp)
+	movq	%rax, -784(%rbp)
+	movl	%edx, -788(%rbp)
 	leaq	-104(%rbp), %rdi
 	callq	_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEED1Ev@PLT
-	jmp	.LBB5_38
+	jmp	.LBB5_52
 .LBB5_19:
 	movq	_ZSt4cout@GOTPCREL(%rip), %rdi
-	leaq	.L.str.28(%rip), %rsi
+	leaq	.L.str.27(%rip), %rsi
 	callq	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@PLT
-	movl	$7, -756(%rbp)
-.LBB5_20:                               # =>This Loop Header: Depth=1
-                                        #     Child Loop BB5_22 Depth 2
-	cmpl	$0, -756(%rbp)
-	jl	.LBB5_29
-# %bb.21:                               #   in Loop: Header=BB5_20 Depth=1
-	movl	$0, -760(%rbp)
-.LBB5_22:                               #   Parent Loop BB5_20 Depth=1
-                                        # =>  This Inner Loop Header: Depth=2
-	cmpl	$8, -760(%rbp)
-	jge	.LBB5_27
-# %bb.23:                               #   in Loop: Header=BB5_22 Depth=2
-	movl	-756(%rbp), %edi
-	movl	-760(%rbp), %esi
-	callq	_Z11u64FromPairii
-	movq	-776(%rbp), %rdi                # 8-byte Reload
-	movq	%rax, %rsi
-	callq	_ZNK5Board9piece_at_Em@PLT
-	leaq	-136(%rbp), %rcx
-	movq	%rcx, %rdi
+	movq	_ZSt4cout@GOTPCREL(%rip), %rdi
+	leaq	.L.str.28(%rip), %rsi
+	movq	%rax, -904(%rbp)                # 8-byte Spill
+	callq	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@PLT
+	movq	-816(%rbp), %rdi                # 8-byte Reload
+	movq	%rax, -912(%rbp)                # 8-byte Spill
+	callq	_ZNK5Board8is_checkEv@PLT
+	movzbl	%al, %ecx
+	andl	$1, %ecx
+	movq	-912(%rbp), %rdi                # 8-byte Reload
+	movl	%ecx, %esi
+	callq	_ZNSolsEb@PLT
+	movq	%rax, %rdi
+	leaq	.L.str.27(%rip), %rsi
+	callq	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@PLT
+	movq	_ZSt4cout@GOTPCREL(%rip), %rdi
+	leaq	.L.str.29(%rip), %rsi
+	movq	%rax, -920(%rbp)                # 8-byte Spill
+	callq	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@PLT
+	movq	-816(%rbp), %rdx                # 8-byte Reload
+	addq	$96, %rdx
+	addq	$44, %rdx
+	movq	-816(%rbp), %rdi                # 8-byte Reload
+	movq	%rax, -928(%rbp)                # 8-byte Spill
+	movq	%rdx, -936(%rbp)                # 8-byte Spill
+	callq	_ZNK5Board4turnEv@PLT
+	xorl	%edx, %edx
+	movq	-936(%rbp), %rdi                # 8-byte Reload
 	movl	%eax, %esi
-	movq	%rcx, -928(%rbp)                # 8-byte Spill
-	callq	_Z16pieceToStringFenB5cxx11i@PLT
-.Ltmp62:
-	movq	_ZSt4cout@GOTPCREL(%rip), %rdi
-	movq	-928(%rbp), %rsi                # 8-byte Reload
-	callq	_ZStlsIcSt11char_traitsIcESaIcEERSt13basic_ostreamIT_T0_ES7_RKNSt7__cxx1112basic_stringIS4_S5_T1_EE@PLT
-.Ltmp63:
-	jmp	.LBB5_24
-.LBB5_24:                               #   in Loop: Header=BB5_22 Depth=2
-	leaq	-136(%rbp), %rdi
-	callq	_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEED1Ev@PLT
-# %bb.25:                               #   in Loop: Header=BB5_22 Depth=2
-	movl	-760(%rbp), %eax
-	addl	$1, %eax
-	movl	%eax, -760(%rbp)
-	jmp	.LBB5_22
-.LBB5_26:
-.Ltmp64:
-                                        # kill: def $edx killed $edx killed $rdx
-	movq	%rax, -744(%rbp)
-	movl	%edx, -748(%rbp)
-	leaq	-136(%rbp), %rdi
-	callq	_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEED1Ev@PLT
-	jmp	.LBB5_38
-.LBB5_27:                               #   in Loop: Header=BB5_20 Depth=1
-	movq	_ZSt4cout@GOTPCREL(%rip), %rdi
-	leaq	.L.str.28(%rip), %rsi
+	callq	_ZNK5board6castle6Rights3getEii@PLT
+	movq	-928(%rbp), %rdi                # 8-byte Reload
+	movl	%eax, %esi
+	callq	_ZNSolsEi@PLT
+	movq	%rax, %rdi
+	leaq	.L.str.27(%rip), %rsi
 	callq	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@PLT
-# %bb.28:                               #   in Loop: Header=BB5_20 Depth=1
-	movl	-756(%rbp), %eax
-	addl	$-1, %eax
-	movl	%eax, -756(%rbp)
-	jmp	.LBB5_20
-.LBB5_29:
+	movq	_ZSt4cout@GOTPCREL(%rip), %rdi
+	leaq	.L.str.30(%rip), %rsi
+	movq	%rax, -944(%rbp)                # 8-byte Spill
+	callq	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@PLT
+	movq	-816(%rbp), %rsi                # 8-byte Reload
+	addq	$96, %rsi
+	addq	$44, %rsi
+	movq	-816(%rbp), %rdi                # 8-byte Reload
+	movq	%rax, -952(%rbp)                # 8-byte Spill
+	movq	%rsi, -960(%rbp)                # 8-byte Spill
+	callq	_ZNK5Board4turnEv@PLT
+	movq	-960(%rbp), %rdi                # 8-byte Reload
+	movl	%eax, %esi
+	movl	$2, %edx
+	callq	_ZNK5board6castle6Rights3getEii@PLT
+	movq	-952(%rbp), %rdi                # 8-byte Reload
+	movl	%eax, %esi
+	callq	_ZNSolsEi@PLT
+	movq	%rax, %rdi
+	leaq	.L.str.27(%rip), %rsi
+	callq	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@PLT
 	movq	_ZSt4cout@GOTPCREL(%rip), %rdi
 	leaq	.L.str.31(%rip), %rsi
+	movq	%rax, -968(%rbp)                # 8-byte Spill
 	callq	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@PLT
-	leaq	-656(%rbp), %rdi
-	movq	-776(%rbp), %rsi                # 8-byte Reload
-	movq	%rax, -936(%rbp)                # 8-byte Spill
-	callq	_ZN5Board11legal_movesEv@PLT
-	movl	$0, -764(%rbp)
-.LBB5_30:                               # =>This Inner Loop Header: Depth=1
-	movl	-764(%rbp), %eax
-	leaq	-656(%rbp), %rdi
-	movl	%eax, -940(%rbp)                # 4-byte Spill
-	callq	_ZNK8MoveListILi256EE4sizeEv
-	movl	-940(%rbp), %ecx                # 4-byte Reload
-	cmpl	%eax, %ecx
-	jge	.LBB5_36
-# %bb.31:                               #   in Loop: Header=BB5_30 Depth=1
-	movl	-764(%rbp), %esi
-	leaq	-656(%rbp), %rdi
-	callq	_ZNK8MoveListILi256EEixEi
-	movw	%ax, -720(%rbp)
-	movw	-720(%rbp), %ax
-	movw	%ax, -728(%rbp)
-	movzwl	-728(%rbp), %esi
-	leaq	-688(%rbp), %rcx
-	movq	%rcx, %rdi
-	movq	%rcx, -952(%rbp)                # 8-byte Spill
-	callq	_Z18moveToUCIAlgebraicB5cxx115CMove@PLT
-.Ltmp57:
-	movq	_ZSt4cout@GOTPCREL(%rip), %rdi
-	movq	-952(%rbp), %rsi                # 8-byte Reload
-	callq	_ZStlsIcSt11char_traitsIcESaIcEERSt13basic_ostreamIT_T0_ES7_RKNSt7__cxx1112basic_stringIS4_S5_T1_EE@PLT
-.Ltmp58:
-	movq	%rax, -960(%rbp)                # 8-byte Spill
-	jmp	.LBB5_32
-.LBB5_32:                               #   in Loop: Header=BB5_30 Depth=1
+	movq	-816(%rbp), %rsi                # 8-byte Reload
+	movl	112(%rsi), %ecx
+	movb	$0, -793(%rbp)
+	cmpl	$-1, %ecx
+	movq	%rax, -976(%rbp)                # 8-byte Spill
+	jne	.LBB5_22
+# %bb.20:
+	leaq	-752(%rbp), %rax
+	movq	%rax, %rdi
+	movq	%rax, -984(%rbp)                # 8-byte Spill
+	callq	_ZNSaIcEC1Ev@PLT
+	movb	$1, -793(%rbp)
 .Ltmp59:
-	leaq	.L.str.26(%rip), %rsi
-	movq	-960(%rbp), %rdi                # 8-byte Reload
-	callq	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@PLT
+	leaq	.L.str.32(%rip), %rsi
+	leaq	-136(%rbp), %rdi
+	movq	-984(%rbp), %rdx                # 8-byte Reload
+	callq	_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEC1EPKcRKS3_@PLT
 .Ltmp60:
-	jmp	.LBB5_33
-.LBB5_33:                               #   in Loop: Header=BB5_30 Depth=1
-	leaq	-688(%rbp), %rdi
+	jmp	.LBB5_21
+.LBB5_21:
+	jmp	.LBB5_24
+.LBB5_22:
+	movq	-816(%rbp), %rax                # 8-byte Reload
+	movl	112(%rax), %esi
+.Ltmp57:
+	leaq	-136(%rbp), %rdi
+	callq	_Z10squareNameB5cxx11i@PLT
+.Ltmp58:
+	jmp	.LBB5_23
+.LBB5_23:
+	jmp	.LBB5_24
+.LBB5_24:
+.Ltmp62:
+	leaq	-136(%rbp), %rsi
+	movq	-976(%rbp), %rdi                # 8-byte Reload
+	callq	_ZStlsIcSt11char_traitsIcESaIcEERSt13basic_ostreamIT_T0_ES7_RKNSt7__cxx1112basic_stringIS4_S5_T1_EE@PLT
+.Ltmp63:
+	movq	%rax, -992(%rbp)                # 8-byte Spill
+	jmp	.LBB5_25
+.LBB5_25:
+.Ltmp64:
+	leaq	.L.str.27(%rip), %rsi
+	movq	-992(%rbp), %rdi                # 8-byte Reload
+	callq	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@PLT
+.Ltmp65:
+	jmp	.LBB5_26
+.LBB5_26:
+	leaq	-136(%rbp), %rdi
 	callq	_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEED1Ev@PLT
-# %bb.34:                               #   in Loop: Header=BB5_30 Depth=1
-	movl	-764(%rbp), %eax
+	testb	$1, -793(%rbp)
+	jne	.LBB5_27
+	jmp	.LBB5_28
+.LBB5_27:
+	leaq	-752(%rbp), %rdi
+	callq	_ZNSaIcED1Ev@PLT
+.LBB5_28:
+	movl	$7, -800(%rbp)
+.LBB5_29:                               # =>This Loop Header: Depth=1
+                                        #     Child Loop BB5_31 Depth 2
+	cmpl	$0, -800(%rbp)
+	jl	.LBB5_43
+# %bb.30:                               #   in Loop: Header=BB5_29 Depth=1
+	movl	$0, -804(%rbp)
+.LBB5_31:                               #   Parent Loop BB5_29 Depth=1
+                                        # =>  This Inner Loop Header: Depth=2
+	cmpl	$8, -804(%rbp)
+	jge	.LBB5_41
+# %bb.32:                               #   in Loop: Header=BB5_31 Depth=2
+	movl	-800(%rbp), %edi
+	movl	-804(%rbp), %esi
+	callq	_Z11u64FromPairii
+	movq	-816(%rbp), %rdi                # 8-byte Reload
+	movq	%rax, %rsi
+	callq	_ZNK5Board9piece_at_Em@PLT
+	leaq	-168(%rbp), %rcx
+	movq	%rcx, %rdi
+	movl	%eax, %esi
+	movq	%rcx, -1000(%rbp)               # 8-byte Spill
+	callq	_Z16pieceToStringFenB5cxx11i@PLT
+.Ltmp72:
+	movq	_ZSt4cout@GOTPCREL(%rip), %rdi
+	movq	-1000(%rbp), %rsi               # 8-byte Reload
+	callq	_ZStlsIcSt11char_traitsIcESaIcEERSt13basic_ostreamIT_T0_ES7_RKNSt7__cxx1112basic_stringIS4_S5_T1_EE@PLT
+.Ltmp73:
+	jmp	.LBB5_33
+.LBB5_33:                               #   in Loop: Header=BB5_31 Depth=2
+	leaq	-168(%rbp), %rdi
+	callq	_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEED1Ev@PLT
+# %bb.34:                               #   in Loop: Header=BB5_31 Depth=2
+	movl	-804(%rbp), %eax
 	addl	$1, %eax
-	movl	%eax, -764(%rbp)
-	jmp	.LBB5_30
+	movl	%eax, -804(%rbp)
+	jmp	.LBB5_31
 .LBB5_35:
 .Ltmp61:
                                         # kill: def $edx killed $edx killed $rdx
-	movq	%rax, -744(%rbp)
-	movl	%edx, -748(%rbp)
-	leaq	-688(%rbp), %rdi
-	callq	_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEED1Ev@PLT
-	jmp	.LBB5_38
+	movq	%rax, -784(%rbp)
+	movl	%edx, -788(%rbp)
+	jmp	.LBB5_37
 .LBB5_36:
+.Ltmp66:
+                                        # kill: def $edx killed $edx killed $rdx
+	movq	%rax, -784(%rbp)
+	movl	%edx, -788(%rbp)
+	leaq	-136(%rbp), %rdi
+	callq	_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEED1Ev@PLT
+.LBB5_37:
+	testb	$1, -793(%rbp)
+	jne	.LBB5_38
+	jmp	.LBB5_39
+.LBB5_38:
+	leaq	-752(%rbp), %rdi
+	callq	_ZNSaIcED1Ev@PLT
+.LBB5_39:
+	jmp	.LBB5_52
+.LBB5_40:
+.Ltmp74:
+                                        # kill: def $edx killed $edx killed $rdx
+	movq	%rax, -784(%rbp)
+	movl	%edx, -788(%rbp)
+	leaq	-168(%rbp), %rdi
+	callq	_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEED1Ev@PLT
+	jmp	.LBB5_52
+.LBB5_41:                               #   in Loop: Header=BB5_29 Depth=1
+	movq	_ZSt4cout@GOTPCREL(%rip), %rdi
+	leaq	.L.str.27(%rip), %rsi
+	callq	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@PLT
+# %bb.42:                               #   in Loop: Header=BB5_29 Depth=1
+	movl	-800(%rbp), %eax
+	addl	$-1, %eax
+	movl	%eax, -800(%rbp)
+	jmp	.LBB5_29
+.LBB5_43:
+	movq	_ZSt4cout@GOTPCREL(%rip), %rdi
+	leaq	.L.str.33(%rip), %rsi
+	callq	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@PLT
+	leaq	-688(%rbp), %rdi
+	movq	-816(%rbp), %rsi                # 8-byte Reload
+	movq	%rax, -1008(%rbp)               # 8-byte Spill
+	callq	_ZN5Board11legal_movesEv@PLT
+	movl	$0, -808(%rbp)
+.LBB5_44:                               # =>This Inner Loop Header: Depth=1
+	movl	-808(%rbp), %eax
+	leaq	-688(%rbp), %rdi
+	movl	%eax, -1012(%rbp)               # 4-byte Spill
+	callq	_ZNK8MoveListILi256EE4sizeEv
+	movl	-1012(%rbp), %ecx               # 4-byte Reload
+	cmpl	%eax, %ecx
+	jge	.LBB5_50
+# %bb.45:                               #   in Loop: Header=BB5_44 Depth=1
+	movl	-808(%rbp), %esi
+	leaq	-688(%rbp), %rdi
+	callq	_ZNK8MoveListILi256EEixEi
+	movw	%ax, -760(%rbp)
+	movw	-760(%rbp), %ax
+	movw	%ax, -768(%rbp)
+	movzwl	-768(%rbp), %esi
+	leaq	-720(%rbp), %rcx
+	movq	%rcx, %rdi
+	movq	%rcx, -1024(%rbp)               # 8-byte Spill
+	callq	_Z18moveToUCIAlgebraicB5cxx115CMove@PLT
+.Ltmp67:
+	movq	_ZSt4cout@GOTPCREL(%rip), %rdi
+	movq	-1024(%rbp), %rsi               # 8-byte Reload
+	callq	_ZStlsIcSt11char_traitsIcESaIcEERSt13basic_ostreamIT_T0_ES7_RKNSt7__cxx1112basic_stringIS4_S5_T1_EE@PLT
+.Ltmp68:
+	movq	%rax, -1032(%rbp)               # 8-byte Spill
+	jmp	.LBB5_46
+.LBB5_46:                               #   in Loop: Header=BB5_44 Depth=1
+.Ltmp69:
+	leaq	.L.str.26(%rip), %rsi
+	movq	-1032(%rbp), %rdi               # 8-byte Reload
+	callq	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@PLT
+.Ltmp70:
+	jmp	.LBB5_47
+.LBB5_47:                               #   in Loop: Header=BB5_44 Depth=1
+	leaq	-720(%rbp), %rdi
+	callq	_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEED1Ev@PLT
+# %bb.48:                               #   in Loop: Header=BB5_44 Depth=1
+	movl	-808(%rbp), %eax
+	addl	$1, %eax
+	movl	%eax, -808(%rbp)
+	jmp	.LBB5_44
+.LBB5_49:
+.Ltmp71:
+                                        # kill: def $edx killed $edx killed $rdx
+	movq	%rax, -784(%rbp)
+	movl	%edx, -788(%rbp)
+	leaq	-720(%rbp), %rdi
+	callq	_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEED1Ev@PLT
+	jmp	.LBB5_52
+.LBB5_50:
 	movq	_ZSt4cout@GOTPCREL(%rip), %rdi
 	movq	_ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_@GOTPCREL(%rip), %rsi
 	callq	_ZNSolsEPFRSoS_E@PLT
 	movq	%fs:40, %rcx
 	movq	-8(%rbp), %rdx
 	cmpq	%rdx, %rcx
-	jne	.LBB5_39
-# %bb.37:
-	addq	$960, %rsp                      # imm = 0x3C0
+	jne	.LBB5_53
+# %bb.51:
+	addq	$1040, %rsp                     # imm = 0x410
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.LBB5_38:
+.LBB5_52:
 	.cfi_def_cfa %rbp, 16
-	movq	-744(%rbp), %rdi
+	movq	-784(%rbp), %rdi
 	callq	_Unwind_Resume@PLT
-.LBB5_39:
+.LBB5_53:
 	callq	__stack_chk_fail@PLT
 .Lfunc_end5:
 	.size	_ZN5Board4DumpEv, .Lfunc_end5-_ZN5Board4DumpEv
@@ -1137,15 +1226,15 @@ GCC_except_table5:
 	.uleb128 .Ltmp53-.Lfunc_begin2          #     jumps to .Ltmp53
 	.byte	0                               #   On action: cleanup
 	.uleb128 .Ltmp52-.Lfunc_begin2          # >> Call Site 4 <<
-	.uleb128 .Ltmp65-.Ltmp52                #   Call between .Ltmp52 and .Ltmp65
+	.uleb128 .Ltmp75-.Ltmp52                #   Call between .Ltmp52 and .Ltmp75
 	.byte	0                               #     has no landing pad
 	.byte	0                               #   On action: cleanup
-	.uleb128 .Ltmp65-.Lfunc_begin2          # >> Call Site 5 <<
-	.uleb128 .Ltmp68-.Ltmp65                #   Call between .Ltmp65 and .Ltmp68
-	.uleb128 .Ltmp69-.Lfunc_begin2          #     jumps to .Ltmp69
+	.uleb128 .Ltmp75-.Lfunc_begin2          # >> Call Site 5 <<
+	.uleb128 .Ltmp78-.Ltmp75                #   Call between .Ltmp75 and .Ltmp78
+	.uleb128 .Ltmp79-.Lfunc_begin2          #     jumps to .Ltmp79
 	.byte	0                               #   On action: cleanup
-	.uleb128 .Ltmp68-.Lfunc_begin2          # >> Call Site 6 <<
-	.uleb128 .Ltmp54-.Ltmp68                #   Call between .Ltmp68 and .Ltmp54
+	.uleb128 .Ltmp78-.Lfunc_begin2          # >> Call Site 6 <<
+	.uleb128 .Ltmp54-.Ltmp78                #   Call between .Ltmp78 and .Ltmp54
 	.byte	0                               #     has no landing pad
 	.byte	0                               #   On action: cleanup
 	.uleb128 .Ltmp54-.Lfunc_begin2          # >> Call Site 7 <<
@@ -1153,23 +1242,35 @@ GCC_except_table5:
 	.uleb128 .Ltmp56-.Lfunc_begin2          #     jumps to .Ltmp56
 	.byte	0                               #   On action: cleanup
 	.uleb128 .Ltmp55-.Lfunc_begin2          # >> Call Site 8 <<
-	.uleb128 .Ltmp62-.Ltmp55                #   Call between .Ltmp55 and .Ltmp62
+	.uleb128 .Ltmp59-.Ltmp55                #   Call between .Ltmp55 and .Ltmp59
 	.byte	0                               #     has no landing pad
 	.byte	0                               #   On action: cleanup
-	.uleb128 .Ltmp62-.Lfunc_begin2          # >> Call Site 9 <<
-	.uleb128 .Ltmp63-.Ltmp62                #   Call between .Ltmp62 and .Ltmp63
-	.uleb128 .Ltmp64-.Lfunc_begin2          #     jumps to .Ltmp64
-	.byte	0                               #   On action: cleanup
-	.uleb128 .Ltmp63-.Lfunc_begin2          # >> Call Site 10 <<
-	.uleb128 .Ltmp57-.Ltmp63                #   Call between .Ltmp63 and .Ltmp57
-	.byte	0                               #     has no landing pad
-	.byte	0                               #   On action: cleanup
-	.uleb128 .Ltmp57-.Lfunc_begin2          # >> Call Site 11 <<
-	.uleb128 .Ltmp60-.Ltmp57                #   Call between .Ltmp57 and .Ltmp60
+	.uleb128 .Ltmp59-.Lfunc_begin2          # >> Call Site 9 <<
+	.uleb128 .Ltmp58-.Ltmp59                #   Call between .Ltmp59 and .Ltmp58
 	.uleb128 .Ltmp61-.Lfunc_begin2          #     jumps to .Ltmp61
 	.byte	0                               #   On action: cleanup
-	.uleb128 .Ltmp60-.Lfunc_begin2          # >> Call Site 12 <<
-	.uleb128 .Lfunc_end5-.Ltmp60            #   Call between .Ltmp60 and .Lfunc_end5
+	.uleb128 .Ltmp62-.Lfunc_begin2          # >> Call Site 10 <<
+	.uleb128 .Ltmp65-.Ltmp62                #   Call between .Ltmp62 and .Ltmp65
+	.uleb128 .Ltmp66-.Lfunc_begin2          #     jumps to .Ltmp66
+	.byte	0                               #   On action: cleanup
+	.uleb128 .Ltmp65-.Lfunc_begin2          # >> Call Site 11 <<
+	.uleb128 .Ltmp72-.Ltmp65                #   Call between .Ltmp65 and .Ltmp72
+	.byte	0                               #     has no landing pad
+	.byte	0                               #   On action: cleanup
+	.uleb128 .Ltmp72-.Lfunc_begin2          # >> Call Site 12 <<
+	.uleb128 .Ltmp73-.Ltmp72                #   Call between .Ltmp72 and .Ltmp73
+	.uleb128 .Ltmp74-.Lfunc_begin2          #     jumps to .Ltmp74
+	.byte	0                               #   On action: cleanup
+	.uleb128 .Ltmp73-.Lfunc_begin2          # >> Call Site 13 <<
+	.uleb128 .Ltmp67-.Ltmp73                #   Call between .Ltmp73 and .Ltmp67
+	.byte	0                               #     has no landing pad
+	.byte	0                               #   On action: cleanup
+	.uleb128 .Ltmp67-.Lfunc_begin2          # >> Call Site 14 <<
+	.uleb128 .Ltmp70-.Ltmp67                #   Call between .Ltmp67 and .Ltmp70
+	.uleb128 .Ltmp71-.Lfunc_begin2          #     jumps to .Ltmp71
+	.byte	0                               #   On action: cleanup
+	.uleb128 .Ltmp70-.Lfunc_begin2          # >> Call Site 15 <<
+	.uleb128 .Lfunc_end5-.Ltmp70            #   Call between .Ltmp70 and .Lfunc_end5
 	.byte	0                               #     has no landing pad
 	.byte	0                               #   On action: cleanup
 .Lcst_end2:
@@ -1233,8 +1334,8 @@ _ZN5board10StateStack7peek_atEi:        # @_ZN5board10StateStack7peek_atEi
 .LBB7_3:
 	jmp	.LBB7_5
 .LBB7_4:
-	leaq	.L.str.32(%rip), %rdi
-	leaq	.L.str.33(%rip), %rsi
+	leaq	.L.str.34(%rip), %rdi
+	leaq	.L.str.35(%rip), %rsi
 	movl	$165, %edx
 	leaq	.L__PRETTY_FUNCTION__._ZN5board10StateStack7peek_atEi(%rip), %rcx
 	callq	__assert_fail@PLT
@@ -1389,8 +1490,8 @@ _Z13u64FromSquarei:                     # @_Z13u64FromSquarei
 .LBB12_1:
 	jmp	.LBB12_3
 .LBB12_2:
-	leaq	.L.str.34(%rip), %rdi
-	leaq	.L.str.35(%rip), %rsi
+	leaq	.L.str.36(%rip), %rdi
+	leaq	.L.str.37(%rip), %rsi
 	movl	$121, %edx
 	leaq	.L__PRETTY_FUNCTION__._Z13u64FromSquarei(%rip), %rcx
 	callq	__assert_fail@PLT
@@ -1596,13 +1697,13 @@ _GLOBAL__sub_I_board_debug.cpp:         # @_GLOBAL__sub_I_board_debug.cpp
 
 	.type	.L.str.27,@object               # @.str.27
 .L.str.27:
-	.asciz	"is check: "
-	.size	.L.str.27, 11
+	.asciz	"\n"
+	.size	.L.str.27, 2
 
 	.type	.L.str.28,@object               # @.str.28
 .L.str.28:
-	.asciz	"\n"
-	.size	.L.str.28, 2
+	.asciz	"is check: "
+	.size	.L.str.28, 11
 
 	.type	.L.str.29,@object               # @.str.29
 .L.str.29:
@@ -1616,33 +1717,43 @@ _GLOBAL__sub_I_board_debug.cpp:         # @_GLOBAL__sub_I_board_debug.cpp
 
 	.type	.L.str.31,@object               # @.str.31
 .L.str.31:
-	.asciz	"legal moves: "
-	.size	.L.str.31, 14
+	.asciz	"en passant square: "
+	.size	.L.str.31, 20
 
 	.type	.L.str.32,@object               # @.str.32
 .L.str.32:
-	.asciz	"i >= 0 && i < head_"
-	.size	.L.str.32, 20
+	.asciz	"none"
+	.size	.L.str.32, 5
 
 	.type	.L.str.33,@object               # @.str.33
 .L.str.33:
+	.asciz	"legal moves: "
+	.size	.L.str.33, 14
+
+	.type	.L.str.34,@object               # @.str.34
+.L.str.34:
+	.asciz	"i >= 0 && i < head_"
+	.size	.L.str.34, 20
+
+	.type	.L.str.35,@object               # @.str.35
+.L.str.35:
 	.asciz	"include/datastructures/board_state.hpp"
-	.size	.L.str.33, 39
+	.size	.L.str.35, 39
 
 	.type	.L__PRETTY_FUNCTION__._ZN5board10StateStack7peek_atEi,@object # @__PRETTY_FUNCTION__._ZN5board10StateStack7peek_atEi
 .L__PRETTY_FUNCTION__._ZN5board10StateStack7peek_atEi:
 	.asciz	"board::State &board::StateStack::peek_at(int)"
 	.size	.L__PRETTY_FUNCTION__._ZN5board10StateStack7peek_atEi, 46
 
-	.type	.L.str.34,@object               # @.str.34
-.L.str.34:
+	.type	.L.str.36,@object               # @.str.36
+.L.str.36:
 	.asciz	"isValidSquare(s)"
-	.size	.L.str.34, 17
+	.size	.L.str.36, 17
 
-	.type	.L.str.35,@object               # @.str.35
-.L.str.35:
+	.type	.L.str.37,@object               # @.str.37
+.L.str.37:
 	.asciz	"include/misc/bits.hpp"
-	.size	.L.str.35, 22
+	.size	.L.str.37, 22
 
 	.type	.L__PRETTY_FUNCTION__._Z13u64FromSquarei,@object # @__PRETTY_FUNCTION__._Z13u64FromSquarei
 .L__PRETTY_FUNCTION__._Z13u64FromSquarei:
@@ -1683,6 +1794,7 @@ DW.ref.__gxx_personality_v0:
 	.addrsig_sym _ZNSolsEb
 	.addrsig_sym _ZNK5Board8is_checkEv
 	.addrsig_sym _ZNK5board6castle6Rights3getEii
+	.addrsig_sym _Z10squareNameB5cxx11i
 	.addrsig_sym _Z16pieceToStringFenB5cxx11i
 	.addrsig_sym _ZNK5Board9piece_at_Em
 	.addrsig_sym _Z11u64FromPairii

@@ -22,7 +22,7 @@ bool Board::verify_move_safety_(CMove mv)
   if (mv.type_code() == move_type::EnPassant)
   {
     const u64 captured_pawn = move_maps::pawnMoves(u64ToSquare(dest), enemy_turn);
-    const u64 enemy_queen = piece::get_queen(enemy_turn);
+    const u64 enemy_queen = bitboard_[piece::get_queen(enemy_turn)];
     const u64 occ = (occupancy() & ~(src | captured_pawn)) | dest;
     const u64 enemy_rooks = bitboard_[piece::get_rook(enemy_turn)] | enemy_queen;
     const u64 enemy_bishops = bitboard_[piece::get_bishop(enemy_turn)] | enemy_queen;

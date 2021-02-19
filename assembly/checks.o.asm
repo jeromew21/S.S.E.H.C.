@@ -106,8 +106,10 @@ _ZN5Board19verify_move_safety_E5CMove:  # @_ZN5Board19verify_move_safety_E5CMove
 	movl	-40(%rbp), %edi
 	callq	_ZN5piece9get_queenEi
 	movslq	%eax, %rcx
+	movq	-144(%rbp), %rdx                # 8-byte Reload
+	movq	(%rdx,%rcx,8), %rcx
 	movq	%rcx, -72(%rbp)
-	movq	-144(%rbp), %rdi                # 8-byte Reload
+	movq	%rdx, %rdi
 	callq	_ZNK5Board9occupancyEv@PLT
 	movq	-48(%rbp), %rcx
 	orq	-64(%rbp), %rcx

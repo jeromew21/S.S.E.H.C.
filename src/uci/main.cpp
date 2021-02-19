@@ -60,15 +60,15 @@ int main(int argc, char* argv[])
   }
 
   Board bd;
-  bd.LoadPosition("r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - ");
+  bd.LoadPosition("rnbqkbnr/ppppp1pp/8/5p1Q/4P3/8/PPPP1PPP/RNB1KBNR b KQkq - 1 2");
   bd.Dump();
-  auto ml = bd.legal_moves();
-  for (int i = 0; i < ml.size(); i++) {
-    CMove mv = ml[i];
-    std::cout << moveToUCIAlgebraic(mv) << "\n";
-    bd.MakeMove(mv);
-    bd.UnmakeMove();
-  }
+  // auto ml = bd.legal_moves();
+  // for (int i = 0; i < ml.size(); i++) {
+  //   CMove mv = ml[i];
+  //   std::cout << moveToUCIAlgebraic(mv) << "\n";
+  //   bd.MakeMove(mv);
+  //   bd.UnmakeMove();
+  // }
 
   uci::listen();
 

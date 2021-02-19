@@ -48,7 +48,8 @@ MoveList<256> Board::produce_uncheck_moves_()
     if (piece::is_bishop(checking_piece) || piece::is_rook(checking_piece) || piece::is_queen(checking_piece))
     {
       // Sliding pieces can be blocked so it's a lot more work.
-      const Square checking_piece_location = u64ToSquare(checking_piece);
+      const u64 checker_bitboard = target_locations;
+      const Square checking_piece_location = u64ToSquare(checker_bitboard);
 
       bool found_ray = false;
       if (piece::is_rook(checking_piece) || piece::is_queen(checking_piece))
@@ -56,7 +57,7 @@ MoveList<256> Board::produce_uncheck_moves_()
         u64 rook_attacks = move_maps::rookMoves(checking_piece_location, occ);
         if (rook_attacks & king_position)
         {
-          found_ray = true;
+	  found_ray = true;
           for (int d = 0; d < 4; d++)
           {
             u64 ray = rook_attacks & move_maps::rookRay(checking_piece_location, d);
@@ -68,10 +69,10 @@ MoveList<256> Board::produce_uncheck_moves_()
           }
         }
       } // end rook ray
-      else if (piece::is_bishop(checking_piece) || (piece::is_queen(checking_piece) && !found_ray))
+      if (piece::is_bishop(checking_piece) || (piece::is_queen(checking_piece) && !found_ray))
       {
-        u64 bishop_attacks = move_maps::bishopMoves(checking_piece_location, occ);
-        if (bishop_attacks & king_position)
+	u64 bishop_attacks = move_maps::bishopMoves(checking_piece_location, occ);
+	if (bishop_attacks & king_position)
         {
           found_ray = true;
           for (int d = 0; d < 4; d++)
@@ -85,6 +86,9 @@ MoveList<256> Board::produce_uncheck_moves_()
           }
         }
       } // end bishop ray
+      
+      // make sure king is masked out of ray
+      target_locations &= ~king_position;
 
       // we have now successfully found all the squares that if occupied will uncheck.
 
@@ -96,9 +100,8 @@ MoveList<256> Board::produce_uncheck_moves_()
       {
         u64 pawn_location = pawn_bitscan[i];
         Square pawn_location_square = u64ToSquare(pawn_location);
-
-        // If removing the pawn would give check, continue
-        if (move_maps::isAttackedSliding(occ & ~pawn_location, king_position, enemy_rooks, enemy_bishops))
+        // If removing the pawn would give check from a different piece, continue
+        if (move_maps::isAttackedSliding(occ & ~pawn_location, king_position, ~checker_bitboard & enemy_rooks, ~checker_bitboard & enemy_bishops))
           continue;
 
         u64 single_push = move_maps::pawnMoves(pawn_location_square, curr_turn);
@@ -150,7 +153,7 @@ MoveList<256> Board::produce_uncheck_moves_()
           u64 unchecking_src = unchecking_piece_locations_bitscan[i];
           Square unchecking_src_square = u64ToSquare(unchecking_src);
 
-          if (!move_maps::isAttackedSliding((occ & (~unchecking_src)) | target, king_position, ~target & enemy_rooks, ~target & enemy_bishops))
+          if (!move_maps::isAttackedSliding((occ & (~unchecking_src)) | target, king_position, ~target & ~checker_bitboard & enemy_rooks, ~target & ~checker_bitboard & enemy_bishops))
           {
             PieceType mover = piece_at_(unchecking_src);
             if (piece::is_pawn(mover))

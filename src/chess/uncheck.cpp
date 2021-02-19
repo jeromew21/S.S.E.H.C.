@@ -74,7 +74,6 @@ MoveList<256> Board::produce_uncheck_moves_()
         u64 bishop_attacks = move_maps::bishopMoves(checking_piece_location, occ);
         if (bishop_attacks & king_position)
         {
-          found_ray = true;
           for (int d = 0; d < 4; d++)
           {
             u64 ray = bishop_attacks & move_maps::bishopRay(checking_piece_location, d);

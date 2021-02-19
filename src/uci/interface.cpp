@@ -15,7 +15,7 @@ uci::Interface::~Interface() { StopThinking(); }
 void uci::Interface::Think()
 {
 
-  auto start = std::chrono::high_resolution_clock::now();
+  // auto start = std::chrono::high_resolution_clock::now();
 
   // int depth = 0;
   // int nodeCount = 1;

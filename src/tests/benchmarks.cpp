@@ -13,5 +13,5 @@ void run_benchmarks() {
   auto stop = std::chrono::high_resolution_clock::now(); 
   auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start); //or milliseconds
   unsigned long duration_count = duration.count();
-  std::cout << "Perft 5 time: " << duration_count;
+  std::cout << "Perft 5 time: " << duration_count << std::endl;
 }

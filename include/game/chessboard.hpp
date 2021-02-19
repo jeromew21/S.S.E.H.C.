@@ -19,16 +19,10 @@ namespace zobrist
    * Populates the random hashes.
    */
   void init();
-
-  /**
-   * Gets a specific hash given a feature id.
-   */
-  u64 getHashFromId(int feature_id);
-
 } // namespace zobrist
 
 /**
- * In order to genereate pseudo-legal (moves that are legal irregardless of check)
+ * In order to generate pseudo-legal (moves that are legal irregardless of check)
  * we need to first determine the rules of movement for a given piece.
  * 
  * This namespace provides functions that do just that.

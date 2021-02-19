@@ -4,43 +4,6 @@ const u64 CLASSICAL_KING_STARTING_LOCATIONS[2] = {0x10, 0x1000000000000000};
 const u64 CLASSICAL_QUEENSIDE_ROOK_STARTING_LOCATIONS[2] = {0x1, 0x100000000000000};
 const u64 CLASSICAL_KINGSIDE_ROOK_STARTING_LOCATIONS[2] = {0x80, 0x8000000000000000};
 
-void Board::AddPiece_(PieceType piece, u64 location)
-{
-  assert(!(bitboard_[piece] & location));
-  // Square sq = u64ToSquare(location);
-  // u64 p_hash = ZOBRIST_HASHES[64 * piece + sq];
-  // _zobristHash ^= p_hash;
-  bitboard_[piece] |= location;
-}
-
-void Board::RemovePiece_(PieceType piece, u64 location)
-{
-  assert(bitboard_[piece] & location);
-  // Square sq = u64ToSquare(location);
-  // u64 p_hash = ZOBRIST_HASHES[64 * piece + sq];
-  // _zobristHash ^= p_hash;
-  bitboard_[piece] &= ~location;
-}
-
-void Board::SetEpSquare_(Square ep_square)
-{
-  state_.en_passant_square = ep_square;
-  // do hashing
-}
-
-void Board::SetCastlingRights_(Color color, int direction, int value)
-{
-  if (state_.castling_rights.get(color, direction) == value)
-    return;
-  // now we are for sure toggling the value
-  state_.castling_rights.Set(color, direction, value);
-}
-
-void Board::SetTurn_(Color turn)
-{
-  state_.turn = turn;
-}
-
 void Board::LoadPosition(PieceType piece_list[64], Color turn_to_move, int ep_square,
                          board::castle::Rights castling_rights, int fullmove, int halfmove)
 {

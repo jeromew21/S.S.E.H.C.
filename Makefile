@@ -1,10 +1,10 @@
 CXX      := -clang++
-CXXFLAGS := -std=c++11 -pedantic-errors -Wall -Wextra -pthread
+CXXFLAGS := -std=c++17 -pedantic-errors -Wall -Wextra -pthread
 MAKEFLAGS := --jobs=$(shell nproc)
 BUILD    := ./build
 OBJ_DIR  := $(BUILD)/objects
 APP_DIR  := $(BUILD)/apps
-ASM_DIR  := ./assembly
+ASM_DIR  := $(BUILD)/assembly
 TARGET   := ssehc
 INCLUDE  := -Iinclude/
 SRC      :=                      \
@@ -29,6 +29,7 @@ $(APP_DIR)/$(TARGET): $(OBJECTS)
 build:
 	@mkdir -p $(APP_DIR)
 	@mkdir -p $(OBJ_DIR)
+	@mkdir -p $(ASM_DIR)
 
 debug: CXXFLAGS += -DDEBUG -g
 debug: all

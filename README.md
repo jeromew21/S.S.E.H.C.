@@ -20,9 +20,9 @@ Portability (have it work on a raspberry pi)
 
 ## Implementation details
 
-C++11
-
 Magic bitboards
+
+Hash tables
 
 ## Testing
 

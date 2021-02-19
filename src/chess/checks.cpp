@@ -23,7 +23,7 @@ bool Board::verify_move_safety_(CMove mv)
   {
     const u64 captured_pawn = move_maps::pawnMoves(u64ToSquare(dest), enemy_turn);
     const u64 enemy_queen = piece::get_queen(enemy_turn);
-    const u64 occ = occupancy() & (~(src | captured_pawn)) | dest;
+    const u64 occ = (occupancy() & ~(src | captured_pawn)) | dest;
     const u64 enemy_rooks = bitboard_[piece::get_rook(enemy_turn)] | enemy_queen;
     const u64 enemy_bishops = bitboard_[piece::get_bishop(enemy_turn)] | enemy_queen;
     return !move_maps::isAttackedSliding(occ, bitboard_[piece::get_king(curr_turn)], enemy_rooks, enemy_bishops);
@@ -45,7 +45,7 @@ bool Board::verify_move_safety_(CMove mv)
 
   // Otherwise, we need to make sure the piece isn't pinned.
   // We create a dummy occupancy mask and then see if any lanes or diagonals are opened up to the king.
-  const u64 occ = occupancy() & (~src) | dest;
+  const u64 occ = (occupancy() & ~src) | dest;
   const u64 enemy_rooks = ~dest & (bitboard_[piece::get_rook(enemy_turn)] | bitboard_[piece::get_queen(enemy_turn)]);
   const u64 enemy_bishops = ~dest & (bitboard_[piece::get_bishop(enemy_turn)] | bitboard_[piece::get_queen(enemy_turn)]);
   const u64 king = bitboard_[piece::get_king(curr_turn)];
@@ -108,7 +108,7 @@ bool Board::is_checking_move(CMove mv)
   assert(colorOf(mover) == curr_turn);
 
   // create a dummy occupancy map
-  const u64 occ = occupancy() & (~src) | dest;
+  const u64 occ = (occupancy() & ~src) | dest;
 
   // Let's see if moving the piece away leaves the king in check.
   const u64 friendly_rooks = bitboard_[piece::get_rook(curr_turn)] | bitboard_[piece::get_queen(curr_turn)];

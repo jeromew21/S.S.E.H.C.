@@ -113,15 +113,18 @@ inline int bitscanReverse(u64 x) { return 63 - __builtin_clzll(x); }
 
 inline bool isValidSquare(Square s) { return s >= 0 && s < 64; }
 
-// One-hot <=> int
-// Needs to be converted to 64 bit if shifting
-// 32 is too small and overflows.
+/**
+ * One-hot => int
+ */
 inline u64 u64FromSquare(Square s)
 {
   assert(isValidSquare(s));
   return ((u64)1) << s;
 }
 
+/**
+ * int => One-hot 
+ */
 inline Square u64ToSquare(u64 x)
 {
   assert(x != 0);

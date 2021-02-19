@@ -33,7 +33,7 @@ build:
 debug: CXXFLAGS += -DDEBUG -g
 debug: all
 
-release: CXXFLAGS += -DNDEBUG -ffast-math -O3
+release: CXXFLAGS += -DNDEBUG -ffast-math -O3 # disable assertions, generate documentation...
 release: all
 	@./gen-docs.sh
 

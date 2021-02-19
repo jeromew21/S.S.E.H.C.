@@ -84,14 +84,15 @@ void Board::LoadPosition(PieceType piece_list[64], Color turn_to_move, int ep_sq
   SetCastlingRights_(White, board::castle::short_, castling_rights.get(White, board::castle::short_));
   SetCastlingRights_(Black, board::castle::long_, castling_rights.get(Black, board::castle::long_));
   SetCastlingRights_(Black, board::castle::short_, castling_rights.get(Black, board::castle::short_));
-  
+
   state_.halfmove_counter = halfmove;
   state_.fullmove_counter = fullmove;
 
   GeneratePseudoLegal_();
 
-  // TODO: edge case: check for check...
-
+  // finally: check for check...
+  if (state_.defend_map_[u64ToSquare(bitboard_[piece::get_king(turn_to_move)])] & occupancy(oppositeColor(turn_to_move)))
+    state_.is_check = true;
 }
 
 void Board::Reset()

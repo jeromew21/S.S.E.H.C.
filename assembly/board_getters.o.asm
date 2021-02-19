@@ -336,14 +336,14 @@ _ZN5Board18move_from_src_destEii:       # @_ZN5Board18move_from_src_destEii
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register %rbp
 	subq	$32, %rsp
-	movq	%rdi, -8(%rbp)
-	movl	%esi, -12(%rbp)
-	movl	%edx, -16(%rbp)
-	movq	-8(%rbp), %rdi
-	movl	-12(%rbp), %esi
+	movq	%rdi, -16(%rbp)
+	movl	%esi, -20(%rbp)
+	movl	%edx, -24(%rbp)
+	movq	-16(%rbp), %rdi
+	movl	-20(%rbp), %esi
 	callq	_ZNK5Board9piece_at_Ei
-	movl	%eax, -20(%rbp)
-	movl	-20(%rbp), %edi
+	movl	%eax, -28(%rbp)
+	movl	-28(%rbp), %edi
 	callq	_ZN5piece8is_emptyEi
 	xorb	$-1, %al
 	testb	$1, %al
@@ -358,7 +358,13 @@ _ZN5Board18move_from_src_destEii:       # @_ZN5Board18move_from_src_destEii
 	leaq	.L__PRETTY_FUNCTION__._ZN5Board18move_from_src_destEii(%rip), %rcx
 	callq	__assert_fail@PLT
 .LBB8_3:
-	ud2
+	callq	_ZN5CMove8NullMoveEv
+	movw	%ax, -8(%rbp)
+	movw	-8(%rbp), %ax
+	addq	$32, %rsp
+	popq	%rbp
+	.cfi_def_cfa %rsp, 8
+	retq
 .Lfunc_end8:
 	.size	_ZN5Board18move_from_src_destEii, .Lfunc_end8-_ZN5Board18move_from_src_destEii
 	.cfi_endproc
@@ -417,6 +423,42 @@ _ZN5piece8is_emptyEi:                   # @_ZN5piece8is_emptyEi
 	.size	_ZN5piece8is_emptyEi, .Lfunc_end10-_ZN5piece8is_emptyEi
 	.cfi_endproc
                                         # -- End function
+	.section	.text._ZN5CMove8NullMoveEv,"axG",@progbits,_ZN5CMove8NullMoveEv,comdat
+	.weak	_ZN5CMove8NullMoveEv            # -- Begin function _ZN5CMove8NullMoveEv
+	.p2align	4, 0x90
+	.type	_ZN5CMove8NullMoveEv,@function
+_ZN5CMove8NullMoveEv:                   # @_ZN5CMove8NullMoveEv
+	.cfi_startproc
+# %bb.0:
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset %rbp, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register %rbp
+	subq	$32, %rsp
+	movq	%fs:40, %rax
+	movq	%rax, -8(%rbp)
+	leaq	-16(%rbp), %rdi
+	callq	_ZN5CMoveC2Ev
+	movw	-16(%rbp), %ax
+	movq	%fs:40, %rcx
+	movq	-8(%rbp), %rdx
+	cmpq	%rdx, %rcx
+	movw	%ax, -18(%rbp)                  # 2-byte Spill
+	jne	.LBB11_2
+# %bb.1:
+	movw	-18(%rbp), %ax                  # 2-byte Reload
+	addq	$32, %rsp
+	popq	%rbp
+	.cfi_def_cfa %rsp, 8
+	retq
+.LBB11_2:
+	.cfi_def_cfa %rbp, 16
+	callq	__stack_chk_fail@PLT
+.Lfunc_end11:
+	.size	_ZN5CMove8NullMoveEv, .Lfunc_end11-_ZN5CMove8NullMoveEv
+	.cfi_endproc
+                                        # -- End function
 	.text
 	.globl	_ZN5Board13attackers_to_Em      # -- Begin function _ZN5Board13attackers_to_Em
 	.p2align	4, 0x90
@@ -437,27 +479,27 @@ _ZN5Board13attackers_to_Em:             # @_ZN5Board13attackers_to_Em
 	movq	-536(%rbp), %rax
 	testb	$1, 1220(%rax)
 	movq	%rax, -568(%rbp)                # 8-byte Spill
-	je	.LBB11_2
+	je	.LBB12_2
 # %bb.1:
-	jmp	.LBB11_3
-.LBB11_2:
+	jmp	.LBB12_3
+.LBB12_2:
 	leaq	.L.str.4(%rip), %rdi
-	leaq	.L.str.1(%rip), %rsi
-	movl	$82, %edx
-	leaq	.L__PRETTY_FUNCTION__._ZN5Board13attackers_to_Em(%rip), %rcx
-	callq	__assert_fail@PLT
-.LBB11_3:
-	cmpq	$0, -544(%rbp)
-	je	.LBB11_5
-# %bb.4:
-	jmp	.LBB11_6
-.LBB11_5:
-	leaq	.L.str.5(%rip), %rdi
 	leaq	.L.str.1(%rip), %rsi
 	movl	$83, %edx
 	leaq	.L__PRETTY_FUNCTION__._ZN5Board13attackers_to_Em(%rip), %rcx
 	callq	__assert_fail@PLT
-.LBB11_6:
+.LBB12_3:
+	cmpq	$0, -544(%rbp)
+	je	.LBB12_5
+# %bb.4:
+	jmp	.LBB12_6
+.LBB12_5:
+	leaq	.L.str.5(%rip), %rdi
+	leaq	.L.str.1(%rip), %rsi
+	movl	$84, %edx
+	leaq	.L__PRETTY_FUNCTION__._ZN5Board13attackers_to_Em(%rip), %rcx
+	callq	__assert_fail@PLT
+.LBB12_6:
 	movq	$0, -552(%rbp)
 	leaq	-528(%rbp), %rdi
 	callq	_ZN7u64ListC2Ev
@@ -465,15 +507,15 @@ _ZN5Board13attackers_to_Em:             # @_ZN5Board13attackers_to_Em
 	leaq	-528(%rbp), %rsi
 	callq	_Z10bitscanAllmR7u64List@PLT
 	movl	$0, -556(%rbp)
-.LBB11_7:                               # =>This Inner Loop Header: Depth=1
+.LBB12_7:                               # =>This Inner Loop Header: Depth=1
 	movl	-556(%rbp), %eax
 	leaq	-528(%rbp), %rdi
 	movl	%eax, -572(%rbp)                # 4-byte Spill
 	callq	_ZNK7u64List3lenEv
 	movl	-572(%rbp), %ecx                # 4-byte Reload
 	cmpl	%eax, %ecx
-	jge	.LBB11_10
-# %bb.8:                                #   in Loop: Header=BB11_7 Depth=1
+	jge	.LBB12_10
+# %bb.8:                                #   in Loop: Header=BB12_7 Depth=1
 	movq	-568(%rbp), %rax                # 8-byte Reload
 	addq	$96, %rax
 	addq	$576, %rax                      # imm = 0x240
@@ -481,35 +523,37 @@ _ZN5Board13attackers_to_Em:             # @_ZN5Board13attackers_to_Em
 	leaq	-528(%rbp), %rdi
 	movq	%rax, -584(%rbp)                # 8-byte Spill
 	callq	_ZNK7u64ListixEi
+	movq	%rax, %rdi
+	callq	_Z11u64ToSquarem
+	movslq	%eax, %rsi
 	movq	-584(%rbp), %rdi                # 8-byte Reload
-	movq	%rax, %rsi
 	callq	_ZNSt5arrayImLm64EEixEm
 	movq	(%rax), %rax
 	orq	-552(%rbp), %rax
 	movq	%rax, -552(%rbp)
-# %bb.9:                                #   in Loop: Header=BB11_7 Depth=1
+# %bb.9:                                #   in Loop: Header=BB12_7 Depth=1
 	movl	-556(%rbp), %eax
 	addl	$1, %eax
 	movl	%eax, -556(%rbp)
-	jmp	.LBB11_7
-.LBB11_10:
+	jmp	.LBB12_7
+.LBB12_10:
 	movq	-552(%rbp), %rax
 	movq	%fs:40, %rcx
 	movq	-8(%rbp), %rdx
 	cmpq	%rdx, %rcx
 	movq	%rax, -592(%rbp)                # 8-byte Spill
-	jne	.LBB11_12
+	jne	.LBB12_12
 # %bb.11:
 	movq	-592(%rbp), %rax                # 8-byte Reload
 	addq	$592, %rsp                      # imm = 0x250
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.LBB11_12:
+.LBB12_12:
 	.cfi_def_cfa %rbp, 16
 	callq	__stack_chk_fail@PLT
-.Lfunc_end11:
-	.size	_ZN5Board13attackers_to_Em, .Lfunc_end11-_ZN5Board13attackers_to_Em
+.Lfunc_end12:
+	.size	_ZN5Board13attackers_to_Em, .Lfunc_end12-_ZN5Board13attackers_to_Em
 	.cfi_endproc
                                         # -- End function
 	.section	.text._ZN7u64ListC2Ev,"axG",@progbits,_ZN7u64ListC2Ev,comdat
@@ -529,24 +573,24 @@ _ZN7u64ListC2Ev:                        # @_ZN7u64ListC2Ev
 	movl	$0, 512(%rax)
 	movl	$0, -12(%rbp)
 	movq	%rax, -24(%rbp)                 # 8-byte Spill
-.LBB12_1:                               # =>This Inner Loop Header: Depth=1
+.LBB13_1:                               # =>This Inner Loop Header: Depth=1
 	cmpl	$64, -12(%rbp)
-	jge	.LBB12_4
-# %bb.2:                                #   in Loop: Header=BB12_1 Depth=1
+	jge	.LBB13_4
+# %bb.2:                                #   in Loop: Header=BB13_1 Depth=1
 	movslq	-12(%rbp), %rax
 	movq	-24(%rbp), %rcx                 # 8-byte Reload
 	movq	$0, (%rcx,%rax,8)
-# %bb.3:                                #   in Loop: Header=BB12_1 Depth=1
+# %bb.3:                                #   in Loop: Header=BB13_1 Depth=1
 	movl	-12(%rbp), %eax
 	addl	$1, %eax
 	movl	%eax, -12(%rbp)
-	jmp	.LBB12_1
-.LBB12_4:
+	jmp	.LBB13_1
+.LBB13_4:
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.Lfunc_end12:
-	.size	_ZN7u64ListC2Ev, .Lfunc_end12-_ZN7u64ListC2Ev
+.Lfunc_end13:
+	.size	_ZN7u64ListC2Ev, .Lfunc_end13-_ZN7u64ListC2Ev
 	.cfi_endproc
                                         # -- End function
 	.section	.text._ZNK7u64List3lenEv,"axG",@progbits,_ZNK7u64List3lenEv,comdat
@@ -567,8 +611,8 @@ _ZNK7u64List3lenEv:                     # @_ZNK7u64List3lenEv
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.Lfunc_end13:
-	.size	_ZNK7u64List3lenEv, .Lfunc_end13-_ZNK7u64List3lenEv
+.Lfunc_end14:
+	.size	_ZNK7u64List3lenEv, .Lfunc_end14-_ZNK7u64List3lenEv
 	.cfi_endproc
                                         # -- End function
 	.section	.text._ZNSt5arrayImLm64EEixEm,"axG",@progbits,_ZNSt5arrayImLm64EEixEm,comdat
@@ -593,8 +637,43 @@ _ZNSt5arrayImLm64EEixEm:                # @_ZNSt5arrayImLm64EEixEm
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.Lfunc_end14:
-	.size	_ZNSt5arrayImLm64EEixEm, .Lfunc_end14-_ZNSt5arrayImLm64EEixEm
+.Lfunc_end15:
+	.size	_ZNSt5arrayImLm64EEixEm, .Lfunc_end15-_ZNSt5arrayImLm64EEixEm
+	.cfi_endproc
+                                        # -- End function
+	.section	.text._Z11u64ToSquarem,"axG",@progbits,_Z11u64ToSquarem,comdat
+	.weak	_Z11u64ToSquarem                # -- Begin function _Z11u64ToSquarem
+	.p2align	4, 0x90
+	.type	_Z11u64ToSquarem,@function
+_Z11u64ToSquarem:                       # @_Z11u64ToSquarem
+	.cfi_startproc
+# %bb.0:
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset %rbp, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register %rbp
+	subq	$16, %rsp
+	movq	%rdi, -8(%rbp)
+	cmpq	$0, -8(%rbp)
+	je	.LBB16_2
+# %bb.1:
+	jmp	.LBB16_3
+.LBB16_2:
+	leaq	.L.str.6(%rip), %rdi
+	leaq	.L.str.7(%rip), %rsi
+	movl	$130, %edx
+	leaq	.L__PRETTY_FUNCTION__._Z11u64ToSquarem(%rip), %rcx
+	callq	__assert_fail@PLT
+.LBB16_3:
+	movq	-8(%rbp), %rdi
+	callq	_Z14bitscanForwardm
+	addq	$16, %rsp
+	popq	%rbp
+	.cfi_def_cfa %rsp, 8
+	retq
+.Lfunc_end16:
+	.size	_Z11u64ToSquarem, .Lfunc_end16-_Z11u64ToSquarem
 	.cfi_endproc
                                         # -- End function
 	.section	.text._ZNK7u64ListixEi,"axG",@progbits,_ZNK7u64ListixEi,comdat
@@ -617,8 +696,8 @@ _ZNK7u64ListixEi:                       # @_ZNK7u64ListixEi
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.Lfunc_end15:
-	.size	_ZNK7u64ListixEi, .Lfunc_end15-_ZNK7u64ListixEi
+.Lfunc_end17:
+	.size	_ZNK7u64ListixEi, .Lfunc_end17-_ZNK7u64ListixEi
 	.cfi_endproc
                                         # -- End function
 	.text
@@ -653,8 +732,8 @@ _ZN5Board13attackers_to_Emi:            # @_ZN5Board13attackers_to_Emi
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.Lfunc_end16:
-	.size	_ZN5Board13attackers_to_Emi, .Lfunc_end16-_ZN5Board13attackers_to_Emi
+.Lfunc_end18:
+	.size	_ZN5Board13attackers_to_Emi, .Lfunc_end18-_ZN5Board13attackers_to_Emi
 	.cfi_endproc
                                         # -- End function
 	.globl	_ZNK5Board9piece_at_Em          # -- Begin function _ZNK5Board9piece_at_Em
@@ -673,36 +752,36 @@ _ZNK5Board9piece_at_Em:                 # @_ZNK5Board9piece_at_Em
 	movq	-16(%rbp), %rax
 	movl	$0, -28(%rbp)
 	movq	%rax, -40(%rbp)                 # 8-byte Spill
-.LBB17_1:                               # =>This Inner Loop Header: Depth=1
+.LBB19_1:                               # =>This Inner Loop Header: Depth=1
 	cmpl	$12, -28(%rbp)
-	jge	.LBB17_6
-# %bb.2:                                #   in Loop: Header=BB17_1 Depth=1
+	jge	.LBB19_6
+# %bb.2:                                #   in Loop: Header=BB19_1 Depth=1
 	movq	-24(%rbp), %rax
 	movslq	-28(%rbp), %rcx
 	movq	-40(%rbp), %rdx                 # 8-byte Reload
 	andq	(%rdx,%rcx,8), %rax
 	cmpq	$0, %rax
-	je	.LBB17_4
+	je	.LBB19_4
 # %bb.3:
 	movl	-28(%rbp), %eax
 	movl	%eax, -4(%rbp)
-	jmp	.LBB17_7
-.LBB17_4:                               #   in Loop: Header=BB17_1 Depth=1
-	jmp	.LBB17_5
-.LBB17_5:                               #   in Loop: Header=BB17_1 Depth=1
+	jmp	.LBB19_7
+.LBB19_4:                               #   in Loop: Header=BB19_1 Depth=1
+	jmp	.LBB19_5
+.LBB19_5:                               #   in Loop: Header=BB19_1 Depth=1
 	movl	-28(%rbp), %eax
 	addl	$1, %eax
 	movl	%eax, -28(%rbp)
-	jmp	.LBB17_1
-.LBB17_6:
+	jmp	.LBB19_1
+.LBB19_6:
 	movl	$-1, -4(%rbp)
-.LBB17_7:
+.LBB19_7:
 	movl	-4(%rbp), %eax
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.Lfunc_end17:
-	.size	_ZNK5Board9piece_at_Em, .Lfunc_end17-_ZNK5Board9piece_at_Em
+.Lfunc_end19:
+	.size	_ZNK5Board9piece_at_Em, .Lfunc_end19-_ZNK5Board9piece_at_Em
 	.cfi_endproc
                                         # -- End function
 	.section	.text._Z13u64FromSquarei,"axG",@progbits,_Z13u64FromSquarei,comdat
@@ -722,17 +801,17 @@ _Z13u64FromSquarei:                     # @_Z13u64FromSquarei
 	movl	-4(%rbp), %edi
 	callq	_Z13isValidSquarei
 	testb	$1, %al
-	jne	.LBB18_1
-	jmp	.LBB18_2
-.LBB18_1:
-	jmp	.LBB18_3
-.LBB18_2:
-	leaq	.L.str.6(%rip), %rdi
+	jne	.LBB20_1
+	jmp	.LBB20_2
+.LBB20_1:
+	jmp	.LBB20_3
+.LBB20_2:
+	leaq	.L.str.8(%rip), %rdi
 	leaq	.L.str.7(%rip), %rsi
 	movl	$121, %edx
 	leaq	.L__PRETTY_FUNCTION__._Z13u64FromSquarei(%rip), %rcx
 	callq	__assert_fail@PLT
-.LBB18_3:
+.LBB20_3:
 	movl	-4(%rbp), %eax
 	movl	%eax, %ecx
                                         # kill: def $cl killed $rcx
@@ -743,8 +822,60 @@ _Z13u64FromSquarei:                     # @_Z13u64FromSquarei
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.Lfunc_end18:
-	.size	_Z13u64FromSquarei, .Lfunc_end18-_Z13u64FromSquarei
+.Lfunc_end20:
+	.size	_Z13u64FromSquarei, .Lfunc_end20-_Z13u64FromSquarei
+	.cfi_endproc
+                                        # -- End function
+	.section	.text._ZN5CMoveC2Ev,"axG",@progbits,_ZN5CMoveC2Ev,comdat
+	.weak	_ZN5CMoveC2Ev                   # -- Begin function _ZN5CMoveC2Ev
+	.p2align	4, 0x90
+	.type	_ZN5CMoveC2Ev,@function
+_ZN5CMoveC2Ev:                          # @_ZN5CMoveC2Ev
+	.cfi_startproc
+# %bb.0:
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset %rbp, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register %rbp
+	movq	%rdi, -8(%rbp)
+	movq	-8(%rbp), %rax
+	movw	$0, (%rax)
+	popq	%rbp
+	.cfi_def_cfa %rsp, 8
+	retq
+.Lfunc_end21:
+	.size	_ZN5CMoveC2Ev, .Lfunc_end21-_ZN5CMoveC2Ev
+	.cfi_endproc
+                                        # -- End function
+	.section	.text._Z14bitscanForwardm,"axG",@progbits,_Z14bitscanForwardm,comdat
+	.weak	_Z14bitscanForwardm             # -- Begin function _Z14bitscanForwardm
+	.p2align	4, 0x90
+	.type	_Z14bitscanForwardm,@function
+_Z14bitscanForwardm:                    # @_Z14bitscanForwardm
+	.cfi_startproc
+# %bb.0:
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset %rbp, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register %rbp
+	xorl	%eax, %eax
+	movl	%eax, %ecx
+	movq	%rdi, -8(%rbp)
+	movq	-8(%rbp), %rdx
+	bsfq	%rdx, %rsi
+	addq	$1, %rsi
+	cmpq	$0, %rdx
+	cmoveq	%rcx, %rsi
+                                        # kill: def $esi killed $esi killed $rsi
+	subl	$1, %esi
+	movl	%esi, %eax
+	popq	%rbp
+	.cfi_def_cfa %rsp, 8
+	retq
+.Lfunc_end22:
+	.size	_Z14bitscanForwardm, .Lfunc_end22-_Z14bitscanForwardm
 	.cfi_endproc
                                         # -- End function
 	.section	.text._Z13isValidSquarei,"axG",@progbits,_Z13isValidSquarei,comdat
@@ -764,20 +895,20 @@ _Z13isValidSquarei:                     # @_Z13isValidSquarei
 	movl	%edi, -4(%rbp)
 	cmpl	$0, -4(%rbp)
 	movb	%al, -5(%rbp)                   # 1-byte Spill
-	jl	.LBB19_2
+	jl	.LBB23_2
 # %bb.1:
 	cmpl	$64, -4(%rbp)
 	setl	%al
 	movb	%al, -5(%rbp)                   # 1-byte Spill
-.LBB19_2:
+.LBB23_2:
 	movb	-5(%rbp), %al                   # 1-byte Reload
 	andb	$1, %al
 	movzbl	%al, %eax
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.Lfunc_end19:
-	.size	_Z13isValidSquarei, .Lfunc_end19-_Z13isValidSquarei
+.Lfunc_end23:
+	.size	_Z13isValidSquarei, .Lfunc_end23-_Z13isValidSquarei
 	.cfi_endproc
                                         # -- End function
 	.section	.text._ZNSt14__array_traitsImLm64EE6_S_refERA64_Kmm,"axG",@progbits,_ZNSt14__array_traitsImLm64EE6_S_refERA64_Kmm,comdat
@@ -801,8 +932,8 @@ _ZNSt14__array_traitsImLm64EE6_S_refERA64_Kmm: # @_ZNSt14__array_traitsImLm64EE6
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.Lfunc_end20:
-	.size	_ZNSt14__array_traitsImLm64EE6_S_refERA64_Kmm, .Lfunc_end20-_ZNSt14__array_traitsImLm64EE6_S_refERA64_Kmm
+.Lfunc_end24:
+	.size	_ZNSt14__array_traitsImLm64EE6_S_refERA64_Kmm, .Lfunc_end24-_ZNSt14__array_traitsImLm64EE6_S_refERA64_Kmm
 	.cfi_endproc
                                         # -- End function
 	.section	.text.startup,"ax",@progbits
@@ -820,8 +951,8 @@ _GLOBAL__sub_I_board_getters.cpp:       # @_GLOBAL__sub_I_board_getters.cpp
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
-.Lfunc_end21:
-	.size	_GLOBAL__sub_I_board_getters.cpp, .Lfunc_end21-_GLOBAL__sub_I_board_getters.cpp
+.Lfunc_end25:
+	.size	_GLOBAL__sub_I_board_getters.cpp, .Lfunc_end25-_GLOBAL__sub_I_board_getters.cpp
 	.cfi_endproc
                                         # -- End function
 	.type	_ZStL8__ioinit,@object          # @_ZStL8__ioinit
@@ -881,13 +1012,23 @@ _GLOBAL__sub_I_board_getters.cpp:       # @_GLOBAL__sub_I_board_getters.cpp
 
 	.type	.L.str.6,@object                # @.str.6
 .L.str.6:
-	.asciz	"isValidSquare(s)"
-	.size	.L.str.6, 17
+	.asciz	"x != 0"
+	.size	.L.str.6, 7
 
 	.type	.L.str.7,@object                # @.str.7
 .L.str.7:
 	.asciz	"include/misc/bits.hpp"
 	.size	.L.str.7, 22
+
+	.type	.L__PRETTY_FUNCTION__._Z11u64ToSquarem,@object # @__PRETTY_FUNCTION__._Z11u64ToSquarem
+.L__PRETTY_FUNCTION__._Z11u64ToSquarem:
+	.asciz	"int u64ToSquare(uint64_t)"
+	.size	.L__PRETTY_FUNCTION__._Z11u64ToSquarem, 26
+
+	.type	.L.str.8,@object                # @.str.8
+.L.str.8:
+	.asciz	"isValidSquare(s)"
+	.size	.L.str.8, 17
 
 	.type	.L__PRETTY_FUNCTION__._Z13u64FromSquarei,@object # @__PRETTY_FUNCTION__._Z13u64FromSquarei
 .L__PRETTY_FUNCTION__._Z13u64FromSquarei:
@@ -910,13 +1051,16 @@ _GLOBAL__sub_I_board_getters.cpp:       # @_GLOBAL__sub_I_board_getters.cpp
 	.addrsig_sym __assert_fail
 	.addrsig_sym _ZNK5Board9piece_at_Ei
 	.addrsig_sym _ZN5piece8is_emptyEi
+	.addrsig_sym _ZN5CMove8NullMoveEv
 	.addrsig_sym _ZN5Board13attackers_to_Em
 	.addrsig_sym _Z10bitscanAllmR7u64List
 	.addrsig_sym _ZNK7u64List3lenEv
 	.addrsig_sym _ZNSt5arrayImLm64EEixEm
+	.addrsig_sym _Z11u64ToSquarem
 	.addrsig_sym _ZNK7u64ListixEi
 	.addrsig_sym _ZNK5Board9piece_at_Em
 	.addrsig_sym _Z13u64FromSquarei
+	.addrsig_sym _Z14bitscanForwardm
 	.addrsig_sym _Z13isValidSquarei
 	.addrsig_sym _ZNSt14__array_traitsImLm64EE6_S_refERA64_Kmm
 	.addrsig_sym _GLOBAL__sub_I_board_getters.cpp

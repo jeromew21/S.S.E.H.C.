@@ -12,7 +12,6 @@ MoveList<256> Board::produce_uncheck_moves_()
   assert(is_check());
 
   MoveList<256> mv_list;
-  return mv_list;
 
   // // todo make this work
   // MoveVector<256> v;
@@ -28,6 +27,9 @@ MoveList<256> Board::produce_uncheck_moves_()
   const u64 friendly_occ = occupancy(curr_turn);
   const u64 enemy_occ = occupancy(enemy_color);
   const u64 occ = friendly_occ | enemy_occ;
+
+  const u64 enemy_rooks = bitboard_[piece::get_rook(enemy_color)] | bitboard_[piece::get_queen(enemy_color)];
+  const u64 enemy_bishops = bitboard_[piece::get_bishop(enemy_color)] | bitboard_[piece::get_queen(enemy_color)];
 
   // the single check is the harder case because there are more options...
   if (check_count == 1)
@@ -85,8 +87,6 @@ MoveList<256> Board::produce_uncheck_moves_()
       } // end bishop ray
 
       // we have now successfully found all the squares that if occupied will uncheck.
-      const u64 enemy_rooks = bitboard_[piece::get_rook(enemy_color)] | bitboard_[piece::get_rook(enemy_color)];
-      const u64 enemy_bishops = bitboard_[piece::get_bishop(enemy_color)] | bitboard_[piece::get_queen(enemy_color)];
 
       // handle pawn pushes
       u64List pawn_bitscan;
@@ -94,12 +94,12 @@ MoveList<256> Board::produce_uncheck_moves_()
       bitscanAll(pawns_that_can_block, pawn_bitscan);
       for (int i = 0; i < pawn_bitscan.len(); i++)
       {
-        u64 pawn_location;
+        u64 pawn_location = pawn_bitscan[i];
         Square pawn_location_square = u64ToSquare(pawn_location);
 
-        // If removing the pawn would give check, break
+        // If removing the pawn would give check, continue
         if (move_maps::isAttackedSliding(occ & ~pawn_location, king_position, enemy_rooks, enemy_bishops))
-          break;
+          continue;
 
         u64 single_push = move_maps::pawnMoves(pawn_location_square, curr_turn);
         Square single_push_square = u64ToSquare(single_push);
@@ -191,22 +191,54 @@ MoveList<256> Board::produce_uncheck_moves_()
       const u64 target = target_locations;
       const Square target_square = u64ToSquare(target_locations);
 
-      const u64 enemy_rooks = ~target & bitboard_[piece::get_rook(enemy_color)] | bitboard_[piece::get_rook(enemy_color)];
-      const u64 enemy_bishops = ~target & bitboard_[piece::get_bishop(enemy_color)] | bitboard_[piece::get_queen(enemy_color)];
-
-      u64 pieces_that_capture = state_.defend_map_[target_square] & friendly_occ & ~king_position;
+      const u64 pieces_that_capture = state_.defend_map_[target_square] & friendly_occ & ~king_position;
       u64List pieces_bitscan;
       bitscanAll(pieces_that_capture, pieces_bitscan);
-      for (int i = 0; i < pieces_bitscan.len(); i++) { 
-        u64 src = pieces_bitscan[i];
-        if (move_maps::isAttackedSliding(occ & ~src, king_position, enemy_rooks, enemy_bishops))
-          break;
+      for (int i = 0; i < pieces_bitscan.len(); i++)
+      {
+        // for each piece location, check for a pin, if it isn't pinnned then it's a legal capture and add it in.
+        const u64 src = pieces_bitscan[i];
+        const Square src_square = u64ToSquare(src);
+        if (move_maps::isAttackedSliding(occ & ~src, king_position, ~target & enemy_rooks, ~target & enemy_bishops))
+          continue;
 
-        mv_list.PushBack(CMove(u64ToSquare(src), target_square, move_type::Default));
+        if (move_maps::isPromotingRank(target_square, curr_turn) && piece::is_pawn(piece_at_(src)))
+        {
+          mv_list.PushBack(CMove(src_square, target_square, move_type::QPromotion));
+          mv_list.PushBack(CMove(src_square, target_square, move_type::RPromotion));
+          mv_list.PushBack(CMove(src_square, target_square, move_type::BPromotion));
+          mv_list.PushBack(CMove(src_square, target_square, move_type::KPromotion));
+        }
+        else
+        {
+          mv_list.PushBack(CMove(src_square, target_square, move_type::Default));
+        }
       }
+      // en passant capturing the pawn
     }
   }
 
   // now for double checks (or theoretically triple checks if the position is set as such...)
   // check king moves for safety...
+  // add sidesteps
+  u64 king_dests = state_.attack_map_[king_square];
+  u64List king_dest_bitscan;
+  bitscanAll(king_dests, king_dest_bitscan);
+  for (int i = 0; i < king_dest_bitscan.len(); i++)
+  {
+    u64 king_dest = king_dest_bitscan[i];
+
+    // If the square is not under attack and is not occupied by an ally
+    if (!attackers_to_(king_dest, enemy_color) && !(king_dest & friendly_occ))
+    {
+      // there is one annoying case here, where a king steps away from an enemy piece but still on line w/ it
+      // that won't show up on attackers_to since the king is currently blocking it!
+
+      if (move_maps::isAttackedSliding((occ & ~king_position) | king_dest, king_dest, ~king_dest & enemy_rooks, ~king_dest & enemy_bishops))
+        continue;
+
+      mv_list.PushBack(CMove(king_square, u64ToSquare(king_dest), move_type::Default));
+    }
+  }
+  return mv_list;
 }

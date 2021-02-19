@@ -40,9 +40,9 @@ _ZN5board6castle6RightsC2Ev:            # @_ZN5board6castle6RightsC2Ev
 	movq	%rdi, -8(%rbp)
 	movq	-8(%rbp), %rax
 	movl	$1, (%rax)
+	movl	$1, 8(%rax)
 	movl	$1, 4(%rax)
-	movl	$1, 4(%rax)
-	movl	$1, 4(%rax)
+	movl	$1, 12(%rax)
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8
 	retq
@@ -159,13 +159,13 @@ _ZN5board6castle6RightsC2Eiiii:         # @_ZN5board6castle6RightsC2Eiiii
 .LBB2_20:
 	movl	-12(%rbp), %eax
 	movq	-32(%rbp), %rcx                 # 8-byte Reload
-	movl	%eax, (%rcx)
+	movl	%eax, 8(%rcx)
 	movl	-16(%rbp), %eax
-	movl	%eax, 4(%rcx)
+	movl	%eax, (%rcx)
 	movl	-20(%rbp), %eax
-	movl	%eax, 4(%rcx)
-	movl	-24(%rbp), %eax
 	movl	%eax, 12(%rcx)
+	movl	-24(%rbp), %eax
+	movl	%eax, 4(%rcx)
 	addq	$48, %rsp
 	popq	%rbp
 	.cfi_def_cfa %rsp, 8

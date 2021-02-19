@@ -75,6 +75,7 @@ CMove Board::move_from_src_dest(Square src, Square dest)
   assert(!piece::is_empty(mover));
 
   // this needs to be given more information... promotions...
+  return CMove::NullMove();
 }
 
 u64 Board::attackers_to_(u64 subjects)
@@ -87,7 +88,7 @@ u64 Board::attackers_to_(u64 subjects)
   bitscanAll(subjects, arr);
   for (int i = 0; i < arr.len(); i++)
   {
-    attacker_map |= state_.defend_map_[arr[i]];
+    attacker_map |= state_.defend_map_[u64ToSquare(arr[i])];
   }
   return attacker_map;
 }

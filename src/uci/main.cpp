@@ -58,6 +58,10 @@ int main(int argc, char* argv[])
       exit(0);
     }
   }
+
+  Board bd;
+  bd.LoadPosition("r1b1kbnr/pppp1Npp/8/8/4q3/5n2/PPPPBP1P/RNBQKR2 w Qkq - 2 8");
+  bd.Dump();
   
   uci::listen();
 

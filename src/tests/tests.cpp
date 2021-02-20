@@ -180,7 +180,7 @@ void run_tests()
     perft_kiwipete_test(d, total_cases, passes);
   }
 
-  for (int d = 1; d < 6; d++)
+  for (int d = 1; d < 5; d++)
   {
     banner("PERFT tricky depth=" + std::to_string(d));
     perft_tricky_test(d, total_cases, passes);

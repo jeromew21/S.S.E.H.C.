@@ -4,9 +4,8 @@
  * Assuming a move is psuedo-legal for a particular side (it could be played disregarding checks)
  * we want to know if it is safe, that is, not putting yourself in check.
  */
-bool Board::verify_move_safety_(CMove mv)
+bool Board::verify_move_safety_(CMove mv) const
 {
-  assert(maps_generated_); // we need the maps for king moves...
   assert(!is_check()); // we shouldn't be calling this one if we're in check
 
   const Color curr_turn = turn();
@@ -30,17 +29,18 @@ bool Board::verify_move_safety_(CMove mv)
   }
 
   // we have a normal move and now need to check for pins or moving into an attack.
-  PieceType mover = piece_at_(src);
-  assert(colorOf(mover) == curr_turn);
-
-  // If the piece is a king, we simply want to make sure we're not moving onto a controlled square.
+  u64 king = bitboard_[piece::get_king(curr_turn)];
+  
+  // If the moving piece is a king, we simply want to make sure we're not moving onto a controlled square.
   // we can't move king into a controlled square
-  if (piece::is_king(mover))
+  if (src & king)
   {
-    if (state_.defend_map_[u64ToSquare(dest)] & occupancy(enemy_turn))
-      return false; // if trying to move to square covered by enemy attack
-    else
-      return true;
+    const Square dest_sq = u64ToSquare(dest);
+    const u64 pawn_overlaps = bitboard_[piece::get_pawn(enemy_turn)] & move_maps::pawnCaptures(dest_sq, curr_turn);
+    const u64 king_overlaps = bitboard_[piece::get_king(enemy_turn)] & move_maps::kingMoves(dest_sq);
+    const u64 knight_overlaps = bitboard_[piece::get_knight(enemy_turn)] & move_maps::knightMoves(dest_sq);
+    if (pawn_overlaps || king_overlaps || knight_overlaps) return false; 
+    king = dest; // for the next bit of code we need to know the king location
   }
 
   // Otherwise, we need to make sure the piece isn't pinned.
@@ -48,7 +48,6 @@ bool Board::verify_move_safety_(CMove mv)
   const u64 occ = (occupancy() & ~src) | dest;
   const u64 enemy_rooks = ~dest & (bitboard_[piece::get_rook(enemy_turn)] | bitboard_[piece::get_queen(enemy_turn)]);
   const u64 enemy_bishops = ~dest & (bitboard_[piece::get_bishop(enemy_turn)] | bitboard_[piece::get_queen(enemy_turn)]);
-  const u64 king = bitboard_[piece::get_king(curr_turn)];
 
   return !move_maps::isAttackedSliding(occ, king, enemy_rooks, enemy_bishops);
 }
@@ -57,7 +56,7 @@ bool Board::verify_move_safety_(CMove mv)
  * Assuming a move is legal for a particular side,
  * we want to know if it puts the opponent in check.
  */
-bool Board::is_checking_move(CMove mv)
+bool Board::is_checking_move(CMove mv) const
 {
   const Color curr_turn = turn();
   const Color enemy_turn = oppositeColor(curr_turn);

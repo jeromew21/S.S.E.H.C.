@@ -163,6 +163,8 @@ private:
    * the bitboard of locations for each piece.
    */
   u64 bitboard_[12];
+  
+  u64 occupancy_bitboard;
 
   /**
    * the current board state
@@ -219,19 +221,19 @@ private:
    * 
    * related to but not exactly the same as is_checking_move()
    */
-  bool verify_move_safety_(CMove mv);
+  bool verify_move_safety_(CMove mv) const;
 
   /**
    * This will return a mask of pieces that attack any pieces masked by subjects,
    * of attacking_color.
    */
-  u64 attackers_to_(u64 subjects, Color attacking_color);
+  u64 attackers_to_(u64 subjects, Color attacking_color) const;
 
   /**
    * This will return a mask of pieces that attack any pieces masked by subjects,
    * of any color.
    */
-  u64 attackers_to_(u64 subjects);
+  u64 attackers_to_(u64 subjects) const;
 
   /** 
    * Returns the piece at a particular location.
@@ -268,7 +270,7 @@ private:
    */
   void SetTurn_(Color turn);
 
-public:
+ public:
   /** 
    * List of all true legal moves in a position.
    */
@@ -285,14 +287,14 @@ public:
   /**
    * Does this move put the opponent in check?
    */
-  bool is_checking_move(CMove mv);
+  bool is_checking_move(CMove mv) const;
 
   /**
    * Given a move source square and dest square, create a move with the correct metadata.
    * 
    * This is used in the UCI interface when loading a sequence of moves.
    */
-  CMove move_from_src_dest(Square src, Square dest);
+  CMove move_from_src_dest(Square src, Square dest) const;
 
   /**
    * Which side is it to move?
@@ -326,7 +328,16 @@ public:
    */
   std::string fen() const;
 
-  // Public state-changing methods
+ /** 
+   * if it isn't check, check for any legal moves
+   */
+  bool is_stalemate();
+
+  /**
+   * Returns true if for the current position it is checkmate (the opponent to who's move it is to play wins.)
+   */
+  bool is_checkmate();
+
 
   /**
    * Sets the board to the classical starting position.

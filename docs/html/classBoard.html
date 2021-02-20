@@ -79,10 +79,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:abf49d6bfa97aa4595d7cd3f9be13b978"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7f3321ad312d9b3e70bb24f333001a74"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceboard.html#a99acc96edd3007d46ff299bdc5db4221">board::Status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBoard.html#a7f3321ad312d9b3e70bb24f333001a74">status</a> ()</td></tr>
 <tr class="separator:a7f3321ad312d9b3e70bb24f333001a74"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af38d727e983b2d5d9d9da5fd5b3d89a7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBoard.html#af38d727e983b2d5d9d9da5fd5b3d89a7">is_checking_move</a> (<a class="el" href="classCMove.html">CMove</a> mv)</td></tr>
-<tr class="separator:af38d727e983b2d5d9d9da5fd5b3d89a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa083e610e8e34be9695620ed5ef8ff5e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCMove.html">CMove</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBoard.html#aa083e610e8e34be9695620ed5ef8ff5e">move_from_src_dest</a> (<a class="el" href="definitions_8hpp.html#a6de8fcf40523e5c1eecf939520f33f6b">Square</a> src, <a class="el" href="definitions_8hpp.html#a6de8fcf40523e5c1eecf939520f33f6b">Square</a> dest)</td></tr>
-<tr class="separator:aa083e610e8e34be9695620ed5ef8ff5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39ac2ec41b4244d5b6cea846752f003e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBoard.html#a39ac2ec41b4244d5b6cea846752f003e">is_checking_move</a> (<a class="el" href="classCMove.html">CMove</a> mv) const</td></tr>
+<tr class="separator:a39ac2ec41b4244d5b6cea846752f003e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa2420e25d9ff1a360b29926bb55e36e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCMove.html">CMove</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBoard.html#aaa2420e25d9ff1a360b29926bb55e36e">move_from_src_dest</a> (<a class="el" href="definitions_8hpp.html#a6de8fcf40523e5c1eecf939520f33f6b">Square</a> src, <a class="el" href="definitions_8hpp.html#a6de8fcf40523e5c1eecf939520f33f6b">Square</a> dest) const</td></tr>
+<tr class="separator:aaa2420e25d9ff1a360b29926bb55e36e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7060b3d7dc901a73d3bf3d4280d2fbdb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="definitions_8hpp.html#a2f17017b1ef643696b678a0703f0f166">Color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBoard.html#a7060b3d7dc901a73d3bf3d4280d2fbdb">turn</a> () const</td></tr>
 <tr class="separator:a7060b3d7dc901a73d3bf3d4280d2fbdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8ca3f97fa9f04e00fbdc98b8e5b383de"><td class="memItemLeft" align="right" valign="top"><a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBoard.html#a8ca3f97fa9f04e00fbdc98b8e5b383de">hash</a> () const</td></tr>
@@ -95,6 +95,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a3873352dd08a7b010d4b87b92ae48a78"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0246e50fbf0abc3dcc19aa4fd8100e4a"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBoard.html#a0246e50fbf0abc3dcc19aa4fd8100e4a">fen</a> () const</td></tr>
 <tr class="separator:a0246e50fbf0abc3dcc19aa4fd8100e4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b294f38d5f8345d0a958aefd205656e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBoard.html#a3b294f38d5f8345d0a958aefd205656e">is_stalemate</a> ()</td></tr>
+<tr class="separator:a3b294f38d5f8345d0a958aefd205656e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae17aa08306d0d6bdd4addce386bed0a4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBoard.html#ae17aa08306d0d6bdd4addce386bed0a4">is_checkmate</a> ()</td></tr>
+<tr class="separator:ae17aa08306d0d6bdd4addce386bed0a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae271e730f0fe79cafd85871f171b6fe2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBoard.html#ae271e730f0fe79cafd85871f171b6fe2">Reset</a> ()</td></tr>
 <tr class="separator:ae271e730f0fe79cafd85871f171b6fe2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1ecd8e41525bb8366c7e4f2e49d37c18"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBoard.html#a1ecd8e41525bb8366c7e4f2e49d37c18">MakeMove</a> (<a class="el" href="classCMove.html">CMove</a> mv)</td></tr>
@@ -205,8 +209,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="af38d727e983b2d5d9d9da5fd5b3d89a7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af38d727e983b2d5d9d9da5fd5b3d89a7">&#9670;&nbsp;</a></span>is_checking_move()</h2>
+<a id="a39ac2ec41b4244d5b6cea846752f003e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39ac2ec41b4244d5b6cea846752f003e">&#9670;&nbsp;</a></span>is_checking_move()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -216,12 +220,48 @@ Public Member Functions</h2></td></tr>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classCMove.html">CMove</a>&#160;</td>
           <td class="paramname"><em>mv</em></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <p>Does this move put the opponent in check?</p>
 <p>Assuming a move is legal for a particular side, we want to know if it puts the opponent in check. </p>
+
+</div>
+</div>
+<a id="ae17aa08306d0d6bdd4addce386bed0a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae17aa08306d0d6bdd4addce386bed0a4">&#9670;&nbsp;</a></span>is_checkmate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Board::is_checkmate </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Returns true if for the current position it is checkmate (the opponent to who's move it is to play wins.) </p>
+
+</div>
+</div>
+<a id="a3b294f38d5f8345d0a958aefd205656e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b294f38d5f8345d0a958aefd205656e">&#9670;&nbsp;</a></span>is_stalemate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Board::is_stalemate </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>if it isn't check, check for any legal moves </p>
 
 </div>
 </div>
@@ -335,8 +375,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aa083e610e8e34be9695620ed5ef8ff5e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa083e610e8e34be9695620ed5ef8ff5e">&#9670;&nbsp;</a></span>move_from_src_dest()</h2>
+<a id="aaa2420e25d9ff1a360b29926bb55e36e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa2420e25d9ff1a360b29926bb55e36e">&#9670;&nbsp;</a></span>move_from_src_dest()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -356,7 +396,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td>
+          <td></td><td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">

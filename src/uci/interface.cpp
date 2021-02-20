@@ -1,4 +1,5 @@
 #include "uci/interface.hpp"
+#include "misc/version.hpp"
 
 void uci::sendToUciClient(const std::string &cmd) {
   std::cout << cmd << std::endl;
@@ -113,7 +114,7 @@ void uci::Interface::StartThinking(bool inf, int msecs)
   // launch the search thread
   search_thread = std::thread(&Interface::Think, this);
 
-  // launch the timer thread.
+  // launch the stop timer thread
   if (!inf)
   {
     timer_thread = std::thread(&Interface::DelayStop, this, msecs);
@@ -129,20 +130,25 @@ void uci::Interface::RecieveCommand(std::string cmd)
   }
   if (tokens[0] == "uci")
   {
-    uci::sendToUciClient("id name ssehc ");
+    // send engine info
+    uci::sendToUciClient("id name ssehc " + std::to_string(version_major) + "." + std::to_string(version_minor));
     uci::sendToUciClient("id author Jerome Wei Nick Buoncristiani");
-    uci::sendToUciClient("option name Foo type check default false");
+
+    // send list of options 
+    uci::sendToUciClient("option name threads type check default false"); // list options...
+
+    // finally, send ok 
     uci::sendToUciClient("uciok");
   }
   else if (tokens[0] == "debug")
   {
     if (tokens[1] == "on")
     {
-      debug_ = true;
+      uci::set_debug(true);
     }
     else if (tokens[1] == "off")
     {
-      debug_ = false;
+      uci::set_debug(false);
     }
   }
   else if (tokens[0] == "isready")
@@ -235,7 +241,6 @@ void uci::listen()
   uci::Interface interface;
   for (std::string command; std::getline(std::cin, command);)
   {
-    std::vector<std::string> tokens = tokenize(command);
     interface.RecieveCommand(command);
   }
 }

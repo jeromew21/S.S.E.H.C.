@@ -17,7 +17,8 @@ void perft::perft(Board &board_, int depth, perft::Counter &counter)
       if (mv.is_castle())
       {
         counter.castles += 1;
-      } else if (mv.is_promotion())
+      }
+      else if (mv.is_promotion())
       {
         counter.promotions += 1;
       }
@@ -37,14 +38,9 @@ void perft::perft(Board &board_, int depth, perft::Counter &counter)
     }
     board_.MakeMove(mv);
 
-    if (depth == 1)
-    {
-      board::Status status = board_.status();
-      if (status == board::Status::WhiteWin || status == board::Status::BlackWin)
-      {
-        counter.checkmates += 1;
-      }
-    }
+    if (depth == 1 && board_.is_checkmate())
+      counter.checkmates += 1;
+      
     perft(board_, depth - 1, counter);
     board_.UnmakeMove();
   }

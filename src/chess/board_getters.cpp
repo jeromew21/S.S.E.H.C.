@@ -7,28 +7,19 @@ board::Status Board::status()
     return status_;
 
   // Calculate and store value
-  if (is_check())
+  if (is_check() && is_checkmate())
   {
-    MoveList<256> legals = legal_moves();
-    if (legals.size() == 0)
-    {
-      if (turn() == White)
-      {
-        status_ = board::Status::BlackWin;
-      }
-      else
-      {
-        status_ = board::Status::WhiteWin;
-      }
-    } else {
-      status_ = board::Status::Playing;
-    }
+    if (turn() == White)
+      status_ = board::Status::BlackWin;
+    else
+      status_ = board::Status::WhiteWin;
+  }
+  else if (is_stalemate())
+  {
+    status_ = board::Status::Stalemate;
   }
   else
   {
-    // check for stalemate will slow down a little
-    // will need a dedicated function
-    // status_ = board::Status::Stalemate;
     status_ = board::Status::Playing;
   }
 
@@ -70,7 +61,7 @@ u64 Board::occupancy(Color color) const
          bitboard_[piece::black::pawn] | bitboard_[piece::black::rook] | bitboard_[piece::black::knight];
 }
 
-CMove Board::move_from_src_dest(Square src, Square dest)
+CMove Board::move_from_src_dest(Square src, Square dest) const
 {
   PieceType mover = piece_at_(src);
   assert(!piece::is_empty(mover));
@@ -79,7 +70,7 @@ CMove Board::move_from_src_dest(Square src, Square dest)
   return CMove(src, dest, move_type::Default);
 }
 
-u64 Board::attackers_to_(u64 subjects)
+u64 Board::attackers_to_(u64 subjects) const
 {
   assert(maps_generated_);
   assert(subjects != 0);
@@ -94,7 +85,10 @@ u64 Board::attackers_to_(u64 subjects)
   return attacker_map;
 }
 
-u64 Board::attackers_to_(u64 subjects, Color attacking_color)
+/**
+ * used in uncheck and checking for castling
+ */
+u64 Board::attackers_to_(u64 subjects, Color attacking_color) const
 {
   return attackers_to_(subjects) & occupancy(attacking_color);
 }

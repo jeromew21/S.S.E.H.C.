@@ -53,6 +53,7 @@ namespace piece
 
   inline PieceType get_pawn(Color color) { return (colorless::pawn << 1) + color; }
   inline PieceType get_bishop(Color color) { return (colorless::bishop << 1) + color; }
+  inline PieceType get_knight(Color color) { return (colorless::knight << 1) + color; }
   inline PieceType get_rook(Color color) { return (colorless::rook << 1) + color; }
   inline PieceType get_queen(Color color) { return (colorless::queen << 1) + color; }
   inline PieceType get_king(Color color) { return (colorless::king << 1) + color; }

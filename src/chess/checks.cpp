@@ -41,9 +41,9 @@ bool Board::verify_move_safety_(CMove mv) const
   if (src & king)
   {
     return !move_maps::jumpingAttackers(dest, enemy_turn,
-                                       ~dest & bitboard_[piece::get_knight(enemy_turn)],
-                                       ~dest & bitboard_[piece::get_king(enemy_turn)],
-                                       ~dest & bitboard_[piece::get_pawn(enemy_turn)]) &&
+                                        ~dest & bitboard_[piece::get_knight(enemy_turn)],
+                                        ~dest & bitboard_[piece::get_king(enemy_turn)],
+                                        ~dest & bitboard_[piece::get_pawn(enemy_turn)]) &&
            !move_maps::slidingAttackers(occ, dest, enemy_rooks, enemy_bishops);
   }
   return !move_maps::slidingAttackers(occ, king, enemy_rooks, enemy_bishops);
@@ -81,7 +81,7 @@ bool Board::is_checking_move(CMove mv) const
     }
     u64 occ = (occupancy() & ~king_starting_location[curr_turn] & ~rook_src) | dest | rook_dest;
     const u64 rook_attacks = move_maps::rookMoves(u64ToSquare(rook_dest), occ);
-    return rook_attacks & enemy_king ? true : false;
+    return rook_attacks & enemy_king;
   }
 
   // en passant discovered check
@@ -93,11 +93,12 @@ bool Board::is_checking_move(CMove mv) const
     const u64 friendly_rooks = occ & (bitboard_[piece::get_rook(curr_turn)] | bitboard_[piece::get_queen(curr_turn)]);
     const u64 friendly_bishops = occ & (bitboard_[piece::get_bishop(curr_turn)] | bitboard_[piece::get_queen(curr_turn)]);
 
+    // if check was fossilized
     if (move_maps::slidingAttackers(occ, enemy_king, friendly_rooks, friendly_bishops))
       return true;
 
     // otherwise check if the pawn attacks the king normally
-    return move_maps::pawnCaptures(dest_square, curr_turn) & enemy_king ? true : false;
+    return move_maps::pawnCaptures(dest_square, curr_turn) & enemy_king;
   }
 
   PieceType mover = piece_at_(src);
@@ -110,10 +111,7 @@ bool Board::is_checking_move(CMove mv) const
   const u64 friendly_rooks = bitboard_[piece::get_rook(curr_turn)] | bitboard_[piece::get_queen(curr_turn)];
   const u64 friendly_bishops = bitboard_[piece::get_bishop(curr_turn)] | bitboard_[piece::get_queen(curr_turn)];
   if (move_maps::slidingAttackers(occ, enemy_king, friendly_rooks, friendly_bishops))
-  {
-    // discovered check.
     return true;
-  }
 
   // Now we want to see, once the piece has moved normally, whether it can attack the king
   // without updating the ENTIRE attack sets.
@@ -125,15 +123,15 @@ bool Board::is_checking_move(CMove mv) const
   switch (piece::to_colorless(mover))
   {
   case piece::colorless::pawn:
-    return move_maps::pawnCaptures(dest_square, curr_turn) & enemy_king ? true : false; //TODO: do we need this construct? probably not
+    return move_maps::pawnCaptures(dest_square, curr_turn) & enemy_king; //TODO: do we need this construct? probably not
   case piece::colorless::knight:
-    return move_maps::knightMoves(dest_square) & enemy_king ? true : false;
+    return move_maps::knightMoves(dest_square) & enemy_king;
   case piece::colorless::bishop:
-    return move_maps::bishopMoves(dest_square, occ) & enemy_king ? true : false;
+    return move_maps::bishopMoves(dest_square, occ) & enemy_king;
   case piece::colorless::rook:
-    return move_maps::rookMoves(dest_square, occ) & enemy_king ? true : false;
+    return move_maps::rookMoves(dest_square, occ) & enemy_king;
   case piece::colorless::queen:
-    return (move_maps::bishopMoves(dest_square, occ) & enemy_king || move_maps::rookMoves(dest_square, occ) & enemy_king) ? true : false;
+    return (move_maps::bishopMoves(dest_square, occ) & enemy_king || move_maps::rookMoves(dest_square, occ) & enemy_king);
   default:
     return false;
   }

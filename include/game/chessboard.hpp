@@ -235,12 +235,12 @@ private:
 
   /** 
    * Returns the piece at a particular location.
-   * 
-   * Try to use this as seldom as possible, since with the bitboard strategy we try to think
-   * in terms of pieces, not locations.
    */
   PieceType piece_at_(u64 location) const;
-
+  
+  /** 
+   * Returns the piece at a particular location.
+   */
   PieceType piece_at_(Square location) const;
 
   /** 

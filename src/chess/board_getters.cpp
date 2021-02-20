@@ -52,7 +52,6 @@ u64 Board::hash() const
 u64 Board::occupancy() const
 {
   assert(!(occupancy(White) & occupancy(Black)));
-
   return occupancy_bitboard_;
 }
 
@@ -61,10 +60,9 @@ u64 Board::occupancy(Color color) const
   assert(color == White || color == Black);
 
   if (color == White)
-  {
     return bitboard_[piece::white::king] | bitboard_[piece::white::queen] | bitboard_[piece::white::bishop] |
            bitboard_[piece::white::pawn] | bitboard_[piece::white::rook] | bitboard_[piece::white::knight];
-  }
+
   return bitboard_[piece::black::king] | bitboard_[piece::black::queen] | bitboard_[piece::black::bishop] |
          bitboard_[piece::black::pawn] | bitboard_[piece::black::rook] | bitboard_[piece::black::knight];
 }
@@ -74,15 +72,14 @@ CMove Board::move_from_src_dest(Square src, Square dest) const
   PieceType mover = piece_at_(src);
   assert(!piece::is_empty(mover));
 
+  // Validate move...
+
   // this needs to be given more information... promotions...
   return CMove(src, dest, move_type::Default);
 }
 
 /**
  * used in uncheck and checking for castling
- * 
- * we're slowly trying to move away from using attack and defend maps
- * so this may be implemented differently soon.
  */
 u64 Board::attackers_to_(u64 subjects, Color attacking_color) const
 {
@@ -109,6 +106,10 @@ u64 Board::attackers_to_(u64 subjects, Color attacking_color) const
   return attacker_map;
 }
 
+/** 
+ * This is technically redundant with attackers_to_ but we get a theoretical speedup by returning early
+ * if there are multiple subjects.
+ */
 bool Board::is_attacked_(u64 subjects, Color attacking_color) const
 {
   assert(subjects != 0);
@@ -126,8 +127,10 @@ bool Board::is_attacked_(u64 subjects, Color attacking_color) const
   {
     u64 subj_loc = subj_bitscan[i];
     u64 sliders = move_maps::slidingAttackers(occ | subj_loc, subj_loc, rooks, bishops);
+    if (sliders)
+      return true;
     u64 jumpers = move_maps::jumpingAttackers(subj_loc, attacking_color, knights, kings, pawns);
-    if (sliders || jumpers)
+    if (jumpers)
       return true;
   }
   return false;

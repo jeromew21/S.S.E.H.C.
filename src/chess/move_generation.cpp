@@ -1,6 +1,6 @@
 #include "game/chessboard.hpp"
 
-MoveList<256> Board::legal_moves()
+MoveList<256> Board::legal_moves() const
 {
   // if it's check, then divert over
   if (is_check())
@@ -347,7 +347,7 @@ MoveList<256> Board::capture_moves() const
   return mv_list;
 }
 
-bool Board::is_checkmate()
+bool Board::is_checkmate() const
 {
   if (!is_check())
     return false;
@@ -355,7 +355,7 @@ bool Board::is_checkmate()
   return legals.size() == 0;
 }
 
-bool Board::is_stalemate()
+bool Board::is_stalemate() const
 {
   assert(!is_check());
 

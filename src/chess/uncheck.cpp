@@ -6,7 +6,7 @@
  * if it's double check, then you can only move,
  * and if it's single check you can only move, block, or capture.
  */
-MoveList<256> Board::produce_uncheck_moves_()
+MoveList<256> Board::produce_uncheck_moves_() const
 {   
   assert(is_check());
 

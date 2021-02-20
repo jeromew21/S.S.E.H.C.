@@ -1,12 +1,12 @@
 #include "uci/strings.hpp"
 
-std::string pieceToStringFen(PieceType piece)
+std::string pieceToStringFen(PieceType piece_)
 {
-  if (piece == piece::EmptyPiece) {
+  if (piece_ == piece::EmptyPiece) {
     return "-";
   }
-  assert (piece >= 0 && piece < 12);
-  switch (piece)
+  assert (piece_ >= 0 && piece_ < 12);
+  switch (piece_)
   {
   case piece::white::king:
     return "K";

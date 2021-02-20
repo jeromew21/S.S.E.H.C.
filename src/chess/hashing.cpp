@@ -21,15 +21,21 @@ void zobrist::init()
 void Board::AddPiece_(PieceType piece, u64 location)
 {
   assert(!(bitboard_[piece] & location));
-  state_.hash ^= HASHES[64 * piece + u64ToSquare(location)];
+  Square sq = u64ToSquare(location);
+  piece_board_[sq] = piece;
+  occupancy_bitboard_ |= location;
   bitboard_[piece] |= location;
+  state_.hash ^= HASHES[64*piece + sq];
 }
 
 void Board::RemovePiece_(PieceType piece, u64 location)
 {
   assert(bitboard_[piece] & location);
-  state_.hash ^= HASHES[64 * piece + u64ToSquare(location)];
+  Square sq = u64ToSquare(location);
+  piece_board_[sq] = piece::EmptyPiece;
+  occupancy_bitboard_ &= ~location;
   bitboard_[piece] &= ~location;
+  state_.hash ^= HASHES[64*piece + sq];
 }
 
 void Board::SetEpSquare_(Square ep_square)
@@ -37,6 +43,7 @@ void Board::SetEpSquare_(Square ep_square)
   Square current_sq = state_.en_passant_square;
   if (ep_square == current_sq)
     return; // do nothing
+
   if (current_sq != -1)
   {
     // there is an en passant square already

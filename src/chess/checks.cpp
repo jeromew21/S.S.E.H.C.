@@ -32,24 +32,20 @@ bool Board::verify_move_safety_(CMove mv) const
   const u64 occ = (occupancy() & ~src) | dest;
   u64 king = bitboard_[piece::get_king(curr_turn)];
 
-  // If the moving piece is a king, we simply want to make sure we're not moving onto a controlled square.
-  // we can't move king into a controlled square
-  if (src & king)
-  {
-    if (move_maps::jumpingAttackers(dest, enemy_turn,
-                                     ~dest & bitboard_[piece::get_knight(enemy_turn)],
-                                     ~dest & bitboard_[piece::get_king(enemy_turn)],
-                                     ~dest & bitboard_[piece::get_pawn(enemy_turn)]))
-      return false;
-
-    king = dest; // for the next bit of code we need to know the king location
-  }
-
-  // Otherwise, we need to make sure the piece isn't pinned.
   // We create a dummy occupancy mask and then see if any lanes or diagonals are opened up to the king.
   const u64 enemy_rooks = ~dest & (bitboard_[piece::get_rook(enemy_turn)] | bitboard_[piece::get_queen(enemy_turn)]);
   const u64 enemy_bishops = ~dest & (bitboard_[piece::get_bishop(enemy_turn)] | bitboard_[piece::get_queen(enemy_turn)]);
 
+  // If the moving piece is a king, we simply want to make sure we're not moving onto a controlled square.
+  // we can't move king into a controlled square
+  if (src & king)
+  {
+    return !move_maps::jumpingAttackers(dest, enemy_turn,
+                                       ~dest & bitboard_[piece::get_knight(enemy_turn)],
+                                       ~dest & bitboard_[piece::get_king(enemy_turn)],
+                                       ~dest & bitboard_[piece::get_pawn(enemy_turn)]) &&
+           !move_maps::slidingAttackers(occ, dest, enemy_rooks, enemy_bishops);
+  }
   return !move_maps::slidingAttackers(occ, king, enemy_rooks, enemy_bishops);
 }
 
@@ -83,7 +79,7 @@ bool Board::is_checking_move(CMove mv) const
       rook_dest = board::castle::rook_short_dest[curr_turn];
       rook_src = kingside_rook_starting_location[curr_turn];
     }
-    u64 occ = (occupancy() & ~king_starting_location[curr_turn] & ~rook_src) | dest  | rook_dest;
+    u64 occ = (occupancy() & ~king_starting_location[curr_turn] & ~rook_src) | dest | rook_dest;
     const u64 rook_attacks = move_maps::rookMoves(u64ToSquare(rook_dest), occ);
     return rook_attacks & enemy_king ? true : false;
   }

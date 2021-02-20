@@ -98,7 +98,7 @@ namespace move_maps
   u64 kingMoves(Square piece_location);
 
   // sliding pieces
- 
+
   /**
    * Returns a bitboard of bishop moves at given location and occupancy map.
    * 
@@ -112,7 +112,7 @@ namespace move_maps
    * Uses magic bitboards.
    */
   u64 rookMoves(Square piece_location, u64 occupants);
-  
+
   /**
    * Returns the single bishop ray from a particular direction
    */
@@ -122,7 +122,6 @@ namespace move_maps
    * Returns the single rook ray from a particular direction
    */
   u64 rookRay(Square piece_location, int direction);
-
 
   /**
    * Returns all four rays emanating from a location.
@@ -167,8 +166,16 @@ private:
    * the bitboard of locations for each piece.
    */
   u64 bitboard_[12];
-  
-  u64 occupancy_bitboard;
+
+  /**
+   * A simple array that stores, for each location, which piece resides at it.
+   */
+  PieceType piece_board_[64];
+
+  /**
+   * A bitboard that stores a mask of all the pieces on the board presently.
+   */
+  u64 occupancy_bitboard_;
 
   /**
    * the current board state
@@ -203,7 +210,7 @@ private:
   /** 
    * shortcut move generator if board is check
    */
-  MoveList<256> produce_uncheck_moves_();
+  MoveList<256> produce_uncheck_moves_() const;
 
   /** 
    * assuming not in check: verify that a move doesn't cause check
@@ -233,7 +240,7 @@ private:
    * in terms of pieces, not locations.
    */
   PieceType piece_at_(u64 location) const;
-  
+
   PieceType piece_at_(Square location) const;
 
   /** 
@@ -261,25 +268,17 @@ private:
    */
   void SetTurn_(Color turn);
 
- public:
+public:
   /** 
    * List of all true legal moves in a position.
    */
-  MoveList<256> legal_moves();
+  MoveList<256> legal_moves() const;
 
   /** 
    * capture moves only, generated for q-search.
    */
   MoveList<256> capture_moves() const;
 
-  /**
-   * Whether the game is continuing, a win for a particular side, or drawn.
-   * 
-   * The value is cached and stored, though this may not be needed.
-   */
-  board::Status status();
-
-  
   /**
    * Does this move put the opponent in check?
    */
@@ -324,16 +323,22 @@ private:
    */
   std::string fen() const;
 
- /** 
+  /** 
    * if it isn't check, check for any legal moves
    */
-  bool is_stalemate();
+  bool is_stalemate() const;
 
   /**
    * Returns true if for the current position it is checkmate (the opponent to who's move it is to play wins.)
    */
-  bool is_checkmate();
+  bool is_checkmate() const;
 
+  /**
+   * Whether the game is continuing, a win for a particular side, or drawn.
+   * 
+   * The value is cached and stored, though this may not be needed.
+   */
+  board::Status status();
 
   /**
    * Sets the board to the classical starting position.

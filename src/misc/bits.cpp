@@ -97,26 +97,26 @@ int hadd(u64 x)
 
 void bitscanAll(u64 x, u64List &out_arr)
 {
-  out_arr.Clear();
-  for (int offset = 0; offset < 64; offset += 8)
-  {
-    int chunk = (x >> offset) & 255;
-    if (chunk == 0)
-      continue;
-
-    u64 *cached = bitscan_cache[chunk][offset / 8]; //array of u64s
-    for (int i = 0; i < 8 && cached[i] != 0; i++)
-    {
-      out_arr.Append(cached[i]);
-    }
-  }
-
-  // old implementation should work
   // out_arr.Clear();
-  // while (x) {
-  //   int k = bitscanForward(x);
-  //   u64 bs = (u64) 1 << k;
-  //   out_arr.Append(bs);
-  //   x &= ~bs;
+  // for (int offset = 0; offset < 64; offset += 8)
+  // {
+  //   int chunk = (x >> offset) & 255;
+  //   if (chunk == 0)
+  //     continue;
+
+  //   u64 *cached = bitscan_cache[chunk][offset / 8]; //array of u64s
+  //   for (int i = 0; i < 8 && cached[i] != 0; i++)
+  //   {
+  //     out_arr.Append(cached[i]);
+  //   }
   // }
+
+  // old implementation is faster???? buhhh
+  out_arr.Clear();
+  while (x) {
+    int k = bitscanForward(x);
+    u64 bs = (u64) 1 << k;
+    out_arr.Append(bs);
+    x &= ~bs;
+  }
 }

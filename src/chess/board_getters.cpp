@@ -53,7 +53,7 @@ u64 Board::occupancy() const
 {
   assert(!(occupancy(White) & occupancy(Black)));
 
-  return occupancy(White) | occupancy(Black);
+  return occupancy_bitboard_;
 }
 
 u64 Board::occupancy(Color color) const
@@ -135,16 +135,11 @@ bool Board::is_attacked_(u64 subjects, Color attacking_color) const
 
 PieceType Board::piece_at_(u64 location) const
 {
-  assert(hadd(location) == 1);
-  for (PieceType i = 0; i < 12; i++)
-  {
-    if (location & bitboard_[i])
-      return i;
-  }
-  return piece::EmptyPiece;
+  return piece_at_(u64ToSquare(location));
 }
 
 PieceType Board::piece_at_(Square location) const
 {
-  return piece_at_(u64FromSquare(location));
+  assert(isValidSquare(location));
+  return piece_board_[location];
 }

@@ -29,15 +29,19 @@ void Board::LoadPosition(PieceType piece_list[64], Color turn_to_move, int ep_sq
     bitboard_[i] = 0;
   }
 
+  occupancy_bitboard_ = 0;
+
   // Set new state values
   for (Square i = 0; i < 64; i++)
   {
-    PieceType piece = piece_list[i];
+    PieceType piece_ = piece_list[i];
 
-    if (piece != piece::EmptyPiece)
+    if (piece_ != piece::EmptyPiece)
     {
-      AddPiece_(piece, u64FromSquare(i));
+      AddPiece_(piece_, u64FromSquare(i));
     }
+
+    piece_board_[i] = piece_;
   }
 
   SetTurn_(turn_to_move);
@@ -50,7 +54,6 @@ void Board::LoadPosition(PieceType piece_list[64], Color turn_to_move, int ep_sq
   state_.halfmove_counter = halfmove;
   state_.fullmove_counter = fullmove;
 
-  // finally: check for check...
   if (is_attacked_(bitboard_[piece::get_king(turn_to_move)], oppositeColor(turn_to_move))) 
     state_.is_check = true;
 }

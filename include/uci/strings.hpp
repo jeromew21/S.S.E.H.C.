@@ -13,10 +13,10 @@ const std::string FILE_NAMES[] = {"a", "b", "c", "d", "e", "f", "g", "h"};
 std::string moveToUCIAlgebraic(CMove mv);
 
 // to q, b, r, n
-std::string pieceToStringLower(PieceType piece);
+std::string pieceToStringLower(PieceType piece_);
 
 // fen related
-std::string pieceToStringFen(PieceType piece); // to upper or lower depending on color
+std::string pieceToStringFen(PieceType piece_); // to upper or lower depending on color
 PieceType pieceFromStringFen(std::string val); // from uppercase or lowercase
 
 

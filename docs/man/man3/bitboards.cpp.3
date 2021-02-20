@@ -13,6 +13,9 @@ src/chess/bitboards.cpp
 
 .in +1c
 .ti -1c
+.RI "bool \fBisAttackedJumping\fP (\fBu64\fP occupancy_map, \fBu64\fP subject, \fBColor\fP subj_turn, \fBu64\fP knights, \fBu64\fP kings, \fBu64\fP pawns)"
+.br
+.ti -1c
 .RI "\fBu64\fP \fBrookMovesClassical\fP (\fBSquare\fP sq, \fBu64\fP occupants)"
 .br
 .ti -1c
@@ -84,6 +87,8 @@ src/chess/bitboards.cpp
 .PP 
 .SS "\fBu64\fP bishopMovesClassical (\fBSquare\fP sq, \fBu64\fP occupants)"
 Helper function for ground truth method for getting rook moves 
+.SS "bool isAttackedJumping (\fBu64\fP occupancy_map, \fBu64\fP subject, \fBColor\fP subj_turn, \fBu64\fP knights, \fBu64\fP kings, \fBu64\fP pawns)"
+
 .SS "\fBu64\fP permute_mask (\fBu64\fP mask, int index, int pop_count)"
 return the i-th permutation of mask with pop_count members
 .PP

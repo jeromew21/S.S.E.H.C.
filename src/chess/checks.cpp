@@ -29,23 +29,24 @@ bool Board::verify_move_safety_(CMove mv) const
   }
 
   // we have a normal move and now need to check for pins or moving into an attack.
+  const u64 occ = (occupancy() & ~src) | dest;
   u64 king = bitboard_[piece::get_king(curr_turn)];
-  
+
   // If the moving piece is a king, we simply want to make sure we're not moving onto a controlled square.
   // we can't move king into a controlled square
   if (src & king)
   {
-    const Square dest_sq = u64ToSquare(dest);
-    const u64 pawn_overlaps = bitboard_[piece::get_pawn(enemy_turn)] & move_maps::pawnCaptures(dest_sq, curr_turn);
-    const u64 king_overlaps = bitboard_[piece::get_king(enemy_turn)] & move_maps::kingMoves(dest_sq);
-    const u64 knight_overlaps = bitboard_[piece::get_knight(enemy_turn)] & move_maps::knightMoves(dest_sq);
-    if (pawn_overlaps || king_overlaps || knight_overlaps) return false; 
+    if (move_maps::isAttackedJumping(dest, curr_turn,
+                                     ~dest & bitboard_[piece::get_knight(enemy_turn)],
+                                     ~dest & bitboard_[piece::get_king(enemy_turn)],
+                                     ~dest & bitboard_[piece::get_pawn(enemy_turn)]))
+      return false;
+
     king = dest; // for the next bit of code we need to know the king location
   }
 
   // Otherwise, we need to make sure the piece isn't pinned.
   // We create a dummy occupancy mask and then see if any lanes or diagonals are opened up to the king.
-  const u64 occ = (occupancy() & ~src) | dest;
   const u64 enemy_rooks = ~dest & (bitboard_[piece::get_rook(enemy_turn)] | bitboard_[piece::get_queen(enemy_turn)]);
   const u64 enemy_bishops = ~dest & (bitboard_[piece::get_bishop(enemy_turn)] | bitboard_[piece::get_queen(enemy_turn)]);
 

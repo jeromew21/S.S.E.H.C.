@@ -287,10 +287,21 @@ bool move_maps::isAttackedSliding(u64 occupancy_map, u64 subject, u64 rooks, u64
   assert(occupancy_map & subject);
 
   Square subj_location = u64ToSquare(subject);
-  if (rooks & rookMoves(subj_location, occupancy_map) || bishops & bishopMoves(subj_location, occupancy_map))
+  if (rooks & move_maps::rookMoves(subj_location, occupancy_map) || bishops & move_maps::bishopMoves(subj_location, occupancy_map))
     return true;
-  else
-    return false;
+  return false;
+}
+
+bool move_maps::isAttackedJumping(u64 subject, Color subj_turn, u64 knights, u64 kings, u64 pawns)
+{
+  assert(isValidSquare(u64ToSquare(subject)));
+  Square subj_location = u64ToSquare(subject);
+  const u64 pawn_overlaps = pawns & move_maps::pawnCaptures(subj_location, subj_turn);
+  const u64 king_overlaps = kings & move_maps::kingMoves(subj_location);
+  const u64 knight_overlaps = knights & move_maps::knightMoves(subj_location);
+  if (pawn_overlaps || king_overlaps || knight_overlaps)
+    return true;
+  return false;
 }
 
 /**

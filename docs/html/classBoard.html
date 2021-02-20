@@ -77,6 +77,8 @@ $(function() {
 Public Member Functions</h2></td></tr>
 <tr class="memitem:abf49d6bfa97aa4595d7cd3f9be13b978"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMoveList.html">MoveList</a>&lt; 256 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBoard.html#abf49d6bfa97aa4595d7cd3f9be13b978">legal_moves</a> ()</td></tr>
 <tr class="separator:abf49d6bfa97aa4595d7cd3f9be13b978"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68856f9d1a70ad3c5da1a6207eb91842"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMoveList.html">MoveList</a>&lt; 256 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBoard.html#a68856f9d1a70ad3c5da1a6207eb91842">capture_moves</a> () const</td></tr>
+<tr class="separator:a68856f9d1a70ad3c5da1a6207eb91842"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7f3321ad312d9b3e70bb24f333001a74"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceboard.html#a99acc96edd3007d46ff299bdc5db4221">board::Status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBoard.html#a7f3321ad312d9b3e70bb24f333001a74">status</a> ()</td></tr>
 <tr class="separator:a7f3321ad312d9b3e70bb24f333001a74"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a39ac2ec41b4244d5b6cea846752f003e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBoard.html#a39ac2ec41b4244d5b6cea846752f003e">is_checking_move</a> (<a class="el" href="classCMove.html">CMove</a> mv) const</td></tr>
@@ -136,6 +138,25 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a68856f9d1a70ad3c5da1a6207eb91842"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a68856f9d1a70ad3c5da1a6207eb91842">&#9670;&nbsp;</a></span>capture_moves()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMoveList.html">MoveList</a>&lt; 256 &gt; Board::capture_moves </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>capture moves only, generated for q-search.</p>
+<p>For this one and legal moves, consider not using precalculated attack maps... </p>
+
+</div>
+</div>
 <a id="a5611814a2ac7174da53c945ca646cb0d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5611814a2ac7174da53c945ca646cb0d">&#9670;&nbsp;</a></span>Dump()</h2>
 

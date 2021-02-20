@@ -33,6 +33,12 @@ namespace move_maps
    * needed to find magic numbers for hashing
    */
   void init();
+
+  /**
+   * given an occupancy map, subject location (can only contain 1 bit for now), and location of jumping (non-sliding) pieces,
+   * check if the king is under attack by any of those pieces
+   */
+  bool isAttackedJumping(u64 subject, Color subj_turn, u64 knights, u64 kings, u64 pawns);
    
   /**
    * given an occupancy map, subject location (can only contain 1 bit for now), and location of sliding pieces,
@@ -212,11 +218,6 @@ private:
   MoveList<256> produce_uncheck_moves_();
 
   /** 
-   * capture moves only, generated for q-search.
-   */
-  MoveList<256> capture_moves_();
-
-  /** 
    * assuming not in check: verify that a move doesn't cause check
    * 
    * related to but not exactly the same as is_checking_move()
@@ -275,6 +276,11 @@ private:
    * List of all true legal moves in a position.
    */
   MoveList<256> legal_moves();
+
+  /** 
+   * capture moves only, generated for q-search.
+   */
+  MoveList<256> capture_moves() const;
 
   /**
    * Whether the game is continuing, a win for a particular side, or drawn.

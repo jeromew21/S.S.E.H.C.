@@ -7,12 +7,17 @@ board::Status Board::status()
     return status_;
 
   // Calculate and store value
-  if (is_check() && is_checkmate())
+  if (is_check())
   {
-    if (turn() == White)
-      status_ = board::Status::BlackWin;
-    else
-      status_ = board::Status::WhiteWin;
+    if (is_checkmate()) {
+      if (turn() == White)
+        status_ = board::Status::BlackWin;
+      else
+        status_ = board::Status::WhiteWin;
+    } else {
+      // check, but not checkmate: must be still playing
+      status_ = board::Status::Playing;
+    }
   }
   else if (is_stalemate())
   {
@@ -87,6 +92,9 @@ u64 Board::attackers_to_(u64 subjects) const
 
 /**
  * used in uncheck and checking for castling
+ * 
+ * we're slowly trying to move away from using attack and defend maps
+ * so this may be implemented differently soon.
  */
 u64 Board::attackers_to_(u64 subjects, Color attacking_color) const
 {

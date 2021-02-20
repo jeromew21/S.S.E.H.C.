@@ -8,7 +8,9 @@
  */
 MoveList<256> Board::produce_uncheck_moves_()
 {
-  assert(maps_generated_);
+  if (!maps_generated_)
+    GeneratePseudoLegal_();
+    
   assert(is_check());
 
   MoveList<256> mv_list;

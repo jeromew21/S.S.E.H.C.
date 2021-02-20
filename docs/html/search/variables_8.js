@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['imgname_674',['imgname',['../namespaceprofile.html#a7d43034f6c0543d43b106b5ca788fdb7',1,'profile']]],
-  ['is_5fcheck_675',['is_check',['../structboard_1_1State.html#a5ab8157348277df4f177e18337a68b3a',1,'board::State']]]
+  ['imgname_676',['imgname',['../namespaceprofile.html#a7d43034f6c0543d43b106b5ca788fdb7',1,'profile']]],
+  ['is_5fcheck_677',['is_check',['../structboard_1_1State.html#a5ab8157348277df4f177e18337a68b3a',1,'board::State']]]
 ];

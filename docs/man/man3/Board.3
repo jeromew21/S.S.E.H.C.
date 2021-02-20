@@ -15,6 +15,9 @@ Board
 .RI "\fBMoveList\fP< 256 > \fBlegal_moves\fP ()"
 .br
 .ti -1c
+.RI "\fBMoveList\fP< 256 > \fBcapture_moves\fP () const"
+.br
+.ti -1c
 .RI "\fBboard::Status\fP \fBstatus\fP ()"
 .br
 .ti -1c
@@ -78,6 +81,10 @@ This class encapsulates a game of chess and the elements that comprise it as suc
 Default constructor\&. Loads the classical starting position\&. 
 .SH "Member Function Documentation"
 .PP 
+.SS "\fBMoveList\fP< 256 > Board::capture_moves () const"
+capture moves only, generated for q-search\&.
+.PP
+For this one and legal moves, consider not using precalculated attack maps\&.\&.\&. 
 .SS "void Board::Dump ()"
 Prints information to the console\&. 
 .SS "std::string Board::fen () const"

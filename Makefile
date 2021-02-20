@@ -34,9 +34,8 @@ build:
 debug: CXXFLAGS += -DDEBUG -g
 debug: all
 
-release: CXXFLAGS += -DNDEBUG -ffast-math -O3 # disable assertions, generate documentation...
+release: CXXFLAGS += -DNDEBUG -ffast-math -O3 # disable assertions
 release: all
-	@./gen-docs.sh
 
 clean:
 	-@rm -rvf $(OBJ_DIR)/*

@@ -25,7 +25,7 @@ bool Board::verify_move_safety_(CMove mv) const
     const u64 occ = (occupancy() & ~(src | captured_pawn)) | dest;
     const u64 enemy_rooks = bitboard_[piece::get_rook(enemy_turn)] | enemy_queen;
     const u64 enemy_bishops = bitboard_[piece::get_bishop(enemy_turn)] | enemy_queen;
-    return !move_maps::isAttackedSliding(occ, bitboard_[piece::get_king(curr_turn)], enemy_rooks, enemy_bishops);
+    return !move_maps::slidingAttackers(occ, bitboard_[piece::get_king(curr_turn)], enemy_rooks, enemy_bishops);
   }
 
   // we have a normal move and now need to check for pins or moving into an attack.
@@ -36,7 +36,7 @@ bool Board::verify_move_safety_(CMove mv) const
   // we can't move king into a controlled square
   if (src & king)
   {
-    if (move_maps::isAttackedJumping(dest, enemy_turn,
+    if (move_maps::jumpingAttackers(dest, enemy_turn,
                                      ~dest & bitboard_[piece::get_knight(enemy_turn)],
                                      ~dest & bitboard_[piece::get_king(enemy_turn)],
                                      ~dest & bitboard_[piece::get_pawn(enemy_turn)]))
@@ -50,7 +50,7 @@ bool Board::verify_move_safety_(CMove mv) const
   const u64 enemy_rooks = ~dest & (bitboard_[piece::get_rook(enemy_turn)] | bitboard_[piece::get_queen(enemy_turn)]);
   const u64 enemy_bishops = ~dest & (bitboard_[piece::get_bishop(enemy_turn)] | bitboard_[piece::get_queen(enemy_turn)]);
 
-  return !move_maps::isAttackedSliding(occ, king, enemy_rooks, enemy_bishops);
+  return !move_maps::slidingAttackers(occ, king, enemy_rooks, enemy_bishops);
 }
 
 /**
@@ -97,7 +97,7 @@ bool Board::is_checking_move(CMove mv) const
     const u64 friendly_rooks = occ & (bitboard_[piece::get_rook(curr_turn)] | bitboard_[piece::get_queen(curr_turn)]);
     const u64 friendly_bishops = occ & (bitboard_[piece::get_bishop(curr_turn)] | bitboard_[piece::get_queen(curr_turn)]);
 
-    if (move_maps::isAttackedSliding(occ, enemy_king, friendly_rooks, friendly_bishops))
+    if (move_maps::slidingAttackers(occ, enemy_king, friendly_rooks, friendly_bishops))
       return true;
 
     // otherwise check if the pawn attacks the king normally
@@ -113,7 +113,7 @@ bool Board::is_checking_move(CMove mv) const
   // Let's see if moving the piece away leaves the king in check.
   const u64 friendly_rooks = bitboard_[piece::get_rook(curr_turn)] | bitboard_[piece::get_queen(curr_turn)];
   const u64 friendly_bishops = bitboard_[piece::get_bishop(curr_turn)] | bitboard_[piece::get_queen(curr_turn)];
-  if (move_maps::isAttackedSliding(occ, enemy_king, friendly_rooks, friendly_bishops))
+  if (move_maps::slidingAttackers(occ, enemy_king, friendly_rooks, friendly_bishops))
   {
     // discovered check.
     return true;

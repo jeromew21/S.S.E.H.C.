@@ -44,22 +44,6 @@ namespace move_maps
    */
   u64 jumpingAttackers(u64 subject, Color subj_turn, u64 knights, u64 kings, u64 pawns);
 
-  /**
-   * DEPRECATED
-   * 
-   * given an occupancy map, subject location (can only contain 1 bit for now), and location of jumping (non-sliding) pieces,
-   * check if the king is under attack by any of those pieces
-   */
-  bool isAttackedJumping(u64 subject, Color subj_turn, u64 knights, u64 kings, u64 pawns);
-   
-  /**
-   * DEPRECATED
-   * 
-   * given an occupancy map, subject location (can only contain 1 bit for now), and location of sliding pieces,
-   * check if the king is under attack by any of those sliding pieces
-   */
-  bool isAttackedSliding(u64 occupancy_map, u64 subject, u64 rooks, u64 bishops);
-
   // pawns
 
   /**
@@ -215,11 +199,6 @@ private:
    * The kingside starting location for rooks, depending on whether this is Chess960 or not.
    */
   u64 kingside_rook_starting_location[2];
-
-  /** 
-   * Update the attack and defend maps.
-   */
-  void GeneratePseudoLegal_();
 
   /** 
    * shortcut move generator if board is check

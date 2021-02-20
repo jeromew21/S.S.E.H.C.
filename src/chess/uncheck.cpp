@@ -99,7 +99,7 @@ MoveList<256> Board::produce_uncheck_moves_()
         u64 pawn_location = pawn_bitscan[i];
         Square pawn_location_square = u64ToSquare(pawn_location);
         // If removing the pawn would give check from a different piece, continue
-        if (move_maps::isAttackedSliding(occ & ~pawn_location, king_position, ~checker_bitboard & enemy_rooks, ~checker_bitboard & enemy_bishops))
+        if (move_maps::slidingAttackers(occ & ~pawn_location, king_position, ~checker_bitboard & enemy_rooks, ~checker_bitboard & enemy_bishops))
           continue;
 
         u64 single_push = move_maps::pawnMoves(pawn_location_square, curr_turn);
@@ -151,7 +151,7 @@ MoveList<256> Board::produce_uncheck_moves_()
           u64 unchecking_src = unchecking_piece_locations_bitscan[i];
           Square unchecking_src_square = u64ToSquare(unchecking_src);
 
-          if (!move_maps::isAttackedSliding((occ & (~unchecking_src)) | target, king_position, ~target & ~checker_bitboard & enemy_rooks, ~target & ~checker_bitboard & enemy_bishops))
+          if (!move_maps::slidingAttackers((occ & (~unchecking_src)) | target, king_position, ~target & ~checker_bitboard & enemy_rooks, ~target & ~checker_bitboard & enemy_bishops))
           {
             PieceType mover = piece_at_(unchecking_src);
             if (piece::is_pawn(mover))
@@ -200,7 +200,7 @@ MoveList<256> Board::produce_uncheck_moves_()
         // for each piece location, check for a pin, if it isn't pinnned then it's a legal capture and add it in.
         const u64 src = pieces_bitscan[i];
         const Square src_square = u64ToSquare(src);
-        if (move_maps::isAttackedSliding(occ & ~src, king_position, ~target & enemy_rooks, ~target & enemy_bishops))
+        if (move_maps::slidingAttackers(occ & ~src, king_position, ~target & enemy_rooks, ~target & enemy_bishops))
           continue;
 
         if (move_maps::isPromotingRank(target_square, curr_turn) && piece::is_pawn(piece_at_(src)))
@@ -235,7 +235,7 @@ MoveList<256> Board::produce_uncheck_moves_()
       // there is one annoying case here, where a king steps away from an enemy piece but still on line w/ it
       // that won't show up on attackers_to since the king is currently blocking it!
 
-      if (move_maps::isAttackedSliding((occ & ~king_position) | king_dest, king_dest, ~king_dest & enemy_rooks, ~king_dest & enemy_bishops))
+      if (move_maps::slidingAttackers((occ & ~king_position) | king_dest, king_dest, ~king_dest & enemy_rooks, ~king_dest & enemy_bishops))
         continue;
 
       mv_list.PushBack(CMove(king_square, u64ToSquare(king_dest), move_type::Default));

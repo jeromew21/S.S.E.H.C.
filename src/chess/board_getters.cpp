@@ -125,8 +125,8 @@ bool Board::is_attacked_(u64 subjects, Color attacking_color) const
   for (int i = 0; i < subj_bitscan.len(); i++)
   {
     u64 subj_loc = subj_bitscan[i];
-    bool sliders = move_maps::isAttackedSliding(occ | subj_loc, subj_loc, rooks, bishops);
-    bool jumpers = move_maps::isAttackedJumping(subj_loc, attacking_color, knights, kings, pawns);
+    u64 sliders = move_maps::slidingAttackers(occ | subj_loc, subj_loc, rooks, bishops);
+    u64 jumpers = move_maps::jumpingAttackers(subj_loc, attacking_color, knights, kings, pawns);
     if (sliders || jumpers)
       return true;
   }

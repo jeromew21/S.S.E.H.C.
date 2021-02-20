@@ -78,16 +78,16 @@ void uci::Interface::DelayStop(int msecs)
 {
   auto start = std::chrono::high_resolution_clock::now();
   int i = 0;
-  int pad = 10; // 25 ms pad
+  int granularity = 10; // checks every 1/100 of a second 
   while (true)
   {
-    if (i % 64 == 0)
+    if (i % granularity == 0)
     {
       auto stop = std::chrono::high_resolution_clock::now();
       auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(
           stop - start); // or milliseconds
       int time = duration.count();
-      if (time >= msecs - pad)
+      if (time >= msecs)
       {
         break;
       }

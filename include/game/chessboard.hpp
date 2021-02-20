@@ -236,6 +236,14 @@ private:
    */
   u64 attackers_to_(u64 subjects) const;
 
+  /**
+   * Similar to attackers_to but only returns a boolean, not the locations of attacking pieces.
+   * 
+   * Returns true if any of the pieces masked by subjects are under attack by pieces of attacking_color 
+   * 
+   */
+  bool is_attacked_(u64 subjects, Color attacking_color) const;
+
   /** 
    * Returns the piece at a particular location.
    * 

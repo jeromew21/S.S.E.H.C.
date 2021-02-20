@@ -9,12 +9,15 @@ board::Status Board::status()
   // Calculate and store value
   if (is_check())
   {
-    if (is_checkmate()) {
+    if (is_checkmate())
+    {
       if (turn() == White)
         status_ = board::Status::BlackWin;
       else
         status_ = board::Status::WhiteWin;
-    } else {
+    }
+    else
+    {
       // check, but not checkmate: must be still playing
       status_ = board::Status::Playing;
     }
@@ -99,6 +102,30 @@ u64 Board::attackers_to_(u64 subjects) const
 u64 Board::attackers_to_(u64 subjects, Color attacking_color) const
 {
   return attackers_to_(subjects) & occupancy(attacking_color);
+}
+
+bool Board::is_attacked_(u64 subjects, Color attacking_color) const
+{
+  assert(subjects != 0);
+
+  u64List subj_bitscan;
+  bitscanAll(subjects, subj_bitscan);
+  u64 occ = occupancy();
+  u64 rooks = bitboard_[piece::get_rook(attacking_color)] | bitboard_[piece::get_queen(attacking_color)];
+  u64 bishops = bitboard_[piece::get_bishop(attacking_color)] | bitboard_[piece::get_queen(attacking_color)];
+  u64 knights = bitboard_[piece::get_knight(attacking_color)];
+  u64 kings = bitboard_[piece::get_king(attacking_color)];
+  u64 pawns = bitboard_[piece::get_pawn(attacking_color)];
+
+  for (int i = 0; i < subj_bitscan.len(); i++)
+  {
+    u64 subj_loc = subj_bitscan[i];
+    bool sliders = move_maps::isAttackedSliding(occ | subj_loc, subj_loc, rooks, bishops);
+    bool jumpers = move_maps::isAttackedJumping(subj_loc, attacking_color, knights, kings, pawns);
+    if (sliders || jumpers)
+      return true;
+  }
+  return false;
 }
 
 PieceType Board::piece_at_(u64 location) const

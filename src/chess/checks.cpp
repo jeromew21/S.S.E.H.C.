@@ -36,7 +36,7 @@ bool Board::verify_move_safety_(CMove mv) const
   // we can't move king into a controlled square
   if (src & king)
   {
-    if (move_maps::isAttackedJumping(dest, curr_turn,
+    if (move_maps::isAttackedJumping(dest, enemy_turn,
                                      ~dest & bitboard_[piece::get_knight(enemy_turn)],
                                      ~dest & bitboard_[piece::get_king(enemy_turn)],
                                      ~dest & bitboard_[piece::get_pawn(enemy_turn)]))

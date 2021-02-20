@@ -292,11 +292,11 @@ bool move_maps::isAttackedSliding(u64 occupancy_map, u64 subject, u64 rooks, u64
   return false;
 }
 
-bool move_maps::isAttackedJumping(u64 subject, Color subj_turn, u64 knights, u64 kings, u64 pawns)
+bool move_maps::isAttackedJumping(u64 subject, Color attacking_turn, u64 knights, u64 kings, u64 pawns)
 {
   assert(isValidSquare(u64ToSquare(subject)));
   Square subj_location = u64ToSquare(subject);
-  const u64 pawn_overlaps = pawns & move_maps::pawnCaptures(subj_location, subj_turn);
+  const u64 pawn_overlaps = pawns & move_maps::pawnCaptures(subj_location, oppositeColor(attacking_turn));
   const u64 king_overlaps = kings & move_maps::kingMoves(subj_location);
   const u64 knight_overlaps = knights & move_maps::knightMoves(subj_location);
   if (pawn_overlaps || king_overlaps || knight_overlaps)

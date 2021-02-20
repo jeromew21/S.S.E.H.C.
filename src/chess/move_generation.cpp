@@ -2,9 +2,6 @@
 
 MoveList<256> Board::legal_moves()
 {
-  if (!maps_generated_) {
-    GeneratePseudoLegal_();
-  }
   // if it's check, then divert over
   if (is_check())
     return produce_uncheck_moves_();
@@ -187,13 +184,9 @@ MoveList<256> Board::legal_moves()
 
     u64 squares_between = board::castle::long_squares[curr_turn];
     u64 king_slide = board::castle::king_long_slide[curr_turn]; // slide should contain dest
-    if (!(squares_between & occ) && !(attackers_to_(king_slide, enemy_color)))
+    if (!(squares_between & occ) && !(is_attacked_(king_slide, enemy_color)))
     {
-      // in-between is empty
-      if (!attackers_to_(king_slide, enemy_color))
-      {
-        mv_list.PushBack(CMove(u64ToSquare(king_starting_location[curr_turn]), u64ToSquare(board::castle::king_long_dest[curr_turn]), move_type::CastleLong));
-      }
+      mv_list.PushBack(CMove(u64ToSquare(king_starting_location[curr_turn]), u64ToSquare(board::castle::king_long_dest[curr_turn]), move_type::CastleLong));
     }
   }
   if (state_.castling_rights.get(curr_turn, board::castle::short_))
@@ -202,13 +195,10 @@ MoveList<256> Board::legal_moves()
 
     u64 squares_between = board::castle::short_squares[curr_turn];
     u64 king_slide = board::castle::king_short_slide[curr_turn]; // slide should contain dest
-    if (!(squares_between & occ) && !(attackers_to_(king_slide, enemy_color)))
+    if (!(squares_between & occ) && !(is_attacked_(king_slide, enemy_color)))
     {
-      // in-between is empty
-      if (!attackers_to_(king_slide, enemy_color))
-      {
-        mv_list.PushBack(CMove(u64ToSquare(king_starting_location[curr_turn]), u64ToSquare(board::castle::king_short_dest[curr_turn]), move_type::CastleShort));
-      }
+
+      mv_list.PushBack(CMove(u64ToSquare(king_starting_location[curr_turn]), u64ToSquare(board::castle::king_short_dest[curr_turn]), move_type::CastleShort));
     }
   }
 

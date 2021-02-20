@@ -18,29 +18,36 @@ void perft::perft(Board &board_, int depth, perft::Counter &counter)
       {
         counter.castles += 1;
       }
-      else if (mv.is_promotion())
+      else
       {
-        counter.promotions += 1;
-      }
-      if (board_.is_checking_move(mv))
-      {
-        counter.checks += 1;
-      }
-      if (mv.dest() & occ)
-      {
-        counter.captures += 1;
-      }
-      if (mv.type_code() == move_type::EnPassant)
-      {
-        counter.ep += 1;
-        counter.captures += 1;
+        if (mv.is_promotion())
+        {
+          counter.promotions += 1;
+        }
+        if (mv.dest() & occ)
+        {
+          counter.captures += 1;
+        }
+        if (mv.type_code() == move_type::EnPassant)
+        {
+          counter.ep += 1;
+          counter.captures += 1;
+        }
       }
     }
     board_.MakeMove(mv);
 
-    if (depth == 1 && board_.is_checkmate())
-      counter.checkmates += 1;
-      
+    if (depth == 1)
+    {
+      if (board_.is_checkmate())
+        counter.checkmates += 1;
+
+      if (board_.is_check())
+      {
+        counter.checks += 1;
+      }
+    }
+
     perft(board_, depth - 1, counter);
     board_.UnmakeMove();
   }

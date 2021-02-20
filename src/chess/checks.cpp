@@ -56,6 +56,8 @@ bool Board::verify_move_safety_(CMove mv) const
 /**
  * Assuming a move is legal for a particular side,
  * we want to know if it puts the opponent in check.
+ * 
+ * Hotspot
  */
 bool Board::is_checking_move(CMove mv) const
 {
@@ -81,9 +83,7 @@ bool Board::is_checking_move(CMove mv) const
       rook_dest = board::castle::rook_short_dest[curr_turn];
       rook_src = kingside_rook_starting_location[curr_turn];
     }
-    u64 occ = occupancy();
-    occ &= (~king_starting_location[curr_turn]) | dest; // "move" the king
-    occ &= (~rook_src) | rook_dest;                     // "move" the rook
+    u64 occ = (occupancy() & ~king_starting_location[curr_turn] & ~rook_src) | dest  | rook_dest;
     const u64 rook_attacks = move_maps::rookMoves(u64ToSquare(rook_dest), occ);
     return rook_attacks & enemy_king ? true : false;
   }

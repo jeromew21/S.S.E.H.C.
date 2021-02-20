@@ -21,7 +21,6 @@ void Board::LoadPosition(PieceType piece_list[64], Color turn_to_move, int ep_sq
   // Idea is to build up the board state from blank.
   state_ = board::State();
 
-  maps_generated_ = false;
   state_stack_.Clear();
   status_ = board::Status::NotCalculated;
 
@@ -51,10 +50,8 @@ void Board::LoadPosition(PieceType piece_list[64], Color turn_to_move, int ep_sq
   state_.halfmove_counter = halfmove;
   state_.fullmove_counter = fullmove;
 
-  GeneratePseudoLegal_();
-
   // finally: check for check...
-  if (state_.defend_map_[u64ToSquare(bitboard_[piece::get_king(turn_to_move)])] & occupancy(oppositeColor(turn_to_move)))
+  if (is_attacked_(bitboard_[piece::get_king(turn_to_move)], oppositeColor(turn_to_move))) 
     state_.is_check = true;
 }
 

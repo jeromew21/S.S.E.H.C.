@@ -7,10 +7,7 @@
  * and if it's single check you can only move, block, or capture.
  */
 MoveList<256> Board::produce_uncheck_moves_()
-{
-  if (!maps_generated_)
-    GeneratePseudoLegal_();
-    
+{   
   assert(is_check());
 
   MoveList<256> mv_list;
@@ -143,7 +140,7 @@ MoveList<256> Board::produce_uncheck_moves_()
         const Square target_square = u64ToSquare(target);
 
         // the set of friendlies that attack this unchecking square
-        u64 unchecking_piece_locations = state_.defend_map_[target_square] & friendly_occ;
+        u64 unchecking_piece_locations = attackers_to_(target, curr_turn) & friendly_occ;
         u64List unchecking_piece_locations_bitscan;
         bitscanAll(unchecking_piece_locations, unchecking_piece_locations_bitscan);
         for (int i = 0; i < unchecking_piece_locations_bitscan.len(); i++)
@@ -195,7 +192,7 @@ MoveList<256> Board::produce_uncheck_moves_()
       const u64 target = target_locations;
       const Square target_square = u64ToSquare(target_locations);
 
-      const u64 pieces_that_capture = state_.defend_map_[target_square] & friendly_occ & ~king_position;
+      const u64 pieces_that_capture = attackers_to_(target, curr_turn) & friendly_occ & ~king_position;
       u64List pieces_bitscan;
       bitscanAll(pieces_that_capture, pieces_bitscan);
       for (int i = 0; i < pieces_bitscan.len(); i++)
@@ -225,7 +222,7 @@ MoveList<256> Board::produce_uncheck_moves_()
   // now for double checks (or theoretically triple checks if the position is set as such...)
   // check king moves for safety...
   // add sidesteps
-  u64 king_dests = state_.attack_map_[king_square];
+  u64 king_dests = move_maps::kingMoves(king_square) & ~friendly_occ;
   u64List king_dest_bitscan;
   bitscanAll(king_dests, king_dest_bitscan);
   for (int i = 0; i < king_dest_bitscan.len(); i++)

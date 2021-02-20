@@ -78,21 +78,6 @@ CMove Board::move_from_src_dest(Square src, Square dest) const
   return CMove(src, dest, move_type::Default);
 }
 
-u64 Board::attackers_to_(u64 subjects) const
-{
-  assert(maps_generated_);
-  assert(subjects != 0);
-
-  u64 attacker_map = 0;
-  u64List arr;
-  bitscanAll(subjects, arr);
-  for (int i = 0; i < arr.len(); i++)
-  {
-    attacker_map |= state_.defend_map_[u64ToSquare(arr[i])];
-  }
-  return attacker_map;
-}
-
 /**
  * used in uncheck and checking for castling
  * 
@@ -101,7 +86,27 @@ u64 Board::attackers_to_(u64 subjects) const
  */
 u64 Board::attackers_to_(u64 subjects, Color attacking_color) const
 {
-  return attackers_to_(subjects) & occupancy(attacking_color);
+  assert(subjects != 0);
+
+  u64List subj_bitscan;
+  bitscanAll(subjects, subj_bitscan);
+  const u64 occ = occupancy();
+  const u64 rooks = bitboard_[piece::get_rook(attacking_color)] | bitboard_[piece::get_queen(attacking_color)];
+  const u64 bishops = bitboard_[piece::get_bishop(attacking_color)] | bitboard_[piece::get_queen(attacking_color)];
+  const u64 knights = bitboard_[piece::get_knight(attacking_color)];
+  const u64 kings = bitboard_[piece::get_king(attacking_color)];
+  const u64 pawns = bitboard_[piece::get_pawn(attacking_color)];
+
+  u64 attacker_map = 0;
+
+  for (int i = 0; i < subj_bitscan.len(); i++)
+  {
+    u64 subj_loc = subj_bitscan[i];
+    u64 sliders = move_maps::slidingAttackers(occ | subj_loc, subj_loc, rooks, bishops);
+    u64 jumpers = move_maps::jumpingAttackers(subj_loc, attacking_color, knights, kings, pawns);
+    attacker_map |= sliders | jumpers;
+  }
+  return attacker_map;
 }
 
 bool Board::is_attacked_(u64 subjects, Color attacking_color) const
@@ -130,6 +135,7 @@ bool Board::is_attacked_(u64 subjects, Color attacking_color) const
 
 PieceType Board::piece_at_(u64 location) const
 {
+  assert(hadd(location) == 1);
   for (PieceType i = 0; i < 12; i++)
   {
     if (location & bitboard_[i])

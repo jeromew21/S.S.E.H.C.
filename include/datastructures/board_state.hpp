@@ -110,8 +110,6 @@ namespace board
     bool has_repeated;                     // three-fold repetition
     CMove last_move;                       // the last move
     board::castle::Rights castling_rights; // rights to castle for both sides
-    std::array<u64, 64> attack_map_;
-    std::array<u64, 64> defend_map_;
 
     // default constructor
     State()
@@ -133,24 +131,28 @@ namespace board
   };
 
   /**
- * A stack implemented with std::vector
- * 
- * Used to store past states of a chess board that are too heavy to be incrementally updated.
- */
+   * A stack implemented with std::vector
+   * 
+   * Used to store past states of a chess board that are too heavy to be incrementally updated.
+   */
   class StateStack
   {
   private:
-    int head_; // length of stack
-    std::vector<board::State> data_;
+    int head_;                       // length of stack
+    std::vector<board::State> data_; // use a faster data structure? Maybe allocate on stack?
 
   public:
-    StateStack() { head_ = 0; }
+    StateStack()
+    {
+      head_ = 0;
+      data_.reserve(100); // doesn't do shit lol
+    }
 
     /**
-   * Return a reference to the top of the stack.
-   * 
-   * It's the position immediatly preceding the current one.
-   */
+     * Return a reference to the top of the stack.
+     * 
+     * It's the position immediatly preceding the current one.
+     */
     board::State &peek()
     {
       assert(head_ > 0);
@@ -158,8 +160,8 @@ namespace board
     }
 
     /**
-   * Return a reference to a particular index.
-   */
+     * Return a reference to a particular index.
+     */
     board::State &peek_at(int i)
     {
       assert(i >= 0 && i < head_);
@@ -177,8 +179,8 @@ namespace board
     }
 
     /**
-   * Clears the stack.
-   */
+     * Clears the stack.
+     */
     void Clear()
     {
       head_ = 0;
@@ -186,8 +188,10 @@ namespace board
     }
 
     /**
-   * Should deference and push copy to stack
-   */
+     * Should deference and push copy to stack
+     *  
+     * Think this might be a hotspot.
+     */
     void Push(board::State &state)
     {
       data_.push_back(state);

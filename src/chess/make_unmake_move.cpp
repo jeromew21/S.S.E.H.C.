@@ -5,10 +5,9 @@ void Board::MakeMove(CMove mv)
 {
   // set flags
   status_ = board::Status::NotCalculated;
-  maps_generated_ = false;
 
   // copy old data and move onto stack
-  state_stack_.Push(state_);
+  state_stack_.Push(state_); // hotspot
 
   // wipe current state to reflect move
   state_.last_move = mv;
@@ -239,32 +238,9 @@ void Board::UnmakeMove()
 
   // if it's a null move we just don't do anything
 
-  // // set hashing states
-  // SetTurn_(node.turn);
-  // SetEpSquare_(node.en_passant_square);
-  // SetCastlingRights_(White, board::castle::long_, node.castling_rights.get(White, board::castle::long_));
-  // SetCastlingRights_(White, board::castle::short_, node.castling_rights.get(White, board::castle::short_));
-  // SetCastlingRights_(Black, board::castle::long_, node.castling_rights.get(Black, board::castle::long_));
-  // SetCastlingRights_(Black, board::castle::short_, node.castling_rights.get(Black, board::castle::short_));
-
-  // // set non-hashing state members
-  // state_.last_captured_piece = node.last_captured_piece;
-  // state_.last_moved_piece = node.last_moved_piece;
-  // state_.has_repeated = node.has_repeated;
-  // state_.halfmove_counter = node.halfmove_counter;
-  // state_.last_move = node.last_move;
-  // state_.ply_count = node.ply_count;
-  // state_.move_count = node.move_count;
-
-  // state_.hash = node.hash; // QUESTION: Do we do this??? Seems like a lot of the incremental update is for naught. Oh well...
-
-  // state_.attack_map_ = node.attack_map_;
-  // state_.defend_map_ = node.defend_map_;
-
-  state_ = node; // is this all we need???? make sure this is the correct lvalue assignment
+  state_ = node; // hotspot
 
   // update flags
-  maps_generated_ = true;
   status_ = board::Status::Playing; // I assume we're not going past a terminal state, but could be wrong
 
   state_stack_.Pop();

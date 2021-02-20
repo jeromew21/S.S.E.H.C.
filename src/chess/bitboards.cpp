@@ -281,6 +281,28 @@ const u64 ONE_FILE_ADJ_CACHE[64] = {0x2, 0x5, 0xa, 0x14, 0x28, 0x50, 0xa0, 0x40,
                                     0x50000000000000, 0xa0000000000000, 0x40000000000000, 0x200000000000000, 0x500000000000000,
                                     0xa00000000000000, 0x1400000000000000, 0x2800000000000000, 0x5000000000000000, 0xa000000000000000, 0x4000000000000000};
 
+
+
+u64 move_maps::slidingAttackers(u64 occupancy_map, u64 subject, u64 rooks, u64 bishops)
+{
+  assert(isValidSquare(u64ToSquare(subject)));
+  assert(occupancy_map & subject);
+
+  Square subj_location = u64ToSquare(subject);
+  return (rooks & move_maps::rookMoves(subj_location, occupancy_map)) | (bishops & move_maps::bishopMoves(subj_location, occupancy_map));
+    
+}
+
+u64 move_maps::jumpingAttackers(u64 subject, Color attacking_turn, u64 knights, u64 kings, u64 pawns)
+{
+  assert(isValidSquare(u64ToSquare(subject)));
+  Square subj_location = u64ToSquare(subject);
+  const u64 pawn_overlaps = pawns & move_maps::pawnCaptures(subj_location, oppositeColor(attacking_turn));
+  const u64 king_overlaps = kings & move_maps::kingMoves(subj_location);
+  const u64 knight_overlaps = knights & move_maps::knightMoves(subj_location);
+  return pawn_overlaps | king_overlaps | knight_overlaps;
+}
+
 bool move_maps::isAttackedSliding(u64 occupancy_map, u64 subject, u64 rooks, u64 bishops)
 {
   assert(isValidSquare(u64ToSquare(subject)));

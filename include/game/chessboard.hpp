@@ -35,12 +35,26 @@ namespace move_maps
   void init();
 
   /**
+   * same as is AttackedSliding but returns location of attackers.
+   */
+  u64 slidingAttackers(u64 occupancy_map, u64 subject, u64 rooks, u64 bishops);
+
+  /**
+   * same as is AttackedSliding but returns location of attackers.
+   */
+  u64 jumpingAttackers(u64 subject, Color subj_turn, u64 knights, u64 kings, u64 pawns);
+
+  /**
+   * DEPRECATED
+   * 
    * given an occupancy map, subject location (can only contain 1 bit for now), and location of jumping (non-sliding) pieces,
    * check if the king is under attack by any of those pieces
    */
   bool isAttackedJumping(u64 subject, Color subj_turn, u64 knights, u64 kings, u64 pawns);
    
   /**
+   * DEPRECATED
+   * 
    * given an occupancy map, subject location (can only contain 1 bit for now), and location of sliding pieces,
    * check if the king is under attack by any of those sliding pieces
    */
@@ -188,11 +202,6 @@ private:
   board::Status status_;
 
   /**
-   * Have the attack and defend maps been generated yet?
-   */
-  bool maps_generated_;
-
-  /**
    * The queenside starting location for rooks, depending on whether this is Chess960 or not.
    */
   u64 king_starting_location[2];
@@ -229,12 +238,6 @@ private:
    * of attacking_color.
    */
   u64 attackers_to_(u64 subjects, Color attacking_color) const;
-
-  /**
-   * This will return a mask of pieces that attack any pieces masked by subjects,
-   * of any color.
-   */
-  u64 attackers_to_(u64 subjects) const;
 
   /**
    * Similar to attackers_to but only returns a boolean, not the locations of attacking pieces.

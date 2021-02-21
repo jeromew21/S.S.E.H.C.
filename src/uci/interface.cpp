@@ -1,5 +1,6 @@
 #include "uci/interface.hpp"
 #include "misc/version.hpp"
+#include "ai/ai.hpp"
 
 void uci::sendToUciClient(const std::string &cmd) {
   std::cout << cmd << std::endl;
@@ -62,16 +63,16 @@ void uci::Interface::Think()
 
 void uci::Interface::StopThinking()
 {
-  if (search_thread.joinable())
+  if (search_thread_.joinable())
   {
-    not_thinking = true;
-    search_thread.join();
+    not_thinking = true; // move outside if?
+    search_thread_.join();
   }
   // now stop the timer task
   stop_timer = true;
-  if (timer_thread.joinable())
+  if (timer_thread_.joinable())
   {
-    timer_thread.join();
+    timer_thread_.join();
   }
 }
 
@@ -104,7 +105,7 @@ void uci::Interface::DelayStop(int msecs)
 
 void uci::Interface::StartThinking(bool inf, int msecs)
 {
-  if (search_thread.joinable())
+  if (search_thread_.joinable())
   {
     StopThinking();
   }
@@ -112,12 +113,12 @@ void uci::Interface::StartThinking(bool inf, int msecs)
   stop_timer = false;
 
   // launch the search thread
-  search_thread = std::thread(&Interface::Think, this);
+  search_thread_ = std::thread(&Interface::Think, this);
 
   // launch the stop timer thread
   if (!inf)
   {
-    timer_thread = std::thread(&Interface::DelayStop, this, msecs);
+    timer_thread_ = std::thread(&Interface::DelayStop, this, msecs);
   }
 }
 
@@ -157,25 +158,29 @@ void uci::Interface::RecieveCommand(std::string cmd)
   }
   else if (tokens[0] == "setoption")
   {
+    // setoption name [value ]
+    //ai::set_option();
   }
   else if (tokens[0] == "register")
   {
+    // probably ignore this
   }
   else if (tokens[0] == "ucinewgame")
   {
+
   }
   else if (tokens[0] == "position")
   {
     // int j = 2;
     // if (tokens[1] == "startpos") {
-    //   board.reset();
+    //   board_.reset();
     // } else {
     //   if (tokens[1] == "fen") {
     //     std::string fenstring = "";
     //     for (int k = 2; k < 8; k++) {
     //       fenstring += tokens[k] + " ";
     //     }
-    //     board.loadPosition(fenstring);
+    //     board_.loadPosition(fenstring);
     //     j = 8;
     //   }
     // }
@@ -229,6 +234,8 @@ void uci::Interface::RecieveCommand(std::string cmd)
   }
   else if (tokens[0] == "ponderhit")
   {
+    // the user has played the expected move. This will be sent if the engine was told to ponder on the same move
+	  // the user has played. The engine should continue searching but switch from pondering to normal search.
   }
   else if (tokens[0] == "quit")
   {

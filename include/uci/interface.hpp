@@ -26,6 +26,11 @@ namespace uci
   class Interface
   {
   private:
+    Board board_;
+    CMove best_move_;
+    std::thread search_thread_;
+    std::thread timer_thread_;
+
   public:
     /** 
      * this will stop the search if set to true
@@ -39,12 +44,6 @@ namespace uci
      * if there is a fixed time set.
      */
     std::atomic<bool> stop_timer{false};
-
-    CMove bestMove;
-    Board board;
-    
-    std::thread search_thread;
-    std::thread timer_thread;
 
     /**
      * Default constructor.

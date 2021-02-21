@@ -1,15 +1,15 @@
-// #include <numeric>
-// #include <functional>
-// #include <queue>
-// #include <vector>
+#include <numeric>
+#include <functional>
+#include <queue>
+#include <vector>
 
-// #include "ai/ai.hpp"
+#include "ai/ai.hpp"
 
-// TranspositionTable<4194304> table;
-// MiniTable<131072> pvTable;
-// KillerTable kTable;
-// HistoryTable hTable;
-// CounterMoveTable cTable;
+TranspositionTable<4194304> table;
+MiniTable<131072> pvTable;
+//KillerTable kTable;
+//HistoryTable hTable;
+//CounterMoveTable cTable;
 
 // bool AI::isCheckmateScore(Score sc) { return SCORE_MAX - abs(sc) < 250; }
 

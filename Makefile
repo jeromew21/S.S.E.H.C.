@@ -1,4 +1,4 @@
-CXX      := -clang++
+CXX      := -g++
 CXXFLAGS := -std=c++17 -pedantic-errors -Wall -Wextra -pthread
 MAKEFLAGS := --jobs=$(shell nproc)
 BUILD    := ./build
@@ -24,15 +24,19 @@ $(APP_DIR)/$(TARGET): $(OBJECTS)
 	@mkdir -p $(@D)
 	$(CXX) $(CXXFLAGS) -o $(APP_DIR)/$(TARGET) $^
 
-.PHONY: all build clean debug release
+.PHONY: all build clean debug release profile
 
 build:
 	@mkdir -p $(APP_DIR)
 	@mkdir -p $(OBJ_DIR)
 	@mkdir -p $(ASM_DIR)
 
-debug: CXXFLAGS += -DDEBUG -g
+debug: CXXFLAGS += -DDEBUG -g -O2
 debug: all
+
+# Make profile: Make for valgrind callgraphs. No assertions, yes debug, etc.
+profile: CXXFLAGS += -DNDEBUG -g -O2 -fno-omit-frame-pointer -fno-inline-functions -fno-inline-functions-called-once -fno-optimize-sibling-calls
+profile: all
 
 release: CXXFLAGS += -DNDEBUG -ffast-math -O3 # disable assertions
 release: all

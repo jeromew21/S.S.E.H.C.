@@ -221,7 +221,6 @@ MoveList<256> Board::produce_uncheck_moves_() const
 
   // now for double checks (or theoretically triple checks if the position is set as such...)
   // check king moves for safety...
-  // add sidesteps
   u64 king_dests = move_maps::kingMoves(king_square) & ~friendly_occ;
   u64List king_dest_bitscan;
   bitscanAll(king_dests, king_dest_bitscan);

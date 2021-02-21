@@ -35,8 +35,6 @@ int Board::see(CMove mv) const
 
   PieceType piece_ = attacker; // piece at dest
 
-  u64List bitscan;
-
   u64 knights = bitboard_[piece::white::knight] | bitboard_[piece::black::knight];
   u64 white_pawns = bitboard_[piece::white::pawn];
   u64 black_pawns = bitboard_[piece::black::pawn];
@@ -59,8 +57,8 @@ int Board::see(CMove mv) const
     rooks &= ~used_attackers;
     bishops &= ~used_attackers;
 
-    // if (max(-scores[depth - 1], scores[depth]) < 0)
-    //   break;
+    if (max(-scores[depth - 1], scores[depth]) < 0)
+      break;
 
     // add attackers to attack set after move
     attack_set |= move_maps::jumpingAttackers(dest, White, knights, 0, black_pawns) | move_maps::jumpingAttackers(dest, Black, knights, 0, white_pawns);

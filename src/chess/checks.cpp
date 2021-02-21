@@ -59,7 +59,6 @@ bool Board::is_checking_move(CMove mv) const
 {
   const Color curr_turn = turn();
   const Color enemy_turn = oppositeColor(curr_turn);
-  const u64 src = mv.src();
   const u64 dest = mv.dest();
   const u64 enemy_king = bitboard_[piece::get_king(enemy_turn)];
 
@@ -83,12 +82,11 @@ bool Board::is_checking_move(CMove mv) const
     const u64 rook_attacks = move_maps::rookMoves(u64ToSquare(rook_dest), occ);
     return rook_attacks & enemy_king;
   }
-
-  // en passant discovered check
-  if (mv.type_code() == move_type::EnPassant)
+  else if (mv.type_code() == move_type::EnPassant)
   {
     const Square dest_square = u64ToSquare(dest);
     const u64 captured_pawn = move_maps::pawnMoves(dest_square, enemy_turn);
+    const u64 src = mv.src();
     const u64 occ = (occupancy() & ~(src | captured_pawn)) | dest;
     const u64 friendly_rooks = occ & (bitboard_[piece::get_rook(curr_turn)] | bitboard_[piece::get_queen(curr_turn)]);
     const u64 friendly_bishops = occ & (bitboard_[piece::get_bishop(curr_turn)] | bitboard_[piece::get_queen(curr_turn)]);
@@ -101,10 +99,8 @@ bool Board::is_checking_move(CMove mv) const
     return move_maps::pawnCaptures(dest_square, curr_turn) & enemy_king;
   }
 
-  PieceType mover = piece_at_(src);
-  assert(colorOf(mover) == curr_turn);
-
   // create a dummy occupancy map
+  const u64 src = mv.src();
   const u64 occ = (occupancy() & ~src) | dest;
 
   // Let's see if moving the piece away leaves the king in check.
@@ -114,16 +110,15 @@ bool Board::is_checking_move(CMove mv) const
     return true;
 
   // Now we want to see, once the piece has moved normally, whether it can attack the king
-  // without updating the ENTIRE attack sets.
-  if (mv.is_promotion())
-    mover = mv.promoting_piece(curr_turn);
 
+  assert(colorOf(piece_at_(src)) == curr_turn);
+  const int mover = piece::to_colorless(mv.is_promotion() ? mv.promoting_piece(curr_turn) : piece_at_(src));
   const Square dest_square = u64ToSquare(dest);
 
-  switch (piece::to_colorless(mover))
+  switch (mover)
   {
   case piece::colorless::pawn:
-    return move_maps::pawnCaptures(dest_square, curr_turn) & enemy_king; //TODO: do we need this construct? probably not
+    return move_maps::pawnCaptures(dest_square, curr_turn) & enemy_king;
   case piece::colorless::knight:
     return move_maps::knightMoves(dest_square) & enemy_king;
   case piece::colorless::bishop:

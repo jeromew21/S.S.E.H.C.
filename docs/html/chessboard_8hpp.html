@@ -70,8 +70,7 @@ $(function() {
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#namespaces">Namespaces</a> &#124;
-<a href="#func-members">Functions</a> &#124;
-<a href="#var-members">Variables</a>  </div>
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">chessboard.hpp File Reference</div>  </div>
 </div><!--header-->
@@ -126,8 +125,8 @@ This graph shows which files directly or indirectly include this file:</div>
 <area shape="rect" href="hashing_8cpp.html" title=" " alt="" coords="2297,87,2461,114"/>
 <area shape="rect" href="make__unmake__move_8cpp.html" title=" " alt="" coords="2486,80,2667,121"/>
 <area shape="rect" href="move__generation_8cpp.html" title=" " alt="" coords="2691,87,2918,114"/>
-<area shape="rect" href="pseudolegal_8cpp.html" title=" " alt="" coords="2942,87,3134,114"/>
-<area shape="rect" href="uncheck_8cpp.html" title=" " alt="" coords="3159,87,3325,114"/>
+<area shape="rect" href="see_8cpp.html" title=" " alt="" coords="2942,87,3078,114"/>
+<area shape="rect" href="uncheck_8cpp.html" title=" " alt="" coords="3103,87,3269,114"/>
 <area shape="rect" href="search_8cpp.html" title=" " alt="" coords="159,169,298,211"/>
 <area shape="rect" href="perft_8cpp.html" title=" " alt="" coords="322,177,461,203"/>
 <area shape="rect" href="benchmarks_8cpp.html" title=" " alt="" coords="485,177,673,203"/>
@@ -149,12 +148,6 @@ Namespaces</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespacemove__maps"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemove__maps.html">move_maps</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:namespacedirection"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedirection.html">direction</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:namespacedirection_1_1rook"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedirection_1_1rook.html">direction::rook</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:namespacedirection_1_1bishop"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedirection_1_1bishop.html">direction::bishop</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -162,10 +155,10 @@ Functions</h2></td></tr>
 <tr class="separator:a3758b41a1876be8cdb13517666d8edab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac0dc68279809aa34ce8164e37479eb68"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemove__maps.html#ac0dc68279809aa34ce8164e37479eb68">move_maps::init</a> ()</td></tr>
 <tr class="separator:ac0dc68279809aa34ce8164e37479eb68"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa4b2b8ea5b71ff2079f2e4290107984f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemove__maps.html#aa4b2b8ea5b71ff2079f2e4290107984f">move_maps::isAttackedJumping</a> (<a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a> occupancy_map, <a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a> subject, <a class="el" href="definitions_8hpp.html#a2f17017b1ef643696b678a0703f0f166">Color</a> subj_turn, <a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a> knights, <a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a> kings, <a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a> pawns)</td></tr>
-<tr class="separator:aa4b2b8ea5b71ff2079f2e4290107984f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e3251e1e05844fca26dee56425a4a4e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemove__maps.html#a3e3251e1e05844fca26dee56425a4a4e">move_maps::isAttackedSliding</a> (<a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a> occupancy_map, <a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a> subject, <a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a> rooks, <a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a> bishops)</td></tr>
-<tr class="separator:a3e3251e1e05844fca26dee56425a4a4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5a08d1efe8c19f887a6aa5be1362051"><td class="memItemLeft" align="right" valign="top"><a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemove__maps.html#af5a08d1efe8c19f887a6aa5be1362051">move_maps::slidingAttackers</a> (<a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a> occupancy_map, <a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a> subject, <a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a> rooks, <a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a> bishops)</td></tr>
+<tr class="separator:af5a08d1efe8c19f887a6aa5be1362051"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a615a8c8951771776028810f1b5f7ee7b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemove__maps.html#a615a8c8951771776028810f1b5f7ee7b">move_maps::jumpingAttackers</a> (<a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a> subject, <a class="el" href="definitions_8hpp.html#a2f17017b1ef643696b678a0703f0f166">Color</a> subj_turn, <a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a> knights, <a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a> kings, <a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a> pawns)</td></tr>
+<tr class="separator:a615a8c8951771776028810f1b5f7ee7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4c4dc7abb7c456a8558f8dff7033404e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemove__maps.html#a4c4dc7abb7c456a8558f8dff7033404e">move_maps::isPromotingRank</a> (<a class="el" href="definitions_8hpp.html#a6de8fcf40523e5c1eecf939520f33f6b">Square</a> piece_location, <a class="el" href="definitions_8hpp.html#a2f17017b1ef643696b678a0703f0f166">Color</a> color)</td></tr>
 <tr class="separator:a4c4dc7abb7c456a8558f8dff7033404e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afeace7a38ea2b885705ca549b672c405"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemove__maps.html#afeace7a38ea2b885705ca549b672c405">move_maps::isStartingRank</a> (<a class="el" href="definitions_8hpp.html#a6de8fcf40523e5c1eecf939520f33f6b">Square</a> piece_location, <a class="el" href="definitions_8hpp.html#a2f17017b1ef643696b678a0703f0f166">Color</a> color)</td></tr>
@@ -194,25 +187,6 @@ Functions</h2></td></tr>
 <tr class="separator:ac2b9dbf5455d5bb058ee0af68e213bec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3d639d99f44203ee757291245d8bd526"><td class="memItemLeft" align="right" valign="top"><a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemove__maps.html#a3d639d99f44203ee757291245d8bd526">move_maps::bishopRay</a> (<a class="el" href="definitions_8hpp.html#a6de8fcf40523e5c1eecf939520f33f6b">Square</a> piece_location)</td></tr>
 <tr class="separator:a3d639d99f44203ee757291245d8bd526"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
-Variables</h2></td></tr>
-<tr class="memitem:a1a0481f8b7c7f19959784ac786dbd110"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedirection_1_1rook.html#a1a0481f8b7c7f19959784ac786dbd110">direction::rook::n</a> = 0</td></tr>
-<tr class="separator:a1a0481f8b7c7f19959784ac786dbd110"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acf36683beac9dd07326b9d629d592259"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedirection_1_1rook.html#acf36683beac9dd07326b9d629d592259">direction::rook::e</a> = 1</td></tr>
-<tr class="separator:acf36683beac9dd07326b9d629d592259"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5db6760b68a8e7042cbf75b7992c159c"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedirection_1_1rook.html#a5db6760b68a8e7042cbf75b7992c159c">direction::rook::s</a> = 2</td></tr>
-<tr class="separator:a5db6760b68a8e7042cbf75b7992c159c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4811a3feec399e5d14057c20ddd7195d"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedirection_1_1rook.html#a4811a3feec399e5d14057c20ddd7195d">direction::rook::w</a> = 3</td></tr>
-<tr class="separator:a4811a3feec399e5d14057c20ddd7195d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a84fb9f201291a4c9595e71096865fa46"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedirection_1_1bishop.html#a84fb9f201291a4c9595e71096865fa46">direction::bishop::nw</a> = 0</td></tr>
-<tr class="separator:a84fb9f201291a4c9595e71096865fa46"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5646710bfae531fed92f7aa90e02cbe3"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedirection_1_1bishop.html#a5646710bfae531fed92f7aa90e02cbe3">direction::bishop::ne</a> = 1</td></tr>
-<tr class="separator:a5646710bfae531fed92f7aa90e02cbe3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab696a158989ce4f2b4241c4bcf71d4de"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedirection_1_1bishop.html#ab696a158989ce4f2b4241c4bcf71d4de">direction::bishop::se</a> = 2</td></tr>
-<tr class="separator:ab696a158989ce4f2b4241c4bcf71d4de"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aba8630bc1fb18730d84be4b2e80984c1"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedirection_1_1bishop.html#aba8630bc1fb18730d84be4b2e80984c1">direction::bishop::sw</a> = 3</td></tr>
-<tr class="separator:aba8630bc1fb18730d84be4b2e80984c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->

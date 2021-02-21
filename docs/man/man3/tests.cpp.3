@@ -39,6 +39,9 @@ src/tests/tests.cpp
 .RI "void \fBposition_mate_test\fP (std::string const &fen, bool is_mate, int &total_cases, int &passes)"
 .br
 .ti -1c
+.RI "void \fBposition_stalemate_test\fP (std::string const &fen, bool is_mate, int &total_cases, int &passes)"
+.br
+.ti -1c
 .RI "void \fBperft4_test\fP (int depth, int &total_cases, int &passes)"
 .br
 .ti -1c
@@ -135,6 +138,8 @@ KIWIPETE position
 .SS "void position_load_test (std::string const & fen, int legal_count, bool is_check, int & total_cases, int & passes)"
 tests based on loading a FEN and comparing state to precalculated values 
 .SS "void position_mate_test (std::string const & fen, bool is_mate, int & total_cases, int & passes)"
+tests based on loading a FEN and comparing state to precalculated values 
+.SS "void position_stalemate_test (std::string const & fen, bool is_mate, int & total_cases, int & passes)"
 tests based on loading a FEN and comparing state to precalculated values 
 .SS "void run_tests ()"
 

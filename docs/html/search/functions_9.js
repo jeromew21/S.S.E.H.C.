@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['kingmoves_529',['kingMoves',['../namespacemove__maps.html#a18f6f80f3c3f5efe0f77417addd8e626',1,'move_maps']]],
-  ['knightmoves_530',['knightMoves',['../namespacemove__maps.html#abe621f8c6d35fe11ff5ac8cae97cdd31',1,'move_maps']]]
+  ['jumpingattackers_539',['jumpingAttackers',['../namespacemove__maps.html#a615a8c8951771776028810f1b5f7ee7b',1,'move_maps']]]
 ];

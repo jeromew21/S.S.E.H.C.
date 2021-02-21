@@ -9,20 +9,40 @@ src/chess/bitboards.cpp
 \fC#include 'game/chessboard\&.hpp'\fP
 .br
 
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBmagic_data\fP"
+.br
+.ti -1c
+.RI "struct \fBmove_data\fP"
+.br
+.in -1c
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI " \fBdirection\fP"
+.br
+.ti -1c
+.RI " \fBdirection::rook\fP"
+.br
+.ti -1c
+.RI " \fBdirection::bishop\fP"
+.br
+.in -1c
 .SS "Functions"
 
 .in +1c
 .ti -1c
-.RI "bool \fBisAttackedJumping\fP (\fBu64\fP occupancy_map, \fBu64\fP subject, \fBColor\fP subj_turn, \fBu64\fP knights, \fBu64\fP kings, \fBu64\fP pawns)"
+.RI "\fBu64\fP \fBpermute_mask\fP (\fBu64\fP mask, int index, int pop_count)"
 .br
 .ti -1c
 .RI "\fBu64\fP \fBrookMovesClassical\fP (\fBSquare\fP sq, \fBu64\fP occupants)"
 .br
 .ti -1c
 .RI "\fBu64\fP \fBbishopMovesClassical\fP (\fBSquare\fP sq, \fBu64\fP occupants)"
-.br
-.ti -1c
-.RI "\fBu64\fP \fBpermute_mask\fP (\fBu64\fP mask, int index, int pop_count)"
 .br
 .in -1c
 .SS "Variables"
@@ -33,12 +53,6 @@ src/chess/bitboards.cpp
 .br
 .ti -1c
 .RI "const \fBu64\fP \fBROOKS_RAY_CACHE\fP [4][256]"
-.br
-.ti -1c
-.RI "const \fBu64\fP \fBROOK_ATTACK_CACHE\fP [64]"
-.br
-.ti -1c
-.RI "const \fBu64\fP \fBBISHOP_ATTACK_CACHE\fP [64]"
 .br
 .ti -1c
 .RI "const \fBu64\fP \fBROOK_MASKED_ATTACKS\fP [64]"
@@ -82,13 +96,44 @@ src/chess/bitboards.cpp
 .ti -1c
 .RI "const \fBu64\fP \fBONE_FILE_ADJ_CACHE\fP [64]"
 .br
+.ti -1c
+.RI "\fBmagic_data\fP \fBBishopMagicData\fP [64]"
+.br
+.ti -1c
+.RI "\fBmagic_data\fP \fBRookMagicData\fP [64]"
+.br
+.ti -1c
+.RI "\fBmove_data\fP \fBMoveData\fP [64]"
+.br
+.ti -1c
+.RI "const int \fBdirection::rook::n\fP = 0"
+.br
+.ti -1c
+.RI "const int \fBdirection::rook::e\fP = 1"
+.br
+.ti -1c
+.RI "const int \fBdirection::rook::s\fP = 2"
+.br
+.ti -1c
+.RI "const int \fBdirection::rook::w\fP = 3"
+.br
+.ti -1c
+.RI "const int \fBdirection::bishop::nw\fP = 0"
+.br
+.ti -1c
+.RI "const int \fBdirection::bishop::ne\fP = 1"
+.br
+.ti -1c
+.RI "const int \fBdirection::bishop::se\fP = 2"
+.br
+.ti -1c
+.RI "const int \fBdirection::bishop::sw\fP = 3"
+.br
 .in -1c
 .SH "Function Documentation"
 .PP 
 .SS "\fBu64\fP bishopMovesClassical (\fBSquare\fP sq, \fBu64\fP occupants)"
 Helper function for ground truth method for getting rook moves 
-.SS "bool isAttackedJumping (\fBu64\fP occupancy_map, \fBu64\fP subject, \fBColor\fP subj_turn, \fBu64\fP knights, \fBu64\fP kings, \fBu64\fP pawns)"
-
 .SS "\fBu64\fP permute_mask (\fBu64\fP mask, int index, int pop_count)"
 return the i-th permutation of mask with pop_count members
 .PP
@@ -97,22 +142,6 @@ original method by Tord Romstad with modifications
 Helper function for ground truth method for getting rook moves 
 .SH "Variable Documentation"
 .PP 
-.SS "const \fBu64\fP BISHOP_ATTACK_CACHE[64]"
-\fBInitial value:\fP
-.PP
-.nf
-= {0x8040201008040200, 0x80402010080500, 0x804020110a00, 0x8041221400, 0x182442800, 0x10204885000, 0x102040810a000,
-                                     0x102040810204000, 0x4020100804020002, 0x8040201008050005, 0x804020110a000a, 0x804122140014, 0x18244280028,
-                                     0x1020488500050, 0x102040810a000a0, 0x204081020400040, 0x2010080402000204, 0x4020100805000508, 0x804020110a000a11,
-                                     0x80412214001422, 0x1824428002844, 0x102048850005088, 0x2040810a000a010, 0x408102040004020, 0x1008040200020408,
-                                     0x2010080500050810, 0x4020110a000a1120, 0x8041221400142241, 0x182442800284482, 0x204885000508804, 0x40810a000a01008,
-                                     0x810204000402010, 0x804020002040810, 0x1008050005081020, 0x20110a000a112040, 0x4122140014224180, 0x8244280028448201,
-                                     0x488500050880402, 0x810a000a0100804, 0x1020400040201008, 0x402000204081020, 0x805000508102040, 0x110a000a11204080,
-                                     0x2214001422418000, 0x4428002844820100, 0x8850005088040201, 0x10a000a010080402, 0x2040004020100804, 0x200020408102040,
-                                     0x500050810204080, 0xa000a1120408000, 0x1400142241800000, 0x2800284482010000, 0x5000508804020100, 0xa000a01008040201,
-                                     0x4000402010080402, 0x2040810204080, 0x5081020408000, 0xa112040800000, 0x14224180000000, 0x28448201000000, 0x50880402010000,
-                                     0xa0100804020100, 0x40201008040201}
-.fi
 .SS "\fBu64\fP BISHOP_MAGIC_NUMBERS[64]"
 \fBInitial value:\fP
 .PP
@@ -161,6 +190,8 @@ the amount of data in bits we need to store for each square
 .fi
 .SS "const \fBu64\fP BISHOP_RAY_CACHE[4][256]"
 
+.SS "\fBmagic_data\fP BishopMagicData[64]"
+
 .SS "const \fBu64\fP KING_MOVE_CACHE[64]"
 \fBInitial value:\fP
 .PP
@@ -197,6 +228,8 @@ the amount of data in bits we need to store for each square
                                    0x8050000000000, 0x110a0000000000, 0x22140000000000, 0x44280000000000,
                                    0x88500000000000, 0x10a00000000000, 0x20400000000000}
 .fi
+.SS "\fBmove_data\fP MoveData[64]"
+
 .SS "const \fBu64\fP ONE_FILE_ADJ_CACHE[64]"
 \fBInitial value:\fP
 .PP
@@ -274,22 +307,6 @@ the amount of data in bits we need to store for each square
                                      0x4000000000000, 0x8000000000000, 0x10000000000000, 0x20000000000000, 0x40000000000000,
                                      0x80000000000000}}
 .fi
-.SS "const \fBu64\fP ROOK_ATTACK_CACHE[64]"
-\fBInitial value:\fP
-.PP
-.nf
-= {0x1010101010101fe, 0x2020202020202fd, 0x4040404040404fb, 0x8080808080808f7, 0x10101010101010ef, 0x20202020202020df,
-                                   0x40404040404040bf, 0x808080808080807f, 0x10101010101fe01, 0x20202020202fd02, 0x40404040404fb04, 0x80808080808f708,
-                                   0x101010101010ef10, 0x202020202020df20, 0x404040404040bf40, 0x8080808080807f80, 0x101010101fe0101, 0x202020202fd0202,
-                                   0x404040404fb0404, 0x808080808f70808, 0x1010101010ef1010, 0x2020202020df2020, 0x4040404040bf4040, 0x80808080807f8080,
-                                   0x1010101fe010101, 0x2020202fd020202, 0x4040404fb040404, 0x8080808f7080808, 0x10101010ef101010, 0x20202020df202020,
-                                   0x40404040bf404040, 0x808080807f808080, 0x10101fe01010101, 0x20202fd02020202, 0x40404fb04040404, 0x80808f708080808,
-                                   0x101010ef10101010, 0x202020df20202020, 0x404040bf40404040, 0x8080807f80808080, 0x101fe0101010101, 0x202fd0202020202,
-                                   0x404fb0404040404, 0x808f70808080808, 0x1010ef1010101010, 0x2020df2020202020, 0x4040bf4040404040, 0x80807f8080808080,
-                                   0x1fe010101010101, 0x2fd020202020202, 0x4fb040404040404, 0x8f7080808080808, 0x10ef101010101010, 0x20df202020202020,
-                                   0x40bf404040404040, 0x807f808080808080, 0xfe01010101010101, 0xfd02020202020202, 0xfb04040404040404, 0xf708080808080808,
-                                   0xef10101010101010, 0xdf20202020202020, 0xbf40404040404040, 0x7f80808080808080}
-.fi
 .SS "\fBu64\fP ROOK_MAGIC_NUMBERS[64]"
 \fBInitial value:\fP
 .PP
@@ -336,6 +353,8 @@ the amount of data in bits we need to store for each square
                                      0x7e01010101010100, 0x7c02020202020200, 0x7a04040404040400, 0x7608080808080800, 0x6e10101010101000, 0x5e20202020202000,
                                      0x3e40404040404000, 0x7e80808080808000}
 .fi
+.SS "\fBmagic_data\fP RookMagicData[64]"
+
 .SS "const \fBu64\fP ROOKS_RAY_CACHE[4][256]"
 
 .SH "Author"

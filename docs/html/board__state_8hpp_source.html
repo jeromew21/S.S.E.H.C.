@@ -151,86 +151,88 @@ $(function() {
 <div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="structboard_1_1State.html#a2bd7792001c49937967780d8c4fb82cc">  110</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="structboard_1_1State.html#a2bd7792001c49937967780d8c4fb82cc">has_repeated</a>;                     <span class="comment">// three-fold repetition</span></div>
 <div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="structboard_1_1State.html#a699d1fbfcf57f1dfb055a4e09e5ddf0f">  111</a></span>&#160;    <a class="code" href="classCMove.html">CMove</a> <a class="code" href="structboard_1_1State.html#a699d1fbfcf57f1dfb055a4e09e5ddf0f">last_move</a>;                       <span class="comment">// the last move</span></div>
 <div class="line"><a name="l00112"></a><span class="lineno"><a class="line" href="structboard_1_1State.html#a1b60d9dd3a4332ddb433b6d96d2120ea">  112</a></span>&#160;    <a class="code" href="classboard_1_1castle_1_1Rights.html">board::castle::Rights</a> <a class="code" href="structboard_1_1State.html#a1b60d9dd3a4332ddb433b6d96d2120ea">castling_rights</a>; <span class="comment">// rights to castle for both sides</span></div>
-<div class="line"><a name="l00113"></a><span class="lineno"><a class="line" href="structboard_1_1State.html#a38b43c4f48c819c763f90bf034bc3e5c">  113</a></span>&#160;    std::array&lt;u64, 64&gt; <a class="code" href="structboard_1_1State.html#a38b43c4f48c819c763f90bf034bc3e5c">attack_map_</a>;</div>
-<div class="line"><a name="l00114"></a><span class="lineno"><a class="line" href="structboard_1_1State.html#a892141edf3c0ad2a6a1dd3d0b7356685">  114</a></span>&#160;    std::array&lt;u64, 64&gt; <a class="code" href="structboard_1_1State.html#a892141edf3c0ad2a6a1dd3d0b7356685">defend_map_</a>;</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160; </div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="comment">// default constructor</span></div>
-<div class="line"><a name="l00117"></a><span class="lineno"><a class="line" href="structboard_1_1State.html#a1cd03308e98ad86bc0ccd7c3f55b0af1">  117</a></span>&#160;    <a class="code" href="structboard_1_1State.html#a1cd03308e98ad86bc0ccd7c3f55b0af1">State</a>()</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    {</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;      this-&gt;fullmove_counter = 0;</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;      this-&gt;ply_count = 0;</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;      this-&gt;halfmove_counter = 0;</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;      this-&gt;en_passant_square = -1;</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;      this-&gt;is_check = 0;</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;      this-&gt;has_repeated = 0;</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;      this-&gt;turn = <a class="code" href="definitions_8hpp.html#a7a43a04cb403aa5f48a6c416ab72051d">White</a>;</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;      this-&gt;last_moved_piece = <a class="code" href="namespacepiece.html#ace2b1e4cfc50d82a62d3146e5a2ee804">piece::EmptyPiece</a>;</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;      this-&gt;last_captured_piece = <a class="code" href="namespacepiece.html#ace2b1e4cfc50d82a62d3146e5a2ee804">piece::EmptyPiece</a>;</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;      this-&gt;last_move = <a class="code" href="classCMove.html#a0d72ecf010dbf68f22ad9d1f402ede3c">CMove::NullMove</a>();</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;      this-&gt;hash = 0;</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    }</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160; </div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <span class="comment">//psuedoLegal?????</span></div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;  };</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160; </div>
-<div class="line"><a name="l00140"></a><span class="lineno"><a class="line" href="classboard_1_1StateStack.html">  140</a></span>&#160;  <span class="keyword">class </span><a class="code" href="classboard_1_1StateStack.html">StateStack</a></div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;  {</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;  <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    <span class="keywordtype">int</span> head_; <span class="comment">// length of stack</span></div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    std::vector&lt;board::State&gt; data_;</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160; </div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;  <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00147"></a><span class="lineno"><a class="line" href="classboard_1_1StateStack.html#a925b3465b1800e06ecfb8c8201b5e4bf">  147</a></span>&#160;    <a class="code" href="classboard_1_1StateStack.html#a925b3465b1800e06ecfb8c8201b5e4bf">StateStack</a>() { head_ = 0; }</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160; </div>
-<div class="line"><a name="l00154"></a><span class="lineno"><a class="line" href="classboard_1_1StateStack.html#ab95b1d9f8d0d064eb11ccfd8868ed47d">  154</a></span>&#160;    <a class="code" href="structboard_1_1State.html">board::State</a> &amp;<a class="code" href="classboard_1_1StateStack.html#ab95b1d9f8d0d064eb11ccfd8868ed47d">peek</a>()</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    {</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;      assert(head_ &gt; 0);</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;      <span class="keywordflow">return</span> data_.back();</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    }</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160; </div>
-<div class="line"><a name="l00163"></a><span class="lineno"><a class="line" href="classboard_1_1StateStack.html#a96a2f41ade8721758b1f5e1c257be52c">  163</a></span>&#160;    <a class="code" href="structboard_1_1State.html">board::State</a> &amp;<a class="code" href="classboard_1_1StateStack.html#a96a2f41ade8721758b1f5e1c257be52c">peek_at</a>(<span class="keywordtype">int</span> i)</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    {</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;      assert(i &gt;= 0 &amp;&amp; i &lt; head_);</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;      <span class="keywordflow">return</span> data_[i];</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    }</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160; </div>
-<div class="line"><a name="l00169"></a><span class="lineno"><a class="line" href="classboard_1_1StateStack.html#a09b091b0dd1eb6984ca9b61bf57a4d96">  169</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classboard_1_1StateStack.html#a09b091b0dd1eb6984ca9b61bf57a4d96">can_pop</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> head_ &gt; 0; }</div>
-<div class="line"><a name="l00170"></a><span class="lineno"><a class="line" href="classboard_1_1StateStack.html#a85bbb1cad491657edd4398e294b4605f">  170</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classboard_1_1StateStack.html#a85bbb1cad491657edd4398e294b4605f">size</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> head_; };</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160; </div>
-<div class="line"><a name="l00172"></a><span class="lineno"><a class="line" href="classboard_1_1StateStack.html#aa00200f5c556455de85422897f02529b">  172</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classboard_1_1StateStack.html#aa00200f5c556455de85422897f02529b">Pop</a>()</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;    {</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;      assert(head_ &gt; 0);</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;      data_.pop_back();</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;      head_--;</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    }</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160; </div>
-<div class="line"><a name="l00182"></a><span class="lineno"><a class="line" href="classboard_1_1StateStack.html#a4d51ddefd52f4072526c0a9584b72687">  182</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classboard_1_1StateStack.html#a4d51ddefd52f4072526c0a9584b72687">Clear</a>()</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    {</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;      head_ = 0;</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;      data_.clear();</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    }</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160; </div>
-<div class="line"><a name="l00191"></a><span class="lineno"><a class="line" href="classboard_1_1StateStack.html#a91549c670c56be6afb247a0413ea25f9">  191</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classboard_1_1StateStack.html#a91549c670c56be6afb247a0413ea25f9">Push</a>(<a class="code" href="structboard_1_1State.html">board::State</a> &amp;state)</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    {</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;      data_.push_back(state);</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;      head_++;</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    };</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;  };</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160; </div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;} <span class="comment">// namespace board</span></div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160; </div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="comment">// default constructor</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno"><a class="line" href="structboard_1_1State.html#a1cd03308e98ad86bc0ccd7c3f55b0af1">  115</a></span>&#160;    <a class="code" href="structboard_1_1State.html#a1cd03308e98ad86bc0ccd7c3f55b0af1">State</a>()</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    {</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;      this-&gt;fullmove_counter = 0;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;      this-&gt;ply_count = 0;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;      this-&gt;halfmove_counter = 0;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;      this-&gt;en_passant_square = -1;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;      this-&gt;is_check = 0;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;      this-&gt;has_repeated = 0;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;      this-&gt;turn = <a class="code" href="definitions_8hpp.html#a7a43a04cb403aa5f48a6c416ab72051d">White</a>;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;      this-&gt;last_moved_piece = <a class="code" href="namespacepiece.html#ace2b1e4cfc50d82a62d3146e5a2ee804">piece::EmptyPiece</a>;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;      this-&gt;last_captured_piece = <a class="code" href="namespacepiece.html#ace2b1e4cfc50d82a62d3146e5a2ee804">piece::EmptyPiece</a>;</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;      this-&gt;last_move = <a class="code" href="classCMove.html#a0d72ecf010dbf68f22ad9d1f402ede3c">CMove::NullMove</a>();</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;      this-&gt;hash = 0;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    }</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160; </div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <span class="comment">//psuedoLegal?????</span></div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;  };</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160; </div>
+<div class="line"><a name="l00138"></a><span class="lineno"><a class="line" href="classboard_1_1StateStack.html">  138</a></span>&#160;  <span class="keyword">class </span><a class="code" href="classboard_1_1StateStack.html">StateStack</a></div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;  {</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;  <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    <span class="keywordtype">int</span> head_;                       <span class="comment">// length of stack</span></div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    std::vector&lt;board::State&gt; data_; <span class="comment">// use a faster data structure? Maybe allocate on stack?</span></div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160; </div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;  <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00145"></a><span class="lineno"><a class="line" href="classboard_1_1StateStack.html#a925b3465b1800e06ecfb8c8201b5e4bf">  145</a></span>&#160;    <a class="code" href="classboard_1_1StateStack.html#a925b3465b1800e06ecfb8c8201b5e4bf">StateStack</a>()</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    {</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;      head_ = 0;</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;      data_.reserve(100); <span class="comment">// doesn&#39;t do shit lol</span></div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    }</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160; </div>
+<div class="line"><a name="l00156"></a><span class="lineno"><a class="line" href="classboard_1_1StateStack.html#ab95b1d9f8d0d064eb11ccfd8868ed47d">  156</a></span>&#160;    <a class="code" href="structboard_1_1State.html">board::State</a> &amp;<a class="code" href="classboard_1_1StateStack.html#ab95b1d9f8d0d064eb11ccfd8868ed47d">peek</a>()</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    {</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;      assert(head_ &gt; 0);</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;      <span class="keywordflow">return</span> data_.back();</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    }</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160; </div>
+<div class="line"><a name="l00165"></a><span class="lineno"><a class="line" href="classboard_1_1StateStack.html#a96a2f41ade8721758b1f5e1c257be52c">  165</a></span>&#160;    <a class="code" href="structboard_1_1State.html">board::State</a> &amp;<a class="code" href="classboard_1_1StateStack.html#a96a2f41ade8721758b1f5e1c257be52c">peek_at</a>(<span class="keywordtype">int</span> i)</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    {</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;      assert(i &gt;= 0 &amp;&amp; i &lt; head_);</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;      <span class="keywordflow">return</span> data_[i];</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    }</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160; </div>
+<div class="line"><a name="l00171"></a><span class="lineno"><a class="line" href="classboard_1_1StateStack.html#a09b091b0dd1eb6984ca9b61bf57a4d96">  171</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classboard_1_1StateStack.html#a09b091b0dd1eb6984ca9b61bf57a4d96">can_pop</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> head_ &gt; 0; }</div>
+<div class="line"><a name="l00172"></a><span class="lineno"><a class="line" href="classboard_1_1StateStack.html#a85bbb1cad491657edd4398e294b4605f">  172</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classboard_1_1StateStack.html#a85bbb1cad491657edd4398e294b4605f">size</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> head_; };</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160; </div>
+<div class="line"><a name="l00174"></a><span class="lineno"><a class="line" href="classboard_1_1StateStack.html#aa00200f5c556455de85422897f02529b">  174</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classboard_1_1StateStack.html#aa00200f5c556455de85422897f02529b">Pop</a>()</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    {</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;      assert(head_ &gt; 0);</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;      data_.pop_back();</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;      head_--;</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    }</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160; </div>
+<div class="line"><a name="l00184"></a><span class="lineno"><a class="line" href="classboard_1_1StateStack.html#a4d51ddefd52f4072526c0a9584b72687">  184</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classboard_1_1StateStack.html#a4d51ddefd52f4072526c0a9584b72687">Clear</a>()</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    {</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;      head_ = 0;</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;      data_.clear();</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    }</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160; </div>
+<div class="line"><a name="l00195"></a><span class="lineno"><a class="line" href="classboard_1_1StateStack.html#a91549c670c56be6afb247a0413ea25f9">  195</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classboard_1_1StateStack.html#a91549c670c56be6afb247a0413ea25f9">Push</a>(<a class="code" href="structboard_1_1State.html">board::State</a> &amp;state)</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    {</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;      data_.push_back(state);</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;      head_++;</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;    };</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;  };</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160; </div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;} <span class="comment">// namespace board</span></div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160; </div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aclassCMove_html"><div class="ttname"><a href="classCMove.html">CMove</a></div><div class="ttdef"><b>Definition:</b> cmove.hpp:27</div></div>
 <div class="ttc" id="aclassCMove_html_a0d72ecf010dbf68f22ad9d1f402ede3c"><div class="ttname"><a href="classCMove.html#a0d72ecf010dbf68f22ad9d1f402ede3c">CMove::NullMove</a></div><div class="ttdeci">static CMove NullMove()</div><div class="ttdef"><b>Definition:</b> cmove.hpp:32</div></div>
-<div class="ttc" id="aclassboard_1_1StateStack_html"><div class="ttname"><a href="classboard_1_1StateStack.html">board::StateStack</a></div><div class="ttdef"><b>Definition:</b> board_state.hpp:141</div></div>
-<div class="ttc" id="aclassboard_1_1StateStack_html_a09b091b0dd1eb6984ca9b61bf57a4d96"><div class="ttname"><a href="classboard_1_1StateStack.html#a09b091b0dd1eb6984ca9b61bf57a4d96">board::StateStack::can_pop</a></div><div class="ttdeci">bool can_pop() const</div><div class="ttdef"><b>Definition:</b> board_state.hpp:169</div></div>
-<div class="ttc" id="aclassboard_1_1StateStack_html_a4d51ddefd52f4072526c0a9584b72687"><div class="ttname"><a href="classboard_1_1StateStack.html#a4d51ddefd52f4072526c0a9584b72687">board::StateStack::Clear</a></div><div class="ttdeci">void Clear()</div><div class="ttdef"><b>Definition:</b> board_state.hpp:182</div></div>
-<div class="ttc" id="aclassboard_1_1StateStack_html_a85bbb1cad491657edd4398e294b4605f"><div class="ttname"><a href="classboard_1_1StateStack.html#a85bbb1cad491657edd4398e294b4605f">board::StateStack::size</a></div><div class="ttdeci">int size() const</div><div class="ttdef"><b>Definition:</b> board_state.hpp:170</div></div>
-<div class="ttc" id="aclassboard_1_1StateStack_html_a91549c670c56be6afb247a0413ea25f9"><div class="ttname"><a href="classboard_1_1StateStack.html#a91549c670c56be6afb247a0413ea25f9">board::StateStack::Push</a></div><div class="ttdeci">void Push(board::State &amp;state)</div><div class="ttdef"><b>Definition:</b> board_state.hpp:191</div></div>
-<div class="ttc" id="aclassboard_1_1StateStack_html_a925b3465b1800e06ecfb8c8201b5e4bf"><div class="ttname"><a href="classboard_1_1StateStack.html#a925b3465b1800e06ecfb8c8201b5e4bf">board::StateStack::StateStack</a></div><div class="ttdeci">StateStack()</div><div class="ttdef"><b>Definition:</b> board_state.hpp:147</div></div>
-<div class="ttc" id="aclassboard_1_1StateStack_html_a96a2f41ade8721758b1f5e1c257be52c"><div class="ttname"><a href="classboard_1_1StateStack.html#a96a2f41ade8721758b1f5e1c257be52c">board::StateStack::peek_at</a></div><div class="ttdeci">board::State &amp; peek_at(int i)</div><div class="ttdef"><b>Definition:</b> board_state.hpp:163</div></div>
-<div class="ttc" id="aclassboard_1_1StateStack_html_aa00200f5c556455de85422897f02529b"><div class="ttname"><a href="classboard_1_1StateStack.html#aa00200f5c556455de85422897f02529b">board::StateStack::Pop</a></div><div class="ttdeci">void Pop()</div><div class="ttdef"><b>Definition:</b> board_state.hpp:172</div></div>
-<div class="ttc" id="aclassboard_1_1StateStack_html_ab95b1d9f8d0d064eb11ccfd8868ed47d"><div class="ttname"><a href="classboard_1_1StateStack.html#ab95b1d9f8d0d064eb11ccfd8868ed47d">board::StateStack::peek</a></div><div class="ttdeci">board::State &amp; peek()</div><div class="ttdef"><b>Definition:</b> board_state.hpp:154</div></div>
+<div class="ttc" id="aclassboard_1_1StateStack_html"><div class="ttname"><a href="classboard_1_1StateStack.html">board::StateStack</a></div><div class="ttdef"><b>Definition:</b> board_state.hpp:139</div></div>
+<div class="ttc" id="aclassboard_1_1StateStack_html_a09b091b0dd1eb6984ca9b61bf57a4d96"><div class="ttname"><a href="classboard_1_1StateStack.html#a09b091b0dd1eb6984ca9b61bf57a4d96">board::StateStack::can_pop</a></div><div class="ttdeci">bool can_pop() const</div><div class="ttdef"><b>Definition:</b> board_state.hpp:171</div></div>
+<div class="ttc" id="aclassboard_1_1StateStack_html_a4d51ddefd52f4072526c0a9584b72687"><div class="ttname"><a href="classboard_1_1StateStack.html#a4d51ddefd52f4072526c0a9584b72687">board::StateStack::Clear</a></div><div class="ttdeci">void Clear()</div><div class="ttdef"><b>Definition:</b> board_state.hpp:184</div></div>
+<div class="ttc" id="aclassboard_1_1StateStack_html_a85bbb1cad491657edd4398e294b4605f"><div class="ttname"><a href="classboard_1_1StateStack.html#a85bbb1cad491657edd4398e294b4605f">board::StateStack::size</a></div><div class="ttdeci">int size() const</div><div class="ttdef"><b>Definition:</b> board_state.hpp:172</div></div>
+<div class="ttc" id="aclassboard_1_1StateStack_html_a91549c670c56be6afb247a0413ea25f9"><div class="ttname"><a href="classboard_1_1StateStack.html#a91549c670c56be6afb247a0413ea25f9">board::StateStack::Push</a></div><div class="ttdeci">void Push(board::State &amp;state)</div><div class="ttdef"><b>Definition:</b> board_state.hpp:195</div></div>
+<div class="ttc" id="aclassboard_1_1StateStack_html_a925b3465b1800e06ecfb8c8201b5e4bf"><div class="ttname"><a href="classboard_1_1StateStack.html#a925b3465b1800e06ecfb8c8201b5e4bf">board::StateStack::StateStack</a></div><div class="ttdeci">StateStack()</div><div class="ttdef"><b>Definition:</b> board_state.hpp:145</div></div>
+<div class="ttc" id="aclassboard_1_1StateStack_html_a96a2f41ade8721758b1f5e1c257be52c"><div class="ttname"><a href="classboard_1_1StateStack.html#a96a2f41ade8721758b1f5e1c257be52c">board::StateStack::peek_at</a></div><div class="ttdeci">board::State &amp; peek_at(int i)</div><div class="ttdef"><b>Definition:</b> board_state.hpp:165</div></div>
+<div class="ttc" id="aclassboard_1_1StateStack_html_aa00200f5c556455de85422897f02529b"><div class="ttname"><a href="classboard_1_1StateStack.html#aa00200f5c556455de85422897f02529b">board::StateStack::Pop</a></div><div class="ttdeci">void Pop()</div><div class="ttdef"><b>Definition:</b> board_state.hpp:174</div></div>
+<div class="ttc" id="aclassboard_1_1StateStack_html_ab95b1d9f8d0d064eb11ccfd8868ed47d"><div class="ttname"><a href="classboard_1_1StateStack.html#ab95b1d9f8d0d064eb11ccfd8868ed47d">board::StateStack::peek</a></div><div class="ttdeci">board::State &amp; peek()</div><div class="ttdef"><b>Definition:</b> board_state.hpp:156</div></div>
 <div class="ttc" id="aclassboard_1_1castle_1_1Rights_html"><div class="ttname"><a href="classboard_1_1castle_1_1Rights.html">board::castle::Rights</a></div><div class="ttdef"><b>Definition:</b> board_state.hpp:82</div></div>
 <div class="ttc" id="aclassboard_1_1castle_1_1Rights_html_a9a359d8487c3556b62856c8c8dd7e999"><div class="ttname"><a href="classboard_1_1castle_1_1Rights.html#a9a359d8487c3556b62856c8c8dd7e999">board::castle::Rights::Set</a></div><div class="ttdeci">void Set(Color color, int direction, int value)</div><div class="ttdef"><b>Definition:</b> castle.cpp:36</div></div>
 <div class="ttc" id="aclassboard_1_1castle_1_1Rights_html_aaa198ee7d90fe9ab6675ac4356d37ea9"><div class="ttname"><a href="classboard_1_1castle_1_1Rights.html#aaa198ee7d90fe9ab6675ac4356d37ea9">board::castle::Rights::get</a></div><div class="ttdeci">int get(Color color, int direction) const</div><div class="ttdef"><b>Definition:</b> castle.cpp:29</div></div>
@@ -262,20 +264,18 @@ $(function() {
 <div class="ttc" id="anamespaceboard_html_a99acc96edd3007d46ff299bdc5db4221acb0fa7553f119bc984c16bedf051d4a0"><div class="ttname"><a href="namespaceboard.html#a99acc96edd3007d46ff299bdc5db4221acb0fa7553f119bc984c16bedf051d4a0">board::Stalemate</a></div><div class="ttdeci">@ Stalemate</div><div class="ttdef"><b>Definition:</b> board_state.hpp:18</div></div>
 <div class="ttc" id="anamespaceboard_html_a99acc96edd3007d46ff299bdc5db4221af8d72681eb4cb84aa5370b8a2ed9f99f"><div class="ttname"><a href="namespaceboard.html#a99acc96edd3007d46ff299bdc5db4221af8d72681eb4cb84aa5370b8a2ed9f99f">board::Draw</a></div><div class="ttdeci">@ Draw</div><div class="ttdef"><b>Definition:</b> board_state.hpp:16</div></div>
 <div class="ttc" id="anamespaceboard_html_a99acc96edd3007d46ff299bdc5db4221afcab07a43518ab4d97273967aa0c1274"><div class="ttname"><a href="namespaceboard.html#a99acc96edd3007d46ff299bdc5db4221afcab07a43518ab4d97273967aa0c1274">board::NotCalculated</a></div><div class="ttdeci">@ NotCalculated</div><div class="ttdef"><b>Definition:</b> board_state.hpp:19</div></div>
-<div class="ttc" id="anamespacedirection_html"><div class="ttname"><a href="namespacedirection.html">direction</a></div><div class="ttdef"><b>Definition:</b> chessboard.hpp:145</div></div>
+<div class="ttc" id="anamespacedirection_html"><div class="ttname"><a href="namespacedirection.html">direction</a></div><div class="ttdef"><b>Definition:</b> bitboards.cpp:319</div></div>
 <div class="ttc" id="anamespacepiece_html_ace2b1e4cfc50d82a62d3146e5a2ee804"><div class="ttname"><a href="namespacepiece.html#ace2b1e4cfc50d82a62d3146e5a2ee804">piece::EmptyPiece</a></div><div class="ttdeci">const PieceType EmptyPiece</div><div class="ttdef"><b>Definition:</b> pieces.hpp:36</div></div>
 <div class="ttc" id="apieces_8hpp_html"><div class="ttname"><a href="pieces_8hpp.html">pieces.hpp</a></div></div>
 <div class="ttc" id="astructboard_1_1State_html"><div class="ttname"><a href="structboard_1_1State.html">board::State</a></div><div class="ttdef"><b>Definition:</b> board_state.hpp:100</div></div>
 <div class="ttc" id="astructboard_1_1State_html_a1b60d9dd3a4332ddb433b6d96d2120ea"><div class="ttname"><a href="structboard_1_1State.html#a1b60d9dd3a4332ddb433b6d96d2120ea">board::State::castling_rights</a></div><div class="ttdeci">board::castle::Rights castling_rights</div><div class="ttdef"><b>Definition:</b> board_state.hpp:112</div></div>
-<div class="ttc" id="astructboard_1_1State_html_a1cd03308e98ad86bc0ccd7c3f55b0af1"><div class="ttname"><a href="structboard_1_1State.html#a1cd03308e98ad86bc0ccd7c3f55b0af1">board::State::State</a></div><div class="ttdeci">State()</div><div class="ttdef"><b>Definition:</b> board_state.hpp:117</div></div>
+<div class="ttc" id="astructboard_1_1State_html_a1cd03308e98ad86bc0ccd7c3f55b0af1"><div class="ttname"><a href="structboard_1_1State.html#a1cd03308e98ad86bc0ccd7c3f55b0af1">board::State::State</a></div><div class="ttdeci">State()</div><div class="ttdef"><b>Definition:</b> board_state.hpp:115</div></div>
 <div class="ttc" id="astructboard_1_1State_html_a2bd7792001c49937967780d8c4fb82cc"><div class="ttname"><a href="structboard_1_1State.html#a2bd7792001c49937967780d8c4fb82cc">board::State::has_repeated</a></div><div class="ttdeci">bool has_repeated</div><div class="ttdef"><b>Definition:</b> board_state.hpp:110</div></div>
-<div class="ttc" id="astructboard_1_1State_html_a38b43c4f48c819c763f90bf034bc3e5c"><div class="ttname"><a href="structboard_1_1State.html#a38b43c4f48c819c763f90bf034bc3e5c">board::State::attack_map_</a></div><div class="ttdeci">std::array&lt; u64, 64 &gt; attack_map_</div><div class="ttdef"><b>Definition:</b> board_state.hpp:113</div></div>
 <div class="ttc" id="astructboard_1_1State_html_a4612c8ffff9d36f5ff678815cbb10d34"><div class="ttname"><a href="structboard_1_1State.html#a4612c8ffff9d36f5ff678815cbb10d34">board::State::ply_count</a></div><div class="ttdeci">int ply_count</div><div class="ttdef"><b>Definition:</b> board_state.hpp:101</div></div>
 <div class="ttc" id="astructboard_1_1State_html_a5ab8157348277df4f177e18337a68b3a"><div class="ttname"><a href="structboard_1_1State.html#a5ab8157348277df4f177e18337a68b3a">board::State::is_check</a></div><div class="ttdeci">bool is_check</div><div class="ttdef"><b>Definition:</b> board_state.hpp:109</div></div>
 <div class="ttc" id="astructboard_1_1State_html_a5c4f57ef916449709a591a3028fa5440"><div class="ttname"><a href="structboard_1_1State.html#a5c4f57ef916449709a591a3028fa5440">board::State::turn</a></div><div class="ttdeci">Color turn</div><div class="ttdef"><b>Definition:</b> board_state.hpp:102</div></div>
 <div class="ttc" id="astructboard_1_1State_html_a699d1fbfcf57f1dfb055a4e09e5ddf0f"><div class="ttname"><a href="structboard_1_1State.html#a699d1fbfcf57f1dfb055a4e09e5ddf0f">board::State::last_move</a></div><div class="ttdeci">CMove last_move</div><div class="ttdef"><b>Definition:</b> board_state.hpp:111</div></div>
 <div class="ttc" id="astructboard_1_1State_html_a77787c0a1d79b8df6360d0f474ec11c6"><div class="ttname"><a href="structboard_1_1State.html#a77787c0a1d79b8df6360d0f474ec11c6">board::State::halfmove_counter</a></div><div class="ttdeci">int halfmove_counter</div><div class="ttdef"><b>Definition:</b> board_state.hpp:104</div></div>
-<div class="ttc" id="astructboard_1_1State_html_a892141edf3c0ad2a6a1dd3d0b7356685"><div class="ttname"><a href="structboard_1_1State.html#a892141edf3c0ad2a6a1dd3d0b7356685">board::State::defend_map_</a></div><div class="ttdeci">std::array&lt; u64, 64 &gt; defend_map_</div><div class="ttdef"><b>Definition:</b> board_state.hpp:114</div></div>
 <div class="ttc" id="astructboard_1_1State_html_a9d6cc195eee2923927c19ea056bed11e"><div class="ttname"><a href="structboard_1_1State.html#a9d6cc195eee2923927c19ea056bed11e">board::State::last_moved_piece</a></div><div class="ttdeci">PieceType last_moved_piece</div><div class="ttdef"><b>Definition:</b> board_state.hpp:106</div></div>
 <div class="ttc" id="astructboard_1_1State_html_ab5c2a9c0c2c89dc8ce0e7e53997b91a8"><div class="ttname"><a href="structboard_1_1State.html#ab5c2a9c0c2c89dc8ce0e7e53997b91a8">board::State::last_captured_piece</a></div><div class="ttdeci">PieceType last_captured_piece</div><div class="ttdef"><b>Definition:</b> board_state.hpp:107</div></div>
 <div class="ttc" id="astructboard_1_1State_html_ac9eaae88bb97603ae4dd55cef218db0d"><div class="ttname"><a href="structboard_1_1State.html#ac9eaae88bb97603ae4dd55cef218db0d">board::State::en_passant_square</a></div><div class="ttdeci">int en_passant_square</div><div class="ttdef"><b>Definition:</b> board_state.hpp:105</div></div>

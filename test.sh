@@ -1,1 +1,1 @@
-make debug && gdb --args ./build/apps/ssehc --test
+make debug && ./build/apps/ssehc --test

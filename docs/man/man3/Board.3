@@ -12,16 +12,16 @@ Board
 
 .in +1c
 .ti -1c
-.RI "\fBMoveList\fP< 256 > \fBlegal_moves\fP ()"
+.RI "\fBMoveList\fP< 256 > \fBlegal_moves\fP () const"
 .br
 .ti -1c
 .RI "\fBMoveList\fP< 256 > \fBcapture_moves\fP () const"
 .br
 .ti -1c
-.RI "\fBboard::Status\fP \fBstatus\fP ()"
+.RI "bool \fBis_checking_move\fP (\fBCMove\fP mv) const"
 .br
 .ti -1c
-.RI "bool \fBis_checking_move\fP (\fBCMove\fP mv) const"
+.RI "int \fBsee\fP (\fBCMove\fP mv) const"
 .br
 .ti -1c
 .RI "\fBCMove\fP \fBmove_from_src_dest\fP (\fBSquare\fP src, \fBSquare\fP dest) const"
@@ -45,10 +45,13 @@ Board
 .RI "std::string \fBfen\fP () const"
 .br
 .ti -1c
-.RI "bool \fBis_stalemate\fP ()"
+.RI "bool \fBis_stalemate\fP () const"
 .br
 .ti -1c
-.RI "bool \fBis_checkmate\fP ()"
+.RI "bool \fBis_checkmate\fP () const"
+.br
+.ti -1c
+.RI "\fBboard::Status\fP \fBstatus\fP ()"
 .br
 .ti -1c
 .RI "void \fBReset\fP ()"
@@ -98,12 +101,14 @@ Is the board currently in check?
 .SS "bool Board::is_checking_move (\fBCMove\fP mv) const"
 Does this move put the opponent in check?
 .PP
-Assuming a move is legal for a particular side, we want to know if it puts the opponent in check\&. 
-.SS "bool Board::is_checkmate ()"
+Assuming a move is legal for a particular side, we want to know if it puts the opponent in check\&.
+.PP
+Hotspot 
+.SS "bool Board::is_checkmate () const"
 Returns true if for the current position it is checkmate (the opponent to who's move it is to play wins\&.) 
-.SS "bool Board::is_stalemate ()"
+.SS "bool Board::is_stalemate () const"
 if it isn't check, check for any legal moves 
-.SS "\fBMoveList\fP< 256 > Board::legal_moves ()"
+.SS "\fBMoveList\fP< 256 > Board::legal_moves () const"
 List of all true legal moves in a position\&. 
 .SS "void Board::LoadPosition (\fBPieceType\fP piece_list[64], \fBColor\fP turn, int ep_square, \fBboard::castle::Rights\fP castling_rights, int fullmove, int halfmove)"
 Loads a position from a list of pieces and complete list of state parameters\&.
@@ -123,6 +128,8 @@ A bitboard mask of all pieces\&.
 A bitboard mask of pieces for a particular color\&. 
 .SS "void Board::Reset ()"
 Sets the board to the classical starting position\&. 
+.SS "int Board::see (\fBCMove\fP mv) const"
+Static exchange evaluation 
 .SS "\fBboard::Status\fP Board::status ()"
 Whether the game is continuing, a win for a particular side, or drawn\&.
 .PP

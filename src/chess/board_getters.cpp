@@ -69,13 +69,18 @@ u64 Board::occupancy(Color color) const
 
 CMove Board::move_from_src_dest(Square src, Square dest) const
 {
-  PieceType mover = piece_at_(src);
-  assert(!piece::is_empty(mover));
-
   // Validate move...
+  MoveList<256> mv_list = legal_moves();
+  assert(mv_list.size() > 0);
 
-  // this needs to be given more information... promotions...
-  return CMove(src, dest, move_type::Default);
+  for (int i = 0; i < mv_list.size(); i++)
+  {
+    CMove mv = mv_list[i];
+    if (mv.src_square() == src && mv.dest_square() == dest)
+      return mv;
+  }
+  assert(false);
+  return mv_list[0]; // if given a wrong move then just return first move
 }
 
 /**

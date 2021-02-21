@@ -1,0 +1,46 @@
+.TH "move_data" 3 "Sat Feb 20 2021" "S.S.E.H.C" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+move_data
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBu64\fP \fBpawn_capture\fP [2]"
+.br
+.ti -1c
+.RI "\fBu64\fP \fBpawn_push\fP [2]"
+.br
+.ti -1c
+.RI "\fBu64\fP \fBpawn_double\fP [2]"
+.br
+.ti -1c
+.RI "\fBu64\fP \fBknight\fP"
+.br
+.ti -1c
+.RI "\fBu64\fP \fBking\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Put the data we want to access together in a struct for better cache performance\&. 
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBu64\fP move_data::king"
+
+.SS "\fBu64\fP move_data::knight"
+
+.SS "\fBu64\fP move_data::pawn_capture[2]"
+
+.SS "\fBu64\fP move_data::pawn_double[2]"
+
+.SS "\fBu64\fP move_data::pawn_push[2]"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for S\&.S\&.E\&.H\&.C from the source code\&.

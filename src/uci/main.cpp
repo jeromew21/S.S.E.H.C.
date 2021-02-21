@@ -27,6 +27,7 @@ void init()
 {
   seedRand(random_seed);
   init_bits();
+  zobrist::init();
   move_maps::init();
 }
 

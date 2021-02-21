@@ -51,14 +51,20 @@ namespace move_maps
    * 
    * Rank 7 for White
    */
-  bool isPromotingRank(Square piece_location, Color color);
+  inline bool isPromotingRank(Square piece_location, Color color)
+  {
+    return (color == Black && squareToRow(piece_location) == 0) || (color == White && squareToRow(piece_location) == 7);
+  }
 
   /**
    * Rank 6 for Black
    * 
    * Rank 1 for White
    */
-  bool isStartingRank(Square piece_location, Color color);
+  inline bool isStartingRank(Square piece_location, Color color)
+  {
+    return (color == Black && squareToRow(piece_location) == 6) || (color == White && squareToRow(piece_location) == 1);
+  }
 
   /**
    * Returns the squares exactly one file adjacent to the current one. 
@@ -135,28 +141,6 @@ namespace move_maps
 } // namespace move_maps
 
 /**
- * Sometimes we care about the specific direction a ray goes 
- * for pin checking, or other things.
- */
-namespace direction
-{
-  namespace rook
-  {
-    const int n = 0;
-    const int e = 1;
-    const int s = 2;
-    const int w = 3;
-  } // namespace rook
-  namespace bishop
-  {
-    const int nw = 0;
-    const int ne = 1;
-    const int se = 2;
-    const int sw = 3;
-  } // namespace bishop
-} // namespace direction
-
-/**
  * This class encapsulates a game of chess and the elements that comprise it as such.
  */
 class Board //put board in board.hpp?
@@ -207,6 +191,14 @@ private:
    */
   u64 kingside_rook_starting_location[2];
 
+  /**
+   * SEE helper function.
+   * 
+   * returns the least valuable piece of color color in mask.
+   * Outputs the position of that piece in outposition.
+   */
+  PieceType least_valuable_piece_(u64 mask, Color color, u64 &out_position) const;
+
   /** 
    * shortcut move generator if board is check
    */
@@ -237,7 +229,7 @@ private:
    * Returns the piece at a particular location.
    */
   PieceType piece_at_(u64 location) const;
-  
+
   /** 
    * Returns the piece at a particular location.
    */
@@ -283,6 +275,11 @@ public:
    * Does this move put the opponent in check?
    */
   bool is_checking_move(CMove mv) const;
+
+  /**
+   * Static exchange evaluation
+   */
+  int see(CMove mv) const;
 
   /**
    * Given a move source square and dest square, create a move with the correct metadata.

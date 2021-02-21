@@ -84,7 +84,6 @@ void SEE_test(std::string const &fen, Square src, Square dest, int score, int &t
   Board chessboard;
   chessboard.LoadPosition(fen);
   expect(score, chessboard.see(chessboard.move_from_src_dest(src, dest)), "see", total_cases, passes);
-
 }
 
 void perft4_test(int depth, int &total_cases, int &passes)
@@ -197,9 +196,19 @@ void run_tests()
   position_stalemate_test("k4bnq/4p1pr/1Q2NpPp/5N1B/4K3/8/8/8 b - - 0 1", true, total_cases, passes);
 
   banner("SEE tests");
-  SEE_test("1k1r4/1pp4p/p7/4p3/8/P5P1/1PP4P/2K1R3 w - - ", squareFromName("e1"), squareFromName("e5"), 100, total_cases, passes);
-  SEE_test("1k1r3q/1ppn3p/p4b2/4p3/8/P2N2P1/1PP1R1BP/2K1Q3 w - - ", squareFromName("d3"), squareFromName("e5"), -225, total_cases, passes);
-  SEE_test("rnbqkbnr/ppp1pppp/8/3p4/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2", squareFromName("e4"), squareFromName("d5"), 0, total_cases, passes);
+  SEE_test("1k1r4/1pp4p/p7/4p3/8/P5P1/1PP4P/2K1R3 w - - ", squareFromName("e1"), squareFromName("e5"),
+           getMaterialValue(piece::white::pawn),
+           total_cases, passes);
+
+  SEE_test("1k1r3q/1ppn3p/p4b2/4p3/8/P2N2P1/1PP1R1BP/2K1Q3 w - - ", squareFromName("d3"), squareFromName("e5"),
+           getMaterialValue(piece::white::pawn) - getMaterialValue(piece::white::knight),
+           total_cases, passes);
+  SEE_test("rnbqkbnr/ppp1pppp/8/3p4/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2", squareFromName("e4"), squareFromName("d5"),
+           0,
+           total_cases, passes);
+  SEE_test("2rk1r2/6p1/p2bBnQp/1p1Pq3/8/8/PP3PPP/2R3K1 w - - 0 25", squareFromName("c1"), squareFromName("c8"),
+           getMaterialValue(piece::white::rook),
+           total_cases, passes);
 
   for (int d = 1; d < 5; d++)
   {

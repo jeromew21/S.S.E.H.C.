@@ -1,6 +1,21 @@
 #include "misc/perft.hpp"
 #include "uci/strings.hpp"
 
+void perft::perft_only_nodes(Board &board_, int depth)
+{
+  if (depth == 0)
+    return;
+
+  MoveList<256> moves = board_.legal_moves();
+  for (int i = 0; i < moves.size(); i++)
+  {
+    CMove mv = moves[i];
+    board_.MakeMove(mv);
+    perft_only_nodes(board_, depth - 1);
+    board_.UnmakeMove();
+  }
+}
+
 void perft::perft(Board &board_, int depth, perft::Counter &counter)
 {
   if (depth == 0)
@@ -39,11 +54,10 @@ void perft::perft(Board &board_, int depth, perft::Counter &counter)
 
     if (depth == 1)
     {
-      if (board_.is_checkmate())
-        counter.checkmates += 1;
-
       if (board_.is_check())
       {
+        if (board_.is_checkmate())
+          counter.checkmates += 1;
         counter.checks += 1;
       }
     }

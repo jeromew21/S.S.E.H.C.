@@ -54,7 +54,7 @@ MoveList<256> Board::legal_moves() const
         dests |= move_maps::rookMoves(src, occ);
       }
     }
-    dests &= ~occ; // can't capture
+    dests &= ~occ; // capture move generated elsewhere
 
     bitscanAll(dests, dest_bitscan);
     for (int k = 0; k < dest_bitscan.len(); k++)

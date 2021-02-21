@@ -7,15 +7,16 @@
 bool Board::verify_move_safety_(CMove mv) const
 {
   assert(!is_check()); // we shouldn't be calling this one if we're in check
+  assert(!mv.is_castle());
+  
+  // castling is verified by default
+  // if (mv.is_castle())
+  //   return true;
 
   const Color curr_turn = turn();
   const Color enemy_turn = oppositeColor(curr_turn);
   const u64 src = mv.src();
   const u64 dest = mv.dest();
-
-  // castling is verified by default
-  if (mv.is_castle())
-    return true;
 
   // the fabulous en passant pin
   if (mv.type_code() == move_type::EnPassant)
@@ -40,12 +41,12 @@ bool Board::verify_move_safety_(CMove mv) const
   // we can't move king into a controlled square
   if (src & king)
   {
-    return !move_maps::jumpingAttackers(dest, enemy_turn,
-                                        ~dest & bitboard_[piece::get_knight(enemy_turn)],
-                                        ~dest & bitboard_[piece::get_king(enemy_turn)],
-                                        ~dest & bitboard_[piece::get_pawn(enemy_turn)]) &&
-           !move_maps::slidingAttackers(occ, dest, enemy_rooks, enemy_bishops);
+    return !move_maps::slidingAttackers(occ, dest, enemy_rooks, enemy_bishops) && !move_maps::jumpingAttackers(dest, enemy_turn,
+                                                                                                               ~dest & bitboard_[piece::get_knight(enemy_turn)],
+                                                                                                               ~dest & bitboard_[piece::get_king(enemy_turn)],
+                                                                                                               ~dest & bitboard_[piece::get_pawn(enemy_turn)]);
   }
+
   return !move_maps::slidingAttackers(occ, king, enemy_rooks, enemy_bishops);
 }
 

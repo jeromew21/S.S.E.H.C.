@@ -286,6 +286,7 @@ public:
    * 
    * This is used in the UCI interface when loading a sequence of moves.
    */
+  CMove move_from_src_dest(Square src, Square dest, int promotion) const;
   CMove move_from_src_dest(Square src, Square dest) const;
 
   /**

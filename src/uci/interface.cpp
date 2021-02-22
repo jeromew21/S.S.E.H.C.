@@ -1,8 +1,10 @@
 #include "uci/interface.hpp"
 #include "misc/version.hpp"
 #include "ai/ai.hpp"
+#include "misc/debug.hpp"
 
-void uci::sendToUciClient(const std::string &cmd) {
+void uci::sendToUciClient(const std::string &cmd)
+{
   std::cout << cmd << std::endl;
 }
 
@@ -80,7 +82,7 @@ void uci::Interface::DelayStop(int msecs)
 {
   auto start = std::chrono::high_resolution_clock::now();
   int i = 0;
-  int granularity = 10; // checks every 1/100 of a second 
+  int granularity = 10; // checks every 1/100 of a second
   while (true)
   {
     if (i % granularity == 0)
@@ -125,24 +127,33 @@ void uci::Interface::StartThinking(bool inf, int msecs)
 void uci::Interface::RecieveCommand(std::string cmd)
 {
   std::vector<std::string> tokens = tokenize(cmd);
+
   if (tokens.size() < 1)
   {
+    verbose_info("empty command");
     return;
   }
+
   if (tokens[0] == "uci")
   {
     // send engine info
     uci::sendToUciClient("id name ssehc " + std::to_string(version_major) + "." + std::to_string(version_minor));
     uci::sendToUciClient("id author Jerome Wei Nick Buoncristiani");
 
-    // send list of options 
+    // send list of options that client can change
     uci::sendToUciClient("option name threads type check default false"); // list options...
 
-    // finally, send ok 
+    // finally, send ok
     uci::sendToUciClient("uciok");
   }
   else if (tokens[0] == "debug")
   {
+    if (tokens.size() < 2)
+    {
+      assert(false);
+      verbose_info("malformed command");
+    }
+
     if (tokens[1] == "on")
     {
       uci::set_debug(true);
@@ -154,49 +165,103 @@ void uci::Interface::RecieveCommand(std::string cmd)
   }
   else if (tokens[0] == "isready")
   {
+    // should send ok as long as the listener thread (this one) is running
     uci::sendToUciClient("readyok");
   }
   else if (tokens[0] == "setoption")
   {
     // setoption name [value ]
-    //ai::set_option();
-  }
-  else if (tokens[0] == "register")
-  {
-    // probably ignore this
+    // ai::set_option();
   }
   else if (tokens[0] == "ucinewgame")
   {
-
+    // the next search is from a new game
+    // clear hash tables, etc
+    // ai::reset();
   }
   else if (tokens[0] == "position")
   {
-    // int j = 2;
-    // if (tokens[1] == "startpos") {
-    //   board_.reset();
-    // } else {
-    //   if (tokens[1] == "fen") {
-    //     std::string fenstring = "";
-    //     for (int k = 2; k < 8; k++) {
-    //       fenstring += tokens[k] + " ";
-    //     }
-    //     board_.loadPosition(fenstring);
-    //     j = 8;
-    //   }
-    // }
-    // if ((int)tokens.size() > j) {
-    //   if (tokens[j] == "moves") {
-    //     // play moves
-    //     for (int k = j + 1; k < (int)tokens.size(); k++) {
-    //       auto mvtxt = tokens[k];
-    //       Move mv = board.moveFromAlgebraic(mvtxt);
-    //       board.makeMove(mv);
-    //     }
-    //   }
-    // }
+    // either "position startpos", or "position fen",
+    // and then "moves xxxx xxxx xxxx"
+    unsigned j = 2; // where move list starts
+
+    if (tokens[1] == "startpos")
+    {
+      verbose_info("setting board to starting position");
+      board_.Reset();
+    }
+    else
+    {
+      if (tokens[1] == "fen")
+      {
+        if (tokens.size() < 8)
+        {
+          // malformed command
+          assert(false);
+          verbose_info("malformed FEN");
+          return;
+        }
+
+        std::string fen_string = "";
+        for (int k = 2; k < 8; k++)
+        {
+          fen_string += tokens[k] + " ";
+        }
+        board_.LoadPosition(fen_string);
+        j = 8;
+      }
+    }
+
+    // begin parsing moves
+    if (tokens.size() > j)
+    {
+      if (tokens[j] == "moves")
+      {
+        // play moves
+        for (unsigned k = j + 1; k < tokens.size(); k++)
+        {
+          const std::string move_text = tokens[k];
+
+          if (move_text.size() < 4 || move_text.size() > 5)
+          {
+            verbose_info("move malformed");
+            return;
+          }
+
+          const Square src = squareFromName(move_text.substr(0, 2));
+          const Square dest = squareFromName(move_text.substr(2, 4));
+
+          PieceType promotion = piece::EmptyPiece;
+          if (move_text.length() == 5)
+          {
+            const std::string ch = move_text.substr(4, 5);
+            if (ch == "q")
+              promotion = piece::colorless::queen;
+            else if (ch == "r")
+              promotion = piece::colorless::rook;
+            else if (ch == "b")
+              promotion = piece::colorless::bishop;
+            else if (ch == "k")
+              promotion = piece::colorless::knight;
+          }
+
+          const CMove mv = board_.move_from_src_dest(src, dest, promotion);
+          // return if move isn't found
+          if (mv.is_null())
+          {
+            verbose_info("move not legal or malformed");
+            return;
+          }
+          board_.MakeMove(mv);
+        }
+      }
+    }
   }
   else if (tokens[0] == "go")
   {
+    // this method asks the engine to calculate and
+    // return a best move
+
     // Color color = board.turn();
     // bool inf = false;
     // int myTime = 0;
@@ -230,15 +295,18 @@ void uci::Interface::RecieveCommand(std::string cmd)
   }
   else if (tokens[0] == "stop")
   {
+    // Stop the calculation and return a best move
     StopThinking();
   }
   else if (tokens[0] == "ponderhit")
   {
     // the user has played the expected move. This will be sent if the engine was told to ponder on the same move
-	  // the user has played. The engine should continue searching but switch from pondering to normal search.
+    // the user has played. The engine should continue searching but switch from pondering to normal search.
   }
   else if (tokens[0] == "quit")
   {
+    // may need to call destructors
+    verbose_info("exiting");
     exit(0);
   }
 }

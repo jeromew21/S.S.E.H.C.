@@ -4,6 +4,7 @@
 #include <atomic>
 #include <thread>
 
+#include "uci/strings.hpp"
 #include "game/chessboard.hpp"
 
 namespace uci

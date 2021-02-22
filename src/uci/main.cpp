@@ -18,10 +18,16 @@ void verbose_info(const std::string &text)
     std::cout << "info string " << text << std::endl;
 }
 
+void uci::set_debug(bool value) {
+  verbose = value;
+  verbose_info("debug mode set to " + std::to_string(value));
+}
+
 void init()
 {
   seedRand(random_seed);
   init_bits();
+  zobrist::init();
   move_maps::init();
 }
 
@@ -30,23 +36,9 @@ void init()
  */
 int main(int argc, char *argv[])
 {
-  // parse args
-  for (int i = 1; i < argc; i++)
-  {
-    std::string arg = std::string(argv[i]);
-    if (arg == "--verbose")
-    {
-      verbose = true;
-    }
-    else if (arg == "--version")
-    {
-      std::cout << version_major << "." << version_minor << std::endl;
-      exit(0);
-    }
-  }
-
   init();
-
+  
+  // Run tests if specified
   for (int i = 1; i < argc; i++)
   {
     std::string arg = std::string(argv[i]);
@@ -56,7 +48,8 @@ int main(int argc, char *argv[])
       exit(0);
     }
   }
-  
+
+  // Run efficiency benchmark if specified 
   for (int i = 1; i < argc; i++)
   {
     std::string arg = std::string(argv[i]);
@@ -66,6 +59,8 @@ int main(int argc, char *argv[])
       exit(0);
     }
   }
+
+  std::cout << "ssehc " << version_major << "." << version_minor << std::endl;
 
   uci::listen();
 

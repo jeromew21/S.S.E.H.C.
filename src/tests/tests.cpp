@@ -1,10 +1,11 @@
 #include "tests/tests.hpp"
-#include "misc/debug.hpp"
+#include "game/chessboard.hpp"
+#include "uci/strings.hpp"
 #include "misc/perft.hpp"
 
-#define RESET   "\033[0m"
-#define RED     "\033[31m"      /* Red */
-#define GREEN   "\033[32m"      /* Green */
+#define RESET "\033[0m"
+#define RED "\033[31m"   /* Red */
+#define GREEN "\033[32m" /* Green */
 
 const int perft_classical_nodes[6] = {1, 20, 400, 8902, 197281, 4865609};
 const int perft_classical_captures[6] = {0, 0, 0, 34, 1576, 82719};
@@ -30,7 +31,7 @@ void expect(int ground_truth, int value, std::string const &message, int &total_
   total_cases++;
 
   std::cout << "[" << message << "] ";
-   
+
   if (ground_truth != value)
   {
     std::cout << RED;
@@ -67,7 +68,26 @@ void position_mate_test(std::string const &fen, bool is_mate, int &total_cases, 
   expect(is_mate, st == board::Status::BlackWin || st == board::Status::WhiteWin, "is mate?", total_cases, passes);
 }
 
-void perft4_test(int depth, int &total_cases, int &passes) {
+/**
+ * tests based on loading a FEN and comparing state to precalculated values
+ */
+void position_stalemate_test(std::string const &fen, bool is_mate, int &total_cases, int &passes)
+{
+  Board chessboard;
+  chessboard.LoadPosition(fen);
+  board::Status st = chessboard.status();
+  expect(is_mate, st == board::Status::Stalemate, "is stalemate?", total_cases, passes);
+}
+
+void SEE_test(std::string const &fen, Square src, Square dest, int score, int &total_cases, int &passes)
+{
+  Board chessboard;
+  chessboard.LoadPosition(fen);
+  expect(score, chessboard.see(chessboard.move_from_src_dest(src, dest)), "see", total_cases, passes);
+}
+
+void perft4_test(int depth, int &total_cases, int &passes)
+{
   Board chessboard;
   perft::Counter counter;
   chessboard.LoadPosition("r3k2r/Pppp1ppp/1b3nbN/nP6/BBP1P3/q4N2/Pp1P2PP/R2Q1RK1 w kq - 0 1");
@@ -77,8 +97,8 @@ void perft4_test(int depth, int &total_cases, int &passes) {
   expect(perft_test4_promotions[depth], counter.promotions, "promo count", total_cases, passes);
 }
 
-
-void perft_tricky_test(int depth, int &total_cases, int &passes) {
+void perft_tricky_test(int depth, int &total_cases, int &passes)
+{
   Board chessboard;
   perft::Counter counter;
   chessboard.LoadPosition("rnbq1k1r/pp1Pbppp/2p5/8/2B5/8/PPP1NnPP/RNBQK2R w KQ - 1 8");
@@ -153,7 +173,7 @@ void run_tests()
 
   // en passant test
   position_load_test("rnbqkbnr/1p1ppp2/p6p/2pP2p1/4P3/P7/1PP2PPP/RNBQKBNR w KQkq c6 0 5", 38, false, total_cases, passes);
-  
+
   banner("Checkmate tests");
   position_mate_test("rnbqkbnr/ppppp1pp/8/5p1Q/4P3/8/PPPP1PPP/RNB1KBNR b KQkq - 1 2", false, total_cases, passes);
   position_mate_test("rnb1kbnr/pppp1ppp/8/4p3/5PPq/8/PPPPP2P/RNBQKBNR w KQkq - 1 3", true, total_cases, passes);
@@ -163,7 +183,35 @@ void run_tests()
   position_mate_test("3r1knr/p1Npqpb1/Bn2p1N1/3P4/1p2P3/5Q1p/PPPB1PPP/R3K2R b KQ - 0 4", true, total_cases, passes);
   position_mate_test("r2qk2r/p1pp1Qb1/bn2p1p1/3PN3/1p2P3/2N4p/PPPBBPPP/R3K2R b KQkq - 0 2", true, total_cases, passes);
 
-  for (int d = 1; d < 5; d++) {
+  banner("Stalemate tests");
+  position_stalemate_test("rnbqkbnr/ppppp1pp/8/5p1Q/4P3/8/PPPP1PPP/RNB1KBNR b KQkq - 1 2", false, total_cases, passes);
+  position_stalemate_test("rnb1kbnr/pppp1ppp/8/4p3/5PPq/8/PPPPP2P/RNBQKBNR w KQkq - 1 3", false, total_cases, passes);
+  position_stalemate_test("kr6/ppN5/8/8/8/6P1/3K4/8 b - - 0 1", false, total_cases, passes);
+  position_stalemate_test("r2qk2r/p1pp1Qb1/bn1Pp1p1/4N3/1p2P1n1/P1N4p/1PPBBPPP/R3K2R b KQkq - 0 3", false, total_cases, passes);
+  position_stalemate_test("3rk1nr/p1ppqQb1/Bn2p1p1/1N1PN3/1p2P3/7p/PPPB1PPP/R3K2R b KQk - 0 3", false, total_cases, passes);
+  position_stalemate_test("3r1knr/p1Npqpb1/Bn2p1N1/3P4/1p2P3/5Q1p/PPPB1PPP/R3K2R b KQ - 0 4", false, total_cases, passes);
+  position_stalemate_test("r2qk2r/p1pp1Qb1/bn2p1p1/3PN3/1p2P3/2N4p/PPPBBPPP/R3K2R b KQkq - 0 2", false, total_cases, passes);
+  position_stalemate_test("k7/8/1Q6/8/4K3/8/8/8 b - - 0 1", true, total_cases, passes);
+  position_stalemate_test("k7/6p1/1Q4P1/8/4K3/8/8/8 b - - 0 1", true, total_cases, passes);
+  position_stalemate_test("k4bnq/4p1pr/1Q2NpPp/5N1B/4K3/8/8/8 b - - 0 1", true, total_cases, passes);
+
+  banner("SEE tests");
+  SEE_test("1k1r4/1pp4p/p7/4p3/8/P5P1/1PP4P/2K1R3 w - - ", squareFromName("e1"), squareFromName("e5"),
+           getMaterialValue(piece::white::pawn),
+           total_cases, passes);
+
+  SEE_test("1k1r3q/1ppn3p/p4b2/4p3/8/P2N2P1/1PP1R1BP/2K1Q3 w - - ", squareFromName("d3"), squareFromName("e5"),
+           getMaterialValue(piece::white::pawn) - getMaterialValue(piece::white::knight),
+           total_cases, passes);
+  SEE_test("rnbqkbnr/ppp1pppp/8/3p4/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2", squareFromName("e4"), squareFromName("d5"),
+           0,
+           total_cases, passes);
+  SEE_test("2rk1r2/6p1/p2bBnQp/1p1Pq3/8/8/PP3PPP/2R3K1 w - - 0 25", squareFromName("c1"), squareFromName("c8"),
+           getMaterialValue(piece::white::rook),
+           total_cases, passes);
+
+  for (int d = 1; d < 5; d++)
+  {
     banner("PERFT 4 depth=" + std::to_string(d));
     perft4_test(d, total_cases, passes);
   }
@@ -180,7 +228,7 @@ void run_tests()
     perft_kiwipete_test(d, total_cases, passes);
   }
 
-  for (int d = 1; d < 6; d++)
+  for (int d = 1; d < 5; d++)
   {
     banner("PERFT tricky depth=" + std::to_string(d));
     perft_tricky_test(d, total_cases, passes);

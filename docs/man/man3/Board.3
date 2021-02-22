@@ -1,4 +1,4 @@
-.TH "Board" 3 "Fri Feb 19 2021" "S.S.E.H.C" \" -*- nroff -*-
+.TH "Board" 3 "Sat Feb 20 2021" "S.S.E.H.C" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -12,16 +12,19 @@ Board
 
 .in +1c
 .ti -1c
-.RI "\fBMoveList\fP< 256 > \fBlegal_moves\fP ()"
+.RI "\fBMoveList\fP< 256 > \fBlegal_moves\fP () const"
 .br
 .ti -1c
-.RI "\fBboard::Status\fP \fBstatus\fP ()"
+.RI "\fBMoveList\fP< 256 > \fBcapture_moves\fP () const"
 .br
 .ti -1c
-.RI "bool \fBis_checking_move\fP (\fBCMove\fP mv)"
+.RI "bool \fBis_checking_move\fP (\fBCMove\fP mv) const"
 .br
 .ti -1c
-.RI "\fBCMove\fP \fBmove_from_src_dest\fP (\fBSquare\fP src, \fBSquare\fP dest)"
+.RI "int \fBsee\fP (\fBCMove\fP mv) const"
+.br
+.ti -1c
+.RI "\fBCMove\fP \fBmove_from_src_dest\fP (\fBSquare\fP src, \fBSquare\fP dest) const"
 .br
 .ti -1c
 .RI "\fBColor\fP \fBturn\fP () const"
@@ -40,6 +43,15 @@ Board
 .br
 .ti -1c
 .RI "std::string \fBfen\fP () const"
+.br
+.ti -1c
+.RI "bool \fBis_stalemate\fP () const"
+.br
+.ti -1c
+.RI "bool \fBis_checkmate\fP () const"
+.br
+.ti -1c
+.RI "\fBboard::Status\fP \fBstatus\fP ()"
 .br
 .ti -1c
 .RI "void \fBReset\fP ()"
@@ -72,6 +84,10 @@ This class encapsulates a game of chess and the elements that comprise it as suc
 Default constructor\&. Loads the classical starting position\&. 
 .SH "Member Function Documentation"
 .PP 
+.SS "\fBMoveList\fP< 256 > Board::capture_moves () const"
+capture moves only, generated for q-search\&.
+.PP
+For this one and legal moves, consider not using precalculated attack maps\&.\&.\&. 
 .SS "void Board::Dump ()"
 Prints information to the console\&. 
 .SS "std::string Board::fen () const"
@@ -82,11 +98,17 @@ note to self: make sure that the move counter and other state elements are corre
 Get the current hash\&. 
 .SS "bool Board::is_check () const"
 Is the board currently in check? 
-.SS "bool Board::is_checking_move (\fBCMove\fP mv)"
+.SS "bool Board::is_checking_move (\fBCMove\fP mv) const"
 Does this move put the opponent in check?
 .PP
-Assuming a move is legal for a particular side, we want to know if it puts the opponent in check\&. 
-.SS "\fBMoveList\fP< 256 > Board::legal_moves ()"
+Assuming a move is legal for a particular side, we want to know if it puts the opponent in check\&.
+.PP
+Hotspot 
+.SS "bool Board::is_checkmate () const"
+Returns true if for the current position it is checkmate (the opponent to who's move it is to play wins\&.) 
+.SS "bool Board::is_stalemate () const"
+if it isn't check, check for any legal moves 
+.SS "\fBMoveList\fP< 256 > Board::legal_moves () const"
 List of all true legal moves in a position\&. 
 .SS "void Board::LoadPosition (\fBPieceType\fP piece_list[64], \fBColor\fP turn, int ep_square, \fBboard::castle::Rights\fP castling_rights, int fullmove, int halfmove)"
 Loads a position from a list of pieces and complete list of state parameters\&.
@@ -96,7 +118,7 @@ This effectively acts as the constructor for the board\&.
 Loads a position from a FEN string\&. 
 .SS "void Board::MakeMove (\fBCMove\fP mv)"
 Makes a move and changes state accordingly\&.s 
-.SS "\fBCMove\fP Board::move_from_src_dest (\fBSquare\fP src, \fBSquare\fP dest)"
+.SS "\fBCMove\fP Board::move_from_src_dest (\fBSquare\fP src, \fBSquare\fP dest) const"
 Given a move source square and dest square, create a move with the correct metadata\&.
 .PP
 This is used in the UCI interface when loading a sequence of moves\&. 
@@ -106,6 +128,8 @@ A bitboard mask of all pieces\&.
 A bitboard mask of pieces for a particular color\&. 
 .SS "void Board::Reset ()"
 Sets the board to the classical starting position\&. 
+.SS "int Board::see (\fBCMove\fP mv) const"
+Static exchange evaluation 
 .SS "\fBboard::Status\fP Board::status ()"
 Whether the game is continuing, a win for a particular side, or drawn\&.
 .PP

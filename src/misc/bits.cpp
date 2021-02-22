@@ -9,10 +9,11 @@ std::mt19937_64 rng;
 const u64 m1 = 0x5555555555555555;  //binary: 0101...
 const u64 m2 = 0x3333333333333333;  //binary: 00110011..
 const u64 m4 = 0x0f0f0f0f0f0f0f0f;  //binary:  4 zeros,  4 ones ...
+const u64 h01 = 0x0101010101010101; //the sum of 256 to the power of 0,1,2,3...
+
 //const uint64_t m8 = 0x00ff00ff00ff00ff;  //binary:  8 zeros,  8 ones ...
 //const uint64_t m16 = 0x0000ffff0000ffff; //binary: 16 zeros, 16 ones ...
 //const uint64_t m32 = 0x00000000ffffffff; //binary: 32 zeros, 32 ones
-const u64 h01 = 0x0101010101010101; //the sum of 256 to the power of 0,1,2,3...
 
 u64 bitscan_cache[256][8][8];
 
@@ -73,7 +74,9 @@ u64 randomBits()
   return val;
 }
 
-//https://en.wikipedia.org/wiki/Hamming_weight
+/** 
+ * Source: https://en.wikipedia.org/wiki/Hamming_weight
+ */
 int hadd(u64 x)
 {
   x -= (x >> 1) & m1;             //put count of each 2 bits into those 2 bits
@@ -97,26 +100,27 @@ int hadd(u64 x)
 
 void bitscanAll(u64 x, u64List &out_arr)
 {
-  out_arr.Clear();
-  for (int offset = 0; offset < 64; offset += 8)
-  {
-    int chunk = (x >> offset) & 255;
-    if (chunk == 0)
-      continue;
-
-    u64 *cached = bitscan_cache[chunk][offset / 8]; //array of u64s
-    for (int i = 0; i < 8 && cached[i] != 0; i++)
-    {
-      out_arr.Append(cached[i]);
-    }
-  }
-
-  // old implementation should work
   // out_arr.Clear();
-  // while (x) {
-  //   int k = bitscanForward(x);
-  //   u64 bs = (u64) 1 << k;
-  //   out_arr.Append(bs);
-  //   x &= ~bs;
+  // for (int offset = 0; offset < 64; offset += 8)
+  // {
+  //   int chunk = (x >> offset) & 255;
+  //   if (chunk == 0)
+  //     continue;
+
+  //   u64 *cached = bitscan_cache[chunk][offset / 8]; //array of u64s
+  //   for (int i = 0; i < 8 && cached[i] != 0; i++)
+  //   {
+  //     out_arr.Append(cached[i]);
+  //   }
   // }
+
+  // fastest implementation empirically
+  // bitscan ops must be magic
+  out_arr.Clear();
+  while (x) {
+    int k = bitscanForward(x);
+    u64 bs = (u64) 1 << k;
+    out_arr.Append(bs);
+    x &= ~bs;
+  }
 }

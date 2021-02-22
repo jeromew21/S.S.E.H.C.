@@ -1,4 +1,4 @@
-.TH "board::State" 3 "Fri Feb 19 2021" "S.S.E.H.C" \" -*- nroff -*-
+.TH "board::State" 3 "Sat Feb 20 2021" "S.S.E.H.C" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -54,12 +54,6 @@ board::State
 .ti -1c
 .RI "\fBboard::castle::Rights\fP \fBcastling_rights\fP"
 .br
-.ti -1c
-.RI "std::array< \fBu64\fP, 64 > \fBattack_map_\fP"
-.br
-.ti -1c
-.RI "std::array< \fBu64\fP, 64 > \fBdefend_map_\fP"
-.br
 .in -1c
 .SH "Detailed Description"
 .PP 
@@ -72,11 +66,7 @@ This is the stuff that isn't incrementally updated on unmake\&.
 
 .SH "Member Data Documentation"
 .PP 
-.SS "std::array<\fBu64\fP, 64> board::State::attack_map_"
-
 .SS "\fBboard::castle::Rights\fP board::State::castling_rights"
-
-.SS "std::array<\fBu64\fP, 64> board::State::defend_map_"
 
 .SS "int board::State::en_passant_square"
 

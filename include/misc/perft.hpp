@@ -40,6 +40,7 @@ namespace perft
 
   //fills counter struct with values after perft test.
   void perft(Board &board_, int depth, Counter &counter);
+  void perft_only_nodes(Board &board_, int depth);
 } // namespace perft
 
 #endif

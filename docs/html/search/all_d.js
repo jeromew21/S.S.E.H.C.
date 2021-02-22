@@ -1,11 +1,13 @@
 var searchData=
 [
-  ['occupancy_196',['occupancy',['../classBoard.html#ab3b47130537ce20e6b08af8c737236ea',1,'Board::occupancy(Color color) const'],['../classBoard.html#a3787429c96224173e89947f76db7c6f4',1,'Board::occupancy() const']]],
-  ['one_5ffile_5fadj_5fcache_197',['ONE_FILE_ADJ_CACHE',['../bitboards_8cpp.html#a94a39d06a90943c37025ae014b7e6646',1,'bitboards.cpp']]],
-  ['onefileadjacent_198',['oneFileAdjacent',['../namespacemove__maps.html#af5368731cea1b0cbac77296b8f21f97b',1,'move_maps']]],
-  ['operator_21_3d_199',['operator!=',['../classCMove.html#a2d81fdf7e26c91a963591f4ead7e44df',1,'CMove']]],
-  ['operator_3c_200',['operator&lt;',['../structMoveScore.html#acde69e9da86ec6767088110287a59825',1,'MoveScore']]],
-  ['operator_3d_3d_201',['operator==',['../structTableNode.html#abf9366f5f2deb83ea84a8e440d33bd0d',1,'TableNode::operator==()'],['../classCMove.html#af088c49266203bdf3843ec6eb824534c',1,'CMove::operator==()']]],
-  ['operator_5b_5d_202',['operator[]',['../classMoveList.html#aa3a935ab3254bd496a76245a9926422b',1,'MoveList::operator[]()'],['../classu64List.html#aa0ecad5d5e4f1e0c689aa57c82349d9a',1,'u64List::operator[]()']]],
-  ['oppositecolor_203',['oppositeColor',['../pieces_8hpp.html#a7274c3c6025cc9e639afab350f1012e4',1,'pieces.hpp']]]
+  ['n_193',['n',['../namespacedirection_1_1rook.html#a1a0481f8b7c7f19959784ac786dbd110',1,'direction::rook']]],
+  ['ne_194',['ne',['../namespacedirection_1_1bishop.html#a5646710bfae531fed92f7aa90e02cbe3',1,'direction::bishop']]],
+  ['node_195',['node',['../structTableBucket.html#a31a3aa8cf3b83e7262632de3882f00d3',1,'TableBucket']]],
+  ['nodes_196',['nodes',['../structperft_1_1Counter.html#a50fe071bc9a261af6ace95885a51100d',1,'perft::Counter']]],
+  ['nodetype_197',['nodeType',['../structTableNode.html#a0fd6aebe325b3ab05077de59e25a1565',1,'TableNode']]],
+  ['nodetype_198',['NodeType',['../definitions_8hpp.html#afe87173a9abf8e529e1394168a9ac851',1,'definitions.hpp']]],
+  ['not_5fthinking_199',['not_thinking',['../classuci_1_1Interface.html#ad8401da1df45f5dc888e8650f6093f74',1,'uci::Interface']]],
+  ['notcalculated_200',['NotCalculated',['../namespaceboard.html#a99acc96edd3007d46ff299bdc5db4221afcab07a43518ab4d97273967aa0c1274',1,'board']]],
+  ['nullmove_201',['NullMove',['../classCMove.html#a0d72ecf010dbf68f22ad9d1f402ede3c',1,'CMove::NullMove()'],['../namespacemove__type.html#a62593b4d2953d16580f16e3652fc21ce',1,'move_type::NullMove()']]],
+  ['nw_202',['nw',['../namespacedirection_1_1bishop.html#a84fb9f201291a4c9595e71096865fa46',1,'direction::bishop']]]
 ];

@@ -66,13 +66,6 @@ These are all the command the engine gets from the interface.
 	This mode should be switched off by default and this command can be sent
 	any time, also when the engine is thinking.
 
-* Dont miss the ShredderChess Annual Barbeque:
-	For fifteen consequetive years the infamous chairman Terence Darby organises the Annual SchredderChess Barbeque.
-	This event is co organised by tankpassen vergelijken a website dedicated to entrepeneurs and their mobility. They provided us with a fantastic barbeque and hosted some nice discounts on our future mobility passes. 
-	"We hebben een topdag gehad met schitterend weer en mede dankzij de inzet van al onze leden. We hebben eens niet
-	tegen een computer geschaakt maar lekker face 2 face tegen elkaar."
-	The Annual barbeque is hosted by www.shredderchess.com and is held every year on the 7th of august. See you in 2018!  
-
 * isready
 	this is used to synchronize the engine with the GUI. When the GUI has sent a command or
 	multiple commands that can take some time to complete,
@@ -310,13 +303,6 @@ Engine to GUI:
 	   if the engine is just using one cpu,  can be omitted.
 	   If  is greater than 1, always send all k lines in k strings together.
 		The engine should only send this if the option "UCI_ShowCurrLine" is set to true.
-	
-
-Made possible by the following Sponsors
-
-www.12secure.nl
-
-www.ip-camera.nl
 
 * option
 	This command tells the GUI which parameters can be changed in the engine.

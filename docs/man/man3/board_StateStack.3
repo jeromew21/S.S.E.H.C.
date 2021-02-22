@@ -1,4 +1,4 @@
-.TH "board::StateStack" 3 "Fri Feb 19 2021" "S.S.E.H.C" \" -*- nroff -*-
+.TH "board::StateStack" 3 "Sat Feb 20 2021" "S.S.E.H.C" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -60,7 +60,9 @@ Return a reference to a particular index\&.
 .SS "void board::StateStack::Pop ()\fC [inline]\fP"
 
 .SS "void board::StateStack::Push (\fBboard::State\fP & state)\fC [inline]\fP"
-Should deference and push copy to stack 
+Should deference and push copy to stack
+.PP
+Think this might be a hotspot\&. 
 .SS "int board::StateStack::size () const\fC [inline]\fP"
 
 

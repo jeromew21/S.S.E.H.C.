@@ -85,29 +85,29 @@ const u64 ROOKS_RAY_CACHE[4][256] = {{0x101010101010100, 0x202020202020200, 0x40
                                       0x0, 0x100000000000000, 0x300000000000000, 0x700000000000000, 0xf00000000000000,
                                       0x1f00000000000000, 0x3f00000000000000, 0x7f00000000000000}};
 
-const u64 ROOK_ATTACK_CACHE[64] = {0x1010101010101fe, 0x2020202020202fd, 0x4040404040404fb, 0x8080808080808f7, 0x10101010101010ef, 0x20202020202020df,
-                                   0x40404040404040bf, 0x808080808080807f, 0x10101010101fe01, 0x20202020202fd02, 0x40404040404fb04, 0x80808080808f708,
-                                   0x101010101010ef10, 0x202020202020df20, 0x404040404040bf40, 0x8080808080807f80, 0x101010101fe0101, 0x202020202fd0202,
-                                   0x404040404fb0404, 0x808080808f70808, 0x1010101010ef1010, 0x2020202020df2020, 0x4040404040bf4040, 0x80808080807f8080,
-                                   0x1010101fe010101, 0x2020202fd020202, 0x4040404fb040404, 0x8080808f7080808, 0x10101010ef101010, 0x20202020df202020,
-                                   0x40404040bf404040, 0x808080807f808080, 0x10101fe01010101, 0x20202fd02020202, 0x40404fb04040404, 0x80808f708080808,
-                                   0x101010ef10101010, 0x202020df20202020, 0x404040bf40404040, 0x8080807f80808080, 0x101fe0101010101, 0x202fd0202020202,
-                                   0x404fb0404040404, 0x808f70808080808, 0x1010ef1010101010, 0x2020df2020202020, 0x4040bf4040404040, 0x80807f8080808080,
-                                   0x1fe010101010101, 0x2fd020202020202, 0x4fb040404040404, 0x8f7080808080808, 0x10ef101010101010, 0x20df202020202020,
-                                   0x40bf404040404040, 0x807f808080808080, 0xfe01010101010101, 0xfd02020202020202, 0xfb04040404040404, 0xf708080808080808,
-                                   0xef10101010101010, 0xdf20202020202020, 0xbf40404040404040, 0x7f80808080808080};
+// const u64 ROOK_ATTACK_CACHE[64] = {0x1010101010101fe, 0x2020202020202fd, 0x4040404040404fb, 0x8080808080808f7, 0x10101010101010ef, 0x20202020202020df,
+//                                    0x40404040404040bf, 0x808080808080807f, 0x10101010101fe01, 0x20202020202fd02, 0x40404040404fb04, 0x80808080808f708,
+//                                    0x101010101010ef10, 0x202020202020df20, 0x404040404040bf40, 0x8080808080807f80, 0x101010101fe0101, 0x202020202fd0202,
+//                                    0x404040404fb0404, 0x808080808f70808, 0x1010101010ef1010, 0x2020202020df2020, 0x4040404040bf4040, 0x80808080807f8080,
+//                                    0x1010101fe010101, 0x2020202fd020202, 0x4040404fb040404, 0x8080808f7080808, 0x10101010ef101010, 0x20202020df202020,
+//                                    0x40404040bf404040, 0x808080807f808080, 0x10101fe01010101, 0x20202fd02020202, 0x40404fb04040404, 0x80808f708080808,
+//                                    0x101010ef10101010, 0x202020df20202020, 0x404040bf40404040, 0x8080807f80808080, 0x101fe0101010101, 0x202fd0202020202,
+//                                    0x404fb0404040404, 0x808f70808080808, 0x1010ef1010101010, 0x2020df2020202020, 0x4040bf4040404040, 0x80807f8080808080,
+//                                    0x1fe010101010101, 0x2fd020202020202, 0x4fb040404040404, 0x8f7080808080808, 0x10ef101010101010, 0x20df202020202020,
+//                                    0x40bf404040404040, 0x807f808080808080, 0xfe01010101010101, 0xfd02020202020202, 0xfb04040404040404, 0xf708080808080808,
+//                                    0xef10101010101010, 0xdf20202020202020, 0xbf40404040404040, 0x7f80808080808080};
 
-const u64 BISHOP_ATTACK_CACHE[64] = {0x8040201008040200, 0x80402010080500, 0x804020110a00, 0x8041221400, 0x182442800, 0x10204885000, 0x102040810a000,
-                                     0x102040810204000, 0x4020100804020002, 0x8040201008050005, 0x804020110a000a, 0x804122140014, 0x18244280028,
-                                     0x1020488500050, 0x102040810a000a0, 0x204081020400040, 0x2010080402000204, 0x4020100805000508, 0x804020110a000a11,
-                                     0x80412214001422, 0x1824428002844, 0x102048850005088, 0x2040810a000a010, 0x408102040004020, 0x1008040200020408,
-                                     0x2010080500050810, 0x4020110a000a1120, 0x8041221400142241, 0x182442800284482, 0x204885000508804, 0x40810a000a01008,
-                                     0x810204000402010, 0x804020002040810, 0x1008050005081020, 0x20110a000a112040, 0x4122140014224180, 0x8244280028448201,
-                                     0x488500050880402, 0x810a000a0100804, 0x1020400040201008, 0x402000204081020, 0x805000508102040, 0x110a000a11204080,
-                                     0x2214001422418000, 0x4428002844820100, 0x8850005088040201, 0x10a000a010080402, 0x2040004020100804, 0x200020408102040,
-                                     0x500050810204080, 0xa000a1120408000, 0x1400142241800000, 0x2800284482010000, 0x5000508804020100, 0xa000a01008040201,
-                                     0x4000402010080402, 0x2040810204080, 0x5081020408000, 0xa112040800000, 0x14224180000000, 0x28448201000000, 0x50880402010000,
-                                     0xa0100804020100, 0x40201008040201};
+// const u64 BISHOP_ATTACK_CACHE[64] = {0x8040201008040200, 0x80402010080500, 0x804020110a00, 0x8041221400, 0x182442800, 0x10204885000, 0x102040810a000,
+//                                      0x102040810204000, 0x4020100804020002, 0x8040201008050005, 0x804020110a000a, 0x804122140014, 0x18244280028,
+//                                      0x1020488500050, 0x102040810a000a0, 0x204081020400040, 0x2010080402000204, 0x4020100805000508, 0x804020110a000a11,
+//                                      0x80412214001422, 0x1824428002844, 0x102048850005088, 0x2040810a000a010, 0x408102040004020, 0x1008040200020408,
+//                                      0x2010080500050810, 0x4020110a000a1120, 0x8041221400142241, 0x182442800284482, 0x204885000508804, 0x40810a000a01008,
+//                                      0x810204000402010, 0x804020002040810, 0x1008050005081020, 0x20110a000a112040, 0x4122140014224180, 0x8244280028448201,
+//                                      0x488500050880402, 0x810a000a0100804, 0x1020400040201008, 0x402000204081020, 0x805000508102040, 0x110a000a11204080,
+//                                      0x2214001422418000, 0x4428002844820100, 0x8850005088040201, 0x10a000a010080402, 0x2040004020100804, 0x200020408102040,
+//                                      0x500050810204080, 0xa000a1120408000, 0x1400142241800000, 0x2800284482010000, 0x5000508804020100, 0xa000a01008040201,
+//                                      0x4000402010080402, 0x2040810204080, 0x5081020408000, 0xa112040800000, 0x14224180000000, 0x28448201000000, 0x50880402010000,
+//                                      0xa0100804020100, 0x40201008040201};
 
 //need to fix rook edge masks
 const u64 ROOK_MASKED_ATTACKS[64] = {0x101010101017e, 0x202020202027c, 0x404040404047a, 0x8080808080876, 0x1010101010106e, 0x2020202020205e, 0x4040404040403e,
@@ -281,16 +281,95 @@ const u64 ONE_FILE_ADJ_CACHE[64] = {0x2, 0x5, 0xa, 0x14, 0x28, 0x50, 0xa0, 0x40,
                                     0x50000000000000, 0xa0000000000000, 0x40000000000000, 0x200000000000000, 0x500000000000000,
                                     0xa00000000000000, 0x1400000000000000, 0x2800000000000000, 0x5000000000000000, 0xa000000000000000, 0x4000000000000000};
 
-bool move_maps::isAttackedSliding(u64 occupancy_map, u64 subject, u64 rooks, u64 bishops)
+/**
+ * Put the data we want to access together in a struct for better cache performance.
+ */
+struct magic_data
+{
+  u64 *table_ptr;
+  u64 masked_attacks;
+  u64 magic_number;
+  int shift;
+};
+
+/**
+ * Put the data we want to access together in a struct for better cache performance.
+ */
+struct move_data
+{
+  u64 pawn_capture[2];
+  u64 pawn_push[2];
+  u64 pawn_double[2];
+  u64 knight;
+  u64 king;
+};
+
+// These hold the data for a particular square.
+magic_data BishopMagicData[64];
+magic_data RookMagicData[64];
+
+// These hold the data for a particular square.
+move_data MoveData[64];
+
+/**
+ * Sometimes we care about the specific direction a ray goes 
+ * for pin checking, or other things.
+ */
+namespace direction
+{
+  namespace rook
+  {
+    const int n = 0;
+    const int e = 1;
+    const int s = 2;
+    const int w = 3;
+  } // namespace rook
+  namespace bishop
+  {
+    const int nw = 0;
+    const int ne = 1;
+    const int se = 2;
+    const int sw = 3;
+  } // namespace bishop
+} // namespace direction
+
+/**
+ * return the i-th permutation of mask with pop_count members
+ * 
+ * original method by Tord Romstad with modifications
+ */
+u64 permute_mask(u64 mask, int index, int pop_count)
+{
+  int i, j;
+  u64 result = 0;
+  for (i = 0; i < pop_count; i++)
+  {
+    j = bitscanForward(mask);
+    mask &= ~(((u64)1) << j);
+
+    if (index & (1 << i))
+      result |= (((u64)1) << j);
+  }
+  return result;
+}
+
+u64 move_maps::slidingAttackers(u64 occupancy_map, u64 subject, u64 rooks, u64 bishops)
 {
   assert(isValidSquare(u64ToSquare(subject)));
-  assert(occupancy_map & subject);
+  // assert(occupancy_map & subject);
 
   Square subj_location = u64ToSquare(subject);
-  if (rooks & rookMoves(subj_location, occupancy_map) || bishops & bishopMoves(subj_location, occupancy_map))
-    return true;
-  else
-    return false;
+  return (rooks & move_maps::rookMoves(subj_location, occupancy_map)) | (bishops & move_maps::bishopMoves(subj_location, occupancy_map));
+}
+
+u64 move_maps::jumpingAttackers(u64 subject, Color attacking_turn, u64 knights, u64 kings, u64 pawns)
+{
+  assert(isValidSquare(u64ToSquare(subject)));
+  Square subj_location = u64ToSquare(subject);
+  const u64 pawn_overlaps = pawns & move_maps::pawnCaptures(subj_location, oppositeColor(attacking_turn));
+  const u64 king_overlaps = kings & move_maps::kingMoves(subj_location);
+  const u64 knight_overlaps = knights & move_maps::knightMoves(subj_location);
+  return pawn_overlaps | king_overlaps | knight_overlaps;
 }
 
 /**
@@ -381,26 +460,6 @@ u64 bishopMovesClassical(Square sq, u64 occupants)
   return result;
 }
 
-/**
- * return the i-th permutation of mask with pop_count members
- * 
- * original method by Tord Romstad with modifications
- */
-u64 permute_mask(u64 mask, int index, int pop_count)
-{
-  int i, j;
-  u64 result = 0;
-  for (i = 0; i < pop_count; i++)
-  {
-    j = bitscanForward(mask);
-    mask &= ~(((u64)1) << j);
-
-    if (index & (1 << i))
-      result |= (((u64)1) << j);
-  }
-  return result;
-}
-
 void move_maps::init()
 {
   verbose_info("initializing move cache");
@@ -434,6 +493,10 @@ void move_maps::init()
       }
       ROOK_MAGIC_TABLE[sq][hash] = rookMovesClassical(sq, blocking_mask);
     }
+    RookMagicData[sq].shift = ROOK_MAGIC_SHIFTS[sq];
+    RookMagicData[sq].masked_attacks = attack_mask;
+    RookMagicData[sq].magic_number = ROOK_MAGIC_NUMBERS[sq];
+    RookMagicData[sq].table_ptr = ROOK_MAGIC_TABLE[sq];
   }
 
   for (Square sq = 0; sq < 64; sq++)
@@ -449,17 +512,23 @@ void move_maps::init()
       u64 hash = (blocking_mask * BISHOP_MAGIC_NUMBERS[sq]) >> (64 - BISHOP_MAGIC_SHIFTS[sq]);
       BISHOP_MAGIC_TABLE[sq][hash] = bishopMovesClassical(sq, blocking_mask);
     }
+    BishopMagicData[sq].shift = BISHOP_MAGIC_SHIFTS[sq];
+    BishopMagicData[sq].masked_attacks = attack_mask;
+    BishopMagicData[sq].magic_number = BISHOP_MAGIC_NUMBERS[sq];
+    BishopMagicData[sq].table_ptr = BISHOP_MAGIC_TABLE[sq];
   }
-}
 
-bool move_maps::isPromotingRank(Square piece_location, Color color)
-{
-  return (color == Black && squareToRow(piece_location) == 0) || (color == White && squareToRow(piece_location) == 7);
-}
-
-bool move_maps::isStartingRank(Square piece_location, Color color)
-{
-  return (color == Black && squareToRow(piece_location) == 6) || (color == White && squareToRow(piece_location) == 1);
+  for (Square sq = 0; sq < 64; sq++)
+  {
+    MoveData[sq].pawn_capture[0] = PAWN_CAPTURE_CACHE[0][sq];
+    MoveData[sq].pawn_capture[1] = PAWN_CAPTURE_CACHE[1][sq];
+    MoveData[sq].pawn_push[0] = PAWN_MOVE_CACHE[0][sq];
+    MoveData[sq].pawn_push[1] = PAWN_MOVE_CACHE[1][sq];
+    MoveData[sq].pawn_double[0] = PAWN_DOUBLE_CACHE[0][sq];
+    MoveData[sq].pawn_double[1] = PAWN_DOUBLE_CACHE[1][sq];
+    MoveData[sq].knight = KNIGHT_MOVE_CACHE[sq];
+    MoveData[sq].king = KING_MOVE_CACHE[sq];
+  }
 }
 
 u64 move_maps::oneFileAdjacent(Square piece_location)
@@ -469,27 +538,32 @@ u64 move_maps::oneFileAdjacent(Square piece_location)
 
 u64 move_maps::pawnCaptures(Square piece_location, Color color)
 {
-  return PAWN_CAPTURE_CACHE[color][piece_location];
+  // return PAWN_CAPTURE_CACHE[color][piece_location];
+  return MoveData[piece_location].pawn_capture[color];
 }
 
 u64 move_maps::pawnDoubleMoves(Square piece_location, Color color)
 {
-  return PAWN_DOUBLE_CACHE[color][piece_location];
+  // return PAWN_DOUBLE_CACHE[color][piece_location];
+  return MoveData[piece_location].pawn_double[color];
 }
 
 u64 move_maps::pawnMoves(Square piece_location, Color color)
 {
-  return PAWN_MOVE_CACHE[color][piece_location];
+  // return PAWN_MOVE_CACHE[color][piece_location];
+  return MoveData[piece_location].pawn_push[color];
 }
 
 u64 move_maps::knightMoves(Square piece_location)
 {
-  return KNIGHT_MOVE_CACHE[piece_location];
+  //return KNIGHT_MOVE_CACHE[piece_location];
+  return MoveData[piece_location].knight;
 }
 
 u64 move_maps::kingMoves(Square piece_location)
 {
-  return KING_MOVE_CACHE[piece_location];
+  // return KING_MOVE_CACHE[piece_location];
+  return MoveData[piece_location].king;
 }
 
 /**
@@ -497,16 +571,16 @@ u64 move_maps::kingMoves(Square piece_location)
  */
 u64 move_maps::bishopMoves(Square piece_location, u64 occupants)
 {
-  u64 blocking_mask = BISHOP_MASKED_ATTACKS[piece_location] & occupants;
-  u64 hash = (blocking_mask * BISHOP_MAGIC_NUMBERS[piece_location]) >> (64 - BISHOP_MAGIC_SHIFTS[piece_location]);
-  return BISHOP_MAGIC_TABLE[piece_location][hash];
+  u64 blocking_mask = BishopMagicData[piece_location].masked_attacks & occupants;
+  u64 hash = (blocking_mask * BishopMagicData[piece_location].magic_number) >> (64 - BishopMagicData[piece_location].shift);
+  return BishopMagicData[piece_location].table_ptr[hash];
 }
 
 u64 move_maps::rookMoves(Square piece_location, u64 occupants)
 {
-  u64 blocking_mask = ROOK_MASKED_ATTACKS[piece_location] & occupants;
-  u64 hash = (blocking_mask * ROOK_MAGIC_NUMBERS[piece_location]) >> (64 - ROOK_MAGIC_SHIFTS[piece_location]);
-  return ROOK_MAGIC_TABLE[piece_location][hash];
+  u64 blocking_mask = RookMagicData[piece_location].masked_attacks & occupants;
+  u64 hash = (blocking_mask * RookMagicData[piece_location].magic_number) >> (64 - RookMagicData[piece_location].shift);
+  return RookMagicData[piece_location].table_ptr[hash];
 }
 
 u64 move_maps::bishopRay(Square piece_location, int direction)
@@ -517,14 +591,4 @@ u64 move_maps::bishopRay(Square piece_location, int direction)
 u64 move_maps::rookRay(Square piece_location, int direction)
 {
   return ROOKS_RAY_CACHE[direction][piece_location];
-}
-
-u64 move_maps::bishopRay(Square piece_location)
-{
-  return BISHOP_ATTACK_CACHE[piece_location];
-}
-
-u64 move_maps::rookRay(Square piece_location)
-{
-  return ROOK_ATTACK_CACHE[piece_location];
 }

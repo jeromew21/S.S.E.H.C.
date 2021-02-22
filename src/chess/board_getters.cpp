@@ -9,26 +9,25 @@ board::Status Board::status()
   // Calculate and store value
   if (is_check())
   {
-    MoveList<256> legals = legal_moves();
-    if (legals.size() == 0)
+    if (is_checkmate())
     {
       if (turn() == White)
-      {
         status_ = board::Status::BlackWin;
-      }
       else
-      {
         status_ = board::Status::WhiteWin;
-      }
-    } else {
+    }
+    else
+    {
+      // check, but not checkmate: must be still playing
       status_ = board::Status::Playing;
     }
   }
+  else if (is_stalemate())
+  {
+    status_ = board::Status::Stalemate;
+  }
   else
   {
-    // check for stalemate will slow down a little
-    // will need a dedicated function
-    // status_ = board::Status::Stalemate;
     status_ = board::Status::Playing;
   }
 
@@ -53,8 +52,7 @@ u64 Board::hash() const
 u64 Board::occupancy() const
 {
   assert(!(occupancy(White) & occupancy(Black)));
-
-  return occupancy(White) | occupancy(Black);
+  return occupancy_bitboard_;
 }
 
 u64 Board::occupancy(Color color) const
@@ -62,54 +60,94 @@ u64 Board::occupancy(Color color) const
   assert(color == White || color == Black);
 
   if (color == White)
-  {
     return bitboard_[piece::white::king] | bitboard_[piece::white::queen] | bitboard_[piece::white::bishop] |
            bitboard_[piece::white::pawn] | bitboard_[piece::white::rook] | bitboard_[piece::white::knight];
-  }
+
   return bitboard_[piece::black::king] | bitboard_[piece::black::queen] | bitboard_[piece::black::bishop] |
          bitboard_[piece::black::pawn] | bitboard_[piece::black::rook] | bitboard_[piece::black::knight];
 }
 
-CMove Board::move_from_src_dest(Square src, Square dest)
+CMove Board::move_from_src_dest(Square src, Square dest) const
 {
-  PieceType mover = piece_at_(src);
-  assert(!piece::is_empty(mover));
+  // Validate move...
+  MoveList<256> mv_list = legal_moves();
+  assert(mv_list.size() > 0);
 
-  // this needs to be given more information... promotions...
-  return CMove(src, dest, move_type::Default);
+  for (int i = 0; i < mv_list.size(); i++)
+  {
+    CMove mv = mv_list[i];
+    if (mv.src_square() == src && mv.dest_square() == dest)
+      return mv;
+  }
+  assert(false);
+  return mv_list[0]; // if given a wrong move then just return first move
 }
 
-u64 Board::attackers_to_(u64 subjects)
+/**
+ * used in uncheck and checking for castling
+ */
+u64 Board::attackers_to_(u64 subjects, Color attacking_color) const
 {
-  assert(maps_generated_);
   assert(subjects != 0);
 
+  u64List subj_bitscan;
+  bitscanAll(subjects, subj_bitscan);
+  const u64 occ = occupancy();
+  const u64 rooks = bitboard_[piece::get_rook(attacking_color)] | bitboard_[piece::get_queen(attacking_color)];
+  const u64 bishops = bitboard_[piece::get_bishop(attacking_color)] | bitboard_[piece::get_queen(attacking_color)];
+  const u64 knights = bitboard_[piece::get_knight(attacking_color)];
+  const u64 kings = bitboard_[piece::get_king(attacking_color)];
+  const u64 pawns = bitboard_[piece::get_pawn(attacking_color)];
+
   u64 attacker_map = 0;
-  u64List arr;
-  bitscanAll(subjects, arr);
-  for (int i = 0; i < arr.len(); i++)
+
+  for (int i = 0; i < subj_bitscan.len(); i++)
   {
-    attacker_map |= state_.defend_map_[u64ToSquare(arr[i])];
+    u64 subj_loc = subj_bitscan[i];
+    u64 sliders = move_maps::slidingAttackers(occ | subj_loc, subj_loc, rooks, bishops);
+    u64 jumpers = move_maps::jumpingAttackers(subj_loc, attacking_color, knights, kings, pawns);
+    attacker_map |= sliders | jumpers;
   }
   return attacker_map;
 }
 
-u64 Board::attackers_to_(u64 subjects, Color attacking_color)
+/** 
+ * This is technically redundant with attackers_to_ but we get a theoretical speedup by returning early
+ * if there are multiple subjects.
+ */
+bool Board::is_attacked_(u64 subjects, Color attacking_color) const
 {
-  return attackers_to_(subjects) & occupancy(attacking_color);
+  assert(subjects != 0);
+
+  u64List subj_bitscan;
+  bitscanAll(subjects, subj_bitscan);
+  u64 occ = occupancy();
+  u64 rooks = bitboard_[piece::get_rook(attacking_color)] | bitboard_[piece::get_queen(attacking_color)];
+  u64 bishops = bitboard_[piece::get_bishop(attacking_color)] | bitboard_[piece::get_queen(attacking_color)];
+  u64 knights = bitboard_[piece::get_knight(attacking_color)];
+  u64 kings = bitboard_[piece::get_king(attacking_color)];
+  u64 pawns = bitboard_[piece::get_pawn(attacking_color)];
+
+  for (int i = 0; i < subj_bitscan.len(); i++)
+  {
+    u64 subj_loc = subj_bitscan[i];
+    u64 sliders = move_maps::slidingAttackers(occ | subj_loc, subj_loc, rooks, bishops);
+    if (sliders)
+      return true;
+    u64 jumpers = move_maps::jumpingAttackers(subj_loc, attacking_color, knights, kings, pawns);
+    if (jumpers)
+      return true;
+  }
+  return false;
 }
 
 PieceType Board::piece_at_(u64 location) const
 {
-  for (PieceType i = 0; i < 12; i++)
-  {
-    if (location & bitboard_[i])
-      return i;
-  }
-  return piece::EmptyPiece;
+  return piece_at_(u64ToSquare(location));
 }
 
 PieceType Board::piece_at_(Square location) const
 {
-  return piece_at_(u64FromSquare(location));
+  assert(isValidSquare(location));
+  return piece_board_[location];
 }

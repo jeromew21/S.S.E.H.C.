@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['🅂_2e🅂_2e🄴_2e🄷_2e🄲_2e_374',['🅂.🅂.🄴.🄷.🄲.',['../md_README.html',1,'']]]
+  ['_7einterface_390',['~Interface',['../classuci_1_1Interface.html#a32aa63e2811d3b166fffb064424b0b03',1,'uci::Interface']]]
 ];

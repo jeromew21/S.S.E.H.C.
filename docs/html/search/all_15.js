@@ -1,6 +1,9 @@
 var searchData=
 [
-  ['w_368',['w',['../namespacedirection_1_1rook.html#a4811a3feec399e5d14057c20ddd7195d',1,'direction::rook']]],
-  ['white_369',['White',['../definitions_8hpp.html#a7a43a04cb403aa5f48a6c416ab72051d',1,'definitions.hpp']]],
-  ['whitewin_370',['WhiteWin',['../namespaceboard.html#a99acc96edd3007d46ff299bdc5db4221a14cdaea37bf0e56b2b61ac7b1b8e5473',1,'board']]]
+  ['valgrind_379',['valgrind',['../namespaceprofile.html#a1398d4f579785cce89e45ad2291b5015',1,'profile']]],
+  ['verbose_380',['verbose',['../main_8cpp.html#ab3f078684998b83967d507d0f453f454',1,'main.cpp']]],
+  ['verbose_5finfo_381',['verbose_info',['../utils_8hpp.html#aac46295336bbfca7c7e6d0022ca3d792',1,'verbose_info(const std::string &amp;text):&#160;main.cpp'],['../main_8cpp.html#aac46295336bbfca7c7e6d0022ca3d792',1,'verbose_info(const std::string &amp;text):&#160;main.cpp']]],
+  ['version_2ehpp_382',['version.hpp',['../version_8hpp.html',1,'']]],
+  ['version_5fmajor_383',['version_major',['../version_8hpp.html#ace5613962a5d7fb7f24025d8a240fcba',1,'version.hpp']]],
+  ['version_5fminor_384',['version_minor',['../version_8hpp.html#a0962812216eb934a7592210f03449597',1,'version.hpp']]]
 ];

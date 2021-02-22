@@ -1,4 +1,6 @@
 #include "uci/interface.hpp"
+#include "misc/version.hpp"
+#include "ai/ai.hpp"
 
 void uci::sendToUciClient(const std::string &cmd) {
   std::cout << cmd << std::endl;
@@ -61,16 +63,16 @@ void uci::Interface::Think()
 
 void uci::Interface::StopThinking()
 {
-  if (search_thread.joinable())
+  if (search_thread_.joinable())
   {
-    not_thinking = true;
-    search_thread.join();
+    not_thinking = true; // move outside if?
+    search_thread_.join();
   }
   // now stop the timer task
   stop_timer = true;
-  if (timer_thread.joinable())
+  if (timer_thread_.joinable())
   {
-    timer_thread.join();
+    timer_thread_.join();
   }
 }
 
@@ -103,7 +105,7 @@ void uci::Interface::DelayStop(int msecs)
 
 void uci::Interface::StartThinking(bool inf, int msecs)
 {
-  if (search_thread.joinable())
+  if (search_thread_.joinable())
   {
     StopThinking();
   }
@@ -111,12 +113,12 @@ void uci::Interface::StartThinking(bool inf, int msecs)
   stop_timer = false;
 
   // launch the search thread
-  search_thread = std::thread(&Interface::Think, this);
+  search_thread_ = std::thread(&Interface::Think, this);
 
-  // launch the timer thread.
+  // launch the stop timer thread
   if (!inf)
   {
-    timer_thread = std::thread(&Interface::DelayStop, this, msecs);
+    timer_thread_ = std::thread(&Interface::DelayStop, this, msecs);
   }
 }
 
@@ -129,20 +131,25 @@ void uci::Interface::RecieveCommand(std::string cmd)
   }
   if (tokens[0] == "uci")
   {
-    uci::sendToUciClient("id name ssehc ");
+    // send engine info
+    uci::sendToUciClient("id name ssehc " + std::to_string(version_major) + "." + std::to_string(version_minor));
     uci::sendToUciClient("id author Jerome Wei Nick Buoncristiani");
-    uci::sendToUciClient("option name Foo type check default false");
+
+    // send list of options 
+    uci::sendToUciClient("option name threads type check default false"); // list options...
+
+    // finally, send ok 
     uci::sendToUciClient("uciok");
   }
   else if (tokens[0] == "debug")
   {
     if (tokens[1] == "on")
     {
-      debug_ = true;
+      uci::set_debug(true);
     }
     else if (tokens[1] == "off")
     {
-      debug_ = false;
+      uci::set_debug(false);
     }
   }
   else if (tokens[0] == "isready")
@@ -151,25 +158,29 @@ void uci::Interface::RecieveCommand(std::string cmd)
   }
   else if (tokens[0] == "setoption")
   {
+    // setoption name [value ]
+    //ai::set_option();
   }
   else if (tokens[0] == "register")
   {
+    // probably ignore this
   }
   else if (tokens[0] == "ucinewgame")
   {
+
   }
   else if (tokens[0] == "position")
   {
     // int j = 2;
     // if (tokens[1] == "startpos") {
-    //   board.reset();
+    //   board_.reset();
     // } else {
     //   if (tokens[1] == "fen") {
     //     std::string fenstring = "";
     //     for (int k = 2; k < 8; k++) {
     //       fenstring += tokens[k] + " ";
     //     }
-    //     board.loadPosition(fenstring);
+    //     board_.loadPosition(fenstring);
     //     j = 8;
     //   }
     // }
@@ -223,6 +234,8 @@ void uci::Interface::RecieveCommand(std::string cmd)
   }
   else if (tokens[0] == "ponderhit")
   {
+    // the user has played the expected move. This will be sent if the engine was told to ponder on the same move
+	  // the user has played. The engine should continue searching but switch from pondering to normal search.
   }
   else if (tokens[0] == "quit")
   {
@@ -235,7 +248,6 @@ void uci::listen()
   uci::Interface interface;
   for (std::string command; std::getline(std::cin, command);)
   {
-    std::vector<std::string> tokens = tokenize(command);
     interface.RecieveCommand(command);
   }
 }

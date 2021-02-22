@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['_7einterface_373',['~Interface',['../classuci_1_1Interface.html#a32aa63e2811d3b166fffb064424b0b03',1,'uci::Interface']]]
+  ['zerowindowsearch_388',['zeroWindowSearch',['../namespaceai.html#a2892b0e93f722f3fbaac38f3c2e766fa',1,'ai']]],
+  ['zobrist_389',['zobrist',['../namespacezobrist.html',1,'']]]
 ];

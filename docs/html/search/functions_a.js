@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['legal_5fmoves_520',['legal_moves',['../classBoard.html#abf49d6bfa97aa4595d7cd3f9be13b978',1,'Board']]],
-  ['len_521',['len',['../classu64List.html#a9019e79685a9cf8a7128e87d8d0fc272',1,'u64List']]],
-  ['listen_522',['listen',['../namespaceuci.html#adab383c743b3efacb5713c96e7728390',1,'uci']]],
-  ['loadposition_523',['LoadPosition',['../classBoard.html#a8bfbf0d3746eb8190a25273ed4a9d5ad',1,'Board::LoadPosition(PieceType piece_list[64], Color turn, int ep_square, board::castle::Rights castling_rights, int fullmove, int halfmove)'],['../classBoard.html#a338f08512da2226e5a8e593e83660500',1,'Board::LoadPosition(std::string fen)']]]
+  ['kingmoves_540',['kingMoves',['../namespacemove__maps.html#a18f6f80f3c3f5efe0f77417addd8e626',1,'move_maps']]],
+  ['knightmoves_541',['knightMoves',['../namespacemove__maps.html#abe621f8c6d35fe11ff5ac8cae97cdd31',1,'move_maps']]]
 ];

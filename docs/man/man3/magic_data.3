@@ -1,0 +1,41 @@
+.TH "magic_data" 3 "Sat Feb 20 2021" "S.S.E.H.C" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+magic_data
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBu64\fP * \fBtable_ptr\fP"
+.br
+.ti -1c
+.RI "\fBu64\fP \fBmasked_attacks\fP"
+.br
+.ti -1c
+.RI "\fBu64\fP \fBmagic_number\fP"
+.br
+.ti -1c
+.RI "int \fBshift\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Put the data we want to access together in a struct for better cache performance\&. 
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBu64\fP magic_data::magic_number"
+
+.SS "\fBu64\fP magic_data::masked_attacks"
+
+.SS "int magic_data::shift"
+
+.SS "\fBu64\fP* magic_data::table_ptr"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for S\&.S\&.E\&.H\&.C from the source code\&.

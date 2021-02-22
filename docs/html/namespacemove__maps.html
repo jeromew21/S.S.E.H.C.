@@ -74,8 +74,10 @@ $(function() {
 Functions</h2></td></tr>
 <tr class="memitem:ac0dc68279809aa34ce8164e37479eb68"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemove__maps.html#ac0dc68279809aa34ce8164e37479eb68">init</a> ()</td></tr>
 <tr class="separator:ac0dc68279809aa34ce8164e37479eb68"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e3251e1e05844fca26dee56425a4a4e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemove__maps.html#a3e3251e1e05844fca26dee56425a4a4e">isAttackedSliding</a> (<a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a> occupancy_map, <a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a> subject, <a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a> rooks, <a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a> bishops)</td></tr>
-<tr class="separator:a3e3251e1e05844fca26dee56425a4a4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5a08d1efe8c19f887a6aa5be1362051"><td class="memItemLeft" align="right" valign="top"><a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemove__maps.html#af5a08d1efe8c19f887a6aa5be1362051">slidingAttackers</a> (<a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a> occupancy_map, <a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a> subject, <a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a> rooks, <a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a> bishops)</td></tr>
+<tr class="separator:af5a08d1efe8c19f887a6aa5be1362051"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a615a8c8951771776028810f1b5f7ee7b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemove__maps.html#a615a8c8951771776028810f1b5f7ee7b">jumpingAttackers</a> (<a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a> subject, <a class="el" href="definitions_8hpp.html#a2f17017b1ef643696b678a0703f0f166">Color</a> subj_turn, <a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a> knights, <a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a> kings, <a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a> pawns)</td></tr>
+<tr class="separator:a615a8c8951771776028810f1b5f7ee7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4c4dc7abb7c456a8558f8dff7033404e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemove__maps.html#a4c4dc7abb7c456a8558f8dff7033404e">isPromotingRank</a> (<a class="el" href="definitions_8hpp.html#a6de8fcf40523e5c1eecf939520f33f6b">Square</a> piece_location, <a class="el" href="definitions_8hpp.html#a2f17017b1ef643696b678a0703f0f166">Color</a> color)</td></tr>
 <tr class="separator:a4c4dc7abb7c456a8558f8dff7033404e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afeace7a38ea2b885705ca549b672c405"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemove__maps.html#afeace7a38ea2b885705ca549b672c405">isStartingRank</a> (<a class="el" href="definitions_8hpp.html#a6de8fcf40523e5c1eecf939520f33f6b">Square</a> piece_location, <a class="el" href="definitions_8hpp.html#a2f17017b1ef643696b678a0703f0f166">Color</a> color)</td></tr>
@@ -206,52 +208,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a3e3251e1e05844fca26dee56425a4a4e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3e3251e1e05844fca26dee56425a4a4e">&#9670;&nbsp;</a></span>isAttackedSliding()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool move_maps::isAttackedSliding </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a>&#160;</td>
-          <td class="paramname"><em>occupancy_map</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a>&#160;</td>
-          <td class="paramname"><em>subject</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a>&#160;</td>
-          <td class="paramname"><em>rooks</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a>&#160;</td>
-          <td class="paramname"><em>bishops</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>given an occupancy map, subject location (can only contain 1 bit for now), and location of sliding pieces, check if the king is under attack by any of those sliding pieces </p>
-
-</div>
-</div>
 <a id="a4c4dc7abb7c456a8558f8dff7033404e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4c4dc7abb7c456a8558f8dff7033404e">&#9670;&nbsp;</a></span>isPromotingRank()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">bool move_maps::isPromotingRank </td>
@@ -271,6 +235,11 @@ Functions</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <p>Rank 0 for Black</p>
 <p>Rank 7 for White </p>
@@ -282,6 +251,9 @@ Functions</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">bool move_maps::isStartingRank </td>
@@ -301,9 +273,61 @@ Functions</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <p>Rank 6 for Black</p>
 <p>Rank 1 for White </p>
+
+</div>
+</div>
+<a id="a615a8c8951771776028810f1b5f7ee7b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a615a8c8951771776028810f1b5f7ee7b">&#9670;&nbsp;</a></span>jumpingAttackers()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a> move_maps::jumpingAttackers </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a>&#160;</td>
+          <td class="paramname"><em>subject</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="definitions_8hpp.html#a2f17017b1ef643696b678a0703f0f166">Color</a>&#160;</td>
+          <td class="paramname"><em>subj_turn</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a>&#160;</td>
+          <td class="paramname"><em>knights</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a>&#160;</td>
+          <td class="paramname"><em>kings</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a>&#160;</td>
+          <td class="paramname"><em>pawns</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>same as is AttackedSliding but returns location of attackers. </p>
 
 </div>
 </div>
@@ -528,6 +552,47 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Returns the single rook ray from a particular direction </p>
+
+</div>
+</div>
+<a id="af5a08d1efe8c19f887a6aa5be1362051"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5a08d1efe8c19f887a6aa5be1362051">&#9670;&nbsp;</a></span>slidingAttackers()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a> move_maps::slidingAttackers </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a>&#160;</td>
+          <td class="paramname"><em>occupancy_map</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a>&#160;</td>
+          <td class="paramname"><em>subject</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a>&#160;</td>
+          <td class="paramname"><em>rooks</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="definitions_8hpp.html#a969c7c1ebb4f70581e040a3034b14ee0">u64</a>&#160;</td>
+          <td class="paramname"><em>bishops</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>same as is AttackedSliding but returns location of attackers. </p>
 
 </div>
 </div>

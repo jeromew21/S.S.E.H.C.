@@ -1,4 +1,4 @@
-.TH "include/game/chessboard.hpp" 3 "Fri Feb 19 2021" "S.S.E.H.C" \" -*- nroff -*-
+.TH "include/game/chessboard.hpp" 3 "Sat Feb 20 2021" "S.S.E.H.C" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -37,15 +37,6 @@ include/game/chessboard.hpp
 .ti -1c
 .RI " \fBmove_maps\fP"
 .br
-.ti -1c
-.RI " \fBdirection\fP"
-.br
-.ti -1c
-.RI " \fBdirection::rook\fP"
-.br
-.ti -1c
-.RI " \fBdirection::bishop\fP"
-.br
 .in -1c
 .SS "Functions"
 
@@ -57,7 +48,10 @@ include/game/chessboard.hpp
 .RI "void \fBmove_maps::init\fP ()"
 .br
 .ti -1c
-.RI "bool \fBmove_maps::isAttackedSliding\fP (\fBu64\fP occupancy_map, \fBu64\fP subject, \fBu64\fP rooks, \fBu64\fP bishops)"
+.RI "\fBu64\fP \fBmove_maps::slidingAttackers\fP (\fBu64\fP occupancy_map, \fBu64\fP subject, \fBu64\fP rooks, \fBu64\fP bishops)"
+.br
+.ti -1c
+.RI "\fBu64\fP \fBmove_maps::jumpingAttackers\fP (\fBu64\fP subject, \fBColor\fP subj_turn, \fBu64\fP knights, \fBu64\fP kings, \fBu64\fP pawns)"
 .br
 .ti -1c
 .RI "bool \fBmove_maps::isPromotingRank\fP (\fBSquare\fP piece_location, \fBColor\fP color)"
@@ -100,34 +94,6 @@ include/game/chessboard.hpp
 .br
 .ti -1c
 .RI "\fBu64\fP \fBmove_maps::bishopRay\fP (\fBSquare\fP piece_location)"
-.br
-.in -1c
-.SS "Variables"
-
-.in +1c
-.ti -1c
-.RI "const int \fBdirection::rook::n\fP = 0"
-.br
-.ti -1c
-.RI "const int \fBdirection::rook::e\fP = 1"
-.br
-.ti -1c
-.RI "const int \fBdirection::rook::s\fP = 2"
-.br
-.ti -1c
-.RI "const int \fBdirection::rook::w\fP = 3"
-.br
-.ti -1c
-.RI "const int \fBdirection::bishop::nw\fP = 0"
-.br
-.ti -1c
-.RI "const int \fBdirection::bishop::ne\fP = 1"
-.br
-.ti -1c
-.RI "const int \fBdirection::bishop::se\fP = 2"
-.br
-.ti -1c
-.RI "const int \fBdirection::bishop::sw\fP = 3"
 .br
 .in -1c
 .SH "Author"

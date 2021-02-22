@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['can_5fpop_42',['can_pop',['../classboard_1_1StateStack.html#a09b091b0dd1eb6984ca9b61bf57a4d96',1,'board::StateStack']]],
+  ['can_5fpop_41',['can_pop',['../classboard_1_1StateStack.html#a09b091b0dd1eb6984ca9b61bf57a4d96',1,'board::StateStack']]],
+  ['capture_5fmoves_42',['capture_moves',['../classBoard.html#a68856f9d1a70ad3c5da1a6207eb91842',1,'Board']]],
   ['captures_43',['captures',['../structperft_1_1Counter.html#a15d9320a72c26e16aaa11d41debe494e',1,'perft::Counter']]],
   ['castle_2ecpp_44',['castle.cpp',['../castle_8cpp.html',1,'']]],
   ['castle_5fhash_5finds_45',['castle_hash_inds',['../hashing_8cpp.html#a511ac477bfc33e474c8f733a64060173',1,'hashing.cpp']]],

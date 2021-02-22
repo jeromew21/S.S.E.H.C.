@@ -1,4 +1,4 @@
-.TH "include/misc/bits.hpp" 3 "Fri Feb 19 2021" "S.S.E.H.C" \" -*- nroff -*-
+.TH "include/misc/bits.hpp" 3 "Sat Feb 20 2021" "S.S.E.H.C" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -85,7 +85,9 @@ Return the index of the LSB (rightmost, uppermost), from the least significant s
 .SS "int bitscanReverse (\fBu64\fP x)\fC [inline]\fP"
 Return the index of the MSB (leftmost, uppermost), from the most significant side 
 .SS "int hadd (\fBu64\fP x)"
-Count number of 1 bits in a u64\&. 
+Count number of 1 bits in a u64\&.
+.PP
+Source: https://en.wikipedia.org/wiki/Hamming_weight 
 .SS "void init_bits ()"
 Needs to be called in order to initialize the cache for \fBbitscanAll()\fP\&. 
 .SS "bool isValidSquare (\fBSquare\fP s)\fC [inline]\fP"

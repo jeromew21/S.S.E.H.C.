@@ -1,12 +1,12 @@
 var searchData=
 [
-  ['u64fromname_607',['u64FromName',['../strings_8hpp.html#a30297d2d16c9aaf8604db80dcc8a2c2e',1,'u64FromName(std::string alg):&#160;strings.cpp'],['../strings_8cpp.html#a30297d2d16c9aaf8604db80dcc8a2c2e',1,'u64FromName(std::string alg):&#160;strings.cpp']]],
-  ['u64frompair_608',['u64FromPair',['../bits_8hpp.html#a0fc24f39f4980484562233f16cb8f562',1,'bits.hpp']]],
-  ['u64fromsquare_609',['u64FromSquare',['../bits_8hpp.html#ad025c5a7db7da9378051c92c7007540d',1,'bits.hpp']]],
-  ['u64list_610',['u64List',['../classu64List.html#a1d96156659ef992946afccc7620addcc',1,'u64List']]],
-  ['u64tocol_611',['u64ToCol',['../bits_8hpp.html#a909b328b2b4ea45994dc2e085a770d78',1,'bits.hpp']]],
-  ['u64torow_612',['u64ToRow',['../bits_8hpp.html#a51d4630a35f83ab90c80c26abb502b3f',1,'bits.hpp']]],
-  ['u64tosquare_613',['u64ToSquare',['../bits_8hpp.html#a327b9a3b915ba94aa038027439f80299',1,'bits.hpp']]],
-  ['unif_614',['unif',['../bits_8cpp.html#a0f9ff08c966ba547d1ab6c68b4c34c4b',1,'bits.cpp']]],
-  ['unmakemove_615',['UnmakeMove',['../classBoard.html#a125a007d6079cd3bc6e7b221cb90d15c',1,'Board']]]
+  ['tablebucket_624',['TableBucket',['../structTableBucket.html#a201aeb6ab08f5371183cdbe24038ec77',1,'TableBucket']]],
+  ['tablenode_625',['TableNode',['../structTableNode.html#a9bdb219fb57d255e1107074a785e1f75',1,'TableNode::TableNode(Board &amp;board, int d, NodeType typ)'],['../structTableNode.html#a9f35394a79aa45b038ab88645fdb9217',1,'TableNode::TableNode()']]],
+  ['think_626',['Think',['../classuci_1_1Interface.html#a2410ae72fc7666cd4fbcba91cd411d3c',1,'uci::Interface']]],
+  ['timeseedrand_627',['timeSeedRand',['../bits_8hpp.html#a007a420906e3c9513cebe931484f3d8b',1,'timeSeedRand():&#160;bits.cpp'],['../bits_8cpp.html#a007a420906e3c9513cebe931484f3d8b',1,'timeSeedRand():&#160;bits.cpp']]],
+  ['to_5fcolorless_628',['to_colorless',['../namespacepiece.html#ad64babb0d1fbe51df8af36b5e83ab370',1,'piece']]],
+  ['tokenize_629',['tokenize',['../utils_8hpp.html#a3e6790a5ca3db0821d8484983e3ec738',1,'tokenize(std::string in_string):&#160;utils.cpp'],['../utils_8cpp.html#a3e6790a5ca3db0821d8484983e3ec738',1,'tokenize(std::string in_string):&#160;utils.cpp']]],
+  ['transpositiontable_630',['TranspositionTable',['../classTranspositionTable.html#a6e1198a47ee8e715171420dd83ff92bd',1,'TranspositionTable']]],
+  ['turn_631',['turn',['../classBoard.html#a7060b3d7dc901a73d3bf3d4280d2fbdb',1,'Board']]],
+  ['type_5fcode_632',['type_code',['../classCMove.html#a98c0e4e3adc45a117ad4b989a8a39dda',1,'CMove']]]
 ];

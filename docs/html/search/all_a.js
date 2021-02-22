@@ -1,13 +1,14 @@
 var searchData=
 [
-  ['last_5fcaptured_5fpiece_154',['last_captured_piece',['../structboard_1_1State.html#ab5c2a9c0c2c89dc8ce0e7e53997b91a8',1,'board::State']]],
-  ['last_5fmove_155',['last_move',['../structboard_1_1State.html#a699d1fbfcf57f1dfb055a4e09e5ddf0f',1,'board::State']]],
-  ['last_5fmoved_5fpiece_156',['last_moved_piece',['../structboard_1_1State.html#a9d6cc195eee2923927c19ea056bed11e',1,'board::State']]],
-  ['legal_5fmoves_157',['legal_moves',['../classBoard.html#abf49d6bfa97aa4595d7cd3f9be13b978',1,'Board']]],
-  ['len_158',['len',['../classu64List.html#a9019e79685a9cf8a7128e87d8d0fc272',1,'u64List']]],
-  ['listen_159',['listen',['../namespaceuci.html#adab383c743b3efacb5713c96e7728390',1,'uci']]],
-  ['loadposition_160',['LoadPosition',['../classBoard.html#a8bfbf0d3746eb8190a25273ed4a9d5ad',1,'Board::LoadPosition(PieceType piece_list[64], Color turn, int ep_square, board::castle::Rights castling_rights, int fullmove, int halfmove)'],['../classBoard.html#a338f08512da2226e5a8e593e83660500',1,'Board::LoadPosition(std::string fen)']]],
-  ['logname_161',['logname',['../namespaceprofile.html#a45387ed19cb4c6c51a0f3f7b51f3963e',1,'profile']]],
-  ['long_5f_162',['long_',['../namespaceboard_1_1castle.html#a5b14095c810963b4d5b1bb4a2627d9d6',1,'board::castle::long_()'],['../namespaceboard_1_1castle_1_1white.html#aa6994216a9787470dfed2ad2e3bad24f',1,'board::castle::white::long_()'],['../namespaceboard_1_1castle_1_1black.html#ab5322a7cb94db168e07ff235cfeac68f',1,'board::castle::black::long_()']]],
-  ['long_5fsquares_163',['long_squares',['../namespaceboard_1_1castle.html#ad4fb63ffe63e7f61d0ec76388c2e24cb',1,'board::castle']]]
+  ['king_145',['king',['../structmove__data.html#a5c786c7b2bf466404468cae060003d8c',1,'move_data::king()'],['../namespacepiece_1_1colorless.html#ae24d8b06ebadb3dfcc1f18bd483a91a2',1,'piece::colorless::king()'],['../namespacepiece_1_1white.html#a046601d691ab5bcc040eef5d9707e97d',1,'piece::white::king()'],['../namespacepiece_1_1black.html#a62005224b48e909e46d47f85b5813502',1,'piece::black::king()']]],
+  ['king_5flong_5fdest_146',['king_long_dest',['../namespaceboard_1_1castle.html#a1848f155be5b8bd05b635e422a53a977',1,'board::castle']]],
+  ['king_5flong_5fslide_147',['king_long_slide',['../namespaceboard_1_1castle.html#a2644414b3d5e2159750797be71340ab7',1,'board::castle']]],
+  ['king_5fmove_5fcache_148',['KING_MOVE_CACHE',['../bitboards_8cpp.html#a0ccc408e185d844ffd17b39f3e824846',1,'bitboards.cpp']]],
+  ['king_5fshort_5fdest_149',['king_short_dest',['../namespaceboard_1_1castle.html#af5e76a9dea8511ca0782ddc11e89ecd1',1,'board::castle']]],
+  ['king_5fshort_5fslide_150',['king_short_slide',['../namespaceboard_1_1castle.html#ad54fab3fb6fd0e8cc81a03982b1809a3',1,'board::castle']]],
+  ['kingmoves_151',['kingMoves',['../namespacemove__maps.html#a18f6f80f3c3f5efe0f77417addd8e626',1,'move_maps']]],
+  ['knight_152',['knight',['../structmove__data.html#a76a19d367b37bae8d5d1bbdc6bb648c9',1,'move_data::knight()'],['../namespacepiece_1_1black.html#a49fd5a34348e03082db6c471d222b96b',1,'piece::black::knight()'],['../namespacepiece_1_1white.html#a64f644620307bde02194360d93669729',1,'piece::white::knight()'],['../namespacepiece_1_1colorless.html#ac4db8c4a87bac809b235969f4e0324ed',1,'piece::colorless::knight()']]],
+  ['knight_5fmove_5fcache_153',['KNIGHT_MOVE_CACHE',['../bitboards_8cpp.html#ae83bf6f7b564b324b791bfc4e51e4397',1,'bitboards.cpp']]],
+  ['knightmoves_154',['knightMoves',['../namespacemove__maps.html#abe621f8c6d35fe11ff5ac8cae97cdd31',1,'move_maps']]],
+  ['kpromotion_155',['KPromotion',['../namespacemove__type.html#a972fca84e3d47fd1a963e62a6b015106',1,'move_type']]]
 ];

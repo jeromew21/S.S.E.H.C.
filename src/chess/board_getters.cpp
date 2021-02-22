@@ -156,12 +156,12 @@ bool Board::is_attacked_(u64 subjects, Color attacking_color) const
   return false;
 }
 
-PieceType Board::piece_at_(u64 location) const
+PieceType Board::piece_at(u64 location) const
 {
-  return piece_at_(u64ToSquare(location));
+  return piece_at(u64ToSquare(location));
 }
 
-PieceType Board::piece_at_(Square location) const
+PieceType Board::piece_at(Square location) const
 {
   assert(isValidSquare(location));
   return piece_board_[location];

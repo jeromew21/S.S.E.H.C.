@@ -27,7 +27,7 @@ void Board::Dump() {
   {
     for (int k = 0; k < 8; k++)
     {
-      std::cout << pieceToStringFen(piece_at_(u64FromPair(i, k)));
+      std::cout << pieceToStringFen(piece_at(u64FromPair(i, k)));
     }
     std::cout << "\n";
   }

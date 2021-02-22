@@ -20,7 +20,7 @@ MoveList<256> Board::legal_moves() const
   for (int i = 0; i < src_bitscan.len(); i++)
   {
     const Square src = u64ToSquare(src_bitscan[i]);
-    PieceType piece_ = piece_at_(src_bitscan[i]);
+    PieceType piece_ = piece_at(src_bitscan[i]);
 
     u64 dests = 0;
 
@@ -150,7 +150,7 @@ MoveList<256> Board::capture_moves() const
   for (int i = 0; i < src_bitscan.len(); i++)
   {
     const Square src = u64ToSquare(src_bitscan[i]);
-    PieceType piece_ = piece_at_(src_bitscan[i]);
+    PieceType piece_ = piece_at(src_bitscan[i]);
 
     u64 dests = 0;
 
@@ -296,7 +296,7 @@ bool Board::is_stalemate() const
   for (int i = 0; i < src_arr.len(); i++)
   {
     const Square src = u64ToSquare(src_arr[i]);
-    PieceType piece_ = piece_at_(src_arr[i]);
+    PieceType piece_ = piece_at(src_arr[i]);
 
     u64 dests = 0;
 

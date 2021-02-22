@@ -112,8 +112,8 @@ bool Board::is_checking_move(CMove mv) const
 
   // Now we want to see, once the piece has moved normally, whether it can attack the king
 
-  assert(colorOf(piece_at_(src)) == curr_turn);
-  const int mover = piece::to_colorless(mv.is_promotion() ? mv.promoting_piece(curr_turn) : piece_at_(src));
+  assert(colorOf(piece_at(src)) == curr_turn);
+  const int mover = piece::to_colorless(mv.is_promotion() ? mv.promoting_piece(curr_turn) : piece_at(src));
   const Square dest_square = u64ToSquare(dest);
 
   switch (mover)

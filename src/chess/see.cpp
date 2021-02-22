@@ -20,8 +20,8 @@ int Board::see(CMove mv) const
 {
   u64 src = mv.src();
   u64 dest = mv.dest();
-  PieceType attacker = piece_at_(src);
-  PieceType target_piece = piece_at_(dest);
+  PieceType attacker = piece_at(src);
+  PieceType target_piece = piece_at(dest);
 
   assert(!piece::is_empty(target_piece));
 

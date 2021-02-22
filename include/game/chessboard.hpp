@@ -226,16 +226,6 @@ private:
   bool is_attacked_(u64 subjects, Color attacking_color) const;
 
   /** 
-   * Returns the piece at a particular location.
-   */
-  PieceType piece_at_(u64 location) const;
-
-  /** 
-   * Returns the piece at a particular location.
-   */
-  PieceType piece_at_(Square location) const;
-
-  /** 
    * Add a piece at a location.
    */
   void AddPiece_(PieceType piece, u64 location);
@@ -288,6 +278,16 @@ public:
    */
   CMove move_from_src_dest(Square src, Square dest, int promotion) const;
   CMove move_from_src_dest(Square src, Square dest) const;
+
+  /** 
+   * Returns the piece at a particular location.
+   */
+  PieceType piece_at(u64 location) const;
+
+  /** 
+   * Returns the piece at a particular location.
+   */
+  PieceType piece_at(Square location) const;
 
   /**
    * Which side is it to move?

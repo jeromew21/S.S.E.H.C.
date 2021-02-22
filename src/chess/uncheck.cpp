@@ -40,7 +40,7 @@ MoveList<256> Board::produce_uncheck_moves_() const
 
     u64 target_locations = attacker_positions;
 
-    const PieceType checking_piece = piece_at_(target_locations);
+    const PieceType checking_piece = piece_at(target_locations);
     assert(!piece::is_empty(checking_piece));
     assert(!piece::is_king(checking_piece));
 
@@ -153,7 +153,7 @@ MoveList<256> Board::produce_uncheck_moves_() const
 
           if (!move_maps::slidingAttackers((occ & (~unchecking_src)) | target, king_position, ~target & ~checker_bitboard & enemy_rooks, ~target & ~checker_bitboard & enemy_bishops))
           {
-            PieceType mover = piece_at_(unchecking_src);
+            PieceType mover = piece_at(unchecking_src);
             if (piece::is_pawn(mover))
             {
               // we can't simply move w/ a pawn attack, we need to capture an enemy piece.
@@ -203,7 +203,7 @@ MoveList<256> Board::produce_uncheck_moves_() const
         if (move_maps::slidingAttackers(occ & ~src, king_position, ~target & enemy_rooks, ~target & enemy_bishops))
           continue;
 
-        if (move_maps::isPromotingRank(target_square, curr_turn) && piece::is_pawn(piece_at_(src)))
+        if (move_maps::isPromotingRank(target_square, curr_turn) && piece::is_pawn(piece_at(src)))
         {
           mv_list.PushBack(CMove(src_square, target_square, move_type::QPromotion));
           mv_list.PushBack(CMove(src_square, target_square, move_type::RPromotion));

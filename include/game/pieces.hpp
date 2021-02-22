@@ -35,15 +35,18 @@ namespace piece
   }                                        // namespace black
   const PieceType EmptyPiece = -1;
 
-  inline int to_colorless(PieceType piece) { return piece >> 1; }
+  inline int to_colorless(PieceType piece) {
+    assert(piece != EmptyPiece);
+    return piece >> 1; 
+  }
 
   inline bool is_empty(PieceType piece) { return piece == EmptyPiece; }
-  inline bool is_pawn(PieceType piece) { return to_colorless(piece) == colorless::pawn; }
-  inline bool is_king(PieceType piece) { return to_colorless(piece) == colorless::king; }
-  inline bool is_knight(PieceType piece) { return to_colorless(piece) == colorless::knight; }
-  inline bool is_bishop(PieceType piece) { return to_colorless(piece) == colorless::bishop; }
-  inline bool is_rook(PieceType piece) { return to_colorless(piece) == colorless::rook; }
-  inline bool is_queen(PieceType piece) { return to_colorless(piece) == colorless::queen; }
+  inline bool is_pawn(PieceType piece) { return piece >> 1 == colorless::pawn; }
+  inline bool is_king(PieceType piece) { return piece >> 1 == colorless::king; }
+  inline bool is_knight(PieceType piece) { return piece >> 1 == colorless::knight; }
+  inline bool is_bishop(PieceType piece) { return piece >> 1 == colorless::bishop; }
+  inline bool is_rook(PieceType piece) { return piece >> 1 == colorless::rook; }
+  inline bool is_queen(PieceType piece) { return piece >> 1 == colorless::queen; }
 
   inline PieceType flip(PieceType piece)
   {

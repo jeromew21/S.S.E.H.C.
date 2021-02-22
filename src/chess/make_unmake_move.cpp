@@ -32,8 +32,8 @@ void Board::MakeMove(CMove mv)
     }
     const u64 src = mv.src();
     const u64 dest = mv.dest();
-    const PieceType mover = piece_at_(src);
-    const PieceType dest_former = piece_at_(dest);
+    const PieceType mover = piece_at(src);
+    const PieceType dest_former = piece_at(dest);
 
     if (piece::is_pawn(mover) || piece::is_empty(dest_former))
     {

@@ -1,4 +1,4 @@
-.TH "Board" 3 "Sat Feb 20 2021" "S.S.E.H.C" \" -*- nroff -*-
+.TH "Board" 3 "Mon Feb 22 2021" "S.S.E.H.C" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -24,7 +24,22 @@ Board
 .RI "int \fBsee\fP (\fBCMove\fP mv) const"
 .br
 .ti -1c
+.RI "\fBCMove\fP \fBmove_from_src_dest\fP (\fBSquare\fP src, \fBSquare\fP dest, int promotion) const"
+.br
+.ti -1c
 .RI "\fBCMove\fP \fBmove_from_src_dest\fP (\fBSquare\fP src, \fBSquare\fP dest) const"
+.br
+.ti -1c
+.RI "\fBPieceType\fP \fBpiece_at\fP (\fBu64\fP location) const"
+.br
+.ti -1c
+.RI "\fBPieceType\fP \fBpiece_at\fP (\fBSquare\fP location) const"
+.br
+.ti -1c
+.RI "\fBCMove\fP \fBlast_move\fP () const"
+.br
+.ti -1c
+.RI "\fBu64\fP \fBget_bitboard\fP (\fBPieceType\fP piece_) const"
 .br
 .ti -1c
 .RI "\fBColor\fP \fBturn\fP () const"
@@ -94,6 +109,8 @@ Prints information to the console\&.
 Outputs the FEN as a string\&.
 .PP
 note to self: make sure that the move counter and other state elements are correctly outputted 
+.SS "\fBu64\fP Board::get_bitboard (\fBPieceType\fP piece_) const"
+Get the bitboard mask of piece_ 
 .SS "\fBu64\fP Board::hash () const"
 Get the current hash\&. 
 .SS "bool Board::is_check () const"
@@ -108,6 +125,8 @@ Hotspot
 Returns true if for the current position it is checkmate (the opponent to who's move it is to play wins\&.) 
 .SS "bool Board::is_stalemate () const"
 if it isn't check, check for any legal moves 
+.SS "\fBCMove\fP Board::last_move () const"
+Returns the last move played (null if no previous move) 
 .SS "\fBMoveList\fP< 256 > Board::legal_moves () const"
 List of all true legal moves in a position\&. 
 .SS "void Board::LoadPosition (\fBPieceType\fP piece_list[64], \fBColor\fP turn, int ep_square, \fBboard::castle::Rights\fP castling_rights, int fullmove, int halfmove)"
@@ -119,13 +138,21 @@ Loads a position from a FEN string\&.
 .SS "void Board::MakeMove (\fBCMove\fP mv)"
 Makes a move and changes state accordingly\&.s 
 .SS "\fBCMove\fP Board::move_from_src_dest (\fBSquare\fP src, \fBSquare\fP dest) const"
+
+.SS "\fBCMove\fP Board::move_from_src_dest (\fBSquare\fP src, \fBSquare\fP dest, int promotion) const"
 Given a move source square and dest square, create a move with the correct metadata\&.
 .PP
-This is used in the UCI interface when loading a sequence of moves\&. 
+This is used in the UCI interface when loading a sequence of moves\&.
+.PP
+Takes in a colorless piece as promotion 
 .SS "\fBu64\fP Board::occupancy () const"
 A bitboard mask of all pieces\&. 
 .SS "\fBu64\fP Board::occupancy (\fBColor\fP color) const"
 A bitboard mask of pieces for a particular color\&. 
+.SS "\fBPieceType\fP Board::piece_at (\fBSquare\fP location) const"
+Returns the piece at a particular location\&. 
+.SS "\fBPieceType\fP Board::piece_at (\fBu64\fP location) const"
+Returns the piece at a particular location\&. 
 .SS "void Board::Reset ()"
 Sets the board to the classical starting position\&. 
 .SS "int Board::see (\fBCMove\fP mv) const"

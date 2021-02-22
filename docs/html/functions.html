@@ -81,13 +81,9 @@ $(function() {
 </li>
 <li>bestMove
 : <a class="el" href="structTableNode.html#a5a2c7ecd628d7c1f1987850665810daa">TableNode</a>
-, <a class="el" href="classuci_1_1Interface.html#a6ac0ac739442eb9461708c5dc98b9348">uci::Interface</a>
 </li>
 <li>Board()
 : <a class="el" href="classBoard.html#a9ee491d4fea680cf69b033374a9fdfcb">Board</a>
-</li>
-<li>board
-: <a class="el" href="classuci_1_1Interface.html#a108d520d56884e6408a8d372cfdd9d0e">uci::Interface</a>
 </li>
 </ul>
 
@@ -189,6 +185,9 @@ $(function() {
 <li>get()
 : <a class="el" href="classboard_1_1castle_1_1Rights.html#aaa198ee7d90fe9ab6675ac4356d37ea9">board::castle::Rights</a>
 </li>
+<li>get_bitboard()
+: <a class="el" href="classBoard.html#ac508921951aa63178fe7f47d030071c7">Board</a>
+</li>
 </ul>
 
 
@@ -263,8 +262,9 @@ $(function() {
 <li>last_captured_piece
 : <a class="el" href="structboard_1_1State.html#ab5c2a9c0c2c89dc8ce0e7e53997b91a8">board::State</a>
 </li>
-<li>last_move
-: <a class="el" href="structboard_1_1State.html#a699d1fbfcf57f1dfb055a4e09e5ddf0f">board::State</a>
+<li>last_move()
+: <a class="el" href="classBoard.html#a081cf3448daf94d7282bc06cb84bae36">Board</a>
+, <a class="el" href="structboard_1_1State.html#a699d1fbfcf57f1dfb055a4e09e5ddf0f">board::State</a>
 </li>
 <li>last_moved_piece
 : <a class="el" href="structboard_1_1State.html#a9d6cc195eee2923927c19ea056bed11e">board::State</a>
@@ -295,7 +295,7 @@ $(function() {
 : <a class="el" href="classMiniTable.html#a6b5200569eed43bbc68e7cb8292ba5ef">MiniTable&lt; N &gt;</a>
 </li>
 <li>move_from_src_dest()
-: <a class="el" href="classBoard.html#aaa2420e25d9ff1a360b29926bb55e36e">Board</a>
+: <a class="el" href="classBoard.html#ab82456ee8afcf6232bc6311cb632f1dc">Board</a>
 </li>
 <li>MoveList()
 : <a class="el" href="classMoveList.html#a6fe5c4ac837652f7d84d91d9715f9e91">MoveList&lt; N &gt;</a>
@@ -365,6 +365,9 @@ $(function() {
 <li>peek_at()
 : <a class="el" href="classboard_1_1StateStack.html#a96a2f41ade8721758b1f5e1c257be52c">board::StateStack</a>
 </li>
+<li>piece_at()
+: <a class="el" href="classBoard.html#a44ab5e1db6e1ba22afb754e66226c6aa">Board</a>
+</li>
 <li>ply_count
 : <a class="el" href="structboard_1_1State.html#a4612c8ffff9d36f5ff678815cbb10d34">board::State</a>
 </li>
@@ -410,9 +413,6 @@ $(function() {
 <li>score
 : <a class="el" href="structMoveScore.html#ac62130fe9cbb4720c1b9561de63d6ada">MoveScore</a>
 , <a class="el" href="structTableBucket.html#a2d334d42db0b472382c9c3a36664213b">TableBucket</a>
-</li>
-<li>search_thread
-: <a class="el" href="classuci_1_1Interface.html#a3c437bbc330d98bb27971dc5dcff6412">uci::Interface</a>
 </li>
 <li>see()
 : <a class="el" href="classBoard.html#a33e24286eeae853b868605d1afa43e20">Board</a>
@@ -469,9 +469,6 @@ $(function() {
 </li>
 <li>Think()
 : <a class="el" href="classuci_1_1Interface.html#a2410ae72fc7666cd4fbcba91cd411d3c">uci::Interface</a>
-</li>
-<li>timer_thread
-: <a class="el" href="classuci_1_1Interface.html#a8898ef660174384e9db7a81e69ad8605">uci::Interface</a>
 </li>
 <li>TranspositionTable()
 : <a class="el" href="classTranspositionTable.html#a6e1198a47ee8e715171420dd83ff92bd">TranspositionTable&lt; N &gt;</a>

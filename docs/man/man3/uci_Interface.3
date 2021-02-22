@@ -1,4 +1,4 @@
-.TH "uci::Interface" 3 "Sat Feb 20 2021" "S.S.E.H.C" \" -*- nroff -*-
+.TH "uci::Interface" 3 "Mon Feb 22 2021" "S.S.E.H.C" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -42,18 +42,6 @@ uci::Interface
 .ti -1c
 .RI "std::atomic< bool > \fBstop_timer\fP {false}"
 .br
-.ti -1c
-.RI "\fBCMove\fP \fBbestMove\fP"
-.br
-.ti -1c
-.RI "\fBBoard\fP \fBboard\fP"
-.br
-.ti -1c
-.RI "std::thread \fBsearch_thread\fP"
-.br
-.ti -1c
-.RI "std::thread \fBtimer_thread\fP"
-.br
 .in -1c
 .SH "Constructor & Destructor Documentation"
 .PP 
@@ -75,20 +63,12 @@ This stops the think thread\&.
 This runs the AB search\&. 
 .SH "Member Data Documentation"
 .PP 
-.SS "\fBCMove\fP uci::Interface::bestMove"
-
-.SS "\fBBoard\fP uci::Interface::board"
-
 .SS "std::atomic<bool> uci::Interface::not_thinking {true}"
 this will stop the search if set to true
 .PP
 we pass this into the AB search\&. 
-.SS "std::thread uci::Interface::search_thread"
-
 .SS "std::atomic<bool> uci::Interface::stop_timer {false}"
 this will stop the timer that in turn stops the search if there is a fixed time set\&. 
-.SS "std::thread uci::Interface::timer_thread"
-
 
 .SH "Author"
 .PP 

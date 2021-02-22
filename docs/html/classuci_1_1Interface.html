@@ -77,16 +77,6 @@ $(function() {
 <div class="contents">
 
 <p><code>#include &lt;<a class="el" href="interface_8hpp_source.html">interface.hpp</a>&gt;</code></p>
-<div class="dynheader">
-Collaboration diagram for uci::Interface:</div>
-<div class="dyncontent">
-<div class="center"><img src="classuci_1_1Interface__coll__graph.png" border="0" usemap="#auci_1_1Interface_coll__map" alt="Collaboration graph"/></div>
-<map name="auci_1_1Interface_coll__map" id="auci_1_1Interface_coll__map">
-<area shape="rect" title=" " alt="" coords="26,95,133,121"/>
-<area shape="rect" href="classBoard.html" title=" " alt="" coords="5,5,65,32"/>
-<area shape="rect" href="classCMove.html" title=" " alt="" coords="90,5,157,32"/>
-</map>
-<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -111,14 +101,6 @@ Public Attributes</h2></td></tr>
 <tr class="separator:ad8401da1df45f5dc888e8650f6093f74"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5e6fd064ec0fdebaf6efe99f7feae2c4"><td class="memItemLeft" align="right" valign="top">std::atomic&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classuci_1_1Interface.html#a5e6fd064ec0fdebaf6efe99f7feae2c4">stop_timer</a> {false}</td></tr>
 <tr class="separator:a5e6fd064ec0fdebaf6efe99f7feae2c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6ac0ac739442eb9461708c5dc98b9348"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCMove.html">CMove</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classuci_1_1Interface.html#a6ac0ac739442eb9461708c5dc98b9348">bestMove</a></td></tr>
-<tr class="separator:a6ac0ac739442eb9461708c5dc98b9348"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a108d520d56884e6408a8d372cfdd9d0e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classBoard.html">Board</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classuci_1_1Interface.html#a108d520d56884e6408a8d372cfdd9d0e">board</a></td></tr>
-<tr class="separator:a108d520d56884e6408a8d372cfdd9d0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3c437bbc330d98bb27971dc5dcff6412"><td class="memItemLeft" align="right" valign="top">std::thread&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classuci_1_1Interface.html#a3c437bbc330d98bb27971dc5dcff6412">search_thread</a></td></tr>
-<tr class="separator:a3c437bbc330d98bb27971dc5dcff6412"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8898ef660174384e9db7a81e69ad8605"><td class="memItemLeft" align="right" valign="top">std::thread&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classuci_1_1Interface.html#a8898ef660174384e9db7a81e69ad8605">timer_thread</a></td></tr>
-<tr class="separator:a8898ef660174384e9db7a81e69ad8605"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a73faa9b43b2cd82e63b1fa76f43db621"></a>
@@ -262,34 +244,6 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a6ac0ac739442eb9461708c5dc98b9348"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6ac0ac739442eb9461708c5dc98b9348">&#9670;&nbsp;</a></span>bestMove</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classCMove.html">CMove</a> uci::Interface::bestMove</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a108d520d56884e6408a8d372cfdd9d0e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a108d520d56884e6408a8d372cfdd9d0e">&#9670;&nbsp;</a></span>board</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classBoard.html">Board</a> uci::Interface::board</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="ad8401da1df45f5dc888e8650f6093f74"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad8401da1df45f5dc888e8650f6093f74">&#9670;&nbsp;</a></span>not_thinking</h2>
 
@@ -306,20 +260,6 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a3c437bbc330d98bb27971dc5dcff6412"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3c437bbc330d98bb27971dc5dcff6412">&#9670;&nbsp;</a></span>search_thread</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::thread uci::Interface::search_thread</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a5e6fd064ec0fdebaf6efe99f7feae2c4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5e6fd064ec0fdebaf6efe99f7feae2c4">&#9670;&nbsp;</a></span>stop_timer</h2>
 
@@ -332,20 +272,6 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>this will stop the timer that in turn stops the search if there is a fixed time set. </p>
-
-</div>
-</div>
-<a id="a8898ef660174384e9db7a81e69ad8605"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8898ef660174384e9db7a81e69ad8605">&#9670;&nbsp;</a></span>timer_thread</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::thread uci::Interface::timer_thread</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
 
 </div>
 </div>

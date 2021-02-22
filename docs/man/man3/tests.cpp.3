@@ -1,4 +1,4 @@
-.TH "src/tests/tests.cpp" 3 "Sat Feb 20 2021" "S.S.E.H.C" \" -*- nroff -*-
+.TH "src/tests/tests.cpp" 3 "Mon Feb 22 2021" "S.S.E.H.C" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -8,7 +8,9 @@ src/tests/tests.cpp
 .PP
 \fC#include 'tests/tests\&.hpp'\fP
 .br
-\fC#include 'misc/debug\&.hpp'\fP
+\fC#include 'game/chessboard\&.hpp'\fP
+.br
+\fC#include 'uci/strings\&.hpp'\fP
 .br
 \fC#include 'misc/perft\&.hpp'\fP
 .br
@@ -20,10 +22,10 @@ src/tests/tests.cpp
 .RI "#define \fBRESET\fP   '\\033[0m'"
 .br
 .ti -1c
-.RI "#define \fBRED\fP   '\\033[31m'      /* Red */"
+.RI "#define \fBRED\fP   '\\033[31m'   /* Red */"
 .br
 .ti -1c
-.RI "#define \fBGREEN\fP   '\\033[32m'      /* Green */"
+.RI "#define \fBGREEN\fP   '\\033[32m' /* Green */"
 .br
 .in -1c
 .SS "Functions"
@@ -40,6 +42,9 @@ src/tests/tests.cpp
 .br
 .ti -1c
 .RI "void \fBposition_stalemate_test\fP (std::string const &fen, bool is_mate, int &total_cases, int &passes)"
+.br
+.ti -1c
+.RI "void \fBSEE_test\fP (std::string const &fen, \fBSquare\fP src, \fBSquare\fP dest, int score, int &total_cases, int &passes)"
 .br
 .ti -1c
 .RI "void \fBperft4_test\fP (int depth, int &total_cases, int &passes)"
@@ -111,9 +116,9 @@ src/tests/tests.cpp
 .in -1c
 .SH "Macro Definition Documentation"
 .PP 
-.SS "#define GREEN   '\\033[32m'      /* Green */"
+.SS "#define GREEN   '\\033[32m' /* Green */"
 
-.SS "#define RED   '\\033[31m'      /* Red */"
+.SS "#define RED   '\\033[31m'   /* Red */"
 
 .SS "#define RESET   '\\033[0m'"
 
@@ -142,6 +147,8 @@ tests based on loading a FEN and comparing state to precalculated values
 .SS "void position_stalemate_test (std::string const & fen, bool is_mate, int & total_cases, int & passes)"
 tests based on loading a FEN and comparing state to precalculated values 
 .SS "void run_tests ()"
+
+.SS "void SEE_test (std::string const & fen, \fBSquare\fP src, \fBSquare\fP dest, int score, int & total_cases, int & passes)"
 
 .SH "Variable Documentation"
 .PP 

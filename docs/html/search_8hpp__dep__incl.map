@@ -1,5 +1,6 @@
 <map id="include/datastructures/search.hpp" name="include/datastructures/search.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="65,5,232,47"/>
-<area shape="rect" id="node2" href="$ai_8hpp.html" title=" " alt="" coords="5,102,135,129"/>
-<area shape="rect" id="node3" href="$search_8cpp.html" title=" " alt="" coords="159,95,298,136"/>
+<area shape="rect" id="node1" title=" " alt="" coords="77,5,244,47"/>
+<area shape="rect" id="node2" href="$ai_8hpp.html" title=" " alt="" coords="17,102,147,129"/>
+<area shape="rect" id="node4" href="$search_8cpp.html" title=" " alt="" coords="171,95,310,136"/>
+<area shape="rect" id="node3" href="$interface_8cpp.html" title=" " alt="" coords="5,184,159,211"/>
 </map>

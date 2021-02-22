@@ -290,6 +290,16 @@ public:
   PieceType piece_at(Square location) const;
 
   /**
+   * Returns the last move played (null if no previous move)
+   */
+  CMove last_move() const;
+
+  /** 
+   * Get the bitboard mask of piece_
+   */
+  u64 get_bitboard(PieceType piece_) const;
+
+  /**
    * Which side is it to move?
    * 
    * Starts off as white by default.

@@ -76,32 +76,34 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="tests_8hpp_source.html">tests/tests.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="debug_8hpp_source.html">misc/debug.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="chessboard_8hpp_source.html">game/chessboard.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="strings_8hpp_source.html">uci/strings.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="perft_8hpp_source.html">misc/perft.hpp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for tests.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="tests_8cpp__incl.png" border="0" usemap="#asrc_2tests_2tests_8cpp" alt=""/></div>
 <map name="asrc_2tests_2tests_8cpp" id="asrc_2tests_2tests_8cpp">
-<area shape="rect" title=" " alt="" coords="506,5,646,32"/>
-<area shape="rect" href="tests_8hpp.html" title=" " alt="" coords="376,80,494,107"/>
-<area shape="rect" href="debug_8hpp.html" title=" " alt="" coords="592,393,718,420"/>
-<area shape="rect" href="perft_8hpp.html" title=" " alt="" coords="518,80,634,107"/>
-<area shape="rect" title=" " alt="" coords="566,468,646,495"/>
-<area shape="rect" title=" " alt="" coords="670,468,738,495"/>
-<area shape="rect" href="definitions_8hpp.html" title=" " alt="" coords="14,468,168,495"/>
-<area shape="rect" title=" " alt="" coords="54,543,128,569"/>
-<area shape="rect" href="chessboard_8hpp.html" title=" " alt="" coords="344,155,510,181"/>
-<area shape="rect" href="bits_8hpp.html" title=" " alt="" coords="158,393,267,420"/>
-<area shape="rect" href="board__state_8hpp.html" title=" " alt="" coords="271,229,428,271"/>
-<area shape="rect" href="pieces_8hpp.html" title=" " alt="" coords="24,319,158,345"/>
-<area shape="rect" href="move__list_8hpp.html" title=" " alt="" coords="628,229,786,271"/>
-<area shape="rect" href="utils_8hpp.html" title=" " alt="" coords="452,237,554,263"/>
-<area shape="rect" title=" " alt="" coords="192,468,264,495"/>
-<area shape="rect" title=" " alt="" coords="232,319,288,345"/>
-<area shape="rect" title=" " alt="" coords="472,319,534,345"/>
-<area shape="rect" href="cmove_8hpp.html" title=" " alt="" coords="313,319,448,345"/>
-<area shape="rect" title=" " alt="" coords="559,319,618,345"/>
+<area shape="rect" title=" " alt="" coords="450,5,590,32"/>
+<area shape="rect" href="tests_8hpp.html" title=" " alt="" coords="315,80,434,107"/>
+<area shape="rect" href="chessboard_8hpp.html" title=" " alt="" coords="389,155,555,181"/>
+<area shape="rect" href="strings_8hpp.html" title=" " alt="" coords="679,237,796,263"/>
+<area shape="rect" href="perft_8hpp.html" title=" " alt="" coords="510,80,626,107"/>
+<area shape="rect" href="definitions_8hpp.html" title=" " alt="" coords="604,468,759,495"/>
+<area shape="rect" href="bits_8hpp.html" title=" " alt="" coords="468,393,577,420"/>
+<area shape="rect" href="board__state_8hpp.html" title=" " alt="" coords="321,229,479,271"/>
+<area shape="rect" href="debug_8hpp.html" title=" " alt="" coords="227,393,352,420"/>
+<area shape="rect" href="pieces_8hpp.html" title=" " alt="" coords="615,319,748,345"/>
+<area shape="rect" href="move__list_8hpp.html" title=" " alt="" coords="5,229,163,271"/>
+<area shape="rect" href="utils_8hpp.html" title=" " alt="" coords="503,237,604,263"/>
+<area shape="rect" title=" " alt="" coords="644,543,719,569"/>
+<area shape="rect" title=" " alt="" coords="487,468,559,495"/>
+<area shape="rect" title=" " alt="" coords="288,319,344,345"/>
+<area shape="rect" title=" " alt="" coords="369,319,431,345"/>
+<area shape="rect" href="cmove_8hpp.html" title=" " alt="" coords="455,319,590,345"/>
+<area shape="rect" title=" " alt="" coords="200,468,280,495"/>
+<area shape="rect" title=" " alt="" coords="305,468,373,495"/>
+<area shape="rect" title=" " alt="" coords="772,319,831,345"/>
 </map>
 </div>
 </div><table class="memberdecls">
@@ -109,9 +111,9 @@ Include dependency graph for tests.cpp:</div>
 Macros</h2></td></tr>
 <tr class="memitem:ab702106cf3b3e96750b6845ded4e0299"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tests_8cpp.html#ab702106cf3b3e96750b6845ded4e0299">RESET</a>&#160;&#160;&#160;&quot;\033[0m&quot;</td></tr>
 <tr class="separator:ab702106cf3b3e96750b6845ded4e0299"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d23feea868a983c8c2b661e1e16972f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tests_8cpp.html#a8d23feea868a983c8c2b661e1e16972f">RED</a>&#160;&#160;&#160;&quot;\033[31m&quot;      /* Red */</td></tr>
+<tr class="memitem:a8d23feea868a983c8c2b661e1e16972f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tests_8cpp.html#a8d23feea868a983c8c2b661e1e16972f">RED</a>&#160;&#160;&#160;&quot;\033[31m&quot;   /* Red */</td></tr>
 <tr class="separator:a8d23feea868a983c8c2b661e1e16972f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acfbc006ea433ad708fdee3e82996e721"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tests_8cpp.html#acfbc006ea433ad708fdee3e82996e721">GREEN</a>&#160;&#160;&#160;&quot;\033[32m&quot;      /* Green */</td></tr>
+<tr class="memitem:acfbc006ea433ad708fdee3e82996e721"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tests_8cpp.html#acfbc006ea433ad708fdee3e82996e721">GREEN</a>&#160;&#160;&#160;&quot;\033[32m&quot; /* Green */</td></tr>
 <tr class="separator:acfbc006ea433ad708fdee3e82996e721"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
@@ -124,6 +126,8 @@ Functions</h2></td></tr>
 <tr class="separator:a8625bb4b6237ba89f607a97a647a034a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a881309c75a0f867146ca4b1b775da779"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tests_8cpp.html#a881309c75a0f867146ca4b1b775da779">position_stalemate_test</a> (std::string const &amp;fen, bool is_mate, int &amp;total_cases, int &amp;passes)</td></tr>
 <tr class="separator:a881309c75a0f867146ca4b1b775da779"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c7c768b305243e04071cb08940f2afe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tests_8cpp.html#a3c7c768b305243e04071cb08940f2afe">SEE_test</a> (std::string const &amp;fen, <a class="el" href="definitions_8hpp.html#a6de8fcf40523e5c1eecf939520f33f6b">Square</a> src, <a class="el" href="definitions_8hpp.html#a6de8fcf40523e5c1eecf939520f33f6b">Square</a> dest, int score, int &amp;total_cases, int &amp;passes)</td></tr>
+<tr class="separator:a3c7c768b305243e04071cb08940f2afe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a28ee526707a133c74bb2ec34e2f7d5b1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tests_8cpp.html#a28ee526707a133c74bb2ec34e2f7d5b1">perft4_test</a> (int depth, int &amp;total_cases, int &amp;passes)</td></tr>
 <tr class="separator:a28ee526707a133c74bb2ec34e2f7d5b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a192e84934ef18be1dec1be1c533353ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tests_8cpp.html#a192e84934ef18be1dec1be1c533353ab">perft_tricky_test</a> (int depth, int &amp;total_cases, int &amp;passes)</td></tr>
@@ -178,7 +182,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define GREEN&#160;&#160;&#160;&quot;\033[32m&quot;      /* Green */</td>
+          <td class="memname">#define GREEN&#160;&#160;&#160;&quot;\033[32m&quot; /* Green */</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -192,7 +196,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define RED&#160;&#160;&#160;&quot;\033[31m&quot;      /* Red */</td>
+          <td class="memname">#define RED&#160;&#160;&#160;&quot;\033[31m&quot;   /* Red */</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -558,6 +562,58 @@ Variables</h2></td></tr>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3c7c768b305243e04071cb08940f2afe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c7c768b305243e04071cb08940f2afe">&#9670;&nbsp;</a></span>SEE_test()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SEE_test </td>
+          <td>(</td>
+          <td class="paramtype">std::string const &amp;&#160;</td>
+          <td class="paramname"><em>fen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="definitions_8hpp.html#a6de8fcf40523e5c1eecf939520f33f6b">Square</a>&#160;</td>
+          <td class="paramname"><em>src</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="definitions_8hpp.html#a6de8fcf40523e5c1eecf939520f33f6b">Square</a>&#160;</td>
+          <td class="paramname"><em>dest</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>score</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;&#160;</td>
+          <td class="paramname"><em>total_cases</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;&#160;</td>
+          <td class="paramname"><em>passes</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">

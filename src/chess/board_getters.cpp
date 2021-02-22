@@ -71,6 +71,14 @@ CMove Board::move_from_src_dest(Square src, Square dest) const {
   return move_from_src_dest(src, dest, piece::EmptyPiece);
 }
 
+CMove Board::last_move() const {
+  return state_.last_move;
+}
+
+u64 Board::get_bitboard(PieceType piece_) const {
+  return bitboard_[piece_];
+}
+
 /** 
  * Takes in a colorless piece as promotion
  */

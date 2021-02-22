@@ -277,6 +277,12 @@ public:
   bool is_checking_move(CMove mv) const;
 
   /**
+   * signed material value
+   */
+  int material() const;
+  int material(Color);
+
+  /**
    * Static exchange evaluation
    */
   int see(CMove mv) const;

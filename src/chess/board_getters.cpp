@@ -151,3 +151,16 @@ PieceType Board::piece_at_(Square location) const
   assert(isValidSquare(location));
   return piece_board_[location];
 }
+
+int Board::material() const { return material(White) - material(Black); }
+
+int Board::material(Color color) const
+{
+  int result = 0;
+  int start = color;
+  int end = 12;
+  for (PieceType i = start; i < end; i += 2)
+    result += getMaterialValue(i) * hadd(bitboard_[i]);
+
+  return result;
+}

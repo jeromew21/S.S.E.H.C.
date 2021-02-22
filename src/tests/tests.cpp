@@ -46,6 +46,28 @@ void expect(int ground_truth, int value, std::string const &message, int &total_
   std::cout << RESET;
 }
 
+/*
+void expect(CMove ground_truth, CMove value, std::string const &message, int &total_cases, int &passes)
+{
+  total_cases++;
+
+  std::cout << "[" << message << "] ";
+
+  if (ground_truth != value)
+  {
+    std::cout << RED;
+    std::cout << "Expected " << ground_truth << ", got " << value << std::endl;
+  }
+  else
+  {
+    passes++;
+    std::cout << GREEN;
+    std::cout << "OK" << std::endl;
+  }
+  std::cout << RESET;
+}
+*/
+
 /**
  * tests based on loading a FEN and comparing state to precalculated values
  */

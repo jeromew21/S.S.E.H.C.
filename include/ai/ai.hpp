@@ -7,6 +7,7 @@
 
 #include "misc/definitions.hpp"
 #include "datastructures/search.hpp"
+#include "uci/strings.hpp"
 #include "game/chessboard.hpp"
 #include "game/cmove.hpp"
 #include "datastructures/move_list.hpp"
@@ -36,7 +37,7 @@ namespace ai
                          std::atomic<bool> &stop, int &count, NodeType my_node_type);
 
   MoveList<256> generateMovesOrdered(Board &board, CMove hash_move, int ply_count,
-                                       int &num_positive_moves);
+                                     int &num_positive_moves);
 
   bool isCheckmateScore(Score sc);
   void init();

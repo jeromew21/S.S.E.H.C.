@@ -11,82 +11,82 @@ MiniTable<131072> pvTable;
 //HistoryTable hTable;
 //CounterMoveTable cTable;
 
-// bool AI::isCheckmateScore(Score sc) { return SCORE_MAX - abs(sc) < 250; }
+bool ai::isCheckmateScore(Score sc) { return SCORE_MAX - abs(sc) < 250; }
 
-// void AI::reset()
-// {
-//     kTable.clear();
-//     hTable.clear();
-//     cTable.clear();
-// }
+void ai::reset()
+{
+    //    kTable.clear();
+    //    hTable.clear();
+    //    cTable.clear();
+}
 
-// int AI::materialEvaluation(Board &board) { return board.material(); }
+int ai::materialEvaluation(Board &board) { return board.material(); }
 
-// int AI::evaluation(Board &board)
-// {
-//     GameStatus status = board.status();
+int ai::evaluation(Board &board)
+{
+    board::Status status = board.status();
 
-//     if (status == GameStatus::Stalemate || status == GameStatus::Draw)
-//         return 0;
-//     else if (status == GameStatus::WhiteWin)
-//         return SCORE_MAX;
-//     else if (status == GameStatus::BlackWin)
-//         return SCORE_MIN;
+    if (status == board::Status::Stalemate || status == board::Status::Draw)
+        return 0;
+    else if (status == board::Status::WhiteWin)
+        return SCORE_MAX;
+    else if (status == board::Status::BlackWin)
+        return SCORE_MIN;
 
-//     int score = 0;
+    int score = 0;
 
-//     // mobility
-//     int mcwhite = board.mobility(White) - 31; //31 = 64/2 - 1
-//     int mcblack = board.mobility(Black) - 31;
+    // mobility
+    //int mcwhite = board.mobility(White) - 31; //31 = 64/2 - 1
+    //int mcblack = board.mobility(Black) - 31;
+    //
+    //// Piece-squares
+    //// Interpolate between 32 pieces and 12 pieces
+    //float pieceCount = (((float)(max(hadd(board.occupancy()), 12) - 12)) / 20.0f);
+    //float earlyWeight = pieceCount;
+    //float lateWeight = 1.0f - pieceCount;
+    //
+    ////changed from for loop
+    //float pscoreEarly = std::accumulate(board.pieceScoreEarlyGame, board.pieceScoreEarlyGame + 6);
+    //float pscoreLate = std::accumulate(board.pieceScoreLateGame, board.pieceLateEarlyGame + 6);
+    //
+    //float wpScore = pscoreEarly * earlyWeight + pscoreLate * lateWeight; //weighted score for white
+    //
+    //pscoreEarly = std::accumulate(board.pieceScoreEarlyGame + 6, board.pieceScoreEarlyGame + 12);
+    //pscoreLate = std::accumulate(board.pieceScoreLateGame + 6, board.pieceLateEarlyGame + 12);
+    //
+    //float bpScore = pscoreEarly * earlyWeight + pscoreLate * lateWeight; //weighted score for black
 
-//     // Piece-squares
-//     // Interpolate between 32 pieces and 12 pieces
-//     float pieceCount = (((float)(max(hadd(board.occupancy()), 12) - 12)) / 20.0f);
-//     float earlyWeight = pieceCount;
-//     float lateWeight = 1.0f - pieceCount;
+    // combine features
+    score += materialEvaluation(board);
+    //score += mcwhite - mcblack;
+    //score += (wpScore - bpScore) * 10.0f;
+    //score += board.kingSafety(White) * 5.0f * earlyWeight;
+    //score -= board.kingSafety(Black) * 5.0f * earlyWeight;
+    //score += board.tropism(board.bitboard[piece::white::king], Black) * 0.03f * earlyWeight;
+    //score -= board.tropism(board.bitboard[piece::black::king], White) * 0.03f * earlyWeight;
+    return score;
+}
 
-//     //changed from for loop
-//     float pscoreEarly = std::accumulate(board.pieceScoreEarlyGame, board.pieceScoreEarlyGame + 6);
-//     float pscoreLate = std::accumulate(board.pieceScoreLateGame, board.pieceLateEarlyGame + 6);
-
-//     float wpScore = pscoreEarly * earlyWeight + pscoreLate * lateWeight; //weighted score for white
-
-//     pscoreEarly = std::accumulate(board.pieceScoreEarlyGame + 6, board.pieceScoreEarlyGame + 12);
-//     pscoreLate = std::accumulate(board.pieceScoreLateGame + 6, board.pieceLateEarlyGame + 12);
-
-//     float bpScore = pscoreEarly * earlyWeight + pscoreLate * lateWeight; //weighted score for black
-
-//     // combine features
-//     score += materialEvaluation(board);
-//     score += mcwhite - mcblack;
-//     score += (wpScore - bpScore) * 10.0f;
-//     score += board.kingSafety(White) * 5.0f * earlyWeight;
-//     score -= board.kingSafety(Black) * 5.0f * earlyWeight;
-//     score += board.tropism(board.bitboard[piece::white::king], Black) * 0.03f * earlyWeight;
-//     score -= board.tropism(board.bitboard[piece::black::king], White) * 0.03f * earlyWeight;
-//     return score;
-// }
-
-// int AI::flippedEval(Board &board)
+// int ai::flippedEval(Board &board)
 // {
 //     if (board.turn() == White)
-//         return AI::evaluation(board);
+//         return ai::evaluation(board);
 //     else
-//         return -AI::evaluation(board);
+//         return -ai::evaluation(board);
 // }
 
 // //return best move from a certain depth. uses alpha beta search to find best score.
-// CMove AI::rootMove(Board &board, int depth, std::atomic<bool> &stop, Score &outscore, CMove prevPv,
+// CMove ai::rootMove(Board &board, int depth, std::atomic<bool> &stop, Score &outscore, CMove prevPv,
 //                    int &count, std::chrono::_V2::system_clock::time_point start,
 //                    std::priority_queue<MoveScore> &prevScores)
 // {
 
-//     TableNode node(board, depth, AI::PV);
+//     TableNode node(board, depth, ai::PV);
 
 //     auto moves = board.legalMoves();
 
-//     Score alpha = AI::SCORE_MIN;
-//     Score beta = AI::SCORE_MAX;
+//     Score alpha = ai::SCORE_MIN;
+//     Score beta = ai::SCORE_MAX;
 
 //     CMove refMove;
 
@@ -98,14 +98,14 @@ MiniTable<131072> pvTable;
 //             if (found->node.depth > depth) //*
 //             {
 //                 NodeType typ = found->node.nodeType;
-//                 if (typ == AI::All)
+//                 if (typ == ai::All)
 //                     beta = found->score;
-//                 else if (typ == AI::Cut) // lower bound
+//                 else if (typ == ai::Cut) // lower bound
 //                 {
 //                     refMove = found->node.bestMove;
 //                     alpha = found->score;
 //                 }
-//                 else if (typ == AI::PV)
+//                 else if (typ == ai::PV)
 //                     refMove = found->node.bestMove;
 //             }
 //             else
@@ -160,16 +160,16 @@ MiniTable<131072> pvTable;
 //         Score score;
 //         if (nullWindow)
 //         {
-//             score = -AI::zeroWindowSearch(board, depth, 0, -alpha, stop, //*why is everything negative
-//                                           subtreeCount, AI::All);
+//             score = -ai::zeroWindowSearch(board, depth, 0, -alpha, stop, //*why is everything negative
+//                                           subtreeCount, ai::All);
 //             if (score > alpha)
-//                 score = -AI::alphaBetaSearch(board, depth, 0, -beta, -alpha,
-//                                              stop, subtreeCount, AI::PV, true);
+//                 score = -ai::alphaBetaSearch(board, depth, 0, -beta, -alpha,
+//                                              stop, subtreeCount, ai::PV, true);
 //         }
 //         else
 //         {
-//             score = -AI::alphaBetaSearch(board, depth, 0, -beta, -alpha, stop,
-//                                          subtreeCount, AI::PV, true);
+//             score = -ai::alphaBetaSearch(board, depth, 0, -beta, -alpha, stop,
+//                                          subtreeCount, ai::PV, true);
 //             nullWindow = true;
 //         }
 //         board.unmakeMove();
@@ -204,19 +204,19 @@ MiniTable<131072> pvTable;
 // }
 
 // //alpha beta on captures.
-// Score AI::quiescence(Board &board, int depth, int plyCount, Score alpha,
+// Score ai::quiescence(Board &board, int depth, int plyCount, Score alpha,
 //                      Score beta, std::atomic<bool> &stop, int &count, int kickoff)
 // {
 //     count += 1;
 
-//     Score baseline = AI::flippedEval(board);
+//     Score baseline = ai::flippedEval(board);
 
-//     GameStatus status = board.status();
+//     board::Status status = board.status();
 
-//     if (status != GameStatus::Playing)
+//     if (status != board::Status::Playing)
 //     {
-//         if (baseline == AI::SCORE_MIN)
-//             return AI::SCORE_MIN + board.dstart();
+//         if (baseline == ai::SCORE_MIN)
+//             return ai::SCORE_MIN + board.dstart();
 //         else
 //             return baseline; // alpha vs baseline...
 //     }
@@ -279,7 +279,7 @@ MiniTable<131072> pvTable;
 // }
 
 // //reconstruct PV
-// void AI::sendPV(Board &board, int depth, CMove pvMove, int nodeCount,
+// void ai::sendPV(Board &board, int depth, CMove pvMove, int nodeCount,
 //                 Score score, std::chrono::_V2::system_clock::time_point start)
 // {
 //     std::string pv = " pv " + pvMove.moveToUCIAlgebraic();
@@ -301,10 +301,10 @@ MiniTable<131072> pvTable;
 //     int time = duration.count();
 
 //     std::string scoreStr;
-//     if (AI::isCheckmateScore(score))
+//     if (ai::isCheckmateScore(score))
 //     {
 
-//         int dRoot = AI::SCORE_MAX - abs(score);
+//         int dRoot = ai::SCORE_MAX - abs(score);
 //         int v = dRoot - board.dstart();
 
 //         if (v % 2 == 0)
@@ -328,13 +328,13 @@ MiniTable<131072> pvTable;
 //         std::to_string(table.ppm()) + pv);
 // }
 
-// std::vector<CMove> AI::generateMovesOrdered(Board &board, CMove refMove,
+// std::vector<CMove> ai::generateMovesOrdered(Board &board, CMove refMove,
 //                                             int plyCount,
 //                                             int &numPositiveMoves)
 // {
 //     // order moves for non-qsearch
 //     u64 occ = board.occupancy();
-//     AI::LazyMovegen movegen(board.occupancy(board.turn()), board.attackMap);
+//     ai::LazyMovegen movegen(board.occupancy(board.turn()), board.attackMap);
 
 //     std::vector<CMove> hashMoves;
 //     std::vector<CMove> posCaptures;
@@ -410,25 +410,25 @@ MiniTable<131072> pvTable;
 //     return allMoves;
 // }
 
-// Score AI::alphaBetaSearch(Board &board, int depth, int plyCount, Score alpha,
+// Score ai::alphaBetaSearch(Board &board, int depth, int plyCount, Score alpha,
 //                           Score beta, std::atomic<bool> &stop, int &count,
 //                           NodeType myNodeType, bool isSave)
 // {
 //     count++;
 
-//     GameStatus status = board.status();
+//     board::Status status = board.status();
 //     TableNode node(board, depth, myNodeType);
 
-//     if (status != GameStatus::Playing)
+//     if (status != board::Status::Playing)
 //     {
 //         Score score;
-//         if (status == GameStatus::WhiteWin || status == GameStatus::BlackWin)
+//         if (status == board::Status::WhiteWin || status == board::Status::BlackWin)
 //             score = SCORE_MIN + board.dstart();
-//         else if (status == GameStatus::Stalemate ||
-//                  status == GameStatus::Draw)
+//         else if (status == board::Status::Stalemate ||
+//                  status == board::Status::Draw)
 //             score = 0;
 //         else
-//             score = AI::flippedEval(board);
+//             score = ai::flippedEval(board);
 //         if (score < alpha)
 //             return alpha;
 //         else if (score > beta)
@@ -520,16 +520,16 @@ MiniTable<131072> pvTable;
 //         Score score;
 //         if (nullWindow)
 //         {
-//             score = -AI::zeroWindowSearch(board, subdepth, plyCount + 1, -alpha,
+//             score = -ai::zeroWindowSearch(board, subdepth, plyCount + 1, -alpha,
 //                                           stop, count, All);
 //             if (score > alpha)
 //                 score =
-//                     -AI::alphaBetaSearch(board, subdepth, plyCount + 1, -beta,
+//                     -ai::alphaBetaSearch(board, subdepth, plyCount + 1, -beta,
 //                                          -alpha, stop, count, PV, isSave);
 //         }
 //         else
 //         {
-//             score = -AI::alphaBetaSearch(board, subdepth, plyCount + 1, -beta,
+//             score = -ai::alphaBetaSearch(board, subdepth, plyCount + 1, -beta,
 //                                          -alpha, stop, count, PV, isSave);
 //             nullWindow = true;
 //         }
@@ -598,7 +598,7 @@ MiniTable<131072> pvTable;
 // }
 
 // //search instead with smaller window to try to save time.
-// Score AI::zeroWindowSearch(Board &board, int depth, int plyCount, Score beta,
+// Score ai::zeroWindowSearch(Board &board, int depth, int plyCount, Score beta,
 //                            std::atomic<bool> &stop, int &count,
 //                            NodeType myNodeType)
 // {
@@ -612,21 +612,21 @@ MiniTable<131072> pvTable;
 //     bool lmr = true;
 //     bool futilityPrune = true;
 
-//     GameStatus status = board.status();
+//     board::Status status = board.status();
 //     TableNode node(board, depth, myNodeType);
 
-//     if (status != GameStatus::Playing)
+//     if (status != board::Status::Playing)
 //     {
 //         Score score;
-//         if (status == GameStatus::WhiteWin || status == GameStatus::BlackWin)
+//         if (status == board::Status::WhiteWin || status == board::Status::BlackWin)
 //             score = SCORE_MIN + board.dstart();
 
-//         else if (status == GameStatus::Stalemate ||
-//                  status == GameStatus::Draw)
+//         else if (status == board::Status::Stalemate ||
+//                  status == board::Status::Draw)
 //             score = 0;
 
 //         else
-//             score = AI::flippedEval(board);
+//             score = ai::flippedEval(board);
 
 //         if (score < alpha)
 //             return alpha;
@@ -690,7 +690,7 @@ MiniTable<131072> pvTable;
 //         CMove mv = CMove::NullMove();
 //         board.makeMove(mv);
 //         Score score =
-//             -AI::zeroWindowSearch(board, depth - 1 - rNull, plyCount + 1,
+//             -ai::zeroWindowSearch(board, depth - 1 - rNull, plyCount + 1,
 //                                   1 - beta, stop, count, Cut);
 //         board.unmakeMove();
 //         if (score >= beta)
@@ -705,7 +705,7 @@ MiniTable<131072> pvTable;
 
 //     Score fscore;
 //     if (depth == 1 && futilityPrune)
-//         fscore = AI::flippedEval(board) + 900;
+//         fscore = ai::flippedEval(board) + 900;
 
 //     int movesSearched = 0;
 
@@ -751,7 +751,7 @@ MiniTable<131072> pvTable;
 //             isReduced = true;
 //         }
 
-//         Score score = -AI::zeroWindowSearch(board, subdepth, plyCount + 1,
+//         Score score = -ai::zeroWindowSearch(board, subdepth, plyCount + 1,
 //                                             -alpha, stop, count, childNodeType);
 
 //         // LMR here
@@ -759,7 +759,7 @@ MiniTable<131072> pvTable;
 //         {
 //             // re-search
 //             subdepth = depth - 1;
-//             score = -AI::zeroWindowSearch(board, subdepth, plyCount + 1, -alpha,
+//             score = -ai::zeroWindowSearch(board, subdepth, plyCount + 1, -alpha,
 //                                           stop, count, childNodeType);
 //         }
 

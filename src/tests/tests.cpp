@@ -29,7 +29,7 @@ const int perft_test4_promotions[5] = {0, 0, 48, 120, 60032};
 const std::string starting_boards[3] = {"rnbqkbnr/p3pppp/8/1p6/2pP4/4P3/1P3PPP/RNBQKBNR w KQkq - 0 6",
                                         "1Q6/5p2/4q1pk/8/8/1P3PK1/8/8 w - - 0 43",
                                         "rnb1kb1r/pp1p1ppp/5n2/q2Np3/4P3/3B1N2/PPPB1PPP/R2QK2R b KQkq - 4 7"};
-const std::string correct_moves[3] = {"Qf3", "Qh8", "Qd8"};
+const std::string correct_moves[3] = {"d1f3", "Qh8", "Qd8"};
 
 void expect(int ground_truth, int value, std::string const &message, int &total_cases, int &passes)
 {
@@ -171,7 +171,7 @@ void move_find_test(int depth, int &total_cases, int &passes)
 {
   Board chessboard;
   std::atomic<bool> stop(false);
-  Score sc;
+  Score sc = 0;
   int count;
   for (int i = 0; i < 1; i++)
   {

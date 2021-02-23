@@ -170,7 +170,7 @@ CMove ai::rootMove(Board &board, int depth, std::atomic<bool> &stop, Score &outs
                                          subtreeCount, PV, true);
             nullWindow = true;
         }
-        std::cout << moveToUCIAlgebraic(mv) << ": " << score << '\n';
+
         board.UnmakeMove();
 
         count += subtreeCount;
@@ -211,10 +211,8 @@ Score ai::quiescence(Board &board, int depth, int plyCount, Score alpha,
     Score baseline = ai::flippedEval(board);
 
     board::Status status = board.status();
-    std::cout << baseline << '\n';
     if (status != board::Status::Playing)
     {
-        std::cout << "asdf" << '\n';
         if (baseline == SCORE_MIN)
             return SCORE_MIN; // + board.dstart();
         else
@@ -232,7 +230,9 @@ Score ai::quiescence(Board &board, int depth, int plyCount, Score alpha,
     u64 occ = board.occupancy();
     bool deltaPrune = hadd(occ) > 12; //true && hadd(occ) > 12; **
 
-    auto movelist = board.legal_moves(); // order by MVV-LVA?
+    MoveList<256> movelist;
+    if (!isCheck) movelist = board.capture_moves(); // order by MVV-LVA
+    else movelist = board.legal_moves();
 
     std::priority_queue<MoveScore> MoveScores;
 
@@ -261,6 +261,7 @@ Score ai::quiescence(Board &board, int depth, int plyCount, Score alpha,
         if ((!isDeltaPrune && see >= 0) || isChecking || isPromotion || isCheck)
             MoveScores.push(MoveScore(mv, mvscore));
     }
+
     while (!MoveScores.empty())
     {
         CMove mv = MoveScores.top().mv;
@@ -502,7 +503,7 @@ Score ai::alphaBetaSearch(Board &board, int depth, int plyCount, Score alpha,
 
     // use IID to find best move????
 
-    CMove lastMove = board.last_move();
+    // CMove lastMove = board.last_move();
 
     u64 occ = board.occupancy();
 
@@ -510,10 +511,10 @@ Score ai::alphaBetaSearch(Board &board, int depth, int plyCount, Score alpha,
     bool raisedAlpha = false;
 
     int numPositiveMoves;
-    auto moves = generateMovesOrdered(board, refMove, plyCount, numPositiveMoves);
+    auto moves = board.legal_moves(); //generateMovesOrdered(board, refMove, plyCount, numPositiveMoves);
     int movesSearched = 0;
 
-    while (!moves.empty())
+    while (!moves.is_empty())
     {
         CMove fmove = moves.back();
         moves.pop_back();
@@ -716,11 +717,12 @@ Score ai::zeroWindowSearch(Board &board, int depth, int plyCount, Score beta,
     int movesSearched = 0;
 
     int numPositiveMoves;
-    std::vector<CMove> moves = generateMovesOrdered(board, refMove, plyCount, numPositiveMoves);
-    numPositiveMoves = max(4, numPositiveMoves);
+    auto moves = board.legal_moves();
+    //std::vector<CMove> moves = generateMovesOrdered(board, refMove, plyCount, numPositiveMoves);
+    //numPositiveMoves = max(4, numPositiveMoves);
     int moveCount = moves.size();
 
-    while (!moves.empty())
+    while (!moves.is_empty())
     {
         CMove fmove = moves.back();
         moves.pop_back();

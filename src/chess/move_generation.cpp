@@ -308,7 +308,7 @@ bool Board::is_stalemate() const
       {
         CMove mv = CMove(src, ep_square, move_type::EnPassant);
         if (verify_move_safety_(mv))
-          return true;
+          return false;
       }
       dests |= move_maps::pawnCaptures(src, curr_turn) & enemies;
       u64 one_up = move_maps::pawnMoves(src, curr_turn);
@@ -352,13 +352,13 @@ bool Board::is_stalemate() const
 
         // only need to verify one for all of them to be safe
         if (verify_move_safety_(mv_q))
-          return true;
+          return false;
       }
       else
       {
         CMove mv = CMove(src, dest, move_type::Default);
         if (verify_move_safety_(mv))
-          return true;
+          return false;
       }
     } // end for over possible destinations
   }   // end for over friendly pieces

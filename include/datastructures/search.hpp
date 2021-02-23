@@ -8,8 +8,8 @@ const NodeType PV = 0;
 const NodeType Cut = 1;
 const NodeType All = 2;
 
-const int SCORE_MIN = std::numeric_limits<int>::min();
-const int SCORE_MAX = std::numeric_limits<int>::max();
+const int SCORE_MIN = -100000; //std::numeric_limits<int>::min();
+const int SCORE_MAX = 100000;  //std::numeric_limits<int>::max();
 
 /**
  * A tuple that contains a move and a corresponding score.

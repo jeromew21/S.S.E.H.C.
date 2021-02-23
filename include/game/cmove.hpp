@@ -64,10 +64,12 @@ public:
 
   CMove(Square src_, Square dest_, int type_code_)
   {
-    if (!isValidSquare(src_)) {
+    if (!isValidSquare(src_))
+    {
       dump32(dest_);
     }
-    if (!isValidSquare(dest_)) {
+    if (!isValidSquare(dest_))
+    {
       dump32(dest_);
     }
     assert(isValidSquare(src_));
@@ -79,6 +81,12 @@ public:
 
   bool operator==(const CMove &other) const { return data_ == other.data_; }
   bool operator!=(const CMove &other) const { return data_ != other.data_; }
+
+  friend std::ostream &operator<<(std::ostream &os, CMove mv)
+  {
+    os << mv.data_;
+    return os;
+  }
 };
 
 #endif

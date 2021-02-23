@@ -270,7 +270,7 @@ public:
    * signed material value
    */
   int material() const;
-  int material(Color);
+  int material(Color) const;
 
   /**
    * Static exchange evaluation

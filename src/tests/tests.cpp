@@ -26,6 +26,11 @@ const int perft_test4_nodes[5] = {0, 6, 264, 9467, 422333};
 const int perft_test4_mates[5] = {0, 0, 0, 22, 5};
 const int perft_test4_promotions[5] = {0, 0, 48, 120, 60032};
 
+const std::string starting_boards[3] = {"rnbqkbnr/p3pppp/8/1p6/2pP4/4P3/1P3PPP/RNBQKBNR w KQkq - 0 6",
+                                        "1Q6/5p2/4q1pk/8/8/1P3PK1/8/8 w - - 0 43",
+                                        "rnb1kb1r/pp1p1ppp/5n2/q2Np3/4P3/3B1N2/PPPB1PPP/R2QK2R b KQkq - 4 7"};
+const std::string correct_moves[3] = {"Qf3", "Qh8", "Qd8"};
+
 void expect(int ground_truth, int value, std::string const &message, int &total_cases, int &passes)
 {
   total_cases++;
@@ -46,8 +51,7 @@ void expect(int ground_truth, int value, std::string const &message, int &total_
   std::cout << RESET;
 }
 
-/*
-void expect(CMove ground_truth, CMove value, std::string const &message, int &total_cases, int &passes)
+void expect(std::string ground_truth, std::string value, std::string const &message, int &total_cases, int &passes)
 {
   total_cases++;
 
@@ -66,7 +70,6 @@ void expect(CMove ground_truth, CMove value, std::string const &message, int &to
   }
   std::cout << RESET;
 }
-*/
 
 /**
  * tests based on loading a FEN and comparing state to precalculated values
@@ -164,6 +167,25 @@ void perft_classical_test(int depth, int &total_cases, int &passes)
   expect(perft_classical_mates[depth], counter.checkmates, "mate count", total_cases, passes);
 }
 
+void move_find_test(int depth, int &total_cases, int &passes)
+{
+  Board chessboard;
+  std::atomic<bool> stop(false);
+  Score sc;
+  int count;
+  for (int i = 0; i < 1; i++)
+  {
+    chessboard.LoadPosition(starting_boards[i]);
+    std::cout << "trying position: " << starting_boards[i] << '\n';
+    std::priority_queue<MoveScore> pq;
+    auto legals = chessboard.legal_moves();
+    for (int j = 0; j < legals.size(); j++)
+      pq.push(MoveScore(legals[j], 0));
+    CMove found = ai::rootMove(chessboard, depth, stop, sc, legals[0], count, pq);
+    expect(correct_moves[i], moveToUCIAlgebraic(found), "node count", total_cases, passes);
+  }
+}
+
 void banner(std::string const &message)
 {
   std::cout << "-----" << message << "-----" << std::endl;
@@ -255,6 +277,9 @@ void run_tests()
     banner("PERFT tricky depth=" + std::to_string(d));
     perft_tricky_test(d, total_cases, passes);
   }
+
+  banner("Root move depth=1");
+  move_find_test(5, total_cases, passes);
 
   std::cout << passes << "/" << total_cases << " tests passed." << std::endl;
 }

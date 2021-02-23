@@ -19,7 +19,6 @@ std::string pieceToStringLower(PieceType piece_);
 std::string pieceToStringFen(PieceType piece_); // to upper or lower depending on color
 PieceType pieceFromStringFen(std::string val); // from uppercase or lowercase
 
-
 // location <=> e4, f6, etc
 std::string squareName(u64 square);
 std::string squareName(Square square);

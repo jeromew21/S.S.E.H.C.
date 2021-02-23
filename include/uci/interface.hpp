@@ -15,7 +15,7 @@ namespace uci
   void set_debug(bool value);
   
   /**
-   * Kick off the engine.
+   * Kick off the UCI main thread.
    */
   void listen();
 
@@ -79,7 +79,17 @@ namespace uci
     /**
      * Recieve a command from the client.
      */
-    void RecieveCommand(std::string cmd);
+    void RecieveUCICommand(std::string cmd);
+
+    void UCICommand(std::vector<std::string> &tokens);
+
+    void PositionCommand(std::vector<std::string> &tokens);
+
+    void GoCommand(std::vector<std::string> &tokens);
+    
+    void DebugCommand(std::vector<std::string> &tokens);
+
+    void QuitCommand(std::vector<std::string> &tokens);
   };
 } // namespace uci
 

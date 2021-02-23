@@ -2,17 +2,17 @@
 
 TranspositionTable<4194304> table;
 MiniTable<131072> pvTable;
-//KillerTable kTable;
-//HistoryTable hTable;
-//CounterMoveTable cTable;
+KillerTable kTable;
+HistoryTable hTable;
+CounterMoveTable cTable;
 
 bool ai::isCheckmateScore(Score sc) { return SCORE_MAX - abs(sc) < 250; }
 
 void ai::reset()
 {
-    //    kTable.clear();
-    //    hTable.clear();
-    //    cTable.clear();
+    kTable.clear();
+    hTable.clear();
+    cTable.clear();
 }
 
 int ai::materialEvaluation(Board &board) { return board.material(); }
@@ -31,34 +31,34 @@ int ai::evaluation(Board &board)
     int score = 0;
 
     // mobility
-    //int mcwhite = board.mobility(White) - 31; //31 = 64/2 - 1
-    //int mcblack = board.mobility(Black) - 31;
-    //
-    //// Piece-squares
-    //// Interpolate between 32 pieces and 12 pieces
-    //float pieceCount = (((float)(max(hadd(board.occupancy()), 12) - 12)) / 20.0f);
-    //float earlyWeight = pieceCount;
-    //float lateWeight = 1.0f - pieceCount;
-    //
-    ////changed from for loop
+    int mcwhite = board.mobility(White) - 31; //31 = 64/2 - 1
+    int mcblack = board.mobility(Black) - 31;
+
+    // Piece-squares
+    // Interpolate between 32 pieces and 12 pieces
+    float pieceCount = (((float)(max(hadd(board.occupancy()), 12) - 12)) / 20.0f);
+    float earlyWeight = pieceCount;
+    float lateWeight = 1.0f - pieceCount;
+
+    //changed from for loop
     //float pscoreEarly = std::accumulate(board.pieceScoreEarlyGame, board.pieceScoreEarlyGame + 6);
     //float pscoreLate = std::accumulate(board.pieceScoreLateGame, board.pieceLateEarlyGame + 6);
-    //
+
     //float wpScore = pscoreEarly * earlyWeight + pscoreLate * lateWeight; //weighted score for white
-    //
+
     //pscoreEarly = std::accumulate(board.pieceScoreEarlyGame + 6, board.pieceScoreEarlyGame + 12);
     //pscoreLate = std::accumulate(board.pieceScoreLateGame + 6, board.pieceLateEarlyGame + 12);
-    //
+
     //float bpScore = pscoreEarly * earlyWeight + pscoreLate * lateWeight; //weighted score for black
 
     // combine features
-    score += materialEvaluation(board);
-    //score += mcwhite - mcblack;
-    //score += (wpScore - bpScore) * 10.0f;
+    score += materialEvaluation(board) * 10.0f; //change back after we get w/bpScore back up,.
+    score += mcwhite - mcblack;
+    //score += (wpScore - bpScore) * 10.0f; //why do we have both this and material eval?
     //score += board.kingSafety(White) * 5.0f * earlyWeight;
     //score -= board.kingSafety(Black) * 5.0f * earlyWeight;
-    //score += board.tropism(board.bitboard[piece::white::king], Black) * 0.03f * earlyWeight;
-    //score -= board.tropism(board.bitboard[piece::black::king], White) * 0.03f * earlyWeight;
+    score += board.tropism(board.get_bitboard(piece::white::king), Black) * 0.03f * earlyWeight;
+    score -= board.tropism(board.get_bitboard(piece::black::king), White) * 0.03f * earlyWeight;
     return score;
 }
 
@@ -204,7 +204,7 @@ CMove ai::rootMove(Board &board, int depth, std::atomic<bool> &stop, Score &outs
 
 // //alpha beta on captures.
 Score ai::quiescence(Board &board, int depth, int plyCount, Score alpha,
-                     Score beta, std::atomic<bool> &stop, int &count, int kickoff)
+                     Score beta, std::atomic<bool> &stop, int &count, int quiesce_depth)
 {
     count++;
 
@@ -231,8 +231,10 @@ Score ai::quiescence(Board &board, int depth, int plyCount, Score alpha,
     bool deltaPrune = hadd(occ) > 12; //true && hadd(occ) > 12; **
 
     MoveList<256> movelist;
-    if (!isCheck) movelist = board.capture_moves(); // order by MVV-LVA
-    else movelist = board.legal_moves();
+    if (!isCheck)
+        movelist = board.capture_moves(); // order by MVV-LVA
+    else
+        movelist = board.legal_moves();
 
     std::priority_queue<MoveScore> MoveScores;
 
@@ -250,7 +252,7 @@ Score ai::quiescence(Board &board, int depth, int plyCount, Score alpha,
             deltaPrune && isCapture &&
             (baseline + 200 + getMaterialValue(board.piece_at(mv.dest())) < alpha);
         bool isCheckingMove = board.is_checking_move(mv);
-        bool isChecking = (kickoff == 0 || kickoff == 2) && isCheckingMove && //**
+        bool isChecking = (quiesce_depth == 0 || quiesce_depth == 2) && isCheckingMove && //**
                           (!isCapture || (isCapture && see >= 0 && !isDeltaPrune));
         int mvscore = 0;
         if (!isCapture && isPromotion && mv.promoting_piece(White) == piece::white::queen)
@@ -268,7 +270,7 @@ Score ai::quiescence(Board &board, int depth, int plyCount, Score alpha,
         MoveScores.pop();
         board.MakeMove(mv);
         Score score = -quiescence(board, depth, plyCount + 1, -beta, -alpha,
-                                  stop, count, kickoff + 1);
+                                  stop, count, quiesce_depth + 1);
         board.UnmakeMove();
         if (stop)
             return alpha;
@@ -353,9 +355,7 @@ std::vector<CMove> ai::generateMovesOrdered(Board &board, CMove refMove,
     negCaptures.reserve(15);
     other.reserve(15);
 
-    std::priority_queue<MoveScore> otherWScore;
-
-    CMove lastMove = board.last_move(); //*need this
+    CMove lastMove = board.last_move();
 
     // priority:
     // 0) hashmove (1)
@@ -386,26 +386,28 @@ std::vector<CMove> ai::generateMovesOrdered(Board &board, CMove refMove,
                 negCaptures.push_back(mv);
         }
 
-        //else if (kTable.contains(mv, plyCount))
-        //    heuristics.push_back(mv);
-        //else if (cTable.contains(lastMove, mv, board.turn()))
-        //    heuristics.push_back(mv);
-        //else
-        //    other.push_back(mv);
+        else if (kTable.contains(mv, plyCount))
+            heuristics.push_back(mv);
+        else if (cTable.contains(lastMove, mv, board.turn()))
+            heuristics.push_back(mv);
+        else
+            other.push_back(mv);
     }
     numPositiveMoves = posCaptures.size() + hashMoves.size() + heuristics.size();
     allMoves.reserve(numPositiveMoves + eqCaptures.size() + other.size() +
                      negCaptures.size());
     // history sort
-    //Color tn = board.turn();
-    //for (CMove mv : other)
-    //    otherWScore.push(MoveScore(mv, hTable.get(mv, tn)));
+    Color tn = board.turn();
+    std::priority_queue<MoveScore> otherWScore;
 
-    //while (!otherWScore.empty())
-    //{
-    //    allMoves.push_back(otherWScore.top().mv);
-    //    otherWScore.pop();
-    //}
+    for (CMove mv : other)
+        otherWScore.push(MoveScore(mv, hTable.get(mv, tn)));
+
+    while (!otherWScore.empty())
+    {
+        allMoves.push_back(otherWScore.top().mv);
+        otherWScore.pop();
+    }
 
     allMoves.insert(allMoves.end(), negCaptures.begin(), negCaptures.end());
     allMoves.insert(allMoves.end(), eqCaptures.begin(), eqCaptures.end());
@@ -503,7 +505,7 @@ Score ai::alphaBetaSearch(Board &board, int depth, int plyCount, Score alpha,
 
     // use IID to find best move????
 
-    // CMove lastMove = board.last_move();
+    CMove lastMove = board.last_move();
 
     u64 occ = board.occupancy();
 
@@ -555,9 +557,9 @@ Score ai::alphaBetaSearch(Board &board, int depth, int plyCount, Score alpha,
 
             if (fmove.dest() & ~occ) //don't update if capture, cause the move will likely not be an option in the future
             {
-                //hTable.insert(fmove, board.turn(), depth);
-                //kTable.insert(fmove, plyCount);
-                //cTable.insert(board.turn(), lastMove, fmove);
+                hTable.insert(fmove, board.turn(), depth);
+                kTable.insert(fmove, plyCount);
+                cTable.insert(board.turn(), lastMove, fmove);
             }
             return beta; // fail hard
         }
@@ -785,9 +787,9 @@ Score ai::zeroWindowSearch(Board &board, int depth, int plyCount, Score beta,
 
             if (fmove.dest() & ~occ)
             {
-                //hTable.insert(fmove, board.turn(), depth);
-                //kTable.insert(fmove, plyCount);
-                //cTable.insert(board.turn(), lastMove, fmove);
+                hTable.insert(fmove, board.turn(), depth);
+                kTable.insert(fmove, plyCount);
+                cTable.insert(board.turn(), lastMove, fmove);
             }
 
             return beta; // fail hard

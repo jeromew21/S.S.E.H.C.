@@ -195,3 +195,114 @@ int Board::material(Color color) const
 }
 
 int Board::material() const { return material(White) - material(Black); }
+
+int Board::mobility(Color c)
+{ // Minor piece and rook mobility
+  int result = 0;
+  u64 friendlies = occupancy(c);
+  u64 pieces = c == White
+                   ? get_bitboard(piece::white::knight) | get_bitboard(piece::white::bishop) | get_bitboard(piece::white::rook)
+                   : get_bitboard(piece::black::knight) | get_bitboard(piece::black::bishop) | get_bitboard(piece::black::rook);
+  u64List arr;
+
+  bitscanAll(pieces, arr);
+  for (int i = 0; i < arr.len(); i++)
+    result += hadd(attackers_to_(u64ToSquare(arr[i]), c) & ~friendlies);
+
+  return result; // todo fix
+}
+
+float Board::tropism(u64 square, Color enemyColor)
+{
+  static const int weights[6] = {0, 1, 1, 2, 3, 0};
+  int row = u64ToRow(square);
+  int col = u64ToRow(square);
+  int sum = 0;
+  u64List arr;
+  for (PieceType p = enemyColor; p < 12; p += 2)
+  {
+    u64 bb = get_bitboard(p);
+    bitscanAll(bb, arr);
+    for (int i = 0; i < arr.len(); i++)
+    {
+      int index = arr[i];
+      int eRow = squareToRow(index);
+      int eCol = squareToCol(index);
+      sum += (abs(eRow - row) + abs(eCol - col)) * weights[p];
+    }
+  }
+  return -1.0f * sum;
+}
+
+/*
+float Board::kingSafety(Color c)
+{
+  //-5 for being next to one
+  // pawn shield +10 bonus for 3 pawns and bottom row
+  float score = 0.0;
+  // u64 friendlies = board.occupancy(c);
+  // u64 enemies = board.occupancy(flipColor(c));
+  u64 kingBB = c == White ? get_bitboard(piece::white::king) : get_bitboard(piece::black::king);
+  u64 pawns = c == White ? get_bitboard(piece::white::pawn) : get_bitboard(piece::black::pawn);
+  Square index = u64ToSquare(kingBB);
+  int rookDir = c == White ? ROOK_UP : ROOK_DOWN;
+  u64 backRank = getBackRank(c);
+  int col = squareToCol(index);
+  int row = squareToRow(index);
+  bool isOnEdge = col % 7 == 0;
+
+  // Keep pawns in front of king
+  if (kingBB & backRank)
+  {
+    float pawnShieldScore = hadd(kingMoves(index) & pawns);
+    if (isOnEdge)
+    {
+      pawnShieldScore /= 2.0f;
+    }
+    else
+    {
+      pawnShieldScore /= 3.0f;
+    }
+    score += pawnShieldScore * 3.0f;
+  }
+
+  // Penalize being on or next to open files
+  float openFilesPenalty = 0.0f;
+  if (!(rookMoves(index, rookDir) & pawns))
+  {
+    openFilesPenalty += 2.0f;
+  }
+  if (col == 0)
+  {
+    int indexRight = intFromPair(row, col + 1);
+    if (!(rookMoves(indexRight, rookDir) & pawns))
+    {
+      openFilesPenalty += 1.0f;
+    }
+  }
+  else if (col == 7)
+  {
+    int indexLeft = intFromPair(row, col - 1);
+    if (!(rookMoves(indexLeft, rookDir) & pawns))
+    {
+      openFilesPenalty += 1.0f;
+    }
+  }
+  else
+  {
+    int indexLeft = intFromPair(row, col - 1);
+    int indexRight = intFromPair(row, col + 1);
+    if (!(rookMoves(indexLeft, rookDir) & pawns))
+    {
+      openFilesPenalty += 1.0f;
+    }
+    if (!(rookMoves(indexRight, rookDir) & pawns))
+    {
+      openFilesPenalty += 1.0f;
+    }
+  }
+  score -= openFilesPenalty * 1.5f; // weight for open files
+
+  return score;
+}
+*/

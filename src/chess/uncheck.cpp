@@ -7,7 +7,7 @@
  * and if it's single check you can only move, block, or capture.
  */
 MoveList<256> Board::produce_uncheck_moves_() const
-{   
+{
   assert(is_check());
 
   MoveList<256> mv_list;

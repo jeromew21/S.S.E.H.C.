@@ -18,6 +18,7 @@
 #include "game/cmove.hpp"
 #include "datastructures/move_list.hpp"
 #include "uci/interface.hpp"
+#include "tables.hpp"
 
 namespace ai
 {

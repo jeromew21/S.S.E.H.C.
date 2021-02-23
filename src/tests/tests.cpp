@@ -278,8 +278,9 @@ void run_tests()
     perft_tricky_test(d, total_cases, passes);
   }
 
-  banner("Root move depth=1");
-  move_find_test(5, total_cases, passes);
+  int depth = 5;
+  banner("Root move depth=" + std::to_string(depth));
+  move_find_test(depth, total_cases, passes);
 
   std::cout << passes << "/" << total_cases << " tests passed." << std::endl;
 }

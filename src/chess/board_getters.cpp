@@ -199,15 +199,8 @@ int Board::material() const { return material(White) - material(Black); }
 int Board::mobility(Color c)
 { // Minor piece and rook mobility
   int result = 0;
-  u64 friendlies = occupancy(c);
-  u64 pieces = c == White
-                   ? get_bitboard(piece::white::knight) | get_bitboard(piece::white::bishop) | get_bitboard(piece::white::rook)
-                   : get_bitboard(piece::black::knight) | get_bitboard(piece::black::bishop) | get_bitboard(piece::black::rook);
-  u64List arr;
-
-  bitscanAll(pieces, arr);
-  for (int i = 0; i < arr.len(); i++)
-    result += hadd(attackers_to_(u64ToSquare(arr[i]), c) & ~friendlies);
+  
+  // needs a different implementation
 
   return result; // todo fix
 }

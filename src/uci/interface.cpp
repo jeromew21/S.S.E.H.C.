@@ -340,12 +340,21 @@ void uci::Interface::DebugCommand(std::vector<std::string> &tokens)
   }
 }
 
+void uci::Interface::QuitCommand(std::vector<std::string> &tokens)
+{
+  // may need to call destructors
+  StopThinking();
+  verbose_info("exiting");
+  exit(0);
+}
+
 void uci::Interface::RecieveUCICommand(std::string cmd)
 {
   std::vector<std::string> tokens = tokenize(cmd);
 
   if (tokens.size() < 1)
   {
+    // We didn't get any tokens to parse.
     verbose_info("empty command");
     return;
   }
@@ -394,10 +403,7 @@ void uci::Interface::RecieveUCICommand(std::string cmd)
   }
   else if (tokens[0] == "quit")
   {
-    // may need to call destructors
-    StopThinking();
-    verbose_info("exiting");
-    exit(0);
+    QuitCommand(tokens);
   }
 }
 

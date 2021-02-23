@@ -88,6 +88,8 @@ namespace uci
     void GoCommand(std::vector<std::string> &tokens);
     
     void DebugCommand(std::vector<std::string> &tokens);
+
+    void QuitCommand(std::vector<std::string> &tokens);
   };
 } // namespace uci
 

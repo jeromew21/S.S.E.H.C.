@@ -31,8 +31,9 @@ int ai::evaluation(Board &board)
   int score = 0;
 
   // mobility
-  int mcwhite = board.mobility(White) - 31; //31 = 64/2 - 1
-  int mcblack = board.mobility(Black) - 31;
+  int mcwhite = board.mobility(White); //31 = 64/2 - 1
+  int mcblack = board.mobility(Black);
+  score += mcwhite - mcblack;
 
   // Piece-squares
   // Interpolate between 32 pieces and 12 pieces

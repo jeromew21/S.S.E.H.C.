@@ -172,7 +172,7 @@ void move_find_test(int depth, int &total_cases, int &passes)
   Board chessboard;
   std::atomic<bool> stop(false);
   Score sc = 0;
-  int count;
+  int count = 0;
   for (int i = 0; i < 3; i++)
   {
     chessboard.LoadPosition(starting_boards[i]);
@@ -181,7 +181,8 @@ void move_find_test(int depth, int &total_cases, int &passes)
     auto legals = chessboard.legal_moves();
     for (int j = 0; j < legals.size(); j++)
       pq.push(MoveScore(legals[j], 0));
-    CMove found = ai::rootMove(chessboard, depth, stop, sc, legals[0], count, pq);
+    auto start = std::chrono::system_clock::now();
+    CMove found = ai::rootMove(chessboard, depth, stop, sc, legals[0], count, start, pq);
     expect(correct_moves[i], moveToUCIAlgebraic(found), "node count", total_cases, passes);
   }
 }

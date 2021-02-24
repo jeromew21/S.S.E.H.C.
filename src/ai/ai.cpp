@@ -75,9 +75,11 @@ int ai::flippedEval(Board &board)
 }
 
 //return best move from a certain depth. uses alpha beta search to find best score.
-//std::chrono::_V2::system_clock::time_point start,
+//
 CMove ai::rootMove(Board &board, int depth, std::atomic<bool> &stop, Score &outscore, CMove prevPv,
-                   int &count, std::priority_queue<MoveScore> &prevScores)
+                   int &count,
+                   std::chrono::time_point<std::chrono::system_clock> start,
+                   std::priority_queue<MoveScore> &prevScores)
 {
 
   TableNode node(board, depth, PV);
@@ -195,8 +197,8 @@ CMove ai::rootMove(Board &board, int depth, std::atomic<bool> &stop, Score &outs
       chosen = mv;
       outscore = alpha;
       node.bestMove = chosen;
-      table.insert(node, alpha);                  // new PV found
-      sendPV(board, depth, chosen, count, alpha); //, start);
+      table.insert(node, alpha);                         // new PV found
+      sendPV(board, depth, chosen, count, alpha, start); //, start);
     }
   }
   if (!raisedAlpha)
@@ -291,8 +293,13 @@ Score ai::quiescence(Board &board, int depth, int plyCount, Score alpha,
 //reconstruct PV
 //, std::chrono::_V2::system_clock::time_point start
 void ai::sendPV(Board &board, int depth, CMove pvMove, int nodeCount,
-                Score score)
+                Score score, std::chrono::time_point<std::chrono::system_clock> start)
 {
+
+  auto stop = std::chrono::high_resolution_clock::now();
+  auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start); // or milliseconds
+  double runtime = duration.count();
+
   std::string pv = " pv " + moveToUCIAlgebraic(pvMove);
   board.MakeMove(pvMove);
   MiniTableBucket *search = pvTable.find(board.hash());
@@ -302,17 +309,15 @@ void ai::sendPV(Board &board, int depth, CMove pvMove, int nodeCount,
     {
       CMove mv = search->seq[k];
 
-      if (mv.is_null()) break;
+      if (mv.is_null())
+        break;
 
       pv += " " + moveToUCIAlgebraic(mv);
     }
   }
   board.UnmakeMove();
 
-  //auto stop = std::chrono::high_resolution_clock::now();
-  //auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(
-  //    stop - start); // or milliseconds
-  //int time = duration.count();
+  
 
   std::string scoreStr;
   if (ai::isCheckmateScore(score))
@@ -330,11 +335,24 @@ void ai::sendPV(Board &board, int depth, CMove pvMove, int nodeCount,
     scoreStr = " score mate " + std::to_string(v);
   }
   else if (depth == 0)
+  {
     return;
+  }
   else
+  {
     scoreStr = " score cp " + std::to_string(score) + pv;
+  }
 
-  uci::sendToUciClient("info depth " + std::to_string(max(1, depth)) + scoreStr);
+  int nps = ((double) nodeCount) / (runtime / 1000.0L);
+
+  scoreStr += " time " + std::to_string((int)runtime);
+  scoreStr += " nps " + std::to_string(nps);
+
+  // prepend depth to output
+  scoreStr = "info depth " + std::to_string(max(1, depth)) + scoreStr;
+
+
+  uci::sendToUciClient(scoreStr);
 }
 
 std::vector<CMove> ai::generateMovesOrdered(Board &board, CMove refMove,

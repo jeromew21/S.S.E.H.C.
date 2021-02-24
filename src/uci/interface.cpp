@@ -33,7 +33,7 @@ void uci::Interface::Think()
     Score score;
     // send principal variation move from previous
     CMove move_at_depth = ai::rootMove(board_, depth, not_thinking, score, best_move_,
-                                       node_count, prev_scores);
+                                       node_count, start, prev_scores);
     if (not_thinking)
     {
       if (depth <= 1)
@@ -309,7 +309,7 @@ void uci::Interface::GoCommand(std::vector<std::string> &tokens)
   StartThinking(inf, msecs);
 }
 
-void uci::Interface::UCICommand(std::vector<std::string> &tokens)
+void uci::Interface::UCICommand()
 {
   // send engine info
   uci::sendToUciClient("id name ssehc " + std::to_string(version_major) + "." + std::to_string(version_minor));
@@ -340,7 +340,7 @@ void uci::Interface::DebugCommand(std::vector<std::string> &tokens)
   }
 }
 
-void uci::Interface::QuitCommand(std::vector<std::string> &tokens)
+void uci::Interface::QuitCommand()
 {
   // may need to call destructors
   StopThinking();
@@ -361,7 +361,7 @@ void uci::Interface::RecieveUCICommand(std::string cmd)
 
   if (tokens[0] == "uci")
   {
-    UCICommand(tokens);
+    UCICommand();
   }
   else if (tokens[0] == "debug")
   {
@@ -403,7 +403,7 @@ void uci::Interface::RecieveUCICommand(std::string cmd)
   }
   else if (tokens[0] == "quit")
   {
-    QuitCommand(tokens);
+    QuitCommand();
   }
 }
 

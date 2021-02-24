@@ -26,11 +26,11 @@ namespace ai
   int evaluation(Board &board);  // absolute
   int flippedEval(Board &board); // depends on turn
 
-  void sendPV(Board &board, int depth, CMove pv_move, int node_count, Score score); //,std::chrono::_V2::system_clock::time_point start);
+  void sendPV(Board &board, int depth, CMove pv_move, int node_count, Score score, std::chrono::time_point<std::chrono::system_clock> start);
 
   CMove rootMove(Board &board, int depth, std::atomic<bool> &stop, Score &out_score,
                  CMove prevPv, int &count,
-                 //std::chrono::_V2::system_clock::time_point start,
+                 std::chrono::time_point<std::chrono::system_clock> start,
                  std::priority_queue<MoveScore> &prevScores);
 
   Score quiescence(Board &board, int depth, int ply_count, Score alpha, Score beta,

@@ -81,7 +81,7 @@ namespace uci
      */
     void RecieveUCICommand(std::string cmd);
 
-    void UCICommand(std::vector<std::string> &tokens);
+    void UCICommand();
 
     void PositionCommand(std::vector<std::string> &tokens);
 
@@ -89,7 +89,7 @@ namespace uci
     
     void DebugCommand(std::vector<std::string> &tokens);
 
-    void QuitCommand(std::vector<std::string> &tokens);
+    void QuitCommand();
   };
 } // namespace uci
 

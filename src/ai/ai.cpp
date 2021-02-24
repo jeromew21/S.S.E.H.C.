@@ -75,13 +75,11 @@ int ai::flippedEval(Board &board)
 }
 
 //return best move from a certain depth. uses alpha beta search to find best score.
-//
+//increases total number of nodes traveled through total_nodes_visited
 CMove ai::rootMove(Board &board, int depth, std::atomic<bool> &stop, Score &outscore, CMove prevPv,
-                   int &count,
-                   std::chrono::time_point<std::chrono::system_clock> start,
-                   std::priority_queue<MoveScore> &prevScores)
+                   std::priority_queue<MoveScore> &prevScores, int &total_nodes_visited,
+                   std::chrono::time_point<std::chrono::system_clock> start)
 {
-
   TableNode node(board, depth, PV);
 
   auto moves = board.legal_moves();
@@ -130,7 +128,7 @@ CMove ai::rootMove(Board &board, int depth, std::atomic<bool> &stop, Score &outs
     {
       CMove mv = moves[i];
       board.MakeMove(mv);
-      Score score = -quiescence(board, 0, 0, alpha, beta, stop, count, 0);
+      Score score = -quiescence(board, 0, 0, alpha, beta, stop, total_nodes_visited, 0);
       board.UnmakeMove();
       MoveScores.push(MoveScore(mv, score));
     }
@@ -157,7 +155,7 @@ CMove ai::rootMove(Board &board, int depth, std::atomic<bool> &stop, Score &outs
 
   while (!moves.is_empty())
   {
-    int subtreeCount = 0;
+    int subtree_count = 0;
     CMove mv = moves.pop_back();
     board.MakeMove(mv);
 
@@ -165,28 +163,27 @@ CMove ai::rootMove(Board &board, int depth, std::atomic<bool> &stop, Score &outs
     if (nullWindow)
     {
       score = -ai::zeroWindowSearch(board, depth, 0, -alpha, stop,
-                                    subtreeCount, All);
+                                    subtree_count, All);
       if (score > alpha)
         score = -ai::alphaBetaSearch(board, depth, 0, -beta, -alpha,
-                                     stop, subtreeCount, PV, true);
+                                     stop, subtree_count, PV, true);
     }
     else
     {
       score = -ai::alphaBetaSearch(board, depth, 0, -beta, -alpha, stop,
-                                   subtreeCount, PV, true);
+                                   subtree_count, PV, true);
       nullWindow = true;
     }
 
-    verbose_info(moveToUCIAlgebraic(mv) + std::to_string(score));
-
     board.UnmakeMove();
 
-    count += subtreeCount;
-    prevScores.push(MoveScore(mv, subtreeCount));
+    total_nodes_visited += subtree_count; // add running tally of nodes visited
+    prevScores.push(MoveScore(mv, subtree_count));
 
     if (stop)
     {
       outscore = alpha;
+      sendPV(board, depth, chosen, total_nodes_visited, score, start);
       return chosen; // returns best found so far
     }                // here bc if AB call stopped, it won't be full search
 
@@ -195,12 +192,13 @@ CMove ai::rootMove(Board &board, int depth, std::atomic<bool> &stop, Score &outs
       alpha = score;
       raisedAlpha = true;
       chosen = mv;
-      outscore = alpha;
+      outscore = score;
       node.bestMove = chosen;
-      table.insert(node, alpha);                         // new PV found
-      sendPV(board, depth, chosen, count, alpha, start); //, start);
+      table.insert(node, score); // new PV found
+      sendPV(board, depth, chosen, total_nodes_visited, score, start);
     }
   }
+
   if (!raisedAlpha)
   {
     uci::sendToUciClient("info string root fail-low");
@@ -208,6 +206,67 @@ CMove ai::rootMove(Board &board, int depth, std::atomic<bool> &stop, Score &outs
   }
 
   return chosen;
+}
+
+// reconstruct PV
+void ai::sendPV(Board &board, int depth, CMove pvMove, int total_node_count,
+                Score score, std::chrono::time_point<std::chrono::system_clock> start)
+{
+  auto stop = std::chrono::high_resolution_clock::now();
+  auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start); // or milliseconds
+  double runtime = duration.count();
+
+  std::string pv = " pv " + moveToUCIAlgebraic(pvMove);
+  board.MakeMove(pvMove);
+  MiniTableBucket *search = pvTable.find(board.hash());
+  if (search != pvTable.end())
+  {
+    for (int k = 0; k < search->depth; k++)
+    {
+      CMove mv = search->seq[k];
+
+      if (mv.is_null())
+        break;
+
+      pv += " " + moveToUCIAlgebraic(mv);
+    }
+  }
+  board.UnmakeMove();
+
+  std::string score_str;
+
+  score_str += "info depth " + std::to_string(depth + 1);
+
+  if (ai::isCheckmateScore(score))
+  {
+
+    int dRoot = SCORE_MAX - abs(score);
+    int v = dRoot - board.stack_size();
+
+    if (v % 2 == 0)
+      v = -(v / 2);
+    else
+      v = (v + 1) / 2;
+
+    uci::sendToUciClient("info string plies " + std::to_string(v));
+    score_str += " score mate " + std::to_string(v);
+  }
+  else
+  {
+    score_str += " score cp " + std::to_string(score);
+  }
+
+  int nps = ((double)total_node_count) / (runtime / 1e6L);
+  int search_time = runtime / 1e3L;
+
+  score_str += " time " + std::to_string(search_time);
+  score_str += " nps " + std::to_string(nps);
+  score_str += " nodes " + std::to_string(total_node_count);
+
+  // finally append PV
+  score_str += pv;
+
+  uci::sendToUciClient(score_str);
 }
 
 // //alpha beta on captures.
@@ -222,7 +281,7 @@ Score ai::quiescence(Board &board, int depth, int plyCount, Score alpha,
   if (status != board::Status::Playing)
   {
     if (baseline == SCORE_MIN)
-      return SCORE_MIN; // + board.dstart();
+      return SCORE_MIN + board.stack_size();
     else
       return baseline; // alpha vs baseline...
   }
@@ -288,71 +347,6 @@ Score ai::quiescence(Board &board, int depth, int plyCount, Score alpha,
       alpha = score;
   }
   return alpha;
-}
-
-//reconstruct PV
-//, std::chrono::_V2::system_clock::time_point start
-void ai::sendPV(Board &board, int depth, CMove pvMove, int nodeCount,
-                Score score, std::chrono::time_point<std::chrono::system_clock> start)
-{
-
-  auto stop = std::chrono::high_resolution_clock::now();
-  auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start); // or milliseconds
-  double runtime = duration.count();
-
-  std::string pv = " pv " + moveToUCIAlgebraic(pvMove);
-  board.MakeMove(pvMove);
-  MiniTableBucket *search = pvTable.find(board.hash());
-  if (search != pvTable.end())
-  {
-    for (int k = 0; k < search->depth; k++)
-    {
-      CMove mv = search->seq[k];
-
-      if (mv.is_null())
-        break;
-
-      pv += " " + moveToUCIAlgebraic(mv);
-    }
-  }
-  board.UnmakeMove();
-
-  
-
-  std::string scoreStr;
-  if (ai::isCheckmateScore(score))
-  {
-
-    int dRoot = SCORE_MAX - abs(score);
-    int v = dRoot; // - board.dstart();
-
-    if (v % 2 == 0)
-      v = -(v / 2);
-    else
-      v = (v + 1) / 2;
-
-    uci::sendToUciClient("info string plies " + std::to_string(v));
-    scoreStr = " score mate " + std::to_string(v);
-  }
-  else if (depth == 0)
-  {
-    return;
-  }
-  else
-  {
-    scoreStr = " score cp " + std::to_string(score) + pv;
-  }
-
-  int nps = ((double) nodeCount) / (runtime / 1000.0L);
-
-  scoreStr += " time " + std::to_string((int)runtime);
-  scoreStr += " nps " + std::to_string(nps);
-
-  // prepend depth to output
-  scoreStr = "info depth " + std::to_string(max(1, depth)) + scoreStr;
-
-
-  uci::sendToUciClient(scoreStr);
 }
 
 std::vector<CMove> ai::generateMovesOrdered(Board &board, CMove refMove,
@@ -451,7 +445,7 @@ Score ai::alphaBetaSearch(Board &board, int depth, int plyCount, Score alpha,
   {
     Score score;
     if (status == board::Status::WhiteWin || status == board::Status::BlackWin)
-      score = SCORE_MIN; //+ board.dstart();
+      score = SCORE_MIN + board.stack_size();
     else if (status == board::Status::Stalemate ||
              status == board::Status::Draw)
       score = 0;
@@ -649,7 +643,7 @@ Score ai::zeroWindowSearch(Board &board, int depth, int plyCount, Score beta,
   {
     Score score;
     if (status == board::Status::WhiteWin || status == board::Status::BlackWin)
-      score = SCORE_MIN; //+ board.dstart();
+      score = SCORE_MIN + board.stack_size();
 
     else if (status == board::Status::Stalemate ||
              status == board::Status::Draw)

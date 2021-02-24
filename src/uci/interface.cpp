@@ -20,10 +20,10 @@ void uci::Interface::Think()
 {
   const int depth_limit = SCORE_MAX;
 
+  int total_nodes_visited = 1;
   auto start = std::chrono::high_resolution_clock::now();
 
   int depth = 0;      // current search depth
-  int node_count = 1; // total number of nodes visited
   Score best_score(SCORE_MIN);
   best_move_ = board_.legal_moves()[0];
   std::priority_queue<MoveScore> prev_scores;
@@ -32,8 +32,7 @@ void uci::Interface::Think()
   {
     Score score;
     // send principal variation move from previous
-    CMove move_at_depth = ai::rootMove(board_, depth, not_thinking, score, best_move_,
-                                       node_count, start, prev_scores);
+    CMove move_at_depth = ai::rootMove(board_, depth, not_thinking, score, best_move_, prev_scores, total_nodes_visited, start);
     if (not_thinking)
     {
       if (depth <= 1)

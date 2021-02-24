@@ -313,6 +313,11 @@ public:
   Color turn() const;
 
   /**
+   * The old dstart() method.
+   */
+  int stack_size() const;
+
+  /**
    * Get the current hash.
    */
   u64 hash() const;

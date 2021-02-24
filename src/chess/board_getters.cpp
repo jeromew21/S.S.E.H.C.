@@ -183,6 +183,11 @@ PieceType Board::piece_at(Square location) const
   return piece_board_[location];
 }
 
+int Board::stack_size() const
+{
+  return state_stack_.size();
+}
+
 int Board::material(Color color) const
 {
   int result = 0;

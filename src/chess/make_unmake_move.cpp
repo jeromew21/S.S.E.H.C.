@@ -16,6 +16,8 @@ void Board::MakeMove(CMove mv)
   const Color curr_turn = turn();
   const int move_type_ = mv.type_code();
 
+  bool check_threefold = true;
+
   if (move_type_ == move_type::NullMove)
   {
     // Set any state that might have changed if we did a null move
@@ -40,6 +42,7 @@ void Board::MakeMove(CMove mv)
       // On a pawn move or capture, reset the counters.
       state_.halfmove_counter = 0;
       state_.has_repeated = 0;
+      check_threefold = false;
     }
     else
     {
@@ -155,22 +158,33 @@ void Board::MakeMove(CMove mv)
   }
 
   // annoying: deal with threefold
-  // if (!boardState[HAS_REPEATED_INDEX]) {
-  //   int counter = 0;
-  //   for (int i = stack.getIndex() - 2; i >= 0; i -= 2) {
-  //     BoardStateNode &node = stack.peekNodeAt(i);
-  //     if (node.hash == zobrist()) {
-  //       counter++;
-  //     }
-  //     if (node.data[LAST_MOVED_INDEX] % 6 == 0 ||
-  //         node.data[LAST_CAPTURED_INDEX] != Empty) {
-  //       break;
-  //     }
-  //   }
-  //   if (counter >= 2) {
-  //     boardState[HAS_REPEATED_INDEX] = 1;
-  //   }
-  // }
+  if (check_threefold && !state_.has_repeated)
+  {
+    int counter = 0;
+    u64 curr_hash = hash();
+
+    // stack_size() - 1 is previous position
+    // stack_size() - 2 is the one w/ same turn as current...
+
+    for (int i = stack_size() - 2; i >= 0; i -= 2)
+    {
+      board::State &node = state_stack_.peek_at(i);
+      if (node.hash == curr_hash)
+      {
+        counter++;
+      }
+      if (counter >= 2)
+      {
+        state_.has_repeated = 1;
+        break;
+      }
+      if (piece::is_pawn(node.last_moved_piece) ||
+          !piece::is_empty(node.last_captured_piece))
+      {
+        break;
+      }
+    }
+  }
 
   state_.ply_count += 1;
   //state_.move_count
@@ -182,7 +196,7 @@ void Board::MakeMove(CMove mv)
 void Board::UnmakeMove()
 {
   assert(state_stack_.can_pop());
-  
+
   board::State &node = state_stack_.peek();
   CMove mv = state_.last_move;
   const int move_type_ = mv.type_code();

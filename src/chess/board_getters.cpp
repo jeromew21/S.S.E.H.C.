@@ -209,7 +209,6 @@ int Board::mobility(Color c)
 { // Minor piece and rook mobility
   int result = 0;
 
-  // needs a different implementation
   const u64 occ = occupancy();
   const u64 unfriendly_occ = ~occupancy(c);
 
@@ -233,7 +232,7 @@ int Board::mobility(Color c)
     result += hadd(move_maps::knightMoves(u64ToSquare(piece_bitscan[i])) & unfriendly_occ);
   }
 
-  return result; // todo fix
+  return result;
 }
 
 float Board::tropism(u64 square, Color enemyColor)

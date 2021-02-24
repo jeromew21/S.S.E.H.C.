@@ -7,7 +7,11 @@ board::Status Board::status()
     return status_;
 
   // Calculate and store value
-  if (is_check())
+  if (state_.has_repeated || state_.halfmove_counter >= 50)
+  {
+    status_ = board::Status::Draw;
+  }
+  else if (is_check())
   {
     if (is_checkmate())
     {
@@ -204,7 +208,7 @@ int Board::material() const { return material(White) - material(Black); }
 int Board::mobility(Color c)
 { // Minor piece and rook mobility
   int result = 0;
-  
+
   // needs a different implementation
 
   return result; // todo fix

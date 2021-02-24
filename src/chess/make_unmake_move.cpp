@@ -18,10 +18,18 @@ void Board::MakeMove(CMove mv)
 
   bool check_threefold = true;
 
+
+  // Increment counters
+
+  state_.ply_count += 1;
+  if (curr_turn == Black) {
+    state_.fullmove_counter += 1;
+  }
+
   if (move_type_ == move_type::NullMove)
   {
     // Set any state that might have changed if we did a null move
-    state_.halfmove_counter += 1;
+    state_.halfmove_counter += 1; // 50 move rule
     state_.last_moved_piece = piece::EmptyPiece;
     state_.last_captured_piece = piece::EmptyPiece;
     SetEpSquare_(-1);
@@ -40,7 +48,7 @@ void Board::MakeMove(CMove mv)
     if (piece::is_pawn(mover) || piece::is_empty(dest_former))
     {
       // On a pawn move or capture, reset the counters.
-      state_.halfmove_counter = 0;
+      state_.halfmove_counter = 0; // 50 move rule
       state_.has_repeated = 0;
       check_threefold = false;
     }
@@ -185,9 +193,6 @@ void Board::MakeMove(CMove mv)
       }
     }
   }
-
-  state_.ply_count += 1;
-  //state_.move_count
 
   // toggle turn
   SetTurn_(oppositeColor(curr_turn));

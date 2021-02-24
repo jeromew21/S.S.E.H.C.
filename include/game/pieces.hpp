@@ -35,9 +35,10 @@ namespace piece
   }                                        // namespace black
   const PieceType EmptyPiece = -1;
 
-  inline int to_colorless(PieceType piece) {
+  inline int to_colorless(PieceType piece)
+  {
     assert(piece != EmptyPiece);
-    return piece >> 1; 
+    return piece >> 1;
   }
 
   inline bool is_empty(PieceType piece) { return piece == EmptyPiece; }

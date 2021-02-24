@@ -211,21 +211,26 @@ int Board::mobility(Color c)
 
   // needs a different implementation
   const u64 occ = occupancy();
-  const u64 unfriendly_occ = ~occupancy(turn());
-  const Color curr_turn = turn();
+  const u64 unfriendly_occ = ~occupancy(c);
 
   u64List piece_bitscan;
 
-  bitscanAll(bitboard_[piece::get_rook(curr_turn)], piece_bitscan);
+  bitscanAll(bitboard_[piece::get_rook(c)], piece_bitscan);
   for (int i = 0; i < piece_bitscan.len(); i++)
   {
     result += hadd(move_maps::rookMoves(u64ToSquare(piece_bitscan[i]), occ) & unfriendly_occ);
   }
 
-  bitscanAll(bitboard_[piece::get_bishop(curr_turn)], piece_bitscan);
+  bitscanAll(bitboard_[piece::get_bishop(c)], piece_bitscan);
   for (int i = 0; i < piece_bitscan.len(); i++)
   {
     result += hadd(move_maps::bishopMoves(u64ToSquare(piece_bitscan[i]), occ) & unfriendly_occ);
+  }
+
+  bitscanAll(bitboard_[piece::get_knight(c)], piece_bitscan);
+  for (int i = 0; i < piece_bitscan.len(); i++)
+  {
+    result += hadd(move_maps::knightMoves(u64ToSquare(piece_bitscan[i])) & unfriendly_occ);
   }
 
   return result; // todo fix

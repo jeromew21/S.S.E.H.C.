@@ -177,6 +177,20 @@ private:
   board::Status status_;
 
   /**
+   * This will return a mask of pieces that attack any pieces masked by subjects,
+   * of attacking_color.
+   */
+  u64 attackers_to_(u64 subjects, Color attacking_color) const;
+
+  /**
+   * Similar to attackers_to but only returns a boolean, not the locations of attacking pieces.
+   * 
+   * Returns true if any of the pieces masked by subjects are under attack by pieces of attacking_color 
+   * 
+   */
+  bool is_attacked_(u64 subjects, Color attacking_color) const;
+
+  /**
    * The queenside starting location for rooks, depending on whether this is Chess960 or not.
    */
   u64 king_starting_location[2];
@@ -210,20 +224,6 @@ private:
    * related to but not exactly the same as is_checking_move()
    */
   bool verify_move_safety_(CMove mv) const;
-
-  /**
-   * This will return a mask of pieces that attack any pieces masked by subjects,
-   * of attacking_color.
-   */
-  u64 attackers_to_(u64 subjects, Color attacking_color) const;
-
-  /**
-   * Similar to attackers_to but only returns a boolean, not the locations of attacking pieces.
-   * 
-   * Returns true if any of the pieces masked by subjects are under attack by pieces of attacking_color 
-   * 
-   */
-  bool is_attacked_(u64 subjects, Color attacking_color) const;
 
   /** 
    * Add a piece at a location.
@@ -271,6 +271,11 @@ public:
    */
   int material() const;
   int material(Color) const;
+
+  int mobility(Color c);
+  float tropism(u64 square, Color enemyColor); //why is square u64 here?
+
+  float kingSafety(Color c);
 
   /**
    * Static exchange evaluation

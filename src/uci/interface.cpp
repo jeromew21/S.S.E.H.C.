@@ -381,7 +381,7 @@ void uci::Interface::RecieveUCICommand(std::string cmd)
   {
     // the next search is from a new game
     // clear hash tables, etc
-    // ai::reset();
+    ai::reset();
   }
   else if (tokens[0] == "position")
   {

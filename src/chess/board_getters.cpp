@@ -205,9 +205,11 @@ int Board::material(Color color) const
 
 int Board::material() const { return material(White) - material(Black); }
 
-int Board::mobility(Color c)
+float Board::mobility(Color c)
 { // Minor piece and rook mobility
-  int result = 0;
+  float result = 0;
+
+  int piece_count = 0;
 
   const u64 occ = occupancy();
   const u64 unfriendly_occ = ~occupancy(c);
@@ -217,22 +219,66 @@ int Board::mobility(Color c)
   bitscanAll(bitboard_[piece::get_rook(c)], piece_bitscan);
   for (int i = 0; i < piece_bitscan.len(); i++)
   {
-    result += hadd(move_maps::rookMoves(u64ToSquare(piece_bitscan[i]), occ) & unfriendly_occ);
+    result += hadd(move_maps::rookMoves(u64ToSquare(piece_bitscan[i]), occ) & unfriendly_occ) / 14.0f;
+    piece_count++;
   }
 
   bitscanAll(bitboard_[piece::get_bishop(c)], piece_bitscan);
   for (int i = 0; i < piece_bitscan.len(); i++)
   {
-    result += hadd(move_maps::bishopMoves(u64ToSquare(piece_bitscan[i]), occ) & unfriendly_occ);
+    result += hadd(move_maps::bishopMoves(u64ToSquare(piece_bitscan[i]), occ) & unfriendly_occ) / 13.0f;
+    piece_count++;
   }
 
   bitscanAll(bitboard_[piece::get_knight(c)], piece_bitscan);
   for (int i = 0; i < piece_bitscan.len(); i++)
   {
-    result += hadd(move_maps::knightMoves(u64ToSquare(piece_bitscan[i])) & unfriendly_occ);
+    result += hadd(move_maps::knightMoves(u64ToSquare(piece_bitscan[i])) & unfriendly_occ) / 8.0f;
+    piece_count++;
   }
 
-  return result;
+  return result / (int)piece_count;
+}
+
+/**
+ * Similar to mobility but counts squares controlled in total.
+ */
+int Board::space(Color c) const
+{
+  u64 controlled_map = 0;
+
+  const u64 occ = occupancy();
+  const u64 unfriendly_occ = ~occupancy(c);
+
+  u64List piece_bitscan;
+
+  u64 queen_bitboard = bitboard_[piece::get_queen(c)];
+
+  bitscanAll(bitboard_[piece::get_rook(c)] | queen_bitboard, piece_bitscan);
+  for (int i = 0; i < piece_bitscan.len(); i++)
+  {
+    controlled_map |= move_maps::rookMoves(u64ToSquare(piece_bitscan[i]), occ) & unfriendly_occ;
+  }
+
+  bitscanAll(bitboard_[piece::get_bishop(c)] | queen_bitboard, piece_bitscan);
+  for (int i = 0; i < piece_bitscan.len(); i++)
+  {
+    controlled_map |= move_maps::bishopMoves(u64ToSquare(piece_bitscan[i]), occ) & unfriendly_occ;
+  }
+
+  bitscanAll(bitboard_[piece::get_knight(c)], piece_bitscan);
+  for (int i = 0; i < piece_bitscan.len(); i++)
+  {
+    controlled_map |= move_maps::knightMoves(u64ToSquare(piece_bitscan[i])) & unfriendly_occ;
+  }
+
+  bitscanAll(bitboard_[piece::get_pawn(c)], piece_bitscan);
+  for (int i = 0; i < piece_bitscan.len(); i++)
+  {
+    controlled_map |= move_maps::pawnMoves(u64ToSquare(piece_bitscan[i]), c) & unfriendly_occ;
+  }
+
+  return hadd(controlled_map);
 }
 
 float Board::tropism(u64 square, Color enemyColor)

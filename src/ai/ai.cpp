@@ -6,7 +6,11 @@ KillerTable kTable;
 HistoryTable hTable;
 CounterMoveTable cTable;
 
-bool ai::isCheckmateScore(Score sc) { return SCORE_MAX - abs(sc) < 250; }
+const float material_weight = 1.0f;
+const float space_weight = 1.0f;
+const float mobility_weight = 100.0f;
+
+bool ai::isCheckmateScore(Score sc) { return SCORE_MAX - abs(sc) < 100; }
 
 void ai::reset()
 {
@@ -27,19 +31,28 @@ int ai::evaluation(Board &board)
     return SCORE_MAX;
   else if (status == board::Status::BlackWin)
     return SCORE_MIN;
-
-  int score = 0;
+  
+  // this is the minimax score, positive is good for White, negative good for Black.
+  float score = 0;
 
   // mobility
-  int mcwhite = board.mobility(White); //31 = 64/2 - 1
-  int mcblack = board.mobility(Black);
-  score += mcwhite - mcblack;
+  float mobility = board.mobility(White) - board.mobility(Black);
+  score += mobility * mobility_weight; // mobility is a score from 0.0 to 1.0
+
+  // material
+  float material = board.material();
+  score += material * material_weight;
+
+  // space
+  float space = board.space(White) - board.space(Black);
+  score += space * space_weight;
 
   // Piece-squares
+
   // Interpolate between 32 pieces and 12 pieces
-  float pieceCount = (((float)(max(hadd(board.occupancy()), 12) - 12)) / 20.0f);
-  float earlyWeight = pieceCount;
-  float lateWeight = 1.0f - pieceCount;
+  // float pieceCount = (((float)(max(hadd(board.occupancy()), 12) - 12)) / 20.0f);
+  // float earlyWeight = pieceCount;
+  // float lateWeight = 1.0f - pieceCount;
 
   //changed from for loop
   //float pscoreEarly = std::accumulate(board.pieceScoreEarlyGame, board.pieceScoreEarlyGame + 6);
@@ -51,10 +64,6 @@ int ai::evaluation(Board &board)
   //pscoreLate = std::accumulate(board.pieceScoreLateGame + 6, board.pieceLateEarlyGame + 12);
 
   //float bpScore = pscoreEarly * earlyWeight + pscoreLate * lateWeight; //weighted score for black
-
-  // combine features
-  score += materialEvaluation(board); //change back after we get w/bpScore back up,.
-  score += mcwhite - mcblack;
 
   //score += (wpScore - bpScore) * 10.0f; //why do we have both this and material eval?
   //score += board.kingSafety(White) * 5.0f * earlyWeight;

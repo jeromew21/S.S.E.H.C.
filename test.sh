@@ -1,1 +1,1 @@
-make debug && ./build/apps/ssehc --test
+./build/apps/ssehc --test

@@ -267,15 +267,28 @@ public:
   bool is_checking_move(CMove mv) const;
 
   /**
-   * signed material value
+   * signed material value, positive is better for white, negative better for black
    */
   int material() const;
+
+  /**
+   * signed material value for a color
+   */
   int material(Color) const;
 
-  int mobility(Color c);
-  float tropism(u64 square, Color enemyColor); //why is square u64 here?
+  /**
+   * Piece mobility, a float from 0 to 1.
+   */
+  float mobility(Color c);
 
+
+  float tropism(u64 square, Color enemyColor); //why is square u64 here?
   float kingSafety(Color c);
+
+  /** 
+   * Get the space value, in squares controlled, for a side.
+   */
+  int space(Color c) const;
 
   /**
    * Static exchange evaluation

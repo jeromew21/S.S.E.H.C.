@@ -31,7 +31,7 @@ int ai::evaluation(Board &board)
     return SCORE_MAX;
   else if (status == board::Status::BlackWin)
     return SCORE_MIN;
-  
+
   // this is the minimax score, positive is good for White, negative good for Black.
   float score = 0;
 
@@ -364,81 +364,57 @@ std::vector<CMove> ai::generateMovesOrdered(Board &board, CMove refMove,
 {
   // order moves for non-qsearch
   u64 occ = board.occupancy();
-
-  std::vector<CMove> hashMoves;
-  std::vector<CMove> posCaptures;
-  std::vector<CMove> eqCaptures;
-  std::vector<CMove> heuristics;
-  std::vector<CMove> negCaptures;
-  std::vector<CMove> other;
-
-  hashMoves.reserve(2);
-  posCaptures.reserve(3);
-  eqCaptures.reserve(10);
-  heuristics.reserve(3);
-  negCaptures.reserve(15);
-  other.reserve(15);
-
   CMove lastMove = board.last_move();
+  auto movelist = board.legal_moves();
+  std::vector<CMove> vec;
 
   // priority:
-  // 0) hashmove (1)
-  // 1) winning caps (?)
-  // 2) heuristic moves: killer and counter move (2)
-  // 3) equal caps (?)
-  // 4) losingCaps (?)
-  // 5) all other, sorted by history heuristic
+  // 5) hashmove (1)
+  // 4) winning captures (?)
+  // 3) heuristic moves: killer and counter move (2)
+  // 2) equal captures (?)
+  // 1) all other, sorted by history heuristic
+  // 0) losingCaptures (?)
 
-  std::vector<CMove> allMoves;
-  auto movelist = board.legal_moves();
+  std::priority_queue<MoveScore> queue;
+
   for (int i = 0; i < movelist.size(); i++)
   {
     // sort move into correct bucket
     CMove mv = movelist[i];
     u64 dest = mv.dest();
     if (mv == refMove)
-      hashMoves.push_back(mv);
+      queue.push(MoveScore(mv, std::pow(2, 5)));
 
     else if (dest & occ) //If the move is a capture we check if we will wind up winning or losing material.
     {
       int see = board.see(mv);
       if (see > 0)
-        posCaptures.push_back(mv);
+      {
+        queue.push(MoveScore(mv, std::pow(2, 4)));
+        numPositiveMoves++;
+      }
       else if (see == 0)
-        eqCaptures.push_back(mv);
+        queue.push(MoveScore(mv, std::pow(2, 2))); // trades
       else
-        negCaptures.push_back(mv);
+        queue.push(MoveScore(mv, std::pow(2, 0)));
     }
 
     else if (kTable.contains(mv, plyCount))
-      heuristics.push_back(mv);
+      queue.push(MoveScore(mv, std::pow(2, 3)));
     else if (cTable.contains(lastMove, mv, board.turn()))
-      heuristics.push_back(mv);
+      queue.push(MoveScore(mv, std::pow(2, 3)));
     else
-      other.push_back(mv);
+      queue.push(MoveScore(mv, std::pow(2, 1))); // all other
   }
-  numPositiveMoves = posCaptures.size() + hashMoves.size() + heuristics.size();
-  allMoves.reserve(numPositiveMoves + eqCaptures.size() + other.size() +
-                   negCaptures.size());
-  // history sort
-  Color tn = board.turn();
-  std::priority_queue<MoveScore> otherWScore;
 
-  for (CMove mv : other)
-    otherWScore.push(MoveScore(mv, hTable.get(mv, tn)));
-
-  while (!otherWScore.empty())
+  while (!queue.empty())
   {
-    allMoves.push_back(otherWScore.top().mv);
-    otherWScore.pop();
+    vec.push_back(queue.top().mv);
+    queue.pop();
   }
 
-  allMoves.insert(allMoves.end(), negCaptures.begin(), negCaptures.end());
-  allMoves.insert(allMoves.end(), eqCaptures.begin(), eqCaptures.end());
-  allMoves.insert(allMoves.end(), heuristics.begin(), heuristics.end());
-  allMoves.insert(allMoves.end(), posCaptures.begin(), posCaptures.end());
-  allMoves.insert(allMoves.end(), hashMoves.begin(), hashMoves.end());
-  return allMoves;
+  return vec;
 }
 
 Score ai::alphaBetaSearch(Board &board, int depth, int plyCount, Score alpha,
@@ -536,11 +512,11 @@ Score ai::alphaBetaSearch(Board &board, int depth, int plyCount, Score alpha,
   bool nullWindow = false;
   bool raisedAlpha = false;
 
-  int numPositiveMoves;
-  auto moves = board.legal_moves(); //generateMovesOrdered(board, refMove, plyCount, numPositiveMoves);
+  int numPositiveMoves = 0;
+  auto moves = generateMovesOrdered(board, refMove, plyCount, numPositiveMoves);
   int movesSearched = 0;
 
-  while (!moves.is_empty())
+  while (!moves.empty())
   {
     CMove fmove = moves.back();
     moves.pop_back();
@@ -742,13 +718,12 @@ Score ai::zeroWindowSearch(Board &board, int depth, int plyCount, Score beta,
 
   int movesSearched = 0;
 
-  int numPositiveMoves = 4;
-  auto moves = board.legal_moves();
-  //std::vector<CMove> moves = generateMovesOrdered(board, refMove, plyCount, numPositiveMoves);
-  //numPositiveMoves = max(4, numPositiveMoves);
+  int numPositiveMoves = 0;
+  std::vector<CMove> moves = generateMovesOrdered(board, refMove, plyCount, numPositiveMoves);
+  numPositiveMoves = max(4, numPositiveMoves);
   int moveCount = moves.size();
 
-  while (!moves.is_empty())
+  while (!moves.empty())
   {
     CMove fmove = moves.back();
     moves.pop_back();

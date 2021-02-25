@@ -62,6 +62,9 @@ int main(int argc, char *argv[])
 
   std::cout << "ssehc " << version_major << "." << version_minor << std::endl;
 
+  Board cb;
+  cb.piece_square_score(0, 0, 0.1);
+
   uci::listen();
 
   return 0;

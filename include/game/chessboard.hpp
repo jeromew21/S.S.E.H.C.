@@ -281,9 +281,10 @@ public:
    */
   float mobility(Color c);
 
+  float king_pawn_tropism(Color c) const;
+  float king_safety(Color c) const;
 
-  float tropism(u64 square, Color enemyColor); //why is square u64 here?
-  float kingSafety(Color c);
+  float piece_square_score(PieceType piece, Square square, float game_stage_early) const;
 
   /** 
    * Get the space value, in squares controlled, for a side.

@@ -6,9 +6,13 @@ KillerTable kTable;
 HistoryTable hTable;
 CounterMoveTable cTable;
 
+// eventually turn this into a matrix
 const float material_weight = 1.0f;
 const float space_weight = 1.0f;
 const float mobility_weight = 100.0f;
+const float king_tropism_weight = 1.0f;
+const float king_safety_weight = 1.0f;
+const float piece_score_weight = 0.1f;
 
 bool ai::isCheckmateScore(Score sc) { return SCORE_MAX - abs(sc) < 100; }
 
@@ -32,8 +36,24 @@ int ai::evaluation(Board &board)
   else if (status == board::Status::BlackWin)
     return SCORE_MIN;
 
+  const float piece_count = hadd(board.occupancy());
+  const float game_stage_early = piece_count / 32.0f;
+  const float game_stage_late = 1.0f - game_stage_early;
+
   // this is the minimax score, positive is good for White, negative good for Black.
   float score = 0;
+
+  // Piece+squares
+  float piece_score_white = 0;
+  float piece_score_black = 0;
+  for (Square i = 0; i < 64; i++) {
+    piece_score_white += board.piece_square_score(board.piece_at(i), i, game_stage_early);
+    piece_score_black += board.piece_square_score(board.piece_at(i), i, game_stage_early);
+  }
+
+  // piece+square scores
+  float piece_score = piece_score_white - piece_score_black;
+  score += piece_score * piece_score_weight;
 
   // mobility
   float mobility = board.mobility(White) - board.mobility(Black);
@@ -45,32 +65,16 @@ int ai::evaluation(Board &board)
 
   // space
   float space = board.space(White) - board.space(Black);
-  score += space * space_weight;
+  score += space * space_weight * game_stage_early;
 
-  // Piece-squares
+  // king-pawn tropism
+  float tropism = board.king_pawn_tropism(White) - board.king_pawn_tropism(Black);
+  score += tropism * king_tropism_weight * game_stage_late;
 
-  // Interpolate between 32 pieces and 12 pieces
-  // float pieceCount = (((float)(max(hadd(board.occupancy()), 12) - 12)) / 20.0f);
-  // float earlyWeight = pieceCount;
-  // float lateWeight = 1.0f - pieceCount;
-
-  //changed from for loop
-  //float pscoreEarly = std::accumulate(board.pieceScoreEarlyGame, board.pieceScoreEarlyGame + 6);
-  //float pscoreLate = std::accumulate(board.pieceScoreLateGame, board.pieceLateEarlyGame + 6);
-
-  //float wpScore = pscoreEarly * earlyWeight + pscoreLate * lateWeight; //weighted score for white
-
-  //pscoreEarly = std::accumulate(board.pieceScoreEarlyGame + 6, board.pieceScoreEarlyGame + 12);
-  //pscoreLate = std::accumulate(board.pieceScoreLateGame + 6, board.pieceLateEarlyGame + 12);
-
-  //float bpScore = pscoreEarly * earlyWeight + pscoreLate * lateWeight; //weighted score for black
-
-  //score += (wpScore - bpScore) * 10.0f; //why do we have both this and material eval?
-  //score += board.kingSafety(White) * 5.0f * earlyWeight;
-  //score -= board.kingSafety(Black) * 5.0f * earlyWeight;
-
-  // score += board.tropism(board.get_bitboard(piece::white::king), Black) * 0.03f * earlyWeight;
-  // score -= board.tropism(board.get_bitboard(piece::black::king), White) * 0.03f * earlyWeight;
+  // king safety
+  float king_safety = board.king_safety(White) - board.king_safety(Black);
+  score += king_safety * king_safety_weight * game_stage_early;
+  
 
   return score;
 }
@@ -397,7 +401,7 @@ std::vector<CMove> ai::generateMovesOrdered(Board &board, CMove refMove,
       else if (see == 0)
         queue.push(MoveScore(mv, std::pow(2, 2))); // trades
       else
-        queue.push(MoveScore(mv, std::pow(2, 0)));
+        queue.push(MoveScore(mv, std::pow(2, 0))); // bad captures
     }
 
     else if (kTable.contains(mv, plyCount))

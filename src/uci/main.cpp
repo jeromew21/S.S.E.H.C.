@@ -8,7 +8,7 @@
 #include "tests/benchmarks.hpp"
 #include "misc/version.hpp"
 
-const int random_seed = 39132644;
+const int random_seed = 129047;
 
 bool verbose = false;
 
@@ -61,9 +61,6 @@ int main(int argc, char *argv[])
   }
 
   std::cout << "ssehc " << version_major << "." << version_minor << std::endl;
-
-  Board cb;
-  cb.piece_square_score(0, 0, 0.1);
 
   uci::listen();
 

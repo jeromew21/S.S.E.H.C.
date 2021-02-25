@@ -8,13 +8,21 @@ const int ep_hash_ind = 64 * 12 + 5;
 
 u64 HASHES[781];
 
+uint32_t HashRand32()
+{
+    static uint32_t r = 0;
+    return (r = 1664525L*r + 1013904223L);
+}
+
 // zobrist hashing goes here
 void zobrist::init()
 {
   verbose_info("initializing zobrist hashes");
   for (int i = 0; i < 781; i++)
   {
-    HASHES[i] = randomBits();
+    u64 hash = HashRand32();
+    hash = (hash << 32) | HashRand32();
+    HASHES[i] = hash;
   }
 }
 

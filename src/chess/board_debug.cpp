@@ -3,14 +3,15 @@
 #include "misc/debug.hpp"
 #include "uci/strings.hpp"
 
-void Board::Dump() {
+void Board::Dump() const {
   std::cout << "\n\n";
   print_("Board");
   std::cout << "turn: " << (turn() == White ? "white" : "black") << std::endl;
   
   std::cout << "history: (" << state_stack_.size() << ") \n";
   for (int i = 1; i < state_stack_.size(); i++) {
-    std::cout << moveToUCIAlgebraic(state_stack_.peek_at(i).last_move) << " ";
+    //std::cout << moveToUCIAlgebraic(state_stack_.peek_at(i).last_move) << " ";
+    std::cout << "<move> ";
   }
   if (state_stack_.size() > 0)
     std::cout << moveToUCIAlgebraic(state_.last_move);
@@ -21,6 +22,11 @@ void Board::Dump() {
   std::cout << "can castle kingside: " << state_.castling_rights.get(turn(), board::castle::short_) << "\n";
 
   std::cout << "en passant square: " << (state_.en_passant_square == -1 ? "none" : squareName(state_.en_passant_square)) << "\n";
+
+  std::cout << "is repetition: " << state_.has_repeated << "\n";
+
+  std::cout << "hash: \n";
+  dump64(state_.hash);
 
  
   for (int i = 7; i >= 0; i--)

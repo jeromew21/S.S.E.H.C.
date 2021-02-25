@@ -82,6 +82,7 @@ public:
     TableBucket *bucket = _arr + bucketIndex;
     if (bucket->node.hash == 0) //nicer way to check for empty spot?
       members += 1;
+      
     //store importance?
     if (node.hash == bucket->node.hash && node.depth < bucket->node.depth) //same position
       return;

@@ -46,7 +46,8 @@ int ai::evaluation(Board &board)
   // Piece+squares
   float piece_score_white = 0;
   float piece_score_black = 0;
-  for (Square i = 0; i < 64; i++) {
+  for (Square i = 0; i < 64; i++)
+  {
     piece_score_white += board.piece_square_score(board.piece_at(i), i, game_stage_early);
     piece_score_black += board.piece_square_score(board.piece_at(i), i, game_stage_early);
   }
@@ -68,13 +69,14 @@ int ai::evaluation(Board &board)
   score += space * space_weight * game_stage_early;
 
   // king-pawn tropism
-  float tropism = board.king_pawn_tropism(White) - board.king_pawn_tropism(Black);
-  score += tropism * king_tropism_weight * game_stage_late;
+  float kp_tropism = board.king_pawn_tropism(White) - board.king_pawn_tropism(Black);
+  score += kp_tropism * king_tropism_weight * game_stage_late;
 
   // king safety
   float king_safety = board.king_safety(White) - board.king_safety(Black);
   score += king_safety * king_safety_weight * game_stage_early;
-  
+
+  // split king safety into multiple methods w/ different weights
 
   return score;
 }
@@ -389,7 +391,6 @@ std::vector<CMove> ai::generateMovesOrdered(Board &board, CMove refMove,
     u64 dest = mv.dest();
     if (mv == refMove)
       queue.push(MoveScore(mv, std::pow(2, 5)));
-
     else if (dest & occ) //If the move is a capture we check if we will wind up winning or losing material.
     {
       int see = board.see(mv);
@@ -435,11 +436,11 @@ Score ai::alphaBetaSearch(Board &board, int depth, int plyCount, Score alpha,
     Score score;
     if (status == board::Status::WhiteWin || status == board::Status::BlackWin)
       score = SCORE_MIN + board.stack_size();
-    else if (status == board::Status::Stalemate ||
-             status == board::Status::Draw)
+    else if (status == board::Status::Stalemate || status == board::Status::Draw)
       score = 0;
     else
       score = ai::flippedEval(board);
+
     if (score < alpha)
       return alpha;
     else if (score > beta)
@@ -633,27 +634,21 @@ Score ai::zeroWindowSearch(Board &board, int depth, int plyCount, Score beta,
     Score score;
     if (status == board::Status::WhiteWin || status == board::Status::BlackWin)
       score = SCORE_MIN + board.stack_size();
-
-    else if (status == board::Status::Stalemate ||
-             status == board::Status::Draw)
+    else if (status == board::Status::Stalemate || status == board::Status::Draw)
       score = 0;
-
     else
       score = ai::flippedEval(board);
 
     if (score < alpha)
       return alpha;
-
     else if (score > beta)
       return beta;
-
     return score;
   }
 
   if (depth <= 0)
   {
-    Score score =
-        quiescence(board, depth, plyCount, alpha, beta, stop, count, 0);
+    Score score = quiescence(board, depth, plyCount, alpha, beta, stop, count, 0);
     // if mate found in qsearch
     if (score < alpha)
       return alpha;

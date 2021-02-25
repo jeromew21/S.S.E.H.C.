@@ -409,7 +409,7 @@ public:
   /**
    * Prints information to the console.
    */
-  void Dump();
+  void Dump() const;
 
   /**
    * Default constructor. Loads the classical starting position.

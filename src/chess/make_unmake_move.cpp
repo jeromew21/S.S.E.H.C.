@@ -45,7 +45,7 @@ void Board::MakeMove(CMove mv)
     const PieceType mover = piece_at(src);
     const PieceType dest_former = piece_at(dest);
 
-    if (piece::is_pawn(mover) || piece::is_empty(dest_former))
+    if (piece::is_pawn(mover) || !piece::is_empty(dest_former))
     {
       // On a pawn move or capture, reset the counters.
       state_.halfmove_counter = 0; // 50 move rule
@@ -165,12 +165,16 @@ void Board::MakeMove(CMove mv)
     }
   }
 
+  // toggle turn
+  SetTurn_(oppositeColor(curr_turn));
+
   // annoying: deal with threefold
+  // Move to status()?
   if (check_threefold && !state_.has_repeated)
   {
-    int counter = 0;
-    u64 curr_hash = hash();
+    const u64 curr_hash = hash();
 
+    // statck_size() should be current position
     // stack_size() - 1 is previous position
     // stack_size() - 2 is the one w/ same turn as current...
 
@@ -178,10 +182,6 @@ void Board::MakeMove(CMove mv)
     {
       board::State &node = state_stack_.peek_at(i);
       if (node.hash == curr_hash)
-      {
-        counter++;
-      }
-      if (counter >= 2)
       {
         state_.has_repeated = 1;
         break;
@@ -193,9 +193,6 @@ void Board::MakeMove(CMove mv)
       }
     }
   }
-
-  // toggle turn
-  SetTurn_(oppositeColor(curr_turn));
 }
 
 void Board::UnmakeMove()

@@ -76,9 +76,9 @@ void uci::Interface::Think()
 
 void uci::Interface::StopThinking()
 {
+  not_thinking = true; // move outside if?
   if (search_thread_.joinable())
   {
-    not_thinking = true; // move outside if?
     search_thread_.join();
   }
 
@@ -403,6 +403,9 @@ void uci::Interface::RecieveUCICommand(std::string cmd)
   else if (tokens[0] == "quit")
   {
     QuitCommand();
+  } else if (tokens[0] == "dump")
+  {
+    board_.Dump();
   }
 }
 

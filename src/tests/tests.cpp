@@ -1,6 +1,7 @@
 #include "tests/tests.hpp"
 #include "game/chessboard.hpp"
 #include "uci/strings.hpp"
+#include "uci/interface.hpp"
 #include "misc/perft.hpp"
 
 #define RESET "\033[0m"
@@ -187,6 +188,12 @@ void move_find_test(int depth, int &total_cases, int &passes)
   }
 }
 
+void threefold_test() {
+  uci::Interface interface;
+  interface.RecieveUCICommand("position startpos moves b1c3 b8c6 c3b1 c6b8 b1c3 b8c6 c3b1 c6b8 b1c3 b8c6 c3b1 c6b8");
+  interface.RecieveUCICommand("dump");
+}
+
 void banner(std::string const &message)
 {
   std::cout << "-----" << message << "-----" << std::endl;
@@ -278,6 +285,9 @@ void run_tests()
     banner("PERFT tricky depth=" + std::to_string(d));
     perft_tricky_test(d, total_cases, passes);
   }
+
+  banner("Threefold repitition test");
+  threefold_test();
 
   int depth = 5;
   banner("Root move depth=" + std::to_string(depth));

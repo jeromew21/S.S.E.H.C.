@@ -14,7 +14,7 @@ const float king_tropism_weight = 1.0f;
 const float king_safety_weight = 1.0f;
 const float piece_score_weight = 0.1f;
 
-bool ai::isCheckmateScore(Score sc) { return SCORE_MAX - abs(sc) < 100; }
+bool ai::isCheckmateScore(Score sc) { return SCORE_MAX - abs(sc) < 250; }
 
 void ai::reset()
 {
@@ -54,7 +54,7 @@ int ai::evaluation(Board &board)
 
   // piece+square scores
   float piece_score = piece_score_white - piece_score_black;
-  // score += piece_score * piece_score_weight;
+  score += piece_score * piece_score_weight;
 
   // mobility
   float mobility = board.mobility(White) - board.mobility(Black);
@@ -264,10 +264,9 @@ void ai::sendPV(Board &board, int depth, CMove pvMove, int total_node_count,
     int dRoot = SCORE_MAX - abs(score);
     int v = dRoot - board.stack_size();
 
-    //if (v % 2 == 0)
-    Color curr_turn = board.turn();
-    if ((score > 0 && curr_turn == Black) || (score < 0 && curr_turn == White))
-  
+    if (v % 2 == 0)
+    // Color curr_turn = board.turn();
+    // if ((score > 0 && curr_turn == Black) || (score < 0 && curr_turn == White))
       v = -(v / 2);
     else
       v = (v + 1) / 2;

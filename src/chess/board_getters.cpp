@@ -39,6 +39,15 @@ board::Status Board::status()
   {
     status_ = board::Status::Draw;
   }
+  else if ((hadd(bitboard_[piece::white::pawn] | bitboard_[piece::black::pawn] | bitboard_[piece::white::queen] |
+                 bitboard_[piece::black::queen] | bitboard_[piece::black::rook] | bitboard_[piece::white::rook]) == 0) &&
+           (!((hadd(bitboard_[piece::white::bishop] | bitboard_[piece::white::knight]) >= 2 &&
+               hadd(bitboard_[piece::white::bishop]) > 0) ||
+              (hadd(bitboard_[piece::black::bishop] | bitboard_[piece::black::knight]) >= 2 &&
+               hadd(bitboard_[piece::black::bishop]) > 0))))
+  {
+    status_ = board::Status::Draw;
+  }
   else if (is_check())
   {
     if (is_checkmate())

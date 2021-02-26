@@ -37,16 +37,16 @@ void uci::Interface::Think()
     {
       if (depth <= 1)
       {
-        // best_move_ = move_at_depth;
-        // best_score = score;
+        best_move_ = move_at_depth;
+        best_score = score;
       }
       else
       {
         // either the score is better or worse.
         if (score > best_score)
         { // if we get a better score in stopped search
-          // best_move_ = move_at_depth;
-          // best_score = score;
+          best_move_ = move_at_depth;
+          best_score = score;
         }
         else
         {

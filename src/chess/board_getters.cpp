@@ -265,6 +265,9 @@ float Board::mobility(Color c)
     piece_count++;
   }
 
+  if (piece_count == 0)
+    return 0;
+
   return result / (int)piece_count;
 }
 
@@ -331,6 +334,8 @@ float Board::king_pawn_tropism(Color c) const
       sum += abs(p_row - row) + abs(p_col - col);
     }
   }
+  if (pawn_count == 0)
+    return 0;
   return sum /= pawn_count;
 }
 

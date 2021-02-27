@@ -126,15 +126,15 @@ void Board::MakeMove(CMove mv)
       {
         SetCastlingRights_(White, board::castle::long_, 0);
       }
-      else if (targets & kingside_rook_starting_location[White])
+      if (targets & kingside_rook_starting_location[White])
       {
         SetCastlingRights_(White, board::castle::short_, 0);
       }
-      else if (targets & queenside_rook_starting_location[Black])
+      if (targets & queenside_rook_starting_location[Black])
       {
         SetCastlingRights_(Black, board::castle::long_, 0);
       }
-      else if (targets & kingside_rook_starting_location[Black])
+      if (targets & kingside_rook_starting_location[Black])
       {
         SetCastlingRights_(Black, board::castle::short_, 0);
       }

@@ -38,7 +38,11 @@ void Board::AddPiece_(PieceType piece, u64 location)
 
 void Board::RemovePiece_(PieceType piece, u64 location)
 {
-  assert(bitboard_[piece] & location);
+  if (!(bitboard_[piece] & location)) {
+    Dump();
+    assert(0);
+  }
+  assert(bitboard_[piece] & location); // no piece at removing location
   Square sq = u64ToSquare(location);
   piece_board_[sq] = piece::EmptyPiece;
   occupancy_bitboard_ &= ~location;

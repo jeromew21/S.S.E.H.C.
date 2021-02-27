@@ -304,9 +304,11 @@ Score ai::quiescence(Board &board, int depth, int plyCount, Score alpha,
   if (status != board::Status::Playing)
   {
     if (baseline == SCORE_MIN)
-      return SCORE_MIN + board.stack_size();
-    else
-      return baseline; // alpha vs baseline...
+      baseline += board.stack_size();
+      //return SCORE_MIN + board.stack_size();
+    // else
+    //   baseline 
+      //return baseline; // alpha vs baseline...
   }
 
   bool isCheck = board.is_check();

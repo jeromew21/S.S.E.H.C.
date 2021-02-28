@@ -9,7 +9,7 @@ void perft::perft_only_nodes(Board &board_, int depth)
   MoveList<256> moves = board_.legal_moves();
   for (int i = 0; i < moves.size(); i++)
   {
-    CMove mv = moves[i];
+    Move_ mv = moves[i];
     board_.MakeMove(mv);
     perft_only_nodes(board_, depth - 1);
     board_.UnmakeMove();
@@ -25,7 +25,7 @@ void perft::perft(Board &board_, int depth, perft::Counter &counter)
   u64 occ = board_.occupancy();
   for (int i = 0; i < moves.size(); i++)
   {
-    CMove mv = moves[i];
+    Move_ mv = moves[i];
     if (depth == 1)
     {
       counter.nodes += 1;

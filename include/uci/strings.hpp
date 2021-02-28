@@ -10,7 +10,7 @@ const std::string RANK_NAMES[] = {"1", "2", "3", "4", "5", "6", "7", "8"};
 const std::string FILE_NAMES[] = {"a", "b", "c", "d", "e", "f", "g", "h"};
 
 // to e2e4, b1c3, etc
-std::string moveToUCIAlgebraic(CMove mv);
+std::string moveToUCIAlgebraic(Move_ mv);
 
 // to q, b, r, n
 std::string pieceToStringLower(PieceType piece_);

@@ -16,7 +16,7 @@ PieceType Board::least_valuable_piece_(u64 mask, Color color, u64 &out_position)
   return piece::EmptyPiece;
 }
 
-int Board::see(CMove mv) const
+int Board::see(Move_ mv) const
 {
   u64 src = mv.src();
   u64 dest = mv.dest();

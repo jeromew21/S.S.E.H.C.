@@ -65,17 +65,17 @@ MoveList<256> Board::legal_moves() const
         if (std::abs(squareToRow(src) - squareToRow(dest)) == 2)
         {
           // double push
-          CMove mv = CMove(src, dest, move_type::DoublePawn);
+          Move_ mv = Move_(src, dest, move_type::DoublePawn);
           if (verify_move_safety_(mv))
             mv_list.PushBack(mv);
         }
         else if (move_maps::isPromotingRank(dest, curr_turn)) // if pawn and promotion
         {
           // pawn promotion w/ capture
-          CMove mv_q = CMove(src, dest, move_type::QPromotion);
-          CMove mv_r = CMove(src, dest, move_type::RPromotion);
-          CMove mv_b = CMove(src, dest, move_type::BPromotion);
-          CMove mv_k = CMove(src, dest, move_type::KPromotion);
+          Move_ mv_q = Move_(src, dest, move_type::QPromotion);
+          Move_ mv_r = Move_(src, dest, move_type::RPromotion);
+          Move_ mv_b = Move_(src, dest, move_type::BPromotion);
+          Move_ mv_k = Move_(src, dest, move_type::KPromotion);
 
           // only need to verify one for all of them to be safe
           if (verify_move_safety_(mv_q))
@@ -89,14 +89,14 @@ MoveList<256> Board::legal_moves() const
         else
         {
           // regular pawn push
-          CMove mv = CMove(src, dest, move_type::Default);
+          Move_ mv = Move_(src, dest, move_type::Default);
           if (verify_move_safety_(mv))
             mv_list.PushBack(mv);
         }
       }
       else
       {
-        CMove mv = CMove(src, dest, move_type::Default);
+        Move_ mv = Move_(src, dest, move_type::Default);
         if (verify_move_safety_(mv))
           mv_list.PushBack(mv);
       }
@@ -112,7 +112,7 @@ MoveList<256> Board::legal_moves() const
     u64 king_slide = board::castle::king_long_slide[curr_turn]; // slide should contain dest
     if (!(squares_between & occ) && !(is_attacked_(king_slide, enemy_color)))
     {
-      mv_list.PushBack(CMove(u64ToSquare(king_starting_location[curr_turn]), u64ToSquare(board::castle::king_long_dest[curr_turn]), move_type::CastleLong));
+      mv_list.PushBack(Move_(u64ToSquare(king_starting_location[curr_turn]), u64ToSquare(board::castle::king_long_dest[curr_turn]), move_type::CastleLong));
     }
   }
   if (state_.castling_rights.get(curr_turn, board::castle::short_))
@@ -124,7 +124,7 @@ MoveList<256> Board::legal_moves() const
     if (!(squares_between & occ) && !(is_attacked_(king_slide, enemy_color)))
     {
 
-      mv_list.PushBack(CMove(u64ToSquare(king_starting_location[curr_turn]), u64ToSquare(board::castle::king_short_dest[curr_turn]), move_type::CastleShort));
+      mv_list.PushBack(Move_(u64ToSquare(king_starting_location[curr_turn]), u64ToSquare(board::castle::king_short_dest[curr_turn]), move_type::CastleShort));
     }
   }
 
@@ -157,7 +157,7 @@ MoveList<256> Board::capture_moves() const
       if (ep_square != -1 &&
           u64FromSquare(ep_square) & move_maps::pawnCaptures(src, curr_turn))
       {
-        CMove mv = CMove(src, ep_square, move_type::EnPassant);
+        Move_ mv = Move_(src, ep_square, move_type::EnPassant);
         if (verify_move_safety_(mv))
           mv_list.PushBack(mv);
       }
@@ -192,10 +192,10 @@ MoveList<256> Board::capture_moves() const
       if (piece::is_pawn(piece_) && move_maps::isPromotingRank(dest, curr_turn)) // if pawn and promotion
       {
         // pawn promotion w/ capture
-        CMove mv_q = CMove(src, dest, move_type::QPromotion);
-        CMove mv_r = CMove(src, dest, move_type::RPromotion);
-        CMove mv_b = CMove(src, dest, move_type::BPromotion);
-        CMove mv_k = CMove(src, dest, move_type::KPromotion);
+        Move_ mv_q = Move_(src, dest, move_type::QPromotion);
+        Move_ mv_r = Move_(src, dest, move_type::RPromotion);
+        Move_ mv_b = Move_(src, dest, move_type::BPromotion);
+        Move_ mv_k = Move_(src, dest, move_type::KPromotion);
 
         // only need to verify one for all of them to be safe
         if (verify_move_safety_(mv_q))
@@ -208,7 +208,7 @@ MoveList<256> Board::capture_moves() const
       }
       else
       {
-        CMove mv = CMove(src, dest, move_type::Default);
+        Move_ mv = Move_(src, dest, move_type::Default);
         if (verify_move_safety_(mv))
           mv_list.PushBack(mv);
       }
@@ -229,10 +229,10 @@ MoveList<256> Board::capture_moves() const
   //       if (piece::is_pawn(piece_) && move_maps::isPromotingRank(dest, curr_turn)) // if pawn and promotion
   //       {
   //         // pawn promotion w/ capture
-  //         CMove mv_q = CMove(src, dest, move_type::QPromotion);
-  //         CMove mv_r = CMove(src, dest, move_type::RPromotion);
-  //         CMove mv_b = CMove(src, dest, move_type::BPromotion);
-  //         CMove mv_k = CMove(src, dest, move_type::KPromotion);
+  //         Move_ mv_q = Move_(src, dest, move_type::QPromotion);
+  //         Move_ mv_r = Move_(src, dest, move_type::RPromotion);
+  //         Move_ mv_b = Move_(src, dest, move_type::BPromotion);
+  //         Move_ mv_k = Move_(src, dest, move_type::KPromotion);
 
   //         // only need to verify one for all of them to be safe
   //         if (verify_move_safety_(mv_q))
@@ -245,7 +245,7 @@ MoveList<256> Board::capture_moves() const
   //       }
   //       else
   //       {
-  //         CMove mv = CMove(src, dest, move_type::Default);
+  //         Move_ mv = Move_(src, dest, move_type::Default);
   //         if (verify_move_safety_(mv))
   //           mv_list.PushBack(mv);
   //       }
@@ -259,7 +259,7 @@ MoveList<256> Board::capture_moves() const
   //       if (ep_square != -1 &&
   //           u64FromSquare(ep_square) & state_.attack_map_[src])
   //       {
-  //         CMove mv = CMove(src, ep_square, move_type::EnPassant);
+  //         Move_ mv = Move_(src, ep_square, move_type::EnPassant);
   //         if (verify_move_safety_(mv))
   //           mv_list.PushBack(mv);
   //       }
@@ -303,7 +303,7 @@ bool Board::is_stalemate() const
       if (ep_square != -1 &&
           u64FromSquare(ep_square) & move_maps::pawnCaptures(src, curr_turn))
       {
-        CMove mv = CMove(src, ep_square, move_type::EnPassant);
+        Move_ mv = Move_(src, ep_square, move_type::EnPassant);
         if (verify_move_safety_(mv))
           return false;
       }
@@ -345,7 +345,7 @@ bool Board::is_stalemate() const
       if (piece::is_pawn(piece_) && move_maps::isPromotingRank(dest, curr_turn)) // if pawn and promotion
       {
         // pawn promotion w/ capture
-        CMove mv_q = CMove(src, dest, move_type::QPromotion);
+        Move_ mv_q = Move_(src, dest, move_type::QPromotion);
 
         // only need to verify one for all of them to be safe
         if (verify_move_safety_(mv_q))
@@ -353,7 +353,7 @@ bool Board::is_stalemate() const
       }
       else
       {
-        CMove mv = CMove(src, dest, move_type::Default);
+        Move_ mv = Move_(src, dest, move_type::Default);
         if (verify_move_safety_(mv))
           return false;
       }

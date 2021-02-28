@@ -1,7 +1,7 @@
 
 #include "game/chessboard.hpp"
 
-void Board::MakeMove(CMove mv)
+void Board::MakeMove(Move_ mv)
 {
   // set flags
   status_ = board::Status::NotCalculated;
@@ -200,7 +200,7 @@ void Board::UnmakeMove()
   assert(state_stack_.can_pop());
 
   board::State &node = state_stack_.peek();
-  CMove mv = state_.last_move;
+  Move_ mv = state_.last_move;
   const int move_type_ = mv.type_code();
 
   if (move_type_ != move_type::NullMove)

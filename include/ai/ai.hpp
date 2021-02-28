@@ -26,11 +26,11 @@ namespace ai
   int evaluation(Board &board);  // absolute
   int flippedEval(Board &board); // depends on turn
 
-  void sendPV(Board &board, int depth, CMove pv_move,
+  void sendPV(Board &board, int depth, Move_ pv_move,
               int total_node_count, Score score, std::chrono::time_point<std::chrono::system_clock> start);
 
-  CMove rootMove(Board &board, int depth, std::atomic<bool> &stop, Score &out_score,
-                 CMove prevPv, std::priority_queue<MoveScore> &prevScores, int &total_nodes_visited, 
+  Move_ rootMove(Board &board, int depth, std::atomic<bool> &stop, Score &out_score,
+                 Move_ prevPv, std::priority_queue<MoveScore> &prevScores, int &total_nodes_visited, 
                  std::chrono::time_point<std::chrono::system_clock> start);
 
   Score quiescence(Board &board, int depth, int ply_count, Score alpha, Score beta,
@@ -43,7 +43,7 @@ namespace ai
   Score zeroWindowSearch(Board &board, int depth, int ply_count, Score beta,
                          std::atomic<bool> &stop, int &count, NodeType my_node_type);
 
-  std::vector<CMove> generateMovesOrdered(Board &board, CMove refMove, int ply_count,
+  std::vector<Move_> generateMovesOrdered(Board &board, Move_ refMove, int ply_count,
                                           int &num_positive_moves);
 
   bool isCheckmateScore(Score sc);

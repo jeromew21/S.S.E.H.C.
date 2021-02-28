@@ -3,7 +3,7 @@
 #include "datastructures/search.hpp"
 
 //moved from ai.cpp
-CMove popMin(std::vector<MoveScore> &vec)
+Move_ popMin(std::vector<MoveScore> &vec)
 {
   int m = SCORE_MAX;
   int minI = 0;
@@ -15,12 +15,12 @@ CMove popMin(std::vector<MoveScore> &vec)
       minI = i;
     }
   }
-  CMove bm = vec[minI].mv;
+  Move_ bm = vec[minI].mv;
   vec.erase(vec.begin() + minI);
   return bm;
 }
 
-CMove popMax(std::vector<MoveScore> &vec)
+Move_ popMax(std::vector<MoveScore> &vec)
 {
   int m = SCORE_MIN;
   int maxI = 0;
@@ -32,7 +32,7 @@ CMove popMax(std::vector<MoveScore> &vec)
       maxI = i;
     }
   }
-  CMove bm = vec[maxI].mv;
+  Move_ bm = vec[maxI].mv;
   vec.erase(vec.begin() + maxI);
   return bm;
 }

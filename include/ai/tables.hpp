@@ -4,23 +4,23 @@
 
 struct KillerTable
 {
-    std::array<std::array<CMove, 2>, 32> arr;
+    std::array<std::array<Move_, 2>, 32> arr;
 
     void clear()
     {
         for (int k = 0; k < 32; k++)
         {
-            arr[k][1] = CMove::NullMove();
-            arr[k][0] = CMove::NullMove();
+            arr[k][1] = Move_::NullMove();
+            arr[k][0] = Move_::NullMove();
         }
     }
 
-    bool contains(CMove mv, int ply)
+    bool contains(Move_ mv, int ply)
     {
         return arr[ply][0] == mv || arr[ply][1] == mv;
     }
 
-    void insert(CMove mv, int ply)
+    void insert(Move_ mv, int ply)
     {
         for (int i = 0; i < 2; i++)
         {
@@ -54,12 +54,12 @@ struct HistoryTable
         }
     }
 
-    int get(CMove mv, Color side)
+    int get(Move_ mv, Color side)
     {
         return arr[side][mv.src_square()][mv.dest_square()];
     }
 
-    void insert(CMove mv, Color side, int depth)
+    void insert(Move_ mv, Color side, int depth)
     {
         arr[side][mv.src_square()][mv.dest_square()] += depth * depth;
     }
@@ -67,7 +67,7 @@ struct HistoryTable
 
 struct CounterMoveTable
 {
-    std::array<std::array<CMove, 64>, 64> arr[2];
+    std::array<std::array<Move_, 64>, 64> arr[2];
 
     void clear()
     {
@@ -75,17 +75,17 @@ struct CounterMoveTable
         {
             for (int k = 0; k < 64; k++)
             {
-                arr[White][i][k] = CMove();
+                arr[White][i][k] = Move_();
             }
         }
     }
 
-    bool contains(CMove prev, CMove mv, Color side)
+    bool contains(Move_ prev, Move_ mv, Color side)
     {
         return arr[side][prev.src_square()][prev.dest_square()] == mv;
     }
 
-    void insert(Color side, CMove prev, CMove counter)
+    void insert(Color side, Move_ prev, Move_ counter)
     {
         arr[side][prev.src_square()][prev.dest_square()] = counter;
     }

@@ -110,14 +110,14 @@ MoveList<256> Board::produce_uncheck_moves_() const
           {
             if (move_maps::isPromotingRank(single_push_square, curr_turn))
             {
-              mv_list.PushBack(CMove(pawn_location_square, single_push_square, move_type::QPromotion));
-              mv_list.PushBack(CMove(pawn_location_square, single_push_square, move_type::RPromotion));
-              mv_list.PushBack(CMove(pawn_location_square, single_push_square, move_type::BPromotion));
-              mv_list.PushBack(CMove(pawn_location_square, single_push_square, move_type::KPromotion));
+              mv_list.PushBack(Move_(pawn_location_square, single_push_square, move_type::QPromotion));
+              mv_list.PushBack(Move_(pawn_location_square, single_push_square, move_type::RPromotion));
+              mv_list.PushBack(Move_(pawn_location_square, single_push_square, move_type::BPromotion));
+              mv_list.PushBack(Move_(pawn_location_square, single_push_square, move_type::KPromotion));
             }
             else
             {
-              mv_list.PushBack(CMove(pawn_location_square, single_push_square, move_type::Default));
+              mv_list.PushBack(Move_(pawn_location_square, single_push_square, move_type::Default));
             }
           }
           if (move_maps::isStartingRank(pawn_location_square, curr_turn))
@@ -125,7 +125,7 @@ MoveList<256> Board::produce_uncheck_moves_() const
             u64 double_push = move_maps::pawnDoubleMoves(pawn_location_square, curr_turn);
             if (!(double_push & occ) && double_push & target_locations)
             {
-              mv_list.PushBack(CMove(pawn_location_square, u64ToSquare(double_push), move_type::DoublePawn));
+              mv_list.PushBack(Move_(pawn_location_square, u64ToSquare(double_push), move_type::DoublePawn));
             }
           }
         }
@@ -162,22 +162,22 @@ MoveList<256> Board::produce_uncheck_moves_() const
                 // promoting capture
                 if (move_maps::isPromotingRank(target_square, curr_turn))
                 {
-                  mv_list.PushBack(CMove(unchecking_src_square, target_square, move_type::QPromotion));
-                  mv_list.PushBack(CMove(unchecking_src_square, target_square, move_type::RPromotion));
-                  mv_list.PushBack(CMove(unchecking_src_square, target_square, move_type::BPromotion));
-                  mv_list.PushBack(CMove(unchecking_src_square, target_square, move_type::KPromotion));
+                  mv_list.PushBack(Move_(unchecking_src_square, target_square, move_type::QPromotion));
+                  mv_list.PushBack(Move_(unchecking_src_square, target_square, move_type::RPromotion));
+                  mv_list.PushBack(Move_(unchecking_src_square, target_square, move_type::BPromotion));
+                  mv_list.PushBack(Move_(unchecking_src_square, target_square, move_type::KPromotion));
                 }
                 else
                 {
                   // regular pawn capture
-                  mv_list.PushBack(CMove(unchecking_src_square, target_square, move_type::Default));
+                  mv_list.PushBack(Move_(unchecking_src_square, target_square, move_type::Default));
                 }
               }
             }
             else
             {
               // regular block or capture...
-              mv_list.PushBack(CMove(unchecking_src_square, target_square, move_type::Default));
+              mv_list.PushBack(Move_(unchecking_src_square, target_square, move_type::Default));
             }
           }
         } // end for over pieces that attack target location
@@ -205,14 +205,14 @@ MoveList<256> Board::produce_uncheck_moves_() const
 
         if (move_maps::isPromotingRank(target_square, curr_turn) && piece::is_pawn(piece_at(src)))
         {
-          mv_list.PushBack(CMove(src_square, target_square, move_type::QPromotion));
-          mv_list.PushBack(CMove(src_square, target_square, move_type::RPromotion));
-          mv_list.PushBack(CMove(src_square, target_square, move_type::BPromotion));
-          mv_list.PushBack(CMove(src_square, target_square, move_type::KPromotion));
+          mv_list.PushBack(Move_(src_square, target_square, move_type::QPromotion));
+          mv_list.PushBack(Move_(src_square, target_square, move_type::RPromotion));
+          mv_list.PushBack(Move_(src_square, target_square, move_type::BPromotion));
+          mv_list.PushBack(Move_(src_square, target_square, move_type::KPromotion));
         }
         else
         {
-          mv_list.PushBack(CMove(src_square, target_square, move_type::Default));
+          mv_list.PushBack(Move_(src_square, target_square, move_type::Default));
         }
       }
       // en passant capturing the pawn
@@ -237,7 +237,7 @@ MoveList<256> Board::produce_uncheck_moves_() const
       if (move_maps::slidingAttackers((occ & ~king_position) | king_dest, king_dest, ~king_dest & enemy_rooks, ~king_dest & enemy_bishops))
         continue;
 
-      mv_list.PushBack(CMove(king_square, u64ToSquare(king_dest), move_type::Default));
+      mv_list.PushBack(Move_(king_square, u64ToSquare(king_dest), move_type::Default));
     }
   }
   return mv_list;

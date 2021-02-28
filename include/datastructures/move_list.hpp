@@ -16,7 +16,7 @@ template <int N>
 class MoveList
 {
 private:
-  CMove data_[N];
+  Move_ data_[N];
   int head_;
 
 public:
@@ -33,7 +33,7 @@ public:
   /**
    * adds an element
    */
-  void PushBack(CMove mv)
+  void PushBack(Move_ mv)
   {
     data_[head_++] = mv;
   }
@@ -44,17 +44,17 @@ public:
   void Erase(int index)
   {
     assert(index < head_ && head_ > 0);
-    memmove(data_ + index, data_ + index + 1, (N - index - 1) * sizeof(CMove));
+    memmove(data_ + index, data_ + index + 1, (N - index - 1) * sizeof(Move_));
     head_--;
   }
 
   /**
    * Insert an item at index. Shifts other items up accordingly.
    */
-  void Insert(int index, CMove mv)
+  void Insert(int index, Move_ mv)
   {
     assert(index < head_ && head_ < N);
-    memmove(data_ + index + 1, data_ + index, (N - index - 1) * sizeof(CMove));
+    memmove(data_ + index + 1, data_ + index, (N - index - 1) * sizeof(Move_));
     data_[index] = mv;
     head_++;
   }
@@ -62,7 +62,7 @@ public:
   /**
    * Return the last item in the list.
    */
-  CMove back()
+  Move_ back()
   {
     assert(head_ > 0);
     return data_[head_ - 1];
@@ -71,10 +71,10 @@ public:
   /**
    * Delete and return last item in the list.
    */
-  CMove pop_back()
+  Move_ pop_back()
   {
     assert(head_ > 0);
-    CMove mv = back();
+    Move_ mv = back();
     head_--;
     return mv;
   }
@@ -83,7 +83,7 @@ public:
   int begin() const { return 0; };
   bool is_empty() const { return head_ == 0; }
 
-  CMove operator[](int index) const { return data_[index]; }
+  Move_ operator[](int index) const { return data_[index]; }
 };
 
 #endif

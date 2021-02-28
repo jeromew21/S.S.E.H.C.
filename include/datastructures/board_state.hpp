@@ -108,7 +108,7 @@ namespace board
     u64 hash;                              // the zobrist hash, saved for threefold testing
     bool is_check;                         // is the position a check
     bool has_repeated;                     // three-fold repetition
-    CMove last_move;                       // the last move
+    Move_ last_move;                       // the last move
     board::castle::Rights castling_rights; // rights to castle for both sides
 
     // default constructor
@@ -123,7 +123,7 @@ namespace board
       this->turn = White;
       this->last_moved_piece = piece::EmptyPiece;
       this->last_captured_piece = piece::EmptyPiece;
-      this->last_move = CMove::NullMove();
+      this->last_move = Move_::NullMove();
       this->hash = 0;
     }
 

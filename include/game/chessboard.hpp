@@ -223,7 +223,7 @@ private:
    * 
    * related to but not exactly the same as is_checking_move()
    */
-  bool verify_move_safety_(CMove mv) const;
+  bool verify_move_safety_(Move_ mv) const;
 
   /** 
    * Add a piece at a location.
@@ -264,7 +264,7 @@ public:
   /**
    * Does this move put the opponent in check?
    */
-  bool is_checking_move(CMove mv) const;
+  bool is_checking_move(Move_ mv) const;
 
   /**
    * signed material value, positive is better for white, negative better for black
@@ -294,15 +294,15 @@ public:
   /**
    * Static exchange evaluation
    */
-  int see(CMove mv) const;
+  int see(Move_ mv) const;
 
   /**
    * Given a move source square and dest square, create a move with the correct metadata.
    * 
    * This is used in the UCI interface when loading a sequence of moves.
    */
-  CMove move_from_src_dest(Square src, Square dest, int promotion) const;
-  CMove move_from_src_dest(Square src, Square dest) const;
+  Move_ move_from_src_dest(Square src, Square dest, int promotion) const;
+  Move_ move_from_src_dest(Square src, Square dest) const;
 
   /** 
    * Returns the piece at a particular location.
@@ -317,7 +317,7 @@ public:
   /**
    * Returns the last move played (null if no previous move)
    */
-  CMove last_move() const;
+  Move_ last_move() const;
 
   /** 
    * Get the bitboard mask of piece_
@@ -386,7 +386,7 @@ public:
   /**
    * Makes a move and changes state accordingly.s
    */
-  void MakeMove(CMove mv);
+  void MakeMove(Move_ mv);
 
   /**
    * Undoes the last move.

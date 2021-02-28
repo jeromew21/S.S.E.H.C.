@@ -91,7 +91,7 @@ int ai::flippedEval(Board &board)
 
 //return best move from a certain depth. uses alpha beta search to find best score.
 //increases total number of nodes traveled through total_nodes_visited
-CMove ai::rootMove(Board &board, int depth, std::atomic<bool> &stop, Score &outscore, CMove prevPv,
+Move_ ai::rootMove(Board &board, int depth, std::atomic<bool> &stop, Score &outscore, Move_ prevPv,
                    std::priority_queue<MoveScore> &prevScores, int &total_nodes_visited,
                    std::chrono::time_point<std::chrono::system_clock> start)
 {
@@ -102,7 +102,7 @@ CMove ai::rootMove(Board &board, int depth, std::atomic<bool> &stop, Score &outs
   Score alpha = SCORE_MIN;
   Score beta = SCORE_MAX;
 
-  CMove refMove;
+  Move_ refMove;
 
   if (depth > 1)
   {
@@ -129,7 +129,7 @@ CMove ai::rootMove(Board &board, int depth, std::atomic<bool> &stop, Score &outs
 
     while (!prevScores.empty())
     {
-      CMove mv = prevScores.top().mv;
+      Move_ mv = prevScores.top().mv;
       prevScores.pop();
       moves.PushBack(mv);
     }
@@ -140,7 +140,7 @@ CMove ai::rootMove(Board &board, int depth, std::atomic<bool> &stop, Score &outs
 
     for (int i = 0; i < moves.size(); i++)
     {
-      CMove mv = moves[i];
+      Move_ mv = moves[i];
       board.MakeMove(mv);
       Score score = -quiescence(board, 0, 0, alpha, beta, stop, total_nodes_visited, 0);
       board.UnmakeMove();
@@ -152,7 +152,7 @@ CMove ai::rootMove(Board &board, int depth, std::atomic<bool> &stop, Score &outs
     moves.Clear();
     while (!MoveScores.empty())
     {
-      CMove mv = MoveScores.top().mv;
+      Move_ mv = MoveScores.top().mv;
       MoveScores.pop();
       moves.PushBack(mv);
     }
@@ -160,7 +160,7 @@ CMove ai::rootMove(Board &board, int depth, std::atomic<bool> &stop, Score &outs
     assert(m0 == moves.size());
   }
 
-  CMove chosen = moves.back(); // PV-move
+  Move_ chosen = moves.back(); // PV-move
   outscore = alpha;
 
   while (!prevScores.empty())
@@ -175,7 +175,7 @@ CMove ai::rootMove(Board &board, int depth, std::atomic<bool> &stop, Score &outs
   while (move_index < moves.size())
   {
     int subtree_count = 0;
-    CMove mv = moves[move_index++];
+    Move_ mv = moves[move_index++];
     board.MakeMove(mv);
 
     Score score(0);
@@ -229,7 +229,7 @@ CMove ai::rootMove(Board &board, int depth, std::atomic<bool> &stop, Score &outs
 }
 
 // reconstruct PV
-void ai::sendPV(Board &board, int depth, CMove pvMove, int total_node_count,
+void ai::sendPV(Board &board, int depth, Move_ pvMove, int total_node_count,
                 Score score, std::chrono::time_point<std::chrono::system_clock> start)
 {
   auto stop = std::chrono::high_resolution_clock::now();
@@ -243,7 +243,7 @@ void ai::sendPV(Board &board, int depth, CMove pvMove, int total_node_count,
   {
     for (int k = 0; k < search->depth; k++)
     {
-      CMove mv = search->seq[k];
+      Move_ mv = search->seq[k];
 
       if (mv.is_null())
         break;
@@ -332,7 +332,7 @@ Score ai::quiescence(Board &board, int depth, int plyCount, Score alpha,
 
   for (int i = 0; i < movelist.size(); i++)
   {
-    CMove mv = movelist[i];
+    Move_ mv = movelist[i];
     int see = -1;
     bool isCapture = mv.dest() & occ;
     if (isCapture)
@@ -358,7 +358,7 @@ Score ai::quiescence(Board &board, int depth, int plyCount, Score alpha,
 
   while (!MoveScores.empty())
   {
-    CMove mv = MoveScores.top().mv;
+    Move_ mv = MoveScores.top().mv;
     MoveScores.pop();
     board.MakeMove(mv);
     Score score = -quiescence(board, depth, plyCount + 1, -beta, -alpha,
@@ -374,15 +374,15 @@ Score ai::quiescence(Board &board, int depth, int plyCount, Score alpha,
   return alpha;
 }
 
-std::vector<CMove> ai::generateMovesOrdered(Board &board, CMove refMove,
+std::vector<Move_> ai::generateMovesOrdered(Board &board, Move_ refMove,
                                             int plyCount,
                                             int &numPositiveMoves)
 {
   // order moves for non-qsearch
   u64 occ = board.occupancy();
-  CMove lastMove = board.last_move();
+  Move_ lastMove = board.last_move();
   auto movelist = board.legal_moves();
-  std::vector<CMove> vec;
+  std::vector<Move_> vec;
 
   // priority:
   // 5) hashmove (1)
@@ -397,7 +397,7 @@ std::vector<CMove> ai::generateMovesOrdered(Board &board, CMove refMove,
   for (int i = 0; i < movelist.size(); i++)
   {
     // sort move into correct bucket
-    CMove mv = movelist[i];
+    Move_ mv = movelist[i];
     u64 dest = mv.dest();
     if (mv == refMove)
       queue.push(MoveScore(mv, std::pow(2, 5)));
@@ -428,8 +428,6 @@ std::vector<CMove> ai::generateMovesOrdered(Board &board, CMove refMove,
     vec.push_back(queue.top().mv);
     queue.pop();
   }
-
-  assert(vec.size() == movelist.size());
 
   return vec;
 }
@@ -472,7 +470,7 @@ Score ai::alphaBetaSearch(Board &board, int depth, int plyCount, Score alpha,
       return score;
   }
 
-  CMove refMove;
+  Move_ refMove;
 
   //Here we update refMove, alpha, and beta if we've already found this position.
   auto found = table.find(node);
@@ -522,7 +520,7 @@ Score ai::alphaBetaSearch(Board &board, int depth, int plyCount, Score alpha,
 
   // use IID to find best move????
 
-  CMove lastMove = board.last_move();
+  Move_ lastMove = board.last_move();
 
   u64 occ = board.occupancy();
 
@@ -533,10 +531,10 @@ Score ai::alphaBetaSearch(Board &board, int depth, int plyCount, Score alpha,
   auto moves = generateMovesOrdered(board, refMove, plyCount, numPositiveMoves);
   int movesSearched = 0;
 
-  int move_index(0);
+  unsigned move_index(0);
   while (move_index < moves.size())
   {
-    CMove fmove = moves[move_index++];
+    Move_ fmove = moves[move_index++];
 
     board.MakeMove(fmove);
 
@@ -595,7 +593,7 @@ Score ai::alphaBetaSearch(Board &board, int depth, int plyCount, Score alpha,
   table.insert(node, alpha); // store node
   if (isSave && raisedAlpha)
   {
-    std::array<CMove, 64> movelist;
+    std::array<Move_, 64> movelist;
     int mc = 0;
     for (int k = 0; k < depth; k++)
     {
@@ -604,7 +602,7 @@ Score ai::alphaBetaSearch(Board &board, int depth, int plyCount, Score alpha,
       if (search != table.end())
       {
         TableNode node = search->node;
-        CMove mv = node.bestMove;
+        Move_ mv = node.bestMove;
         movelist[k] = mv;
         board.MakeMove(mv);
         mc++;
@@ -671,7 +669,7 @@ Score ai::zeroWindowSearch(Board &board, int depth, int plyCount, Score beta,
     return score;
   }
 
-  CMove refMove;
+  Move_ refMove;
 
   auto found = table.find(node);
   if (found != table.end())
@@ -700,14 +698,14 @@ Score ai::zeroWindowSearch(Board &board, int depth, int plyCount, Score beta,
 
   u64 occ = board.occupancy();
   bool nodeIsCheck = board.is_check();
-  CMove lastMove = board.last_move();
+  Move_ lastMove = board.last_move();
   int occCount = hadd(occ);
 
   // NULL MOVE PRUNE
   int rNull = 3;
   if (nullmove && (!nodeIsCheck) && !lastMove.is_null() && (occCount > 12))
   {
-    CMove mv = CMove::NullMove();
+    Move_ mv = Move_::NullMove();
     board.MakeMove(mv);
     Score score =
         -ai::zeroWindowSearch(board, depth - 1 - rNull, plyCount + 1,
@@ -717,7 +715,7 @@ Score ai::zeroWindowSearch(Board &board, int depth, int plyCount, Score beta,
     { // our move is better than beta, so this node is cut
       // off
       node.nodeType = Cut;
-      node.bestMove = CMove::NullMove();
+      node.bestMove = Move_::NullMove();
       table.insert(node, beta);
       return beta; // fail hard
     }
@@ -730,14 +728,14 @@ Score ai::zeroWindowSearch(Board &board, int depth, int plyCount, Score beta,
   int movesSearched = 0;
 
   int numPositiveMoves = 0;
-  std::vector<CMove> moves = generateMovesOrdered(board, refMove, plyCount, numPositiveMoves);
+  std::vector<Move_> moves = generateMovesOrdered(board, refMove, plyCount, numPositiveMoves);
   numPositiveMoves = max(4, numPositiveMoves);
   int moveCount = moves.size();
 
-  int move_index(0);
+  unsigned move_index(0);
   while (move_index < moves.size())
   {
-    CMove fmove = moves[move_index++];
+    Move_ fmove = moves[move_index++];
 
     if (futilityPrune && (depth == 1) && (fmove != refMove) && (!nodeIsCheck) &&
         (fscore < alpha) && (fmove.dest() & ~occ) &&

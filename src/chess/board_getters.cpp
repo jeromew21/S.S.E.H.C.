@@ -108,12 +108,12 @@ u64 Board::occupancy(Color color) const
          bitboard_[piece::black::pawn] | bitboard_[piece::black::rook] | bitboard_[piece::black::knight];
 }
 
-CMove Board::move_from_src_dest(Square src, Square dest) const
+Move_ Board::move_from_src_dest(Square src, Square dest) const
 {
   return move_from_src_dest(src, dest, piece::EmptyPiece);
 }
 
-CMove Board::last_move() const
+Move_ Board::last_move() const
 {
   return state_.last_move;
 }
@@ -126,7 +126,7 @@ u64 Board::get_bitboard(PieceType piece_) const
 /** 
  * Takes in a colorless piece as promotion
  */
-CMove Board::move_from_src_dest(Square src, Square dest, int promotion) const
+Move_ Board::move_from_src_dest(Square src, Square dest, int promotion) const
 {
   // Validate move...
   MoveList<256> mv_list = legal_moves();
@@ -134,7 +134,7 @@ CMove Board::move_from_src_dest(Square src, Square dest, int promotion) const
 
   for (int i = 0; i < mv_list.size(); i++)
   {
-    CMove mv = mv_list[i];
+    Move_ mv = mv_list[i];
     if (mv.src_square() == src && mv.dest_square() == dest)
     {
       if (mv.is_promotion())
@@ -152,7 +152,7 @@ CMove Board::move_from_src_dest(Square src, Square dest, int promotion) const
     }
   }
   assert(false);
-  return CMove::NullMove(); // if given a wrong move then just return null move
+  return Move_::NullMove(); // if given a wrong move then just return null move
 }
 
 /**

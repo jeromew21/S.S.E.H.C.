@@ -21,15 +21,15 @@ namespace move_type
 } // namespace move_type
 
 /**
- * "CMove" because of potential naming conflict w/ move op
+ * "Move_" because of potential naming conflict w/ move op
  */
-class CMove
+class Move_
 {
 private:
   uint16_t data_;
 
 public:
-  static CMove NullMove() { return CMove(); }
+  static Move_ NullMove() { return Move_(); }
 
   inline int type_code() const { return data_ & 15; } //call move_type?
 
@@ -62,7 +62,7 @@ public:
   inline u64 src() const { return u64FromSquare(data_ >> 10); }
   inline u64 dest() const { return u64FromSquare((data_ >> 4) & 63); }
 
-  CMove(Square src_, Square dest_, int type_code_)
+  Move_(Square src_, Square dest_, int type_code_)
   {
     if (!isValidSquare(src_))
     {
@@ -77,12 +77,12 @@ public:
     data_ = (src_ << 10) | (dest_ << 4) | (type_code_ & 15);
   }
 
-  CMove() : data_(0) {} // null move
+  Move_() : data_(0) {} // null move
 
-  bool operator==(const CMove &other) const { return data_ == other.data_; }
-  bool operator!=(const CMove &other) const { return data_ != other.data_; }
+  bool operator==(const Move_ &other) const { return data_ == other.data_; }
+  bool operator!=(const Move_ &other) const { return data_ != other.data_; }
 
-  friend std::ostream &operator<<(std::ostream &os, CMove mv)
+  friend std::ostream &operator<<(std::ostream &os, Move_ mv)
   {
     os << mv.data_;
     return os;

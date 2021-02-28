@@ -5,7 +5,7 @@
  * Assuming a move is psuedo-legal for a particular side (it could be played disregarding checks)
  * we want to know if it is safe, that is, not putting yourself in check.
  */
-bool Board::verify_move_safety_(CMove mv) const
+bool Board::verify_move_safety_(Move_ mv) const
 {
   assert(!is_check()); // we shouldn't be calling this one if we're in check
   assert(!mv.is_castle());
@@ -57,7 +57,7 @@ bool Board::verify_move_safety_(CMove mv) const
  * 
  * Hotspot
  */
-bool Board::is_checking_move(CMove mv) const
+bool Board::is_checking_move(Move_ mv) const
 {
   const Color curr_turn = turn();
   const Color enemy_turn = oppositeColor(curr_turn);

@@ -28,7 +28,7 @@ namespace uci
   {
   private:
     Board board_;
-    CMove best_move_;
+    Move_ best_move_;
     std::thread search_thread_;
     std::thread timer_thread_;
 

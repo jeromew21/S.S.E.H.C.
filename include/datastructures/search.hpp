@@ -16,9 +16,9 @@ const int SCORE_MAX = 100000;  //std::numeric_limits<int>::max();
  */
 struct MoveScore
 {
-  CMove mv;
+  Move_ mv;
   Score score;
-  MoveScore(CMove mv0, Score score0) : mv(mv0), score(score0) {}
+  MoveScore(Move_ mv0, Score score0) : mv(mv0), score(score0) {}
   bool operator<(const MoveScore other) const { return (score < other.score); }
 };
 
@@ -27,14 +27,14 @@ struct TableNode
   u64 hash;
   int8_t depth;
   NodeType nodeType;
-  CMove bestMove;
+  Move_ bestMove;
 
   TableNode(Board &board, int d, NodeType typ)
   {
     hash = board.hash();
     depth = d;
     nodeType = typ;
-    bestMove = CMove::NullMove();
+    bestMove = Move_::NullMove();
   }
 
   bool operator==(const TableNode &other) const { return (hash == other.hash); }
@@ -96,7 +96,7 @@ struct MiniTableBucket
   u64 hash; // position hash
   //int depth; // number of plies to root saved
   int8_t depth;
-  std::array<CMove, 64> seq;
+  std::array<Move_, 64> seq;
 };
 
 template <int N>
@@ -132,7 +132,7 @@ public:
   }
 
   //can we pass by reference instead?
-  void insert(u64 hashval, int depth, std::array<CMove, 64> *moveseq)
+  void insert(u64 hashval, int depth, std::array<Move_, 64> *moveseq)
   {
     int bucketIndex = hashval % N;
     MiniTableBucket *bucket = _arr + bucketIndex;

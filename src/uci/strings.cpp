@@ -66,7 +66,7 @@ PieceType pieceFromStringFen(std::string val)
     return piece::EmptyPiece;
 }
 
-std::string moveToUCIAlgebraic(CMove mv)
+std::string moveToUCIAlgebraic(Move_ mv)
 {
   std::string result;
   if (mv.is_null()) {

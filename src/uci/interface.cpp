@@ -32,7 +32,7 @@ void uci::Interface::Think()
   {
     Score score;
     // send principal variation move from previous
-    CMove move_at_depth = ai::rootMove(board_, depth, not_thinking, score, best_move_, prev_scores, total_nodes_visited, start);
+    Move_ move_at_depth = ai::rootMove(board_, depth, not_thinking, score, best_move_, prev_scores, total_nodes_visited, start);
     if (not_thinking)
     {
       if (depth <= 1)
@@ -202,7 +202,7 @@ void uci::Interface::PositionCommand(std::vector<std::string> &tokens)
             promotion = piece::colorless::knight;
         }
 
-        const CMove mv = board_.move_from_src_dest(src, dest, promotion);
+        const Move_ mv = board_.move_from_src_dest(src, dest, promotion);
         // return if move isn't found
         if (mv.is_null())
         {

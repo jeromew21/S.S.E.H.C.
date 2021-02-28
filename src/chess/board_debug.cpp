@@ -47,7 +47,7 @@ void Board::Dump() const {
   std::cout << "legal moves: ";
   MoveList<256> legal = legal_moves();
   for (int i = 0; i < legal.size(); i++) {
-    CMove mv = legal[i];
+    Move_ mv = legal[i];
     std::cout << moveToUCIAlgebraic(mv) << " ";
   }
   std::cout << std::endl;

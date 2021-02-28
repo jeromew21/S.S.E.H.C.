@@ -131,9 +131,6 @@ MoveList<256> Board::legal_moves() const
   return mv_list;
 }
 
-/**
- * For this one and legal moves, consider not using precalculated attack maps...
- */
 MoveList<256> Board::capture_moves() const
 {
   assert(!is_check()); // we shouldn't be calling this if we're in check

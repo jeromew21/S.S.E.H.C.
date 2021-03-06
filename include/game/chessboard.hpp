@@ -282,7 +282,18 @@ public:
   float mobility(Color c);
 
   float king_pawn_tropism(Color c) const;
-  float king_safety(Color c) const;
+
+  float king_piece_tropism(Color c) const;
+
+  /**
+   * Scores from [0,1] based on the pawn shield in front of the king.
+   */
+  float king_pawn_shield(Color c) const;
+
+  /**
+   * Penalizes being next to or on an open file.
+   */
+  float king_open_files(Color c) const;
 
   float piece_square_score(PieceType piece, Square square, float game_stage_early) const;
 

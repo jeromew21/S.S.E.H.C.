@@ -10,9 +10,10 @@ CounterMoveTable cTable;
 const float material_weight = 1.0f;
 const float space_weight = 1.0f;
 const float mobility_weight = 100.0f;
-const float king_tropism_weight = 1.0f;
-const float king_safety_weight = 1.0f;
-const float piece_score_weight = 0.1f;
+const float king_pawn_tropism_weight = 1.0f;
+const float king_pawn_shield_weight = 1.0f;
+const float king_piece_tropism_weight = .1f;
+const float piece_score_weight = .1f;
 
 bool ai::isCheckmateScore(Score sc) { return SCORE_MAX - abs(sc) < 250; }
 
@@ -70,13 +71,18 @@ int ai::evaluation(Board &board)
 
   // king-pawn tropism
   float kp_tropism = board.king_pawn_tropism(White) - board.king_pawn_tropism(Black);
-  score += kp_tropism * king_tropism_weight * game_stage_late;
+  score += kp_tropism * king_pawn_tropism_weight * game_stage_late;
 
-  // king safety
-  float king_safety = board.king_safety(White) - board.king_safety(Black);
-  score += king_safety * king_safety_weight * game_stage_early;
+  // king pawn shield
+  float king_pawn_shield = board.king_pawn_shield(White) - board.king_pawn_shield(Black);
+  score += king_pawn_shield * king_pawn_shield_weight * game_stage_early;
 
-  // split king safety into multiple methods w/ different weights
+  // king piece tropism
+  float king_piece_tropism = board.king_piece_tropism(White) - board.king_piece_tropism(Black);
+  score += king_piece_tropism * king_piece_tropism_weight * game_stage_early;
+
+  
+
 
   return score;
 }

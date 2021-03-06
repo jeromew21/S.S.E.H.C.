@@ -183,7 +183,7 @@ void move_find_test(int depth, int &total_cases, int &passes)
     auto legals = chessboard.legal_moves();
     for (int j = 0; j < legals.size(); j++)
       pq.push(MoveScore(legals[j], 0));
-    Move_ found = ai::rootMove(chessboard, depth, stop, sc, legals[0], pq, nodes_visited, start);
+    Move_ found = ai::rootMove(chessboard, depth, stop, sc, pq, nodes_visited, start);
     expect(correct_moves[i], moveToUCIAlgebraic(found), "find best move", total_cases, passes);
   }
 }

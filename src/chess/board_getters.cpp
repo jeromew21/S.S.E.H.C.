@@ -1,5 +1,10 @@
 #include "game/chessboard.hpp"
 
+const u64 file_masks[8] = {0x101010101010101,  0x202020202020202,
+                           0x404040404040404,  0x808080808080808,
+                           0x1010101010101010, 0x2020202020202020,
+                           0x4040404040404040, 0x8080808080808080};
+
 const float piece_square_scores_early[12][64] = {
     {0,         0,         0,         0,         0,         0,
      0,         0,         0.0714286, 0.0714286, 0.0714286, 0.0714286,
@@ -528,7 +533,7 @@ float Board::king_piece_tropism(Color c) const {
   for (PieceType p = oppositeColor(c); p < 12; p += 2) {
     if (weights[p] == 0)
       continue;
-      
+
     bitscanAll(bitboard_[p], arr);
     for (int i = 0; i < arr.len(); i++) {
       Square index = u64ToSquare(arr[i]);
@@ -537,5 +542,47 @@ float Board::king_piece_tropism(Color c) const {
       sum += (abs(eRow - row) + abs(eCol - col)) * weights[p];
     }
   }
+  return -sum;
+}
+
+/**
+ * 0 if the file is closed
+ * 0.5 if the file is half-open for color c
+ * 1 if the file is fully open
+ */
+float isOpenFile(Color c, Col file_index, u64 white_pawns, u64 black_pawns) {
+  if (file_index < 0 || file_index > 7)
+    return 0;
+
+  u64 file_mask = file_masks[file_index];
+  white_pawns &= file_mask;
+  black_pawns &= file_mask;
+
+  if (white_pawns && black_pawns)
+    return 0;
+
+  else if (black_pawns && c == White)
+    return 0.5;
+
+  else if (white_pawns && c == Black)
+    return 0.5;
+
+  return 0;
+}
+
+float Board::king_open_files(Color c) const {
+  // look at the files next to king...
+  // 1 = fully open
+  // 0.5 = half open
+  // 0 closed
+  float sum = 0;
+  Col king_col = u64ToCol(bitboard_[piece::get_king(c)]);
+  Color enemy_color = oppositeColor(c);
+  const u64 white_pawns = bitboard_[piece::white::pawn];
+  const u64 black_pawns = bitboard_[piece::black::pawn];
+  sum += isOpenFile(enemy_color, king_col - 1, white_pawns, black_pawns);
+  sum += isOpenFile(enemy_color, king_col, white_pawns, black_pawns);
+  sum += isOpenFile(enemy_color, king_col + 1, white_pawns, black_pawns);
+
   return -sum;
 }

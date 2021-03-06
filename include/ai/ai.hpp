@@ -30,7 +30,7 @@ namespace ai
               int total_node_count, Score score, std::chrono::time_point<std::chrono::system_clock> start);
 
   Move_ rootMove(Board &board, int depth, std::atomic<bool> &stop, Score &out_score,
-                 Move_ prevPv, std::priority_queue<MoveScore> &prevScores, int &total_nodes_visited, 
+                 std::priority_queue<MoveScore> &prevScores, int &total_nodes_visited, 
                  std::chrono::time_point<std::chrono::system_clock> start);
 
   Score quiescence(Board &board, int depth, int ply_count, Score alpha, Score beta,

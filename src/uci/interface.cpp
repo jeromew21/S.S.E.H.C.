@@ -32,7 +32,7 @@ void uci::Interface::Think()
   {
     Score score;
     // send principal variation move from previous
-    Move_ move_at_depth = ai::rootMove(board_, depth, not_thinking, score, best_move_, prev_scores, total_nodes_visited, start);
+    Move_ move_at_depth = ai::rootMove(board_, depth, not_thinking, score, prev_scores, total_nodes_visited, start);
     if (not_thinking)
     {
       if (depth <= 1)

@@ -14,6 +14,7 @@ const float king_pawn_tropism_weight = 1.0f;
 const float king_pawn_shield_weight = 1.0f;
 const float king_piece_tropism_weight = .1f;
 const float piece_score_weight = .1f;
+const float king_open_files_weight = 1.0f;
 
 bool ai::isCheckmateScore(Score sc) { return SCORE_MAX - abs(sc) < 250; }
 
@@ -81,7 +82,9 @@ int ai::evaluation(Board &board)
   float king_piece_tropism = board.king_piece_tropism(White) - board.king_piece_tropism(Black);
   score += king_piece_tropism * king_piece_tropism_weight * game_stage_early;
 
-  
+  // open files next to king
+  float king_open_files = board.king_open_files(White) - board.king_open_files(Black);
+  score += king_open_files * king_open_files_weight * game_stage_early;
 
 
   return score;
@@ -97,7 +100,7 @@ int ai::flippedEval(Board &board)
 
 //return best move from a certain depth. uses alpha beta search to find best score.
 //increases total number of nodes traveled through total_nodes_visited
-Move_ ai::rootMove(Board &board, int depth, std::atomic<bool> &stop, Score &outscore, Move_ prevPv,
+Move_ ai::rootMove(Board &board, int depth, std::atomic<bool> &stop, Score &outscore,
                    std::priority_queue<MoveScore> &prevScores, int &total_nodes_visited,
                    std::chrono::time_point<std::chrono::system_clock> start)
 {
@@ -153,8 +156,6 @@ Move_ ai::rootMove(Board &board, int depth, std::atomic<bool> &stop, Score &outs
       MoveScores.push(MoveScore(mv, score));
     }
 
-    int m0 = moves.size();
-
     moves.Clear();
     while (!MoveScores.empty())
     {
@@ -162,8 +163,6 @@ Move_ ai::rootMove(Board &board, int depth, std::atomic<bool> &stop, Score &outs
       MoveScores.pop();
       moves.PushBack(mv);
     }
-
-    assert(m0 == moves.size());
   }
 
   Move_ chosen = moves.back(); // PV-move

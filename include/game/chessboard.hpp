@@ -295,6 +295,10 @@ public:
    */
   float king_open_files(Color c) const;
 
+  /**
+   * Scores a given piece on a given square, given the stage of the game
+   * 1 - (piece count / 32)
+   */
   float piece_square_score(PieceType piece, Square square, float game_stage_early) const;
 
   /** 

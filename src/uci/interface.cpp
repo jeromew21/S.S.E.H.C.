@@ -94,7 +94,7 @@ void uci::Interface::DelayStop(int msecs)
 {
   auto start = std::chrono::high_resolution_clock::now();
   int i = 0;
-  int granularity = 10; // checks every 1/100 of a second
+  int granularity = 1;
   while (true)
   {
     if (i % granularity == 0)

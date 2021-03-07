@@ -7,6 +7,18 @@ MoveList<256> Board::legal_moves() const
     return produce_uncheck_moves_();
 
   MoveList<256> mv_list = Board::capture_moves();
+
+  MoveList<256> quiets = Board::quiet_moves();
+  for (int i = 0; i < quiets.size(); i++) {
+    mv_list.PushBack(quiets[i]);
+  }
+
+  return mv_list;
+}
+
+MoveList<256> Board::quiet_moves() const 
+{
+  MoveList<256> mv_list;
   u64List src_bitscan;
   u64List dest_bitscan;
 

@@ -8,13 +8,13 @@ CounterMoveTable cTable;
 
 // eventually turn this into a matrix
 const float material_weight = 1.f;
-const float space_weight = 10.f;
+const float space_weight = 50.f;
 const float mobility_weight = 100.f;
-const float king_pawn_tropism_weight = 100.f;
-const float king_pawn_shield_weight = 20.f;
+const float king_pawn_tropism_weight = 30.f;
+const float king_pawn_shield_weight = 40.f;
 const float king_piece_tropism_weight = .1f;
-const float piece_score_weight = .1f;
-const float king_open_files_weight = 100.f;
+const float piece_score_weight = 100.f;
+const float king_open_files_weight = 30.f;
 
 bool ai::isCheckmateScore(Score sc) { return SCORE_MAX - abs(sc) < 250; }
 
@@ -297,117 +297,34 @@ void ai::sendPV(Board &board, int depth, Move_ pvMove, int total_node_count,
   uci::sendToUciClient(score_str);
 }
 
-// // alpha beta on captures.
-// Score ai::quiescence(Board &board, int depth, int plyCount, Score alpha,
-//                      Score beta, std::atomic<bool> &stop, int &count,
-//                      int quiesce_depth) {
-//   count++;
-
-//   Score baseline = ai::flippedEval(board);
-
-//   board::Status status = board.status();
-//   if (status != board::Status::Playing) {
-//     if (baseline == SCORE_MIN)
-//       baseline += board.stack_size();
-//     // return SCORE_MIN + board.stack_size();
-//     // else
-//     //   baseline
-//     // return baseline; // alpha vs baseline...
-//   }
-
-//   if (baseline >= beta)
-//     return beta; // fail hard
-
-//   if (baseline > alpha)
-//     alpha = baseline; // push alpha up to baseline
-
-//   bool isCheck = board.is_check();
-
-//   // u64 occ = board.occupancy();
-//   // bool deltaPrune = hadd(occ) > 12; // true && hadd(occ) > 12; **
-
-//   MoveList<256> movelist;
-//   if (!isCheck)
-//     movelist = board.capture_moves(); // order by MVV-LVA
-//   else
-//     movelist = board.legal_moves();
-
-//   std::priority_queue<MoveScore> MoveScores;
-
-//   if (!isCheck) {
-//     // all are captures
-//     for (int i = 0; i < movelist.size(); i++) {
-//       Move_ mv = movelist[i];
-//       int see = board.see(mv);
-//       bool isPromotion =
-//           mv.is_promotion() && mv.promoting_piece(White) == piece::white::queen;
-
-//       int mvscore = 0;
-//       if (isPromotion)
-//         mvscore = 10000;
-//       else
-//         mvscore = see;
-
-//       MoveScores.push(MoveScore(mv, mvscore));
-//     }
-//     // add passed pawn pushes and checks (?)
-
-//   } else {
-//     // unchecking, we want all of them
-//     for (int i = 0; i < movelist.size(); i++) {
-//       Move_ mv = movelist[i];
-//       MoveScores.push(MoveScore(mv, i));
-//     }
-//   }
-
-//   while (!MoveScores.empty()) {
-//     Move_ mv = MoveScores.top().mv;
-//     MoveScores.pop();
-//     board.MakeMove(mv);
-//     Score score = -quiescence(board, depth, plyCount + 1, -beta, -alpha, stop,
-//                               count, quiesce_depth + 1);
-//     board.UnmakeMove();
-//     if (stop)
-//       return alpha;
-//     if (score >= beta)
-//       return beta;
-//     if (score > alpha)
-//       alpha = score;
-//   }
-
-//   // if not raised alpha, then generate some more moves
-
-//   return alpha;
-// }
-
+// alpha beta on captures.
 Score ai::quiescence(Board &board, int depth, int plyCount, Score alpha,
-                     Score beta, std::atomic<bool> &stop, int &count, int quiesce_depth)
-{
+                     Score beta, std::atomic<bool> &stop, int &count,
+                     int quiesce_depth) {
   count++;
 
   Score baseline = ai::flippedEval(board);
-  
+
   board::Status status = board.status();
-  if (status != board::Status::Playing)
-  {
+  if (status != board::Status::Playing) {
     if (baseline == SCORE_MIN)
       baseline += board.stack_size();
-      //return SCORE_MIN + board.stack_size();
+    // return SCORE_MIN + board.stack_size();
     // else
-    //   baseline 
-      //return baseline; // alpha vs baseline...
+    //   baseline
+    // return baseline; // alpha vs baseline...
   }
+
+  if (baseline >= beta)
+    return beta; // fail hard
+
+  if (baseline > alpha)
+    alpha = baseline; // push alpha up to baseline
 
   bool isCheck = board.is_check();
 
-  if (baseline >= beta && !isCheck)
-    return beta; // fail hard
-
-  if (alpha < baseline && !isCheck)
-    alpha = baseline; // push alpha up to baseline
-
-  u64 occ = board.occupancy();
-  bool deltaPrune = hadd(occ) > 12; //true && hadd(occ) > 12; **
+  // u64 occ = board.occupancy();
+  // bool deltaPrune = hadd(occ) > 12; // true && hadd(occ) > 12; **
 
   MoveList<256> movelist;
   if (!isCheck)
@@ -417,47 +334,79 @@ Score ai::quiescence(Board &board, int depth, int plyCount, Score alpha,
 
   std::priority_queue<MoveScore> MoveScores;
 
-  for (int i = 0; i < movelist.size(); i++)
-  {
-    Move_ mv = movelist[i];
-    int see = -1;
-    bool isCapture = mv.dest() & occ;
-    if (isCapture)
-      see = board.see(mv);
-    bool isPromotion = mv.is_promotion();
-    // bool isPawn = mv.getSrc() & (board.bitboard[W_Pawn] &
-    // board.bitboard[B_Pawn]);
-    bool isDeltaPrune =
-        deltaPrune && isCapture &&
-        (baseline + 200 + getMaterialValue(board.piece_at(mv.dest())) < alpha);
-    bool isCheckingMove = board.is_checking_move(mv);
-    bool isChecking = (quiesce_depth == 0 || quiesce_depth == 2) && isCheckingMove && //**
-                      (!isCapture || (isCapture && see >= 0 && !isDeltaPrune));
-    int mvscore = 0;
-    if (!isCapture && isPromotion && mv.promoting_piece(White) == piece::white::queen)
-      mvscore = 900;
-    else
-      mvscore = getMaterialValue(board.piece_at(mv.dest()));
+  if (!isCheck) {
+    // all are captures
+    for (int i = 0; i < movelist.size(); i++) {
+      Move_ mv = movelist[i];
+      int see = board.see(mv);
+      bool isPromotion =
+          mv.is_promotion() && mv.promoting_piece(White) == piece::white::queen;
 
-    if ((!isDeltaPrune && see >= 0) || isChecking || isPromotion || isCheck)
+      int mvscore = 0;
+      if (isPromotion)
+        mvscore = 10000;
+      else
+        mvscore = see;
+
       MoveScores.push(MoveScore(mv, mvscore));
+    }
+    // add passed pawn pushes and checks (?)
+
+  } else {
+    // unchecking, we want all of them
+    for (int i = 0; i < movelist.size(); i++) {
+      Move_ mv = movelist[i];
+      MoveScores.push(MoveScore(mv, i));
+    }
   }
 
-  while (!MoveScores.empty())
-  {
+  bool raisedAlpha = false;
+
+  while (!MoveScores.empty()) {
     Move_ mv = MoveScores.top().mv;
     MoveScores.pop();
     board.MakeMove(mv);
-    Score score = -quiescence(board, depth, plyCount + 1, -beta, -alpha,
-                              stop, count, quiesce_depth + 1);
+    Score score = -quiescence(board, depth, plyCount + 1, -beta, -alpha, stop,
+                              count, quiesce_depth + 1);
     board.UnmakeMove();
     if (stop)
       return alpha;
     if (score >= beta)
       return beta;
-    if (score > alpha)
+    if (score > alpha) {
       alpha = score;
+      raisedAlpha = true;
+    }
   }
+
+  if (!raisedAlpha && !isCheck) {
+    MoveList<256> quiets = board.quiet_moves();
+    for (int i = 0; i < quiets.size(); i++) {
+      Move_ mv = quiets[i];
+      bool cond = quiesce_depth < 2 &&
+                  (piece::is_pawn(board.piece_at(mv.src_square())) ||
+                   board.is_checking_move(mv));
+                   
+      if (cond) {
+        board.MakeMove(mv);
+
+        Score score = -quiescence(board, depth, plyCount + 1, -beta, -alpha,
+                                  stop, count, quiesce_depth + 1);
+        board.UnmakeMove();
+        if (stop)
+          return alpha;
+        if (score >= beta)
+          return beta;
+        if (score > alpha) {
+          alpha = score;
+          raisedAlpha = true;
+        }
+      }
+    }
+  }
+
+  // if not raised alpha, then generate some more moves
+
   return alpha;
 }
 

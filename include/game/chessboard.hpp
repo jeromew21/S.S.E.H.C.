@@ -261,6 +261,8 @@ public:
    */
   MoveList<256> capture_moves() const;
 
+  MoveList<256> quiet_moves() const;
+
   /**
    * Does this move put the opponent in check?
    */

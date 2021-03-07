@@ -9,12 +9,12 @@ CounterMoveTable cTable;
 // eventually turn this into a matrix
 const float material_weight = 1.f;
 const float space_weight = 50.f;
-const float mobility_weight = 100.f;
-const float king_pawn_tropism_weight = 30.f;
-const float king_pawn_shield_weight = 40.f;
+const float mobility_weight = 80.f;
+const float king_pawn_tropism_weight = 60.f;
+const float king_pawn_shield_weight = 60.f;
 const float king_piece_tropism_weight = .1f;
 const float piece_score_weight = 100.f;
-const float king_open_files_weight = 30.f;
+const float king_open_files_weight = 60.f;
 
 bool ai::isCheckmateScore(Score sc) { return SCORE_MAX - abs(sc) < 250; }
 
@@ -27,14 +27,14 @@ void ai::reset() {
 int ai::materialEvaluation(Board &board) { return board.material(); }
 
 int ai::evaluation(Board &board) {
-  board::Status status = board.status();
+  // board::Status status = board.status();
 
-  if (status == board::Status::Stalemate || status == board::Status::Draw)
-    return 0;
-  else if (status == board::Status::WhiteWin)
-    return SCORE_MAX;
-  else if (status == board::Status::BlackWin)
-    return SCORE_MIN;
+  // if (status == board::Status::Stalemate || status == board::Status::Draw)
+  //   return 0;
+  // else if (status == board::Status::WhiteWin)
+  //   return SCORE_MAX;
+  // else if (status == board::Status::BlackWin)
+  //   return SCORE_MIN;
 
   const float piece_count = hadd(board.occupancy());
   const float game_stage_early = piece_count / 32.0f;
@@ -307,12 +307,18 @@ Score ai::quiescence(Board &board, int depth, int plyCount, Score alpha,
 
   board::Status status = board.status();
   if (status != board::Status::Playing) {
-    if (baseline == SCORE_MIN)
-      baseline += board.stack_size();
-    // return SCORE_MIN + board.stack_size();
-    // else
-    //   baseline
-    // return baseline; // alpha vs baseline...
+    Score score(0);
+    if (status == board::Status::WhiteWin || status == board::Status::BlackWin)
+      score = SCORE_MIN + board.stack_size();
+    else if (status == board::Status::Stalemate ||
+             status == board::Status::Draw)
+      score = 0;
+
+    if (score < alpha)
+      return alpha;
+    else if (score > beta)
+      return beta;
+    return score;
   }
 
   if (baseline >= beta)
@@ -348,7 +354,8 @@ Score ai::quiescence(Board &board, int depth, int plyCount, Score alpha,
       else
         mvscore = see;
 
-      MoveScores.push(MoveScore(mv, mvscore));
+      if (isPromotion || see >= 0)
+        MoveScores.push(MoveScore(mv, mvscore));
     }
     // add passed pawn pushes and checks (?)
 
@@ -386,7 +393,7 @@ Score ai::quiescence(Board &board, int depth, int plyCount, Score alpha,
       bool cond = quiesce_depth < 2 &&
                   (piece::is_pawn(board.piece_at(mv.src_square())) ||
                    board.is_checking_move(mv));
-                   
+
       if (cond) {
         board.MakeMove(mv);
 
@@ -404,8 +411,6 @@ Score ai::quiescence(Board &board, int depth, int plyCount, Score alpha,
       }
     }
   }
-
-  // if not raised alpha, then generate some more moves
 
   return alpha;
 }
@@ -605,6 +610,7 @@ Score ai::alphaBetaSearch(Board &board, int depth, int plyCount, Score alpha,
       alpha = score; // push up alpha
     }
   }
+
   if (!raisedAlpha)
     node.nodeType = All;
 

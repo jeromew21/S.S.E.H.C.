@@ -18,6 +18,8 @@ PieceType Board::least_valuable_piece_(u64 mask, Color color, u64 &out_position)
 
 int Board::see(Move_ mv) const
 {
+  if (mv.type_code() == move_type::EnPassant) return 100;
+  
   u64 src = mv.src();
   u64 dest = mv.dest();
   PieceType attacker = piece_at(src);

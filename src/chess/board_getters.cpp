@@ -394,26 +394,18 @@ int Board::material() const { return material(White) - material(Black); }
 float Board::mobility(Color c) { // Minor piece and rook mobility
   float result = 0;
 
-  int piece_count = 0;
+  float piece_count = 0;
 
   const u64 occ = occupancy();
   const u64 unfriendly_occ = ~occupancy(c);
 
   u64List piece_bitscan;
 
-  bitscanAll(bitboard_[piece::get_rook(c)], piece_bitscan);
-  for (int i = 0; i < piece_bitscan.len(); i++) {
-    result += hadd(move_maps::rookMoves(u64ToSquare(piece_bitscan[i]), occ) &
-                   unfriendly_occ) /
-              14.0f;
-    piece_count++;
-  }
-
   bitscanAll(bitboard_[piece::get_bishop(c)], piece_bitscan);
   for (int i = 0; i < piece_bitscan.len(); i++) {
     result += hadd(move_maps::bishopMoves(u64ToSquare(piece_bitscan[i]), occ) &
                    unfriendly_occ) /
-              13.0f;
+              13.f;
     piece_count++;
   }
 
@@ -421,14 +413,14 @@ float Board::mobility(Color c) { // Minor piece and rook mobility
   for (int i = 0; i < piece_bitscan.len(); i++) {
     result += hadd(move_maps::knightMoves(u64ToSquare(piece_bitscan[i])) &
                    unfriendly_occ) /
-              8.0f;
+              8.f;
     piece_count++;
   }
 
   if (piece_count == 0)
     return 0;
 
-  return result / (int)piece_count;
+  return result / piece_count;
 }
 
 /**
@@ -469,7 +461,7 @@ int Board::space(Color c) const {
         move_maps::pawnMoves(u64ToSquare(piece_bitscan[i]), c) & unfriendly_occ;
   }
 
-  return hadd(controlled_map);
+  return hadd(controlled_map) / 64;
 }
 
 float Board::king_pawn_tropism(Color c) const {
@@ -584,5 +576,5 @@ float Board::king_open_files(Color c) const {
   sum += isOpenFile(enemy_color, king_col, white_pawns, black_pawns);
   sum += isOpenFile(enemy_color, king_col + 1, white_pawns, black_pawns);
 
-  return -sum;
+  return -sum / 3.f;
 }

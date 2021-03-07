@@ -21,7 +21,7 @@ void uci::Interface::Think()
   const int depth_limit = SCORE_MAX;
 
   int total_nodes_visited = 1;
-  auto start = std::chrono::high_resolution_clock::now();
+  const auto start = std::chrono::high_resolution_clock::now();
 
   int depth = 0;      // current search depth
   Score best_score(SCORE_MIN);
@@ -92,6 +92,9 @@ void uci::Interface::StopThinking()
 
 void uci::Interface::DelayStop(int msecs)
 {
+  const int pad = 5;
+  msecs -= pad; // to make sure it's in time
+  
   auto start = std::chrono::high_resolution_clock::now();
   int i = 0;
   int granularity = 1;

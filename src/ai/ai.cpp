@@ -207,8 +207,6 @@ Move_ ai::rootMove(Board &board, int depth, std::atomic<bool> &stop, Score &outs
     if (stop)
     {
       outscore = alpha;
-      // NTS: for some reason, sending PV here gave bad values...
-      // sendPV(board, depth, chosen, total_nodes_visited, score, start);
       return chosen; // returns best found so far
     }                // here bc if AB call stopped, it won't be full search
 
@@ -228,6 +226,7 @@ Move_ ai::rootMove(Board &board, int depth, std::atomic<bool> &stop, Score &outs
   {
     uci::sendToUciClient("info string root fail-low");
     outscore = alpha;
+    sendPV(board, depth, chosen, total_nodes_visited, outscore, start);
   }
 
   return chosen;
@@ -262,8 +261,6 @@ void ai::sendPV(Board &board, int depth, Move_ pvMove, int total_node_count,
 
   score_str += "info depth " + std::to_string(depth + 1);
 
-  if (depth == 0) return;
-
   if (ai::isCheckmateScore(score))
   {
     int dRoot = SCORE_MAX - abs(score);
@@ -276,7 +273,7 @@ void ai::sendPV(Board &board, int depth, Move_ pvMove, int total_node_count,
     else
       v = (v + 1) / 2;
 
-    uci::sendToUciClient("info string plies " + std::to_string(v));
+    // uci::sendToUciClient("info string plies " + std::to_string(v));
     score_str += " score mate " + std::to_string(v);
   }
   else
@@ -285,19 +282,19 @@ void ai::sendPV(Board &board, int depth, Move_ pvMove, int total_node_count,
   }
 
   int nps = ((double)total_node_count) / (runtime / 1e6L);
-  int search_time = runtime / 1e3L;
+  int search_time = runtime / 1e3L; // convert to ms
 
   score_str += " time " + std::to_string(search_time);
   score_str += " nps " + std::to_string(nps);
   score_str += " nodes " + std::to_string(total_node_count);
 
-  // finally append PV
+  // finally, append PV
   score_str += pv;
 
   uci::sendToUciClient(score_str);
 }
 
-// //alpha beta on captures.
+// alpha beta on captures.
 Score ai::quiescence(Board &board, int depth, int plyCount, Score alpha,
                      Score beta, std::atomic<bool> &stop, int &count, int quiesce_depth)
 {

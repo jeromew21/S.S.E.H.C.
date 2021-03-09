@@ -13,8 +13,58 @@ const float mobility_weight = 80.f;
 const float king_pawn_tropism_weight = 60.f;
 const float king_pawn_shield_weight = 60.f;
 const float king_piece_tropism_weight = .1f;
-const float piece_score_weight = 100.f;
+const float piece_score_weight = 50.f;
 const float king_open_files_weight = 60.f;
+
+ai::EngineSettings engine_settings;
+
+ai::Setting::Setting(std::string name_, ai::SettingType type_, bool initial_value) {
+  name = name_;
+  type = type_;
+  bool_value = initial_value;
+}
+
+ai::Setting::Setting(std::string name_, ai::SettingType type_, int initial_value) {
+  name = name_;
+  type = type_;
+  int_value = initial_value;
+}
+
+ai::EngineSettings &ai::getEngineSettings() { return engine_settings; }
+
+void ai::setEngineSetting(const std::string &setting_name, bool value) {
+  for (int i = 0; i < engine_settings.settings_list.size(); i++) {
+    if (engine_settings.settings_list[i].name == setting_name) {
+      engine_settings.settings_list[i].bool_value = value;
+      return;
+    }
+  }
+  engine_settings.settings_list.push_back(ai::Setting(
+    setting_name, ai::SettingType::boolean, value
+  ));
+}
+
+void ai::setEngineSetting(const std::string &setting_name, int value) {
+  for (int i = 0; i < engine_settings.settings_list.size(); i++) {
+    if (engine_settings.settings_list[i].name == setting_name) {
+      engine_settings.settings_list[i].int_value = value;
+      return;
+    }
+  }
+  engine_settings.settings_list.push_back(ai::Setting(
+    setting_name, ai::SettingType::number, value
+  ));
+}
+
+ai::Setting ai::getEngineSetting(const std::string &setting_name) {
+  for (int i = 0; i < engine_settings.settings_list.size(); i++) {
+    if (engine_settings.settings_list[i].name == setting_name) {
+      return engine_settings.settings_list[i];
+    }
+  }
+  assert(false);
+  return ai::Setting("foo", ai::SettingType::boolean, false);
+}
 
 bool ai::isCheckmateScore(Score sc) { return SCORE_MAX - abs(sc) < 250; }
 
@@ -25,6 +75,11 @@ void ai::reset() {
 }
 
 int ai::materialEvaluation(Board &board) { return board.material(); }
+
+// ai::FeatureVector ai::feature_vector(Board &board) {
+
+//   return;
+// }
 
 int ai::evaluation(Board &board) {
   // board::Status status = board.status();
@@ -44,69 +99,92 @@ int ai::evaluation(Board &board) {
   // Black.
   float score = 0;
 
-  const int vsize = 12;
+  const int vsize = 12 + 64 * 12;
   float vec[vsize];
-  for (int i = 0; i < vsize; i++)
+  float weight_vec[vsize];
+  for (int i = 0; i < vsize; i++) {
     vec[i] = 0;
-
-  // Piece+squares
-  float piece_score_white = 0;
-  float piece_score_black = 0;
-  for (Square i = 0; i < 64; i++) {
-    PieceType selected_piece = board.piece_at(i);
-    if (colorOf(selected_piece) == White) {
-      piece_score_white +=
-          board.piece_square_score(board.piece_at(i), i, game_stage_early);
-    } else {
-      piece_score_black +=
-          board.piece_square_score(board.piece_at(i), i, game_stage_early);
-    }
+    weight_vec[i] = 0;
   }
 
-  // piece+square scores
-  float piece_score = piece_score_white - piece_score_black;
-  vec[0] = piece_score * piece_score_weight;
+  int v_index = 0;
 
   // mobility
   float mobility = board.mobility(White) - board.mobility(Black);
-  vec[1] = mobility * mobility_weight; // mobility is a score from 0.0 to 1.0
+  vec[v_index] = mobility; // mobility is a score from 0.0 to 1.0
+  weight_vec[v_index++] = mobility_weight;
 
   // another method like mobility but only taking into account pawn structure???
 
   // material
   float material = board.material();
-  vec[2] = material * material_weight;
+  vec[v_index] = material;
+  weight_vec[v_index++] = material_weight;
 
   // space
   float space = board.space(White) - board.space(Black);
-  vec[3] = space * space_weight * game_stage_early;
+  vec[v_index] = space * game_stage_early;
+  weight_vec[v_index++] = space_weight;
 
   // king-pawn tropism
-  float kp_tropism =
+  float king_pawn_tropism =
       board.king_pawn_tropism(White) - board.king_pawn_tropism(Black);
-  vec[4] = kp_tropism * king_pawn_tropism_weight * game_stage_late;
+  vec[v_index] = king_pawn_tropism * game_stage_late;
+  weight_vec[v_index++] = king_pawn_tropism_weight;
 
   // king pawn shield
   float king_pawn_shield =
       board.king_pawn_shield(White) - board.king_pawn_shield(Black);
-  vec[5] = king_pawn_shield * king_pawn_shield_weight * game_stage_early;
+  vec[v_index] = king_pawn_shield * game_stage_early;
+  weight_vec[v_index++] = king_pawn_shield_weight;
 
   // king piece tropism
   float king_piece_tropism =
       board.king_piece_tropism(White) - board.king_piece_tropism(Black);
-  vec[6] = king_piece_tropism * king_piece_tropism_weight * game_stage_early;
+  vec[v_index] = king_piece_tropism * game_stage_early;
+  weight_vec[v_index++] = king_piece_tropism_weight;
 
   // open files next to king
   float king_open_files =
       board.king_open_files(White) - board.king_open_files(Black);
-  vec[7] = king_open_files * king_open_files_weight * game_stage_early;
+  vec[v_index] = king_open_files * game_stage_early;
+  weight_vec[v_index++] = king_open_files_weight;
 
-  for (int i = 0; i < vsize; i++) {
-    score += vec[i];
+  // Piece+squares
+  for (PieceType piece_ = 0; piece_ < 12; piece_++) {
+    for (Square sq = 0; sq < 64; sq++) {
+      float piece_score =
+          1; // board.piece_square_score(p, sq, game_stage_early);
+      if (board.piece_at(sq) != piece_)
+        piece_score = 0;
+
+      if (colorOf(piece_) == Black && piece_score != 0)
+        piece_score = -piece_score;
+      vec[v_index] = piece_score;
+      weight_vec[v_index++] =
+          piece_score_weight; // need to replace w/ specific weight
+    }
   }
 
+  // for (Square i = 0; i < 64; i++) {
+  //   PieceType selected_piece = board.piece_at(i);
+  //   if (colorOf(selected_piece) == White) {
+  //     piece_score_white +=
+  //         board.piece_square_score(board.piece_at(i), i, game_stage_early);
+  //   } else {
+  //     piece_score_black +=
+  //         board.piece_square_score(board.piece_at(i), i, game_stage_early);
+  //   }
+  // }
+
+  for (int i = 0; i < vsize; i++) {
+    score += vec[i] * weight_vec[i];
+  }
+
+  // trapped pieces should count towards material
+
   // std::cout << "[ ";
-  // for (int i = 0; i < 8; i++) {
+  // for (int i = 0; i < vsize; i++) {
   //   std::cout << vec[i] << " ";
   // }
   // std::cout << "]\n";
@@ -316,7 +394,7 @@ Score ai::quiescence(Board &board, int depth, int plyCount, Score alpha,
 
     if (score < alpha)
       return alpha;
-    else if (score > beta)
+    else if (score >= beta)
       return beta;
     return score;
   }
@@ -489,7 +567,7 @@ Score ai::alphaBetaSearch(Board &board, int depth, int plyCount, Score alpha,
 
     if (score < alpha)
       return alpha;
-    else if (score > beta)
+    else if (score >= beta)
       return beta;
     return score;
   }
@@ -500,7 +578,7 @@ Score ai::alphaBetaSearch(Board &board, int depth, int plyCount, Score alpha,
     // if mate found in qsearch
     if (score < alpha)
       return alpha;
-    else if (score > beta)
+    else if (score >= beta)
       return beta;
     else
       return score;
@@ -669,7 +747,7 @@ Score ai::zeroWindowSearch(Board &board, int depth, int plyCount, Score beta,
 
     if (score < alpha)
       return alpha;
-    else if (score > beta)
+    else if (score >= beta)
       return beta;
     return score;
   }
@@ -681,7 +759,7 @@ Score ai::zeroWindowSearch(Board &board, int depth, int plyCount, Score beta,
     if (score < alpha)
       return alpha;
 
-    else if (score > beta)
+    else if (score >= beta)
       return beta;
 
     return score;

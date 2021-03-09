@@ -318,7 +318,29 @@ void uci::Interface::UCICommand()
   uci::sendToUciClient("id author Jerome Wei Nick Buoncristiani");
 
   // send list of options that client can change
-  uci::sendToUciClient("option name threads type check default false"); // list options...
+
+  // First setup defaults
+  ai::setEngineSetting("null_prune", true);
+  ai::setEngineSetting("threads", 1);
+
+  // then broadcast each of them
+  ai::EngineSettings& ai_settings = ai::getEngineSettings();
+
+  for (unsigned i = 0; i < ai_settings.settings_list.size(); i++) {
+    ai::Setting setting = ai_settings.settings_list[i];
+    std::string setting_out = "option name ";
+    setting_out += setting.name;
+    if (setting.type == ai::SettingType::boolean) {
+      setting_out += " type check default ";
+      if (setting.bool_value) setting_out += "true";
+      else setting_out += "false";
+    } else if (setting.type == ai::SettingType::number) {
+      setting_out += " type spin default ";
+      setting_out += std::to_string(setting.int_value);
+      // add min and max
+    }
+    uci::sendToUciClient(setting_out);
+  }
 
   // finally, send ok
   uci::sendToUciClient("uciok");

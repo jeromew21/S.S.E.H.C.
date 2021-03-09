@@ -2,6 +2,7 @@
 #define MOVELIST_HPP
 
 #include "misc/debug.hpp"
+#include "game/cmove.hpp"
 
 /**
  * List of moves, stored on stack with limited size.

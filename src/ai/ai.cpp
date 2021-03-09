@@ -9,12 +9,13 @@ CounterMoveTable cTable;
 // eventually turn this into a matrix
 const float material_weight = 1.f;
 const float space_weight = 50.f;
-const float mobility_weight = 80.f;
-const float king_pawn_tropism_weight = 60.f;
-const float king_pawn_shield_weight = 60.f;
+const float mobility_weight = 60.f;
+const float king_pawn_tropism_weight = 50.f;
+const float king_pawn_shield_weight = 50.f;
 const float king_piece_tropism_weight = .1f;
-const float piece_score_weight = 50.f;
-const float king_open_files_weight = 60.f;
+const float piece_score_weight = 80.f;
+const float king_open_files_weight = 50.f;
+const float tempo_weight = 10.f;
 
 ai::EngineSettings engine_settings;
 
@@ -42,19 +43,23 @@ void ai::createEngineSetting(const std::string &setting_name, int value,
       setting_name, ai::SettingType::number, value, int_min, int_max));
 }
 
+void ai::createEngineSetting(const std::string &setting_name, bool value) {
+  engine_settings.settings_list.push_back(ai::Setting(
+    setting_name, ai::SettingType::boolean, value)
+  );
+}
+
 void ai::setEngineSetting(const std::string &setting_name, bool value) {
-  for (int i = 0; i < engine_settings.settings_list.size(); i++) {
+  for (unsigned i = 0; i < engine_settings.settings_list.size(); i++) {
     if (engine_settings.settings_list[i].name == setting_name) {
       engine_settings.settings_list[i].bool_value = value;
       return;
     }
   }
-  engine_settings.settings_list.push_back(
-      ai::Setting(setting_name, ai::SettingType::boolean, value));
 }
 
 void ai::setEngineSetting(const std::string &setting_name, int value) {
-  for (int i = 0; i < engine_settings.settings_list.size(); i++) {
+  for (unsigned i = 0; i < engine_settings.settings_list.size(); i++) {
     if (engine_settings.settings_list[i].name == setting_name) {
       engine_settings.settings_list[i].int_value = value;
       return;
@@ -64,7 +69,7 @@ void ai::setEngineSetting(const std::string &setting_name, int value) {
 }
 
 ai::Setting ai::getEngineSetting(const std::string &setting_name) {
-  for (int i = 0; i < engine_settings.settings_list.size(); i++) {
+  for (unsigned i = 0; i < engine_settings.settings_list.size(); i++) {
     if (engine_settings.settings_list[i].name == setting_name) {
       return engine_settings.settings_list[i];
     }
@@ -81,22 +86,20 @@ void ai::reset() {
   cTable.clear();
 }
 
-int ai::materialEvaluation(Board &board) { return board.material(); }
-
 // ai::FeatureVector ai::feature_vector(Board &board) {
 
 //   return;
 // }
 
 int ai::evaluation(Board &board) {
-  // board::Status status = board.status();
+  board::Status status = board.status();
 
-  // if (status == board::Status::Stalemate || status == board::Status::Draw)
-  //   return 0;
-  // else if (status == board::Status::WhiteWin)
-  //   return SCORE_MAX;
-  // else if (status == board::Status::BlackWin)
-  //   return SCORE_MIN;
+  if (status == board::Status::Stalemate || status == board::Status::Draw)
+    return 0;
+  else if (status == board::Status::WhiteWin)
+    return SCORE_MAX;
+  else if (status == board::Status::BlackWin)
+    return SCORE_MIN;
 
   const float piece_count = hadd(board.occupancy());
   const float game_stage_early = piece_count / 32.0f;
@@ -115,6 +118,14 @@ int ai::evaluation(Board &board) {
   }
 
   int v_index = 0;
+
+  // tempo
+  float tempo = 0;
+  if (board.stack_size() < 10) {
+    tempo = board.turn() == White ? 1 : -1;
+  }
+  vec[v_index] = tempo;
+  weight_vec[v_index++] = tempo_weight;
 
   // mobility
   float mobility = board.mobility(White) - board.mobility(Black);
@@ -524,13 +535,13 @@ std::vector<Move_> ai::generateMovesOrdered(Board &board, Move_ refMove,
     Move_ mv = movelist[i];
     u64 dest = mv.dest();
     if (mv == refMove)
-      queue.push(MoveScore(mv, std::pow(2, 5)));
+      queue.push(MoveScore(mv, 10000000));
     else if (dest & occ) // If the move is a capture we check if we will wind up
                          // winning or losing material.
     {
       int see = board.see(mv);
       if (see > 0) {
-        queue.push(MoveScore(mv, std::pow(2, 4)));
+        queue.push(MoveScore(mv, std::pow(2, 4)+see));
         numPositiveMoves++;
       } else if (see == 0)
         queue.push(MoveScore(mv, std::pow(2, 2))); // trades
@@ -664,7 +675,7 @@ Score ai::alphaBetaSearch(Board &board, int depth, int plyCount, Score alpha,
     } else {
       score = -ai::alphaBetaSearch(board, subdepth, plyCount + 1, -beta, -alpha,
                                    stop, count, PV, isSave);
-      nullWindow = true;
+      nullWindow = true; // disable at low ply??
     }
 
     board.UnmakeMove();
@@ -808,11 +819,12 @@ Score ai::zeroWindowSearch(Board &board, int depth, int plyCount, Score beta,
     Score score = -ai::zeroWindowSearch(board, depth - 1 - rNull, plyCount + 1,
                                         1 - beta, stop, count, Cut);
     board.UnmakeMove();
-    if (score >= beta) { // our move is better than beta, so this node is cut
-      // off
-      node.nodeType = Cut;
-      node.bestMove = Move_::NullMove();
-      table.insert(node, beta);
+    if (score >= beta) { 
+      //  move is better than beta, so this node is cut
+
+      // node.nodeType = Cut;
+      // node.bestMove = Move_::NullMove();
+      // table.insert(node, beta);
       return beta; // fail hard
     }
   }
@@ -885,11 +897,14 @@ Score ai::zeroWindowSearch(Board &board, int depth, int plyCount, Score beta,
       node.bestMove = fmove;
       table.insert(node, beta);
 
-      if (fmove.dest() & ~occ) {
-        hTable.insert(fmove, board.turn(), depth);
-        kTable.insert(fmove, plyCount);
-        cTable.insert(board.turn(), lastMove, fmove);
-      }
+      // rationale for not doing this
+      // since it's a ZWS, a cutoff could be only barely better than beta...
+
+      // if (fmove.dest() & ~occ) {
+      //   hTable.insert(fmove, board.turn(), depth);
+      //   kTable.insert(fmove, plyCount);
+      //   cTable.insert(board.turn(), lastMove, fmove);
+      // }
 
       return beta; // fail hard
     }

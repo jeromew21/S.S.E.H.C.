@@ -320,7 +320,7 @@ void uci::Interface::UCICommand()
   // send list of options that client can change
 
   // First setup defaults
-  ai::setEngineSetting("null_prune", true);
+  ai::createEngineSetting("null_prune", true);
   ai::createEngineSetting("threads", 1, 1, 64);
 
   // then broadcast each of them

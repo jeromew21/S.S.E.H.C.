@@ -43,13 +43,13 @@ struct EngineSettings {
 
 EngineSettings &getEngineSettings();
 void createEngineSetting(const std::string &setting_name, int value, int int_min, int int_max);
+void createEngineSetting(const std::string &setting_name, bool value);
 
 void setEngineSetting(const std::string &setting_name, bool value);
 void setEngineSetting(const std::string &setting_name, int value);
 
 Setting getEngineSetting(const std::string &setting_name);
 
-int materialEvaluation(Board &board);
 int evaluation(Board &board);  // absolute
 int flippedEval(Board &board); // depends on turn
 

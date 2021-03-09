@@ -18,19 +18,29 @@ const float king_open_files_weight = 60.f;
 
 ai::EngineSettings engine_settings;
 
-ai::Setting::Setting(std::string name_, ai::SettingType type_, bool initial_value) {
+ai::Setting::Setting(std::string name_, ai::SettingType type_,
+                     bool initial_value) {
   name = name_;
   type = type_;
   bool_value = initial_value;
 }
 
-ai::Setting::Setting(std::string name_, ai::SettingType type_, int initial_value) {
+ai::Setting::Setting(std::string name_, ai::SettingType type_,
+                     int initial_value, int int_min_, int int_max_) {
   name = name_;
   type = type_;
   int_value = initial_value;
+  int_min = int_min_;
+  int_max = int_max_;
 }
 
 ai::EngineSettings &ai::getEngineSettings() { return engine_settings; }
+
+void ai::createEngineSetting(const std::string &setting_name, int value,
+                         int int_min, int int_max) {
+  engine_settings.settings_list.push_back(ai::Setting(
+      setting_name, ai::SettingType::number, value, int_min, int_max));
+}
 
 void ai::setEngineSetting(const std::string &setting_name, bool value) {
   for (int i = 0; i < engine_settings.settings_list.size(); i++) {
@@ -39,9 +49,8 @@ void ai::setEngineSetting(const std::string &setting_name, bool value) {
       return;
     }
   }
-  engine_settings.settings_list.push_back(ai::Setting(
-    setting_name, ai::SettingType::boolean, value
-  ));
+  engine_settings.settings_list.push_back(
+      ai::Setting(setting_name, ai::SettingType::boolean, value));
 }
 
 void ai::setEngineSetting(const std::string &setting_name, int value) {
@@ -51,9 +60,7 @@ void ai::setEngineSetting(const std::string &setting_name, int value) {
       return;
     }
   }
-  engine_settings.settings_list.push_back(ai::Setting(
-    setting_name, ai::SettingType::number, value
-  ));
+  assert(false);
 }
 
 ai::Setting ai::getEngineSetting(const std::string &setting_name) {

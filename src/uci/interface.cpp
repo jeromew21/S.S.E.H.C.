@@ -321,7 +321,7 @@ void uci::Interface::UCICommand()
 
   // First setup defaults
   ai::setEngineSetting("null_prune", true);
-  ai::setEngineSetting("threads", 1);
+  ai::createEngineSetting("threads", 1, 1, 64);
 
   // then broadcast each of them
   ai::EngineSettings& ai_settings = ai::getEngineSettings();
@@ -337,6 +337,8 @@ void uci::Interface::UCICommand()
     } else if (setting.type == ai::SettingType::number) {
       setting_out += " type spin default ";
       setting_out += std::to_string(setting.int_value);
+      setting_out += " min " + std::to_string(setting.int_min);
+      setting_out += " max " + std::to_string(setting.int_max);
       // add min and max
     }
     uci::sendToUciClient(setting_out);

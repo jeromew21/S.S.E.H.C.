@@ -30,9 +30,11 @@ struct Setting {
   SettingType type;
   bool bool_value;
   int int_value;
+  int int_min;
+  int int_max;
 
   Setting(std::string name_, SettingType type_, bool initial_value);
-  Setting(std::string name_, SettingType type_, int initial_value);
+  Setting(std::string name_, SettingType type_, int initial_value, int int_min_, int int_max_);
 };
 
 struct EngineSettings {
@@ -40,6 +42,8 @@ struct EngineSettings {
 };
 
 EngineSettings &getEngineSettings();
+void createEngineSetting(const std::string &setting_name, int value, int int_min, int int_max);
+
 void setEngineSetting(const std::string &setting_name, bool value);
 void setEngineSetting(const std::string &setting_name, int value);
 

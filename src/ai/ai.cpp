@@ -9,12 +9,12 @@ CounterMoveTable cTable;
 // eventually turn this into a matrix
 const float material_weight = 1.f;
 const float space_weight = 50.f;
-const float mobility_weight = 60.f;
-const float king_pawn_tropism_weight = 50.f;
-const float king_pawn_shield_weight = 50.f;
+const float mobility_weight = 50.f;
+const float king_pawn_tropism_weight = 20.f;
+const float king_pawn_shield_weight = 20.f;
 const float king_piece_tropism_weight = .1f;
-const float piece_score_weight = 80.f;
-const float king_open_files_weight = 50.f;
+const float piece_score_weight = 100.f;
+const float king_open_files_weight = 20.f;
 const float tempo_weight = 10.f;
 
 ai::EngineSettings engine_settings;
@@ -38,15 +38,14 @@ ai::Setting::Setting(std::string name_, ai::SettingType type_,
 ai::EngineSettings &ai::getEngineSettings() { return engine_settings; }
 
 void ai::createEngineSetting(const std::string &setting_name, int value,
-                         int int_min, int int_max) {
+                             int int_min, int int_max) {
   engine_settings.settings_list.push_back(ai::Setting(
       setting_name, ai::SettingType::number, value, int_min, int_max));
 }
 
 void ai::createEngineSetting(const std::string &setting_name, bool value) {
-  engine_settings.settings_list.push_back(ai::Setting(
-    setting_name, ai::SettingType::boolean, value)
-  );
+  engine_settings.settings_list.push_back(
+      ai::Setting(setting_name, ai::SettingType::boolean, value));
 }
 
 void ai::setEngineSetting(const std::string &setting_name, bool value) {
@@ -86,12 +85,9 @@ void ai::reset() {
   cTable.clear();
 }
 
-// ai::FeatureVector ai::feature_vector(Board &board) {
+int ai::evaluation(Board &board) { return ai::evaluation(board, false); }
 
-//   return;
-// }
-
-int ai::evaluation(Board &board) {
+int ai::evaluation(Board &board, bool print_vec) {
   board::Status status = board.status();
 
   if (status == board::Status::Stalemate || status == board::Status::Draw)
@@ -171,29 +167,21 @@ int ai::evaluation(Board &board) {
   // Piece+squares
   for (PieceType piece_ = 0; piece_ < 12; piece_++) {
     for (Square sq = 0; sq < 64; sq++) {
-      float piece_score =
-          1; // board.piece_square_score(p, sq, game_stage_early);
-      if (board.piece_at(sq) != piece_)
-        piece_score = 0;
+      float piece_score = 0;
+      if (board.piece_at(sq) != piece_) {
+        v_index++;
+        continue;
+      }
+      piece_score = board.piece_square_score(piece_, sq, game_stage_early);
 
-      if (colorOf(piece_) == Black && piece_score != 0)
+      if (colorOf(piece_) == Black)
         piece_score = -piece_score;
-      vec[v_index] = piece_score;
+
+      vec[v_index] = 1;
       weight_vec[v_index++] =
-          piece_score_weight; // need to replace w/ specific weight
+          piece_score * piece_score_weight; // need to replace w/ specific weight
     }
   }
-
-  // for (Square i = 0; i < 64; i++) {
-  //   PieceType selected_piece = board.piece_at(i);
-  //   if (colorOf(selected_piece) == White) {
-  //     piece_score_white +=
-  //         board.piece_square_score(board.piece_at(i), i, game_stage_early);
-  //   } else {
-  //     piece_score_black +=
-  //         board.piece_square_score(board.piece_at(i), i, game_stage_early);
-  //   }
-  // }
 
   for (int i = 0; i < vsize; i++) {
     score += vec[i] * weight_vec[i];
@@ -201,12 +189,14 @@ int ai::evaluation(Board &board) {
 
   // trapped pieces should count towards material
 
-  // std::cout << "[ ";
-  // for (int i = 0; i < vsize; i++) {
-  //   std::cout << vec[i] << " ";
-  // }
-  // std::cout << "]\n";
-
+  if (print_vec) {
+    std::cout << "[ ";
+    for (int i = 0; i < vsize; i++) {
+      std::cout << vec[i] << " ";
+    }
+    std::cout << "]\n";
+  }
+  
   return score;
 }
 
@@ -541,7 +531,7 @@ std::vector<Move_> ai::generateMovesOrdered(Board &board, Move_ refMove,
     {
       int see = board.see(mv);
       if (see > 0) {
-        queue.push(MoveScore(mv, std::pow(2, 4)+see));
+        queue.push(MoveScore(mv, std::pow(2, 4) + see));
         numPositiveMoves++;
       } else if (see == 0)
         queue.push(MoveScore(mv, std::pow(2, 2))); // trades
@@ -819,7 +809,7 @@ Score ai::zeroWindowSearch(Board &board, int depth, int plyCount, Score beta,
     Score score = -ai::zeroWindowSearch(board, depth - 1 - rNull, plyCount + 1,
                                         1 - beta, stop, count, Cut);
     board.UnmakeMove();
-    if (score >= beta) { 
+    if (score >= beta) {
       //  move is better than beta, so this node is cut
 
       // node.nodeType = Cut;

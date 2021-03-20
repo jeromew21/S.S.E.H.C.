@@ -21,8 +21,6 @@
 #include "uci/strings.hpp"
 
 namespace ai {
-struct FeatureVector {};
-
 enum SettingType { boolean, number };
 
 struct Setting {
@@ -51,6 +49,7 @@ void setEngineSetting(const std::string &setting_name, int value);
 Setting getEngineSetting(const std::string &setting_name);
 
 int evaluation(Board &board);  // absolute
+int evaluation(Board &board, bool print_vec);  // absolute
 int flippedEval(Board &board); // depends on turn
 
 void sendPV(Board &board, int depth, Move_ pv_move, int total_node_count,
@@ -79,8 +78,6 @@ std::vector<Move_> generateMovesOrdered(Board &board, Move_ refMove,
 bool isCheckmateScore(Score sc);
 void init();
 void reset();
-
-FeatureVector feature_vector(Board &board);
 
 } // namespace ai
 

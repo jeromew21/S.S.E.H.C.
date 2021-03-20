@@ -15,6 +15,6 @@ os.system(valgrind)
 
 imgname = fname + ".svg"
 
-gprof2dot = "gprof2dot -f callgrind {} | dot -Tsvg -o {}".format(logname, imgname)
+gprof2dot = "python3 -m gprof2dot -f callgrind {} | dot -Tsvg -o {}".format(logname, imgname)
 
 os.system(gprof2dot)
